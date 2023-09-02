@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I',
-    appId: '1:128619632572:android:9ccdf51a2266326cc6bdb9',
+    appId: '1:128619632572:android:a440b8e573d0b65ac6bdb9',
     messagingSenderId: '128619632572',
     projectId: 'savehatay',
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
@@ -64,13 +64,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDy0ND6I8WABYRgWmoqkSgHKV9dZ_r1FOE',
-    appId: '1:128619632572:ios:a0839d8ab921d0fcc6bdb9',
+    appId: '1:128619632572:ios:a3b49fbc899f9efac6bdb9',
     messagingSenderId: '128619632572',
     projectId: 'savehatay',
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
     storageBucket: 'savehatay.appspot.com',
-    iosClientId: '128619632572-8ndb2lfo32hhn9pc06pk58lj0dke5ik1.apps.googleusercontent.com',
-    iosBundleId: 'com.sesiniduydum.app',
+    iosClientId: '128619632572-hjjsm39vnm2019mqg7i6m8o4o20t1sjo.apps.googleusercontent.com',
+    iosBundleId: 'com.hatayasat.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

@@ -8,9 +8,6 @@ import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
 
 void main() async {
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   final initialManager = ApplicationInit();
   await initialManager.start();
   runApp(

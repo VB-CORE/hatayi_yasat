@@ -1,4 +1,4 @@
-app_identifier("com.sesiniduydum.app") # The bundle identifier of your app
+app_identifier("com.hatayasat.app") # The bundle identifier of your app
 apple_id("vbacik.i10@icloud.com") # Your Apple Developer Portal username
 
 itc_team_id("125155847") # App Store Connect Team ID

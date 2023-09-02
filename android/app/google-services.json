@@ -8,6 +8,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:128619632572:android:a440b8e573d0b65ac6bdb9",
+        "android_client_info": {
+          "package_name": "com.hatayasat.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128619632572-8ndb2lfo32hhn9pc06pk58lj0dke5ik1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sesiniduydum.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:128619632572:android:9ccdf51a2266326cc6bdb9",
         "android_client_info": {
           "package_name": "com.sesiniduydum.app"
@@ -30,6 +66,13 @@
             {
               "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "128619632572-8ndb2lfo32hhn9pc06pk58lj0dke5ik1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sesiniduydum.app"
+              }
             }
           ]
         }
