@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/canvaskit-wasm@0.33.0/bin/canvaskit.js"></script>
+    <link
+      rel="preload"
+      href="https://unpkg.com/canvaskit-wasm@0.33.0/bin/canvaskit.wasm"
+      as="fetch"
+      crossorigin="anonymous"
+    />
+    <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB23q9CWcxA9Hu78KbWl3gXT_gjaeB40Fg"></script>
+
+    <base href="$FLUTTER_BASE_HREF" />
+
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta
+      name="description"
+      content="Afet alanına yardım ulaştıracak olan araçları ve yardıma ihtiyacı olanları buluşturan"
+    />
+
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="SESİNİDUYDUM" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.ico" />
+
+    <title>SESİNİDUYDUM</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      // The value below is injected by flutter build, do not touch.
+      var serviceWorkerVersion = null;
+    </script>
+    <!-- This script adds the flutter initialization JS code -->
+    <script src="flutter.js" defer></script>
+
+    <style>
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border: 15px solid;
+        border-top: 16px solid #101a2a;
+        border-right: 16px solid white;
+        border-bottom: 16px solid #101a2a;
+        border-left: 16px solid white;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="loader"></div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js"></script>
+    <script type="text/javascript">
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js";
+    </script>
+
+    <script src="main.dart.js" type="application/javascript"></script>
+    <script>
+      // window.flutterfire_ignore_scripts = ["analytics"];
+
+      window.addEventListener("load", function (ev) {
+        // Download main.dart.js
+        _flutter.loader.loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: serviceWorkerVersion,
+          },
+          onEntrypointLoaded: async function (engineInitializer) {
+            // Initialize the Flutter engine
+            let appRunner = await engineInitializer.initializeEngine();
+            // Run the app
+            await appRunner.runApp();
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
