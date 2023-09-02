@@ -12,12 +12,12 @@ class InfoCheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProductCheckbox(
       autovalidateMode: autovalidateMode,
-      title: Text(LocaleKeys.confirmationText.tr()),
+      title: const Text('LocaleKeys.confirmationText.tr()'),
       onSaved: (value) {},
       validator: (value) {
         return value != null && value == true
             ? null
-            : LocaleKeys.validation_confirmationText.tr();
+            : 'LocaleKeys.validation_confirmationText.tr()';
       },
     );
   }

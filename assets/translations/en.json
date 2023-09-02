@@ -1,3 +1,15 @@
 {
-    "hello": "Hello"
+    "project": {
+        "name": "Hatayı Yaşat"
+    },
+    "validation": {
+        "fullName": "Ad ve soyad boş bırakılamaz.",
+        "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
+        "address": "Adres boş bırakılamaz",
+        "needs": "Lütfen ihtiyacınızı seçiniz",
+        "plate": "Lütfen plaka giriniz",
+        "kvkk": "Lütfen KVKK'yi kabul ediniz",
+        "surname": "Soyadınızı girmelisiniz",
+        "confirmationText": "Onay metnini kabul ediniz"
+    }
 }
