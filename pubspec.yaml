@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.1
   equatable: ^2.0.5
-  firebase_core: ^2.6.1
+  firebase_core: ^2.15.1
   flutter_riverpod: ^2.1.3
   font_awesome_flutter: ^10.3.0
 
@@ -26,6 +26,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^22.2.11
   textfield_tags: ^2.0.2
   webview_flutter: ^4.0.2
+  flutterfire_ui: ^0.4.3+20
 
 flutter_icons:
   android: "launcher_icon"

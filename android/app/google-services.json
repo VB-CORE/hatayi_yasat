@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128619632572",
+    "firebase_url": "https://savehatay-default-rtdb.firebaseio.com",
+    "project_id": "savehatay",
+    "storage_bucket": "savehatay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128619632572:android:9ccdf51a2266326cc6bdb9",
+        "android_client_info": {
+          "package_name": "com.sesiniduydum.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

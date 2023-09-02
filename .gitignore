@@ -12,10 +12,10 @@ migrate_working_dir/
 *.lock
 
 # Ignore
-firebase_options.dart
-google-services.json
-google-services.plist
-GoogleService-Info.plist
+# firebase_options.dart
+# google-services.json
+# google-services.plist
+# GoogleService-Info.plist
 
 # IntelliJ related
 *.iml
