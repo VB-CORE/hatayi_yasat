@@ -9,7 +9,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
   }
 
   Future<void> _controlApplication() async {
-    await Future.delayed(ProjectGeneralConstant.durationLow);
-    state = state.copyWith(isOperationStaring: true);
+    await Future.delayed(ProjectGeneralConstant.durationVeryHigh);
+    state = state.copyWith(isOperationStaring: false);
   }
 }

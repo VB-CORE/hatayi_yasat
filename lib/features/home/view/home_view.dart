@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/home/provider/home_provider.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -30,8 +29,31 @@ class _HomeViewState extends ConsumerState<HomeView> {
       ),
       appBar: AppBar(
         title: Text(ref.watch(homeProvider).title),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
-      body: Image.network(''.ext.randomImage),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: Column(
+              children: [
+                Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Antakya_-_2011-04-10.jpg/1200px-Antakya_-_2011-04-10.jpg',
+                ),
+                const ListTile(
+                  title: Text('Title'),
+                  subtitle: Text('Subtitle'),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
