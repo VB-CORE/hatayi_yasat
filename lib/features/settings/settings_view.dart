@@ -55,7 +55,7 @@ class _SettingsViewState extends State<SettingsView> {
                 ),
                 SocialMediaCircleAvatar(
                   iconData: FontAwesomeIcons.instagram,
-                  webUrl: StringConstants.instagram,
+                  webUrl: StringConstants.instagramUrl,
                 ),
                 SocialMediaCircleAvatar(
                   iconData: FontAwesomeIcons.twitter,
