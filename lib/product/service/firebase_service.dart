@@ -14,6 +14,10 @@ enum RootStorageName {
   user,
 }
 
+abstract class CustomService {
+  // Future<String?> add<T extends BaseFirebaseModel<T>>;
+}
+
 @immutable
 final class FirebaseService {
   const FirebaseService._();

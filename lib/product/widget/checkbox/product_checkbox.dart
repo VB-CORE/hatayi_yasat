@@ -17,7 +17,10 @@ class ProductCheckbox extends FormField<bool> {
               leading: Checkbox(
                 activeColor: ColorsCustom.sambacus,
                 value: state.value,
-                onChanged: state.didChange,
+                onChanged: (value) {
+                  state.didChange(value);
+                  onSaved.call(value);
+                },
               ),
               dense: true,
               contentPadding: EdgeInsets.zero,

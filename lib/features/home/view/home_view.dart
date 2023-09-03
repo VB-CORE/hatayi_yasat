@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/home/provider/home_provider.dart';
-import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
-
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
+import 'package:vbaseproject/features/settings/settings_view.dart';
+import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -35,7 +35,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
         title: Text(ref.watch(homeProvider).title),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.route.navigateToPage(const SettingsView());
+            },
             icon: const Icon(Icons.settings),
           ),
         ],
@@ -66,7 +68,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   Future<void> _pullToRefresh() async {
     // Fetch All Data
-    ref.read(homeProvider.notifier).updateName();
+    // ref.read(homeProvider.notifier).updateName();
     setState(() {});
     return Future<void>.delayed(ProjectGeneralConstant.durationHigh);
   }

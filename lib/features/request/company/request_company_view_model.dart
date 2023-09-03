@@ -61,6 +61,11 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
       return false;
     }
 
+    state = state.copyWith(
+      isSendingRequest: false,
+      isServiceError: true,
+    );
+
     return true;
   }
 }

@@ -64,12 +64,14 @@ mixin RequestCompanyMixin
 
   Future<void> dataSendingComplete({required bool isOkay}) async {
     if (!isOkay) return;
+    clear();
     await SuccessDataPostedDialog.show(context);
     if (!mounted) return;
     await context.route.pop(true);
   }
 
   bool isCheckValidation() {
+    _isFormValidateCheck();
     if (_imageFile == null) {
       appProvider.showSnackbarMessage(LocaleKeys.validation_photoRequired.tr());
       return false;
@@ -88,10 +90,22 @@ mixin RequestCompanyMixin
     final formCurrentState = formKey.currentState;
     if (formCurrentState == null || !formCurrentState.validate()) {
       appProvider.showSnackbarMessage(LocaleKeys.validation_formRequired.tr());
-      _isFormValidateCheck();
+
       return false;
     }
     return true;
+  }
+
+  void clear() {
+    companyNameController.clear();
+    companyDescriptionController.clear();
+    nameSurnameController.clear();
+    addressController.clear();
+    phoneController.clear();
+    _imageFile = null;
+    _selectedTown = null;
+    _isKvkkSelected = false;
+    isFirstValidationCheck = false;
   }
 
   void onTownSelected(TownModel value) {

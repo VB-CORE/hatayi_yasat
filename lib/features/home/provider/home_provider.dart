@@ -5,8 +5,8 @@ import 'package:riverpod/riverpod.dart';
 class HomeProvider extends StateNotifier<HomeState> {
   HomeProvider() : super(const HomeState(''));
 
-  void updateName() {
-    state = state.copyWith(title: 'Hello World');
+  void fetchAllItemsAndSave() {
+    // FirebaseService.instance.fetchAllItemsAndSave();
   }
 }
 
