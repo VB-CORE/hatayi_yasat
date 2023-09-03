@@ -12,5 +12,10 @@ abstract class  LocaleKeys {
   static const validation_surname = 'validation.surname';
   static const validation_confirmationText = 'validation.confirmationText';
   static const validation = 'validation';
+  static const settings_title = 'settings.title';
+  static const settings_language_title = 'settings.language_title';
+  static const settings_theme_title = 'settings.theme_title';
+  static const settings_version_number_title = 'settings.version_number_title';
+  static const settings = 'settings';
 
 }
