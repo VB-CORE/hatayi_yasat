@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/request/company/mixin/request_company_mixin.dart';
 import 'package:vbaseproject/features/request/company/request_company_view_model.dart';
 import 'package:vbaseproject/features/request/company/request_state.dart';
@@ -11,11 +12,10 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
+import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
-
-import 'package:vbaseproject/product/widget/dialog/success_data_posted_dialog.dart';
 
 final StateNotifierProvider<RequestCompanyViewModel, RequestCompanyState>
     _requestCompanyViewModel = StateNotifierProvider(
@@ -39,7 +39,6 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
     return Scaffold(
       bottomNavigationBar: _SaveButton(
         () async {
-          await SuccessDataPostedDialog.show(context);
           if (!isCheckValidation()) return;
           final response = await ref
               .read(_requestCompanyViewModel.notifier)
@@ -50,56 +49,66 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
       appBar: AppBar(
         title: const Text(LocaleKeys.requestCompany_title).tr(),
       ),
-      body: Form(
-        key: formKey,
-        autovalidateMode: isFirstValidationCheck
-            ? AutovalidateMode.always
-            : AutovalidateMode.onUserInteraction,
-        child: Padding(
-          padding: const PagePadding.horizontal16Symmetric() +
-              const PagePadding.onlyBottom(),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                DottedAddPhotoButton(
-                  onSelected: onImageSelected,
-                ),
-                const _EmptyBox(),
-                ValidatorTextFormField(
-                  controller: companyNameController,
-                  labelText: LocaleKeys.requestCompany_name.tr(),
-                  validator: ValidatorNormalTextField(),
-                ),
-                ValidatorTextFormField(
-                  controller: companyDescriptionController,
-                  labelText: LocaleKeys.requestCompany_description.tr(),
-                  validator: ValidatorNormalTextField(),
-                  minLine: 3,
-                ),
-                const Divider(),
-                ValidatorTextFormField(
-                  controller: nameSurnameController,
-                  labelText: LocaleKeys.requestCompany_ownerName.tr(),
-                  validator: ValidatorNormalTextField(),
-                ),
-                ValidatorTextFormField(
-                  controller: addressController,
-                  labelText: LocaleKeys.validation_address.tr(),
-                  validator: ValidatorNormalTextField(),
-                  minLine: 3,
-                ),
-                PhoneTextFormField(
-                  controller: phoneController,
-                ),
-                DistrictDropDownView(
-                  onSelected: onTownSelected,
-                )
-              ],
+      body: WillPopScope(
+        onWillPop: checkBackButton,
+        child: Form(
+          key: formKey,
+          autovalidateMode: autoValidate(),
+          child: Padding(
+            padding: const PagePadding.horizontal16Symmetric() +
+                const PagePadding.onlyBottom(),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  DottedAddPhotoButton(
+                    onSelected: onImageSelected,
+                  ),
+                  const _EmptyBox(),
+                  ValidatorTextFormField(
+                    controller: companyNameController,
+                    labelText: LocaleKeys.requestCompany_name.tr(),
+                    validator: ValidatorNormalTextField(),
+                  ),
+                  ValidatorTextFormField(
+                    controller: companyDescriptionController,
+                    labelText: LocaleKeys.requestCompany_description.tr(),
+                    validator: ValidatorNormalTextField(),
+                    minLine: 3,
+                  ),
+                  const Divider(),
+                  ValidatorTextFormField(
+                    controller: nameSurnameController,
+                    labelText: LocaleKeys.requestCompany_ownerName.tr(),
+                    validator: ValidatorNormalTextField(),
+                  ),
+                  ValidatorTextFormField(
+                    controller: addressController,
+                    labelText: LocaleKeys.validation_address.tr(),
+                    validator: ValidatorNormalTextField(),
+                    minLine: 3,
+                  ),
+                  PhoneTextFormField(
+                    controller: phoneController,
+                  ),
+                  DistrictDropDownView(
+                    onSelected: onTownSelected,
+                  ),
+                  KvkkCheckBox(
+                    onChanged: (value) {
+                      onKvvkSelected(value: value);
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
-    );
+    ).ext.toDisabled(
+          disable:
+              ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
+          opacity: 0.5,
+        );
   }
 }
 
@@ -117,12 +126,19 @@ class _SaveButton extends ConsumerWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading =
+        ref.watch(_requestCompanyViewModel).isSendingRequest ?? false;
     return SafeArea(
       child: Padding(
         padding: const PagePadding.horizontal16Symmetric(),
         child: FloatingActionButton(
-          onPressed: onPressed,
-          child: const Text(LocaleKeys.button_save).tr(),
+          onPressed: () {
+            if (isLoading) return;
+            onPressed();
+          },
+          child: isLoading
+              ? const CircularProgressIndicator()
+              : const Text(LocaleKeys.button_save).tr(),
         ),
       ),
     );

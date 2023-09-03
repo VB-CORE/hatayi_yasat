@@ -44,31 +44,36 @@ class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
     return Scaffold(
       body: Padding(
         padding: const PagePadding.horizontal16Symmetric(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.lottie.cityLoadingBetter.lottie(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const PagePadding.onlyLeft10(),
-                  child: Text(
-                    LocaleKeys.project_name,
-                    style: context.general.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize:
-                          context.general.textTheme.displaySmall?.fontSize,
-                    ),
-                  ).tr(),
-                ),
-                const Padding(
-                  padding: PagePadding.onlyTop(),
-                  child: CircularProgressIndicator(),
-                ),
-              ],
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: context.sized.dynamicHeight(.3),
+                child: Assets.lottie.cityLoadingBetter.lottie(),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const PagePadding.onlyLeft10(),
+                    child: Text(
+                      LocaleKeys.project_name,
+                      style: context.general.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize:
+                            context.general.textTheme.displaySmall?.fontSize,
+                      ),
+                    ).tr(),
+                  ),
+                  const Padding(
+                    padding: PagePadding.onlyTop(),
+                    child: CircularProgressIndicator(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

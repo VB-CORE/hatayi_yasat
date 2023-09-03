@@ -13,7 +13,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
   final ProductProvider productProvider;
   final AppProvider appProvider;
   Future<void> _controlApplication() async {
-    await Future.delayed(ProjectGeneralConstant.durationVeryHigh);
+    await Future.delayed(ProjectGeneralConstant.durationVeryHigh, () {});
     await appProvider.init();
     await productProvider.fetchDistrictAndSaveSession();
     state = state.copyWith(isOperationStaring: false);

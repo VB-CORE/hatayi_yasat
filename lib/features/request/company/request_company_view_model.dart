@@ -15,6 +15,11 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
 
   final String deviceId;
 
+  void changeLoading() {
+    state =
+        state.copyWith(isSendingRequest: !(state.isSendingRequest ?? false));
+  }
+
   Future<bool> addNewDataToService(
     RequestCompanyModel requestCompanyModel,
   ) async {

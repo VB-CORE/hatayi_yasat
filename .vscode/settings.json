@@ -1,13 +1,14 @@
 {
     "cSpell.words": [
+        "Autovalidate",
         "braziliante",
         "Firestore",
         "kartal",
         "Polyline",
         "polylines",
         "riverpod",
-        "vbaseproject",
         "syncfusion",
+        "vbaseproject",
         "wanteds"
     ],
     "dart.lineLength": 80,

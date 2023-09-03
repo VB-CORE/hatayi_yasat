@@ -13,18 +13,20 @@ class ProductCheckbox extends FormField<bool> {
   }) : super(
           builder: (FormFieldState<bool> state) {
             return ListTile(
+              minLeadingWidth: 0,
               leading: Checkbox(
                 activeColor: ColorsCustom.sambacus,
                 value: state.value,
                 onChanged: state.didChange,
               ),
-              dense: state.hasError,
+              dense: true,
+              contentPadding: EdgeInsets.zero,
               horizontalTitleGap: AppConstants.kZero.toDouble(),
               title: title,
               subtitle: state.hasError
                   ? Builder(
                       builder: (BuildContext context) => Text(
-                        state.errorText ?? 'Base error',
+                        state.errorText ?? '',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.error,
                         ),

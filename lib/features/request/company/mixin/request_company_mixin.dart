@@ -9,6 +9,7 @@ import 'package:vbaseproject/features/request/company/request_company_view.dart'
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/firebase/town_model.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/widget/dialog/form_latest_data_dialog.dart';
 import 'package:vbaseproject/product/widget/dialog/success_data_posted_dialog.dart';
 
 mixin RequestCompanyMixin
@@ -24,6 +25,30 @@ mixin RequestCompanyMixin
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TownModel? _selectedTown;
   bool isFirstValidationCheck = false;
+  bool _isKvkkSelected = false;
+
+  bool get isAnyDataEntered =>
+      companyNameController.text.isNotEmpty ||
+      companyDescriptionController.text.isNotEmpty ||
+      nameSurnameController.text.isNotEmpty ||
+      addressController.text.isNotEmpty ||
+      phoneController.text.isNotEmpty ||
+      _imageFile != null ||
+      _selectedTown != null;
+
+  Future<bool> checkBackButton() async {
+    if (isAnyDataEntered) {
+      final response = await FormLatestDataDialog.show(context);
+      return response;
+    }
+    return true;
+  }
+
+  AutovalidateMode autoValidate() {
+    return isFirstValidationCheck
+        ? AutovalidateMode.onUserInteraction
+        : AutovalidateMode.disabled;
+  }
 
   RequestCompanyModel get model => RequestCompanyModel(
         companyName: companyNameController.text,
@@ -55,6 +80,11 @@ mixin RequestCompanyMixin
       return false;
     }
 
+    if (!_isKvkkSelected) {
+      appProvider.showSnackbarMessage(LocaleKeys.validation_kvkk.tr());
+      return false;
+    }
+
     final formCurrentState = formKey.currentState;
     if (formCurrentState == null || !formCurrentState.validate()) {
       appProvider.showSnackbarMessage(LocaleKeys.validation_formRequired.tr());
@@ -66,6 +96,10 @@ mixin RequestCompanyMixin
 
   void onTownSelected(TownModel value) {
     _selectedTown = value;
+  }
+
+  void onKvvkSelected({required bool value}) {
+    _isKvkkSelected = value;
   }
 
   void onImageSelected(File value) {

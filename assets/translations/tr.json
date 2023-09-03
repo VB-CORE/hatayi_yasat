@@ -14,7 +14,8 @@
         "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
         "requiredField": "Bu alan boş bırakılamaz",
         "formRequired": "Lütfen formu doldurunuz",
-        "photoRequired": "Lütfen fotoğraf ekleyiniz"
+        "photoRequired": "Lütfen fotoğraf ekleyiniz",
+        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?"
     },
     "button": {
         "save": "Kaydet",
@@ -38,5 +39,9 @@
         "ownerName": "Ad ve soyad",
         "district": "İlçe",
         "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
+    },
+    "general": {
+        "kvkk": "KVKK'yı",
+        "kvkkReadApproved": " okudum, onaylıyorum."
     }
 }
