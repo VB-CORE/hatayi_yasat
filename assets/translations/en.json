@@ -11,5 +11,11 @@
         "kvkk": "Lütfen KVKK'yi kabul ediniz",
         "surname": "Soyadınızı girmelisiniz",
         "confirmationText": "Onay metnini kabul ediniz"
+    },
+    "settings": {
+      "title": "Settings",
+      "language_title":"Language",
+      "theme_title": "Theme",
+      "version_number_title": "Version Number"
     }
 }

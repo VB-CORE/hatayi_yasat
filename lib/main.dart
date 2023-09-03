@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/features/splash/splash_view.dart';
+import 'package:vbaseproject/features/settings/settings_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      home: const SplashView(),
+      home: const SettingsView(),
     );
   }
 }
