@@ -15,4 +15,7 @@ final class ProjectGeneralConstant {
 
   /// Duration is 2000 milliseconds.
   static const durationVeryHigh = Duration(seconds: 4);
+
+  /// String constant
+  static const String phoneNumberHint = '+90 5XX XXX XX XX';
 }

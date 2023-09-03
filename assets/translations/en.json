@@ -10,12 +10,45 @@
         "plate": "Lütfen plaka giriniz",
         "kvkk": "Lütfen KVKK'yi kabul ediniz",
         "surname": "Soyadınızı girmelisiniz",
+        "confirmationText": "Onay metnini kabul ediniz",
+        "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
+        "requiredField": "Bu alan boş bırakılamaz",
+        "formRequired": "Lütfen formu doldurunuz",
+        "photoRequired": "Lütfen fotoğraf ekleyiniz",
+        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?"
+    },
+    "button": {
+        "save": "Kaydet",
+        "addPhoto": "Fotoğraf Ekle",
+        "ok": "Tamam",
+        "close": "Kapat"
+    },
+    "component": {
+        "picker": {
+            "camera": "Kamera dan seç",
+            "gallery": "Galeriden seç",
+            "cropperTitle": "Düzenle"
+        }
+    },
+    "requestCompany": {
+        "title": "Yeni işletme talebi",
+        "name": "İşletme adı",
+        "description": "İşletme açıklaması",
+        "address": "İşletme adresi",
+        "phoneNumber": "Telefon numarası",
+        "ownerName": "Ad ve soyad",
+        "district": "İlçe",
+        "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
+    },
+    "general": {
+        "kvkk": "KVKK'yı",
+        "kvkkReadApproved": " okudum, onaylıyorum.",
         "confirmationText": "Onay metnini kabul ediniz"
     },
     "settings": {
-      "title": "Settings",
-      "language_title":"Language",
-      "theme_title": "Theme",
-      "version_number_title": "Version Number"
+        "title": "Settings",
+        "language_title": "Language",
+        "theme_title": "Theme",
+        "version_number_title": "Version Number"
     }
 }

@@ -5,21 +5,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 
 class AppProvider extends StateNotifier<AppProviderState> {
   AppProvider() : super(const AppProviderState());
 
-  final FirebaseService firebaseService = FirebaseService();
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   static final provider =
       StateNotifierProvider<AppProvider, AppProviderState>((_) {
     return AppProvider();
   });
 
-  Future<void> init(BuildContext context) async {
-    await Future.wait([checkDeviceId()]);
+  Future<void> init() async => checkDeviceId();
+
+  void showSnackbarMessage(String message) {
+    scaffoldMessengerKey.currentState
+      ?..clearSnackBars()
+      ..showSnackBar(ErrorSnackBar(message: message));
   }
 
   Future<void> checkDeviceId() async {
