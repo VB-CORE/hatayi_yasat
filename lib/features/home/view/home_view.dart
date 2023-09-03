@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/home/provider/home_provider.dart';
+
+import 'package:vbaseproject/features/request/company/request_company_view.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -23,7 +26,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(homeProvider.notifier).updateName();
+          context.route.navigateToPage(const RequestCompanyView());
         },
         child: const Icon(Icons.add),
       ),

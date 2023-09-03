@@ -1,0 +1,69 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+
+enum PhotoPickType {
+  gallery,
+  camera,
+}
+
+final class PhotoPickerManager {
+  final ImagePicker _picker = ImagePicker();
+
+  Future<File?> pickPhoto({required PhotoPickType type}) async {
+    XFile? mediaFile;
+
+    switch (type) {
+      case PhotoPickType.gallery:
+        mediaFile = await _picker.pickImage(source: ImageSource.gallery);
+      case PhotoPickType.camera:
+        mediaFile = await _picker.pickImage(source: ImageSource.camera);
+    }
+
+    if (mediaFile == null) return null;
+
+    final croppedFile = await ImageCropper().cropImage(
+      sourcePath: mediaFile.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.ratio4x3,
+      ],
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: LocaleKeys.component_picker_cropperTitle.tr(),
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: true,
+        ),
+        IOSUiSettings(
+          title: LocaleKeys.component_picker_cropperTitle.tr(),
+        ),
+      ],
+    );
+    if (croppedFile == null) return null;
+    final latestFile = testCompressAndGetFile(File(croppedFile.path));
+    return latestFile;
+  }
+
+  Future<File> testCompressAndGetFile(File file) async {
+    final result = await FlutterImageCompress.compressWithFile(
+      file.absolute.path,
+      quality: 75,
+    );
+
+    if (result == null) return file;
+    await file.writeAsBytes(result);
+
+    return file;
+  }
+
+  Future<File> createFile(String path) async {
+    final file = File(path);
+    if ((await file.exists()) == false) {
+      await file.create(recursive: true);
+    }
+    return file;
+  }
+}

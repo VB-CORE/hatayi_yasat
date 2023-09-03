@@ -11,6 +11,29 @@ abstract class  LocaleKeys {
   static const validation_kvkk = 'validation.kvkk';
   static const validation_surname = 'validation.surname';
   static const validation_confirmationText = 'validation.confirmationText';
+  static const validation_generalText = 'validation.generalText';
+  static const validation_requiredField = 'validation.requiredField';
+  static const validation_formRequired = 'validation.formRequired';
+  static const validation_photoRequired = 'validation.photoRequired';
   static const validation = 'validation';
+  static const button_save = 'button.save';
+  static const button_addPhoto = 'button.addPhoto';
+  static const button_ok = 'button.ok';
+  static const button_close = 'button.close';
+  static const button = 'button';
+  static const component_picker_camera = 'component.picker.camera';
+  static const component_picker_gallery = 'component.picker.gallery';
+  static const component_picker_cropperTitle = 'component.picker.cropperTitle';
+  static const component_picker = 'component.picker';
+  static const component = 'component';
+  static const requestCompany_title = 'requestCompany.title';
+  static const requestCompany_name = 'requestCompany.name';
+  static const requestCompany_description = 'requestCompany.description';
+  static const requestCompany_address = 'requestCompany.address';
+  static const requestCompany_phoneNumber = 'requestCompany.phoneNumber';
+  static const requestCompany_ownerName = 'requestCompany.ownerName';
+  static const requestCompany_district = 'requestCompany.district';
+  static const requestCompany_complete = 'requestCompany.complete';
+  static const requestCompany = 'requestCompany';
 
 }

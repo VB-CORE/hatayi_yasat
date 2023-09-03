@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+
 class CustomRectangleBorder extends RoundedRectangleBorder {
   const CustomRectangleBorder({
     super.side = BorderSide.none,
-    super.borderRadius = const BorderRadius.all(Radius.circular(12)),
+    super.borderRadius = CustomRadius.medium,
   });
 }

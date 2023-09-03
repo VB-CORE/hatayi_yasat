@@ -7,8 +7,11 @@ import 'package:vbaseproject/features/splash/view_model/index.dart';
 
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -17,13 +20,18 @@ class SplashView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends ConsumerState<SplashView> {
-  final StateNotifierProvider<SplashViewModel, SplashState> _homeProvider =
-      StateNotifierProvider((ref) => SplashViewModel());
+class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
+  late final StateNotifierProvider<SplashViewModel, SplashState> _homeProvider;
 
   @override
   void initState() {
     super.initState();
+    _homeProvider = StateNotifierProvider(
+      (ref) => SplashViewModel(
+        appProvider: appProvider,
+        productProvider: ref.read(ProductProvider.provider.notifier),
+      ),
+    );
     ref.listenManual(_homeProvider, (previous, next) {
       if (!next.isOperationStaring) {
         ProjectNavigation(context).replaceToWidget(const HomeView());

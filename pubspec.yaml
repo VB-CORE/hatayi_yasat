@@ -29,6 +29,22 @@ dependencies:
   flutterfire_ui: ^0.4.3+20
   lottie: ^2.6.0
 
+  #core
+  path_provider: ^2.1.1
+  #util
+  uuid: any
+  flutter_image_compress: ^2.0.4
+
+  #firebase
+  firebase_storage: ^11.2.6
+
+  #package
+  image_picker: ^1.0.4
+  image_cropper: ^5.0.0
+
+  # ui
+  dotted_border: ^2.0.0+3
+
 flutter_icons:
   android: "launcher_icon"
   ios: true

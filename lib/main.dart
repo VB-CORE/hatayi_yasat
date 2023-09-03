@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
+import 'package:vbaseproject/product/utility/state/app_provider.dart';
 
 void main() async {
   final initialManager = ApplicationInit();
@@ -20,11 +21,11 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
@@ -37,6 +38,8 @@ class MyApp extends StatelessWidget {
           color: Colors.black,
         ),
       ),
+      scaffoldMessengerKey:
+          ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
       home: const SplashView(),
     );
   }
