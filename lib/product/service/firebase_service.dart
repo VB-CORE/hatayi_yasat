@@ -15,13 +15,27 @@ enum RootStorageName {
 }
 
 abstract class CustomService {
-  // Future<String?> add<T extends BaseFirebaseModel<T>>;
+  Future<String?> add<T extends BaseFirebaseModel<T>>({
+    required T model,
+    required CollectionEnums path,
+  });
+
+  Future<List<T>> getList<T extends BaseFirebaseConvert<T>>({
+    required T model,
+    required CollectionEnums path,
+  });
+
+  Future<String?> uploadImage({
+    required File file,
+    required RootStorageName root,
+    required String key,
+  });
 }
 
 @immutable
-final class FirebaseService {
-  const FirebaseService._();
-  static Future<String?> add<T extends BaseFirebaseModel<T>>({
+final class FirebaseService implements CustomService {
+  @override
+  Future<String?> add<T extends BaseFirebaseModel<T>>({
     required T model,
     required CollectionEnums path,
   }) async {
@@ -34,7 +48,8 @@ final class FirebaseService {
     return null;
   }
 
-  static Future<List<T>> getList<T extends BaseFirebaseConvert<T>>({
+  @override
+  Future<List<T>> getList<T extends BaseFirebaseConvert<T>>({
     required T model,
     required CollectionEnums path,
   }) async {
@@ -65,7 +80,8 @@ final class FirebaseService {
     return [];
   }
 
-  static Future<String?> uploadImage({
+  @override
+  Future<String?> uploadImage({
     required File file,
     required RootStorageName root,
     required String key,

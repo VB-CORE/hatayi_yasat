@@ -46,12 +46,17 @@ class $AssetsLottieGen {
   LottieGenImage get cityLoadingBetter =>
       const LottieGenImage('assets/lottie/city_loading_better.json');
 
+  /// File path: assets/lottie/search.json
+  LottieGenImage get search =>
+      const LottieGenImage('assets/lottie/search.json');
+
   /// File path: assets/lottie/success.json
   LottieGenImage get success =>
       const LottieGenImage('assets/lottie/success.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [cityLoading, cityLoadingBetter, success];
+  List<LottieGenImage> get values =>
+      [cityLoading, cityLoadingBetter, search, success];
 }
 
 class $AssetsTranslationsGen {

@@ -29,7 +29,7 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
     );
     final uuid = const Uuid().v4();
 
-    final uploadImage = await FirebaseService.uploadImage(
+    final uploadImage = await FirebaseService().uploadImage(
       file: requestCompanyModel.imageFile,
       root: RootStorageName.company,
       key: uuid,
@@ -48,7 +48,7 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
       deviceID: deviceId,
     );
 
-    final response = await FirebaseService.add<StoreModel>(
+    final response = await FirebaseService().add<StoreModel>(
       model: storage,
       path: CollectionEnums.unApprovedApplications,
     );

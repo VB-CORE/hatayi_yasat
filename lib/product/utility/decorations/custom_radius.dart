@@ -5,18 +5,16 @@ final class CustomRadius {
   const CustomRadius._();
 
   /// value is 4
-  static const BorderRadiusGeometry small =
-      BorderRadius.all(Radius.circular(8));
+  static const BorderRadius small = BorderRadius.all(Radius.circular(8));
 
   /// value is 12
-  static const BorderRadiusGeometry medium =
-      BorderRadius.all(Radius.circular(12));
+  static const BorderRadius medium = BorderRadius.all(Radius.circular(12));
 
   /// value is 16
-  static const BorderRadiusGeometry large =
-      BorderRadius.all(Radius.circular(16));
+  static const BorderRadius large = BorderRadius.all(Radius.circular(16));
 
   /// value is 24
-  static const BorderRadiusGeometry extraLarge =
-      BorderRadius.all(Radius.circular(24));
+  static const BorderRadius extraLarge = BorderRadius.all(Radius.circular(24));
+
+  // BorderRadius.all/
 }

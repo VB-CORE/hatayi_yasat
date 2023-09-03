@@ -1,0 +1,88 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/generated/assets.gen.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/firebase/store_model.dart';
+
+class HomeSearchDelegate extends SearchDelegate<StoreModel> {
+  HomeSearchDelegate({required this.items});
+  final int _maxLength = 3;
+  final List<StoreModel> items;
+  @override
+  List<Widget>? buildActions(BuildContext context) => null;
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return null;
+  }
+
+  @override
+  InputDecorationTheme? get searchFieldDecorationTheme =>
+      const InputDecorationTheme();
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return const SizedBox.shrink();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    if (query.length < _maxLength) {
+      return Center(
+        child: Assets.lottie.search.lottie(
+          height: context.sized.dynamicHeight(.2),
+        ),
+      );
+    }
+    final suggestions = items
+        .where(
+          (element) =>
+              (element.name.toLowerCase().ext.withoutSpecialCharacters ?? '')
+                  .contains(
+            query.ext.withoutSpecialCharacters?.toLowerCase() ?? '',
+          ),
+        )
+        .toList();
+
+    if (suggestions.isEmpty) {
+      return const _EmptyResult();
+    }
+
+    return ListView.separated(
+      itemCount: suggestions.length,
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            leading: Text('$index'),
+            title: Text(suggestions[index].name),
+            trailing: const Icon(Icons.chevron_right_outlined),
+            onTap: () {
+              close(context, suggestions[index]);
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EmptyResult extends StatelessWidget {
+  const _EmptyResult();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.clear),
+          const Text(LocaleKeys.message_emptySearch).tr(),
+        ],
+      ),
+    );
+  }
+}

@@ -30,7 +30,8 @@ dependencies:
   lottie: ^2.6.0
 
   #core
-  path_provider: ^2.1.1
+  cached_network_image: ^3.2.3
+
   #util
   uuid: any
   flutter_image_compress: ^2.0.4
@@ -44,6 +45,7 @@ dependencies:
 
   # ui
   dotted_border: ^2.0.0+3
+  shimmer: ^3.0.0
 
 flutter_icons:
   android: "launcher_icon"
