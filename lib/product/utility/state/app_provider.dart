@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/login/service/firebase_service.dart';
+import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 
 class AppProvider extends StateNotifier<AppProviderState> {

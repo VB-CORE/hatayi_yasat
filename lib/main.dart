@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
 
@@ -14,7 +14,6 @@ void main() async {
     EasyLocalization(
       supportedLocales: initialManager.localize.supportedItems,
       path: initialManager.localize.initialPath,
-      // startLocale: CoreLocale.tr.locale,
       useOnlyLangCode: true,
       child: const ProviderScope(child: MyApp()),
     ),
@@ -33,6 +32,12 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       builder: AppBuilder.build,
+      theme: ThemeData.light(useMaterial3: true).copyWith(
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Colors.black,
+        ),
+      ),
+      home: const SplashView(),
     );
   }
 }

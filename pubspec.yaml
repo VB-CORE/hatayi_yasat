@@ -27,6 +27,7 @@ dependencies:
   textfield_tags: ^2.0.2
   webview_flutter: ^4.0.2
   flutterfire_ui: ^0.4.3+20
+  lottie: ^2.6.0
 
 flutter_icons:
   android: "launcher_icon"
@@ -46,7 +47,8 @@ dev_dependencies:
 
 flutter_gen:
   output: lib/product/generated/
-
+  integrations:
+    lottie: true
 flutter:
   uses-material-design: true
 
@@ -54,3 +56,4 @@ flutter:
     - assets/translations/
     - assets/icons/
     - assets/docs/
+    - assets/lottie/
