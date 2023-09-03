@@ -38,6 +38,12 @@ abstract class  LocaleKeys {
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';
+  static const general_confirmationText = 'general.confirmationText';
   static const general = 'general';
+  static const settings_title = 'settings.title';
+  static const settings_language_title = 'settings.language_title';
+  static const settings_theme_title = 'settings.theme_title';
+  static const settings_version_number_title = 'settings.version_number_title';
+  static const settings = 'settings';
 
 }

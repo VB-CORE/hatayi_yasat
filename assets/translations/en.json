@@ -42,6 +42,13 @@
     },
     "general": {
         "kvkk": "KVKK'yı",
-        "kvkkReadApproved": " okudum, onaylıyorum."
+        "kvkkReadApproved": " okudum, onaylıyorum.",
+        "confirmationText": "Onay metnini kabul ediniz"
+    },
+    "settings": {
+        "title": "Settings",
+        "language_title": "Language",
+        "theme_title": "Theme",
+        "version_number_title": "Version Number"
     }
 }
