@@ -112,7 +112,7 @@ mixin RequestCompanyMixin
     _selectedTown = value;
   }
 
-  void onKvvkSelected({required bool value}) {
+  void onKvkkSelected({required bool value}) {
     _isKvkkSelected = value;
   }
 
