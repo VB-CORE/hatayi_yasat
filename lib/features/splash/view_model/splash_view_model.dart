@@ -36,6 +36,6 @@ class SplashViewModel extends StateNotifier<SplashState> {
   }
 
   Future<bool> _isConnectedToInternet() {
-    return NetworkChecker.tryToConnect();
+    return NetworkChecker.checkConnection();
   }
 }
