@@ -45,5 +45,17 @@ abstract class  LocaleKeys {
   static const settings_theme_title = 'settings.theme_title';
   static const settings_version_number_title = 'settings.version_number_title';
   static const settings = 'settings';
+  static const home_places = 'home.places';
+  static const home_search = 'home.search';
+  static const home = 'home';
+  static const message_emptySearch = 'message.emptySearch';
+  static const message = 'message';
+  static const detailView_owner = 'detailView.owner';
+  static const detailView_description = 'detailView.description';
+  static const detailView_address = 'detailView.address';
+  static const detailView_phoneNumber = 'detailView.phoneNumber';
+  static const detailView_district = 'detailView.district';
+  static const detailView_photos = 'detailView.photos';
+  static const detailView = 'detailView';
 
 }

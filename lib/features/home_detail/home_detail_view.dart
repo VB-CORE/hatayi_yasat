@@ -1,0 +1,186 @@
+import 'dart:ui';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/features/home_detail/mixin/home_detial_mixin.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
+
+class HomeDetailView extends StatefulWidget {
+  const HomeDetailView({required this.model, super.key});
+  final StoreModel model;
+
+  @override
+  State<HomeDetailView> createState() => _HomeDetailViewState();
+}
+
+class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: NotificationListener(
+        onNotification: listenNotification,
+        child: CustomScrollView(
+          slivers: [
+            ValueListenableBuilder<bool>(
+              valueListenable: isPinnedNotifier,
+              builder: (context, value, child) {
+                return _SliverAppBar(
+                  isPinned: value,
+                  model: model,
+                );
+              },
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                ListTile(
+                  title: const Text(LocaleKeys.detailView_owner).tr(),
+                  subtitle: Text(model.owner),
+                ),
+                if (model.description.ext.isNotNullOrNoEmpty)
+                  ListTile(
+                    titleTextStyle: context.general.textTheme.titleMedium,
+                    title: const Text(LocaleKeys.detailView_owner).tr(),
+                    subtitle: Text(model.description ?? ''),
+                  ),
+                ListTile(
+                  title: const Text(LocaleKeys.detailView_address).tr(),
+                  subtitle: Text(model.address),
+                ),
+                ListTile(
+                  title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
+                  subtitle: Text(model.phone),
+                ),
+                _DistrictListTile(model: model),
+                ListTile(
+                  title: const Text(LocaleKeys.detailView_photos).tr(),
+                  subtitle: SizedBox(
+                    height: context.sized.dynamicHeight(.2),
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(width: WidgetSizes.spacingS);
+                      },
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: model.images.length,
+                      itemBuilder: (context, index) {
+                        return CustomNetworkImage(
+                          imageUrl: model.images[index],
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ]),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DistrictListTile extends ConsumerWidget {
+  const _DistrictListTile({
+    required this.model,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final town = ref
+        .watch(ProductProvider.provider.notifier)
+        .fetchTownFromCode(model.townCode);
+    return ListTile(
+      title: const Text(LocaleKeys.detailView_district).tr(),
+      subtitle: Text(town),
+    );
+  }
+}
+
+class _SliverAppBar extends StatelessWidget {
+  const _SliverAppBar({
+    required this.isPinned,
+    required this.model,
+  });
+
+  final bool isPinned;
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      expandedHeight: 250,
+      pinned: true,
+      actions: const [],
+      actionsIconTheme: IconThemeData(
+        color: context.general.colorScheme.onSurface,
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        title: Container(
+          color: isPinned ? null : Colors.black.withOpacity(0.5),
+          width: isPinned ? null : context.sized.width,
+          child: Padding(
+            padding: const PagePadding.onlyLeft(),
+            child: Text(
+              model.name,
+              style: context.general.textTheme.titleLarge?.copyWith(
+                color: isPinned
+                    ? context.general.colorScheme.onSurface
+                    : context.general.colorScheme.onSecondary,
+              ),
+            ),
+          ),
+        ),
+        titlePadding: isPinned ? null : EdgeInsets.zero,
+        centerTitle: false,
+        background: Hero(
+          tag: ValueKey(model.id),
+          child: CustomNetworkImage(
+            imageUrl: model.images.firstOrNull,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BlurredBackdropImage extends StatelessWidget {
+  const BlurredBackdropImage({
+    required this.path,
+    super.key,
+  });
+
+  final String path;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage(
+            path,
+          ),
+          fit: BoxFit.cover,
+        ),
+      ),
+      height: MediaQuery.of(context).size.height / 1.5,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0),
+          ),
+        ),
+      ),
+    );
+  }
+}

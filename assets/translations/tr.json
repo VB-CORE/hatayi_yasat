@@ -50,5 +50,20 @@
         "language_title": "Dil",
         "theme_title": "Tema",
         "version_number_title": "Versiyon Numarası"
+    },
+    "home": {
+        "places": "Mekanlar",
+        "search": "Mekan ara"
+    },
+    "message": {
+        "emptySearch": "Sonuç Bulunamadı"
+    },
+    "detailView": {
+        "owner": "İşletme Sahibi",
+        "description": "Detaylar",
+        "address": "Adres",
+        "phoneNumber": "Telefon Numarası",
+        "district": "İlçe",
+        "photos": "Fotoğraflar"
     }
 }

@@ -1,10 +1,28 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home/provider/home_provider.dart';
-import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
-
+import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
+import 'package:vbaseproject/features/home/view_model/home_provider.dart';
+import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
+import 'package:vbaseproject/features/settings/settings_view.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/service/firebase_service.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
+import 'package:vbaseproject/product/widget/card/place_card.dart';
+import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
+import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
+
+final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
+    StateNotifierProvider(
+  (ref) => HomeViewModel(
+    productProvider: ref.read(ProductProvider.provider.notifier),
+    customService: FirebaseService(),
+  ),
+);
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -13,61 +31,110 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
-  late final StateNotifierProvider<HomeProvider, HomeState> homeProvider;
-
+class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
   @override
   void initState() {
     super.initState();
-    homeProvider = StateNotifierProvider((ref) => HomeProvider());
+    init(ref.read(_homeViewModel.notifier));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.route.navigateToPage(const RequestCompanyView());
-        },
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: const _RequestCompany(),
       appBar: AppBar(
-        title: Text(ref.watch(homeProvider).title),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-          ),
+        title: const Text(LocaleKeys.home_places).tr(),
+        actions: const [
+          _SettingsButton(),
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: _pullToRefresh,
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: Column(
-                children: [
-                  Image.network(
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Antakya_-_2011-04-10.jpg/1200px-Antakya_-_2011-04-10.jpg',
-                  ),
-                  const ListTile(
-                    title: Text('Title'),
-                    subtitle: Text('Subtitle'),
-                  ),
-                ],
+        onRefresh: () async {
+          await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));
+        },
+        child: Column(
+          children: [
+            Padding(
+              padding: const PagePadding.horizontalLowSymmetric(),
+              child: SearchFieldDisabled(
+                hint: LocaleKeys.home_search.tr(),
+                onTap: () async {
+                  await searchPressed(ref.watch(_homeViewModel));
+                },
               ),
-            );
-          },
+            ),
+            const Expanded(child: _PageBody()),
+          ],
         ),
       ),
     );
   }
+}
 
-  Future<void> _pullToRefresh() async {
-    // Fetch All Data
-    ref.read(homeProvider.notifier).updateName();
-    setState(() {});
-    return Future<void>.delayed(ProjectGeneralConstant.durationHigh);
+class _SettingsButton extends StatelessWidget {
+  const _SettingsButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        context.route.navigateToPage(const SettingsView());
+      },
+      icon: const Icon(Icons.settings),
+    );
+  }
+}
+
+class _PageBody extends ConsumerWidget {
+  const _PageBody();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = ref.watch(_homeViewModel).items;
+    final crossFadeState =
+        items.isEmpty ? CrossFadeState.showFirst : CrossFadeState.showSecond;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return AnimatedPageSwitch(
+          firstChild: const PlaceShimmerList(),
+          secondChild: SizedBox(
+            height: constraints.maxHeight,
+            child: ListView.builder(
+              padding: const PagePadding.horizontalLowSymmetric() +
+                  const PagePadding.onlyTop(),
+              itemCount: items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return PlaceCard(
+                  item: items[index],
+                  onTap: () {
+                    context.route
+                        .navigateToPage(HomeDetailView(model: items[index]));
+                  },
+                );
+              },
+            ),
+          ),
+          crossFadeState: crossFadeState,
+        );
+      },
+    );
+  }
+}
+
+class _RequestCompany extends ConsumerWidget {
+  const _RequestCompany();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(_homeViewModel).isServiceRequestSending;
+    return FloatingActionButton(
+      onPressed: isLoading
+          ? null
+          : () {
+              context.route.navigateToPage(const RequestCompanyView());
+            },
+      child: const Icon(Icons.add),
+    );
   }
 }
