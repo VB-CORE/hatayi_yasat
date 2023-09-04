@@ -57,5 +57,9 @@ abstract class  LocaleKeys {
   static const detailView_district = 'detailView.district';
   static const detailView_photos = 'detailView.photos';
   static const detailView = 'detailView';
+  static const forceUpdate_title = 'forceUpdate.title';
+  static const forceUpdate_message = 'forceUpdate.message';
+  static const forceUpdate_updateButton = 'forceUpdate.updateButton';
+  static const forceUpdate = 'forceUpdate';
 
 }

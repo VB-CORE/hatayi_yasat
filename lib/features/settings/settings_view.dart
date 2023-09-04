@@ -37,7 +37,7 @@ class _SettingsViewState extends State<SettingsView> {
             ListTile(
               title: Text(LocaleKeys.settings_version_number_title.tr()),
               trailing: Text(
-                '1.0.0',
+                ''.ext.version,
                 style: context.general.textTheme.titleSmall,
               ),
             ),
