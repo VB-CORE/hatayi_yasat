@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home/view/search/home_search_delegate.dart';
+import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home/view_model/home_provider.dart';
+import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
 import 'package:vbaseproject/features/settings/settings_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
@@ -31,13 +31,11 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(_homeViewModel.notifier).fetchAllItemsAndSave();
-    });
+    init(ref.read(_homeViewModel.notifier));
   }
 
   @override
@@ -51,7 +49,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: _pullToRefresh,
+        onRefresh: () async {
+          await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));
+        },
         child: Column(
           children: [
             Padding(
@@ -59,11 +59,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
               child: SearchFieldDisabled(
                 hint: LocaleKeys.home_search.tr(),
                 onTap: () async {
-                  final items = ref.read(_homeViewModel).items;
-                  final response = await showSearch<StoreModel>(
-                    context: context,
-                    delegate: HomeSearchDelegate(items: items),
-                  );
+                  await searchPressed(ref.watch(_homeViewModel));
                 },
               ),
             ),
@@ -72,10 +68,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
         ),
       ),
     );
-  }
-
-  Future<void> _pullToRefresh() async {
-    await ref.read(_homeViewModel.notifier).fetchAllItemsAndSave();
   }
 }
 
@@ -113,7 +105,13 @@ class _PageBody extends ConsumerWidget {
                   const PagePadding.onlyTop(),
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
-                return PlaceCard(item: items[index]);
+                return PlaceCard(
+                  item: items[index],
+                  onTap: () {
+                    context.route
+                        .navigateToPage(HomeDetailView(model: items[index]));
+                  },
+                );
               },
             ),
           ),

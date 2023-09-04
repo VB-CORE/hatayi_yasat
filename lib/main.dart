@@ -34,6 +34,13 @@ class MyApp extends ConsumerWidget {
       locale: context.locale,
       builder: AppBuilder.build,
       theme: ThemeData.light(useMaterial3: true).copyWith(
+        listTileTheme: const ListTileThemeData(
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Colors.black,
         ),

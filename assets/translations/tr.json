@@ -57,5 +57,13 @@
     },
     "message": {
         "emptySearch": "Sonuç Bulunamadı"
+    },
+    "detailView": {
+        "owner": "İşletme Sahibi",
+        "description": "Detaylar",
+        "address": "Adres",
+        "phoneNumber": "Telefon Numarası",
+        "district": "İlçe",
+        "photos": "Fotoğraflar"
     }
 }
