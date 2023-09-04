@@ -1,6 +1,7 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
+import 'package:vbaseproject/product/utility/checker/network_checker.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/version_validator.dart';
@@ -21,11 +22,20 @@ class SplashViewModel extends StateNotifier<SplashState> {
       state = state.copyWith(isNeedToForceUpdate: true);
       return;
     }
+
+    if (await _isConnectedToInternet()) {
+      state = state.copyWith(isConnectedToInternet: true);
+    }
+
     await productProvider.fetchDistrictAndSaveSession();
     state = state.copyWith(isOperationStaring: false);
   }
 
   bool _isNeedToForceUpdate() {
     return VersionValidator.check();
+  }
+
+  Future<bool> _isConnectedToInternet() {
+    return NetworkChecker.tryToConnect();
   }
 }

@@ -70,5 +70,10 @@
         "title": "Bir Güncelleme Var",
         "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
         "updateButton": "Güncelle"
+    },
+    "networkCheck": {
+        "title": "İnternet Bağlantınız Yok",
+        "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
+        "button": "Yeniden Dene"
     }
 }

@@ -12,6 +12,7 @@ import 'package:vbaseproject/product/utility/navigation/project_navigation.dart'
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -34,6 +35,10 @@ class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
     );
     ref.listenManual(_homeProvider, (previous, next) {
       if (next.isNeedToForceUpdate) {
+        return;
+      }
+      if (!next.isConnectedToInternet) {
+        NotConnectedToInternetDialog.show(context);
         return;
       }
       if (!next.isOperationStaring) {
