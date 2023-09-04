@@ -38,6 +38,8 @@ dependencies:
 
   #firebase
   firebase_storage: ^11.2.6
+  firebase_remote_config: ^4.2.5
+  firebase_analytics: ^10.4.5
 
   #package
   image_picker: ^1.0.4

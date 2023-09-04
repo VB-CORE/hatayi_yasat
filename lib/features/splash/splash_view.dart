@@ -33,6 +33,9 @@ class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
       ),
     );
     ref.listenManual(_homeProvider, (previous, next) {
+      if (next.isNeedToForceUpdate) {
+        return;
+      }
       if (!next.isOperationStaring) {
         ProjectNavigation(context).replaceToWidget(const HomeView());
       }

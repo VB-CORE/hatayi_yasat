@@ -65,5 +65,10 @@
         "phoneNumber": "Telefon Numarası",
         "district": "İlçe",
         "photos": "Fotoğraflar"
+    },
+    "forceUpdate": {
+        "title": "Bir Güncelleme Var",
+        "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
+        "updateButton": "Güncelle"
     }
 }

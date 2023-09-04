@@ -119,7 +119,6 @@ class _SliverAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 250,
       pinned: true,
-      actions: const [],
       actionsIconTheme: IconThemeData(
         color: context.general.colorScheme.onSurface,
       ),
