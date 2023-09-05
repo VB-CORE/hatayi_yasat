@@ -1,6 +1,6 @@
 {
     "project": {
-        "name": "Hatayı Yaşat"
+        "name": "Hatay'ı Yaşat"
     },
     "validation": {
         "fullName": "Ad ve soyad boş bırakılamaz.",
@@ -70,5 +70,9 @@
         "title": "Bir Güncelleme Var",
         "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
         "updateButton": "Güncelle"
+    },
+    "networkCheck": {
+        "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
+        "button": "Yeniden Dene"
     }
 }
