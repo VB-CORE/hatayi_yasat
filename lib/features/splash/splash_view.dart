@@ -33,12 +33,15 @@ class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
         productProvider: ref.read(ProductProvider.provider.notifier),
       ),
     );
-    ref.listenManual(_homeProvider, (previous, next) {
+    ref.listenManual(_homeProvider, (previous, next) async {
       if (next.isNeedToForceUpdate) {
         return;
       }
       if (!next.isConnectedToInternet) {
-        NotConnectedToInternetDialog.show(context);
+        final response =
+            (await NotConnectedToInternetDialog.show(context)) ?? false;
+        if (!response) return;
+        await ref.read(_homeProvider.notifier).refresh();
         return;
       }
       if (!next.isOperationStaring) {

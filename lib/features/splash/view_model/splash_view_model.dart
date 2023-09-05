@@ -38,4 +38,8 @@ class SplashViewModel extends StateNotifier<SplashState> {
   Future<bool> _isConnectedToInternet() {
     return NetworkChecker.checkConnection();
   }
+
+  Future<void> refresh() async {
+    await _controlApplication();
+  }
 }
