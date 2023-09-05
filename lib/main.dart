@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
+import 'package:vbaseproject/product/init/application_theme.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 
 void main() async {
@@ -33,18 +34,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       builder: AppBuilder.build,
-      theme: ThemeData.light(useMaterial3: true).copyWith(
-        listTileTheme: const ListTileThemeData(
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        progressIndicatorTheme: const ProgressIndicatorThemeData(
-          color: Colors.black,
-        ),
-      ),
+      theme: ApplicationTheme.build().themeData,
       scaffoldMessengerKey:
           ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
       home: const SplashView(),
