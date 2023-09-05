@@ -1,79 +1,78 @@
 {
     "project": {
-        "name": "Hatayı Yaşat"
+        "name": "Keep Hatay Alive"
     },
     "validation": {
-        "fullName": "Ad ve soyad boş bırakılamaz.",
-        "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
-        "address": "Adres boş bırakılamaz",
-        "needs": "Lütfen ihtiyacınızı seçiniz",
-        "plate": "Lütfen plaka giriniz",
-        "kvkk": "Lütfen KVKK'yi kabul ediniz",
-        "surname": "Soyadınızı girmelisiniz",
-        "confirmationText": "Onay metnini kabul ediniz",
-        "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
-        "requiredField": "Bu alan boş bırakılamaz",
-        "formRequired": "Lütfen formu doldurunuz",
-        "photoRequired": "Lütfen fotoğraf ekleyiniz",
-        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?"
+        "fullName": "Name and surname cannot be empty.",
+        "phoneNumber": "Please enter a valid phone number.",
+        "address": "Address cannot be empty.",
+        "needs": "Please select your needs.",
+        "plate": "Please enter a license plate number.",
+        "kvkk": "Please accept KVKK.",
+        "surname": "Please enter your last name.",
+        "confirmationText": "Please accept the confirmation text.",
+        "generalText": "Cannot be empty or less than 3 characters.",
+        "requiredField": "This field cannot be empty.",
+        "formRequired": "Please fill out the form.",
+        "photoRequired": "Please add a photo.",
+        "looseAllData": "Your changes will be lost. Do you want to continue?"
     },
     "button": {
-        "save": "Kaydet",
-        "addPhoto": "Fotoğraf Ekle",
-        "ok": "Tamam",
-        "close": "Kapat"
+        "save": "Save",
+        "addPhoto": "Add Photo",
+        "ok": "OK",
+        "close": "Close"
     },
     "component": {
         "picker": {
-            "camera": "Kamera dan seç",
-            "gallery": "Galeriden seç",
-            "cropperTitle": "Düzenle"
+            "camera": "Select from Camera",
+            "gallery": "Select from Gallery",
+            "cropperTitle": "Edit"
         }
     },
     "requestCompany": {
-        "title": "Yeni işletme talebi",
-        "name": "İşletme adı",
-        "description": "İşletme açıklaması",
-        "address": "İşletme adresi",
-        "phoneNumber": "Telefon numarası",
-        "ownerName": "Ad ve soyad",
-        "district": "İlçe",
-        "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
+        "title": "New Business Request",
+        "name": "Business Name",
+        "description": "Business Description",
+        "address": "Business Address",
+        "phoneNumber": "Phone Number",
+        "ownerName": "Full Name",
+        "district": "District",
+        "complete": "Your application has been received. After approval by the system, you will be able to see it in the main list."
     },
     "general": {
-        "kvkk": "KVKK'yı",
-        "kvkkReadApproved": " okudum, onaylıyorum.",
-        "confirmationText": "Onay metnini kabul ediniz"
+        "kvkk": "KVKK",
+        "kvkkReadApproved": " I have read and approved.",
+        "confirmationText": "Please accept the confirmation text."
     },
     "settings": {
-        "title": "Ayarlar",
-        "language_title": "Dil",
-        "theme_title": "Tema",
-        "version_number_title": "Versiyon Numarası"
+        "title": "Settings",
+        "language_title": "Language",
+        "theme_title": "Theme",
+        "version_number_title": "Version Number"
     },
     "home": {
-        "places": "Mekanlar",
-        "search": "Mekan ara"
+        "places": "Places",
+        "search": "Search Place"
     },
     "message": {
-        "emptySearch": "Sonuç Bulunamadı"
+        "emptySearch": "No Results Found"
     },
     "detailView": {
-        "owner": "İşletme Sahibi",
-        "description": "Detaylar",
-        "address": "Adres",
-        "phoneNumber": "Telefon Numarası",
-        "district": "İlçe",
-        "photos": "Fotoğraflar"
+        "owner": "Business Owner",
+        "description": "Details",
+        "address": "Address",
+        "phoneNumber": "Phone Number",
+        "district": "District",
+        "photos": "Photos"
     },
     "forceUpdate": {
-        "title": "Bir Güncelleme Var",
-        "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
-        "updateButton": "Güncelle"
+        "title": "An Update is Available",
+        "message": "A new version is available, you need to update.",
+        "updateButton": "Update"
     },
     "networkCheck": {
-        "title": "İnternet Bağlantınız Yok",
-        "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
-        "button": "Yeniden Dene"
+        "message": "Please check your internet connection and try again.",
+        "button": "Try Again"
     }
 }

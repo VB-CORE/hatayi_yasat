@@ -95,9 +95,9 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                   ),
                   KvkkCheckBox(
                     onChanged: (value) {
-                      onKvvkSelected(value: value);
+                      onKvkkSelected(value: value);
                     },
-                  )
+                  ),
                 ],
               ),
             ),

@@ -1,6 +1,6 @@
 {
     "project": {
-        "name": "Hatayı Yaşat"
+        "name": "Hatay'ı Yaşat"
     },
     "validation": {
         "fullName": "Ad ve soyad boş bırakılamaz.",
@@ -72,7 +72,6 @@
         "updateButton": "Güncelle"
     },
     "networkCheck": {
-        "title": "İnternet Bağlantınız Yok",
         "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
         "button": "Yeniden Dene"
     }

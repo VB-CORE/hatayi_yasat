@@ -78,7 +78,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                   ),
                 ),
               ]),
-            )
+            ),
           ],
         ),
       ),

@@ -37,6 +37,7 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
     if (uploadImage == null) return false;
     final storage = StoreModel(
       name: requestCompanyModel.companyName,
+      description: requestCompanyModel.companyDescription,
       owner: requestCompanyModel.nameSurname,
       address: requestCompanyModel.address,
       phone: requestCompanyModel.phone.ext.phoneFormatValue,
