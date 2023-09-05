@@ -1,0 +1,54 @@
+default_platform(:android)
+
+
+
+
+APP_TRACK_INTERNAL = "internal"
+APP_JSON_KEY = "./secret/google_play.json"
+APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
+
+platform :android do
+  lane :release do |options|
+
+    # google_play_track_version_codes(track: track)[0]
+     flutter_build_appBundle("1.0.0","1")
+     upload_to_play_store(
+      track: track,
+      json_key: APP_JSON_KEY,
+      aab: APP_BUNDLE_PATH,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+    )
+    clean
+  end
+
+
+  def updateVersionNumber(val)
+    set_properties_value(
+      path: ENV_PATH, key: KEY_VERSION_BUILD_FIREBASE_NUMBER, value: val,
+    )
+  end
+
+  def flutter_build_appBundle(versionNumber,buildNumber)
+    Dir.chdir "../../" do
+      sh("flutter", "packages", "get")
+      sh(
+        "flutter build appbundle --build-name=#{versionNumber} --build-number=#{buildNumber}"
+      )
+    end
+  end
+
+
+  def semanticValue(variable)
+    if variable == "major" || variable == "minor" || variable == "patch"
+      return variable
+    else
+      print(variable + " can not right paramater.")
+      return "minor"
+    end
+  end
+
+
+
+end

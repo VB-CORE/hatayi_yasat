@@ -46,8 +46,7 @@ final class StoreModel extends BaseFirebaseModel<StoreModel>
   final String name;
   final String owner;
   final String? description;
-  @JsonKey(name: 'adress')
-  final String address;
+  final String? address;
   final String phone;
   final List<String> images;
   final int townCode;

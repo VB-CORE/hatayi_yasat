@@ -10,6 +10,7 @@ import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
 class HomeDetailView extends StatefulWidget {
@@ -51,7 +52,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                   ),
                 ListTile(
                   title: const Text(LocaleKeys.detailView_address).tr(),
-                  subtitle: Text(model.address),
+                  subtitle: Text(model.address ?? '-'),
                 ),
                 ListTile(
                   title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
@@ -70,8 +71,14 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                       scrollDirection: Axis.horizontal,
                       itemCount: model.images.length,
                       itemBuilder: (context, index) {
-                        return CustomNetworkImage(
-                          imageUrl: model.images[index],
+                        return InkWell(
+                          onTap: () {
+                            PhoneZoomDialog(imageUrl: model.images[index])
+                                .show(context);
+                          },
+                          child: CustomNetworkImage(
+                            imageUrl: model.images[index],
+                          ),
                         );
                       },
                     ),

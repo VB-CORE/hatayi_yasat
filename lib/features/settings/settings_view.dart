@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/settings/subview/index.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/circle_avatar/social_media_circle_avatar.dart';
 
 class SettingsView extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SettingsViewState extends State<SettingsView> {
               trailing: ThemeSwitchWidget(
                 onChanged: (bool value) {},
               ),
-            ),
+            ).ext.toDisabled(disable: true),
             ListTile(
               title: Text(LocaleKeys.settings_version_number_title.tr()),
               trailing: Text(
@@ -42,26 +43,29 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             const Spacer(),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SocialMediaCircleAvatar(
-                  iconData: FontAwesomeIcons.youtube,
-                  webUrl: StringConstants.youtubeUrl,
-                ),
-                SocialMediaCircleAvatar(
-                  iconData: FontAwesomeIcons.facebook,
-                  webUrl: StringConstants.facebookUrl,
-                ),
-                SocialMediaCircleAvatar(
-                  iconData: FontAwesomeIcons.instagram,
-                  webUrl: StringConstants.instagramUrl,
-                ),
-                SocialMediaCircleAvatar(
-                  iconData: FontAwesomeIcons.twitter,
-                  webUrl: StringConstants.twitterUrl,
-                ),
-              ],
+            const Padding(
+              padding: PagePadding.onlyBottom(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.youtube,
+                    webUrl: StringConstants.youtubeUrl,
+                  ),
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.facebook,
+                    webUrl: StringConstants.facebookUrl,
+                  ),
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.instagram,
+                    webUrl: StringConstants.instagramUrl,
+                  ),
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.twitter,
+                    webUrl: StringConstants.twitterUrl,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
