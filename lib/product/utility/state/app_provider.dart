@@ -5,8 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/service/custom_service.dart';
+import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
+import 'package:vbaseproject/product/widget/snackbar/notifcation_snack_bar.dart';
 
 class AppProvider extends StateNotifier<AppProviderState> {
   AppProvider() : super(const AppProviderState());
@@ -20,11 +24,33 @@ class AppProvider extends StateNotifier<AppProviderState> {
   });
 
   Future<void> init() async => checkDeviceId();
-
+  final CustomService customService = FirebaseService();
   void showSnackbarMessage(String message) {
     scaffoldMessengerKey.currentState
       ?..clearSnackBars()
       ..showSnackBar(ErrorSnackBar(message: message));
+  }
+
+  void showSnackbarNotification(
+    String message,
+    String id,
+    BuildContext context,
+  ) {
+    scaffoldMessengerKey.currentState
+      ?..clearSnackBars()
+      ..showSnackBar(
+        NotificationSnackBar(
+          message: message,
+          isOpenListen: (value) {
+            if (!value) return;
+            MessagingNavigate.instance.navigateDetailNotification(
+              context: context,
+              id: id,
+              customService: customService,
+            );
+          },
+        ),
+      );
   }
 
   Future<void> checkDeviceId() async {

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 import 'package:vbaseproject/product/model/base/base_firebase_model.dart';
+import 'package:vbaseproject/product/service/custom_service.dart';
 
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
@@ -12,24 +13,6 @@ enum RootStorageName {
   company,
   product,
   user,
-}
-
-abstract class CustomService {
-  Future<String?> add<T extends BaseFirebaseModel<T>>({
-    required T model,
-    required CollectionEnums path,
-  });
-
-  Future<List<T>> getList<T extends BaseFirebaseConvert<T>>({
-    required T model,
-    required CollectionEnums path,
-  });
-
-  Future<String?> uploadImage({
-    required File file,
-    required RootStorageName root,
-    required String key,
-  });
 }
 
 @immutable
@@ -94,5 +77,29 @@ final class FirebaseService implements CustomService {
       return downloadURL;
     } catch (_) {}
     return null;
+  }
+
+  @override
+  Future<T?> getSingleData<T extends BaseFirebaseConvert<T>>({
+    required T model,
+    required CollectionEnums path,
+    required String id,
+  }) async {
+    final response = await path.collection.doc(id).withConverter<T?>(
+      fromFirestore: (snapshot, options) {
+        final data = snapshot.data();
+        if (data == null) return null;
+        try {
+          return model.fromFirebase(snapshot);
+        } catch (e) {
+          return null;
+        }
+      },
+      toFirestore: (value, options) {
+        throw UnimplementedError();
+      },
+    ).get();
+
+    return response.data();
   }
 }

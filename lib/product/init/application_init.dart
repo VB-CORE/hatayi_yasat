@@ -7,6 +7,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/core/init/core_localize.dart';
 
 import 'package:vbaseproject/firebase_options.dart';
+import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 
 @immutable
 final class ApplicationInit {
@@ -25,5 +26,7 @@ final class ApplicationInit {
     );
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
+
+    await MessagingUtility.init();
   }
 }

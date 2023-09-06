@@ -2,21 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/features/home/view/mixin/home_notifcation_mixin.dart';
 import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
 import 'package:vbaseproject/features/settings/settings_view.dart';
+import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
-
-import 'package:vbaseproject/product/generated/assets.gen.dart';
 
 final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
     StateNotifierProvider(
@@ -33,11 +34,13 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
+class _HomeViewState extends ConsumerState<HomeView>
+    with AppProviderMixin, HomeViewMixin, HomeNotificationMixin {
   @override
   void initState() {
     super.initState();
     init(ref.read(_homeViewModel.notifier));
+    listenToNotification();
   }
 
   @override
@@ -118,7 +121,7 @@ class _PageBody extends ConsumerWidget {
         return AnimatedPageSwitch(
           firstChild: isRequestSending
               ? const PlaceShimmerList()
-              : Center(child: Assets.lottie.notFound.lottie()),
+              : const _EmptyLottie(),
           secondChild: SizedBox(
             height: constraints.maxHeight,
             child: ListView.builder(
@@ -139,6 +142,27 @@ class _PageBody extends ConsumerWidget {
           crossFadeState: crossFadeState,
         );
       },
+    );
+  }
+}
+
+class _EmptyLottie extends StatelessWidget {
+  const _EmptyLottie();
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: context.sized.height,
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: context.sized.dynamicHeight(.2),
+            ),
+            child: Assets.lottie.notFound.lottie(),
+          ),
+        ),
+      ),
     );
   }
 }
