@@ -74,5 +74,9 @@
     "networkCheck": {
         "message": "Please check your internet connection and try again.",
         "button": "Try Again"
+    },
+    "notificationSnackbar": {
+        "buttonText": "Open",
+        "defaultMessage": "A business has resumed operations."
     }
 }

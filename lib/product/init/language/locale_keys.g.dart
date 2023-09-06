@@ -61,9 +61,11 @@ abstract class  LocaleKeys {
   static const forceUpdate_message = 'forceUpdate.message';
   static const forceUpdate_updateButton = 'forceUpdate.updateButton';
   static const forceUpdate = 'forceUpdate';
-  static const networkCheck_title = 'networkCheck.title';
   static const networkCheck_message = 'networkCheck.message';
   static const networkCheck_button = 'networkCheck.button';
   static const networkCheck = 'networkCheck';
+  static const notificationSnackbar_buttonText = 'notificationSnackbar.buttonText';
+  static const notificationSnackbar_defaultMessage = 'notificationSnackbar.defaultMessage';
+  static const notificationSnackbar = 'notificationSnackbar';
 
 }
