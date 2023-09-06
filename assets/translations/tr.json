@@ -74,5 +74,9 @@
     "networkCheck": {
         "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
         "button": "Yeniden Dene"
+    },
+    "notificationSnackbar": {
+        "buttonText": "Aç",
+        "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı."
     }
 }

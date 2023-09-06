@@ -10,7 +10,7 @@ import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
-import 'package:vbaseproject/product/widget/snackbar/notifcation_snack_bar.dart';
+import 'package:vbaseproject/product/widget/snackbar/notification_snack_bar.dart';
 
 class AppProvider extends StateNotifier<AppProviderState> {
   AppProvider() : super(const AppProviderState());

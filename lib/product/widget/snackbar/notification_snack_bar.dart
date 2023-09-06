@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
 class NotificationSnackBar extends SnackBar {
   NotificationSnackBar({
@@ -8,7 +10,7 @@ class NotificationSnackBar extends SnackBar {
   }) : super(
           content: Text(message),
           action: SnackBarAction(
-            label: 'Open',
+            label: LocaleKeys.notificationSnackbar_buttonText.tr(),
             onPressed: () {
               isOpenListen.call(true);
             },

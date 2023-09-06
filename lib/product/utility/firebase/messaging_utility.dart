@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/firebase/notification_model.dart';
 
 enum _SubscriptionTopic {
@@ -44,10 +46,10 @@ final class MessagingUtility {
     FirebaseMessaging.onMessage.listen((event) {
       final messageBody = event.data;
       if (messageBody.isEmpty) return;
-      // TODO: default message notification geldi
       onMessageHandleInApp.call(
         MapEntry(
-          event.notification?.body ?? '',
+          event.notification?.body ??
+              LocaleKeys.notificationSnackbar_defaultMessage.tr(),
           NotificationModel.fromJson(messageBody),
         ),
       );

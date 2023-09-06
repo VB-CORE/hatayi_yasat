@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home/view/mixin/home_notifcation_mixin.dart';
+import 'package:vbaseproject/features/home/view/mixin/home_notification_mixin.dart';
 import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
