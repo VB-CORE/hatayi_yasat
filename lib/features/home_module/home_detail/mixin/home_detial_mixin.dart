@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -16,12 +18,7 @@ mixin HomeDetailMixin on State<HomeDetailView> {
     final response = await screenshotController.capture();
     if (response == null) return;
 
-    final customPathManager = CustomPathManager();
-
-    final file = await customPathManager.writeByteToFile(
-      response,
-      '${model.name}-${model.id}.png}',
-    );
+    final file = await _makeFile(response, model);
     if (file == null) return;
 
     await Share.shareXFiles(
@@ -45,4 +42,13 @@ mixin HomeDetailMixin on State<HomeDetailView> {
     }
     return true;
   }
+}
+
+Future<File?> _makeFile(Uint8List response, StoreModel model) async {
+  final customPathManager = CustomPathManager();
+  final file = await customPathManager.writeByteToFile(
+    response,
+    '${model.name}-${model.id}.png',
+  );
+  return file;
 }
