@@ -24,6 +24,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
       return;
     }
 
+    await FirebaseMessaging.instance.requestPermission();
     final response = await FirebaseMessaging.instance.getToken();
     print(response);
     if (await _isConnectedToInternet()) {
