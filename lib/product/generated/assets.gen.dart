@@ -50,6 +50,10 @@ class $AssetsLottieGen {
   LottieGenImage get connectionLost =>
       const LottieGenImage('assets/lottie/connection_lost.json');
 
+  /// File path: assets/lottie/not_found.json
+  LottieGenImage get notFound =>
+      const LottieGenImage('assets/lottie/not_found.json');
+
   /// File path: assets/lottie/search.json
   LottieGenImage get search =>
       const LottieGenImage('assets/lottie/search.json');
@@ -59,8 +63,14 @@ class $AssetsLottieGen {
       const LottieGenImage('assets/lottie/success.json');
 
   /// List of all assets
-  List<LottieGenImage> get values =>
-      [cityLoading, cityLoadingBetter, connectionLost, search, success];
+  List<LottieGenImage> get values => [
+        cityLoading,
+        cityLoadingBetter,
+        connectionLost,
+        notFound,
+        search,
+        success
+      ];
 }
 
 class $AssetsTranslationsGen {

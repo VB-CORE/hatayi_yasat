@@ -28,3 +28,20 @@ class ForceUpdateDialog extends StatelessWidget {
     );
   }
 }
+
+mixin CustomDialog on Widget {
+  Future<void> show(BuildContext context);
+
+  Future<T?> showNormalDialog<T>(
+    BuildContext context, {
+    bool barrierDismissible = false,
+  }) {
+    return showDialog<T>(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      builder: (context) {
+        return this;
+      },
+    );
+  }
+}

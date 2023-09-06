@@ -9,7 +9,7 @@ part of 'store_model.dart';
 StoreModel _$StoreModelFromJson(Map<String, dynamic> json) => StoreModel(
       name: json['name'] as String,
       owner: json['owner'] as String,
-      address: json['adress'] as String,
+      address: json['address'] as String?,
       phone: json['phone'] as String,
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
@@ -17,13 +17,11 @@ StoreModel _$StoreModelFromJson(Map<String, dynamic> json) => StoreModel(
       createdAt: json['createdAt'] == null
           ? DateTime.now()
           : FirebaseTimeParser.datetimeFromTimestamp(
-              json['createdAt'] as Timestamp?,
-            ),
+              json['createdAt'] as Timestamp?),
       updatedAt: json['updatedAt'] == null
           ? DateTime.now()
           : FirebaseTimeParser.datetimeFromTimestamp(
-              json['updatedAt'] as Timestamp?,
-            ),
+              json['updatedAt'] as Timestamp?),
       isApproved: json['isApproved'] as bool,
       deviceID: json['deviceID'] as String,
       id: json['id'] as String? ?? '',
@@ -35,7 +33,7 @@ Map<String, dynamic> _$StoreModelToJson(StoreModel instance) =>
       'name': instance.name,
       'owner': instance.owner,
       'description': instance.description,
-      'adress': instance.address,
+      'address': instance.address,
       'phone': instance.phone,
       'images': instance.images,
       'townCode': instance.townCode,
