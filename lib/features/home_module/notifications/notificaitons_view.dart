@@ -29,7 +29,8 @@ class _NotificationsViewState extends State<NotificationsView>
         valueListenable: notificationNotifier,
         builder: (context, value, child) {
           if (value.isEmpty) return const PlaceShimmerList();
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
             itemCount: value.length,
             itemBuilder: (context, index) {
               final model = value[index];
@@ -46,6 +47,7 @@ class _NotificationsViewState extends State<NotificationsView>
                 },
                 title: Text(model.title ?? ''),
                 subtitle: Text(model.body ?? ''),
+                trailing: const Icon(Icons.chevron_right_outlined),
               );
             },
           );
