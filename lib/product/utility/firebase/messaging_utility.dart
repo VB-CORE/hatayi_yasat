@@ -47,7 +47,7 @@ final class MessagingUtility {
       // TODO: default message notification geldi
       onMessageHandleInApp.call(
         MapEntry(
-          event.notification?.title ?? '',
+          event.notification?.body ?? '',
           NotificationModel.fromJson(messageBody),
         ),
       );
