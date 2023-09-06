@@ -5,7 +5,7 @@ import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/features/home/view/home_view.dart';
+import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
 
 mixin HomeNotificationMixin
     on AppProviderMixin<HomeView>, ConsumerState<HomeView> {

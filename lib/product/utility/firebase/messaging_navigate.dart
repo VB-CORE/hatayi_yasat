@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/service/custom_service.dart';
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';

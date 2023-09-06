@@ -4,7 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home_detail/mixin/home_detial_mixin.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detial_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -24,71 +25,91 @@ class HomeDetailView extends StatefulWidget {
 class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: NotificationListener(
-        onNotification: listenNotification,
-        child: CustomScrollView(
-          slivers: [
-            ValueListenableBuilder<bool>(
-              valueListenable: isPinnedNotifier,
-              builder: (context, value, child) {
-                return _SliverAppBar(
-                  isPinned: value,
-                  model: model,
+    return Screenshot(
+      controller: screenshotController,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: captureAndShare,
+          child: const Icon(Icons.share_outlined),
+        ),
+        body: NotificationListener(
+          onNotification: listenNotification,
+          child: CustomScrollView(
+            slivers: [
+              ValueListenableBuilder<bool>(
+                valueListenable: isPinnedNotifier,
+                builder: (context, value, child) {
+                  return _SliverAppBar(
+                    isPinned: value,
+                    model: model,
+                  );
+                },
+              ),
+              _SliverDetail(model: model),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SliverDetail extends StatelessWidget {
+  const _SliverDetail({
+    required this.model,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildListDelegate([
+        ListTile(
+          title: const Text(LocaleKeys.detailView_owner).tr(),
+          subtitle: Text(model.owner),
+        ),
+        if (model.description.ext.isNotNullOrNoEmpty)
+          ListTile(
+            titleTextStyle: context.general.textTheme.titleMedium,
+            title: const Text(LocaleKeys.detailView_owner).tr(),
+            subtitle: Text(model.description ?? ''),
+          ),
+        ListTile(
+          title: const Text(LocaleKeys.detailView_address).tr(),
+          subtitle: Text(model.address ?? '-'),
+        ),
+        ListTile(
+          title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
+          subtitle: Text(model.phone),
+        ),
+        _DistrictListTile(model: model),
+        ListTile(
+          title: const Text(LocaleKeys.detailView_photos).tr(),
+          subtitle: SizedBox(
+            height: context.sized.dynamicHeight(.2),
+            child: ListView.separated(
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: WidgetSizes.spacingS);
+              },
+              padding: EdgeInsets.zero,
+              scrollDirection: Axis.horizontal,
+              itemCount: model.images.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    PhoneZoomDialog(imageUrl: model.images[index])
+                        .show(context);
+                  },
+                  child: CustomNetworkImage(
+                    imageUrl: model.images[index],
+                  ),
                 );
               },
             ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                ListTile(
-                  title: const Text(LocaleKeys.detailView_owner).tr(),
-                  subtitle: Text(model.owner),
-                ),
-                if (model.description.ext.isNotNullOrNoEmpty)
-                  ListTile(
-                    titleTextStyle: context.general.textTheme.titleMedium,
-                    title: const Text(LocaleKeys.detailView_owner).tr(),
-                    subtitle: Text(model.description ?? ''),
-                  ),
-                ListTile(
-                  title: const Text(LocaleKeys.detailView_address).tr(),
-                  subtitle: Text(model.address ?? '-'),
-                ),
-                ListTile(
-                  title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
-                  subtitle: Text(model.phone),
-                ),
-                _DistrictListTile(model: model),
-                ListTile(
-                  title: const Text(LocaleKeys.detailView_photos).tr(),
-                  subtitle: SizedBox(
-                    height: context.sized.dynamicHeight(.2),
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(width: WidgetSizes.spacingS);
-                      },
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: model.images.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            PhoneZoomDialog(imageUrl: model.images[index])
-                                .show(context);
-                          },
-                          child: CustomNetworkImage(
-                            imageUrl: model.images[index],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ]),
-            ),
-          ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 }
@@ -124,8 +145,23 @@ class _SliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 250,
+      expandedHeight: WidgetSizes.spacingXxlL13,
       pinned: true,
+      leading: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor:
+              context.general.colorScheme.background.withOpacity(0.5),
+          shape: const CircleBorder(),
+          padding: EdgeInsets.zero,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: Icon(
+          Icons.arrow_back,
+          color: context.general.colorScheme.background,
+        ),
+      ),
       actionsIconTheme: IconThemeData(
         color: context.general.colorScheme.onSurface,
       ),

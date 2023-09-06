@@ -5,7 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 enum CollectionEnums {
   towns,
   unApprovedApplications,
-  approvedApplications;
+  approvedApplications,
+  notifications;
 
   CollectionReference<Map<String, dynamic>> get collection {
     return FirebaseFirestore.instance.collection(name);

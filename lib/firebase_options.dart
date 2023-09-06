@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -59,5 +56,17 @@ class DefaultFirebaseOptions {
     projectId: 'savehatay',
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
     storageBucket: 'savehatay.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDy0ND6I8WABYRgWmoqkSgHKV9dZ_r1FOE',
+    appId: '1:128619632572:ios:38588d72e15e331cc6bdb9',
+    messagingSenderId: '128619632572',
+    projectId: 'savehatay',
+    databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
+    storageBucket: 'savehatay.appspot.com',
+    androidClientId: '128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com',
+    iosClientId: '128619632572-rc594ocdb393i2000je814298sqr623d.apps.googleusercontent.com',
+    iosBundleId: 'com.hatayiyasat.app',
   );
 }

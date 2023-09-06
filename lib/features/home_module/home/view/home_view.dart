@@ -2,10 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home/view/mixin/home_notification_mixin.dart';
-import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
-import 'package:vbaseproject/features/home/view_model/home_provider.dart';
-import 'package:vbaseproject/features/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/features/home_module/home/view/mixin/home_notification_mixin.dart';
+import 'package:vbaseproject/features/home_module/home/view/mixin/home_view_mixin.dart';
+import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
+import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/features/home_module/notifications/notificaitons_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
 import 'package:vbaseproject/features/settings/settings_view.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
@@ -50,6 +51,7 @@ class _HomeViewState extends ConsumerState<HomeView>
       appBar: AppBar(
         title: const Text(LocaleKeys.home_places).tr(),
         actions: const [
+          _NotificationButton(),
           _SettingsButton(),
         ],
       ),
@@ -68,6 +70,20 @@ class _HomeViewState extends ConsumerState<HomeView>
           ],
         ),
       ),
+    );
+  }
+}
+
+class _NotificationButton extends StatelessWidget {
+  const _NotificationButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        context.route.navigateToPage(const NotificationsView());
+      },
+      icon: const Icon(Icons.notifications_active_outlined),
     );
   }
 }
@@ -101,7 +117,7 @@ class _SettingsButton extends StatelessWidget {
       onPressed: () {
         context.route.navigateToPage(const SettingsView());
       },
-      icon: const Icon(Icons.settings),
+      icon: const Icon(Icons.settings_outlined),
     );
   }
 }
@@ -121,7 +137,9 @@ class _PageBody extends ConsumerWidget {
         return AnimatedPageSwitch(
           firstChild: isRequestSending
               ? const PlaceShimmerList()
-              : const _EmptyLottie(),
+              : items.isEmpty
+                  ? const _EmptyLottie()
+                  : const SizedBox.shrink(),
           secondChild: SizedBox(
             height: constraints.maxHeight,
             child: ListView.builder(

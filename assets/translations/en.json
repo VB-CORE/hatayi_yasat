@@ -53,7 +53,8 @@
     },
     "home": {
         "places": "Places",
-        "search": "Search Place"
+        "search": "Search Place",
+        "notifications": "Notifications"
     },
     "message": {
         "emptySearch": "No Results Found"

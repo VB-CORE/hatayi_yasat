@@ -47,6 +47,7 @@ abstract class  LocaleKeys {
   static const settings = 'settings';
   static const home_places = 'home.places';
   static const home_search = 'home.search';
+  static const home_notifications = 'home.notifications';
   static const home = 'home';
   static const message_emptySearch = 'message.emptySearch';
   static const message = 'message';

@@ -4,7 +4,6 @@ import 'package:riverpod/riverpod.dart';
 
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/service/custom_service.dart';
-import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 

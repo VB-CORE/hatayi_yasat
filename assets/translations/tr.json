@@ -53,7 +53,8 @@
     },
     "home": {
         "places": "Mekanlar",
-        "search": "Mekan ara"
+        "search": "Mekan ara",
+        "notifications": "Bildirimler"
     },
     "message": {
         "emptySearch": "Sonuç Bulunamadı"
