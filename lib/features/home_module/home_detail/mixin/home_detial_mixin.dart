@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/product/feature/path_operation/custom_path_manager.dart';
 
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 
@@ -15,8 +16,16 @@ mixin HomeDetailMixin on State<HomeDetailView> {
     final response = await screenshotController.capture();
     if (response == null) return;
 
+    final customPathManager = CustomPathManager();
+
+    final file = await customPathManager.writeByteToFile(
+      response,
+      '${model.name}-${model.id}.png}',
+    );
+    if (file == null) return;
+
     await Share.shareXFiles(
-      [XFile.fromData(response)],
+      [XFile(file.path)],
       text: model.name,
       subject: model.description,
     );
