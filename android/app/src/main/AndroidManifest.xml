@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hatayasat.app">
+    package="com.hatayiyasat.app">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,7 +10,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
-            android:name=".MainActivity"
+            android:name="com.hatayiyasat.app.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

@@ -16,6 +16,8 @@ import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
 
+import 'package:vbaseproject/product/generated/assets.gen.dart';
+
 final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
     StateNotifierProvider(
   (ref) => HomeViewModel(
@@ -54,20 +56,36 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
         },
         child: Column(
           children: [
-            Padding(
-              padding: const PagePadding.horizontalLowSymmetric(),
-              child: SearchFieldDisabled(
-                hint: LocaleKeys.home_search.tr(),
-                onTap: () async {
-                  await searchPressed(ref.watch(_homeViewModel));
-                },
-              ),
+            _SearchField(
+              () {
+                searchPressed(ref.read(_homeViewModel));
+              },
             ),
             const Expanded(child: _PageBody()),
           ],
         ),
       ),
     );
+  }
+}
+
+class _SearchField extends ConsumerWidget {
+  const _SearchField(this.onPressed);
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isEnabled = ref.watch(_homeViewModel).isEnabled;
+
+    return Padding(
+      padding: const PagePadding.horizontalLowSymmetric(),
+      child: SearchFieldDisabled(
+        hint: LocaleKeys.home_search.tr(),
+        onTap: () async {
+          onPressed.call();
+        },
+      ),
+    ).ext.toDisabled(disable: !isEnabled);
   }
 }
 
@@ -91,13 +109,16 @@ class _PageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(_homeViewModel).items;
+    final isRequestSending = ref.watch(_homeViewModel).isServiceRequestSending;
     final crossFadeState =
         items.isEmpty ? CrossFadeState.showFirst : CrossFadeState.showSecond;
 
     return LayoutBuilder(
       builder: (context, constraints) {
         return AnimatedPageSwitch(
-          firstChild: const PlaceShimmerList(),
+          firstChild: isRequestSending
+              ? const PlaceShimmerList()
+              : Center(child: Assets.lottie.notFound.lottie()),
           secondChild: SizedBox(
             height: constraints.maxHeight,
             child: ListView.builder(

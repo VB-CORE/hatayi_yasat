@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,44 +52,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA9UTPIr0tMhd3Tjuc7LT0eFZ94PEUrIxE',
-    appId: '1:128619632572:web:2c62de8037f21ea0c6bdb9',
-    messagingSenderId: '128619632572',
-    projectId: 'savehatay',
-    authDomain: 'savehatay.firebaseapp.com',
-    databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
-    storageBucket: 'savehatay.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I',
-    appId: '1:128619632572:android:a440b8e573d0b65ac6bdb9',
+    appId: '1:128619632572:android:deb8dc72bddd03c8c6bdb9',
     messagingSenderId: '128619632572',
     projectId: 'savehatay',
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
     storageBucket: 'savehatay.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDy0ND6I8WABYRgWmoqkSgHKV9dZ_r1FOE',
-    appId: '1:128619632572:ios:a3b49fbc899f9efac6bdb9',
-    messagingSenderId: '128619632572',
-    projectId: 'savehatay',
-    databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
-    storageBucket: 'savehatay.appspot.com',
-    iosClientId: '128619632572-hjjsm39vnm2019mqg7i6m8o4o20t1sjo.apps.googleusercontent.com',
-    iosBundleId: 'com.hatayasat.app',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDy0ND6I8WABYRgWmoqkSgHKV9dZ_r1FOE',
-    appId: '1:128619632572:ios:03e55c11f21ab12ac6bdb9',
-    messagingSenderId: '128619632572',
-    projectId: 'savehatay',
-    databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
-    storageBucket: 'savehatay.appspot.com',
-    iosClientId: '128619632572-uipphevgj95u2ilpnsjdvcj26kmja7se.apps.googleusercontent.com',
-    iosBundleId: 'com.example.vbaseproject',
   );
 }

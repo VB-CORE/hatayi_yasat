@@ -44,6 +44,8 @@ class HomeState extends Equatable {
   final bool isServiceRequestSending;
   final List<StoreModel> items;
 
+  bool get isEnabled => !isServiceRequestSending && items.isNotEmpty;
+
   @override
   List<Object?> get props => [isServiceRequestSending, items];
 

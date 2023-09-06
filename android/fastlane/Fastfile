@@ -9,7 +9,6 @@ APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
 
 platform :android do
   lane :release do |options|
-
     # google_play_track_version_codes(track: track)[0]
      flutter_build_appBundle("1.0.0","1")
      upload_to_play_store(
