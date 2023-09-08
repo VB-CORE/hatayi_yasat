@@ -6,7 +6,7 @@ import 'package:vbaseproject/features/home_module/home/view/mixin/home_notificat
 import 'package:vbaseproject/features/home_module/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/features/home_module/notifications/notificaitons_view.dart';
+import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
 import 'package:vbaseproject/features/settings/settings_view.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
