@@ -46,7 +46,7 @@ class HorizontalSpace extends SizedBox {
     Key? key,
   }) : this(
           key: key,
-          width: (percentage / 100) * context.width,
+          width: (percentage / 100) * context.sized.width,
         );
   @override
   final double width;
