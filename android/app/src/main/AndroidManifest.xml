@@ -9,6 +9,9 @@
         android:label="Hatay'ı Yaşat"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <!-- Set custom default icon for notification -->
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_notification" />
         <activity
             android:name="com.hatayiyasat.app.MainActivity"
             android:exported="true"
