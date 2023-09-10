@@ -7,6 +7,7 @@ import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.d
 import 'package:vbaseproject/product/feature/path_operation/custom_path_manager.dart';
 
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:vbaseproject/product/widget/package/image_manipulation/image_manipulation.dart';
 
 mixin HomeDetailMixin on State<HomeDetailView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
@@ -49,5 +50,7 @@ Future<File?> _makeFile(Uint8List response, StoreModel model) async {
     response,
     '${model.name}-${model.id}.png',
   );
-  return file;
+  final imageWithWatermark =
+      await ImageManipulation.instance?.addWatermark(file: file);
+  return imageWithWatermark;
 }

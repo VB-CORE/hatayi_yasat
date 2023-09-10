@@ -30,12 +30,8 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
     );
     final uuid = const Uuid().v4();
 
-    final imageWithWatermark = await ImageManipulation.instance
-        ?.addWatermark(requestCompanyModel.imageFile);
-    if (imageWithWatermark == null) return false;
-
     final uploadImage = await FirebaseService().uploadImage(
-      file: imageWithWatermark,
+      file: requestCompanyModel.imageFile,
       root: RootStorageName.company,
       key: uuid,
     );

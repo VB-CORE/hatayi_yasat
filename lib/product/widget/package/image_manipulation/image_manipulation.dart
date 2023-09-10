@@ -15,7 +15,8 @@ final class ImageManipulation {
       _instace ??= const ImageManipulation._init();
 
   /// Adds a watermark to the image.
-  Future<File?> addWatermark(File file) async {
+  Future<File?> addWatermark({File? file}) async {
+    if (file == null) return null;
     final image = img.decodeImage(file.readAsBytesSync());
     final watermark = await _getWatermarkImage(image);
     if (image == null || watermark == null) return null;
@@ -34,8 +35,7 @@ final class ImageManipulation {
     final wmFile = await _createFileFromAsset(Assets.icons.icWatermark.path);
     final watermark = await img.decodeImageFile(wmFile.path);
     if (watermark == null) return null;
-    final result =
-        img.copyResize(watermark, height: image.height, width: image.width);
+    final result = img.copyResize(watermark, width: image.width);
     return result;
   }
 
