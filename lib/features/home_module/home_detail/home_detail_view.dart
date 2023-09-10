@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detial_mixin.dart';
+import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';

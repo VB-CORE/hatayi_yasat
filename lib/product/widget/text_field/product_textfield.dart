@@ -28,7 +28,7 @@ class ProductTextField extends StatelessWidget {
       inputFormatters: formatters,
       keyboardType: keyboardType,
       maxLines: isMultiline ? AppConstants.kFour : AppConstants.kOne,
-      cursorColor: context.colorScheme.onSurface,
+      cursorColor: context.general.colorScheme.onSurface,
       decoration: ProductTextFieldDecoration(context, hintText),
       validator: validator,
     );
