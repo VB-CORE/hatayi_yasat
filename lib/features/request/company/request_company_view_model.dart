@@ -9,6 +9,7 @@ import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';
 
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
+import 'package:vbaseproject/product/widget/package/image_manipulation/image_manipulation.dart';
 
 class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
   RequestCompanyViewModel(this.deviceId) : super(const RequestCompanyState());
@@ -29,8 +30,12 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
     );
     final uuid = const Uuid().v4();
 
+    final imageWithWatermark = await ImageManipulation.instance
+        ?.addWatermark(requestCompanyModel.imageFile);
+    if (imageWithWatermark == null) return false;
+
     final uploadImage = await FirebaseService().uploadImage(
-      file: requestCompanyModel.imageFile,
+      file: imageWithWatermark,
       root: RootStorageName.company,
       key: uuid,
     );

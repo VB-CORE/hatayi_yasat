@@ -36,6 +36,7 @@ dependencies:
   #util
   uuid: any
   flutter_image_compress: ^2.0.4
+  image: ^4.0.17
 
   #firebase
   firebase_storage: ^11.2.6
