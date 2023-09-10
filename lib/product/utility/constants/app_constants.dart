@@ -12,4 +12,6 @@ class AppConstants {
   static const int kFour = 4;
 
   static const double defaultMapZoom = 14;
+
+  static const String appMainLanguageCode = 'tr';
 }

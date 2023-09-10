@@ -7,6 +7,7 @@ import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 
 void main() async {
@@ -16,6 +17,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: initialManager.localize.supportedItems,
       path: initialManager.localize.initialPath,
+      startLocale: const Locale(AppConstants.appMainLanguageCode),
       useOnlyLangCode: true,
       child: const ProviderScope(child: MyApp()),
     ),
