@@ -15,9 +15,8 @@ final class ImageManipulation {
 
   /// Adds a watermark to the image.
   Future<File?> addWatermark({required File file}) async {
-    // final image = img.decodeImage(await file.readAsBytes());
-    final bytes = await file.readAsBytes();
-    final image = await compute<Uint8List, img.Image?>(img.decodeImage, bytes);
+    final image = img.decodeImage(file.readAsBytesSync());
+    // final image = await compute<Uint8List, img.Image?>(img.decodeImage, bytes);
     final watermark = await _getWatermarkImage(image);
     if (image == null || watermark == null) return null;
 
@@ -26,12 +25,12 @@ final class ImageManipulation {
     final tempDir = Directory.systemTemp;
     final tempImagePath = tempDir.path.withEmptyWaterMark;
 
-    await compute<MapEntry<String, img.Image>, bool>(
-      (message) => img.encodePngFile(message.key, message.value),
-      MapEntry(tempImagePath, image),
-    );
+    // await compute<MapEntry<String, img.Image>, bool>(
+    //   (message) => img.encodePngFile(message.key, message.value),
+    //   MapEntry(tempImagePath, image),
+    // );
     // await img.encodePngFile(tempImagePath, image);
-    // File(tempImagePath).writeAsBytesSync(img.encodePng(image));
+    File(tempImagePath).writeAsBytesSync(img.encodePng(image));
     return File(tempImagePath);
   }
 
@@ -52,7 +51,7 @@ final class ImageManipulation {
     final tempDir = await getTemporaryDirectory();
     final tempPath = tempDir.path;
     final tempFile = File('$tempPath/${assetPath.split('/').last}');
-    await tempFile.writeAsBytes(bytes);
+    tempFile.writeAsBytesSync(bytes);
     final result = File(tempFile.path);
     return result;
   }
