@@ -29,7 +29,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
       controller: screenshotController,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: captureAndShare,
+          onPressed: share,
           child: const Icon(Icons.share_outlined),
         ),
         body: NotificationListener(

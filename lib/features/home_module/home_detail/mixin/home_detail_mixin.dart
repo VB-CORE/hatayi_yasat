@@ -12,18 +12,19 @@ import 'package:vbaseproject/product/widget/package/image_manipulation/image_man
 mixin HomeDetailMixin on State<HomeDetailView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
   late final StoreModel model;
-
+  late final File? screenShot;
   final ScreenshotController screenshotController = ScreenshotController();
 
-  Future<void> captureAndShare() async {
+  Future<void> _capture() async {
     final response = await screenshotController.capture();
     if (response == null) return;
+    screenShot = await _makeFile(response, model);
+  }
 
-    final file = await _makeFile(response, model);
-    if (file == null) return;
-
+  Future<void> share() async {
+    if (screenShot == null) return;
     await Share.shareXFiles(
-      [XFile(file.path)],
+      [XFile(screenShot!.path)],
       subject: '${model.name}${model.description}',
     );
   }
@@ -32,6 +33,9 @@ mixin HomeDetailMixin on State<HomeDetailView> {
   void initState() {
     super.initState();
     model = widget.model;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _capture();
+    });
   }
 
   bool listenNotification(ScrollNotification notification) {
