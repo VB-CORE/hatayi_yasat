@@ -23,7 +23,7 @@ mixin HomeNotificationMixin
   Future<void> _navigateToDetail(NotificationModel model) async {
     final id = model.id;
     if (id == null || id.isEmpty) return;
-    await MessagingNavigate.instance.navigateDetailNotification(
+    await MessagingNavigate.instance.detailModelCheckAndNavigate(
       context: context,
       id: id,
       customService: _customService,

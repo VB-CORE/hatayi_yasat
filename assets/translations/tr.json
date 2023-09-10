@@ -61,7 +61,7 @@
     },
     "detailView": {
         "owner": "İşletme Sahibi",
-        "description": "Detaylar",
+        "description": "İşletme Açıklaması",
         "address": "Adres",
         "phoneNumber": "Telefon Numarası",
         "district": "İlçe",
@@ -78,7 +78,8 @@
     },
     "notification": {
         "snackbarButtonText": "Aç",
-        "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı."
+        "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
+        "business_not_found_error_message": "İşletme bulunamadı"
     },
     "developers": {
         "title": "Geliştiriciler",
