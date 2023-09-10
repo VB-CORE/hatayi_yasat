@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/model/firebase/developer_model.dart';
 
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/model/firebase/town_model.dart';
@@ -27,6 +28,14 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(townItems: items);
   }
 
+  Future<void> fetchDevelopers() async {
+    final devItems = await FirebaseService().getList(
+      model: DeveloperModel(),
+      path: CollectionEnums.developers,
+    );
+    state = state.copyWith(developerItems: devItems);
+  }
+
   void saveCompanies(List<StoreModel> items) {
     state = state.copyWith(items: items);
   }
@@ -46,21 +55,25 @@ class ProductProviderState extends Equatable {
   const ProductProviderState({
     this.townItems = const [],
     this.items = const [],
+    this.developerItems = const [],
   });
 
   final List<TownModel> townItems;
   final List<StoreModel> items;
+  final List<DeveloperModel> developerItems;
 
   @override
-  List<Object> get props => [townItems, items];
+  List<Object> get props => [townItems, items, developerItems];
 
   ProductProviderState copyWith({
     List<TownModel>? townItems,
     List<StoreModel>? items,
+    List<DeveloperModel>? developerItems,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
       items: items ?? this.items,
+      developerItems: developerItems ?? this.developerItems,
     );
   }
 }
