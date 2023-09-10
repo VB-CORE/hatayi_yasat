@@ -23,8 +23,7 @@ mixin HomeDetailMixin on State<HomeDetailView> {
 
     await Share.shareXFiles(
       [XFile(file.path)],
-      text: model.name,
-      subject: model.description,
+      subject: '${model.name}${model.description}',
     );
   }
 
