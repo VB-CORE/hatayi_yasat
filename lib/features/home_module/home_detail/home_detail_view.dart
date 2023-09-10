@@ -26,10 +26,10 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
   @override
   Widget build(BuildContext context) {
     return Screenshot(
-      controller: screenshotController,
+      controller: imageCompressAndWaterMark.screenshotController,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: share,
+          onPressed: captureAndShare,
           child: const Icon(Icons.share_outlined),
         ),
         body: NotificationListener(

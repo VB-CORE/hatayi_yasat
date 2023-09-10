@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+
+import 'package:vbaseproject/product/widget/package/file_compress/file_compress.dart';
 
 enum PhotoPickType {
   gallery,
@@ -43,20 +44,9 @@ final class PhotoPickerManager {
       ],
     );
     if (croppedFile == null) return null;
-    final latestFile = testCompressAndGetFile(File(croppedFile.path));
+    final latestFile = FileCompress(File(croppedFile.path))
+        .compressAndGetFile(Qualities.medium);
     return latestFile;
-  }
-
-  Future<File> testCompressAndGetFile(File file) async {
-    final result = await FlutterImageCompress.compressWithFile(
-      file.absolute.path,
-      quality: 75,
-    );
-
-    if (result == null) return file;
-    await file.writeAsBytes(result);
-
-    return file;
   }
 
   Future<File> createFile(String path) async {

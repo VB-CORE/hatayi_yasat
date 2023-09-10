@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
@@ -10,22 +9,29 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 @immutable
 final class ImageManipulation {
   const ImageManipulation._init();
-  static ImageManipulation? _instace;
-  static ImageManipulation? get instance =>
-      _instace ??= const ImageManipulation._init();
+  static ImageManipulation? _instance;
+  static ImageManipulation get instance =>
+      _instance ??= const ImageManipulation._init();
 
   /// Adds a watermark to the image.
-  Future<File?> addWatermark({File? file}) async {
-    if (file == null) return null;
-    final image = img.decodeImage(file.readAsBytesSync());
+  Future<File?> addWatermark({required File file}) async {
+    // final image = img.decodeImage(await file.readAsBytes());
+    final bytes = await file.readAsBytes();
+    final image = await compute<Uint8List, img.Image?>(img.decodeImage, bytes);
     final watermark = await _getWatermarkImage(image);
     if (image == null || watermark == null) return null;
 
     /// (target, watermark, center)
     img.compositeImage(image, watermark, center: true);
     final tempDir = Directory.systemTemp;
-    final tempImagePath = '${tempDir.path}/result_image.png';
-    File(tempImagePath).writeAsBytesSync(img.encodePng(image));
+    final tempImagePath = tempDir.path.withEmptyWaterMark;
+
+    await compute<MapEntry<String, img.Image>, bool>(
+      (message) => img.encodePngFile(message.key, message.value),
+      MapEntry(tempImagePath, image),
+    );
+    // await img.encodePngFile(tempImagePath, image);
+    // File(tempImagePath).writeAsBytesSync(img.encodePng(image));
     return File(tempImagePath);
   }
 
@@ -49,5 +55,11 @@ final class ImageManipulation {
     await tempFile.writeAsBytes(bytes);
     final result = File(tempFile.path);
     return result;
+  }
+}
+
+extension _StringExt on String {
+  String get withEmptyWaterMark {
+    return '$this/watermark_result_image.png';
   }
 }
