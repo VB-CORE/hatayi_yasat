@@ -9,7 +9,6 @@ import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';
 
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
-import 'package:vbaseproject/product/widget/package/image_manipulation/image_manipulation.dart';
 
 class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
   RequestCompanyViewModel(this.deviceId) : super(const RequestCompanyState());
