@@ -64,7 +64,7 @@ class _EmptyAddPhoto extends StatelessWidget {
           Padding(
             padding: const PagePadding.onlyTopLow(),
             child: const Text(LocaleKeys.button_addPhoto).tr(),
-          )
+          ),
         ],
       ),
     );
@@ -95,7 +95,7 @@ class _FileImageWithUpdate extends StatelessWidget {
               color: ColorsCustom.white,
             ),
           ),
-        )
+        ),
       ],
     );
   }

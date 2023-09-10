@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/home_module/notifications/notificaitons_view.dart';
+import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/product/model/firebase/app_notification_model.dart';
 import 'package:vbaseproject/product/service/custom_service.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';

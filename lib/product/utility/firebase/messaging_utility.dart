@@ -37,7 +37,8 @@ final class MessagingUtility {
       if (messageBody.isEmpty) return;
       onMessageHandleInApp.call(
         MapEntry(
-          event.notification?.title ?? '',
+          event.notification?.title ??
+              LocaleKeys.notification_defaultMessage.tr(),
           NotificationModel.fromJson(messageBody),
         ),
       );
@@ -49,7 +50,7 @@ final class MessagingUtility {
       onMessageHandleInApp.call(
         MapEntry(
           event.notification?.body ??
-              LocaleKeys.notificationSnackbar_defaultMessage.tr(),
+              LocaleKeys.notification_defaultMessage.tr(),
           NotificationModel.fromJson(messageBody),
         ),
       );
