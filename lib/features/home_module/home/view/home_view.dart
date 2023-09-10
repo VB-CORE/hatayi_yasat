@@ -8,8 +8,7 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_provider.
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/features/home_module/notifications/notificaitons_view.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
-import 'package:vbaseproject/features/settings/settings_view.dart';
-import 'package:vbaseproject/product/generated/assets.gen.dart';
+import 'package:vbaseproject/features/settings_module/settings/settings_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
@@ -17,6 +16,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
+import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
 
@@ -138,7 +138,7 @@ class _PageBody extends ConsumerWidget {
           firstChild: isRequestSending
               ? const PlaceShimmerList()
               : items.isEmpty
-                  ? const _EmptyLottie()
+                  ? const NotFoundLottie()
                   : const SizedBox.shrink(),
           secondChild: SizedBox(
             height: constraints.maxHeight,
@@ -160,27 +160,6 @@ class _PageBody extends ConsumerWidget {
           crossFadeState: crossFadeState,
         );
       },
-    );
-  }
-}
-
-class _EmptyLottie extends StatelessWidget {
-  const _EmptyLottie();
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: context.sized.height,
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: context.sized.dynamicHeight(.2),
-            ),
-            child: Assets.lottie.notFound.lottie(),
-          ),
-        ),
-      ),
     );
   }
 }

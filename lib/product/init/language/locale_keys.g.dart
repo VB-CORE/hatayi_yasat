@@ -68,5 +68,8 @@ abstract class  LocaleKeys {
   static const notificationSnackbar_buttonText = 'notificationSnackbar.buttonText';
   static const notificationSnackbar_defaultMessage = 'notificationSnackbar.defaultMessage';
   static const notificationSnackbar = 'notificationSnackbar';
+  static const developers_title = 'developers.title';
+  static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
+  static const developers = 'developers';
 
 }

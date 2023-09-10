@@ -79,5 +79,9 @@
     "notificationSnackbar": {
         "buttonText": "Aç",
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı."
+    },
+    "developers": {
+        "title": "Geliştiriciler",
+        "seeProfileButtonText": "Profili Görüntüle"
     }
 }

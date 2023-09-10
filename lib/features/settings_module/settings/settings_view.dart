@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/settings/subview/index.dart';
+import 'package:vbaseproject/features/settings_module/developers/developers_view.dart';
+import 'package:vbaseproject/features/settings_module/settings/subview/index.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -42,9 +43,14 @@ class _SettingsViewState extends State<SettingsView> {
                 style: context.general.textTheme.titleSmall,
               ),
             ),
+            ListTile(
+              onTap: () => context.route.navigateToPage(const DevelopersView()),
+              title: Text(LocaleKeys.developers_title.tr()),
+              trailing: const Icon(Icons.chevron_right),
+            ),
             const Spacer(),
             const Padding(
-              padding: PagePadding.onlyBottom(),
+              padding: PagePadding.onlyBottomMedium(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

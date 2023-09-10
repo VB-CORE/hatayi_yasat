@@ -79,5 +79,9 @@
     "notificationSnackbar": {
         "buttonText": "Open",
         "defaultMessage": "A business has resumed operations."
+    },
+    "developers": {
+        "title": "Developers",
+        "seeProfileButtonText": "See Profile"
     }
 }

@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
@@ -29,6 +28,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
     }
 
     await productProvider.fetchDistrictAndSaveSession();
+    await productProvider.fetchDevelopers();
     state = state.copyWith(isOperationStaring: false);
   }
 
