@@ -36,6 +36,5 @@ final class ApplicationInit {
 
     await MessagingUtility.init();
     await SharedCache.instance.init();
-    await SharedCache.instance.clear();
   }
 }
