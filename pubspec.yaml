@@ -19,9 +19,7 @@ dependencies:
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
   syncfusion_flutter_pdfviewer: ^22.2.11
-  textfield_tags: ^2.0.2
   webview_flutter: ^4.0.2
-  flutterfire_ui: ^0.4.3+20
   lottie: ^2.6.0
 
   #core
@@ -39,6 +37,9 @@ dependencies:
   firebase_messaging: ^14.6.7
   cloud_firestore: ^4.4.2
   firebase_crashlytics: ^3.3.5
+
+  #database
+  shared_preferences: ^2.2.1
 
   #package
   image_picker: ^1.0.4
@@ -87,3 +88,4 @@ flutter:
     - assets/icons/
     - assets/docs/
     - assets/lottie/
+    - assets/images/

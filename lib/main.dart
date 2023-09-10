@@ -16,6 +16,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: initialManager.localize.supportedItems,
       path: initialManager.localize.initialPath,
+      startLocale: initialManager.localize.startLocale,
       useOnlyLangCode: true,
       child: const ProviderScope(child: MyApp()),
     ),
