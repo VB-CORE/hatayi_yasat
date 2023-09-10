@@ -5,8 +5,8 @@ class StringConstants {
   static const String instagram = 'Instagram';
 
   /// Social Media Urls
-  static const String twitterUrl = 'https://twitter.com/10vbacik/';
-  static const String instagramUrl = 'https://www.instagram.com/vbacik/';
-  static const String facebookUrl = 'https://facebook.com/';
-  static const String youtubeUrl = 'https://www.youtube.com/@HardwareAndro';
+  static const String twitterUrl = 'https://twitter.com/grafikherif';
+  static const String instagramUrl = 'https://www.instagram.com/hatayiyasat/';
+  static const String youtubeUrl = 'https://www.youtube.com/@4.17enkaz';
+  static const String websiteUrl = 'https://hatayiyasat.com/';
 }

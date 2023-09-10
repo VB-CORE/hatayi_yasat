@@ -49,20 +49,20 @@ class _SettingsViewState extends State<SettingsView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SocialMediaCircleAvatar(
-                    iconData: FontAwesomeIcons.youtube,
-                    webUrl: StringConstants.youtubeUrl,
-                  ),
-                  SocialMediaCircleAvatar(
-                    iconData: FontAwesomeIcons.facebook,
-                    webUrl: StringConstants.facebookUrl,
-                  ),
-                  SocialMediaCircleAvatar(
                     iconData: FontAwesomeIcons.instagram,
                     webUrl: StringConstants.instagramUrl,
                   ),
                   SocialMediaCircleAvatar(
                     iconData: FontAwesomeIcons.twitter,
                     webUrl: StringConstants.twitterUrl,
+                  ),
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.youtube,
+                    webUrl: StringConstants.youtubeUrl,
+                  ),
+                  SocialMediaCircleAvatar(
+                    iconData: FontAwesomeIcons.laptop,
+                    webUrl: StringConstants.websiteUrl,
                   ),
                 ],
               ),

@@ -10,7 +10,7 @@ class NotificationSnackBar extends SnackBar {
   }) : super(
           content: Text(message),
           action: SnackBarAction(
-            label: LocaleKeys.notificationSnackbar_buttonText.tr(),
+            label: LocaleKeys.notification_snackbarButtonText.tr(),
             onPressed: () {
               isOpenListen.call(true);
             },
