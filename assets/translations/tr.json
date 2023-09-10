@@ -76,8 +76,8 @@
         "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
         "button": "Yeniden Dene"
     },
-    "notificationSnackbar": {
-        "buttonText": "Aç",
+    "notification": {
+        "snackbarButtonText": "Aç",
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı."
     },
     "developers": {

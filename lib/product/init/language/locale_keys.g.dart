@@ -65,9 +65,9 @@ abstract class  LocaleKeys {
   static const networkCheck_message = 'networkCheck.message';
   static const networkCheck_button = 'networkCheck.button';
   static const networkCheck = 'networkCheck';
-  static const notificationSnackbar_buttonText = 'notificationSnackbar.buttonText';
-  static const notificationSnackbar_defaultMessage = 'notificationSnackbar.defaultMessage';
-  static const notificationSnackbar = 'notificationSnackbar';
+  static const notification_snackbarButtonText = 'notification.snackbarButtonText';
+  static const notification_defaultMessage = 'notification.defaultMessage';
+  static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';

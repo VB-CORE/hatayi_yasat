@@ -33,7 +33,7 @@ class ProductTextFieldDecoration extends InputDecoration {
         borderRadius: borderRadius,
         borderSide: BorderSide(
           color: ColorsCustom.lightGray,
-          width: context.dynamicWidth(0.1),
+          width: context.sized.dynamicWidth(0.1),
         ),
       );
 
