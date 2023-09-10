@@ -16,9 +16,21 @@
 default_platform(:ios)
 
 platform :ios do
+
+  before_all do
+  ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD']= 'atfl-dryq-vniv-pwgr'
+  end
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+  enable_automatic_code_signing
+    increment_build_number({
+      build_number: latest_testflight_build_number + 1
+    })
+
+    gym(scheme: "Runner",
+          xcargs: "-allowProvisioningUpdates",
+    )
+    # upload_symbols_to_crashlytics(dsym_path: "./Runner.app.dSYM.zip")
     upload_to_testflight
   end
 end
