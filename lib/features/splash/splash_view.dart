@@ -2,17 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
-import 'package:vbaseproject/features/splash/view_model/index.dart';
+import 'package:vbaseproject/features/splash/splash_view_mixin.dart';
 
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -21,35 +16,8 @@ class SplashView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends ConsumerState<SplashView> with AppProviderMixin {
-  late final StateNotifierProvider<SplashViewModel, SplashState> _homeProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    _homeProvider = StateNotifierProvider(
-      (ref) => SplashViewModel(
-        appProvider: appProvider,
-        productProvider: ref.read(ProductProvider.provider.notifier),
-      ),
-    );
-    ref.listenManual(_homeProvider, (previous, next) async {
-      if (next.isNeedToForceUpdate) {
-        return;
-      }
-      if (!next.isConnectedToInternet) {
-        final response =
-            (await NotConnectedToInternetDialog.show(context)) ?? false;
-        if (!response) return;
-        await ref.read(_homeProvider.notifier).refresh();
-        return;
-      }
-      if (!next.isOperationStaring) {
-        ProjectNavigation(context).replaceToWidget(const HomeView());
-      }
-    });
-  }
-
+class _SplashViewState extends ConsumerState<SplashView>
+    with AppProviderMixin, SplashViewMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
