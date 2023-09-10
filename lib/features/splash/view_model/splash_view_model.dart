@@ -1,5 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
+import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
 import 'package:vbaseproject/product/utility/checker/network_checker.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
@@ -18,6 +19,11 @@ class SplashViewModel extends StateNotifier<SplashState> {
     await Future.delayed(ProjectGeneralConstant.durationVeryHigh, () {});
     await appProvider.init();
 
+    if (_isFirstTimeCheck()) {
+      await SharedCache.instance.setFirstAppOpen();
+      state = state.copyWith(isNeedToOnBoard: true);
+      return;
+    }
     if (_isNeedToForceUpdate()) {
       state = state.copyWith(isNeedToForceUpdate: true);
       return;
@@ -30,6 +36,10 @@ class SplashViewModel extends StateNotifier<SplashState> {
     await productProvider.fetchDistrictAndSaveSession();
     await productProvider.fetchDevelopers();
     state = state.copyWith(isOperationStaring: false);
+  }
+
+  bool _isFirstTimeCheck() {
+    return SharedCache.instance.isFirstAppOpen();
   }
 
   bool _isNeedToForceUpdate() {
