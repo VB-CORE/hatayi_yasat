@@ -6,7 +6,8 @@ enum CollectionEnums {
   towns,
   unApprovedApplications,
   approvedApplications,
-  notifications;
+  notifications,
+  developers;
 
   CollectionReference<Map<String, dynamic>> get collection {
     return FirebaseFirestore.instance.collection(name);

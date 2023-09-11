@@ -16,4 +16,6 @@ final class ApplicationTheme {
     );
   }
   late final ThemeData themeData;
+
+  static double maxWeight = 1000;
 }

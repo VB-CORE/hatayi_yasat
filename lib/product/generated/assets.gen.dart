@@ -39,6 +39,17 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [icCarHelp, icMapHelp, icWatermark];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/img_welcome.png
+  AssetGenImage get imgWelcome =>
+      const AssetGenImage('assets/images/img_welcome.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [imgWelcome];
+}
+
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
@@ -95,6 +106,7 @@ class Assets {
 
   static const $AssetsDocsGen docs = $AssetsDocsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
