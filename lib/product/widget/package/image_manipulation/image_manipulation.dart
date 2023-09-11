@@ -8,16 +8,14 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 @immutable
 final class ImageManipulation {
   const ImageManipulation._init();
-  static ImageManipulation? _instance;
-  static ImageManipulation get instance =>
-      _instance ??= const ImageManipulation._init();
+  static const ImageManipulation _instance = ImageManipulation._init();
+  static ImageManipulation get instance => _instance;
 
   /// Adds a watermark to the image.
   Future<File?> addWatermark({required File file}) async {
     final image = img.decodeImage(file.readAsBytesSync());
     final watermark = await _getWatermarkImage(image);
     if (image == null || watermark == null) return null;
-
     img.compositeImage(image, watermark, center: true);
     final tempDir = Directory.systemTemp;
     final tempImagePath = tempDir.path.withEmptyWaterMark;

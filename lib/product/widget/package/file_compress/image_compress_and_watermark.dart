@@ -31,19 +31,17 @@ final class ImageCompressAndWaterMark {
     return imageWithWatermark;
   }
 
-  Future<void> captureAndShare() async {
-    await Future.microtask(() {});
+  Future<void> capture() async {
     final response = await screenshotController.capture();
     if (response == null) return;
     _screenShot = await _makeFile(response, storeModel);
-    await _share(storeModel);
   }
 
-  Future<void> _share(StoreModel model) async {
+  Future<void> share() async {
     if (_screenShot == null) return;
     await Share.shareXFiles(
       [XFile(_screenShot!.path)],
-      subject: '${model.name}${model.description}',
+      subject: '${storeModel.name}${storeModel.description}',
     );
   }
 }

@@ -6,15 +6,10 @@ import 'package:vbaseproject/product/widget/package/file_compress/image_compress
 mixin HomeDetailMixin on State<HomeDetailView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
 
-  final ValueNotifier<bool> isCapturedScreenShotNotifier =
-      ValueNotifier<bool>(false);
+  final ValueNotifier<bool> screenshootNotifier = ValueNotifier<bool>(false);
 
   late final StoreModel model;
   late final ImageCompressAndWaterMark imageCompressAndWaterMark;
-
-  Future<void> captureAndShare() async {
-    await imageCompressAndWaterMark.captureAndShare();
-  }
 
   @override
   void initState() {
@@ -30,5 +25,16 @@ mixin HomeDetailMixin on State<HomeDetailView> {
       isPinnedNotifier.value = newIsPinned;
     }
     return true;
+  }
+
+  Future<void> captureAndShare() async {
+    _toggleScreenshot();
+    await imageCompressAndWaterMark.capture();
+    _toggleScreenshot();
+    await imageCompressAndWaterMark.share();
+  }
+
+  void _toggleScreenshot() {
+    screenshootNotifier.value = !screenshootNotifier.value;
   }
 }
