@@ -37,10 +37,12 @@ final class ImageManipulation {
   /// We resize our watermark image according to the image size to be merged.
   Future<img.Image?> _getWatermarkImage(img.Image? image) async {
     if (image == null) return null;
-    final wmFile = await _createFileFromAsset(Assets.icons.icWatermark.path);
-    final watermark = await img.decodeImageFile(wmFile.path);
-    if (watermark == null) return null;
-    final result = img.copyResize(watermark, width: image.width);
+    // final wmFile = await _createFileFromAsset(Assets.icons.icWatermark.path);
+    final vmFile2 = img
+        .decodeImage(await _createFileFromBytes(Assets.icons.icWatermark.path));
+    // final watermark = await img.decodeImageFile(wmFile.path);
+    if (vmFile2 == null) return null;
+    final result = img.copyResize(vmFile2, width: image.width);
     return result;
   }
 
@@ -54,6 +56,12 @@ final class ImageManipulation {
     tempFile.writeAsBytesSync(bytes);
     final result = File(tempFile.path);
     return result;
+  }
+
+  Future<Uint8List> _createFileFromBytes(String assetPath) async {
+    final data = await rootBundle.load(assetPath);
+    final bytes = data.buffer.asUint8List();
+    return bytes;
   }
 }
 
