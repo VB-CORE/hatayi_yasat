@@ -30,7 +30,6 @@ platform :ios do
     gym(scheme: "Runner",
           xcargs: "-allowProvisioningUpdates",
     )
-    # upload_symbols_to_crashlytics(dsym_path: "./Runner.app.dSYM.zip")
     upload_to_testflight
   end
 end

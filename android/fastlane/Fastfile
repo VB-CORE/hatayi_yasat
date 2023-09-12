@@ -7,8 +7,8 @@ APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
 
 platform :android do
   lane :release do |options|
-    # google_play_track_version_codes(track: track)[0]
-     flutter_build_appBundle("1.0.0","1")
+    # versionCode =  google_play_track_version_codes(track: APP_TRACK_INTERNAL)[0]
+     flutter_build_appBundle("1.0.0","3")
      upload_to_play_store(
       track: APP_TRACK_INTERNAL,
       json_key: APP_JSON_KEY,
@@ -16,14 +16,7 @@ platform :android do
       skip_upload_metadata: true,
       skip_upload_images: true,
       skip_upload_screenshots: true,
-    )
-    clean
-  end
-
-
-  def updateVersionNumber(val)
-    set_properties_value(
-      path: ENV_PATH, key: KEY_VERSION_BUILD_FIREBASE_NUMBER, value: val,
+      release_status: 'draft',
     )
   end
 
