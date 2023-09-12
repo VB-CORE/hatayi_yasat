@@ -6,9 +6,12 @@ import 'package:vbaseproject/features/home_module/home/view/search/home_search_d
 import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 
 mixin HomeViewMixin on ConsumerState<HomeView> {
   void init(HomeViewModel viewModel) {
+    MessagingUtility.init();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.fetchAllItemsAndSave();
     });

@@ -36,7 +36,6 @@ final class ApplicationInit {
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
 
-    await MessagingUtility.init();
     await SharedCache.instance.init();
   }
 

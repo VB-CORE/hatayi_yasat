@@ -35,12 +35,8 @@ final class MessagingUtility {
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       final messageBody = event.data;
       if (messageBody.isEmpty) return;
-      onMessageHandleInApp.call(
-        MapEntry(
-          event.notification?.title ??
-              LocaleKeys.notification_defaultMessage.tr(),
-          NotificationModel.fromJson(messageBody),
-        ),
+      onMessageHandle.call(
+        NotificationModel.fromJson(messageBody),
       );
     });
 

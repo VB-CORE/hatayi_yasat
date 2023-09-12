@@ -7,8 +7,8 @@ APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
 
 platform :android do
   lane :release do |options|
-    # versionCode =  google_play_track_version_codes(track: APP_TRACK_INTERNAL)[0]
-     flutter_build_appBundle("1.0.0","3")
+      versionCode =  google_play_track_version_codes(track: APP_TRACK_INTERNAL)[0] + 1
+     flutter_build_appBundle("1.0.0",versionCode)
      upload_to_play_store(
       track: APP_TRACK_INTERNAL,
       json_key: APP_JSON_KEY,
