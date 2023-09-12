@@ -43,7 +43,7 @@ class AppProvider extends StateNotifier<AppProviderState> {
           message: message,
           isOpenListen: (value) {
             if (!value) return;
-            MessagingNavigate.instance.navigateDetailNotification(
+            MessagingNavigate.instance.detailModelCheckAndNavigate(
               context: context,
               id: id,
               customService: customService,

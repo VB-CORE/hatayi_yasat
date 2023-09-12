@@ -61,7 +61,7 @@
     },
     "detailView": {
         "owner": "Business Owner",
-        "description": "Details",
+        "description": "Business Description",
         "address": "Address",
         "phoneNumber": "Phone Number",
         "district": "District",
@@ -78,7 +78,8 @@
     },
     "notification": {
         "snackbarButtonText": "Open",
-        "defaultMessage": "A business has resumed operations."
+        "defaultMessage": "A business has resumed operations.",
+        "business_not_found_error_message": "Business not found"
     },
     "developers": {
         "title": "Developers",

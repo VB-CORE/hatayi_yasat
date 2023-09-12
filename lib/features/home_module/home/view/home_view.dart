@@ -49,7 +49,7 @@ class _HomeViewState extends ConsumerState<HomeView>
     return Scaffold(
       floatingActionButton: const _RequestCompany(),
       appBar: AppBar(
-        title: const Text(LocaleKeys.home_places).tr(),
+        title: const Text(LocaleKeys.home_places).tr(context: context),
         actions: const [
           _NotificationButton(),
           _SettingsButton(),
