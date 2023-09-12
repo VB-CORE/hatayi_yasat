@@ -54,7 +54,7 @@ class KvkkCheckBox extends StatelessWidget {
   void _navigate(BuildContext context) {
     Navigator.push(
       context,
-      CupertinoPageRoute(
+      CupertinoPageRoute<void>(
         fullscreenDialog: true,
         builder: (BuildContext context) {
           return Scaffold(

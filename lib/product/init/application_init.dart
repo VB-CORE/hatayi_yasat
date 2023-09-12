@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 
 import 'package:vbaseproject/core/init/core_localize.dart';
@@ -22,6 +23,7 @@ final class ApplicationInit {
   Future<void> start() async {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
+    await _setRotation();
     await DeviceUtility.instance.initPackageInfo();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -36,5 +38,12 @@ final class ApplicationInit {
 
     await MessagingUtility.init();
     await SharedCache.instance.init();
+  }
+
+  Future<void> _setRotation() async {
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 }

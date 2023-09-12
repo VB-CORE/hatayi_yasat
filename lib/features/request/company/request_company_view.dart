@@ -130,7 +130,8 @@ class _SaveButton extends ConsumerWidget {
         ref.watch(_requestCompanyViewModel).isSendingRequest ?? false;
     return SafeArea(
       child: Padding(
-        padding: const PagePadding.horizontal16Symmetric(),
+        padding: const PagePadding.horizontal16Symmetric() +
+            const PagePadding.onlyBottomMedium(),
         child: FloatingActionButton(
           onPressed: () {
             if (isLoading) return;

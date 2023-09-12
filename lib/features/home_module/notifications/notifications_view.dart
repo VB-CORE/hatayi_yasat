@@ -38,7 +38,7 @@ class _NotificationsViewState extends State<NotificationsView>
                 onTap: () async {
                   if (loadingNotifier.value) return;
                   showLoading();
-                  await MessagingNavigate.instance.navigateDetailNotification(
+                  await MessagingNavigate.instance.detailModelCheckAndNavigate(
                     context: context,
                     id: model.id,
                     customService: customService,
