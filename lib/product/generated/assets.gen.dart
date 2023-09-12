@@ -31,8 +31,12 @@ class $AssetsIconsGen {
   AssetGenImage get icMapHelp =>
       const AssetGenImage('assets/icons/ic_map_help.png');
 
+  /// File path: assets/icons/ic_watermark.png
+  AssetGenImage get icWatermark =>
+      const AssetGenImage('assets/icons/ic_watermark.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [icCarHelp, icMapHelp];
+  List<AssetGenImage> get values => [icCarHelp, icMapHelp, icWatermark];
 }
 
 class $AssetsImagesGen {

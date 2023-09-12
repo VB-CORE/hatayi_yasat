@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -26,11 +27,11 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
   @override
   Widget build(BuildContext context) {
     return Screenshot(
-      controller: screenshotController,
+      controller: imageCompressAndWaterMark.screenshotController,
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: _ShareButton(
+          notifier: screenshootNotifier,
           onPressed: captureAndShare,
-          child: const Icon(Icons.share_outlined),
         ),
         body: NotificationListener(
           onNotification: listenNotification,
@@ -49,6 +50,24 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ShareButton extends StatelessWidget {
+  const _ShareButton({required this.notifier, required this.onPressed});
+  final ValueListenable<bool> notifier;
+  final VoidCallback onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: notifier,
+      builder: (_, isLoading, __) => FloatingActionButton(
+        onPressed: onPressed,
+        child: isLoading
+            ? const CircularProgressIndicator.adaptive()
+            : const Icon(Icons.share_outlined),
       ),
     );
   }
