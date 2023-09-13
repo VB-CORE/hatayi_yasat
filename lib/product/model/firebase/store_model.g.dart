@@ -23,7 +23,7 @@ StoreModel _$StoreModelFromJson(Map<String, dynamic> json) => StoreModel(
           : FirebaseTimeParser.datetimeFromTimestamp(
               json['updatedAt'] as Timestamp?),
       isApproved: json['isApproved'] as bool,
-      deviceID: json['deviceID'] as String,
+      deviceID: json['deviceID'] as String?,
       id: json['id'] as String? ?? '',
       description: json['description'] as String?,
     );

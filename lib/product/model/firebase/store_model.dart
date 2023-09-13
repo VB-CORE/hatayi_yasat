@@ -65,7 +65,7 @@ final class StoreModel extends BaseFirebaseModel<StoreModel>
   )
   final DateTime? updatedAt;
   final bool isApproved;
-  final String deviceID;
+  final String? deviceID;
 
   // make a copywith
   StoreModel copyWith({
