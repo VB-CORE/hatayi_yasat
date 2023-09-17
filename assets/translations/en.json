@@ -88,5 +88,8 @@
     "navigationTabs": {
         "placesTabTitle": "Places",
         "projectsTabTitle": "Projects"
+    },
+    "projectRequest": {
+        "title": "New Project Request"
     }
 }

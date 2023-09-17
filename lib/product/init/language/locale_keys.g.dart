@@ -75,5 +75,7 @@ abstract class  LocaleKeys {
   static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
   static const navigationTabs_projectsTabTitle = 'navigationTabs.projectsTabTitle';
   static const navigationTabs = 'navigationTabs';
+  static const projectRequest_title = 'projectRequest.title';
+  static const projectRequest = 'projectRequest';
 
 }

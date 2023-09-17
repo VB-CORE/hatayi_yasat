@@ -88,5 +88,8 @@
     "navigationTabs": {
         "placesTabTitle": "Mekanlar",
         "projectsTabTitle": "Projeler"
+    },
+    "projectRequest": {
+        "title": "Yeni Proje Talebi"
     }
 }
