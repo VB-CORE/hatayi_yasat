@@ -48,13 +48,6 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: const _RequestCompany(),
-      appBar: AppBar(
-        title: const Text(LocaleKeys.home_places).tr(context: context),
-        actions: const [
-          _NotificationButton(),
-          _SettingsButton(),
-        ],
-      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));

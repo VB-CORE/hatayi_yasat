@@ -84,5 +84,9 @@
     "developers": {
         "title": "Developers",
         "seeProfileButtonText": "See Profile"
+    },
+    "navigationTabs": {
+        "placesTabTitle": "Places",
+        "projectsTabTitle": "Projects"
     }
 }
