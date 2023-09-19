@@ -14,7 +14,8 @@ class CustomSpeedDial extends StatelessWidget {
     return SpeedDial(
       icon: Icons.add,
       activeIcon: Icons.close,
-      spacing: WidgetSizes.spacingXxs,
+      spacing: WidgetSizes.spacingXsMid,
+      switchLabelPosition: true,
       children: children,
     );
   }
