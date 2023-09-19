@@ -23,7 +23,7 @@
 		<key>CFBundleSignature</key>
 		<string>????</string>
 		<key>CFBundleVersion</key>
-		<string>6</string>
+		<string>8</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
 		<key>NSCameraUsageDescription</key>
@@ -62,6 +62,7 @@
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>sms</string>
+			<string>maps</string>
 			<string>tel</string>
 			<string>googlemaps</string>
 			<string>http</string>

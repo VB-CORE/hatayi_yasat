@@ -11,6 +11,7 @@ platform :android do
       versionCode =  google_play_track_version_codes(track: APP_TRACK_INTERNAL)[0] + 1
      flutter_build_appBundle(VERSION_NUMBER,versionCode)
      upload_to_play_store(
+      root_url: "https://androidpublisher.googleapis.com/",
       track: APP_TRACK_INTERNAL,
       json_key: APP_JSON_KEY,
       aab: APP_BUNDLE_PATH,
