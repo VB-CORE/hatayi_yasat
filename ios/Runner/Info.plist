@@ -58,5 +58,14 @@
 		<false />
 		<key>UIStatusBarStyle</key>
 		<string>UIStatusBarStyleDarkContent</string>
+
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>sms</string>
+			<string>tel</string>
+			<string>googlemaps</string>
+			<string>http</string>
+			<string>https</string>
+		</array>
 	</dict>
 </plist>

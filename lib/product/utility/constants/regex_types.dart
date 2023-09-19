@@ -4,4 +4,6 @@ class RegexTypes {
   static RegExp get firstAndLastName => RegExp(
         r"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)",
       );
+
+  static RegExp phoneNumberRegex = RegExp('[^0-9]');
 }
