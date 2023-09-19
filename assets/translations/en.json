@@ -21,7 +21,10 @@
         "save": "Save",
         "addPhoto": "Add Photo",
         "ok": "OK",
-        "close": "Close"
+        "close": "Close",
+        "allFilter": "All",
+        "clean": "Clean",
+        "selectedList": "lists"
     },
     "component": {
         "picker": {
@@ -91,5 +94,9 @@
     },
     "projectRequest": {
         "title": "New Project Request"
+    },
+    "dialog": {
+        "phoneTitle": "Search by phone",
+        "addressTitle": "Address Open on the Map"
     }
 }

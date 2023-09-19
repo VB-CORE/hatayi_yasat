@@ -31,9 +31,10 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
 
     final uploadImage = await FirebaseService().uploadImage(
       file: requestCompanyModel.imageFile,
-      root: RootStorageName.company,
+      root: RootStorageName.pending,
       key: uuid,
     );
+
     if (uploadImage == null) return false;
     final storage = StoreModel(
       name: requestCompanyModel.companyName,

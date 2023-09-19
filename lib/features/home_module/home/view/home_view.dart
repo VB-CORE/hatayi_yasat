@@ -11,11 +11,11 @@ import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
+import 'package:vbaseproject/sub_feature/filter_button/filter_button.dart';
 
 final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
     StateNotifierProvider(
@@ -48,16 +48,37 @@ class _HomeViewState extends ConsumerState<HomeView>
         onRefresh: () async {
           await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));
         },
-        child: Column(
-          children: [
-            _SearchField(
-              () {
+        child: Scrollbar(
+          child: CustomScrollView(
+            slivers: [
+              _SearchField(() {
                 searchPressed(ref.read(_homeViewModel));
-              },
-            ),
-            const Expanded(child: _PageBody()),
-          ],
+              }),
+              SliverToBoxAdapter(
+                child: _FilterButton(),
+              ),
+              const _PageBody(),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class _FilterButton extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isRequestSending = ref.watch(_homeViewModel).isServiceRequestSending;
+
+    if (isRequestSending) return const SizedBox.shrink();
+
+    return Align(
+      alignment: Alignment.centerRight,
+      child: FilterButton(
+        onSelected: (value) {
+          ref.read(_homeViewModel.notifier).filter(value);
+        },
       ),
     );
   }
@@ -79,7 +100,7 @@ class _SearchField extends ConsumerWidget {
           onPressed.call();
         },
       ),
-    ).ext.toDisabled(disable: !isEnabled);
+    ).ext.toDisabled(disable: !isEnabled).ext.sliver;
   }
 }
 
@@ -90,37 +111,33 @@ class _PageBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(_homeViewModel).items;
     final isRequestSending = ref.watch(_homeViewModel).isServiceRequestSending;
-    final crossFadeState =
-        items.isEmpty ? CrossFadeState.showFirst : CrossFadeState.showSecond;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return AnimatedPageSwitch(
-          firstChild: isRequestSending
-              ? const PlaceShimmerList()
-              : items.isEmpty
-                  ? const NotFoundLottie()
-                  : const SizedBox.shrink(),
-          secondChild: SizedBox(
-            height: constraints.maxHeight,
-            child: ListView.builder(
-              padding: const PagePadding.horizontalLowSymmetric() +
-                  const PagePadding.onlyTop(),
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                return PlaceCard(
-                  item: items[index],
-                  onTap: () {
-                    context.route
-                        .navigateToPage(HomeDetailView(model: items[index]));
-                  },
-                );
-              },
-            ),
-          ),
-          crossFadeState: crossFadeState,
-        );
-      },
+    if (isRequestSending) {
+      return const SliverFillRemaining(
+        child: Padding(
+          padding: PagePadding.onlyTop(),
+          child: PlaceShimmerList(),
+        ),
+      );
+    }
+
+    if (items.isEmpty) {
+      return const SliverFillRemaining(child: NotFoundLottie());
+    }
+
+    return SliverPadding(
+      padding: const PagePadding.horizontalLowSymmetric(),
+      sliver: SliverList.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return PlaceCard(
+            item: items[index],
+            onTap: () {
+              context.route.navigateToPage(HomeDetailView(model: items[index]));
+            },
+          );
+        },
+      ),
     );
   }
 }

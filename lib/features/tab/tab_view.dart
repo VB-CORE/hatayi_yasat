@@ -11,7 +11,7 @@ import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
 
-class MainTabView extends StatelessWidget {
+final class MainTabView extends StatelessWidget {
   MainTabView({super.key});
 
   final tabItems = TabModels.create().tabItems;

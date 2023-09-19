@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 const String kWeb = 'kWeb';
+const double kZero = 0;
+const double kErrorNumber = -1;
 
 @immutable
 class AppConstants {
@@ -12,4 +14,7 @@ class AppConstants {
   static const int kFour = 4;
 
   static const double defaultMapZoom = 14;
+
+  static const String googleMapsPlaceLink =
+      'https://www.google.com/maps/search/?api=1&query=';
 }
