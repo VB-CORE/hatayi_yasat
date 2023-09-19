@@ -21,6 +21,9 @@ abstract class  LocaleKeys {
   static const button_addPhoto = 'button.addPhoto';
   static const button_ok = 'button.ok';
   static const button_close = 'button.close';
+  static const button_allFilter = 'button.allFilter';
+  static const button_clean = 'button.clean';
+  static const button_selectedList = 'button.selectedList';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -72,5 +75,8 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';
+  static const dialog_phoneTitle = 'dialog.phoneTitle';
+  static const dialog_addressTitle = 'dialog.addressTitle';
+  static const dialog = 'dialog';
 
 }

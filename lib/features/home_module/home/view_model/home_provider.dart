@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:vbaseproject/product/model/firebase/town_model.dart';
 import 'package:vbaseproject/product/service/custom_service.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
@@ -19,6 +21,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
 
   final ProductProvider _productProvider;
   final CustomService _customService;
+
+  List<StoreModel> _allItems = [];
   Future<void> fetchAllItemsAndSave() async {
     state = state.copyWith(isServiceRequestSending: true);
     final items = await _customService.getList<StoreModel>(
@@ -31,6 +35,19 @@ class HomeViewModel extends StateNotifier<HomeState> {
       isServiceRequestSending: false,
       items: items,
     );
+    _allItems = items;
+  }
+
+  void filter(TownModel? value) {
+    if (value == null || value.code == kErrorNumber) {
+      if (_allItems != state.items) {
+        state = state.copyWith(items: _allItems);
+      }
+      return;
+    }
+    final filteredItems =
+        _allItems.where((element) => element.townCode == value.code).toList();
+    state = state.copyWith(items: filteredItems);
   }
 }
 

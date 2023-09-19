@@ -9,9 +9,11 @@ import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:vbaseproject/product/utility/mixin/rediraction_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
@@ -97,10 +99,26 @@ class _SliverDetail extends StatelessWidget {
         ListTile(
           title: const Text(LocaleKeys.detailView_address).tr(),
           subtitle: Text(model.address ?? '-'),
+          trailing: const Icon(Icons.location_on_outlined),
+          onTap: () async {
+            final address = model.address;
+            if (address.ext.isNullOrEmpty) return;
+            await RedirectionMixin.navigateToMapsWithTitle(
+              context: context,
+              placeAddress: address!,
+            );
+          },
         ),
         ListTile(
+          trailing: const Icon(Icons.call_outlined),
           title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
           subtitle: Text(model.phone),
+          onTap: () {
+            RedirectionMixin.openToPhone(
+              context: context,
+              phoneNumber: model.phone,
+            );
+          },
         ),
         _DistrictListTile(model: model),
         ListTile(

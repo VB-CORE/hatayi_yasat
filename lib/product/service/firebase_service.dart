@@ -11,6 +11,7 @@ import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
 enum RootStorageName {
   company,
+  pending,
   product,
   user,
 }

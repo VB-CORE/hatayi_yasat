@@ -21,7 +21,10 @@
         "save": "Save",
         "addPhoto": "Add Photo",
         "ok": "OK",
-        "close": "Close"
+        "close": "Close",
+        "allFilter": "All",
+        "clean": "Clean",
+        "selectedList": "lists"
     },
     "component": {
         "picker": {
@@ -84,5 +87,9 @@
     "developers": {
         "title": "Developers",
         "seeProfileButtonText": "See Profile"
+    },
+    "dialog": {
+        "phoneTitle": "Search by phone",
+        "addressTitle": "Address Open on the Map"
     }
 }

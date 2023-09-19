@@ -18,8 +18,10 @@ class _OnBoarViewState extends State<OnBoarView> {
     return Scaffold(
       body: Stack(
         children: [
-          Assets.images.imgWelcome.image(
-            fit: BoxFit.fill,
+          Positioned.fill(
+            child: Assets.images.imgWelcome.image(
+              fit: BoxFit.fill,
+            ),
           ),
           Positioned(
             right: 0,
@@ -53,7 +55,7 @@ class _AppBar extends StatelessWidget {
               weight: ApplicationTheme.maxWeight,
               color: context.general.colorScheme.onSecondary,
             ),
-          )
+          ),
         ],
       ),
     );

@@ -75,7 +75,6 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                     validator: ValidatorNormalTextField(),
                     minLine: 3,
                   ),
-                  const Divider(),
                   ValidatorTextFormField(
                     controller: nameSurnameController,
                     labelText: LocaleKeys.requestCompany_ownerName.tr(),

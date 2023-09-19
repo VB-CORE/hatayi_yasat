@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/items/colors_custom.dart';
 
 final class ApplicationTheme {
   ApplicationTheme.build() {
-    themeData = ThemeData.light(useMaterial3: true).copyWith(
+    final theme = ThemeData.light(useMaterial3: true);
+    themeData = theme.copyWith(
+      colorScheme: theme.colorScheme.copyWith(
+        onError: ColorsCustom.braziliante,
+      ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(
           color: Colors.black,
