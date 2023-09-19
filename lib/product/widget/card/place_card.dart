@@ -48,16 +48,22 @@ class PlaceCard extends ConsumerWidget {
             padding: const PagePadding.allLow(),
             child: Row(
               children: [
-                Text(
-                  item.name,
-                  style: context.general.textTheme.titleLarge,
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    item.name,
+                    style: context.general.textTheme.titleLarge,
+                    maxLines: 2,
+                  ),
                 ),
-                const Spacer(),
-                Text(
-                  ref
-                      .watch(ProductProvider.provider.notifier)
-                      .fetchTownFromCode(item.townCode),
-                  style: context.general.textTheme.titleSmall,
+                Padding(
+                  padding: const PagePadding.onlyLeft(),
+                  child: Text(
+                    ref
+                        .watch(ProductProvider.provider.notifier)
+                        .fetchTownFromCode(item.townCode),
+                    style: context.general.textTheme.titleSmall,
+                  ),
                 ),
               ],
             ),

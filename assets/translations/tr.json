@@ -21,7 +21,10 @@
         "save": "Kaydet",
         "addPhoto": "Fotoğraf Ekle",
         "ok": "Tamam",
-        "close": "Kapat"
+        "close": "Kapat",
+        "allFilter": "Tümü",
+        "clean": "Temizle",
+        "selectedList": "Listele"
     },
     "component": {
         "picker": {
@@ -84,5 +87,9 @@
     "developers": {
         "title": "Geliştiriciler",
         "seeProfileButtonText": "Profili Görüntüle"
+    },
+    "dialog": {
+        "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
+        "addressTitle": "Adresi haritada açmak ister misiniz?"
     }
 }

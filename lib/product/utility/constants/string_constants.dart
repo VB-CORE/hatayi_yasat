@@ -8,5 +8,5 @@ class StringConstants {
   static const String twitterUrl = 'https://twitter.com/grafikherif';
   static const String instagramUrl = 'https://www.instagram.com/hatayiyasat/';
   static const String youtubeUrl = 'https://www.youtube.com/@4.17enkaz';
-  static const String websiteUrl = 'https://hatayiyasat.com/';
+  static const String websiteUrl = 'https://www.hatayiyasat.com/';
 }

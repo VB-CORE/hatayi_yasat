@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 
 class SearchFieldDisabled extends StatelessWidget {
-  const SearchFieldDisabled({required this.onTap, super.key, this.hint});
+  const SearchFieldDisabled({
+    required this.onTap,
+    super.key,
+    this.hint,
+    this.suffixIcon,
+  });
   final String? hint;
   final VoidCallback onTap;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -14,6 +20,7 @@ class SearchFieldDisabled extends StatelessWidget {
         onTap: onTap,
         decoration: InputDecoration(
           enabled: false,
+          suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.zero,
           prefixIcon: const Icon(Icons.search),
           hintText: hint,
