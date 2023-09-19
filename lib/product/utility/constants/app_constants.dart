@@ -19,4 +19,5 @@ class AppConstants {
       'https://www.google.com/maps/search/?api=1&query=';
 
   static const String googleMapsUrl = 'comgooglemaps://?q=';
+  static const String appleMapsUrl = 'maps://?q=';
 }
