@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 const String kWeb = 'kWeb';
@@ -17,4 +18,7 @@ class AppConstants {
 
   static const String googleMapsPlaceLink =
       'https://www.google.com/maps/search/?api=1&query=';
+
+  /// GeoPoint Constant
+  static const GeoPoint hatayLatLong = GeoPoint(36.202509, 36.160290);
 }

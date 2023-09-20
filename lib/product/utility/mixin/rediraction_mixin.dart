@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -16,6 +17,20 @@ mixin RedirectionMixin {
     );
     if (response == null || !response) return;
     await '${AppConstants.googleMapsPlaceLink}$placeAddress'.ext.launchWebsite;
+  }
+
+  static Future<void> navigateToMapsWithGeoPoint({
+    required BuildContext context,
+    required GeoPoint latLong,
+  }) async {
+    final response = await ApproveDialog.show(
+      context: context,
+      title: LocaleKeys.dialog_addressTitle,
+    );
+    if (response == null || !response) return;
+    final lat = latLong.latitude;
+    final long = latLong.longitude;
+    await '${AppConstants.googleMapsPlaceLink}$lat,$long'.ext.launchWebsite;
   }
 
   static Future<void> openToPhone({
