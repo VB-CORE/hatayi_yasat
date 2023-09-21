@@ -9,8 +9,10 @@ class CustomSpeedDialChild extends SpeedDialChild {
     required Widget destination,
     required String label,
   }) : super(
-          label: label.tr(),
-          labelStyle: context.general.textTheme.titleMedium,
+          child: Text(
+            label.tr(),
+            style: context.general.textTheme.titleMedium?.copyWith(),
+          ),
           onTap: () => context.route.navigateToPage(destination),
         );
 }
