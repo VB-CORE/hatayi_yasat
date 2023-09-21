@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
 import 'package:vbaseproject/features/home_module/home/view/search/home_search_delegate.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 
 mixin HomeViewMixin on ConsumerState<HomeView> {

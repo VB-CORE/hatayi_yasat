@@ -59,6 +59,9 @@ dependencies:
   # JSON
   json_annotation: ^4.8.0
 
+  life_shared:
+    path: /Users/vb10/Desktop/development/project/life_all/life_shared
+
 dev_dependencies:
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.2.0

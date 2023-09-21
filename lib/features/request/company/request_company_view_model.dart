@@ -1,14 +1,9 @@
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/features/request/company/modal/request_company_modal.dart';
 import 'package:vbaseproject/features/request/company/request_state.dart';
-
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
-
-import 'package:vbaseproject/product/service/firebase_service.dart';
-
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
 class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
   RequestCompanyViewModel(this.deviceId) : super(const RequestCompanyState());
@@ -28,9 +23,9 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
       isSendingRequest: true,
     );
     final uuid = const Uuid().v4();
-
-    final uploadImage = await FirebaseService().uploadImage(
-      file: requestCompanyModel.imageFile,
+    final bytes = await requestCompanyModel.imageFile.readAsBytes();
+    final uploadImage = await FirebaseStorageService().uploadImage(
+      fileBytes: bytes,
       root: RootStorageName.pending,
       key: uuid,
     );
@@ -52,7 +47,7 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
 
     final response = await FirebaseService().add<StoreModel>(
       model: storage,
-      path: CollectionEnums.unApprovedApplications,
+      path: CollectionPaths.unApprovedApplications,
     );
 
     if (response == null) {

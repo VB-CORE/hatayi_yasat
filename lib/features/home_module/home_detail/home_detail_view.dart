@@ -5,15 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/utility/mixin/rediraction_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
@@ -32,7 +31,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
       controller: imageCompressAndWaterMark.screenshotController,
       child: Scaffold(
         floatingActionButton: _ShareButton(
-          notifier: screenshootNotifier,
+          notifier: screenshotNotifier,
           onPressed: captureAndShare,
         ),
         body: NotificationListener(
@@ -221,7 +220,7 @@ class _SliverAppBar extends StatelessWidget {
         titlePadding: isPinned ? null : EdgeInsets.zero,
         centerTitle: false,
         background: Hero(
-          tag: ValueKey(model.id),
+          tag: ValueKey(model.documentId),
           child: CustomNetworkImage(
             imageUrl: model.images.firstOrNull,
             fit: BoxFit.cover,

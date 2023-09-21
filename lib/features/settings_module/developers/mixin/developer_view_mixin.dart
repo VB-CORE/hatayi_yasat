@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/settings_module/developers/developers_view.dart';
-import 'package:vbaseproject/product/model/firebase/developer_model.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 mixin DeveloperViewMixin on ConsumerState<DevelopersView> {
