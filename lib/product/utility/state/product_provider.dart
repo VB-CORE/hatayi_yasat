@@ -5,11 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/model/firebase/developer_model.dart';
+import 'package:life_shared/life_shared.dart';
 
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
-import 'package:vbaseproject/product/model/firebase/town_model.dart';
-import 'package:vbaseproject/product/service/firebase_service.dart';
 import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
 class ProductProvider extends StateNotifier<ProductProviderState> {
@@ -23,7 +20,7 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
   Future<void> fetchDistrictAndSaveSession() async {
     final items = await FirebaseService().getList<TownModel>(
       model: TownModel(),
-      path: CollectionEnums.towns,
+      path: CollectionPaths.towns,
     );
     state = state.copyWith(townItems: items);
   }
@@ -31,7 +28,7 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
   Future<void> fetchDevelopers() async {
     final devItems = await FirebaseService().getList(
       model: DeveloperModel(),
-      path: CollectionEnums.developers,
+      path: CollectionPaths.developers,
     );
     state = state.copyWith(developerItems: devItems);
   }

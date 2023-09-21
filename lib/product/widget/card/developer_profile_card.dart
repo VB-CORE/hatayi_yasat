@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/firebase/developer_model.dart';
+import 'package:vbaseproject/product/utility/size/index.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
   const DeveloperProfileCard({
@@ -19,7 +20,7 @@ class DeveloperProfileCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 48,
+            radius: WidgetSizes.spacingXxl6,
             backgroundImage: NetworkImage(
               model.image ?? '',
             ),

@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
-import 'package:vbaseproject/product/service/custom_service.dart';
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
+
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 
 @immutable
@@ -19,7 +18,7 @@ final class MessagingNavigate {
   }) async {
     final data = await customService.getSingleData(
       model: StoreModel.empty(),
-      path: CollectionEnums.approvedApplications,
+      path: CollectionPaths.approvedApplications,
       id: id,
     );
 
