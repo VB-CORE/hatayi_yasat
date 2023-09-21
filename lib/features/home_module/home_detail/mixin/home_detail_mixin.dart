@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/widget/package/file_compress/image_compress_and_watermark.dart';
 
 mixin HomeDetailMixin on State<HomeDetailView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
 
-  final ValueNotifier<bool> screenshootNotifier = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> screenshotNotifier = ValueNotifier<bool>(false);
 
   late final StoreModel model;
   late final ImageCompressAndWaterMark imageCompressAndWaterMark;
@@ -35,6 +35,6 @@ mixin HomeDetailMixin on State<HomeDetailView> {
   }
 
   void _toggleScreenshot() {
-    screenshootNotifier.value = !screenshootNotifier.value;
+    screenshotNotifier.value = !screenshotNotifier.value;
   }
 }

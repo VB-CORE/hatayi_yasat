@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
@@ -16,23 +17,26 @@ class _OnBoarViewState extends State<OnBoarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Assets.images.imgWelcome.image(
-              fit: BoxFit.fill,
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Assets.images.imgWelcome.image(
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
-          Positioned(
-            right: 0,
-            left: 0,
-            child: _AppBar(() async {
-              await SharedCache.instance.setFirstAppOpen();
-              if (!mounted) return;
-              ProjectNavigation(context).replaceToWidget(const SplashView());
-            }),
-          ),
-        ],
+            Positioned(
+              right: 0,
+              left: 0,
+              child: _AppBar(() async {
+                await SharedCache.instance.setFirstAppOpen();
+                if (!mounted) return;
+                ProjectNavigation(context).replaceToWidget(const SplashView());
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }

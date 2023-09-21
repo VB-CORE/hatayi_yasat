@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notification_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/firebase/app_notification_model.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';

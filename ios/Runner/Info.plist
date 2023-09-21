@@ -19,11 +19,11 @@
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
-		<string>$(FLUTTER_BUILD_NAME)</string>
+		<string>1.1.0</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
 		<key>CFBundleVersion</key>
-		<string>5</string>
+		<string>8</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
 		<key>NSCameraUsageDescription</key>
@@ -58,5 +58,15 @@
 		<false />
 		<key>UIStatusBarStyle</key>
 		<string>UIStatusBarStyleDarkContent</string>
+
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>sms</string>
+			<string>maps</string>
+			<string>tel</string>
+			<string>googlemaps</string>
+			<string>http</string>
+			<string>https</string>
+		</array>
 	</dict>
 </plist>

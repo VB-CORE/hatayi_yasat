@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
-import 'package:vbaseproject/product/model/firebase/app_notification_model.dart';
-import 'package:vbaseproject/product/service/custom_service.dart';
-import 'package:vbaseproject/product/service/firebase_service.dart';
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
 mixin NotificationMixin on State<NotificationsView> {
   final _notificationNotifier = ValueNotifier<List<AppNotificationModel>>([]);
@@ -22,7 +19,7 @@ mixin NotificationMixin on State<NotificationsView> {
   Future<void> fetchNotifications() async {
     final response = await _customService.getList<AppNotificationModel>(
       model: AppNotificationModel(),
-      path: CollectionEnums.notifications,
+      path: CollectionPaths.notifications,
     );
     _notificationNotifier.value = response;
   }
