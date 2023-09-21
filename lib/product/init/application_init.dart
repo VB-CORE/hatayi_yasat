@@ -10,7 +10,6 @@ import 'package:vbaseproject/core/init/core_localize.dart';
 
 import 'package:vbaseproject/firebase_options.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 
 @immutable
 final class ApplicationInit {

@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
-import 'package:vbaseproject/product/widget/package/file_compress/file_compress.dart';
-
 enum PhotoPickType {
   gallery,
   camera,

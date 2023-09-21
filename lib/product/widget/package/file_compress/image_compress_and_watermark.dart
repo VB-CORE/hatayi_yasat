@@ -5,7 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vbaseproject/product/feature/path_operation/custom_path_manager.dart';
-import 'package:vbaseproject/product/widget/package/file_compress/file_compress.dart';
 import 'package:vbaseproject/product/widget/package/image_manipulation/image_manipulation.dart';
 
 final class ImageCompressAndWaterMark {
