@@ -17,9 +17,7 @@ mixin RedirectionMixin {
       title: LocaleKeys.dialog_addressTitle,
     );
     if (response == null || !response) return;
-    if (Platform.isIOS) {
-      await _searchOnAppleMaps(placeAddress);
-    }
+    if (Platform.isIOS) return _searchOnAppleMaps(placeAddress);
     await _searchOnGoogleMaps(placeAddress);
   }
 
