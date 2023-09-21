@@ -5,10 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/model/firebase/special_agency_model.dart';
 import 'package:life_shared/life_shared.dart';
-
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 
 class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
@@ -33,7 +30,7 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     );
     final agencyItems = await FirebaseService().getList(
       model: SpecialAgencyModel(),
-      path: CollectionEnums.specialAgency,
+      path: CollectionPaths.specialAgency,
     );
     state = state.copyWith(
       developerItems: devItems,

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
-import 'package:vbaseproject/product/model/firebase/special_agency_model.dart';
-
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 mixin SpecialAgencyViewMixin on ConsumerState<SpecialAgencyView> {
