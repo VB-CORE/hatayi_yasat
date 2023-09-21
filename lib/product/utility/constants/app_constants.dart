@@ -19,6 +19,9 @@ class AppConstants {
   static const String googleMapsPlaceLink =
       'https://www.google.com/maps/search/?api=1&query=';
 
+  static const String googleMapsUrl = 'comgooglemaps://?q=';
+  static const String appleMapsUrl = 'maps://?q=';
+
   /// GeoPoint Constant
   static const GeoPoint hatayLatLong = GeoPoint(36.202509, 36.160290);
 }

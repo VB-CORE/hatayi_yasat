@@ -1,12 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/service/custom_service.dart';
-import 'package:vbaseproject/product/service/firebase_service.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';

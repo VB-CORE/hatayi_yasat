@@ -1,12 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:riverpod/riverpod.dart';
 
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
-import 'package:vbaseproject/product/model/firebase/town_model.dart';
-import 'package:vbaseproject/product/service/custom_service.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 class HomeViewModel extends StateNotifier<HomeState> {
@@ -27,7 +24,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
     state = state.copyWith(isServiceRequestSending: true);
     final items = await _customService.getList<StoreModel>(
       model: StoreModel.empty(),
-      path: CollectionEnums.approvedApplications,
+      path: CollectionPaths.approvedApplications,
     );
 
     _productProvider.saveCompanies(items);

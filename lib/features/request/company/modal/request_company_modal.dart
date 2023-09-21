@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
-import 'package:vbaseproject/product/model/firebase/town_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 class RequestCompanyModel extends Equatable {
   const RequestCompanyModel({

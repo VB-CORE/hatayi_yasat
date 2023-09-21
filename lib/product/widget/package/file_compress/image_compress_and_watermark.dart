@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vbaseproject/product/feature/path_operation/custom_path_manager.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
 import 'package:vbaseproject/product/widget/package/file_compress/file_compress.dart';
 import 'package:vbaseproject/product/widget/package/image_manipulation/image_manipulation.dart';
 
@@ -21,13 +21,17 @@ final class ImageCompressAndWaterMark {
     final customPathManager = CustomPathManager();
     final file = await customPathManager.writeByteToFile(
       response,
-      '${model.name}-${model.id}.png',
+      '${model.name}-${model.documentId}.png',
     );
     if (file == null) return null;
+    final bytes = await file.readAsBytes();
     final compressFile =
-        await FileCompress(file).compressAndGetFile(Qualities.low);
+        await FileCompress(bytes).compressByteFile(quality: FileQualities.low);
+    if (compressFile == null) return null;
+    await file.writeAsBytes(compressFile);
+
     final imageWithWatermark =
-        await ImageManipulation.instance.addWatermark(file: compressFile);
+        await ImageManipulation.instance.addWatermark(file: file);
     return imageWithWatermark;
   }
 

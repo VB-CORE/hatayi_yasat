@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/model/firebase/store_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
@@ -35,7 +35,7 @@ class PlaceCard extends ConsumerWidget {
                   top: Radius.circular(WidgetSizes.spacingS),
                 ),
                 child: Hero(
-                  tag: Key(item.id),
+                  tag: Key(item.documentId),
                   child: CustomNetworkImage(
                     imageUrl: imageUrl,
                     fit: BoxFit.cover,

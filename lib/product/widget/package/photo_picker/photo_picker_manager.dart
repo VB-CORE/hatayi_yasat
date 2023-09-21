@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
 import 'package:vbaseproject/product/widget/package/file_compress/file_compress.dart';
@@ -44,8 +45,11 @@ final class PhotoPickerManager {
       ],
     );
     if (croppedFile == null) return null;
-    final latestFile = FileCompress(File(croppedFile.path))
-        .compressAndGetFile(Qualities.medium);
+    final latestFile = File(croppedFile.path);
+    final latestFileCompress =
+        await FileCompress(await latestFile.readAsBytes()).compressByteFile();
+    if (latestFileCompress == null) return null;
+    await latestFile.writeAsBytes(latestFileCompress);
     return latestFile;
   }
 

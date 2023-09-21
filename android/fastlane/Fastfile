@@ -4,19 +4,20 @@ default_platform(:android)
 APP_TRACK_INTERNAL = "internal"
 APP_JSON_KEY = "./fastlane/secret/google_play.json"
 APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
+VERSION_NUMBER = "1.1.0"
 
 platform :android do
   lane :release do |options|
       versionCode =  google_play_track_version_codes(track: APP_TRACK_INTERNAL)[0] + 1
-     flutter_build_appBundle("1.0.0",versionCode)
+     flutter_build_appBundle(VERSION_NUMBER,versionCode)
      upload_to_play_store(
+      root_url: "https://androidpublisher.googleapis.com/",
       track: APP_TRACK_INTERNAL,
       json_key: APP_JSON_KEY,
       aab: APP_BUNDLE_PATH,
       skip_upload_metadata: true,
       skip_upload_images: true,
       skip_upload_screenshots: true,
-      release_status: 'draft',
     )
   end
 
