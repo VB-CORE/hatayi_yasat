@@ -9,7 +9,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/rediraction_mixin.dart';
+import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';

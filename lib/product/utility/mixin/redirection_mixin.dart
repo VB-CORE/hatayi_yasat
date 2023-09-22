@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';

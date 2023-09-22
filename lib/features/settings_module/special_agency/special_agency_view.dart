@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/settings_module/special_agency/mixin/special_agency_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/rediraction_mixin.dart';
+import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
@@ -72,9 +73,11 @@ class _SpecialAgencyCard extends StatelessWidget {
             mainTitle: LocaleKeys.specialAgency_agencyAddress,
             subTitle: model.address ?? '',
             onTapEvent: () async {
-              await RedirectionMixin.navigateToMapsWithGeoPoint(
+              final latLongString =
+                  '${model.latLong.latitude},${model.latLong.longitude}';
+              await RedirectionMixin.navigateToMapsWithTitle(
                 context: context,
-                latLong: model.latLong,
+                placeAddress: latLongString,
               );
             },
           ),
