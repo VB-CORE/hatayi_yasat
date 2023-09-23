@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
@@ -10,6 +13,7 @@ import 'package:vbaseproject/core/init/core_localize.dart';
 
 import 'package:vbaseproject/firebase_options.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
+import 'package:vbaseproject/product/model/enum/firebase_env.dart';
 
 @immutable
 final class ApplicationInit {
@@ -36,6 +40,19 @@ final class ApplicationInit {
     await remoteConfig.fetchAndActivate();
 
     await SharedCache.instance.init();
+    await _injectTestEnvOnDebug();
+  }
+
+  Future<void> _injectTestEnvOnDebug() async {
+    if (!kDebugMode) return;
+    await FirebaseStorage.instance.useStorageEmulator(
+      FirebaseEnv.localPath,
+      FirebaseEnv.storage.port,
+    );
+    FirebaseFirestore.instance.useFirestoreEmulator(
+      FirebaseEnv.localPath,
+      FirebaseEnv.firestore.port,
+    );
   }
 
   Future<void> _setRotation() async {

@@ -1,0 +1,25 @@
+{
+  "storage": {
+    "rules": "firebase/firestroage.rules"
+  },
+  "firestore": {
+    "rules": "firebase/firestore.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 3000
+    },
+    "functions": {
+      "port": 3001
+    },
+    "firestore": {
+      "port": 3002
+    },
+    "storage": {
+      "port": 3003
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}
