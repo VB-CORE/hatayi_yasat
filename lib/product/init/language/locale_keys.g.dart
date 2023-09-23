@@ -83,5 +83,9 @@ abstract class  LocaleKeys {
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
   static const dialog = 'dialog';
+  static const specialAgency_title = 'specialAgency.title';
+  static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';
+  static const specialAgency_agencyAddress = 'specialAgency.agencyAddress';
+  static const specialAgency = 'specialAgency';
 
 }

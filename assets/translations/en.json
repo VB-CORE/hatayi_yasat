@@ -98,5 +98,10 @@
     "dialog": {
         "phoneTitle": "Search by phone",
         "addressTitle": "Address Open on the Map"
+    },
+    "specialAgency": {
+        "title": "Special Agency",
+        "agencyNumber": "Agency Number",
+        "agencyAddress": "Agency Address"
     }
 }

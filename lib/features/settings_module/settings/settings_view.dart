@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/settings_module/developers/developers_view.dart';
 import 'package:vbaseproject/features/settings_module/settings/subview/index.dart';
+import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -44,9 +45,15 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             ListTile(
-              onTap: () => context.route.navigateToPage(const DevelopersView()),
+              title: Text(LocaleKeys.specialAgency_title.tr()),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () =>
+                  context.route.navigateToPage(const SpecialAgencyView()),
+            ),
+            ListTile(
               title: Text(LocaleKeys.developers_title.tr()),
               trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.route.navigateToPage(const DevelopersView()),
             ),
             const Spacer(),
             const Padding(

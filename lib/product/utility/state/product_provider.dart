@@ -7,8 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 
-import 'package:vbaseproject/product/utility/firebase/collection_enums.dart';
-
 class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
 
@@ -25,12 +23,19 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(townItems: items);
   }
 
-  Future<void> fetchDevelopers() async {
+  Future<void> fetchDevelopersAndAgency() async {
     final devItems = await FirebaseService().getList(
       model: DeveloperModel(),
       path: CollectionPaths.developers,
     );
-    state = state.copyWith(developerItems: devItems);
+    final agencyItems = await FirebaseService().getList(
+      model: SpecialAgencyModel(),
+      path: CollectionPaths.specialAgency,
+    );
+    state = state.copyWith(
+      developerItems: devItems,
+      agencyItems: agencyItems,
+    );
   }
 
   void saveCompanies(List<StoreModel> items) {
@@ -53,24 +58,33 @@ class ProductProviderState extends Equatable {
     this.townItems = const [],
     this.items = const [],
     this.developerItems = const [],
+    this.agencyItems = const [],
   });
 
   final List<TownModel> townItems;
   final List<StoreModel> items;
   final List<DeveloperModel> developerItems;
+  final List<SpecialAgencyModel> agencyItems;
 
   @override
-  List<Object> get props => [townItems, items, developerItems];
+  List<Object> get props => [
+        townItems,
+        items,
+        developerItems,
+        agencyItems,
+      ];
 
   ProductProviderState copyWith({
     List<TownModel>? townItems,
     List<StoreModel>? items,
     List<DeveloperModel>? developerItems,
+    List<SpecialAgencyModel>? agencyItems,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
       items: items ?? this.items,
       developerItems: developerItems ?? this.developerItems,
+      agencyItems: agencyItems ?? this.agencyItems,
     );
   }
 }

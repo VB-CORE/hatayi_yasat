@@ -20,7 +20,7 @@ class SplashState extends Equatable {
         isOperationStaring,
         isNeedToForceUpdate,
         isConnectedToInternet,
-        isNeedToOnBoard
+        isNeedToOnBoard,
       ];
 
   SplashState copyWith({

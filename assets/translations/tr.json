@@ -98,5 +98,10 @@
     "dialog": {
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
         "addressTitle": "Adresi haritada açmak ister misiniz?"
+    },
+    "specialAgency": {
+        "title": "Özel Kurumlar",
+        "agencyNumber": "Kurum Numarası",
+        "agencyAddress": "Kurum Adresi"
     }
 }
