@@ -34,12 +34,12 @@
         }
     },
     "requestCompany": {
-        "title": "Yeni işletme talebi",
-        "name": "İşletme adı",
-        "description": "İşletme açıklaması",
-        "address": "İşletme adresi",
-        "phoneNumber": "Telefon numarası",
-        "ownerName": "Ad ve soyad",
+        "title": "Yeni İşletme Talebi",
+        "name": "İşletme Adı",
+        "description": "İşletme Açıklaması",
+        "address": "İşletme Adresi",
+        "phoneNumber": "Telefon Numarası",
+        "ownerName": "Ad ve Soyad",
         "district": "İlçe",
         "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
     },
@@ -87,6 +87,13 @@
     "developers": {
         "title": "Geliştiriciler",
         "seeProfileButtonText": "Profili Görüntüle"
+    },
+    "navigationTabs": {
+        "placesTabTitle": "Mekanlar",
+        "projectsTabTitle": "Projeler"
+    },
+    "projectRequest": {
+        "title": "Yeni Proje Talebi"
     },
     "dialog": {
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",

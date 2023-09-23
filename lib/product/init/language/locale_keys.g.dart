@@ -75,6 +75,11 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';
+  static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
+  static const navigationTabs_projectsTabTitle = 'navigationTabs.projectsTabTitle';
+  static const navigationTabs = 'navigationTabs';
+  static const projectRequest_title = 'projectRequest.title';
+  static const projectRequest = 'projectRequest';
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
   static const dialog = 'dialog';

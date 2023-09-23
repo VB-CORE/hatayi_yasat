@@ -21,6 +21,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^22.2.11
   webview_flutter: ^4.0.2
   lottie: ^2.6.0
+  flutter_speed_dial: ^7.0.0
 
   #core
   cached_network_image: ^3.2.3

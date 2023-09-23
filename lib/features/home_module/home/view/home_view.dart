@@ -7,9 +7,6 @@ import 'package:vbaseproject/features/home_module/home/view/mixin/home_notificat
 import 'package:vbaseproject/features/home_module/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
-import 'package:vbaseproject/features/request/company/request_company_view.dart';
-import 'package:vbaseproject/features/settings_module/settings/settings_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -47,14 +44,6 @@ class _HomeViewState extends ConsumerState<HomeView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const _RequestCompany(),
-      appBar: AppBar(
-        title: const Text(LocaleKeys.home_places).tr(context: context),
-        actions: const [
-          _NotificationButton(),
-          _SettingsButton(),
-        ],
-      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));
@@ -95,20 +84,6 @@ class _FilterButton extends ConsumerWidget {
   }
 }
 
-class _NotificationButton extends StatelessWidget {
-  const _NotificationButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        context.route.navigateToPage(const NotificationsView());
-      },
-      icon: const Icon(Icons.notifications_active_outlined),
-    );
-  }
-}
-
 class _SearchField extends ConsumerWidget {
   const _SearchField(this.onPressed);
   final VoidCallback onPressed;
@@ -126,20 +101,6 @@ class _SearchField extends ConsumerWidget {
         },
       ),
     ).ext.toDisabled(disable: !isEnabled).ext.sliver;
-  }
-}
-
-class _SettingsButton extends StatelessWidget {
-  const _SettingsButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        context.route.navigateToPage(const SettingsView());
-      },
-      icon: const Icon(Icons.settings_outlined),
-    );
   }
 }
 
@@ -177,23 +138,6 @@ class _PageBody extends ConsumerWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _RequestCompany extends ConsumerWidget {
-  const _RequestCompany();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(_homeViewModel).isServiceRequestSending;
-    return FloatingActionButton(
-      onPressed: isLoading
-          ? null
-          : () {
-              context.route.navigateToPage(const RequestCompanyView());
-            },
-      child: const Icon(Icons.add),
     );
   }
 }

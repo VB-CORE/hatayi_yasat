@@ -88,6 +88,13 @@
         "title": "Developers",
         "seeProfileButtonText": "See Profile"
     },
+    "navigationTabs": {
+        "placesTabTitle": "Places",
+        "projectsTabTitle": "Projects"
+    },
+    "projectRequest": {
+        "title": "New Project Request"
+    },
     "dialog": {
         "phoneTitle": "Search by phone",
         "addressTitle": "Address Open on the Map"

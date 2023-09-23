@@ -11,4 +11,6 @@ class ColorsCustom {
   static const Color white = Color(0xFFFFffff);
   static const Color imperilRead = Color(0xffEF2636);
   static const Color royalPeacock = Color(0xff27AAE5);
+  static const Color transparent = Color(0x00000000);
+  static const Color black = Color(0xFF000000);
 }
