@@ -16,7 +16,7 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "looseAllData": "Your changes will be lost. Do you want to continue?",
-        "categoryEmpty" : "Kategori seçiniz" 
+        "categoryEmpty" : "Please choose a category" 
 
     },
     "button": {
