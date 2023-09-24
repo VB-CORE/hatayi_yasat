@@ -6,11 +6,13 @@ import 'package:vbaseproject/features/request/company/mixin/request_company_mixi
 import 'package:vbaseproject/features/request/company/request_company_view_model.dart';
 import 'package:vbaseproject/features/request/company/request_state.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/dropdown/category_drop_down.dart';
 import 'package:vbaseproject/product/utility/dropdown/district_drop_down.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/package/photo_picker/dotted_add_photo_button.dart';
@@ -88,6 +90,13 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                   ),
                   PhoneTextFormField(
                     controller: phoneController,
+                  ),
+                  CategoryDropDown(
+                    onSelected: onCategorySelected,
+                    items: ref
+                        .read(ProductProvider.provider.notifier)
+                        .state
+                        .categoryItems,
                   ),
                   DistrictDropDownView(
                     onSelected: onTownSelected,

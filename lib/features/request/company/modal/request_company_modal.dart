@@ -12,6 +12,7 @@ class RequestCompanyModel extends Equatable {
     required this.phone,
     required this.town,
     required this.imageFile,
+    required this.category,
   });
 
   final String companyName;
@@ -21,6 +22,7 @@ class RequestCompanyModel extends Equatable {
   final String phone;
   final TownModel town;
   final File imageFile;
+  final CategoryModel category;
 
   @override
   List<Object> get props => [
@@ -31,5 +33,6 @@ class RequestCompanyModel extends Equatable {
         phone,
         town,
         imageFile,
+        category,
       ];
 }

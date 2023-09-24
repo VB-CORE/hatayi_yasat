@@ -15,7 +15,9 @@
         "requiredField": "This field cannot be empty.",
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
-        "looseAllData": "Your changes will be lost. Do you want to continue?"
+        "looseAllData": "Your changes will be lost. Do you want to continue?",
+        "categoryEmpty" : "Kategori seçiniz" 
+
     },
     "button": {
         "save": "Save",
@@ -41,7 +43,8 @@
         "phoneNumber": "Phone Number",
         "ownerName": "Full Name",
         "district": "District",
-        "complete": "Your application has been received. After approval by the system, you will be able to see it in the main list."
+        "complete": "Your application has been received. After approval by the system, you will be able to see it in the main list.",
+        "category" : "Category"
     },
     "general": {
         "kvkk": "KVKK",

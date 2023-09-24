@@ -15,7 +15,8 @@
         "requiredField": "Bu alan boş bırakılamaz",
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
-        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?"
+        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
+        "categoryEmpty" : "Kategori seçiniz" 
     },
     "button": {
         "save": "Kaydet",
@@ -41,7 +42,9 @@
         "phoneNumber": "Telefon Numarası",
         "ownerName": "Ad ve Soyad",
         "district": "İlçe",
-        "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
+        "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz",
+        "category" : "Kategori"
+
     },
     "general": {
         "kvkk": "KVKK'yı",
