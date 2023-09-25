@@ -16,10 +16,7 @@ mixin RedirectionMixin {
       title: LocaleKeys.dialog_addressTitle,
     );
     if (response == null || !response) return;
-    if (Platform.isIOS) {
-      await _searchOnAppleMaps(placeAddress);
-    }
-    await _searchOnGoogleMaps(placeAddress);
+    await placeAddress.ext.launchMaps();
   }
 
   static Future<void> openToPhone({
@@ -35,33 +32,5 @@ mixin RedirectionMixin {
         phoneNumber.replaceAll(RegexTypes.phoneNumberRegex, '');
 
     await cleanPhoneNumber.ext.launchPhone;
-  }
-
-  static Future<void> _searchOnAppleMaps(String query) async {
-    final encodedQuery = Uri.encodeComponent(
-      query,
-    );
-    final appleMapsUrl = '${AppConstants.appleMapsUrl}$encodedQuery';
-    final googleMapsWebUrl = '${AppConstants.googleMapsPlaceLink}$encodedQuery';
-
-    try {
-      final response = await appleMapsUrl.ext.launchWebsite;
-      if (response) return;
-    } catch (_) {}
-    await googleMapsWebUrl.ext.launchWebsiteCustom();
-  }
-
-  static Future<void> _searchOnGoogleMaps(String query) async {
-    final encodedQuery = Uri.encodeComponent(
-      query,
-    );
-    final googleMapsUrl = '${AppConstants.googleMapsUrl}=$encodedQuery';
-    final googleMapsWebUrl = '${AppConstants.googleMapsPlaceLink}$encodedQuery';
-
-    try {
-      final response = await googleMapsUrl.ext.launchWebsite;
-      if (response) return;
-    } catch (_) {}
-    await googleMapsWebUrl.ext.launchWebsiteCustom();
   }
 }
