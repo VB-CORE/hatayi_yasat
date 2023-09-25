@@ -64,6 +64,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared
+      ref: main
 
 dev_dependencies:
   build_runner: ^2.3.3

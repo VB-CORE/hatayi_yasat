@@ -65,5 +65,6 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if true;
     }
+    
   }
 }

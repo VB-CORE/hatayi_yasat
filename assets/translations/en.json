@@ -16,7 +16,8 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "endDateNotLessThanStartDate": "The end date cannot be less than the start date."
+        "endDateNotLessThanStartDate": "The end date cannot be less than the start date.",
+        "categoryEmpty": "Please choose a category"
     },
     "button": {
         "save": "Save",
@@ -41,7 +42,8 @@
         "address": "Business Address",
         "phoneNumber": "Phone Number",
         "ownerName": "Full Name",
-        "district": "District"
+        "district": "District",
+        "category": "Category"
     },
     "general": {
         "kvkk": "KVKK",

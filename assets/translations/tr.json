@@ -16,7 +16,8 @@
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-        "endDateNotLessThanStartDate": "Bitiş tarihi başlangıç tarihinden küçük olamaz."
+        "endDateNotLessThanStartDate": "Bitiş tarihi başlangıç tarihinden küçük olamaz.",
+        "categoryEmpty": "Kategori seçiniz"
     },
     "button": {
         "save": "Kaydet",
@@ -41,7 +42,8 @@
         "address": "İşletme Adresi",
         "phoneNumber": "Telefon Numarası",
         "ownerName": "Ad ve Soyad",
-        "district": "İlçe"
+        "district": "İlçe",
+        "category": "Kategori"
     },
     "general": {
         "kvkk": "KVKK'yı",

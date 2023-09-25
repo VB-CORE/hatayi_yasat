@@ -32,6 +32,7 @@ class RequestCompanyViewModel extends StateNotifier<RequestCompanyState> {
 
     if (uploadImage == null) return false;
     final storage = StoreModel(
+      category: requestCompanyModel.category,
       name: requestCompanyModel.companyName,
       description: requestCompanyModel.companyDescription,
       owner: requestCompanyModel.nameSurname,
