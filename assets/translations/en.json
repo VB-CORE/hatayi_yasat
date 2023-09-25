@@ -15,7 +15,8 @@
         "requiredField": "This field cannot be empty.",
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
-        "looseAllData": "Your changes will be lost. Do you want to continue?"
+        "loseAllData": "Your changes will be lost. Do you want to continue?",
+        "endDateNotLessThanStartDate": "The end date cannot be less than the start date."
     },
     "button": {
         "save": "Save",
@@ -40,8 +41,7 @@
         "address": "Business Address",
         "phoneNumber": "Phone Number",
         "ownerName": "Full Name",
-        "district": "District",
-        "complete": "Your application has been received. After approval by the system, you will be able to see it in the main list."
+        "district": "District"
     },
     "general": {
         "kvkk": "KVKK",
@@ -93,11 +93,18 @@
         "projectsTabTitle": "Projects"
     },
     "projectRequest": {
-        "title": "New Project Request"
+        "title": "New Project Request",
+        "name": "Project Name",
+        "topic": "Project Topic",
+        "description": "Project Description",
+        "publisher": "Publisher (Person or Institution Name)",
+        "startDate": "Start Date",
+        "endDate": "End Date"
     },
     "dialog": {
         "phoneTitle": "Search by phone",
-        "addressTitle": "Address Open on the Map"
+        "addressTitle": "Address Open on the Map",
+        "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list."
     },
     "specialAgency": {
         "title": "Special Agency",

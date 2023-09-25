@@ -1,0 +1,32 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:vbaseproject/features/request/project/model/request_project_model.dart';
+
+@immutable
+class RequestProjectState extends Equatable {
+  const RequestProjectState({
+    this.requestProjectModel,
+    this.isSendingRequest,
+    this.isServiceError,
+  });
+
+  final RequestProjectModel? requestProjectModel;
+  final bool? isSendingRequest;
+  final bool? isServiceError;
+
+  @override
+  List<Object?> get props =>
+      [requestProjectModel, isSendingRequest, isServiceError];
+
+  RequestProjectState copyWith({
+    RequestProjectModel? requestProjectModel,
+    bool? isSendingRequest,
+    bool? isServiceError,
+  }) {
+    return RequestProjectState(
+      requestProjectModel: requestProjectModel ?? this.requestProjectModel,
+      isSendingRequest: isSendingRequest ?? this.isSendingRequest,
+      isServiceError: isServiceError ?? this.isServiceError,
+    );
+  }
+}

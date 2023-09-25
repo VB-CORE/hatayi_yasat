@@ -15,7 +15,8 @@
         "requiredField": "Bu alan boş bırakılamaz",
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
-        "looseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?"
+        "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
+        "endDateNotLessThanStartDate": "Bitiş tarihi başlangıç tarihinden küçük olamaz."
     },
     "button": {
         "save": "Kaydet",
@@ -40,8 +41,7 @@
         "address": "İşletme Adresi",
         "phoneNumber": "Telefon Numarası",
         "ownerName": "Ad ve Soyad",
-        "district": "İlçe",
-        "complete": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra ana listede görebileceksiniz"
+        "district": "İlçe"
     },
     "general": {
         "kvkk": "KVKK'yı",
@@ -93,11 +93,18 @@
         "projectsTabTitle": "Projeler"
     },
     "projectRequest": {
-        "title": "Yeni Proje Talebi"
+        "title": "Yeni Proje Talebi",
+        "name": "Proje Adı",
+        "topic": "Proje Konusu",
+        "description": "Proje Açıklaması",
+        "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+        "startDate": "Başlangıç Tarihi",
+        "endDate": "Bitiş Tarihi"
     },
     "dialog": {
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
-        "addressTitle": "Adresi haritada açmak ister misiniz?"
+        "addressTitle": "Adresi haritada açmak ister misiniz?",
+        "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz."
     },
     "specialAgency": {
         "title": "Özel Kurumlar",

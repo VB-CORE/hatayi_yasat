@@ -15,7 +15,8 @@ abstract class  LocaleKeys {
   static const validation_requiredField = 'validation.requiredField';
   static const validation_formRequired = 'validation.formRequired';
   static const validation_photoRequired = 'validation.photoRequired';
-  static const validation_looseAllData = 'validation.looseAllData';
+  static const validation_loseAllData = 'validation.loseAllData';
+  static const validation_endDateNotLessThanStartDate = 'validation.endDateNotLessThanStartDate';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';
@@ -37,7 +38,6 @@ abstract class  LocaleKeys {
   static const requestCompany_phoneNumber = 'requestCompany.phoneNumber';
   static const requestCompany_ownerName = 'requestCompany.ownerName';
   static const requestCompany_district = 'requestCompany.district';
-  static const requestCompany_complete = 'requestCompany.complete';
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';
@@ -79,9 +79,16 @@ abstract class  LocaleKeys {
   static const navigationTabs_projectsTabTitle = 'navigationTabs.projectsTabTitle';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
+  static const projectRequest_name = 'projectRequest.name';
+  static const projectRequest_topic = 'projectRequest.topic';
+  static const projectRequest_description = 'projectRequest.description';
+  static const projectRequest_publisher = 'projectRequest.publisher';
+  static const projectRequest_startDate = 'projectRequest.startDate';
+  static const projectRequest_endDate = 'projectRequest.endDate';
   static const projectRequest = 'projectRequest';
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
+  static const dialog_completeRequest = 'dialog.completeRequest';
   static const dialog = 'dialog';
   static const specialAgency_title = 'specialAgency.title';
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';
