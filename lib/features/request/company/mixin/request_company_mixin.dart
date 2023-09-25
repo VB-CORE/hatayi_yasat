@@ -24,6 +24,7 @@ mixin RequestCompanyMixin
   File? _imageFile;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TownModel? _selectedTown;
+  CategoryModel? _selectedCategory;
   bool isFirstValidationCheck = false;
   bool _isKvkkSelected = false;
 
@@ -34,6 +35,7 @@ mixin RequestCompanyMixin
       addressController.text.isNotEmpty ||
       phoneController.text.isNotEmpty ||
       _imageFile != null ||
+      _selectedCategory != null ||
       _selectedTown != null;
 
   Future<bool> checkBackButton() async {
@@ -56,6 +58,7 @@ mixin RequestCompanyMixin
         nameSurname: nameSurnameController.text,
         address: addressController.text,
         phone: phoneController.text,
+        category: _selectedCategory ?? const CategoryModel.empty(),
 
         /// need to double check
         town: _selectedTown ?? TownModel(),
@@ -102,6 +105,7 @@ mixin RequestCompanyMixin
     nameSurnameController.clear();
     addressController.clear();
     phoneController.clear();
+    _selectedCategory = null;
     _imageFile = null;
     _selectedTown = null;
     _isKvkkSelected = false;
@@ -118,6 +122,10 @@ mixin RequestCompanyMixin
 
   void onImageSelected(File value) {
     _imageFile = value;
+  }
+
+  void onCategorySelected(CategoryModel value) {
+    _selectedCategory = value;
   }
 
   void _isFormValidateCheck() {

@@ -38,6 +38,14 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     );
   }
 
+  Future<void> fetchCategories() async {
+    final items = await FirebaseService().getList(
+      model: const CategoryModel.empty(),
+      path: CollectionPaths.categories,
+    );
+    state = state.copyWith(categoryItems: items);
+  }
+
   void saveCompanies(List<StoreModel> items) {
     state = state.copyWith(items: items);
   }
@@ -59,12 +67,14 @@ class ProductProviderState extends Equatable {
     this.items = const [],
     this.developerItems = const [],
     this.agencyItems = const [],
+    this.categoryItems = const [],
   });
 
   final List<TownModel> townItems;
   final List<StoreModel> items;
   final List<DeveloperModel> developerItems;
   final List<SpecialAgencyModel> agencyItems;
+  final List<CategoryModel> categoryItems;
 
   @override
   List<Object> get props => [
@@ -72,6 +82,7 @@ class ProductProviderState extends Equatable {
         items,
         developerItems,
         agencyItems,
+        categoryItems,
       ];
 
   ProductProviderState copyWith({
@@ -79,12 +90,14 @@ class ProductProviderState extends Equatable {
     List<StoreModel>? items,
     List<DeveloperModel>? developerItems,
     List<SpecialAgencyModel>? agencyItems,
+    List<CategoryModel>? categoryItems,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
       items: items ?? this.items,
       developerItems: developerItems ?? this.developerItems,
       agencyItems: agencyItems ?? this.agencyItems,
+      categoryItems: categoryItems ?? this.categoryItems,
     );
   }
 }
