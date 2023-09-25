@@ -16,29 +16,33 @@ class DeveloperProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: WidgetSizes.spacingXxl6,
-            backgroundImage: NetworkImage(
-              model.image ?? '',
-            ),
-          ),
-          Padding(
-            padding: context.padding.onlyTopNormal,
-            child: Text(
-              model.name ?? '',
-              style: context.general.textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: context.padding.verticalLow,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: WidgetSizes.spacingXxl5,
+              backgroundImage: NetworkImage(
+                model.image ?? '',
               ),
             ),
-          ),
-          TextButton(
-            onPressed: () => model.githubUrl.ext.launchWebsite,
-            child: Text(LocaleKeys.developers_seeProfileButtonText.tr()),
-          ),
-        ],
+            Padding(
+              padding: context.padding.onlyTopLow,
+              child: Text(
+                model.name ?? '',
+                style: context.general.textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: () => model.githubUrl.ext.launchWebsite,
+              child: Text(LocaleKeys.developers_seeProfileButtonText.tr()),
+            ),
+          ],
+        ),
       ),
     );
   }
