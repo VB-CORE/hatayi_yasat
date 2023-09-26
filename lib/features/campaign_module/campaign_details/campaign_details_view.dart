@@ -2,23 +2,23 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/project_module/project_details/mixin/project_details_mixin.dart';
+import 'package:vbaseproject/features/campaign_module/campaign_details/mixin/campaign_details_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
-class ProjectDetailsView extends StatefulWidget {
-  const ProjectDetailsView({required this.campaignModel, super.key});
+class CampaignDetailsView extends StatefulWidget {
+  const CampaignDetailsView({required this.campaignModel, super.key});
   final CampaignModel campaignModel;
 
   @override
-  State<ProjectDetailsView> createState() => _ProjectDetailsViewState();
+  State<CampaignDetailsView> createState() => _CampaignDetailsViewState();
 }
 
-class _ProjectDetailsViewState extends State<ProjectDetailsView>
-    with ProjectDetailsMixin {
+class _CampaignDetailsViewState extends State<CampaignDetailsView>
+    with CampaignDetailsMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,29 +55,29 @@ class _SliverDetail extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate([
         ListTile(
-          title: const Text(LocaleKeys.projectDetailsView_publisher).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_publisher).tr(),
           subtitle: Text(model.publisher ?? ''),
         ),
         ListTile(
-          title: const Text(LocaleKeys.projectDetailsView_topic).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_topic).tr(),
           subtitle: Text(model.topic ?? ''),
         ),
         if (model.description.ext.isNotNullOrNoEmpty)
           ListTile(
             titleTextStyle: context.general.textTheme.titleMedium,
-            title: const Text(LocaleKeys.projectDetailsView_description).tr(),
+            title: const Text(LocaleKeys.campaignDetailsView_description).tr(),
             subtitle: Text(model.description ?? ''),
           ),
         ListTile(
-          title: const Text(LocaleKeys.projectDetailsView_startDate).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_startDate).tr(),
           subtitle: Text(model.startDate.toString()),
         ),
         ListTile(
-          title: const Text(LocaleKeys.projectDetailsView_endDate).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_endDate).tr(),
           subtitle: Text(model.endDate.toString()),
         ),
         ListTile(
-          title: const Text(LocaleKeys.projectDetailsView_photo).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_photo).tr(),
           subtitle: SizedBox(
             height: context.sized.dynamicHeight(.2),
             child: InkWell(

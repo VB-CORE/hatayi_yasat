@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/project_module/project_details/project_details_view.dart';
+import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 
-mixin ProjectDetailsMixin on State<ProjectDetailsView> {
+mixin CampaignDetailsMixin on State<CampaignDetailsView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
   late final CampaignModel campaignModel;
 

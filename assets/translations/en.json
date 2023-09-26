@@ -72,7 +72,7 @@
         "district": "District",
         "photos": "Photos"
     },
-    "projectDetailsView": {
+    "campaignDetailsView": {
         "publisher": "Publisher (Person or Institution Name)",
         "topic": "Project Topic",
         "description": "Project Description",
