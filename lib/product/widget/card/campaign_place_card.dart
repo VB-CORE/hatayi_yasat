@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
@@ -19,30 +20,153 @@ class CampaignPlaceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Card(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(WidgetSizes.spacingS),
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: Hero(
-                tag: Key(item.documentId),
-                child: CustomNetworkImage(
-                  imageUrl: item.coverPhoto ?? _defaultImage,
-                  fit: BoxFit.cover,
+    return LayoutBuilder(
+      builder: (context, constraint) {
+        return Card(
+          child: ClipRRect(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(WidgetSizes.spacingS),
+              bottom: Radius.circular(WidgetSizes.spacingS),
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: _Image(item: item, defaultImage: _defaultImage),
                 ),
-              ),
+                Positioned(
+                  bottom: 0,
+                  child: _Body(item: item, constraints: constraint),
+                ),
+              ],
             ),
-            Text(
-              item.name ?? '',
-              style: context.general.textTheme.titleMedium,
-              maxLines: AppConstants.kOne,
-              textAlign: TextAlign.center,
-            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    required this.item,
+    required this.constraints,
+  });
+
+  final CampaignModel item;
+  final BoxConstraints constraints;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: constraints.maxWidth,
+        maxHeight: constraints.maxHeight * 0.6,
+      ),
+      color: Colors.black.withOpacity(0.4),
+      child: Padding(
+        padding: const PagePadding.allLow(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (item.name.ext.isNotNullOrNoEmpty) _Title(name: item.name!),
+            const Flexible(child: Divider()),
+            if (item.publisher.ext.isNotNullOrNoEmpty)
+              _Publisher(publisher: item.publisher!),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _Publisher extends StatelessWidget {
+  const _Publisher({
+    required this.publisher,
+  });
+
+  final String publisher;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      children: [
+        Text(
+          publisher,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: context.general.textTheme.titleSmall?.copyWith(
+            color: context.general.colorScheme.onSecondary,
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.underline,
+            decorationColor: context.general.colorScheme.onSecondary,
+          ),
+        ),
+        Text(
+          'tarafindan yayinladi.',
+          style: context.general.textTheme.titleSmall?.copyWith(
+            color: context.general.colorScheme.onSecondary,
+          ),
+        ),
+      ],
+    );
+    return Text.rich(
+      maxLines: 3,
+      overflow: TextOverflow.fade,
+      TextSpan(
+        style: context.general.textTheme.titleSmall?.copyWith(
+          color: context.general.colorScheme.onSecondary,
+        ),
+        children: [
+          TextSpan(
+            text: publisher.split('').take(10).join(),
+            style: context.general.textTheme.titleSmall?.copyWith(
+              color: context.general.colorScheme.onSecondary,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              decorationColor: context.general.colorScheme.onSecondary,
+            ),
+          ),
+          const TextSpan(text: ' yayinladi.'),
+        ],
+      ),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title({
+    required this.name,
+  });
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      name,
+      style: context.general.textTheme.titleSmall?.copyWith(
+        color: context.general.colorScheme.onSecondary,
+      ),
+    );
+  }
+}
+
+class _Image extends StatelessWidget {
+  const _Image({
+    required this.item,
+    required String defaultImage,
+  }) : _defaultImage = defaultImage;
+
+  final CampaignModel item;
+  final String _defaultImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: Key(item.documentId),
+      child: CustomNetworkImage(
+        imageUrl: item.coverPhoto ?? _defaultImage,
+        fit: BoxFit.cover,
       ),
     );
   }

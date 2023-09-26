@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
@@ -9,6 +8,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/card/campaign_place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_grid.dart';
+import 'package:vbaseproject/product/widget/package/slider/custom_slider.dart';
 
 part 'widget/campaigns_grid_builder.dart';
 part 'widget/campaigns_slider_builder.dart';
@@ -61,24 +61,15 @@ class _PageBody extends ConsumerWidget {
       return const SliverFillRemaining(child: NotFoundLottie());
     }
 
-    if (items.length > AppConstants.kThree) {
-      return SliverMainAxisGroup(
-        slivers: [
-          _SliderBuilder(
-            items: items.sublist(
-              AppConstants.kZero,
-              AppConstants.kThree,
-            ),
-          ),
-          _GridBuilder(
-            items: items.sublist(
-              AppConstants.kThree,
-            ),
-          ),
-        ],
-      );
-    }
-
-    return _GridBuilder(items: items);
+    return SliverMainAxisGroup(
+      slivers: [
+        _SliderBuilder(
+          items: items.take(AppConstants.kThree).toList(),
+        ),
+        _GridBuilder(
+          items: items,
+        ),
+      ],
+    );
   }
 }

@@ -19,6 +19,7 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
 
   Future<void> fetchNonExpiredItemsAndSave() async {
     state = state.copyWith(isServiceRequestSending: true);
+
     final allItems = await _customService.getList<CampaignModel>(
       model: CampaignEmptyModel.empty,
       path: CollectionPaths.approvedCampaigns,
@@ -27,7 +28,6 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
     final nonExpiredItems = allItems.where((CampaignModel campaign) {
       return campaign.endDate?.isNotExpired ?? false;
     }).toList();
-
     _productProvider.saveCampaigns(nonExpiredItems);
     state = state.copyWith(
       isServiceRequestSending: false,

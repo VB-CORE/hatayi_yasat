@@ -11,6 +11,6 @@ final class CampaignEmptyModel {
     endDate: DateTime.now(),
     photo: '',
     coverPhoto: '',
-    isApproved: false,
+    isApproved: true,
   );
 }
