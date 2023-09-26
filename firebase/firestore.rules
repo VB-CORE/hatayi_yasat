@@ -3,19 +3,16 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdmin() {
+      return request.auth.uid != null
+    }
 
-   function isAdmin() {
-             return request.auth.uid != null
-     }
- 			return true;
-	 }
-
-   // Client
+    // Client
     match /specialAgency/{agency} {
       allow read: if true;
       allow write: if isAdmin();
     }
-    
+
     match /approvedCampaigns/{document} {
       allow read: if true;
       allow write: if isAdmin();
@@ -26,7 +23,7 @@ service cloud.firestore {
       allow write: if true;
     }
 
-   // Admin
+    // Admin
 
     match /towns/{document} {
       allow read;
@@ -58,7 +55,7 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-     match /logs/{document} {
+    match /logs/{document} {
       allow read: if isAdmin();
       allow write: if isAdmin();
     }
@@ -77,6 +74,5 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if true;
     }
-    
   }
 }
