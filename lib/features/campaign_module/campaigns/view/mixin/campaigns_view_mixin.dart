@@ -31,11 +31,11 @@ mixin CampaignsViewMixin on ConsumerState<CampaignsView> {
 
   void _init() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(_campaignsViewModel.notifier).fetchNonExpiredtemsAndSave();
+      ref.read(_campaignsViewModel.notifier).fetchNonExpiredItemsAndSave();
     });
   }
 
   Future<void> fetchNewItemsWithRefresh() async {
-    await ref.read(_campaignsViewModel.notifier).fetchNonExpiredtemsAndSave();
+    await ref.read(_campaignsViewModel.notifier).fetchNonExpiredItemsAndSave();
   }
 }
