@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +44,12 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(categoryItems: items);
   }
 
-  void saveCompanies(List<StoreModel> items) {
-    state = state.copyWith(items: items);
+  void saveStores(List<StoreModel> storeItems) {
+    state = state.copyWith(storeItems: storeItems);
+  }
+
+  void saveCampaigns(List<CampaignModel> projectItems) {
+    state = state.copyWith(campaignItems: projectItems);
   }
 
   String fetchTownFromCode(int? code) {
@@ -64,40 +66,45 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
 class ProductProviderState extends Equatable {
   const ProductProviderState({
     this.townItems = const [],
-    this.items = const [],
+    this.storeItems = const [],
     this.developerItems = const [],
     this.agencyItems = const [],
     this.categoryItems = const [],
+    this.campaignItems = const [],
   });
 
   final List<TownModel> townItems;
-  final List<StoreModel> items;
+  final List<StoreModel> storeItems;
   final List<DeveloperModel> developerItems;
   final List<SpecialAgencyModel> agencyItems;
   final List<CategoryModel> categoryItems;
+  final List<CampaignModel> campaignItems;
 
   @override
   List<Object> get props => [
         townItems,
-        items,
+        storeItems,
         developerItems,
         agencyItems,
         categoryItems,
+        campaignItems,
       ];
 
   ProductProviderState copyWith({
     List<TownModel>? townItems,
-    List<StoreModel>? items,
+    List<StoreModel>? storeItems,
     List<DeveloperModel>? developerItems,
     List<SpecialAgencyModel>? agencyItems,
     List<CategoryModel>? categoryItems,
+    List<CampaignModel>? campaignItems,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
-      items: items ?? this.items,
+      storeItems: storeItems ?? this.storeItems,
       developerItems: developerItems ?? this.developerItems,
       agencyItems: agencyItems ?? this.agencyItems,
       categoryItems: categoryItems ?? this.categoryItems,
+      campaignItems: campaignItems ?? this.campaignItems,
     );
   }
 }

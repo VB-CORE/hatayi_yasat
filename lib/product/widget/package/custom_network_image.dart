@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage({super.key, this.imageUrl, this.fit});
@@ -13,6 +14,7 @@ class CustomNetworkImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: imageUrl!,
       fit: fit,
+      width: context.sized.width,
     );
   }
 }
