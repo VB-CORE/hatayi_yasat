@@ -24,7 +24,7 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
     );
 
     final nonExpiredItems = allItems.where((campaing) {
-      return campaing.endDate?.isExpired ?? false;
+      return campaing.endDate?.isNotExpired ?? false;
     }).toList();
 
     _productProvider.saveCampaigns(nonExpiredItems);
