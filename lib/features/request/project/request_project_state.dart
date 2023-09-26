@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:vbaseproject/features/request/project/model/request_project_model.dart';
 
 @immutable
-class RequestProjectState extends Equatable {
+final class RequestProjectState extends Equatable {
   const RequestProjectState({
     required this.isSendingRequest,
     this.requestProjectModel,

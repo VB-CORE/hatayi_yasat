@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 
-class RequestProjectModel extends Equatable {
+final class RequestProjectModel extends Equatable {
   const RequestProjectModel({
     required this.projectName,
     required this.projectTopic,
