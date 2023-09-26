@@ -17,10 +17,10 @@ class CampaignsView extends ConsumerStatefulWidget {
   const CampaignsView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProjectsViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CampaignsViewState();
 }
 
-class _ProjectsViewState extends ConsumerState<CampaignsView>
+class _CampaignsViewState extends ConsumerState<CampaignsView>
     with AppProviderMixin, CampaignsViewMixin {
   @override
   Widget build(BuildContext context) {
