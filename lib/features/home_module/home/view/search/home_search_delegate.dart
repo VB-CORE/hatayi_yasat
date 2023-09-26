@@ -22,13 +22,7 @@ class HomeSearchDelegate extends SearchDelegate<StoreModel> {
   InputDecorationTheme? get searchFieldDecorationTheme =>
       const InputDecorationTheme();
 
-  @override
-  Widget buildResults(BuildContext context) {
-    return const SizedBox.shrink();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
+  Widget _buildResultsOrSuggestions(BuildContext context) {
     if (query.length < _maxLength) {
       return Center(
         child: Assets.lottie.search.lottie(
@@ -36,13 +30,13 @@ class HomeSearchDelegate extends SearchDelegate<StoreModel> {
         ),
       );
     }
+
     final suggestions = items
         .where(
           (element) =>
               (element.name.toLowerCase().ext.withoutSpecialCharacters ?? '')
                   .contains(
-            query.ext.withoutSpecialCharacters?.toLowerCase() ?? '',
-          ),
+                      query.ext.withoutSpecialCharacters?.toLowerCase() ?? ''),
         )
         .toList();
 
@@ -72,6 +66,16 @@ class HomeSearchDelegate extends SearchDelegate<StoreModel> {
         );
       },
     );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return _buildResultsOrSuggestions(context);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return _buildResultsOrSuggestions(context);
   }
 }
 
