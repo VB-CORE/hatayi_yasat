@@ -31,16 +31,12 @@ final class ApplicationInit {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-
-    FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-    };
-
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
 
     await SharedCache.instance.init();
     await _injectTestEnvOnDebug();
+    await _crashlyticsInitialize();
   }
 
   Future<void> _injectTestEnvOnDebug() async {
@@ -53,6 +49,13 @@ final class ApplicationInit {
       FirebaseEnv.localPath,
       FirebaseEnv.firestore.port,
     );
+  }
+
+  Future<void> _crashlyticsInitialize() async {
+    if (kDebugMode) return;
+    FlutterError.onError = (errorDetails) {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    };
   }
 
   Future<void> _setRotation() async {
