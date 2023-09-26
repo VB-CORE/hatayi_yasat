@@ -65,13 +65,21 @@
     "message": {
         "emptySearch": "Sonuç Bulunamadı"
     },
-    "detailView": {
+    "placeDetailView": {
         "owner": "İşletme Sahibi",
         "description": "İşletme Açıklaması",
         "address": "Adres",
         "phoneNumber": "Telefon Numarası",
         "district": "İlçe",
         "photos": "Fotoğraflar"
+    },
+    "projectDetailsView": {
+        "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+        "topic": "Proje Konusu",
+        "description": "Proje Açıklaması",
+        "startDate": "Başlangıç Tarihi",
+        "endDate": "Bitiş Tarihi",
+        "photo": "Fotoğraflar"
     },
     "forceUpdate": {
         "title": "Bir Güncelleme Var",

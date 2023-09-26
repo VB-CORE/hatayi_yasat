@@ -86,17 +86,17 @@ class _SliverDetail extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate([
         ListTile(
-          title: const Text(LocaleKeys.detailView_owner).tr(),
+          title: const Text(LocaleKeys.placeDetailView_owner).tr(),
           subtitle: Text(model.owner),
         ),
         if (model.description.ext.isNotNullOrNoEmpty)
           ListTile(
             titleTextStyle: context.general.textTheme.titleMedium,
-            title: const Text(LocaleKeys.detailView_description).tr(),
+            title: const Text(LocaleKeys.placeDetailView_description).tr(),
             subtitle: Text(model.description ?? ''),
           ),
         ListTile(
-          title: const Text(LocaleKeys.detailView_address).tr(),
+          title: const Text(LocaleKeys.placeDetailView_address).tr(),
           subtitle: Text(model.address ?? '-'),
           trailing: const Icon(Icons.location_on_outlined),
           onTap: () async {
@@ -110,7 +110,7 @@ class _SliverDetail extends StatelessWidget {
         ),
         ListTile(
           trailing: const Icon(Icons.call_outlined),
-          title: const Text(LocaleKeys.detailView_phoneNumber).tr(),
+          title: const Text(LocaleKeys.placeDetailView_phoneNumber).tr(),
           subtitle: Text(model.phone),
           onTap: () {
             RedirectionMixin.openToPhone(
@@ -121,7 +121,7 @@ class _SliverDetail extends StatelessWidget {
         ),
         _DistrictListTile(model: model),
         ListTile(
-          title: const Text(LocaleKeys.detailView_photos).tr(),
+          title: const Text(LocaleKeys.placeDetailView_photos).tr(),
           subtitle: SizedBox(
             height: context.sized.dynamicHeight(.2),
             child: ListView.separated(
@@ -163,7 +163,7 @@ class _DistrictListTile extends ConsumerWidget {
         .watch(ProductProvider.provider.notifier)
         .fetchTownFromCode(model.townCode);
     return ListTile(
-      title: const Text(LocaleKeys.detailView_district).tr(),
+      title: const Text(LocaleKeys.placeDetailView_district).tr(),
       subtitle: Text(town),
     );
   }

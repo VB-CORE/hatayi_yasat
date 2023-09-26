@@ -65,13 +65,21 @@
     "message": {
         "emptySearch": "No Results Found"
     },
-    "detailView": {
+    "placeDetailView": {
         "owner": "Business Owner",
         "description": "Business Description",
         "address": "Address",
         "phoneNumber": "Phone Number",
         "district": "District",
         "photos": "Photos"
+    },
+    "projectDetailsView": {
+        "publisher": "Publisher (Person or Institution Name)",
+        "topic": "Project Topic",
+        "description": "Project Description",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "photo": "Photos"
     },
     "forceUpdate": {
         "title": "An Update is Available",
