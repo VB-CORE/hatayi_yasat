@@ -45,61 +45,58 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
           await dataSendingComplete(isOkay: response);
         },
         isSendingRequestCheck:
-            ref.watch(_requestProjectViewModel).isSendingRequest ?? false,
+            ref.watch(_requestProjectViewModel).isSendingRequest,
       ),
       body: WillPopScope(
         onWillPop: checkBackButton,
         child: Form(
           key: formKey,
           autovalidateMode: autoValidate(),
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const PagePadding.horizontal16Symmetric() +
                 const PagePadding.onlyBottom(),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  DottedAddPhotoButton(onSelected: onImageSelected),
-                  const EmptyBox.middleHeight(),
-                  ValidatorTextFormField(
-                    controller: nameController,
-                    labelText: LocaleKeys.projectRequest_name,
-                    validator: ValidatorNormalTextField(),
-                  ),
-                  ValidatorTextFormField(
-                    controller: topicController,
-                    labelText: LocaleKeys.projectRequest_topic,
-                    validator: ValidatorNormalTextField(),
-                  ),
-                  ValidatorTextFormField(
-                    controller: descriptionController,
-                    labelText: LocaleKeys.projectRequest_description,
-                    validator: ValidatorNormalTextField(),
-                    minLine: 3,
-                  ),
-                  ValidatorTextFormField(
-                    controller: publisherController,
-                    labelText: LocaleKeys.projectRequest_publisher,
-                    validator: ValidatorNormalTextField(),
-                  ),
-                  DateTimeTextFormField(
-                    controller: startDateController,
-                    labelText: LocaleKeys.projectRequest_startDate,
-                    validator: TextFieldValidatorIsNullEmpty(),
-                  ),
-                  DateTimeTextFormField(
-                    controller: endDateController,
-                    labelText: LocaleKeys.projectRequest_endDate,
-                    validator: TextFieldValidatorIsNullEmpty(),
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                DottedAddPhotoButton(onSelected: onImageSelected),
+                const EmptyBox.middleHeight(),
+                ValidatorTextFormField(
+                  controller: nameController,
+                  labelText: LocaleKeys.projectRequest_name,
+                  validator: ValidatorNormalTextField(),
+                ),
+                ValidatorTextFormField(
+                  controller: topicController,
+                  labelText: LocaleKeys.projectRequest_topic,
+                  validator: ValidatorNormalTextField(),
+                ),
+                ValidatorTextFormField(
+                  controller: descriptionController,
+                  labelText: LocaleKeys.projectRequest_description,
+                  validator: ValidatorNormalTextField(),
+                  minLine: 3,
+                ),
+                ValidatorTextFormField(
+                  controller: publisherController,
+                  labelText: LocaleKeys.projectRequest_publisher,
+                  validator: ValidatorNormalTextField(),
+                ),
+                DateTimeTextFormField(
+                  controller: startDateController,
+                  labelText: LocaleKeys.projectRequest_startDate,
+                  validator: TextFieldValidatorIsNullEmpty(),
+                ),
+                DateTimeTextFormField(
+                  controller: endDateController,
+                  labelText: LocaleKeys.projectRequest_endDate,
+                  validator: TextFieldValidatorIsNullEmpty(),
+                ),
+              ],
             ),
           ),
         ),
       ),
     ).ext.toDisabled(
-          disable:
-              ref.watch(_requestProjectViewModel).isSendingRequest ?? false,
+          disable: ref.watch(_requestProjectViewModel).isSendingRequest,
           opacity: 0.5,
         );
   }

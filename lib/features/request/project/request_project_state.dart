@@ -5,13 +5,13 @@ import 'package:vbaseproject/features/request/project/model/request_project_mode
 @immutable
 class RequestProjectState extends Equatable {
   const RequestProjectState({
+    required this.isSendingRequest,
     this.requestProjectModel,
-    this.isSendingRequest,
     this.isServiceError,
   });
 
   final RequestProjectModel? requestProjectModel;
-  final bool? isSendingRequest;
+  final bool isSendingRequest;
   final bool? isServiceError;
 
   @override

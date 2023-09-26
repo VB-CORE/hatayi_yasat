@@ -5,11 +5,11 @@ import 'package:vbaseproject/features/request/project/model/request_project_mode
 import 'package:vbaseproject/features/request/project/request_project_state.dart';
 
 class RequestProjectViewModel extends StateNotifier<RequestProjectState> {
-  RequestProjectViewModel() : super(const RequestProjectState());
+  RequestProjectViewModel()
+      : super(const RequestProjectState(isSendingRequest: false));
 
   void changeLoading() {
-    state =
-        state.copyWith(isSendingRequest: !(state.isSendingRequest ?? false));
+    state = state.copyWith(isSendingRequest: !state.isSendingRequest);
   }
 
   Future<bool> addNewDataToService(
