@@ -8,6 +8,8 @@ mixin HomeDetailMixin on State<HomeDetailView> {
 
   final ValueNotifier<bool> screenshotNotifier = ValueNotifier<bool>(false);
 
+  final ValueNotifier<bool> isClicked = ValueNotifier<bool>(false);
+
   late final StoreModel model;
   late final ImageCompressAndWaterMark imageCompressAndWaterMark;
 
@@ -28,10 +30,16 @@ mixin HomeDetailMixin on State<HomeDetailView> {
   }
 
   Future<void> captureAndShare() async {
+    if (isClicked.value) return;
+    _toggleIsClicked();
     _toggleScreenshot();
     await imageCompressAndWaterMark.capture();
     _toggleScreenshot();
-    await imageCompressAndWaterMark.share();
+    await imageCompressAndWaterMark.share().then((value) => _toggleIsClicked());
+  }
+
+  void _toggleIsClicked() {
+    isClicked.value = !isClicked.value;
   }
 
   void _toggleScreenshot() {

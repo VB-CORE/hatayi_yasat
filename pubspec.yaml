@@ -56,7 +56,7 @@ dependencies:
   shimmer: ^3.0.0
   sliver_snap: ^1.2.0
   font_awesome_flutter: ^10.5.0
-  kartal: ^3.4.1
+  kartal: ^3.4.2
 
   # JSON
   json_annotation: ^4.8.0
