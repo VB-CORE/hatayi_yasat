@@ -6,7 +6,7 @@ import 'package:vbaseproject/features/campaign_module/campaigns/view_model/campa
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 final StateNotifierProvider<CampaignsViewModel, CampaignsState>
-    _projectViewModel = StateNotifierProvider(
+    _campaignsViewModel = StateNotifierProvider(
   (ref) => CampaignsViewModel(
     productProvider: ref.read(ProductProvider.provider.notifier),
     customService: FirebaseService(),
@@ -17,10 +17,11 @@ mixin CampaignsViewMixin on ConsumerState<CampaignsView> {
   @override
   WidgetRef get ref;
 
-  List<CampaignModel> get items => ref.watch(_projectViewModel).projectItems;
+  List<CampaignModel> get items =>
+      ref.watch(_campaignsViewModel).campaignsItems;
 
   bool get isRequestSending =>
-      ref.watch(_projectViewModel).isServiceRequestSending;
+      ref.watch(_campaignsViewModel).isServiceRequestSending;
 
   @override
   void initState() {
@@ -30,11 +31,11 @@ mixin CampaignsViewMixin on ConsumerState<CampaignsView> {
 
   void _init() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(_projectViewModel.notifier).fetchNonExpiredtemsAndSave();
+      ref.read(_campaignsViewModel.notifier).fetchNonExpiredtemsAndSave();
     });
   }
 
   Future<void> fetchNewItemsWithRefresh() async {
-    await ref.read(_projectViewModel.notifier).fetchNonExpiredtemsAndSave();
+    await ref.read(_campaignsViewModel.notifier).fetchNonExpiredtemsAndSave();
   }
 }

@@ -30,7 +30,7 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
     _productProvider.saveCampaigns(nonExpiredItems);
     state = state.copyWith(
       isServiceRequestSending: false,
-      items: nonExpiredItems,
+      campaignsItems: nonExpiredItems,
     );
   }
 }
@@ -39,24 +39,24 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
 class CampaignsState extends Equatable {
   const CampaignsState({
     this.isServiceRequestSending = false,
-    this.projectItems = const [],
+    this.campaignsItems = const [],
   });
   final bool isServiceRequestSending;
-  final List<CampaignModel> projectItems;
+  final List<CampaignModel> campaignsItems;
 
-  bool get isEnabled => !isServiceRequestSending && projectItems.isNotEmpty;
+  bool get isEnabled => !isServiceRequestSending && campaignsItems.isNotEmpty;
 
   @override
-  List<Object> get props => [isServiceRequestSending, projectItems];
+  List<Object> get props => [isServiceRequestSending, campaignsItems];
 
   CampaignsState copyWith({
     bool? isServiceRequestSending,
-    List<CampaignModel>? items,
+    List<CampaignModel>? campaignsItems,
   }) {
     return CampaignsState(
       isServiceRequestSending:
           isServiceRequestSending ?? this.isServiceRequestSending,
-      projectItems: items ?? projectItems,
+      campaignsItems: campaignsItems ?? this.campaignsItems,
     );
   }
 }

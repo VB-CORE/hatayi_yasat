@@ -48,8 +48,8 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(storeItems: storeItems);
   }
 
-  void saveCampaigns(List<CampaignModel> projectItems) {
-    state = state.copyWith(campaignItems: projectItems);
+  void saveCampaigns(List<CampaignModel> campaignItems) {
+    state = state.copyWith(campaignItems: campaignItems);
   }
 
   String fetchTownFromCode(int? code) {

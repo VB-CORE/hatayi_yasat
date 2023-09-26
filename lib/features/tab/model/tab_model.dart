@@ -25,7 +25,7 @@ final class TabModels {
       TabModel(
         page: const CampaignsView(),
         icon: const Icon(Icons.campaign_outlined),
-        title: LocaleKeys.navigationTabs_projectsTabTitle,
+        title: LocaleKeys.navigationTabs_campaignsTabTitle,
       ),
     ];
   }

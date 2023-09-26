@@ -93,7 +93,7 @@
     },
     "navigationTabs": {
         "placesTabTitle": "Mekanlar",
-        "projectsTabTitle": "Projeler"
+        "campaignsTabTitle": "Projeler"
     },
     "projectRequest": {
         "title": "Yeni Proje Talebi"
