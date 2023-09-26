@@ -26,7 +26,7 @@ class FormLatestDataDialog extends StatelessWidget {
         size: WidgetSizes.spacingXxl8,
       ),
       content: const Text(
-        LocaleKeys.validation_looseAllData,
+        LocaleKeys.validation_loseAllData,
         textAlign: TextAlign.center,
       ).tr(),
       actions: [

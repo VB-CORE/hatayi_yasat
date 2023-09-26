@@ -1,9 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-
-abstract class ValidatorField {
-  String? validate(String? value);
-}
+import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 
 class ValidatorTextFormField extends StatelessWidget {
   const ValidatorTextFormField({
@@ -27,7 +25,7 @@ class ValidatorTextFormField extends StatelessWidget {
         controller: controller,
         maxLines: minLine != null ? minLine! + 1 : null,
         decoration: InputDecoration(
-          labelText: labelText,
+          labelText: labelText.tr(),
           border: const OutlineInputBorder(),
         ),
         validator: validator.validate,

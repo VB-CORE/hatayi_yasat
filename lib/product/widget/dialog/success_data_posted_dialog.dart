@@ -24,7 +24,7 @@ class SuccessDataPostedDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            LocaleKeys.requestCompany_complete,
+            LocaleKeys.dialog_completeRequest,
             textAlign: TextAlign.center,
           ).tr(),
           TextButton(
