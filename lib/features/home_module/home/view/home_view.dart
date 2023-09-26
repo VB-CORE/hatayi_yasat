@@ -72,6 +72,9 @@ class _FilterButton extends ConsumerWidget {
     final isRequestSending = ref.watch(_homeViewModel).isServiceRequestSending;
 
     if (isRequestSending) return const SizedBox.shrink();
+    final isAvailableItem = ref.watch(_homeViewModel).items.isEmpty;
+
+    if (isAvailableItem) return const SizedBox.shrink();
 
     return Align(
       alignment: Alignment.centerRight,

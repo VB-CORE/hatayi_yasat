@@ -5,13 +5,25 @@ service cloud.firestore {
 
 
    function isAdmin() {
- 			return request.auth.uid != null
+             return request.auth.uid != null
+     }
+ 			return true;
 	 }
 
    // Client
     match /specialAgency/{agency} {
       allow read: if true;
       allow write: if isAdmin();
+    }
+    
+    match /approvedCampaigns/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /unApprovedCampaigns/{appId} {
+      allow read: if isAdmin();
+      allow write: if true;
     }
 
    // Admin
@@ -56,7 +68,15 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /approvedCampaigns/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
 
-
+    match /unApprovedCampaigns/{appId} {
+      allow read: if isAdmin();
+      allow write: if true;
+    }
+    
   }
 }

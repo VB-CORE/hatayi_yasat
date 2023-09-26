@@ -30,6 +30,7 @@ dependencies:
   uuid: any
   flutter_image_compress: ^2.0.4
   image: ^4.0.17
+  intl: ^0.18.1
 
   #firebase
   firebase_core: ^2.15.1
@@ -56,6 +57,7 @@ dependencies:
   sliver_snap: ^1.2.0
   font_awesome_flutter: ^10.5.0
   kartal: ^3.4.2
+  carousel_slider: ^4.2.1
 
   # JSON
   json_annotation: ^4.8.0

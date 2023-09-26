@@ -27,7 +27,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
       path: CollectionPaths.approvedApplications,
     );
 
-    _productProvider.saveCompanies(items);
+    _productProvider.saveStores(items);
     state = state.copyWith(
       isServiceRequestSending: false,
       items: items,

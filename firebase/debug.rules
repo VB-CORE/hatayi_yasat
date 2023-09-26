@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service cloud.firestore {
+    match /databases/{database}/documents {
+
+
+        function isAdmin() {
+            return request.auth.uid != null
+        }
+
+
+        match /approvedCampaigns/{document} {
+            allow read: if true;
+            allow write: if true;
+        }
+
+        match /unApprovedCampaigns/{document} {
+            allow read: if true;
+            allow write: if true;
+        }
+
+        // Client
+        match /specialAgency/{agency} {
+            allow read: if true;
+            allow write: if isAdmin();
+        }
+
+        // Admin
+
+        match /towns/{document} {
+            allow read;
+            allow write;
+        }
+
+        match /allowedAdminClaims/{document} {
+            allow read: if isAdmin();
+            allow write: if isAdmin();
+        }
+
+        match /approvedApplications/{document} {
+            allow read: if true;
+            allow write;
+        }
+
+        match /unApprovedApplications/{appId} {
+            allow read: if isAdmin();
+            allow write: if true;
+        }
+
+        match /notifications/{document} {
+            allow read: if true;
+            allow write;
+        }
+
+        match /developers/{document} {
+            allow read: if true;
+            allow write: if isAdmin();
+        }
+
+        match /logs/{document} {
+            allow read: if isAdmin();
+            allow write: if isAdmin();
+        }
+
+        match /categories/{document} {
+            allow read: if true;
+            allow write;
+        }
+
+    }
+}
