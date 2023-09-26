@@ -7,22 +7,13 @@ class _SliderBuilder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SliverToBoxAdapter(
-      child: CarouselSlider.builder(
-        options: _options(),
-        itemCount: items.length,
-        itemBuilder: (_, index, __) => CampaignPlaceCard(
-          item: items[index],
-          onTap: () {},
-        ),
+      child: CustomBannerSlider(
+        sliderItems: items
+            .map((e) =>
+                SliderModel(title: e.name ?? '', imageUrl: e.coverPhoto ?? ''))
+            .toList(),
+        onTapped: (index) {},
       ),
     );
   }
-
-  CarouselOptions _options() => CarouselOptions(
-        viewportFraction: AppConstants.kOne / AppConstants.kTwo,
-        enlargeFactor: AppConstants.kOne / AppConstants.kTwo,
-        initialPage: AppConstants.kOne,
-        enableInfiniteScroll: false,
-        enlargeCenterPage: true,
-      );
 }

@@ -5,22 +5,22 @@ rules_version = '2';
 //    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
 service firebase.storage {
   match /b/{bucket
-  }/o {
+    }/o {
 
-     match /company/{companyItem
-    } {
+    match /company/{companyItem
+      } {
       allow read, write: if true;
     }
 
     match /pending/{pendingItem
-    } {
-    	allow read: if true;
+      } {
+      allow read: if true;
       allow write: if true;
     }
 
     match /approvedCompany/{approvedCompanyItem
-    }  {
-    	allow read: if true;
+      }  {
+      allow read: if true;
       allow write: if request.auth != null;
     }
   }

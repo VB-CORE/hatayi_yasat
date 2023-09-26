@@ -22,10 +22,12 @@ class PlaceShimmerGrid extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Container(
-                  height: context.sized.dynamicHeight(.25),
-                  width: context.sized.width,
-                  color: context.general.colorScheme.primary,
+                Expanded(
+                  child: Container(
+                    height: context.sized.dynamicHeight(.25),
+                    width: context.sized.width,
+                    color: context.general.colorScheme.primary,
+                  ),
                 ),
                 const Padding(
                   padding: PagePadding.onlyTop(),

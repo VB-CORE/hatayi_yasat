@@ -16,7 +16,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
   final AppProvider appProvider;
 
   Future<void> _controlApplication() async {
-    await Future.delayed(ProjectGeneralConstant.durationVeryHigh, () {});
+    await Future.delayed(ProjectGeneralConstant.durationLow, () {});
     await appProvider.init();
 
     if (_isFirstTimeCheck()) {
@@ -33,9 +33,11 @@ class SplashViewModel extends StateNotifier<SplashState> {
       state = state.copyWith(isConnectedToInternet: true);
     }
 
-    await productProvider.fetchDistrictAndSaveSession();
-    await productProvider.fetchDevelopersAndAgency();
-    await productProvider.fetchCategories();
+    await Future.wait([
+      productProvider.fetchDistrictAndSaveSession(),
+      productProvider.fetchDevelopersAndAgency(),
+      productProvider.fetchCategories(),
+    ]);
     state = state.copyWith(isOperationStaring: false);
   }
 
