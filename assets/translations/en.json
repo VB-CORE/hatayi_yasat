@@ -93,7 +93,7 @@
     },
     "navigationTabs": {
         "placesTabTitle": "Places",
-        "projectsTabTitle": "Projects"
+        "campaignsTabTitle": "Projects"
     },
     "projectRequest": {
         "title": "New Project Request"
