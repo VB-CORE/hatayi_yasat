@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
-import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class CampaignPlaceCard extends ConsumerWidget {
   const CampaignPlaceCard({

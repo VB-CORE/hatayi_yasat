@@ -54,7 +54,8 @@
         "title": "Ayarlar",
         "language_title": "Dil",
         "theme_title": "Koyu Tema",
-        "version_number_title": "Versiyon Numarası"
+        "version_number_title": "Versiyon Numarası",
+        "notificationSetting": "Bildirim Ayarları"
     },
     "home": {
         "places": "Mekanlar",
@@ -106,7 +107,9 @@
     "dialog": {
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
         "addressTitle": "Adresi haritada açmak ister misiniz?",
-        "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz."
+        "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
+        "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+        "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
     },
     "specialAgency": {
         "title": "Özel Kurumlar",
