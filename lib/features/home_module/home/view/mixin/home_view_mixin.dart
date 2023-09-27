@@ -8,7 +8,11 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_provider.
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
 
-mixin HomeViewMixin on ConsumerState<HomeView> {
+mixin HomeViewMixin
+    on AutomaticKeepAliveClientMixin<HomeView>, ConsumerState<HomeView> {
+  @override
+  bool get wantKeepAlive => true;
+
   void init(HomeViewModel viewModel) {
     MessagingUtility.init();
 

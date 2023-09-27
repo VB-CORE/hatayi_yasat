@@ -33,7 +33,11 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView>
-    with AppProviderMixin, HomeViewMixin, HomeNotificationMixin {
+    with
+        AppProviderMixin,
+        AutomaticKeepAliveClientMixin,
+        HomeViewMixin,
+        HomeNotificationMixin {
   @override
   void initState() {
     super.initState();
@@ -43,6 +47,7 @@ class _HomeViewState extends ConsumerState<HomeView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
@@ -95,7 +100,7 @@ class _SearchField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isEnabled = ref.watch(_homeViewModel).isEnabled;
-
+    if (!isEnabled) return const SizedBox.shrink().ext.sliver;
     return Padding(
       padding: const PagePadding.horizontalLowSymmetric(),
       child: SearchFieldDisabled(
@@ -104,7 +109,7 @@ class _SearchField extends ConsumerWidget {
           onPressed.call();
         },
       ),
-    ).ext.toDisabled(disable: !isEnabled).ext.sliver;
+    );
   }
 }
 
@@ -126,7 +131,12 @@ class _PageBody extends ConsumerWidget {
     }
 
     if (items.isEmpty) {
-      return const SliverFillRemaining(child: NotFoundLottie());
+      return SliverList.list(
+        key: UniqueKey(),
+        children: const [
+          NotFoundLottie(),
+        ],
+      );
     }
 
     return SliverPadding(

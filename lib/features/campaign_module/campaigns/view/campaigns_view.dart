@@ -6,11 +6,11 @@ import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_
 import 'package:vbaseproject/features/campaign_module/campaigns/view/mixin/campaigns_view_mixin.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
+import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/card/campaign_place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
-import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
-import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
 
 part 'widget/campaigns_grid_builder.dart';
 part 'widget/campaigns_slider_builder.dart';
@@ -23,9 +23,10 @@ class CampaignsView extends ConsumerStatefulWidget {
 }
 
 class _CampaignsViewState extends ConsumerState<CampaignsView>
-    with AppProviderMixin, CampaignsViewMixin {
+    with AppProviderMixin, AutomaticKeepAliveClientMixin, CampaignsViewMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async => fetchNewItemsWithRefresh(),
@@ -60,7 +61,10 @@ class _PageBody extends ConsumerWidget {
     }
 
     if (items.isEmpty) {
-      return const SliverFillRemaining(child: NotFoundLottie());
+      return SliverList.list(
+        key: UniqueKey(),
+        children: const [NotFoundLottie()],
+      );
     }
 
     return SliverMainAxisGroup(

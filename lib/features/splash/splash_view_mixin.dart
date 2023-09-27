@@ -7,7 +7,7 @@ import 'package:vbaseproject/product/utility/navigation/project_navigation.dart'
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 import 'package:vbaseproject/sub_feature/onboard/on_board_view.dart';
-import 'package:vbaseproject/sub_feature/tab/tab_view.dart';
+import 'package:vbaseproject/sub_feature/tab/main_tab_view.dart';
 
 mixin SplashViewMixin
     on AppProviderMixin<SplashView>, ConsumerState<SplashView> {

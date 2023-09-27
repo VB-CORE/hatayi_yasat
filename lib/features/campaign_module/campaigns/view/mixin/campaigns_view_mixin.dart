@@ -13,9 +13,15 @@ final StateNotifierProvider<CampaignsViewModel, CampaignsState>
   ),
 );
 
-mixin CampaignsViewMixin on ConsumerState<CampaignsView> {
+mixin CampaignsViewMixin
+    on
+        AutomaticKeepAliveClientMixin<CampaignsView>,
+        ConsumerState<CampaignsView> {
   @override
   WidgetRef get ref;
+
+  @override
+  bool get wantKeepAlive => true;
 
   List<CampaignModel> get items =>
       ref.watch(_campaignsViewModel).campaignsItems;
