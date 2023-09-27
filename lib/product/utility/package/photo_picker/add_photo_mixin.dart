@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/widget/package/photo_picker/dotted_add_photo_button.dart';
-import 'package:vbaseproject/product/widget/package/photo_picker/photo_picker_manager.dart';
+import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:vbaseproject/product/utility/package/photo_picker/photo_picker_manager.dart';
 import 'package:vbaseproject/product/widget/sheet/media_photo_sheet.dart';
 
 mixin AddPhotoMixin on State<DottedAddPhotoButton> {
@@ -10,7 +10,9 @@ mixin AddPhotoMixin on State<DottedAddPhotoButton> {
   Future<File?> _pickImage() async {
     final response = await MediaOrPhoto.openSheet(context);
     if (response == null) return null;
-    final file = await PhotoPickerManager().pickPhoto(type: response);
+    if (!mounted) return null;
+    final file =
+        await PhotoPickerManager(context: context).pickPhoto(type: response);
     if (file == null) return null;
     return file;
   }

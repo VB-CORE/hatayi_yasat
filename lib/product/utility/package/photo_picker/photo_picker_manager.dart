@@ -1,10 +1,16 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
+import 'package:vbaseproject/product/model/enum/platform_exception_enum.dart';
+import 'package:vbaseproject/product/utility/package/settings/custom_app_settings.dart';
+import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 
 enum PhotoPickType {
   gallery,
@@ -12,18 +18,23 @@ enum PhotoPickType {
 }
 
 final class PhotoPickerManager {
+  PhotoPickerManager({required this.context});
+
   final ImagePicker _picker = ImagePicker();
+  final BuildContext context;
 
   Future<File?> pickPhoto({required PhotoPickType type}) async {
     XFile? mediaFile;
-
-    switch (type) {
-      case PhotoPickType.gallery:
-        mediaFile = await _picker.pickImage(source: ImageSource.gallery);
-      case PhotoPickType.camera:
-        mediaFile = await _picker.pickImage(source: ImageSource.camera);
+    try {
+      switch (type) {
+        case PhotoPickType.gallery:
+          mediaFile = await _picker.pickImage(source: ImageSource.gallery);
+        case PhotoPickType.camera:
+          mediaFile = await _picker.pickImage(source: ImageSource.camera);
+      }
+    } on PlatformException catch (e) {
+      await _handlePickerError(e.code);
     }
-
     if (mediaFile == null) return null;
 
     final croppedFile = await ImageCropper().cropImage(
@@ -57,5 +68,20 @@ final class PhotoPickerManager {
       await file.create(recursive: true);
     }
     return file;
+  }
+
+  Future<void> _handlePickerError(String message) async {
+    final type = PlatformExceptionEnum.fromValue(message);
+
+    if (type == null) return;
+
+    /// now only support access denied
+    final response = await ApproveDialog.showWithKey(
+      context: context,
+      type: ApproveDialogType.cameraPermission,
+    );
+
+    if (response == null || !response) return;
+    CustomAppSettings.open(type: CustomAppSettingsType.library_permission);
   }
 }

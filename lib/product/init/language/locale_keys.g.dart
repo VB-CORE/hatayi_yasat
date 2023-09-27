@@ -49,6 +49,7 @@ abstract class  LocaleKeys {
   static const settings_language_title = 'settings.language_title';
   static const settings_theme_title = 'settings.theme_title';
   static const settings_version_number_title = 'settings.version_number_title';
+  static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings = 'settings';
   static const home_places = 'home.places';
   static const home_search = 'home.search';
@@ -98,6 +99,8 @@ abstract class  LocaleKeys {
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
   static const dialog_completeRequest = 'dialog.completeRequest';
+  static const dialog_permissionCameraLibrary = 'dialog.permissionCameraLibrary';
+  static const dialog_permissionNotification = 'dialog.permissionNotification';
   static const dialog = 'dialog';
   static const specialAgency_title = 'specialAgency.title';
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';

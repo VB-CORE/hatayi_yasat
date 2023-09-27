@@ -9,8 +9,8 @@ import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/card/campaign_place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
-import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_grid.dart';
-import 'package:vbaseproject/product/widget/package/slider/custom_slider.dart';
+import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
+import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
 
 part 'widget/campaigns_grid_builder.dart';
 part 'widget/campaigns_slider_builder.dart';

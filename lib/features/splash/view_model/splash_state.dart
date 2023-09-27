@@ -6,7 +6,7 @@ class SplashState extends Equatable {
   const SplashState({
     this.isOperationStaring = false,
     this.isNeedToForceUpdate = false,
-    this.isConnectedToInternet = false,
+    this.isConnectedToInternet = true,
     this.isNeedToOnBoard = false,
   });
 

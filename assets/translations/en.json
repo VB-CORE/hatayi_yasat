@@ -54,7 +54,8 @@
         "title": "Settings",
         "language_title": "Language",
         "theme_title": "Dark Theme",
-        "version_number_title": "Version Number"
+        "version_number_title": "Version Number",
+        "notificationSetting": "Notification Settings"
     },
     "home": {
         "places": "Places",
@@ -114,7 +115,9 @@
     "dialog": {
         "phoneTitle": "Would you like to call by phone?",
         "addressTitle": "Would you like to open the address on the map?",
-        "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list."
+        "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
+        "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
+        "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
     },
     "specialAgency": {
         "title": "Special Agency",

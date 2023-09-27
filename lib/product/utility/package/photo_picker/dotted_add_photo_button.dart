@@ -8,7 +8,7 @@ import 'package:vbaseproject/product/model/constant/project_general_constant.dar
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/border/dotted_border_custom.dart';
-import 'package:vbaseproject/product/widget/package/photo_picker/add_photo_mixin.dart';
+import 'package:vbaseproject/product/utility/package/photo_picker/add_photo_mixin.dart';
 
 class DottedAddPhotoButton extends StatefulWidget {
   const DottedAddPhotoButton({required this.onSelected, super.key});

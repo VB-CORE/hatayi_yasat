@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/product/widget/package/file_compress/image_compress_and_watermark.dart';
+import 'package:vbaseproject/product/utility/package/file_compress/image_compress_and_watermark.dart';
 
 mixin HomeDetailMixin on State<HomeDetailView> {
   final ValueNotifier<bool> isPinnedNotifier = ValueNotifier<bool>(false);
