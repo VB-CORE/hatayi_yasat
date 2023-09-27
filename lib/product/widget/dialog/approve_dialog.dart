@@ -6,7 +6,7 @@ import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 
-class ApproveDialog extends StatelessWidget {
+final class ApproveDialog extends StatelessWidget {
   const ApproveDialog({required this.title, super.key});
   final String title;
 
