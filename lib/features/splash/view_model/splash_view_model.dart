@@ -3,7 +3,6 @@ import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
 import 'package:vbaseproject/product/utility/checker/network_checker.dart';
-import 'package:vbaseproject/product/utility/constants/duration_constant.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/version_validator.dart';

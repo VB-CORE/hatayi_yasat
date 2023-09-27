@@ -3,13 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/campaigns_view.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view_model/campaigns_provider.dart';
+import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 final StateNotifierProvider<CampaignsViewModel, CampaignsState>
     _campaignsViewModel = StateNotifierProvider(
   (ref) => CampaignsViewModel(
     productProvider: ref.read(ProductProvider.provider.notifier),
-    customService: FirebaseService(),
+    customService: FirebaseCustomService(),
   ),
 );
 
