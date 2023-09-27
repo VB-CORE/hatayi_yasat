@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 
 class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
 
+  final _firebaseService = FirebaseCustomService();
   static final provider =
       StateNotifierProvider<ProductProvider, ProductProviderState>((_) {
     return ProductProvider();
   });
 
   Future<void> fetchDistrictAndSaveSession() async {
-    final items = await FirebaseService().getList<TownModel>(
+    final items = await _firebaseService.getList<TownModel>(
       model: TownModel(),
       path: CollectionPaths.towns,
     );
@@ -22,11 +24,11 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   Future<void> fetchDevelopersAndAgency() async {
-    final devItems = await FirebaseService().getList(
+    final devItems = await _firebaseService.getList(
       model: DeveloperModel(),
       path: CollectionPaths.developers,
     );
-    final agencyItems = await FirebaseService().getList(
+    final agencyItems = await _firebaseService.getList(
       model: SpecialAgencyModel(),
       path: CollectionPaths.specialAgency,
     );
@@ -37,7 +39,7 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   Future<void> fetchCategories() async {
-    final items = await FirebaseService().getList(
+    final items = await _firebaseService.getList(
       model: const CategoryModel.empty(),
       path: CollectionPaths.categories,
     );

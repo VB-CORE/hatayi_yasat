@@ -7,6 +7,7 @@ import 'package:vbaseproject/features/home_module/home/view/mixin/home_notificat
 import 'package:vbaseproject/features/home_module/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
@@ -21,7 +22,7 @@ final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
     StateNotifierProvider(
   (ref) => HomeViewModel(
     productProvider: ref.read(ProductProvider.provider.notifier),
-    customService: FirebaseService(),
+    customService: FirebaseCustomService(),
   ),
 );
 
