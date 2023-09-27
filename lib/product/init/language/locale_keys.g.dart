@@ -57,13 +57,20 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const message_emptySearch = 'message.emptySearch';
   static const message = 'message';
-  static const detailView_owner = 'detailView.owner';
-  static const detailView_description = 'detailView.description';
-  static const detailView_address = 'detailView.address';
-  static const detailView_phoneNumber = 'detailView.phoneNumber';
-  static const detailView_district = 'detailView.district';
-  static const detailView_photos = 'detailView.photos';
-  static const detailView = 'detailView';
+  static const placeDetailView_owner = 'placeDetailView.owner';
+  static const placeDetailView_description = 'placeDetailView.description';
+  static const placeDetailView_address = 'placeDetailView.address';
+  static const placeDetailView_phoneNumber = 'placeDetailView.phoneNumber';
+  static const placeDetailView_district = 'placeDetailView.district';
+  static const placeDetailView_photos = 'placeDetailView.photos';
+  static const placeDetailView = 'placeDetailView';
+  static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
+  static const campaignDetailsView_topic = 'campaignDetailsView.topic';
+  static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
+  static const campaignDetailsView_endDate = 'campaignDetailsView.endDate';
+  static const campaignDetailsView_photo = 'campaignDetailsView.photo';
+  static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
   static const forceUpdate_message = 'forceUpdate.message';
   static const forceUpdate_updateButton = 'forceUpdate.updateButton';
@@ -99,5 +106,18 @@ abstract class  LocaleKeys {
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';
   static const specialAgency_agencyAddress = 'specialAgency.agencyAddress';
   static const specialAgency = 'specialAgency';
+  static const months_jan = 'months.jan';
+  static const months_feb = 'months.feb';
+  static const months_mar = 'months.mar';
+  static const months_apr = 'months.apr';
+  static const months_may = 'months.may';
+  static const months_jun = 'months.jun';
+  static const months_jul = 'months.jul';
+  static const months_aug = 'months.aug';
+  static const months_sep = 'months.sep';
+  static const months_oct = 'months.oct';
+  static const months_nov = 'months.nov';
+  static const months_dec = 'months.dec';
+  static const months = 'months';
 
 }

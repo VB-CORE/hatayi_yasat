@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/mixin/campaigns_view_mixin.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';

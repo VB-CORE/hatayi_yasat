@@ -11,10 +11,18 @@ class _SliderBuilder extends ConsumerWidget {
         sliderItems: items
             .map(
               (e) => SliderModel(
-                  title: e.name ?? '', imageUrl: e.coverPhoto ?? ''),
+                title: e.name ?? '',
+                imageUrl: e.coverPhoto ?? '',
+              ),
             )
             .toList(),
-        onTapped: (index) {},
+        onTapped: (index) {
+          context.route.navigateToPage(
+            CampaignDetailsView(
+              campaignModel: items[index],
+            ),
+          );
+        },
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/items/colors_custom.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
@@ -22,22 +22,25 @@ class CampaignPlaceCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
       builder: (context, constraint) {
-        return Card(
-          child: ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(WidgetSizes.spacingS),
-              bottom: Radius.circular(WidgetSizes.spacingS),
-            ),
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: _Image(item: item, defaultImage: _defaultImage),
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: _Body(item: item, constraints: constraint),
-                ),
-              ],
+        return InkWell(
+          onTap: onTap,
+          child: Card(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(WidgetSizes.spacingS),
+                bottom: Radius.circular(WidgetSizes.spacingS),
+              ),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: _Image(item: item, defaultImage: _defaultImage),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: _Body(item: item, constraints: constraint),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -61,7 +64,7 @@ class _Body extends StatelessWidget {
         maxWidth: constraints.maxWidth,
         maxHeight: constraints.maxHeight * 0.6,
       ),
-      color: Colors.black.withOpacity(0.4),
+      color: ColorsCustom.black.withOpacity(.4),
       child: Padding(
         padding: const PagePadding.allLow(),
         child: Column(
@@ -108,27 +111,6 @@ class _Publisher extends StatelessWidget {
           ),
         ),
       ],
-    );
-    return Text.rich(
-      maxLines: 3,
-      overflow: TextOverflow.fade,
-      TextSpan(
-        style: context.general.textTheme.titleSmall?.copyWith(
-          color: context.general.colorScheme.onSecondary,
-        ),
-        children: [
-          TextSpan(
-            text: publisher.split('').take(10).join(),
-            style: context.general.textTheme.titleSmall?.copyWith(
-              color: context.general.colorScheme.onSecondary,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-              decorationColor: context.general.colorScheme.onSecondary,
-            ),
-          ),
-          const TextSpan(text: ' yayinladi.'),
-        ],
-      ),
     );
   }
 }

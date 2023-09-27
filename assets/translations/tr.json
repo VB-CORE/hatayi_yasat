@@ -65,13 +65,21 @@
     "message": {
         "emptySearch": "Sonuç Bulunamadı"
     },
-    "detailView": {
+    "placeDetailView": {
         "owner": "İşletme Sahibi",
         "description": "İşletme Açıklaması",
         "address": "Adres",
         "phoneNumber": "Telefon Numarası",
         "district": "İlçe",
         "photos": "Fotoğraflar"
+    },
+    "campaignDetailsView": {
+        "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+        "topic": "Proje Konusu",
+        "description": "Proje Açıklaması",
+        "startDate": "Başlangıç Tarihi",
+        "endDate": "Bitiş Tarihi",
+        "photo": "Fotoğraflar"
     },
     "forceUpdate": {
         "title": "Bir Güncelleme Var",
@@ -115,5 +123,19 @@
         "title": "Özel Kurumlar",
         "agencyNumber": "Kurum Numarası",
         "agencyAddress": "Kurum Adresi"
+    },
+    "months": {
+        "jan": "Ocak",
+        "feb": "Şubat",
+        "mar": "Mart",
+        "apr": "Nisan",
+        "may": "Mayıs",
+        "jun": "Haziran",
+        "jul": "Temmuz",
+        "aug": "Ağustos",
+        "sep": "Eylül",
+        "oct": "Ekim",
+        "nov": "Kasım",
+        "dec": "Aralık"
     }
 }
