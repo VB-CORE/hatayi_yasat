@@ -56,9 +56,11 @@ class _CustomBannerSliderState extends State<CustomBannerSlider> {
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
-                    CustomNetworkImage(
-                      imageUrl: coverPhoto,
-                      fit: BoxFit.cover,
+                    Positioned.fill(
+                      child: CustomNetworkImage(
+                        imageUrl: coverPhoto,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Positioned(
                       bottom: 0,
