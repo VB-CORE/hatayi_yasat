@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/mixin/campaigns_view_mixin.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
@@ -34,6 +36,7 @@ class _CampaignsViewState extends ConsumerState<CampaignsView>
           child: CustomScrollView(
             slivers: [
               _PageBody(
+                onRefresh: () async => fetchNewItemsWithRefresh(),
                 items: items,
                 isRequestSending: isRequestSending,
               ),
@@ -46,7 +49,12 @@ class _CampaignsViewState extends ConsumerState<CampaignsView>
 }
 
 class _PageBody extends ConsumerWidget {
-  const _PageBody({required this.items, required this.isRequestSending});
+  const _PageBody({
+    required this.items,
+    required this.isRequestSending,
+    required this.onRefresh,
+  });
+  final VoidCallback onRefresh;
   final List<CampaignModel> items;
   final bool isRequestSending;
   @override
@@ -61,9 +69,11 @@ class _PageBody extends ConsumerWidget {
     }
 
     if (items.isEmpty) {
-      return SliverList.list(
-        key: UniqueKey(),
-        children: const [NotFoundLottie()],
+      return SliverFillRemaining(
+        child: NotFoundLottie(
+          title: LocaleKeys.notFound_campaign.tr(),
+          onRefresh: onRefresh,
+        ),
       );
     }
 

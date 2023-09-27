@@ -14,4 +14,11 @@ mixin SpecialAgencyViewMixin on ConsumerState<SpecialAgencyView> {
     super.initState();
     _agencyItems = appState.agencyItems;
   }
+
+  Future<void> onRefresh() async {
+    await ref
+        .read(ProductProvider.provider.notifier)
+        .fetchDevelopersAndAgency();
+    _agencyItems = appState.agencyItems;
+  }
 }

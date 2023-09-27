@@ -14,4 +14,11 @@ mixin DeveloperViewMixin on ConsumerState<DevelopersView> {
     super.initState();
     _devItems = appState.developerItems;
   }
+
+  Future<void> onRefresh() async {
+    await ref
+        .read(ProductProvider.provider.notifier)
+        .fetchDevelopersAndAgency();
+    _devItems = appState.developerItems;
+  }
 }
