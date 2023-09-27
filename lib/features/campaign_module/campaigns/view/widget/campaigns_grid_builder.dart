@@ -13,7 +13,11 @@ class _GridBuilder extends ConsumerWidget {
         itemBuilder: (context, index) {
           return CampaignPlaceCard(
             item: items[index],
-            onTap: () {},
+            onTap: () => context.route.navigateToPage(
+              CampaignDetailsView(
+                campaignModel: items[index],
+              ),
+            ),
           );
         },
       ),

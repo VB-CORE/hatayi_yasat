@@ -1,8 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/items/colors_custom.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
 final class SliderModel {
   SliderModel({required this.title, required this.imageUrl});
@@ -47,14 +50,23 @@ class _CustomBannerSliderState extends State<CustomBannerSlider> {
               return const SizedBox();
             }
             return InkWell(
-              onTap: () {
-                widget.onTapped.call(index);
-              },
+              onTap: () => widget.onTapped.call(index),
               child: ClipRRect(
                 borderRadius: CustomRadius.medium,
-                child: CachedNetworkImage(
-                  imageUrl: coverPhoto,
-                  fit: BoxFit.contain,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    CustomNetworkImage(
+                      imageUrl: coverPhoto,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: _Title(text: widget.sliderItems[index].title),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -69,13 +81,36 @@ class _CustomBannerSliderState extends State<CustomBannerSlider> {
   }
 }
 
+class _Title extends StatelessWidget {
+  const _Title({required this.text});
+
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: ColorsCustom.black.withOpacity(.4),
+      child: Padding(
+        padding: const PagePadding.allLow(),
+        child: Text(
+          text,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: context.general.textTheme.titleSmall?.copyWith(
+            color: context.general.colorScheme.onSecondary,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _CustomCarouselOption extends CarouselOptions {
   _CustomCarouselOption({required ValueChanged<int> onPageChange})
       : super(
           viewportFraction: .9,
           initialPage: 1,
           enlargeCenterPage: true,
-          enlargeStrategy: CenterPageEnlargeStrategy.zoom,
           autoPlay: true,
           enlargeFactor: 0.2,
           onPageChanged: (index, reason) {

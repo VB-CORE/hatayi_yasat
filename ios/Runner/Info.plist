@@ -27,9 +27,11 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true />
 		<key>NSCameraUsageDescription</key>
-		<string>Kamera erişimine ihtiyacımız var paylaşabilmek için.</string>
+		<string>Paylaşabilmek için kamera erişimine ihtiyacımız var.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Fotoğraflar erişimine ihtiyacımız var paylaşabilmek için.</string>
+		<string>Paylaşabilmek için fotoğraflar erişimine ihtiyacımız var.</string>
+		<key>NSCalendarsUsageDescription</key>
+		<string>Takvim erişimine ihtiyacımız var.</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
 		<key>UIBackgroundModes</key>
