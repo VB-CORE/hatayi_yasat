@@ -9,8 +9,10 @@ class _SliderBuilder extends ConsumerWidget {
     return SliverToBoxAdapter(
       child: CustomBannerSlider(
         sliderItems: items
-            .map((e) =>
-                SliderModel(title: e.name ?? '', imageUrl: e.coverPhoto ?? ''))
+            .map(
+              (e) => SliderModel(
+                  title: e.name ?? '', imageUrl: e.coverPhoto ?? ''),
+            )
             .toList(),
         onTapped: (index) {},
       ),

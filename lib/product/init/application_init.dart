@@ -29,8 +29,8 @@ final class ApplicationInit {
     await _setRotation();
     await DeviceUtility.instance.initPackageInfo();
     await Firebase.initializeApp(
-        // options: DefaultFirebaseOptions.currentPlatform,
-        );
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
 
@@ -40,7 +40,7 @@ final class ApplicationInit {
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    // if (!kDebugMode) return;
+    if (!kDebugMode) return;
     await FirebaseStorage.instance.useStorageEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.storage.port,

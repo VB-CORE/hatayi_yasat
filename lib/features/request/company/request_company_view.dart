@@ -16,7 +16,7 @@ import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
-import 'package:vbaseproject/product/widget/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 

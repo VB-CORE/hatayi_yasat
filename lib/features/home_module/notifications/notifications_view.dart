@@ -6,7 +6,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
+import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});

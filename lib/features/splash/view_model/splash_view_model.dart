@@ -3,6 +3,7 @@ import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
 import 'package:vbaseproject/product/utility/checker/network_checker.dart';
+import 'package:vbaseproject/product/utility/constants/duration_constant.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/version_validator.dart';
@@ -16,8 +17,12 @@ class SplashViewModel extends StateNotifier<SplashState> {
   final AppProvider appProvider;
 
   Future<void> _controlApplication() async {
-    await Future.delayed(ProjectGeneralConstant.durationLow, () {});
     await appProvider.init();
+
+    if (!await _isConnectedToInternet()) {
+      state = state.copyWith(isConnectedToInternet: false);
+      return;
+    }
 
     if (_isFirstTimeCheck()) {
       await SharedCache.instance.setFirstAppOpen();
@@ -29,31 +34,24 @@ class SplashViewModel extends StateNotifier<SplashState> {
       return;
     }
 
-    if (await _isConnectedToInternet()) {
-      state = state.copyWith(isConnectedToInternet: true);
-    }
-
-    await Future.wait([
-      productProvider.fetchDistrictAndSaveSession(),
-      productProvider.fetchDevelopersAndAgency(),
-      productProvider.fetchCategories(),
-    ]);
+    try {
+      await Future.wait([
+        productProvider.fetchDistrictAndSaveSession(),
+        productProvider.fetchDevelopersAndAgency(),
+        productProvider.fetchCategories(),
+      ]).timeout(DurationConstant.durationMedium);
+    } catch (_) {}
     state = state.copyWith(isOperationStaring: false);
   }
 
-  bool _isFirstTimeCheck() {
-    return SharedCache.instance.isFirstAppOpen();
-  }
+  bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen();
 
-  bool _isNeedToForceUpdate() {
-    return VersionValidator.check();
-  }
+  bool _isNeedToForceUpdate() => VersionValidator.check();
 
-  Future<bool> _isConnectedToInternet() {
-    return NetworkChecker.checkConnection();
-  }
+  Future<bool> _isConnectedToInternet() => NetworkChecker.checkConnection();
 
   Future<void> refresh() async {
+    state = const SplashState(isOperationStaring: true);
     await _controlApplication();
   }
 }

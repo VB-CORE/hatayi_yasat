@@ -6,7 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class PlaceCard extends ConsumerWidget {
   const PlaceCard({

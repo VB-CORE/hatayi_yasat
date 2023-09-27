@@ -13,7 +13,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
-import 'package:vbaseproject/product/widget/package/shimmer/place_shimmer_list.dart';
+import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
 import 'package:vbaseproject/sub_feature/filter_button/filter_button.dart';
 
@@ -58,6 +58,7 @@ class _HomeViewState extends ConsumerState<HomeView>
                 child: _FilterButton(),
               ),
               const _PageBody(),
+              SizedBox(height: context.sized.dynamicHeight(0.2)).ext.sliver,
             ],
           ),
         ),
