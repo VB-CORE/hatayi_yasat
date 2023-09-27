@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/items/colors_custom.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
-import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
 
 final class SliderModel {
   SliderModel({required this.title, required this.imageUrl});

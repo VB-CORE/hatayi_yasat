@@ -10,7 +10,8 @@ import 'package:vbaseproject/product/utility/calendar/calendar_utility.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
-import 'package:vbaseproject/product/widget/package/custom_network_image.dart';
+
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class CampaignDetailsView extends StatefulWidget {
   const CampaignDetailsView({required this.campaignModel, super.key});
