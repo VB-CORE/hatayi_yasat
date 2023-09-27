@@ -58,6 +58,7 @@ class _HomeViewState extends ConsumerState<HomeView>
                 child: _FilterButton(),
               ),
               const _PageBody(),
+              SizedBox(height: context.sized.dynamicHeight(0.2)).ext.sliver,
             ],
           ),
         ),

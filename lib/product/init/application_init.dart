@@ -29,8 +29,8 @@ final class ApplicationInit {
     await _setRotation();
     await DeviceUtility.instance.initPackageInfo();
     await Firebase.initializeApp(
-        // options: DefaultFirebaseOptions.currentPlatform,
-        );
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
 
