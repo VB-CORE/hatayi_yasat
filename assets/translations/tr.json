@@ -120,5 +120,19 @@
         "title": "Özel Kurumlar",
         "agencyNumber": "Kurum Numarası",
         "agencyAddress": "Kurum Adresi"
+    },
+    "months": {
+        "jan": "Ocak",
+        "feb": "Şubat",
+        "mar": "Mart",
+        "apr": "Nisan",
+        "may": "Mayıs",
+        "jun": "Haziran",
+        "jul": "Temmuz",
+        "aug": "Ağustos",
+        "sep": "Eylül",
+        "oct": "Ekim",
+        "nov": "Kasım",
+        "dec": "Aralık"
     }
 }

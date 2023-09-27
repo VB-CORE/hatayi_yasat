@@ -103,5 +103,18 @@ abstract class  LocaleKeys {
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';
   static const specialAgency_agencyAddress = 'specialAgency.agencyAddress';
   static const specialAgency = 'specialAgency';
+  static const months_jan = 'months.jan';
+  static const months_feb = 'months.feb';
+  static const months_mar = 'months.mar';
+  static const months_apr = 'months.apr';
+  static const months_may = 'months.may';
+  static const months_jun = 'months.jun';
+  static const months_jul = 'months.jul';
+  static const months_aug = 'months.aug';
+  static const months_sep = 'months.sep';
+  static const months_oct = 'months.oct';
+  static const months_nov = 'months.nov';
+  static const months_dec = 'months.dec';
+  static const months = 'months';
 
 }
