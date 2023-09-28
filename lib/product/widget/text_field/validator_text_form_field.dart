@@ -8,6 +8,7 @@ class ValidatorTextFormField extends StatelessWidget {
     required this.labelText,
     required this.validator,
     required this.controller,
+    this.textInputAction = TextInputAction.next,
     super.key,
     this.minLine,
   });
@@ -15,7 +16,7 @@ class ValidatorTextFormField extends StatelessWidget {
   final ValidatorField validator;
   final int? minLine;
   final TextEditingController controller;
-
+  final TextInputAction textInputAction;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,6 +25,7 @@ class ValidatorTextFormField extends StatelessWidget {
         minLines: minLine,
         controller: controller,
         maxLines: minLine != null ? minLine! + 1 : null,
+        textInputAction: textInputAction,
         decoration: InputDecoration(
           labelText: labelText.tr(),
           border: const OutlineInputBorder(),

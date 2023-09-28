@@ -10,13 +10,13 @@ import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/dropdown/category_drop_down.dart';
 import 'package:vbaseproject/product/utility/dropdown/district_drop_down.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
-import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 
@@ -96,10 +96,7 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                   ),
                   CategoryDropDown(
                     onSelected: onCategorySelected,
-                    items: ref
-                        .read(ProductProvider.provider.notifier)
-                        .state
-                        .categoryItems,
+                    items: ref.read(ProductProvider.provider).categoryItems,
                   ),
                   DistrictDropDownView(
                     onSelected: onTownSelected,

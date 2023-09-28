@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
-enum _SubscriptionTopic {
-  everyone;
-}
-
 @immutable
 final class MessagingUtility {
   const MessagingUtility._();
 
   static Future<void> init() async {
     await FirebaseMessaging.instance.requestPermission();
-    await FirebaseMessaging.instance
-        .subscribeToTopic(_SubscriptionTopic.everyone.name);
+
+    await Future.wait([
+      FirebaseMessaging.instance
+          .subscribeToTopic(NotificationTopics.toAll.rawValue),
+      FirebaseMessaging.instance
+          .subscribeToTopic(NotificationTopics.forCampaign.rawValue),
+    ]);
   }
 
   static Future<NotificationModel?> getInitialData() async {

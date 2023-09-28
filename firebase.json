@@ -1,6 +1,6 @@
 {
   "storage": {
-    "rules": "firebase/firestroage.rules"
+    "rules": "firebase/fire_storage.rules"
   },
   "firestore": {
     "rules": "firebase/firestore.rules"

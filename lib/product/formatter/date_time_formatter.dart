@@ -10,6 +10,12 @@ final class DateTimeFormatter {
     return formattedValue;
   }
 
+  static String formatValueDetail(DateTime value) {
+    // 31 May 2013 to date format dd MMM yyyy
+    final formattedValue = DateFormat('dd MMM yyyy').format(value);
+    return formattedValue;
+  }
+
   /// The method is returning a formatted string representation of the given DateTime value. The string
   /// includes the day, month (translated to the appropriate language), and year of the DateTime value.
   static String formatValueTr(DateTime value) {

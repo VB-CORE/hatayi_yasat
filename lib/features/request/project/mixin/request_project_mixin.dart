@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -20,11 +21,12 @@ mixin RequestProjectMixin
   final TextEditingController startDateController = TextEditingController();
   final TextEditingController endDateController = TextEditingController();
 
+  ValueNotifier<DateTime?> startDateNotifier = ValueNotifier(null);
+
+  DateTime? endDate;
   File? _imageFile;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   bool _isFirstValidationCheck = false;
-
   bool _isEndDateLessThanStartDate = false;
 
   bool get isAnyDataEntered =>
@@ -50,15 +52,7 @@ mixin RequestProjectMixin
         : AutovalidateMode.disabled;
   }
 
-  RequestProjectModel get model => RequestProjectModel(
-        projectName: nameController.text,
-        projectTopic: topicController.text,
-        projectDescription: descriptionController.text,
-        publisher: publisherController.text,
-        startDate: DateTime.parse(startDateController.text),
-        endDate: DateTime.parse(endDateController.text),
-        imageFile: _imageFile ?? File(''),
-      );
+  late RequestProjectModel model;
 
   Future<void> dataSendingComplete({required bool isOkay}) async {
     if (!isOkay) return;
@@ -66,6 +60,14 @@ mixin RequestProjectMixin
     await SuccessDataPostedDialog.show(context);
     if (!mounted) return;
     await context.route.pop(true);
+  }
+
+  void updateSelectedDate({required bool isStart, required DateTime value}) {
+    if (isStart) {
+      startDateNotifier.value = value;
+      return;
+    }
+    endDate = value;
   }
 
   bool isCheckValidation() {
@@ -89,6 +91,16 @@ mixin RequestProjectMixin
       );
       return false;
     }
+
+    model = RequestProjectModel(
+      projectName: nameController.text,
+      projectTopic: topicController.text,
+      projectDescription: descriptionController.text,
+      publisher: publisherController.text,
+      startDate: startDateNotifier.value!,
+      endDate: endDate!,
+      imageFile: _imageFile!,
+    );
 
     return true;
   }
@@ -119,8 +131,9 @@ mixin RequestProjectMixin
   void _isEndDateLessThanStartDateCheck() {
     if (_isEndDateLessThanStartDate) return;
 
-    final startDateConvert = DateTime.parse(startDateController.text);
-    final endDateConvert = DateTime.parse(endDateController.text);
+    final startDateConvert = startDateNotifier.value;
+    final endDateConvert = endDate;
+    if (startDateConvert == null || endDateConvert == null) return;
 
     if (!_isEndDateLessThanStartDateFunc(startDateConvert, endDateConvert)) {
       setState(() {

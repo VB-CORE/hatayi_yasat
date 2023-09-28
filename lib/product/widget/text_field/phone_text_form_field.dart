@@ -16,6 +16,8 @@ class PhoneTextFormField extends StatelessWidget {
         hintText: ProjectGeneralConstant.phoneNumberHint,
         border: OutlineInputBorder(),
       ),
+      keyboardType: TextInputType.phone,
+      textInputAction: TextInputAction.next,
       inputFormatters: [InputFormatter.instance.phoneFormatter],
       validator: (value) {
         return value.ext.phoneFormatValue.ext.isNotNullOrNoEmpty

@@ -110,7 +110,7 @@ class _SearchField extends ConsumerWidget {
           onPressed.call();
         },
       ),
-    );
+    ).ext.sliver;
   }
 }
 
