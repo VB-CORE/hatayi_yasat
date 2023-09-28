@@ -124,6 +124,13 @@
         "agencyNumber": "Kurum Numarası",
         "agencyAddress": "Kurum Adresi"
     },
+    "notFound": {
+        "forRefresh": "Yenilemek için buraya tıklayın.",
+        "specialAgency": "Özel Kurumlar henüz girilmemiş.",
+        "campaign": "Kampanyalar henüz girilmemiş.",
+        "developers": "Geliştiriciler henüz girilmemiş.",
+        "towns": "Mekanlar henüz girilmemiş."
+    },
     "months": {
         "jan": "Ocak",
         "feb": "Şubat",

@@ -21,7 +21,12 @@ class _DevelopersViewState extends ConsumerState<DevelopersView>
       appBar: AppBar(
         title: Text(LocaleKeys.developers_title.tr()),
       ),
-      body: devItems.isEmpty ? const NotFoundLottie() : _gridViewBuilder(),
+      body: devItems.isEmpty
+          ? NotFoundLottie(
+              title: LocaleKeys.notFound_developers.tr(),
+              onRefresh: onRefresh,
+            )
+          : _gridViewBuilder(),
     );
   }
 

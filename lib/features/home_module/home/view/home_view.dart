@@ -10,11 +10,11 @@ import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.d
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
-import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
 import 'package:vbaseproject/sub_feature/filter_button/filter_button.dart';
 
@@ -63,7 +63,10 @@ class _HomeViewState extends ConsumerState<HomeView>
               SliverToBoxAdapter(
                 child: _FilterButton(),
               ),
-              const _PageBody(),
+              _PageBody(
+                onRefresh: () async =>
+                    fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier)),
+              ),
               SizedBox(height: context.sized.dynamicHeight(0.2)).ext.sliver,
             ],
           ),
@@ -115,7 +118,8 @@ class _SearchField extends ConsumerWidget {
 }
 
 class _PageBody extends ConsumerWidget {
-  const _PageBody();
+  const _PageBody({required this.onRefresh});
+  final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -132,11 +136,11 @@ class _PageBody extends ConsumerWidget {
     }
 
     if (items.isEmpty) {
-      return SliverList.list(
-        key: UniqueKey(),
-        children: const [
-          NotFoundLottie(),
-        ],
+      return SliverFillRemaining(
+        child: NotFoundLottie(
+          title: LocaleKeys.notFound_towns.tr(),
+          onRefresh: onRefresh,
+        ),
       );
     }
 

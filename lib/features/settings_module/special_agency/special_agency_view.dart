@@ -23,7 +23,12 @@ class _SpecialAgencyViewState extends ConsumerState<SpecialAgencyView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.specialAgency_title.tr())),
-      body: agencyItems.isEmpty ? const NotFoundLottie() : _listViewBuilder(),
+      body: agencyItems.isEmpty
+          ? NotFoundLottie(
+              title: LocaleKeys.notFound_specialAgency.tr(),
+              onRefresh: onRefresh,
+            )
+          : _listViewBuilder(),
     );
   }
 

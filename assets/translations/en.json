@@ -124,6 +124,13 @@
         "agencyNumber": "Agency Number",
         "agencyAddress": "Agency Address"
     },
+    "notFound": {
+        "forRefresh": "Click here to refresh.",
+        "specialAgency": "Special Agencies has not been entered yet.",
+        "campaign": "Campaigns has not been entered yet.",
+        "developers": "Developers has not been entered yet.",
+        "towns": "Towns has not been entered yet."
+    },
     "months": {
         "jan": "January",
         "feb": "February",
