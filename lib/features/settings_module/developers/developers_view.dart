@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/settings_module/developers/mixin/developer_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/card/developer_profile_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
@@ -21,12 +22,15 @@ class _DevelopersViewState extends ConsumerState<DevelopersView>
       appBar: AppBar(
         title: Text(LocaleKeys.developers_title.tr()),
       ),
-      body: devItems.isEmpty
-          ? NotFoundLottie(
-              title: LocaleKeys.notFound_developers.tr(),
-              onRefresh: onRefresh,
-            )
-          : _gridViewBuilder(),
+      body: Padding(
+        padding: const PagePadding.horizontal16Symmetric(),
+        child: devItems.isEmpty
+            ? NotFoundLottie(
+                title: LocaleKeys.notFound_developers.tr(),
+                onRefresh: onRefresh,
+              )
+            : _gridViewBuilder(),
+      ),
     );
   }
 
@@ -34,6 +38,8 @@ class _DevelopersViewState extends ConsumerState<DevelopersView>
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
       ),
       itemCount: devItems.length,
       itemBuilder: (BuildContext context, int index) {

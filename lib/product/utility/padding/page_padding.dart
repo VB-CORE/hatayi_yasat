@@ -14,6 +14,8 @@ class PagePadding extends EdgeInsets {
       : super.symmetric(
           horizontal: WidgetSizes.spacingM + WidgetSizes.spacingXSS,
         );
+
+  /// value is 12
   const PagePadding.horizontalNormalSymmetric()
       : super.symmetric(horizontal: WidgetSizes.spacingS);
   const PagePadding.horizontalHighSymmetric()

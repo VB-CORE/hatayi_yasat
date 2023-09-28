@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
@@ -15,35 +16,75 @@ class DeveloperProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: context.padding.verticalLow,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: WidgetSizes.spacingXxl5,
-              backgroundImage: NetworkImage(
-                model.image ?? '',
+    return InkWell(
+      onTap: () {
+        model.githubUrl.ext.launchWebsite;
+      },
+      child: Card(
+        child: Padding(
+          padding: context.padding.verticalLow,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Expanded(
+                flex: 3,
+                child: FittedBox(child: _ProfileUserCard(model: model)),
               ),
-            ),
-            Padding(
-              padding: context.padding.onlyTopLow,
-              child: Text(
+              Text(
                 model.name ?? '',
                 style: context.general.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            const Spacer(),
-            TextButton(
-              onPressed: () => model.githubUrl.ext.launchWebsite,
-              child: Text(LocaleKeys.developers_seeProfileButtonText.tr()),
-            ),
-          ],
+              const Spacer(),
+              Padding(
+                padding: const PagePadding.horizontalNormalSymmetric(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        LocaleKeys.developers_seeProfileButtonText.tr(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.general.textTheme.bodySmall?.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right_outlined),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class _ProfileUserCard extends StatelessWidget {
+  const _ProfileUserCard({
+    required this.model,
+  });
+
+  final DeveloperModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundImage: model.image.ext.isNotNullOrNoEmpty
+          ? NetworkImage(
+              model.image!,
+            )
+          : null,
+      child: model.image.ext.isNotNullOrNoEmpty
+          ? null
+          : Text(
+              model.name?[0] ?? '',
+            ),
     );
   }
 }
