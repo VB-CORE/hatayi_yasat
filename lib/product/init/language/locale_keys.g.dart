@@ -107,6 +107,7 @@ abstract class  LocaleKeys {
   static const specialAgency_agencyAddress = 'specialAgency.agencyAddress';
   static const specialAgency = 'specialAgency';
   static const notFound_forRefresh = 'notFound.forRefresh';
+  static const notFound_notification = 'notFound.notification';
   static const notFound_specialAgency = 'notFound.specialAgency';
   static const notFound_campaign = 'notFound.campaign';
   static const notFound_developers = 'notFound.developers';

@@ -8,6 +8,7 @@ import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -28,15 +29,10 @@ class _NotificationsViewState extends State<NotificationsView>
       ),
       body: FirestoreListView<AppNotificationModel?>(
         query: reference(),
-        emptyBuilder: (context) {
-          ///yasinke
-          return Center(
-            child: Text(
-              LocaleKeys.home_notifications_empty.tr(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          );
-        },
+        emptyBuilder: (_) => NotFoundLottie(
+          title: LocaleKeys.notFound_notification.tr(),
+          onRefresh: () {},
+        ),
         loadingBuilder: (context) => const PlaceShimmerList(),
         itemBuilder: (context, doc) {
           final model = doc.data();

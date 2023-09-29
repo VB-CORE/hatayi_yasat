@@ -125,7 +125,8 @@
         "agencyAddress": "Kurum Adresi"
     },
     "notFound": {
-        "forRefresh": "Yenilemek için buraya tıklayın.",
+        "forRefresh": "Yenilemek için buraya dokunun.",
+        "notification": "Bildirim yok",
         "specialAgency": "Özel Kurumlar henüz girilmemiş.",
         "campaign": "Kampanyalar henüz girilmemiş.",
         "developers": "Geliştiriciler henüz girilmemiş.",

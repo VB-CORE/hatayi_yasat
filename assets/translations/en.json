@@ -126,6 +126,7 @@
     },
     "notFound": {
         "forRefresh": "Click here to refresh.",
+        "notification": "No notifications",
         "specialAgency": "Special Agencies has not been entered yet.",
         "campaign": "Campaigns has not been entered yet.",
         "developers": "Developers has not been entered yet.",
