@@ -16,7 +16,6 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "endDateNotLessThanStartDate": "The end date cannot be less than the start date.",
         "categoryEmpty": "Please choose a category"
     },
     "button": {
@@ -79,7 +78,6 @@
         "description": "Project Description",
         "phone": "Phone Number",
         "startDate": "Start Date and Time",
-        "endDate": "End Date",
         "photo": "Photos"
     },
     "forceUpdate": {

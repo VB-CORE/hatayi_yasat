@@ -16,7 +16,6 @@
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-        "endDateNotLessThanStartDate": "Bitiş tarihi başlangıç tarihinden küçük olamaz.",
         "categoryEmpty": "Kategori seçiniz"
     },
     "button": {
@@ -109,8 +108,7 @@
         "topic": "Proje Konusu",
         "description": "Proje Açıklaması",
         "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-        "startDate": "Başlangıç Tarihi ve Saati",
-        "endDate": "Bitiş Tarihi"
+        "startDate": "Başlangıç Tarihi ve Saati"
     },
     "dialog": {
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",

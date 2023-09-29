@@ -16,7 +16,6 @@ abstract class  LocaleKeys {
   static const validation_formRequired = 'validation.formRequired';
   static const validation_photoRequired = 'validation.photoRequired';
   static const validation_loseAllData = 'validation.loseAllData';
-  static const validation_endDateNotLessThanStartDate = 'validation.endDateNotLessThanStartDate';
   static const validation_categoryEmpty = 'validation.categoryEmpty';
   static const validation = 'validation';
   static const button_save = 'button.save';
@@ -69,7 +68,6 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
-  static const campaignDetailsView_endDate = 'campaignDetailsView.endDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
