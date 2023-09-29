@@ -67,6 +67,7 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
   static const campaignDetailsView_endDate = 'campaignDetailsView.endDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';

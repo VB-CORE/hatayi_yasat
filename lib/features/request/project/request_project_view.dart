@@ -13,6 +13,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/text_field/datetime_text_form_field.dart';
+import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 
 final StateNotifierProvider<RequestProjectViewModel, RequestProjectState>
@@ -80,34 +81,40 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                   labelText: LocaleKeys.projectRequest_publisher,
                   validator: ValidatorNormalTextField(),
                 ),
+                PhoneTextFormField(
+                  controller: phoneController,
+                ),
                 ValueListenableBuilder<DateTime?>(
                   valueListenable: startDateNotifier,
                   builder:
                       (BuildContext context, DateTime? value, Widget? child) {
-                    return Column(
-                      children: [
-                        DateTimeTextFormField(
-                          controller: startDateController,
-                          startDate: value,
-                          labelText: LocaleKeys.projectRequest_startDate,
-                          validator: TextFieldValidatorIsNullEmpty(),
-                          onDateSelected: (value) {
-                            updateSelectedDate(isStart: true, value: value);
-                          },
-                        ),
-                        DateTimeTextFormField(
-                          controller: endDateController,
-                          startDate: value,
-                          labelText: LocaleKeys.projectRequest_endDate,
-                          validator: TextFieldValidatorIsNullEmpty(),
-                          onDateSelected: (value) {
-                            updateSelectedDate(isStart: false, value: value);
-                          },
-                        ).ext.toDisabled(
-                              disable: value == null,
-                              opacity: 0.3,
-                            ),
-                      ],
+                    return Padding(
+                      padding: const PagePadding.onlyTop(),
+                      child: Column(
+                        children: [
+                          DateTimeTextFormField(
+                            controller: startDateController,
+                            startDate: value,
+                            labelText: LocaleKeys.projectRequest_startDate,
+                            validator: TextFieldValidatorIsNullEmpty(),
+                            onDateSelected: (value) {
+                              updateSelectedDate(isStart: true, value: value);
+                            },
+                          ),
+                          DateTimeTextFormField(
+                            controller: endDateController,
+                            startDate: value,
+                            labelText: LocaleKeys.projectRequest_endDate,
+                            validator: TextFieldValidatorIsNullEmpty(),
+                            onDateSelected: (value) {
+                              updateSelectedDate(isStart: false, value: value);
+                            },
+                          ).ext.toDisabled(
+                                disable: value == null,
+                                opacity: 0.3,
+                              ),
+                        ],
+                      ),
                     );
                   },
                 ),

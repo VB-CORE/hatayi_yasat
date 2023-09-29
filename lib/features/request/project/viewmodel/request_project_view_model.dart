@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -37,6 +36,7 @@ class RequestProjectViewModel extends StateNotifier<RequestProjectState> {
       topic: requestProjectModel.projectTopic,
       description: requestProjectModel.projectDescription,
       publisher: requestProjectModel.publisher,
+      phone: requestProjectModel.phone,
       startDate: requestProjectModel.startDate,
       endDate: requestProjectModel.endDate,
       coverPhoto: uploadImage,

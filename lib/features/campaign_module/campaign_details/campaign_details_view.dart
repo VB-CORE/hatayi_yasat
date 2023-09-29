@@ -7,11 +7,11 @@ import 'package:vbaseproject/product/formatter/date_time_formatter.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/calendar/calendar_model.dart';
 import 'package:vbaseproject/product/utility/calendar/calendar_utility.dart';
+import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
-
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class CampaignDetailsView extends StatefulWidget {
   const CampaignDetailsView({required this.campaignModel, super.key});
@@ -90,6 +90,15 @@ class _SliverDetail extends StatelessWidget {
         ListTile(
           title: const Text(LocaleKeys.campaignDetailsView_description).tr(),
           subtitle: Text(model.description ?? ''),
+        ),
+        const Divider(),
+        ListTile(
+          title: const Text(LocaleKeys.campaignDetailsView_phone).tr(),
+          subtitle: Text(model.phone ?? ''),
+          onTap: () => RedirectionMixin.openToPhone(
+            context: context,
+            phoneNumber: model.phone ?? '',
+          ),
         ),
         const Divider(),
         ListTile(

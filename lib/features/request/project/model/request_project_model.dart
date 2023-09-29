@@ -8,6 +8,7 @@ final class RequestProjectModel extends Equatable {
     required this.projectTopic,
     required this.projectDescription,
     required this.publisher,
+    required this.phone,
     required this.imageFile,
     required this.startDate,
     required this.endDate,
@@ -17,6 +18,7 @@ final class RequestProjectModel extends Equatable {
   final String projectTopic;
   final String projectDescription;
   final String publisher;
+  final String phone;
   final DateTime startDate;
   final DateTime endDate;
   final File imageFile;
@@ -30,5 +32,6 @@ final class RequestProjectModel extends Equatable {
         startDate,
         endDate,
         imageFile,
+        phone,
       ];
 }

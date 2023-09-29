@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +16,7 @@ mixin RequestProjectMixin
   final TextEditingController topicController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController publisherController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController startDateController = TextEditingController();
   final TextEditingController endDateController = TextEditingController();
 
@@ -34,6 +33,7 @@ mixin RequestProjectMixin
       topicController.text.isNotEmpty ||
       descriptionController.text.isNotEmpty ||
       publisherController.text.isNotEmpty ||
+      phoneController.text.isNotEmpty ||
       startDateController.text.isNotEmpty ||
       endDateController.text.isNotEmpty ||
       _imageFile != null;
@@ -97,6 +97,7 @@ mixin RequestProjectMixin
       projectTopic: topicController.text,
       projectDescription: descriptionController.text,
       publisher: publisherController.text,
+      phone: phoneController.text,
       startDate: startDateNotifier.value!,
       endDate: endDate!,
       imageFile: _imageFile!,
@@ -112,6 +113,7 @@ mixin RequestProjectMixin
     topicController.clear();
     startDateController.clear();
     endDateController.clear();
+    phoneController.clear();
     _imageFile = null;
     _isFirstValidationCheck = false;
     _isEndDateLessThanStartDate = false;
@@ -151,6 +153,7 @@ mixin RequestProjectMixin
     publisherController.dispose();
     startDateController.dispose();
     endDateController.dispose();
+    phoneController.dispose();
     formKey.currentState?.dispose();
   }
 }

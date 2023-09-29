@@ -76,6 +76,7 @@
     "campaignDetailsView": {
         "publisher": "Yayımcı (Kişi veya Kurum Adı)",
         "topic": "Proje Konusu",
+        "phone": "Telefon Numarası",
         "description": "Proje Açıklaması",
         "startDate": "Başlangıç Tarihi",
         "endDate": "Bitiş Tarihi",
