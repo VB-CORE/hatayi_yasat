@@ -38,7 +38,6 @@ class RequestProjectViewModel extends StateNotifier<RequestProjectState> {
       publisher: requestProjectModel.publisher,
       phone: requestProjectModel.phone,
       startDate: requestProjectModel.startDate,
-      endDate: requestProjectModel.endDate,
       coverPhoto: uploadImage,
       isApproved: false,
     );

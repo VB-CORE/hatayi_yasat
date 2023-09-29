@@ -78,8 +78,7 @@
         "topic": "Proje Konusu",
         "phone": "Telefon Numarası",
         "description": "Proje Açıklaması",
-        "startDate": "Başlangıç Tarihi",
-        "endDate": "Bitiş Tarihi",
+        "startDate": "Başlangıç Tarihi ve Saati",
         "photo": "Fotoğraflar"
     },
     "forceUpdate": {
@@ -110,7 +109,7 @@
         "topic": "Proje Konusu",
         "description": "Proje Açıklaması",
         "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-        "startDate": "Başlangıç Tarihi",
+        "startDate": "Başlangıç Tarihi ve Saati",
         "endDate": "Bitiş Tarihi"
     },
     "dialog": {

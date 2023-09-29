@@ -95,7 +95,6 @@ abstract class  LocaleKeys {
   static const projectRequest_description = 'projectRequest.description';
   static const projectRequest_publisher = 'projectRequest.publisher';
   static const projectRequest_startDate = 'projectRequest.startDate';
-  static const projectRequest_endDate = 'projectRequest.endDate';
   static const projectRequest = 'projectRequest';
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';

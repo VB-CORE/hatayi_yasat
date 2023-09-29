@@ -91,27 +91,26 @@ class _SliverDetail extends StatelessWidget {
           title: const Text(LocaleKeys.campaignDetailsView_description).tr(),
           subtitle: Text(model.description ?? ''),
         ),
-        const Divider(),
-        ListTile(
-          title: const Text(LocaleKeys.campaignDetailsView_phone).tr(),
-          subtitle: Text(model.phone ?? ''),
-          onTap: () => RedirectionMixin.openToPhone(
-            context: context,
-            phoneNumber: model.phone ?? '',
+        if (model.phone.ext.isNotNullOrNoEmpty)
+          Column(
+            children: [
+              const Divider(),
+              ListTile(
+                trailing: const Icon(Icons.call_outlined),
+                title: const Text(LocaleKeys.campaignDetailsView_phone).tr(),
+                subtitle: Text(model.phone!),
+                onTap: () => RedirectionMixin.openToPhone(
+                  context: context,
+                  phoneNumber: model.phone!,
+                ),
+              ),
+            ],
           ),
-        ),
         const Divider(),
         ListTile(
           title: const Text(LocaleKeys.campaignDetailsView_startDate).tr(),
           subtitle: Text(
             DateTimeFormatter.formatValueTr(model.startDate ?? DateTime.now()),
-          ),
-        ),
-        const Divider(),
-        ListTile(
-          title: const Text(LocaleKeys.campaignDetailsView_endDate).tr(),
-          subtitle: Text(
-            DateTimeFormatter.formatValueTr(model.endDate ?? DateTime.now()),
           ),
         ),
         const Divider(),

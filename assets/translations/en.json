@@ -78,7 +78,7 @@
         "topic": "Project Topic",
         "description": "Project Description",
         "phone": "Phone Number",
-        "startDate": "Start Date",
+        "startDate": "Start Date and Time",
         "endDate": "End Date",
         "photo": "Photos"
     },
@@ -110,8 +110,7 @@
         "topic": "Project Topic",
         "description": "Project Description",
         "publisher": "Publisher (Person or Institution Name)",
-        "startDate": "Start Date",
-        "endDate": "End Date"
+        "startDate": "Start Date and Time"
     },
     "dialog": {
         "phoneTitle": "Would you like to call by phone?",

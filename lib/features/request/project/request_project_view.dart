@@ -84,39 +84,23 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                 PhoneTextFormField(
                   controller: phoneController,
                 ),
-                ValueListenableBuilder<DateTime?>(
-                  valueListenable: startDateNotifier,
-                  builder:
-                      (BuildContext context, DateTime? value, Widget? child) {
-                    return Padding(
-                      padding: const PagePadding.onlyTop(),
-                      child: Column(
-                        children: [
-                          DateTimeTextFormField(
-                            controller: startDateController,
-                            startDate: value,
-                            labelText: LocaleKeys.projectRequest_startDate,
-                            validator: TextFieldValidatorIsNullEmpty(),
-                            onDateSelected: (value) {
-                              updateSelectedDate(isStart: true, value: value);
-                            },
-                          ),
-                          DateTimeTextFormField(
-                            controller: endDateController,
-                            startDate: value,
-                            labelText: LocaleKeys.projectRequest_endDate,
-                            validator: TextFieldValidatorIsNullEmpty(),
-                            onDateSelected: (value) {
-                              updateSelectedDate(isStart: false, value: value);
-                            },
-                          ).ext.toDisabled(
-                                disable: value == null,
-                                opacity: 0.3,
-                              ),
-                        ],
-                      ),
-                    );
-                  },
+                Padding(
+                  padding: const PagePadding.onlyTop(),
+                  child: ValueListenableBuilder<DateTime?>(
+                    valueListenable: startDateNotifier,
+                    builder:
+                        (BuildContext context, DateTime? value, Widget? child) {
+                      return DateTimeTextFormField(
+                        controller: startDateController,
+                        startDate: value,
+                        labelText: LocaleKeys.projectRequest_startDate,
+                        validator: TextFieldValidatorIsNullEmpty(),
+                        onDateSelected: (value) {
+                          updateSelectedDateTime(value: value);
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

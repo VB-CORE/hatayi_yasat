@@ -11,8 +11,8 @@ final class DateTimeFormatter {
   }
 
   static String formatValueDetail(DateTime value) {
-    // 31 May 2013 to date format dd MMM yyyy
-    final formattedValue = DateFormat('dd MMM yyyy').format(value);
+    // 31 May 2013 06:00 to date format dd MMM yyyy
+    final formattedValue = DateFormat('dd MMM yyyy HH:mm').format(value);
     return formattedValue;
   }
 
@@ -20,7 +20,7 @@ final class DateTimeFormatter {
   /// includes the day, month (translated to the appropriate language), and year of the DateTime value.
   static String formatValueTr(DateTime value) {
     final month = _Month.getByIndex(value.month).tr();
-    return '${value.day} $month ${value.year}';
+    return '${value.day} $month ${value.year} ${value.hour}:${value.minute}';
   }
 }
 
