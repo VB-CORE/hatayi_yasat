@@ -77,7 +77,7 @@
         "publisher": "Publisher (Person or Institution Name)",
         "topic": "Project Topic",
         "description": "Project Description",
-        "startDate": "Start Date",
+        "startDate": "Start Date and Time",
         "endDate": "End Date",
         "photo": "Photos"
     },
@@ -109,7 +109,7 @@
         "topic": "Project Topic",
         "description": "Project Description",
         "publisher": "Publisher (Person or Institution Name)",
-        "startDate": "Start Date",
+        "startDate": "Start Date and Time",
         "endDate": "End Date"
     },
     "dialog": {

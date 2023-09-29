@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -19,15 +18,12 @@ mixin RequestProjectMixin
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController publisherController = TextEditingController();
   final TextEditingController startDateController = TextEditingController();
-  final TextEditingController endDateController = TextEditingController();
 
   ValueNotifier<DateTime?> startDateNotifier = ValueNotifier(null);
 
-  DateTime? endDate;
   File? _imageFile;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool _isFirstValidationCheck = false;
-  bool _isEndDateLessThanStartDate = false;
 
   bool get isAnyDataEntered =>
       nameController.text.isNotEmpty ||
@@ -35,7 +31,6 @@ mixin RequestProjectMixin
       descriptionController.text.isNotEmpty ||
       publisherController.text.isNotEmpty ||
       startDateController.text.isNotEmpty ||
-      endDateController.text.isNotEmpty ||
       _imageFile != null;
 
   Future<bool> checkBackButton() async {
@@ -62,12 +57,8 @@ mixin RequestProjectMixin
     await context.route.pop(true);
   }
 
-  void updateSelectedDate({required bool isStart, required DateTime value}) {
-    if (isStart) {
-      startDateNotifier.value = value;
-      return;
-    }
-    endDate = value;
+  void updateSelectedDateTime({required DateTime value}) {
+    startDateNotifier.value = value;
   }
 
   bool isCheckValidation() {
@@ -84,21 +75,12 @@ mixin RequestProjectMixin
       return false;
     }
 
-    _isEndDateLessThanStartDateCheck();
-    if (!_isEndDateLessThanStartDate) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.validation_endDateNotLessThanStartDate.tr(),
-      );
-      return false;
-    }
-
     model = RequestProjectModel(
       projectName: nameController.text,
       projectTopic: topicController.text,
       projectDescription: descriptionController.text,
       publisher: publisherController.text,
       startDate: startDateNotifier.value!,
-      endDate: endDate!,
       imageFile: _imageFile!,
     );
 
@@ -111,10 +93,8 @@ mixin RequestProjectMixin
     publisherController.clear();
     topicController.clear();
     startDateController.clear();
-    endDateController.clear();
     _imageFile = null;
     _isFirstValidationCheck = false;
-    _isEndDateLessThanStartDate = false;
   }
 
   void onImageSelected(File value) {
@@ -128,20 +108,6 @@ mixin RequestProjectMixin
     });
   }
 
-  void _isEndDateLessThanStartDateCheck() {
-    if (_isEndDateLessThanStartDate) return;
-
-    final startDateConvert = startDateNotifier.value;
-    final endDateConvert = endDate;
-    if (startDateConvert == null || endDateConvert == null) return;
-
-    if (!_isEndDateLessThanStartDateFunc(startDateConvert, endDateConvert)) {
-      setState(() {
-        _isEndDateLessThanStartDate = true;
-      });
-    }
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -150,15 +116,7 @@ mixin RequestProjectMixin
     descriptionController.dispose();
     publisherController.dispose();
     startDateController.dispose();
-    endDateController.dispose();
+
     formKey.currentState?.dispose();
   }
-}
-
-bool _isEndDateLessThanStartDateFunc(DateTime startDate, DateTime endDate) {
-  final compareResult = startDate.compareTo(endDate);
-  if (compareResult < 0) {
-    return false;
-  }
-  return true;
 }
