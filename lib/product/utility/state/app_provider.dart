@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/model/enum/notification_type.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
@@ -32,6 +33,7 @@ class AppProvider extends StateNotifier<AppProviderState> {
     String message,
     String id,
     BuildContext context,
+    NotificationType type,
   ) {
     scaffoldMessengerKey.currentState
       ?..clearSnackBars()
@@ -40,11 +42,19 @@ class AppProvider extends StateNotifier<AppProviderState> {
           message: message,
           isOpenListen: (value) {
             if (!value) return;
-            MessagingNavigate.instance.detailModelCheckAndNavigate(
-              context: context,
-              id: id,
-              customService: customService,
-            );
+            if (type == NotificationType.campaigns) {
+              MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
+                context: context,
+                id: id,
+                customService: customService,
+              );
+            } else {
+              MessagingNavigate.instance.detailModelCheckAndNavigate(
+                context: context,
+                id: id,
+                customService: customService,
+              );
+            }
           },
         ),
       );

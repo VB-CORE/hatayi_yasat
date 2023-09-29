@@ -40,15 +40,15 @@ final class ApplicationInit {
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    if (!kDebugMode) return;
-    await FirebaseStorage.instance.useStorageEmulator(
-      FirebaseEnv.localPath,
-      FirebaseEnv.storage.port,
-    );
-    FirebaseFirestore.instance.useFirestoreEmulator(
-      FirebaseEnv.localPath,
-      FirebaseEnv.firestore.port,
-    );
+    // if (!kDebugMode) return;
+    // await FirebaseStorage.instance.useStorageEmulator(
+    //   FirebaseEnv.localPath,
+    //   FirebaseEnv.storage.port,
+    // );
+    // FirebaseFirestore.instance.useFirestoreEmulator(
+    //   FirebaseEnv.localPath,
+    //   FirebaseEnv.firestore.port,
+    // );
   }
 
   Future<void> _crashlyticsInitialize() async {
