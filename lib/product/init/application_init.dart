@@ -8,9 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-
 import 'package:vbaseproject/core/init/core_localize.dart';
-
 import 'package:vbaseproject/firebase_options.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/model/enum/firebase_env.dart';
@@ -35,20 +33,20 @@ final class ApplicationInit {
     await remoteConfig.fetchAndActivate();
 
     await SharedCache.instance.init();
-    await _injectTestEnvOnDebug();
+    // await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    // if (!kDebugMode) return;
-    // await FirebaseStorage.instance.useStorageEmulator(
-    //   FirebaseEnv.localPath,
-    //   FirebaseEnv.storage.port,
-    // );
-    // FirebaseFirestore.instance.useFirestoreEmulator(
-    //   FirebaseEnv.localPath,
-    //   FirebaseEnv.firestore.port,
-    // );
+    if (!kDebugMode) return;
+    await FirebaseStorage.instance.useStorageEmulator(
+      FirebaseEnv.localPath,
+      FirebaseEnv.storage.port,
+    );
+    FirebaseFirestore.instance.useFirestoreEmulator(
+      FirebaseEnv.localPath,
+      FirebaseEnv.firestore.port,
+    );
   }
 
   Future<void> _crashlyticsInitialize() async {

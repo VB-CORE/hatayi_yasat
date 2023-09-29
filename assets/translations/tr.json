@@ -77,7 +77,7 @@
         "publisher": "Yayımcı (Kişi veya Kurum Adı)",
         "topic": "Proje Konusu",
         "description": "Proje Açıklaması",
-        "startDate": "Başlangıç Tarihi",
+        "startDate": "Başlangıç Tarihi ve Saati",
         "endDate": "Bitiş Tarihi",
         "photo": "Fotoğraflar"
     },
@@ -109,7 +109,7 @@
         "topic": "Proje Konusu",
         "description": "Proje Açıklaması",
         "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-        "startDate": "Başlangıç Tarihi",
+        "startDate": "Başlangıç Tarihi ve Saati",
         "endDate": "Bitiş Tarihi"
     },
     "dialog": {

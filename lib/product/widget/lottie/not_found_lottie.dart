@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/size/widget_size.dart';
 
 class NotFoundLottie extends StatelessWidget {
   const NotFoundLottie({
@@ -25,9 +26,11 @@ class NotFoundLottie extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Assets.lottie.notFound.lottie(),
+            const SizedBox(height: WidgetSizes.spacingL),
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               alignment: WrapAlignment.center,
+              direction: Axis.vertical,
               children: [
                 Text(title),
                 TextButton(

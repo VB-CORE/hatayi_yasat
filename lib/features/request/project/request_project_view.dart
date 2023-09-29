@@ -92,21 +92,9 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                           labelText: LocaleKeys.projectRequest_startDate,
                           validator: TextFieldValidatorIsNullEmpty(),
                           onDateSelected: (value) {
-                            updateSelectedDate(isStart: true, value: value);
+                            updateSelectedDateTime(value: value);
                           },
                         ),
-                        DateTimeTextFormField(
-                          controller: endDateController,
-                          startDate: value,
-                          labelText: LocaleKeys.projectRequest_endDate,
-                          validator: TextFieldValidatorIsNullEmpty(),
-                          onDateSelected: (value) {
-                            updateSelectedDate(isStart: false, value: value);
-                          },
-                        ).ext.toDisabled(
-                              disable: value == null,
-                              opacity: 0.3,
-                            ),
                       ],
                     );
                   },
