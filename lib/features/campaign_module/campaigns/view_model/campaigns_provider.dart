@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/model/campaing_empty_model.dart';
-import 'package:vbaseproject/product/utility/extension/date_time_extension.dart';
 
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
@@ -25,13 +24,10 @@ class CampaignsViewModel extends StateNotifier<CampaignsState> {
       path: CollectionPaths.approvedCampaigns,
     );
 
-    final nonExpiredItems = allItems.where((CampaignModel campaign) {
-      return campaign.endDate?.isNotExpired ?? false;
-    }).toList();
-    _productProvider.saveCampaigns(nonExpiredItems);
+    _productProvider.saveCampaigns(allItems);
     state = state.copyWith(
       isServiceRequestSending: false,
-      campaignsItems: nonExpiredItems,
+      campaignsItems: allItems,
     );
   }
 }
