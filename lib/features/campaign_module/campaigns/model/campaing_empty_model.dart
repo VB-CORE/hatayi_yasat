@@ -8,7 +8,6 @@ final class CampaignEmptyModel {
     description: '',
     publisher: '',
     startDate: DateTime.now(),
-    endDate: DateTime.now(),
     photo: '',
     coverPhoto: '',
     isApproved: true,

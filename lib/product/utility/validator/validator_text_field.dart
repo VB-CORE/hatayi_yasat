@@ -5,7 +5,6 @@ abstract class ValidatorField {
   String? validate(String? value);
   String? validateDateTime({
     required DateTime? startDate,
-    required DateTime? endDate,
   }) {
     throw UnimplementedError();
   }
@@ -26,28 +25,6 @@ final class TextFieldValidatorIsNullEmpty extends ValidatorField {
   @override
   String? validate(String? value) {
     if (value == null || value.isEmpty) {
-      return LocaleKeys.validation_requiredField.tr();
-    }
-    return null;
-  }
-}
-
-final class DateTimeValidator extends ValidatorField {
-  @override
-  String? validate(String? value) {
-    if (value == null || value.isEmpty) {
-      return LocaleKeys.validation_requiredField.tr();
-    }
-    return null;
-  }
-
-  @override
-  String? validateDateTime({
-    required DateTime? startDate,
-    required DateTime? endDate,
-  }) {
-    if (startDate == null || endDate == null) return null;
-    if (startDate.isAfter(endDate)) {
       return LocaleKeys.validation_requiredField.tr();
     }
     return null;
