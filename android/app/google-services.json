@@ -1,71 +1,71 @@
 {
-    "project_info": {
-        "project_number": "128619632572",
-        "firebase_url": "https://savehatay-default-rtdb.firebaseio.com",
-        "project_id": "savehatay",
-        "storage_bucket": "savehatay.appspot.com"
-    },
-    "client": [
-        {
-            "client_info": {
-                "mobilesdk_app_id": "1:128619632572:android:deb8dc72bddd03c8c6bdb9",
-                "android_client_info": {
-                    "package_name": "com.hatayiyasat.app"
-                }
-            },
-            "oauth_client": [
-                {
-                    "client_id": "128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com",
-                    "client_type": 1,
-                    "android_info": {
-                        "package_name": "com.hatayiyasat.app",
-                        "certificate_hash": "54bf9497fd1b78e6f095a1679da96b1ea2b3e12c"
-                    }
-                },
-                {
-                    "client_id": "128619632572-ib1u09okt8b87m3ea4ou915bqun0pd6s.apps.googleusercontent.com",
-                    "client_type": 1,
-                    "android_info": {
-                        "package_name": "com.hatayiyasat.app",
-                        "certificate_hash": "43dfb26db64fa21dd354ffeeec4d74c2183337af"
-                    }
-                },
-                {
-                    "client_id": "128619632572-v8ms66fis4tjjoj44l42uul7u95ke1ni.apps.googleusercontent.com",
-                    "client_type": 1,
-                    "android_info": {
-                        "package_name": "com.hatayiyasat.app",
-                        "certificate_hash": "01a9fd9b2213275ab047793efd8904af6af241d3"
-                    }
-                },
-                {
-                    "client_id": "128619632572-i5v2cj6nq1b2n8bg5e6lcv8jc3jclrm9.apps.googleusercontent.com",
-                    "client_type": 3
-                }
-            ],
-            "api_key": [
-                {
-                    "current_key": "AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I"
-                }
-            ],
-            "services": {
-                "appinvite_service": {
-                    "other_platform_oauth_client": [
-                        {
-                            "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
-                            "client_type": 3
-                        },
-                        {
-                            "client_id": "128619632572-8ndb2lfo32hhn9pc06pk58lj0dke5ik1.apps.googleusercontent.com",
-                            "client_type": 2,
-                            "ios_info": {
-                                "bundle_id": "com.sesiniduydum.app"
-                            }
-                        }
-                    ]
-                }
-            }
+  "project_info": {
+    "project_number": "128619632572",
+    "firebase_url": "https://savehatay-default-rtdb.firebaseio.com",
+    "project_id": "savehatay",
+    "storage_bucket": "savehatay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128619632572:android:deb8dc72bddd03c8c6bdb9",
+        "android_client_info": {
+          "package_name": "com.hatayiyasat.app"
         }
-    ],
-    "configuration_version": "1"
+      },
+      "oauth_client": [
+        {
+          "client_id": "128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hatayiyasat.app",
+            "certificate_hash": "54bf9497fd1b78e6f095a1679da96b1ea2b3e12c"
+          }
+        },
+        {
+          "client_id": "128619632572-ib1u09okt8b87m3ea4ou915bqun0pd6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hatayiyasat.app",
+            "certificate_hash": "43dfb26db64fa21dd354ffeeec4d74c2183337af"
+          }
+        },
+        {
+          "client_id": "128619632572-v8ms66fis4tjjoj44l42uul7u95ke1ni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hatayiyasat.app",
+            "certificate_hash": "01a9fd9b2213275ab047793efd8904af6af241d3"
+          }
+        },
+        {
+          "client_id": "128619632572-i5v2cj6nq1b2n8bg5e6lcv8jc3jclrm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUOAiKOMpuNxnpysbMoN9gx85LSRNc--I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128619632572-f9i88pce4058b4pk3aju0umi1vb045so.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128619632572-8ndb2lfo32hhn9pc06pk58lj0dke5ik1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sesiniduydum.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }

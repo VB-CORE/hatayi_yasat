@@ -2,7 +2,7 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_classes_with_only_static_members
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show TargetPlatform, defaultTargetPlatform, kIsWeb;
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -65,10 +65,8 @@ class DefaultFirebaseOptions {
     projectId: 'savehatay',
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
     storageBucket: 'savehatay.appspot.com',
-    androidClientId:
-        '128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com',
-    iosClientId:
-        '128619632572-rc594ocdb393i2000je814298sqr623d.apps.googleusercontent.com',
+    androidClientId: '128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com',
+    iosClientId: '128619632572-rc594ocdb393i2000je814298sqr623d.apps.googleusercontent.com',
     iosBundleId: 'com.hatayiyasat.app',
   );
 }

@@ -35,6 +35,8 @@ final class ApplicationInit {
     await SharedCache.instance.init();
     await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
+    await FirebaseCrashlytics.instance
+        .setCrashlyticsCollectionEnabled(kDebugMode);
   }
 
   Future<void> _injectTestEnvOnDebug() async {
