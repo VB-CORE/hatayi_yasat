@@ -5,27 +5,24 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000207">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000201">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: google_play_track_version_codes" time="1.621389">
+      <testcase classname="fastlane.lanes" name="1: google_play_track_version_codes" time="2.112306">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: flutter packages get" time="1.331833">
+      <testcase classname="fastlane.lanes" name="2: flutter packages get" time="1.540617">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: flutter build appbundle --build-name=1.1.0 --build-number=9" time="5.282755">
+      <testcase classname="fastlane.lanes" name="3: flutter build appbundle --build-name=2.0.0 --build-number=12" time="481.188503">
         
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: upload_to_play_store" time="61.600387">
+          <failure message="/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/fast_file.rb:222:in `sh&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/fast_file.rb:216:in `sh&apos;&#10;Fastfile:27:in `block in flutter_build_appBundle&apos;&#10;Fastfile:25:in `chdir&apos;&#10;Fastfile:25:in `flutter_build_appBundle&apos;&#10;Fastfile:12:in `block (2 levels) in parsing_binding&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/lane.rb:33:in `call&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/runner.rb:45:in `chdir&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/runner.rb:45:in `execute&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/commands_generator.rb:110:in `block (2 levels) in run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/commander-4.6.0/lib/commander/command.rb:187:in `call&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/commander-4.6.0/lib/commander/command.rb:157:in `run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/commands_generator.rb:354:in `run&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/commands_generator.rb:43:in `start&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in `take_off&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/gems/fastlane-2.213.0/bin/fastlane:23:in `&lt;top (required)&gt;&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/bin/fastlane:25:in `load&apos;&#10;/opt/homebrew/Cellar/fastlane/2.213.0/libexec/bin/fastlane:25:in `&lt;main&gt;&apos;&#10;&#10;Exit status of command &apos;flutter build appbundle --build-name=2.0.0 --build-number=12&apos; was 1 instead of 0.&#10;&#10;Running Gradle task &apos;bundleRelease&apos;...                          &#10;Font asset &quot;MaterialIcons-Regular.otf&quot; was tree-shaken, reducing it from 1645184 to 5828 bytes (99.6% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.&#10;Font asset &quot;fa-solid-900.ttf&quot; was tree-shaken, reducing it from 394628 to 1216 bytes (99.7% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.&#10;Font asset &quot;fa-brands-400.ttf&quot; was tree-shaken, reducing it from 187208 to 1736 bytes (99.1% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.&#10;Note: /Users/vb/.pub-cache/hosted/pub.dev/cloud_firestore-4.9.2/android/src/main/java/io/flutter/plugins/firebase/firestore/FlutterFirebaseFirestoreMessageCodec.java uses unchecked or unsafe operations.&#10;Note: Recompile with -Xlint:unchecked for details.&#10;Note: Some input files use or override a deprecated API.&#10;Note: Recompile with -Xlint:deprecation for details.&#10;Note: /Users/vb/.pub-cache/hosted/pub.dev/firebase_messaging-14.6.7/android/src/main/java/io/flutter/plugins/firebase/messaging/FlutterFirebaseMessagingPlugin.java uses unchecked or unsafe operations.&#10;Note: Recompile with -Xlint:unchecked for details.&#10;Note: Some input files use or override a deprecated API.&#10;Note: Recompile with -Xlint:deprecation for details.&#10;&#10;FAILURE: Build failed with an exception.&#10;&#10;* What went wrong:&#10;Execution failed for task &apos;:app:signReleaseBundle&apos;.&#10;&gt; A failure occurred while executing com.android.build.gradle.internal.tasks.FinalizeBundleTask$BundleToolRunnable&#10;   &gt; java.lang.NullPointerException (no error message)&#10;&#10;* Try:&#10;&gt; Run with --stacktrace option to get the stack trace.&#10;&gt; Run with --info or --debug option to get more log output.&#10;&gt; Run with --scan to get full insights.&#10;&#10;* Get more help at https://help.gradle.org&#10;&#10;BUILD FAILED in 7m 57s&#10;Running Gradle task &apos;bundleRelease&apos;...                            478.3s&#10;Gradle task bundleRelease failed with exit code 1&#10;" />
         
       </testcase>
     

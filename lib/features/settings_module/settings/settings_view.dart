@@ -46,12 +46,6 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             ListTile(
-              title: Text(LocaleKeys.specialAgency_title.tr()),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () =>
-                  context.route.navigateToPage(const SpecialAgencyView()),
-            ),
-            ListTile(
               title: Text(LocaleKeys.developers_title.tr()),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => context.route.navigateToPage(const DevelopersView()),

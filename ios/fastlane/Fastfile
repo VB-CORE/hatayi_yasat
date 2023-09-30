@@ -1,6 +1,6 @@
 default_platform(:ios)
 
-VERSION_NUMBER = "1.1.0"
+VERSION_NUMBER = "2.0.0"
 
 platform :ios do
   before_all do

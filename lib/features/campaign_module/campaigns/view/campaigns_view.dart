@@ -11,6 +11,7 @@ import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
 import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/widget/card/campaign_place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
@@ -32,16 +33,14 @@ class _CampaignsViewState extends ConsumerState<CampaignsView>
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async => fetchNewItemsWithRefresh(),
-        child: Scrollbar(
-          child: CustomScrollView(
-            slivers: [
-              _PageBody(
-                onRefresh: () async => fetchNewItemsWithRefresh(),
-                items: items,
-                isRequestSending: isRequestSending,
-              ),
-            ],
-          ),
+        child: CustomScrollView(
+          slivers: [
+            _PageBody(
+              onRefresh: () async => fetchNewItemsWithRefresh(),
+              items: items,
+              isRequestSending: isRequestSending,
+            ),
+          ],
         ),
       ),
     );
@@ -84,6 +83,11 @@ class _PageBody extends ConsumerWidget {
         ),
         _GridBuilder(
           items: items,
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: WidgetSizes.spacingXxl12,
+          ),
         ),
       ],
     );
