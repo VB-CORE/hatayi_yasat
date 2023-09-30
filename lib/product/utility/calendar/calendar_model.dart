@@ -6,8 +6,7 @@ final class CalendarModel {
   const CalendarModel({
     required this.title,
     required this.description,
-    required this.startDate,
-    required this.endDate,
+    required this.expireDate,
   });
   factory CalendarModel.fromCampaignModel({
     required CampaignModel campaignModel,
@@ -15,13 +14,11 @@ final class CalendarModel {
     return CalendarModel(
       title: campaignModel.name ?? '',
       description: campaignModel.description ?? '',
-      startDate: campaignModel.startDate ?? DateTime.now(),
-      endDate: campaignModel.endDate ?? DateTime.now(),
+      expireDate: campaignModel.expireDate ?? DateTime.now(),
     );
   }
 
   final String title;
   final String description;
-  final DateTime startDate;
-  final DateTime endDate;
+  final DateTime expireDate;
 }

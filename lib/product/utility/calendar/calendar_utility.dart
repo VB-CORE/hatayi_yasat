@@ -11,8 +11,8 @@ final class CalendarUtility {
       allDay: true,
       title: model.title,
       description: model.description,
-      startDate: model.startDate,
-      endDate: model.endDate,
+      startDate: DateTime.now(),
+      endDate: model.expireDate,
     );
     Add2Calendar.addEvent2Cal(event);
   }

@@ -67,7 +67,7 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_phone = 'campaignDetailsView.phone';
-  static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
+  static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
@@ -92,7 +92,7 @@ abstract class  LocaleKeys {
   static const projectRequest_topic = 'projectRequest.topic';
   static const projectRequest_description = 'projectRequest.description';
   static const projectRequest_publisher = 'projectRequest.publisher';
-  static const projectRequest_startDate = 'projectRequest.startDate';
+  static const projectRequest_expireDate = 'projectRequest.expireDate';
   static const projectRequest = 'projectRequest';
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
