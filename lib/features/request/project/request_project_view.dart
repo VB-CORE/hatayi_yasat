@@ -13,6 +13,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/text_field/datetime_text_form_field.dart';
+import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 
 final StateNotifierProvider<RequestProjectViewModel, RequestProjectState>
@@ -80,24 +81,26 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                   labelText: LocaleKeys.projectRequest_publisher,
                   validator: ValidatorNormalTextField(),
                 ),
-                ValueListenableBuilder<DateTime?>(
-                  valueListenable: startDateNotifier,
-                  builder:
-                      (BuildContext context, DateTime? value, Widget? child) {
-                    return Column(
-                      children: [
-                        DateTimeTextFormField(
-                          controller: startDateController,
-                          startDate: value,
-                          labelText: LocaleKeys.projectRequest_startDate,
-                          validator: TextFieldValidatorIsNullEmpty(),
-                          onDateSelected: (value) {
-                            updateSelectedDateTime(value: value);
-                          },
-                        ),
-                      ],
-                    );
-                  },
+                PhoneTextFormField(
+                  controller: phoneController,
+                ),
+                Padding(
+                  padding: const PagePadding.onlyTop(),
+                  child: ValueListenableBuilder<DateTime?>(
+                    valueListenable: startDateNotifier,
+                    builder:
+                        (BuildContext context, DateTime? value, Widget? child) {
+                      return DateTimeTextFormField(
+                        controller: startDateController,
+                        startDate: value,
+                        labelText: LocaleKeys.projectRequest_startDate,
+                        validator: TextFieldValidatorIsNullEmpty(),
+                        onDateSelected: (value) {
+                          updateSelectedDateTime(value: value);
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

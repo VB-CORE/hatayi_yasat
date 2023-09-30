@@ -16,7 +16,6 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "endDateNotLessThanStartDate": "The end date cannot be less than the start date.",
         "categoryEmpty": "Please choose a category"
     },
     "button": {
@@ -77,8 +76,8 @@
         "publisher": "Publisher (Person or Institution Name)",
         "topic": "Project Topic",
         "description": "Project Description",
+        "phone": "Phone Number",
         "startDate": "Start Date and Time",
-        "endDate": "End Date",
         "photo": "Photos"
     },
     "forceUpdate": {
@@ -109,8 +108,7 @@
         "topic": "Project Topic",
         "description": "Project Description",
         "publisher": "Publisher (Person or Institution Name)",
-        "startDate": "Start Date and Time",
-        "endDate": "End Date"
+        "startDate": "Start Date and Time"
     },
     "dialog": {
         "phoneTitle": "Would you like to call by phone?",

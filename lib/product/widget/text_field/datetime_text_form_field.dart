@@ -20,7 +20,6 @@ final class DateTimeTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final ValidatorField validator;
   final DateTime? startDate;
-
   final ValueChanged<DateTime> onDateSelected;
 
   @override
