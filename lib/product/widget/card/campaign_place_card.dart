@@ -1,11 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/core/init/core_localize.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/items/colors_custom.dart';
+import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class CampaignPlaceCard extends ConsumerWidget {
   const CampaignPlaceCard({
@@ -82,6 +85,15 @@ class _Body extends StatelessWidget {
   }
 }
 
+extension _PublisherExtension on List<Widget> {
+  List<Widget> toLocalize(BuildContext context) {
+    if (EasyLocalization.of(context)?.locale == AppLocale.tr.locale) {
+      return this;
+    }
+    return reversed.toList();
+  }
+}
+
 class _Publisher extends StatelessWidget {
   const _Publisher({
     required this.publisher,
@@ -92,6 +104,7 @@ class _Publisher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      direction: Axis.vertical,
       children: [
         Text(
           publisher,
@@ -105,12 +118,12 @@ class _Publisher extends StatelessWidget {
           ),
         ),
         Text(
-          'tarafindan yayinladi.',
+          LocaleKeys.campaignDetailsView_publishedBy.tr(),
           style: context.general.textTheme.titleSmall?.copyWith(
             color: context.general.colorScheme.onSecondary,
           ),
         ),
-      ],
+      ].toLocalize(context),
     );
   }
 }

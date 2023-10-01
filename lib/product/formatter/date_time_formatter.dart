@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/extension/date_time_extension.dart';
 
 @immutable
 final class DateTimeFormatter {
@@ -20,7 +21,7 @@ final class DateTimeFormatter {
   /// includes the day, month (translated to the appropriate language), and year of the DateTime value.
   static String formatValueTr(DateTime value) {
     final month = _Month.getByIndex(value.month).tr();
-    return '${value.day} $month ${value.year} ${value.hour}:${value.minute}';
+    return '${value.day} $month ${value.year} ${value.hour.beauty}:${value.minute.beauty}';
   }
 }
 
