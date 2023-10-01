@@ -9,8 +9,6 @@ import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
-import 'package:vbaseproject/product/formatter/date_time_formatter.dart';
-
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
   @override

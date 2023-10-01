@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/request/project/mixin/request_project_mixin.dart';
 import 'package:vbaseproject/features/request/project/request_project_state.dart';
 import 'package:vbaseproject/features/request/project/viewmodel/request_project_view_model.dart';
@@ -12,7 +13,6 @@ import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_pho
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
-import 'package:vbaseproject/product/widget/text_field/datetime_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 
@@ -86,19 +86,13 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                 ),
                 Padding(
                   padding: const PagePadding.onlyTop(),
-                  child: ValueListenableBuilder<DateTime?>(
-                    valueListenable: expireDateNotifier,
-                    builder:
-                        (BuildContext context, DateTime? value, Widget? child) {
-                      return DateTimeTextFormField(
-                        controller: startDateController,
-                        startDate: value,
-                        labelText: LocaleKeys.projectRequest_expireDate,
-                        validator: TextFieldValidatorIsNullEmpty(),
-                        onDateSelected: (value) {
-                          updateSelectedDateTime(value: value);
-                        },
-                      );
+                  child: DateTimeTextFormField(
+                    controller: expireDateController,
+                    labelText: LocaleKeys.projectRequest_expireDate.tr(),
+                    validator: (text) =>
+                        TextFieldValidatorIsNullEmpty().validate(text),
+                    onDateSelected: (value) {
+                      updateSelectedDateTime(value: value);
                     },
                   ),
                 ),
