@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/regex_types.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 
@@ -28,8 +26,12 @@ mixin RedirectionMixin {
       title: LocaleKeys.dialog_phoneTitle,
     );
     if (response == null || !response) return;
-    final cleanPhoneNumber =
+    var cleanPhoneNumber =
         phoneNumber.replaceAll(RegexTypes.phoneNumberRegex, '');
+
+    if (!cleanPhoneNumber.startsWith('0')) {
+      cleanPhoneNumber = '0$cleanPhoneNumber';
+    }
 
     await cleanPhoneNumber.ext.launchPhone;
   }

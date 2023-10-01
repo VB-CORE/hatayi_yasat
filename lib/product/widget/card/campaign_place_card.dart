@@ -85,15 +85,6 @@ class _Body extends StatelessWidget {
   }
 }
 
-extension _PublisherExtension on List<Widget> {
-  List<Widget> toLocalize(BuildContext context) {
-    if (EasyLocalization.of(context)?.locale == AppLocale.tr.locale) {
-      return this;
-    }
-    return reversed.toList();
-  }
-}
-
 class _Publisher extends StatelessWidget {
   const _Publisher({
     required this.publisher,
@@ -103,27 +94,11 @@ class _Publisher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
-      children: [
-        Text(
-          publisher,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onSecondary,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-            decorationColor: context.general.colorScheme.onSecondary,
-          ),
-        ),
-        Text(
-          LocaleKeys.campaignDetailsView_publishedBy.tr(),
-          style: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onSecondary,
-          ),
-        ),
-      ].toLocalize(context),
+    return Text(
+      LocaleKeys.campaignDetailsView_publishedBy.tr(args: [publisher]),
+      style: context.general.textTheme.titleSmall?.copyWith(
+        color: context.general.colorScheme.onSecondary,
+      ),
     );
   }
 }

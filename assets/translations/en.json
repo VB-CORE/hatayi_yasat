@@ -79,7 +79,7 @@
         "phone": "Phone Number",
         "expireDate": "Start Date and Time",
         "photo": "Photos",
-        "publishedBy": "published by"
+        "publishedBy": "published by {}"
     },
     "forceUpdate": {
         "title": "An Update is Available",
