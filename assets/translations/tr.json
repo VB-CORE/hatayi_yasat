@@ -78,7 +78,8 @@
         "phone": "Telefon Numarası",
         "description": "Proje Açıklaması",
         "expireDate": "Başlangıç Tarihi ve Saati",
-        "photo": "Fotoğraflar"
+        "photo": "Fotoğraflar",
+        "publishedBy": "tarafından yayınlandı"
     },
     "forceUpdate": {
         "title": "Bir Güncelleme Var",

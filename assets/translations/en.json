@@ -78,7 +78,8 @@
         "description": "Project Description",
         "phone": "Phone Number",
         "expireDate": "Start Date and Time",
-        "photo": "Photos"
+        "photo": "Photos",
+        "publishedBy": "published by"
     },
     "forceUpdate": {
         "title": "An Update is Available",
