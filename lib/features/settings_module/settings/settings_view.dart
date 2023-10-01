@@ -45,12 +45,13 @@ class _SettingsViewState extends State<SettingsView> {
                 style: context.general.textTheme.titleSmall,
               ),
             ),
+            const NotificationPermissionView(),
+            const Divider(),
             ListTile(
               title: Text(LocaleKeys.developers_title.tr()),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => context.route.navigateToPage(const DevelopersView()),
             ),
-            const NotificationPermissionView(),
             const Spacer(),
             const Padding(
               padding: PagePadding.onlyBottomMedium(),
