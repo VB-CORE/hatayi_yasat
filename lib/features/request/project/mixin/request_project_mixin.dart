@@ -19,7 +19,7 @@ mixin RequestProjectMixin
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController startDateController = TextEditingController();
 
-  ValueNotifier<DateTime?> startDateNotifier = ValueNotifier(null);
+  ValueNotifier<DateTime?> expireDateNotifier = ValueNotifier(null);
 
   File? _imageFile;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -59,7 +59,7 @@ mixin RequestProjectMixin
   }
 
   void updateSelectedDateTime({required DateTime value}) {
-    startDateNotifier.value = value;
+    expireDateNotifier.value = value;
   }
 
   bool isCheckValidation() {
@@ -82,7 +82,7 @@ mixin RequestProjectMixin
       projectDescription: descriptionController.text,
       publisher: publisherController.text,
       phone: phoneController.text,
-      startDate: startDateNotifier.value!,
+      expireDate: expireDateNotifier.value!,
       imageFile: _imageFile!,
     );
 

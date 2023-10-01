@@ -108,9 +108,9 @@ class _SliverDetail extends StatelessWidget {
           ),
         const Divider(),
         ListTile(
-          title: const Text(LocaleKeys.campaignDetailsView_startDate).tr(),
+          title: const Text(LocaleKeys.campaignDetailsView_expireDate).tr(),
           subtitle: Text(
-            DateTimeFormatter.formatValueTr(model.startDate ?? DateTime.now()),
+            DateTimeFormatter.formatValueTr(model.expireDate ?? DateTime.now()),
           ),
         ),
         const Divider(),

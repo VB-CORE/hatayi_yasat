@@ -87,13 +87,13 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
                 Padding(
                   padding: const PagePadding.onlyTop(),
                   child: ValueListenableBuilder<DateTime?>(
-                    valueListenable: startDateNotifier,
+                    valueListenable: expireDateNotifier,
                     builder:
                         (BuildContext context, DateTime? value, Widget? child) {
                       return DateTimeTextFormField(
                         controller: startDateController,
                         startDate: value,
-                        labelText: LocaleKeys.projectRequest_startDate,
+                        labelText: LocaleKeys.projectRequest_expireDate,
                         validator: TextFieldValidatorIsNullEmpty(),
                         onDateSelected: (value) {
                           updateSelectedDateTime(value: value);

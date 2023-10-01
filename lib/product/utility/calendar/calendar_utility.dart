@@ -8,11 +8,11 @@ final class CalendarUtility {
 
   static void saveCalendar({required CalendarModel model}) {
     final event = Event(
-      allDay: true,
       title: model.title,
       description: model.description,
-      startDate: model.startDate,
-      endDate: model.endDate,
+      startDate: model.expireDate,
+      endDate: model.expireDate,
+      iosParams: const IOSParams(reminder: Duration(minutes: 30)),
     );
     Add2Calendar.addEvent2Cal(event);
   }
