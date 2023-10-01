@@ -52,7 +52,6 @@ final class ApplicationInit {
   }
 
   Future<void> _crashlyticsInitialize() async {
-    if (kDebugMode) return;
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
     };

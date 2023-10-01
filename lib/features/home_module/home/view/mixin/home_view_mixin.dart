@@ -16,6 +16,7 @@ mixin HomeViewMixin
 
   void init(HomeViewModel viewModel) {
     MessagingUtility.init();
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.fetchAllItemsAndSave();
     });
