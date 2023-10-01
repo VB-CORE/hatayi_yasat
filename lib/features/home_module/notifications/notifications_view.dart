@@ -1,18 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notification_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/notification_type.dart';
-import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/icon_size.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
+
+import 'package:vbaseproject/product/formatter/date_time_formatter.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -37,36 +34,40 @@ class _NotificationsViewState extends State<NotificationsView>
           title: LocaleKeys.notFound_notification.tr(),
           onRefresh: () {},
         ),
+
         loadingBuilder: (context) => const PlaceShimmerList(),
         itemBuilder: (context, doc) {
           final model = doc.data();
-          if (model == null) return const SizedBox.shrink();
-          return ListTile(
-            onTap: () async {
-              if (loadingNotifier.value) return;
-              showLoading();
-              if (model.type == AppNotificationType.campaign) {
-                await MessagingNavigate.instance
-                    .detailModelCampaignCheckAndNavigate(
-                  context: context,
-                  id: model.id,
-                  customService: customService,
-                );
-              } else {
-                await MessagingNavigate.instance.detailModelCheckAndNavigate(
-                  context: context,
-                  id: model.id,
-                  customService: customService,
-                );
-              }
+          if (model == null || model.id.isEmpty) return const SizedBox.shrink();
 
-              hideLoading();
-            },
-            leading: _NotificationTypeLeadingIcon(model: model),
-            title: Text(model.title ?? ''),
-            dense: true,
-            subtitle: Text(model.body ?? ''),
-            trailing: const Icon(Icons.chevron_right_outlined),
+          return Column(
+            children: [
+              ListTile(
+                contentPadding: const PagePadding.defaultPadding(),
+                dense: true,
+                leading: _NotificationTypeLeadingIcon(model: model),
+                onTap: () {
+                  navigateToDetail(model);
+                },
+                title: Text(model.body ?? ''),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (model.createdAt != null)
+                      Padding(
+                        padding: const PagePadding.onlyTopLow(),
+                        child: Text(
+                          DateTimeFormatter.formatValueDetail(
+                            model.createdAt!,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                trailing: const Icon(Icons.chevron_right_outlined),
+              ),
+              const Divider(),
+            ],
           );
         },
         // ...
