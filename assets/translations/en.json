@@ -25,7 +25,8 @@
         "close": "Close",
         "allFilter": "All",
         "clean": "Clean",
-        "selectedList": "List"
+        "selectedList": "List",
+        "filter:": "Filters"
     },
     "component": {
         "picker": {

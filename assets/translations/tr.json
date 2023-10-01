@@ -25,7 +25,8 @@
         "close": "Kapat",
         "allFilter": "Tümü",
         "clean": "Temizle",
-        "selectedList": "Listele"
+        "selectedList": "Listele",
+        "filter": "Filtrele"
     },
     "component": {
         "picker": {

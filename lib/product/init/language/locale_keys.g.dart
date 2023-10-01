@@ -25,6 +25,7 @@ abstract class  LocaleKeys {
   static const button_allFilter = 'button.allFilter';
   static const button_clean = 'button.clean';
   static const button_selectedList = 'button.selectedList';
+  static const button_filter = 'button.filter';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -65,8 +66,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_phone = 'campaignDetailsView.phone';
+  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';

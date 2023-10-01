@@ -91,6 +91,13 @@ class ProductProviderState extends Equatable {
     ];
   }
 
+  List<TownModel> get townItemsWithAll {
+    return [
+      CategoryExtension.emptyAllTown,
+      ...townItems,
+    ];
+  }
+
   @override
   List<Object> get props => [
         townItems,
