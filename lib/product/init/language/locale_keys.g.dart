@@ -26,11 +26,17 @@ abstract class  LocaleKeys {
   static const button_clean = 'button.clean';
   static const button_selectedList = 'button.selectedList';
   static const button_filter = 'button.filter';
+  static const button_withoutFilter = 'button.withoutFilter';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
   static const component_picker_cropperTitle = 'component.picker.cropperTitle';
   static const component_picker = 'component.picker';
+  static const component_filter_districts = 'component.filter.districts';
+  static const component_filter_districtDescription = 'component.filter.districtDescription';
+  static const component_filter_categories = 'component.filter.categories';
+  static const component_filter_categoryDescription = 'component.filter.categoryDescription';
+  static const component_filter = 'component.filter';
   static const component = 'component';
   static const requestCompany_title = 'requestCompany.title';
   static const requestCompany_name = 'requestCompany.name';

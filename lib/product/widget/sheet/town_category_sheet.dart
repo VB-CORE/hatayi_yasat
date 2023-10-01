@@ -43,14 +43,15 @@ class _TownSelectSheetState extends ConsumerState<TownCategorySelectSheet>
       mainAxisSize: MainAxisSize.min,
       children: [
         const SheetGapDivider(),
+        _FilterSheetHeader(),
         Column(
           children: [
             ListTile(
               dense: true,
-              title: const Text('Sehirler'),
+              title: const Text(LocaleKeys.component_filter_districts).tr(),
               subtitle: const Text(
-                'Buradan ilçeleri seçip filtreleme yapabilirsiniz',
-              ),
+                LocaleKeys.component_filter_districtDescription,
+              ).tr(),
               trailing: SizedBox(
                 width: context.sized.dynamicWidth(0.4),
                 child: TownPopup(
@@ -62,10 +63,10 @@ class _TownSelectSheetState extends ConsumerState<TownCategorySelectSheet>
             const Divider(),
             ListTile(
               dense: true,
-              title: const Text('Kategoriler'),
+              title: const Text(LocaleKeys.component_filter_categories).tr(),
               subtitle: const Text(
-                'Buradan temel kategorileri seçip filtreleme yapabilirsiniz.',
-              ),
+                LocaleKeys.component_filter_categoryDescription,
+              ).tr(),
               trailing: SizedBox(
                 width: context.sized.dynamicWidth(0.4),
                 child: Align(
@@ -121,8 +122,8 @@ class _SelectListButton extends StatelessWidget {
               TextButton(
                 onPressed: value ? onResetWithComplete : null,
                 child: const Text(
-                  'Filtreleme yapmadan devam et',
-                ).withUnderline,
+                  LocaleKeys.button_withoutFilter,
+                ).tr(),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -143,34 +144,19 @@ class _SelectListButton extends StatelessWidget {
 }
 
 class _FilterSheetHeader extends StatelessWidget {
-  const _FilterSheetHeader(this.onPressed);
-  final VoidCallback onPressed;
-
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ElevatedButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-          ),
-          onPressed: onPressed,
-          child: Padding(
-            padding: const PagePadding.horizontalLowSymmetric(),
-            child: const Text(LocaleKeys.button_clean).tr(),
-          ),
-        ),
-        const Spacer(),
-        TextButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.zero,
-          ),
-          onPressed: () {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: const PagePadding.onlyRight(),
+        child: InkWell(
+          onTap: () {
             context.route.pop();
           },
           child: const Icon(Icons.close),
         ),
-      ],
+      ),
     );
   }
 }

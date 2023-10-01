@@ -26,13 +26,20 @@
         "allFilter": "All",
         "clean": "Clean",
         "selectedList": "List",
-        "filter:": "Filters"
+        "filter:": "Filters",
+        "withoutFilter": "Continue without filtering"
     },
     "component": {
         "picker": {
             "camera": "Select from Camera",
             "gallery": "Select from Gallery",
             "cropperTitle": "Edit"
+        },
+        "filter": {
+            "districts": "Districts",
+            "districtDescription": "You can select and filter the districts here",
+            "categories": "categories",
+            "categoryDescription": "You can select and filter categories here"
         }
     },
     "requestCompany": {
