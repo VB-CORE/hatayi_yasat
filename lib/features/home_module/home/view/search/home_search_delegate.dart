@@ -5,18 +5,32 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/extension/category_extension.dart';
+import 'package:vbaseproject/product/utility/popup/category_popup.dart';
+
+part './home_search_operation.dart';
 
 class HomeSearchDelegate extends SearchDelegate<StoreModel> {
   HomeSearchDelegate({required this.items});
-  final int _maxLength = 3;
+  final int _maxLength = 1;
   final List<StoreModel> items;
-  @override
-  List<Widget>? buildActions(BuildContext context) => null;
+  CategoryModel _categoryModel = CategoryExtension.emptyAll;
 
   @override
-  Widget? buildLeading(BuildContext context) {
-    return null;
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      CategoryPopup(
+        onSelected: (value) {
+          _categoryModel = value;
+          showResults(context);
+        },
+      ),
+    ];
   }
+
+  @override
+  Widget? buildLeading(BuildContext context) => null;
 
   @override
   InputDecorationTheme? get searchFieldDecorationTheme =>
@@ -31,18 +45,56 @@ class HomeSearchDelegate extends SearchDelegate<StoreModel> {
       );
     }
 
-    final suggestions = items
-        .where(
-          (element) =>
-              (element.name.toLowerCase().ext.withoutSpecialCharacters ?? '')
-                  .contains(
-                      query.ext.withoutSpecialCharacters?.toLowerCase() ?? ''),
-        )
-        .toList();
+    return _BuildResult(
+      query: query,
+      items: items,
+      initialCategory: _categoryModel,
+      onSelected: (value) {
+        close(context, value);
+      },
+    );
+  }
 
-    if (suggestions.isEmpty) {
-      return const _EmptyResult();
-    }
+  @override
+  Widget buildResults(BuildContext context) {
+    return _buildResultsOrSuggestions(context);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return _buildResultsOrSuggestions(context);
+  }
+}
+
+mixin _ResultItems {
+  List<StoreModel> get items;
+  ValueChanged<StoreModel> get onSelected;
+  CategoryModel get initialCategory;
+  String get query;
+}
+
+class _BuildResult extends StatelessWidget
+    with _ResultItems, _HomeSearchOperation {
+  const _BuildResult({
+    required this.items,
+    required this.onSelected,
+    required this.initialCategory,
+    required this.query,
+  });
+
+  @override
+  final List<StoreModel> items;
+  @override
+  final ValueChanged<StoreModel> onSelected;
+  @override
+  final CategoryModel initialCategory;
+  @override
+  final String query;
+
+  @override
+  Widget build(BuildContext context) {
+    final suggestions = searchByAlgorithm();
+    if (suggestions.isEmpty) return const _EmptyResult();
 
     return ListView.separated(
       itemCount: suggestions.length,
@@ -60,22 +112,12 @@ class HomeSearchDelegate extends SearchDelegate<StoreModel> {
             title: Text(suggestions[index].name),
             trailing: const Icon(Icons.chevron_right_outlined),
             onTap: () {
-              close(context, suggestions[index]);
+              onSelected.call(suggestions[index]);
             },
           ),
         );
       },
     );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return _buildResultsOrSuggestions(context);
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return _buildResultsOrSuggestions(context);
   }
 }
 
