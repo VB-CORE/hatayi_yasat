@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
+import 'package:vbaseproject/product/utility/extension/category_extension.dart';
 
 class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
@@ -43,6 +44,7 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
       model: const CategoryModel.empty(),
       path: CollectionPaths.categories,
     );
+    items.sort((a, b) => a.value > b.value ? 1 : -1);
     state = state.copyWith(categoryItems: items);
   }
 
@@ -81,6 +83,13 @@ class ProductProviderState extends Equatable {
   final List<SpecialAgencyModel> agencyItems;
   final List<CategoryModel> categoryItems;
   final List<CampaignModel> campaignItems;
+
+  List<CategoryModel> get categoryItemsWithAll {
+    return [
+      CategoryExtension.emptyAll,
+      ...categoryItems,
+    ];
+  }
 
   @override
   List<Object> get props => [
