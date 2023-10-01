@@ -81,7 +81,7 @@ final class MessagingNavigate {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
           message:
-              LocaleKeys.notification_business_not_found_error_message.tr(),
+              LocaleKeys.notification_campaign_not_found_error_message.tr(),
         ),
       );
     }

@@ -92,7 +92,8 @@
     "notification": {
         "snackbarButtonText": "Open",
         "defaultMessage": "A business has resumed operations.",
-        "business_not_found_error_message": "Business not found"
+        "business_not_found_error_message": "Business not found",
+        "campaign_not_found_error_message": "Project not found"
     },
     "developers": {
         "title": "Developers",
