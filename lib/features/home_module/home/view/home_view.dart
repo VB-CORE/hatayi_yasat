@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/home/view/mixin/home_notification_mixin.dart';
 import 'package:vbaseproject/features/home_module/home/view/mixin/home_view_mixin.dart';
-import 'package:vbaseproject/features/home_module/home/view_model/home_provider.dart';
+import 'package:vbaseproject/features/home_module/home/view_model/home_state.dart';
+import 'package:vbaseproject/features/home_module/home/view_model/home_view_model.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
@@ -15,8 +15,8 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
+import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
-import 'package:vbaseproject/sub_feature/filter_button/filter_button.dart';
 
 final StateNotifierProvider<HomeViewModel, HomeState> _homeViewModel =
     StateNotifierProvider(
@@ -80,18 +80,25 @@ class _FilterButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isRequestSending = ref.watch(_homeViewModel).isServiceRequestSending;
-
+    final townCategoryModel = ref.watch(_homeViewModel).townCategoryModel;
     if (isRequestSending) return const SizedBox.shrink();
     final isAvailableItem = ref.watch(_homeViewModel).items.isEmpty;
 
-    if (isAvailableItem) return const SizedBox.shrink();
+    if (isAvailableItem && townCategoryModel == null) {
+      return const SizedBox.shrink();
+    }
 
     return Align(
       alignment: Alignment.centerRight,
-      child: FilterButton(
-        onSelected: (value) {
-          ref.read(_homeViewModel.notifier).filter(value);
+      child: TextButton(
+        onPressed: () async {
+          final selectedItem = await TownCategorySelectSheet.show(
+            context,
+            model: townCategoryModel,
+          );
+          ref.read(_homeViewModel.notifier).filter(selectedItem);
         },
+        child: Text(ref.watch(_homeViewModel).filterTitle),
       ),
     );
   }

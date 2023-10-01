@@ -7,7 +7,7 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/extension/category_extension.dart';
-import 'package:vbaseproject/product/utility/popup/category_popup.dart';
+import 'package:vbaseproject/product/widget/popup/category_popup.dart';
 
 part './home_search_operation.dart';
 

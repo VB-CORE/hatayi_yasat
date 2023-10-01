@@ -4,27 +4,27 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
-class CategoryPopup extends ConsumerStatefulWidget {
-  const CategoryPopup({
+class TownPopup extends ConsumerStatefulWidget {
+  const TownPopup({
     required this.onSelected,
     super.key,
     this.initialItem,
   });
 
-  final ValueChanged<CategoryModel> onSelected;
-  final CategoryModel? initialItem;
+  final ValueChanged<TownModel> onSelected;
+  final TownModel? initialItem;
   @override
-  ConsumerState<CategoryPopup> createState() => _CategoryPopupState();
+  ConsumerState<TownPopup> createState() => _CategoryPopupState();
 }
 
-class _CategoryPopupState extends ConsumerState<CategoryPopup> {
-  CategoryModel? _selectedItem;
-  late final List<CategoryModel> items;
+class _CategoryPopupState extends ConsumerState<TownPopup> {
+  TownModel? _selectedItem;
+  late final List<TownModel> items;
 
   @override
   void initState() {
     super.initState();
-    items = ref.read(ProductProvider.provider).categoryItemsWithAll;
+    items = ref.read(ProductProvider.provider).townItemsWithAll;
     _selectedItem = widget.initialItem ?? items.firstOrNull;
   }
 
@@ -32,12 +32,13 @@ class _CategoryPopupState extends ConsumerState<CategoryPopup> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.onlyTop(),
-      child: PopupMenuButton<CategoryModel>(
+      child: PopupMenuButton<TownModel>(
         onSelected: _onChanged,
         initialValue: _selectedItem,
         child: Padding(
           padding: const PagePadding.onlyRightLow(),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const Icon(Icons.filter_alt_outlined),
               if (_selectedItem != null)
@@ -51,7 +52,7 @@ class _CategoryPopupState extends ConsumerState<CategoryPopup> {
         itemBuilder: (context) {
           return items
               .map(
-                (e) => PopupMenuItem<CategoryModel>(
+                (e) => PopupMenuItem<TownModel>(
                   value: e,
                   child: Text(e.displayName),
                 ),
@@ -62,7 +63,7 @@ class _CategoryPopupState extends ConsumerState<CategoryPopup> {
     );
   }
 
-  void _onChanged(CategoryModel? value) {
+  void _onChanged(TownModel? value) {
     if (value == null) return;
     setState(() {
       _selectedItem = value;

@@ -8,4 +8,9 @@ extension CategoryExtension on CategoryModel {
         name: LocaleKeys.button_allFilter.tr(),
         value: kErrorNumber.toInt(),
       );
+
+  static TownModel get emptyAllTown => TownModel(
+        code: -1,
+        name: LocaleKeys.button_allFilter.tr(),
+      );
 }
