@@ -4,18 +4,8 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/extension/date_time_extension.dart';
 
 @immutable
-final class DateTimeFormatter {
-  const DateTimeFormatter._();
-  static String formatValue(DateTime value) {
-    final formattedValue = DateFormat('yyyy-MM-dd').format(value);
-    return formattedValue;
-  }
-
-  static String formatValueDetail(DateTime value) {
-    // 31 May 2013 06:00 to date format dd MMM yyyy
-    final formattedValue = DateFormat('dd MMM yyyy HH:mm').format(value);
-    return formattedValue;
-  }
+final class CustomDateTimeFormatter {
+  const CustomDateTimeFormatter._();
 
   /// The method is returning a formatted string representation of the given DateTime value. The string
   /// includes the day, month (translated to the appropriate language), and year of the DateTime value.

@@ -17,9 +17,9 @@ mixin RequestProjectMixin
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController publisherController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController startDateController = TextEditingController();
+  final TextEditingController expireDateController = TextEditingController();
 
-  ValueNotifier<DateTime?> expireDateNotifier = ValueNotifier(null);
+  DateTime? expireDate;
 
   File? _imageFile;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -31,7 +31,7 @@ mixin RequestProjectMixin
       descriptionController.text.isNotEmpty ||
       publisherController.text.isNotEmpty ||
       phoneController.text.isNotEmpty ||
-      startDateController.text.isNotEmpty ||
+      expireDateController.text.isNotEmpty ||
       _imageFile != null;
 
   Future<bool> checkBackButton() async {
@@ -59,7 +59,7 @@ mixin RequestProjectMixin
   }
 
   void updateSelectedDateTime({required DateTime value}) {
-    expireDateNotifier.value = value;
+    expireDate = value;
   }
 
   bool isCheckValidation() {
@@ -82,7 +82,7 @@ mixin RequestProjectMixin
       projectDescription: descriptionController.text,
       publisher: publisherController.text,
       phone: phoneController.text,
-      expireDate: expireDateNotifier.value!,
+      expireDate: expireDate!,
       imageFile: _imageFile!,
     );
 
@@ -94,7 +94,7 @@ mixin RequestProjectMixin
     descriptionController.clear();
     publisherController.clear();
     topicController.clear();
-    startDateController.clear();
+    expireDateController.clear();
     phoneController.clear();
     _imageFile = null;
     _isFirstValidationCheck = false;
@@ -118,7 +118,7 @@ mixin RequestProjectMixin
     topicController.dispose();
     descriptionController.dispose();
     publisherController.dispose();
-    startDateController.dispose();
+    expireDateController.dispose();
     phoneController.dispose();
     formKey.currentState?.dispose();
   }

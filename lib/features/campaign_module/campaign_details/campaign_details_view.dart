@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaign_details/mixin/campaign_details_mixin.dart';
-import 'package:vbaseproject/product/formatter/date_time_formatter.dart';
+import 'package:vbaseproject/product/formatter/custom_date_time_formatter.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/calendar/calendar_model.dart';
 import 'package:vbaseproject/product/utility/calendar/calendar_utility.dart';
@@ -110,7 +110,9 @@ class _SliverDetail extends StatelessWidget {
         ListTile(
           title: const Text(LocaleKeys.campaignDetailsView_expireDate).tr(),
           subtitle: Text(
-            DateTimeFormatter.formatValueTr(model.expireDate ?? DateTime.now()),
+            CustomDateTimeFormatter.formatValueTr(
+              model.expireDate ?? DateTime.now(),
+            ),
           ),
         ),
         const Divider(),
