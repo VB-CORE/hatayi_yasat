@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum SharedKeys { firstAppOpen }
+enum SharedKeys { firstAppOpen, lastNotificationSeen }
 
 final class SharedCache {
   SharedCache._internal();
@@ -21,5 +21,18 @@ final class SharedCache {
 
   bool isFirstAppOpen() {
     return _preferences.getBool(SharedKeys.firstAppOpen.name) ?? true;
+  }
+
+  Future<void> setLastNotificationSeen() async {
+    await _preferences.setString(
+      SharedKeys.lastNotificationSeen.name,
+      DateTime.now().toIso8601String(),
+    );
+  }
+
+  DateTime getLastNotificationSeen() {
+    final lastNotificationSeen =
+        _preferences.getString(SharedKeys.lastNotificationSeen.name) ?? '';
+    return DateTime.tryParse(lastNotificationSeen) ?? DateTime.now();
   }
 }

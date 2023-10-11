@@ -1,8 +1,10 @@
-class StringConstants {
+final class StringConstants {
+  StringConstants._();
   static const String asteriks = '*';
   static const String phoneHint = '(53X) XX XX';
   static const String twitter = 'Twitter';
   static const String instagram = 'Instagram';
+  static const String createdAt = 'createdAt';
 
   /// Social Media Urls
   static const String twitterUrl = 'https://twitter.com/grafikherif';

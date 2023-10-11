@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
+import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
+import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 
@@ -11,11 +13,21 @@ mixin NotificationMixin
 
   CustomService get customService => _customService;
 
-  CollectionReference<AppNotificationModel?> reference() {
-    return _customService.collectionReference(
-      CollectionPaths.notifications,
-      AppNotificationModel(),
-    );
+  final lastNotificationSeen = SharedCache.instance.getLastNotificationSeen();
+
+  @override
+  void initState() {
+    super.initState();
+    SharedCache.instance.setLastNotificationSeen();
+  }
+
+  Query<AppNotificationModel?> reference() {
+    return _customService
+        .collectionReference(
+          CollectionPaths.notifications,
+          AppNotificationModel(),
+        )
+        .orderBy(StringConstants.createdAt, descending: true);
   }
 
   Future<void> navigateToDetail(AppNotificationModel? model) async {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notification_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/items/colors_custom.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -32,7 +34,6 @@ class _NotificationsViewState extends State<NotificationsView>
           title: LocaleKeys.notFound_notification.tr(),
           onRefresh: () {},
         ),
-
         loadingBuilder: (context) => const PlaceShimmerList(),
         itemBuilder: (context, doc) {
           final model = doc.data();
@@ -41,12 +42,14 @@ class _NotificationsViewState extends State<NotificationsView>
           return Column(
             children: [
               ListTile(
+                tileColor:
+                    model.createdAt?.isAfter(lastNotificationSeen) ?? false
+                        ? ColorsCustom.white
+                        : ColorsCustom.lightGray,
                 contentPadding: const PagePadding.defaultPadding(),
                 dense: true,
                 leading: _NotificationTypeLeadingIcon(model: model),
-                onTap: () {
-                  navigateToDetail(model);
-                },
+                onTap: () => navigateToDetail(model),
                 title: Text(model.body ?? ''),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,12 +67,25 @@ class _NotificationsViewState extends State<NotificationsView>
                 ),
                 trailing: const Icon(Icons.chevron_right_outlined),
               ),
-              const Divider(),
+              const _CustomDivider(),
             ],
           );
         },
         // ...
       ),
+    );
+  }
+}
+
+class _CustomDivider extends StatelessWidget {
+  const _CustomDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      color: ColorsCustom.black,
+      height: AppConstants.kZero.toDouble(),
+      thickness: AppConstants.kZero.toDouble(),
     );
   }
 }
