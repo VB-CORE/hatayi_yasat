@@ -56,6 +56,7 @@ class _HomeViewState extends ConsumerState<HomeView>
         },
         child: Scrollbar(
           child: CustomScrollView(
+            controller: customScrollController,
             slivers: [
               _SearchField(() {
                 searchPressed(ref.read(_homeViewModel));

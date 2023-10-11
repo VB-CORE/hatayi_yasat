@@ -15,6 +15,8 @@ mixin HomeViewMixin
   @override
   bool get wantKeepAlive => true;
 
+  final ScrollController customScrollController = ScrollController();
+
   void init(HomeViewModel viewModel) {
     MessagingUtility.init();
 
