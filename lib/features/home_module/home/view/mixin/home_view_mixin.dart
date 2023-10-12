@@ -15,9 +15,11 @@ mixin HomeViewMixin
   @override
   bool get wantKeepAlive => true;
 
+  late final ScrollController customScrollController;
+
   void init(HomeViewModel viewModel) {
     MessagingUtility.init();
-
+    customScrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.fetchAllItemsAndSave();
     });
