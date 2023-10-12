@@ -153,5 +153,14 @@
         "oct": "Ekim",
         "nov": "Kasım",
         "dec": "Aralık"
+    },
+    "request_scholarship": {
+      "title":"Yeni Burs Talebi",
+      "contact": "İletişim",
+      "story": "Kendinizden Bahsedin",
+      "student_document": "Öğrenci Belgesi",
+      "pdf_hint": "dosya_adı.pdf",
+      "upload": "Yükle",
+      "email": "Email Adresi"
     }
 }

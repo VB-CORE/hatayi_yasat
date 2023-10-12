@@ -133,5 +133,13 @@ abstract class  LocaleKeys {
   static const months_nov = 'months.nov';
   static const months_dec = 'months.dec';
   static const months = 'months';
+  static const request_scholarship_title = 'request_scholarship.title';
+  static const request_scholarship_contact = 'request_scholarship.contact';
+  static const request_scholarship_story = 'request_scholarship.story';
+  static const request_scholarship_student_document = 'request_scholarship.student_document';
+  static const request_scholarship_pdf_hint = 'request_scholarship.pdf_hint';
+  static const request_scholarship_upload = 'request_scholarship.upload';
+  static const request_scholarship_email = 'request_scholarship.email';
+  static const request_scholarship = 'request_scholarship';
 
 }

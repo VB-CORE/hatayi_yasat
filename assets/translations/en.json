@@ -153,5 +153,14 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+    },
+    "request_scholarship": {
+      "title":"New Scholarship Request",
+      "contact": "Contact",
+      "story": "Your Story",
+      "student_document": "Student Document",
+      "pdf_hint": "file_name.pdf",
+      "upload": "Upload",
+      "email": "Email Address"
     }
 }
