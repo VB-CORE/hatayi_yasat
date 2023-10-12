@@ -40,7 +40,7 @@ final class ApplicationInit {
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    if (kDebugMode) return;
+    if (kReleaseMode) return;
     await FirebaseStorage.instance.useStorageEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.storage.port,

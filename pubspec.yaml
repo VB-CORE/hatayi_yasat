@@ -76,6 +76,12 @@ dependency_overrides:
     git:
       url: https://github.com/VB10/kartal
 
+  connectivity_plus:
+    git:
+      url: https://github.com/fluttercommunity/plus_plugins
+      path: packages/connectivity_plus/connectivity_plus
+      ref: cf7d93fbfc76830acf2db755543cf4235a49df60
+
 dev_dependencies:
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.2.0
