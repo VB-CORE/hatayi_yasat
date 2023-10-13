@@ -56,6 +56,10 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(campaignItems: campaignItems);
   }
 
+  void saveNews(List<NewsModel> newsItems) {
+    state = state.copyWith(newsItems: newsItems);
+  }
+
   String fetchTownFromCode(int? code) {
     return state.townItems
             .firstWhereOrNull(
@@ -75,6 +79,7 @@ class ProductProviderState extends Equatable {
     this.agencyItems = const [],
     this.categoryItems = const [],
     this.campaignItems = const [],
+    this.newsItems = const [],
   });
 
   final List<TownModel> townItems;
@@ -83,6 +88,7 @@ class ProductProviderState extends Equatable {
   final List<SpecialAgencyModel> agencyItems;
   final List<CategoryModel> categoryItems;
   final List<CampaignModel> campaignItems;
+  final List<NewsModel> newsItems;
 
   List<CategoryModel> get categoryItemsWithAll {
     return [
@@ -106,6 +112,7 @@ class ProductProviderState extends Equatable {
         agencyItems,
         categoryItems,
         campaignItems,
+        newsItems,
       ];
 
   ProductProviderState copyWith({
@@ -115,6 +122,7 @@ class ProductProviderState extends Equatable {
     List<SpecialAgencyModel>? agencyItems,
     List<CategoryModel>? categoryItems,
     List<CampaignModel>? campaignItems,
+    List<NewsModel>? newsItems,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
@@ -123,6 +131,7 @@ class ProductProviderState extends Equatable {
       agencyItems: agencyItems ?? this.agencyItems,
       categoryItems: categoryItems ?? this.categoryItems,
       campaignItems: campaignItems ?? this.campaignItems,
+      newsItems: newsItems ?? this.newsItems,
     );
   }
 }
