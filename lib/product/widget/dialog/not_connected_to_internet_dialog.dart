@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/checker/network_checker.dart';
+import 'package:vbaseproject/product/package/checker/network_checker.dart';
 
 class NotConnectedToInternetDialog extends StatelessWidget {
   const NotConnectedToInternetDialog({super.key});

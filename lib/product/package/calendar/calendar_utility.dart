@@ -1,6 +1,6 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/calendar/calendar_model.dart';
+import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
 
 @immutable
 final class CalendarUtility {

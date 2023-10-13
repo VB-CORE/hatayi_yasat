@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
-import 'package:vbaseproject/product/utility/opacity/custom_opacity.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
+import 'package:vbaseproject/product/widget/opacity/custom_opacity.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class CustomSpeedDial extends StatelessWidget {
   const CustomSpeedDial({
@@ -21,7 +21,7 @@ class CustomSpeedDial extends StatelessWidget {
       ),
       icon: Icons.add,
       activeIcon: Icons.close,
-      overlayColor: ColorsCustom.black,
+      overlayColor: ColorCommon(context).whiteAndBlackForTheme,
       overlayOpacity: CustomOpacity.perCent60.value,
       spacing: WidgetSizes.spacingXsMid,
       children: children,

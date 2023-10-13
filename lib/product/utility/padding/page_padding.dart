@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 @immutable
 class PagePadding extends EdgeInsets {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
-import 'package:vbaseproject/product/utility/package/settings/custom_app_settings.dart';
+import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 
 class NotificationPermissionView extends StatefulWidget {
