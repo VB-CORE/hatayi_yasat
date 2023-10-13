@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/campaigns_view.dart';
 import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
+import 'package:vbaseproject/features/news_module/news/view/news_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
 final class TabModel {
@@ -26,6 +27,11 @@ final class TabModels {
         page: const CampaignsView(),
         icon: const Icon(Icons.campaign_outlined),
         title: LocaleKeys.navigationTabs_campaignsTabTitle,
+      ),
+      TabModel(
+        page: const NewsView(),
+        icon: const Icon(Icons.newspaper_outlined),
+        title: LocaleKeys.navigationTabs_newsTabTitle,
       ),
     ];
   }

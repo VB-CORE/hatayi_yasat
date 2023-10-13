@@ -70,7 +70,8 @@
         "notifications": "Notifications"
     },
     "message": {
-        "emptySearch": "No Results Found"
+        "emptySearch": "No Results Found",
+        "somethingWentWrong": "Something went wrong"
     },
     "placeDetailView": {
         "owner": "Business Owner",
@@ -110,7 +111,8 @@
     },
     "navigationTabs": {
         "placesTabTitle": "Places",
-        "campaignsTabTitle": "Projects"
+        "campaignsTabTitle": "Projects",
+        "newsTabTitle": "News"
     },
     "projectRequest": {
         "title": "New Project Request",

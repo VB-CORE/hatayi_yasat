@@ -62,6 +62,7 @@ abstract class  LocaleKeys {
   static const home_notifications = 'home.notifications';
   static const home = 'home';
   static const message_emptySearch = 'message.emptySearch';
+  static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message = 'message';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
@@ -95,6 +96,7 @@ abstract class  LocaleKeys {
   static const developers = 'developers';
   static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
   static const navigationTabs_campaignsTabTitle = 'navigationTabs.campaignsTabTitle';
+  static const navigationTabs_newsTabTitle = 'navigationTabs.newsTabTitle';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_name = 'projectRequest.name';

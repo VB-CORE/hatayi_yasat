@@ -70,7 +70,8 @@
         "notifications": "Bildirimler"
     },
     "message": {
-        "emptySearch": "Sonuç Bulunamadı"
+        "emptySearch": "Sonuç Bulunamadı",
+        "somethingWentWrong": "Bir şeyler yanlış gitti"
     },
     "placeDetailView": {
         "owner": "İşletme Sahibi",
@@ -110,7 +111,8 @@
     },
     "navigationTabs": {
         "placesTabTitle": "Mekanlar",
-        "campaignsTabTitle": "Projeler"
+        "campaignsTabTitle": "Projeler",
+        "newsTabTitle": "Haberler"
     },
     "projectRequest": {
         "title": "Yeni Proje Talebi",
