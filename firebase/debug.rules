@@ -25,6 +25,11 @@ service cloud.firestore {
             allow write: if isAdmin();
         }
 
+        match /news/{document} {
+            allow read: if true;
+            allow write: if true;
+        }
+
         // Admin
 
         match /towns/{document} {
