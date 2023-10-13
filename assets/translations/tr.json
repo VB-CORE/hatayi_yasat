@@ -161,7 +161,10 @@
       "story": "Kendinizden Bahsedin",
       "student_document": "Öğrenci Belgesi",
       "pdf_hint": "dosya_adı.pdf",
-      "upload": "Yükle",
       "email": "Email Adresi"
+    },
+    "file_upload": {
+      "upload": "Yükle",
+      "update": "Güncelle"
     }
 }

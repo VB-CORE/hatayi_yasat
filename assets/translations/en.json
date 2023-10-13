@@ -161,7 +161,10 @@
       "story": "Your Story",
       "student_document": "Student Document",
       "pdf_hint": "file_name.pdf",
-      "upload": "Upload",
       "email": "Email Address"
+    },
+    "file_upload": {
+      "upload": "Upload",
+      "update": "Update"
     }
 }

@@ -139,8 +139,10 @@ abstract class  LocaleKeys {
   static const request_scholarship_story = 'request_scholarship.story';
   static const request_scholarship_student_document = 'request_scholarship.student_document';
   static const request_scholarship_pdf_hint = 'request_scholarship.pdf_hint';
-  static const request_scholarship_upload = 'request_scholarship.upload';
   static const request_scholarship_email = 'request_scholarship.email';
   static const request_scholarship = 'request_scholarship';
+  static const file_upload_upload = 'file_upload.upload';
+  static const file_upload_update = 'file_upload.update';
+  static const file_upload = 'file_upload';
 
 }

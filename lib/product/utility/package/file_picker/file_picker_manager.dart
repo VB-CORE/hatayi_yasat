@@ -4,7 +4,17 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart' hide FileType;
 
-enum FileExtension { pdf, doc, docx }
+enum FileExtension {
+  pdf,
+  doc,
+  docx;
+
+  static List<FileExtension> get defaultDocumentExtensions => [
+        FileExtension.pdf,
+        FileExtension.doc,
+        FileExtension.docx,
+      ];
+}
 
 @immutable
 final class FilePickerManager {
