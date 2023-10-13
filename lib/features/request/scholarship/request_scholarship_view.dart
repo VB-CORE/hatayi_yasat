@@ -1,24 +1,21 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/request/scholarship/request_scholarship_state.dart';
-import 'package:vbaseproject/features/request/scholarship/viewmodel/request_scholarship_view_model.dart';
+import 'package:vbaseproject/features/request/scholarship/mixin/request_scholarship_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/package/file_picker/upload_file_section_widget.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
-
-final StateNotifierProvider<RequestScholarshipViewModel,
-    RequestScholarshipState> _requestProjectViewModel = StateNotifierProvider(
-  (ref) => RequestScholarshipViewModel(),
-);
 
 class RequestScholarshipView extends ConsumerStatefulWidget {
   const RequestScholarshipView({super.key});
@@ -29,59 +26,59 @@ class RequestScholarshipView extends ConsumerStatefulWidget {
 }
 
 class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
-    with AppProviderMixin {
+    with AppProviderMixin, RequestScholarshipMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(LocaleKeys.request_scholarship_title).tr(),
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const PagePadding.horizontal16Symmetric(),
-            child: KvkkCheckBox(onChanged: (_) {}),
-          ),
-          SaveButton(
-            onPressed: () {},
-            isSendingRequestCheck: false,
-          ),
-        ],
+      bottomNavigationBar: _SaveButtonWithPolicyChecked(
+        onPolicyChecked: changePolicyCheck,
+        onSavePressed: uploadAndShowDialog,
+        isLoading: isLoading,
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          child: Padding(
-            padding: const PagePadding.generalAllNormal(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _TitleText(title: LocaleKeys.request_scholarship_contact),
-                const EmptyBox.smallHeight(),
-                ValidatorTextFormField(
-                  labelText: 'Email',
-                  validator: ValidatorNormalTextField(),
-                  controller: TextEditingController(),
-                ),
-                const EmptyBox.smallHeight(),
-                PhoneTextFormField(controller: TextEditingController()),
-                const EmptyBox.largeHeight(),
-                const _TitleText(title: LocaleKeys.request_scholarship_story),
-                const EmptyBox.smallHeight(),
-                ValidatorTextFormField(
-                  labelText: '',
-                  validator: ValidatorNormalTextField(),
-                  controller: TextEditingController(),
-                ),
-                const EmptyBox.middleHeight(),
-                const _TitleText(
-                  title: LocaleKeys.request_scholarship_student_document,
-                ),
-                const EmptyBox.smallHeight(),
-                const _UploadStudentDocumentSection(),
-                const EmptyBox.smallHeight(),
-              ],
+      body: WillPopScope(
+        onWillPop: popScopeAction,
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Padding(
+              padding: const PagePadding.generalAllNormal(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const _TitleText(
+                    title: LocaleKeys.request_scholarship_contact,
+                  ),
+                  const EmptyBox.smallHeight(),
+                  ValidatorTextFormField(
+                    labelText: LocaleKeys.request_scholarship_email,
+                    validator: ValidatorNormalTextField(),
+                    controller: emailController,
+                  ),
+                  const EmptyBox.smallHeight(),
+                  PhoneTextFormField(controller: phoneNumberController),
+                  const EmptyBox.largeHeight(),
+                  const _TitleText(title: LocaleKeys.request_scholarship_story),
+                  const EmptyBox.smallHeight(),
+                  ValidatorTextFormField(
+                    labelText: '',
+                    validator: ValidatorNormalTextField(),
+                    controller: storyController,
+                  ),
+                  const EmptyBox.middleHeight(),
+                  const _TitleText(
+                    title: LocaleKeys.request_scholarship_student_document,
+                  ),
+                  const EmptyBox.smallHeight(),
+                  UploadFileSectionWidget(
+                    hintText: LocaleKeys.request_scholarship_pdf_hint,
+                    onFilePicked: updatePDFFile,
+                  ),
+                  const EmptyBox.smallHeight(),
+                ],
+              ),
             ),
           ),
         ),
@@ -90,42 +87,31 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
   }
 }
 
-class _UploadStudentDocumentSection extends StatefulWidget {
-  const _UploadStudentDocumentSection();
+@immutable
+final class _SaveButtonWithPolicyChecked extends StatelessWidget {
+  const _SaveButtonWithPolicyChecked({
+    required this.onPolicyChecked,
+    required this.onSavePressed,
+    required this.isLoading,
+  });
 
-  @override
-  State<_UploadStudentDocumentSection> createState() =>
-      _UploadStudentDocumentSectionState();
-}
+  final ValueSetter<bool> onPolicyChecked;
+  final VoidCallback onSavePressed;
+  final bool isLoading;
 
-class _UploadStudentDocumentSectionState
-    extends State<_UploadStudentDocumentSection> {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const EmptyBox.smallWidth(),
-        Expanded(
-          child: Text(
-            LocaleKeys.request_scholarship_pdf_hint.tr(),
-            maxLines: AppConstants.kOne,
-            overflow: TextOverflow.ellipsis,
-            style: context.general.textTheme.titleMedium,
-          ),
+        Padding(
+          padding: const PagePadding.horizontal16Symmetric(),
+          child: KvkkCheckBox(onChanged: onPolicyChecked),
         ),
-        const EmptyBox.smallWidth(),
-        ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            shape: const RoundedRectangleBorder(),
-          ),
-          onPressed: () {},
-          label: Text(
-            LocaleKeys.request_scholarship_upload.tr(),
-          ),
-          icon: const Icon(
-            Icons.upload_file,
-            size: 24,
-          ),
+        SaveButton(
+          onPressed: onSavePressed,
+          isSendingRequestCheck: isLoading,
         ),
       ],
     );

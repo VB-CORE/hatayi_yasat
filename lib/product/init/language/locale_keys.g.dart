@@ -106,6 +106,7 @@ abstract class  LocaleKeys {
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
   static const dialog_completeRequest = 'dialog.completeRequest';
+  static const dialog_completeScholarshipRequest = 'dialog.completeScholarshipRequest';
   static const dialog_permissionCameraLibrary = 'dialog.permissionCameraLibrary';
   static const dialog_permissionNotification = 'dialog.permissionNotification';
   static const dialog = 'dialog';

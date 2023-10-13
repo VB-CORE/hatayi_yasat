@@ -124,6 +124,7 @@
         "phoneTitle": "Would you like to call by phone?",
         "addressTitle": "Would you like to open the address on the map?",
         "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
+        "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
         "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
         "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
     },

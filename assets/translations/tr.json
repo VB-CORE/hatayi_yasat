@@ -124,6 +124,7 @@
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
         "addressTitle": "Adresi haritada açmak ister misiniz?",
         "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
+        "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
         "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
         "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
     },

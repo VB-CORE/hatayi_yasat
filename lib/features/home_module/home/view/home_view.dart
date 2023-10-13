@@ -55,6 +55,7 @@ class _HomeViewState extends ConsumerState<HomeView>
           await fetchNewItemsWithRefresh(ref.read(_homeViewModel.notifier));
         },
         child: Scrollbar(
+          controller: customScrollController,
           child: CustomScrollView(
             controller: customScrollController,
             slivers: [
