@@ -42,10 +42,7 @@ class _NotificationsViewState extends State<NotificationsView>
           return Column(
             children: [
               ListTile(
-                tileColor:
-                    model.createdAt?.isAfter(lastNotificationSeen) ?? false
-                        ? ColorsCustom.white
-                        : ColorsCustom.lightGray,
+                tileColor: _getColorByNotificationCreatedAt(model),
                 contentPadding: const PagePadding.defaultPadding(),
                 dense: true,
                 leading: _NotificationTypeLeadingIcon(model: model),
@@ -74,6 +71,12 @@ class _NotificationsViewState extends State<NotificationsView>
         // ...
       ),
     );
+  }
+
+  Color _getColorByNotificationCreatedAt(AppNotificationModel model) {
+    return model.createdAt?.isAfter(lastNotificationSeen) ?? false
+        ? ColorsCustom.white
+        : ColorsCustom.lightGray;
   }
 }
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/utility/constants/string_constants.dart';
+import 'package:vbaseproject/product/utility/constants/firebase_query_orders.dart';
 import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
 
@@ -12,12 +12,12 @@ mixin NotificationMixin
   final CustomService _customService = FirebaseService();
 
   CustomService get customService => _customService;
-
-  final lastNotificationSeen = SharedCache.instance.getLastNotificationSeen();
+  late final DateTime lastNotificationSeen;
 
   @override
   void initState() {
     super.initState();
+    lastNotificationSeen = SharedCache.instance.getLastNotificationSeen();
     SharedCache.instance.setLastNotificationSeen();
   }
 
@@ -27,7 +27,10 @@ mixin NotificationMixin
           CollectionPaths.notifications,
           AppNotificationModel(),
         )
-        .orderBy(StringConstants.createdAt, descending: true);
+        .orderBy(
+          FirebaseQueryOrders.createdAt.name,
+          descending: FirebaseQueryOrders.createdAt.descending,
+        );
   }
 
   Future<void> navigateToDetail(AppNotificationModel? model) async {
