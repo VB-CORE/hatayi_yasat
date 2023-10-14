@@ -4,20 +4,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/news_module/news/view/mixin/news_view_mixin.dart';
-
-import 'package:vbaseproject/features/news_module/news_details/view/news_details_view.dart';
+import 'package:vbaseproject/features/news_module/news_details/news_details_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/package/shimmer/news_shimmer_list.dart';
-import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/card/news_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
 class NewsView extends ConsumerStatefulWidget {
   const NewsView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _NewsViewState();
+  ConsumerState<NewsView> createState() => _NewsViewState();
 }
 
 class _NewsViewState extends ConsumerState<NewsView>
@@ -42,7 +41,7 @@ class _NewsViewState extends ConsumerState<NewsView>
   }
 }
 
-class _PageBody extends ConsumerWidget {
+class _PageBody extends StatelessWidget {
   const _PageBody({
     required this.items,
     required this.isRequestSending,
@@ -52,12 +51,11 @@ class _PageBody extends ConsumerWidget {
   final List<NewsModel> items;
   final bool isRequestSending;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     if (isRequestSending) {
       return const SliverFillRemaining(
         child: Padding(
           padding: PagePadding.onlyTop(),
-          // TODO: Shimmer FULL Width olacak. Tasarımı yap yani
           child: NewsShimmerList(),
         ),
       );
@@ -74,24 +72,17 @@ class _PageBody extends ConsumerWidget {
 
     return SliverMainAxisGroup(
       slivers: [
-        SliverToBoxAdapter(
-          child: CustomBannerSlider(
-            sliderItems: items
-                .map(
-                  (e) => SliderModel(
-                    title: e.title ?? '',
-                    imageUrl: e.image ?? '',
-                  ),
-                )
-                .toList(),
-            onTapped: (index) {
-              context.route.navigateToPage(
-                NewsDetailsView(
-                  newsModel: items[index],
-                ),
-              );
-            },
-          ),
+        SliverList.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return NewsCard(
+              item: items[index],
+              onTap: () {
+                context.route
+                    .navigateToPage(NewsDetailsView(newsModel: items[index]));
+              },
+            );
+          },
         ),
         const SliverToBoxAdapter(
           child: SizedBox(
