@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum SharedKeys { firstAppOpen }
+enum SharedKeys { firstAppOpen, theme }
 
 final class SharedCache {
   SharedCache._internal();
@@ -19,7 +20,13 @@ final class SharedCache {
     await _preferences.setBool(SharedKeys.firstAppOpen.name, false);
   }
 
-  bool isFirstAppOpen() {
-    return _preferences.getBool(SharedKeys.firstAppOpen.name) ?? true;
+  bool get isFirstAppOpen =>
+      _preferences.getBool(SharedKeys.firstAppOpen.name) ?? true;
+
+  Future<void> setTheme(ThemeMode mode) async {
+    await _preferences.setInt(SharedKeys.theme.name, mode.index);
   }
+
+  ThemeMode get theme =>
+      ThemeMode.values[_preferences.getInt(SharedKeys.theme.name) ?? 0];
 }

@@ -8,10 +8,10 @@ import 'package:vbaseproject/features/campaign_module/campaigns/view/mixin/campa
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_grid.dart';
-import 'package:vbaseproject/product/utility/package/slider/custom_slider.dart';
+import 'package:vbaseproject/product/package/shimmer/place_shimmer_grid.dart';
+import 'package:vbaseproject/product/package/slider/custom_slider.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/card/campaign_place_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
@@ -47,7 +47,7 @@ class _CampaignsViewState extends ConsumerState<CampaignsView>
   }
 }
 
-class _PageBody extends ConsumerWidget {
+class _PageBody extends StatelessWidget {
   const _PageBody({
     required this.items,
     required this.isRequestSending,
@@ -57,7 +57,7 @@ class _PageBody extends ConsumerWidget {
   final List<CampaignModel> items;
   final bool isRequestSending;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     if (isRequestSending) {
       return const SliverFillRemaining(
         child: Padding(

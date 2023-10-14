@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 class PlaceShimmerList extends StatelessWidget {
   const PlaceShimmerList({super.key});

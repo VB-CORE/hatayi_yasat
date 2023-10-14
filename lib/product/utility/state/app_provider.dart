@@ -1,66 +1,25 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/model/enum/notification_type.dart';
+import 'package:vbaseproject/core/dependency/project_dependency.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
-import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
-import 'package:vbaseproject/product/widget/snackbar/notification_snack_bar.dart';
+import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
+import 'package:vbaseproject/product/utility/state/mixin/app_provider_mixin.dart';
 
-class AppProvider extends StateNotifier<AppProviderState> {
+final class AppProvider extends StateNotifier<AppProviderState>
+    with AppProviderOperationMixin {
   AppProvider() : super(const AppProviderState());
 
-  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
+  static final provider = ProjectDependencyItems.appProviderState;
 
-  static final provider =
-      StateNotifierProvider<AppProvider, AppProviderState>((_) {
-    return AppProvider();
-  });
+  Future<void> init() async => {
+        await _checkDeviceId(),
+      };
 
-  Future<void> init() async => checkDeviceId();
-  final CustomService customService = FirebaseService();
-  void showSnackbarMessage(String message) {
-    scaffoldMessengerKey.currentState
-      ?..clearSnackBars()
-      ..showSnackBar(ErrorSnackBar(message: message));
-  }
+  ThemeMode get currentThemeMode => state.theme;
 
-  void showSnackbarNotification(
-    String message,
-    String id,
-    BuildContext context,
-    NotificationType type,
-  ) {
-    scaffoldMessengerKey.currentState
-      ?..clearSnackBars()
-      ..showSnackBar(
-        NotificationSnackBar(
-          message: message,
-          isOpenListen: (value) {
-            if (!value) return;
-            if (type == NotificationType.campaigns) {
-              MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
-                context: context,
-                id: id,
-                customService: customService,
-              );
-            } else {
-              MessagingNavigate.instance.detailModelCheckAndNavigate(
-                context: context,
-                id: id,
-                customService: customService,
-              );
-            }
-          },
-        ),
-      );
-  }
-
-  Future<void> checkDeviceId() async {
+  Future<void> _checkDeviceId() async {
     try {
       final deviceID =
           kIsWeb ? kWeb : await DeviceUtility.instance.getUniqueDeviceId();
@@ -69,24 +28,10 @@ class AppProvider extends StateNotifier<AppProviderState> {
       state = state.copyWith(deviceID: kWeb);
     }
   }
-}
 
-@immutable
-class AppProviderState extends Equatable {
-  const AppProviderState({
-    this.deviceID,
-  });
-
-  final String? deviceID;
-
-  @override
-  List<Object?> get props => [deviceID];
-
-  AppProviderState copyWith({
-    String? deviceID,
-  }) {
-    return AppProviderState(
-      deviceID: deviceID ?? this.deviceID,
-    );
+  /// change app theme for light and dark mode
+  void changeAppTheme({required ThemeMode theme}) {
+    if (state.theme == theme) return;
+    state = state.copyWith(theme: theme);
   }
 }

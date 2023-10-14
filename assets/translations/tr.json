@@ -60,9 +60,13 @@
     "settings": {
         "title": "Ayarlar",
         "language_title": "Dil",
-        "theme_title": "Koyu Tema",
+        "theme_title": "{} Tema",
         "version_number_title": "Versiyon Numarası",
-        "notificationSetting": "Bildirim Ayarları"
+        "notificationSetting": "Bildirim Ayarları",
+        "themes": {
+            "light": "Aydınlık",
+            "dark": "Karanlık"
+        }
     },
     "home": {
         "places": "Mekanlar",

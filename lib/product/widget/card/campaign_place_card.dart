@@ -1,16 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/init/core_localize.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
-class CampaignPlaceCard extends ConsumerWidget {
+class CampaignPlaceCard extends StatelessWidget {
   const CampaignPlaceCard({
     required this.item,
     required this.onTap,
@@ -22,7 +20,7 @@ class CampaignPlaceCard extends ConsumerWidget {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCL7KhxLAe5VjNc-IsT8-N-6fCpXP32oHAcYqL7LoXF5Dp1-A8AyUyjto109DZ_dMsSc&usqp=CAU';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraint) {
         return InkWell(

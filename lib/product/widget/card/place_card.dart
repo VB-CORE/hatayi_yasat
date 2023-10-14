@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 class PlaceCard extends ConsumerWidget {
   const PlaceCard({
@@ -25,6 +26,7 @@ class PlaceCard extends ConsumerWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
+        elevation: 10,
         child: CupertinoListTile(
           padding: EdgeInsets.zero,
           title: Center(
@@ -52,7 +54,9 @@ class PlaceCard extends ConsumerWidget {
                   flex: 5,
                   child: Text(
                     item.name,
-                    style: context.general.textTheme.titleLarge,
+                    style: context.general.textTheme.titleLarge?.copyWith(
+                      color: ColorCommon(context).whiteAndBlackForTheme,
+                    ),
                     maxLines: 2,
                   ),
                 ),
@@ -62,7 +66,9 @@ class PlaceCard extends ConsumerWidget {
                     ref
                         .watch(ProductProvider.provider.notifier)
                         .fetchTownFromCode(item.townCode),
-                    style: context.general.textTheme.titleSmall,
+                    style: context.general.textTheme.titleSmall?.copyWith(
+                      color: ColorCommon(context).whiteAndBlackForTheme,
+                    ),
                   ),
                 ),
               ],
