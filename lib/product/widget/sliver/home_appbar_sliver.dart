@@ -56,28 +56,24 @@ class HomeAppBarSliver extends StatelessWidget {
       ),
       title: !isPinned ? null : Text(title),
       flexibleSpace: FlexibleSpaceBar(
-        title: isPinned
-            ? null
-            : Container(
-                color: isPinned
-                    ? null
-                    : ColorCommon(context)
-                        .whiteAndBlackForTheme
-                        .withOpacity(0.5),
-                width: context.sized.width,
-                child: Padding(
-                  padding: const PagePadding.onlyLeft(),
-                  child: Text(
-                    title,
-                    maxLines: AppConstants.kThree,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.general.textTheme.titleLarge?.copyWith(
-                      color: ColorCommon(context).blackAndWhiteForTheme,
-                    ),
-                  ),
-                ),
+        title: Container(
+          color: isPinned
+              ? null
+              : ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
+          width: context.sized.width,
+          child: Padding(
+            padding: const PagePadding.onlyLeft(),
+            child: Text(
+              title,
+              maxLines: AppConstants.kThree,
+              overflow: TextOverflow.ellipsis,
+              style: context.general.textTheme.titleLarge?.copyWith(
+                color: ColorCommon(context).blackAndWhiteForTheme,
               ),
-        titlePadding: isPinned ? null : EdgeInsets.zero,
+            ),
+          ),
+        ),
+        titlePadding: EdgeInsets.zero,
         centerTitle: false,
         background: Hero(
           tag: ValueKey(id),
