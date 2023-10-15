@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum SharedKeys { firstAppOpen, theme, lastNotificationSeen }
+enum SharedKeys { firstAppOpen, theme, lastNotificationSeenTime }
 
 final class SharedCache {
   SharedCache._internal();
@@ -30,16 +31,17 @@ final class SharedCache {
   ThemeMode get theme =>
       ThemeMode.values[_preferences.getInt(SharedKeys.theme.name) ?? 0];
 
-  Future<void> setLastNotificationSeen() async {
+  Future<void> updateNotificaitonLastSeenTime() async {
     await _preferences.setString(
-      SharedKeys.lastNotificationSeen.name,
+      SharedKeys.lastNotificationSeenTime.name,
       DateTime.now().toIso8601String(),
     );
   }
 
-  DateTime getLastNotificationSeen() {
-    final lastNotificationSeen =
-        _preferences.getString(SharedKeys.lastNotificationSeen.name) ?? '';
-    return DateTime.tryParse(lastNotificationSeen) ?? DateTime.now();
+  DateTime? getLastNotificationSeenTime() {
+    final lastNotificationSeenTime =
+        _preferences.getString(SharedKeys.lastNotificationSeenTime.name);
+    if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
+    return DateTime.tryParse(lastNotificationSeenTime!);
   }
 }

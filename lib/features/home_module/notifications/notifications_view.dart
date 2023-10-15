@@ -74,7 +74,9 @@ class _NotificationsViewState extends State<NotificationsView>
   }
 
   Color _getColorByNotificationCreatedAt(AppNotificationModel model) {
-    return model.createdAt?.isAfter(lastNotificationSeen) ?? false
+    return model.createdAt
+                ?.isAfter(lastNotificationSeenTime ?? DateTime.now()) ??
+            false
         ? context.general.colorScheme.surface
         : context.general.colorScheme.onInverseSurface;
   }

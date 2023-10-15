@@ -4,7 +4,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/package/firebase/messaging_navigate.dart';
-import 'package:vbaseproject/product/utility/constants/firebase_query_orders.dart';
 import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
 
 mixin NotificationMixin
@@ -12,13 +11,12 @@ mixin NotificationMixin
   final CustomService _customService = FirebaseService();
 
   CustomService get customService => _customService;
-  late final DateTime lastNotificationSeen;
+  late final DateTime? lastNotificationSeenTime;
 
   @override
   void initState() {
     super.initState();
-    lastNotificationSeen = SharedCache.instance.getLastNotificationSeen();
-    SharedCache.instance.setLastNotificationSeen();
+    _saveAndLastTime();
   }
 
   Query<AppNotificationModel?> reference() {
@@ -28,8 +26,8 @@ mixin NotificationMixin
           AppNotificationModel(),
         )
         .orderBy(
-          FirebaseQueryOrders.createdAt.name,
-          descending: FirebaseQueryOrders.createdAt.descending,
+          QueryOrders.createdAt.name,
+          descending: true,
         );
   }
 
@@ -53,5 +51,11 @@ mixin NotificationMixin
     }
 
     hideLoading();
+  }
+
+  void _saveAndLastTime() {
+    lastNotificationSeenTime =
+        SharedCache.instance.getLastNotificationSeenTime();
+    SharedCache.instance.updateNotificaitonLastSeenTime();
   }
 }
