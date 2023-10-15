@@ -6,10 +6,10 @@ import 'package:vbaseproject/product/utility/package/file_picker/upload_file_sec
 import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog.dart';
 
 mixin UploadFileMixin on State<UploadFileSectionWidget> {
-  File? file;
+  final ValueNotifier<File?> documentFile = ValueNotifier<File?>(null);
 
-  bool get isFileNull => file == null;
-  bool get isFileNameNull => getNameOfFile() == null;
+  bool isFileNull(File? file) => file == null;
+  bool isFileNameNull(File file) => getNameOfFile(file) == null;
 
   Future<void> pickFile() async {
     final allowedExtension =
@@ -21,17 +21,16 @@ mixin UploadFileMixin on State<UploadFileSectionWidget> {
   }
 
   void updateFile(File file) {
-    this.file = file;
-    setState(() {});
+    documentFile.value = file;
   }
 
-  String? getNameOfFile() {
-    if (file == null) return null;
-    final fileName = file!.path.split('/').lastOrNull;
+  String? getNameOfFile(File file) {
+    if (isFileNull(file)) return null;
+    final fileName = file.path.split('/').lastOrNull;
     return fileName;
   }
 
-  Future<void> showPdfFilePreview() async {
-    await PdfPreviewDialog(file: file!).show(context);
+  Future<void> showPdfFilePreview(File fileForPreview) async {
+    await PdfPreviewDialog(file: fileForPreview).show(context);
   }
 }

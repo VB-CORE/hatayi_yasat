@@ -16,7 +16,9 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "categoryEmpty": "Please choose a category"
+        "categoryEmpty": "Please choose a category",
+        "email_format": "Please enter your mail correctly", 
+        "student_email_format": "Please enter your student mail"
     },
     "button": {
         "save": "Save",

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/features/request/scholarship/model/request_scholarship_model.dart';
@@ -31,6 +30,7 @@ final class RequestScholarshipViewModel
       root: RootStorageName.scholarship,
       key: uuid,
       file: file,
+      size: FileSizes.small,
     );
     return resultFileLink;
   }

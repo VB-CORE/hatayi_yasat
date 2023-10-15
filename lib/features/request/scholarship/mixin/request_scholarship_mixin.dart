@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -24,7 +23,7 @@ mixin RequestScholarshipMixin
   late final StateNotifierProvider<RequestScholarshipViewModel,
       RequestScholarshipState> requestProjectViewModel;
 
-  late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   File? pdfFile;
 
   @override
@@ -88,7 +87,7 @@ mixin RequestScholarshipMixin
   }
 
   Future<bool> onSavePressed() async {
-    if (!formKey.currentState!.validate()) {
+    if (!(formKey.currentState?.validate() ?? false)) {
       appProvider.showSnackbarMessage(LocaleKeys.validation_formRequired.tr());
       return false;
     }

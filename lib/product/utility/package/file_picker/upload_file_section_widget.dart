@@ -3,14 +3,11 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/file_picker_manager.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/upload_file_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog.dart';
 
 final class UploadFileSectionWidget extends StatefulWidget {
   const UploadFileSectionWidget({
@@ -36,18 +33,26 @@ class UploadFileSectionWidgetState extends State<UploadFileSectionWidget>
     return Row(
       children: [
         const EmptyBox.smallWidth(),
-        Expanded(
-          child: isFileNull || isFileNameNull
-              ? _HintText(hintText: widget.hintText)
-              : _UploadedFileText(
-                  fileName: getNameOfFile()!,
-                  onPressed: showPdfFilePreview,
-                ),
+        ValueListenableBuilder<File?>(
+          valueListenable: documentFile,
+          builder: (BuildContext context, File? file, Widget? _) => Expanded(
+            child: isFileNull(file) || isFileNameNull(file!)
+                ? _HintText(hintText: widget.hintText)
+                : _UploadedFileText(
+                    fileName: getNameOfFile(file)!,
+                    onPressed: () => showPdfFilePreview(file),
+                  ),
+          ),
         ),
         const EmptyBox.smallWidth(),
-        _UploadButton(
-          isFileNull: isFileNull,
-          uploadPressed: pickFile,
+        ValueListenableBuilder(
+          valueListenable: documentFile,
+          builder: (BuildContext context, File? value, Widget? child) {
+            return _UploadButton(
+              isFileNull: isFileNull(value),
+              uploadPressed: pickFile,
+            );
+          },
         ),
       ],
     );

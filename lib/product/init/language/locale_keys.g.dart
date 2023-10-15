@@ -17,6 +17,8 @@ abstract class  LocaleKeys {
   static const validation_photoRequired = 'validation.photoRequired';
   static const validation_loseAllData = 'validation.loseAllData';
   static const validation_categoryEmpty = 'validation.categoryEmpty';
+  static const validation_email_format = 'validation.email_format';
+  static const validation_student_email_format = 'validation.student_email_format';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';

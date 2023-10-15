@@ -16,7 +16,9 @@
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-        "categoryEmpty": "Kategori seçiniz"
+        "categoryEmpty": "Kategori seçiniz",
+        "email_format": "Lütfen mailinizi doğru giriniz", 
+        "student_email_format": "Lütfen öğrenci mailinizi giriniz"
     },
     "button": {
         "save": "Kaydet",
