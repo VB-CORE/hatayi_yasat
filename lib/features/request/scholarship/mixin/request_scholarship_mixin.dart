@@ -101,9 +101,15 @@ mixin RequestScholarshipMixin
 
     ref.read(requestProjectViewModel.notifier).updateModel(model);
 
-    final isSuccess =
+    final hasErrorMessage =
         await ref.read(requestProjectViewModel.notifier).uploadScholarship();
-    return isSuccess;
+
+    if (hasErrorMessage.ext.isNotNullOrNoEmpty) {
+      appProvider.showSnackbarMessage(hasErrorMessage!);
+      return false;
+    }
+
+    return true;
   }
 
   Future<void> uploadAndShowDialog() async {

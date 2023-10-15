@@ -1,9 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/features/request/scholarship/model/request_scholarship_model.dart';
 import 'package:vbaseproject/features/request/scholarship/request_scholarship_state.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
-class RequestScholarshipViewModel
+final class RequestScholarshipViewModel
     extends StateNotifier<RequestScholarshipState> {
   RequestScholarshipViewModel() : super(const RequestScholarshipState());
 
@@ -19,18 +23,52 @@ class RequestScholarshipViewModel
     state = state.copyWith(requestScholarshipModel: model);
   }
 
-  Future<String?> uploadStudentDocumentPDF() async {
-    // fake upload logic until add upload file in life_shared
-    await Future<void>.delayed(const Duration(seconds: 2));
-    return null;
+  Future<(String?, UploadErrors?)> uploadStudentDocumentPDF() async {
+    final file = state.requestScholarshipModel?.studentDocument;
+    if (file == null) return (null, UploadErrors.service);
+    final uuid = const Uuid().v4();
+    final resultFileLink = await FirebaseStorageService().uploadFile(
+      root: RootStorageName.scholarship,
+      key: uuid,
+      file: file,
+    );
+    return resultFileLink;
   }
 
-  Future<bool> uploadScholarship() async {
-    final pdfPath = await uploadStudentDocumentPDF();
-    if (pdfPath.ext.isNullOrEmpty) return false;
-    // create custom model for store firebase firestore
-    // upload model to firebase firestore
-    // return isOkay state
-    return true;
+  Future<String?> uploadScholarship() async {
+    final model = state.requestScholarshipModel;
+    if (model == null) {
+      return LocaleKeys.request_scholarship_error_undefined_error.tr();
+    }
+    final (pdfLink, errorType) = await uploadStudentDocumentPDF();
+    if (errorType != null) return errorType.errorMessage;
+    final scholarshipModel = ScholarshipModel(
+      email: model.email,
+      phoneNumber: model.phoneNumber,
+      story: model.story,
+      studentDocument: pdfLink!,
+    );
+
+    final response = await FirebaseService().add<ScholarshipModel>(
+      model: scholarshipModel,
+      path: CollectionPaths.scholarship,
+    );
+
+    if (response == null) {
+      return LocaleKeys.request_scholarship_error_undefined_error.tr();
+    }
+
+    return null;
+  }
+}
+
+extension UploadErrorsExtension on UploadErrors {
+  String get errorMessage {
+    switch (this) {
+      case UploadErrors.sizeLimit:
+        return LocaleKeys.request_scholarship_error_file_size_error.tr();
+      case UploadErrors.service:
+        return LocaleKeys.request_scholarship_error_undefined_error.tr();
+    }
   }
 }

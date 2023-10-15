@@ -161,7 +161,12 @@
       "story": "Your Story",
       "student_document": "Student Document",
       "pdf_hint": "file_name.pdf",
-      "email": "Email Address"
+      "email": "Email Address",
+      "error": {
+        "service_error": "A service error has occurred",
+        "undefined_error": "An unidentified error occurred",
+        "file_size_error": "Check the entered file size"
+      }
     },
     "file_upload": {
       "upload": "Upload",

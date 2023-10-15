@@ -161,7 +161,12 @@
       "story": "Kendinizden Bahsedin",
       "student_document": "Öğrenci Belgesi",
       "pdf_hint": "dosya_adı.pdf",
-      "email": "Email Adresi"
+      "email": "Email Adresi",
+      "error": {
+        "service_error": "Bir servis hatası oluştu",
+        "undefined_error": "Belirlenemeyen bir hata oluştu",
+        "file_size_error": "Girilen dosya boyutunu kontrol edin"
+      }
     },
     "file_upload": {
       "upload": "Yükle",
