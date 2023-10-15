@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 
-class ThemeSwitchWidget extends StatefulWidget {
-  const ThemeSwitchWidget({required this.onChanged, super.key});
-  final ValueSetter<bool> onChanged;
+final class ThemeSwitchWidget extends ConsumerStatefulWidget {
+  const ThemeSwitchWidget({super.key});
 
   @override
-  State<ThemeSwitchWidget> createState() => _ThemeSwitchWidgetState();
+  ConsumerState<ThemeSwitchWidget> createState() => _ThemeSwitchWidgetState();
 }
 
-class _ThemeSwitchWidgetState extends State<ThemeSwitchWidget> {
+class _ThemeSwitchWidgetState extends ConsumerState<ThemeSwitchWidget>
+    with AppProviderMixin {
   bool _isSelected = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _isSelected = appProvider.currentThemeMode == ThemeMode.dark;
+  }
+
   void _updateIsSelected(bool value) {
-    _isSelected = value;
-    setState(() {});
-    widget.onChanged(_isSelected);
+    setState(() {
+      _isSelected = value;
+    });
+    _updateOperation(value);
+  }
+
+  void _updateOperation(bool value) {
+    final theme = value ? ThemeMode.dark : ThemeMode.light;
+    appProvider.changeAppTheme(theme: theme);
+    SharedCache.instance.setTheme(theme);
   }
 
   @override

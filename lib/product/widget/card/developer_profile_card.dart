@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
   const DeveloperProfileCard({

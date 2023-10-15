@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/core/dependency/project_dependency.dart';
 import 'package:vbaseproject/core/init/core_localize.dart';
 import 'package:vbaseproject/firebase_options.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
@@ -37,10 +38,14 @@ final class ApplicationInit {
     await _crashlyticsInitialize();
     await FirebaseCrashlytics.instance
         .setCrashlyticsCollectionEnabled(kDebugMode);
+
+    ProjectDependency.setup();
+    ProjectDependencyItems.appProvider
+        .changeAppTheme(theme: SharedCache.instance.theme);
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    if (!kDebugMode) return;
+    if (kReleaseMode) return;
     await FirebaseStorage.instance.useStorageEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.storage.port,

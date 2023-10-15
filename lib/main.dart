@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
-import 'package:vbaseproject/product/init/application_theme.dart';
+import 'package:vbaseproject/product/utility/mixin/index.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 
 void main() async {
@@ -23,11 +25,13 @@ void main() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerWidget with AppProviderStateMixin<MyApp> {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final textTheme = context.general.textTheme;
+
     return MaterialApp(
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
@@ -35,7 +39,17 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       builder: AppBuilder.build,
-      theme: ApplicationTheme.build().themeData,
+      themeMode: appStateWatch(ref).theme,
+      theme: ThemeData.light(
+        useMaterial3: true,
+      ).copyWith(
+        textTheme: GoogleFonts.montserratTextTheme(textTheme),
+      ),
+      darkTheme: ThemeData.dark(
+        useMaterial3: true,
+      ).copyWith(
+        textTheme: GoogleFonts.montserratTextTheme(textTheme),
+      ),
       scaffoldMessengerKey:
           ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
       home: const SplashView(),

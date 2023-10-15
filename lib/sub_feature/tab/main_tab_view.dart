@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
+import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:vbaseproject/sub_feature/tab/model/speed_dial_child_model.dart';
