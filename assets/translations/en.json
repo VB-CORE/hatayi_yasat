@@ -116,7 +116,8 @@
     "navigationTabs": {
         "placesTabTitle": "Places",
         "campaignsTabTitle": "Projects",
-        "newsTabTitle": "News"
+        "newsTabTitle": "News",
+        "settingsTabTitle": "Settings"
     },
     "projectRequest": {
         "title": "New Project Request",

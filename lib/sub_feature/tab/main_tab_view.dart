@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/request/company/request_company_view.dart';
 import 'package:vbaseproject/features/request/project/request_project_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
@@ -57,10 +58,13 @@ class _BottomAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      padding: EdgeInsets.zero,
       notchMargin: WidgetSizes.spacingXs,
       shape: const CircularNotchedRectangle(),
       child: TabBar(
         dividerColor: ColorsCustom.transparent,
+        labelStyle: context.general.textTheme.labelMedium
+            ?.copyWith(fontWeight: FontWeight.bold),
         tabs: tabItems
             .map(
               (e) => Tab(

@@ -116,7 +116,8 @@
     "navigationTabs": {
         "placesTabTitle": "Mekanlar",
         "campaignsTabTitle": "Projeler",
-        "newsTabTitle": "Haberler"
+        "newsTabTitle": "Haberler",
+        "settingsTabTitle": "Ayarlar"
     },
     "projectRequest": {
         "title": "Yeni Proje Talebi",

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
-import 'package:vbaseproject/features/settings_module/settings/settings_view.dart';
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
@@ -26,10 +25,6 @@ final class MainAppBar extends AppBar {
             AppbarIconButton(
               iconData: Icons.notifications_active_outlined,
               destination: NotificationsView(),
-            ),
-            AppbarIconButton(
-              iconData: Icons.settings_outlined,
-              destination: SettingsView(),
             ),
           ],
         );

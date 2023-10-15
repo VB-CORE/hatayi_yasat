@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/formatter/custom_date_time_formatter.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/formatter/custom_date_time_formatter.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 class NewsCard extends StatelessWidget {
@@ -23,7 +23,6 @@ class NewsCard extends StatelessWidget {
       child: SizedBox(
         height: context.sized.dynamicHeight(.45),
         child: Stack(
-          alignment: Alignment.bottomLeft,
           children: [
             Positioned.fill(
               child: _NewsImage(item: item),
@@ -32,7 +31,7 @@ class NewsCard extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _GradientBoxWithOpacity(item: item),
+              child: _GradientBox(item: item),
             ),
             Positioned(
               bottom: 0,
@@ -47,8 +46,8 @@ class NewsCard extends StatelessWidget {
   }
 }
 
-class _GradientBoxWithOpacity extends StatelessWidget {
-  const _GradientBoxWithOpacity({
+class _GradientBox extends StatelessWidget {
+  const _GradientBox({
     required this.item,
   });
 
@@ -56,16 +55,16 @@ class _GradientBoxWithOpacity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      foregroundDecoration: BoxDecoration(
+    return DecoratedBox(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            ColorsCustom.black.withOpacity(0),
-            ColorsCustom.black.withOpacity(0.4),
-            ColorsCustom.black.withOpacity(0.7),
-            ColorsCustom.black.withOpacity(0.9),
+            ColorCommon(context).whiteAndBlackForTheme.withOpacity(0),
+            ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.4),
+            ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.7),
+            ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.9),
           ],
         ),
       ),
@@ -130,9 +129,9 @@ class _NewsTitle extends StatelessWidget {
       maxLines: 2,
       textAlign: TextAlign.left,
       overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.titleLarge!.copyWith(
+      style: context.general.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.bold,
-        color: ColorsCustom.white,
+        color: ColorCommon(context).blackAndWhiteForTheme,
       ),
     );
   }
@@ -153,9 +152,9 @@ class _NewsDateTime extends StatelessWidget {
       ),
       textAlign: TextAlign.left,
       overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.titleSmall!.copyWith(
+      style: context.general.textTheme.titleSmall?.copyWith(
         fontWeight: FontWeight.bold,
-        color: ColorsCustom.white,
+        color: ColorCommon(context).blackAndWhiteForTheme,
       ),
     );
   }
