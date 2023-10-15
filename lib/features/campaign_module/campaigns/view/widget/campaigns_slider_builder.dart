@@ -1,11 +1,11 @@
 part of '../campaigns_view.dart';
 
-class _SliderBuilder extends ConsumerWidget {
+class _SliderBuilder extends StatelessWidget {
   const _SliderBuilder({required this.items});
   final List<CampaignModel> items;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: CustomBannerSlider(
         sliderItems: items

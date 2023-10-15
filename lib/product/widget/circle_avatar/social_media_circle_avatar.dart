@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 
 class SocialMediaCircleAvatar extends StatelessWidget {
   const SocialMediaCircleAvatar({
@@ -20,7 +21,7 @@ class SocialMediaCircleAvatar extends StatelessWidget {
         backgroundColor: context.general.colorScheme.secondary,
         child: FaIcon(
           iconData,
-          color: Colors.white,
+          color: ColorCommon(context).blackAndWhiteForTheme,
         ),
       ),
     );

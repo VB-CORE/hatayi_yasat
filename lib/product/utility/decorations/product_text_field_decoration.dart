@@ -3,8 +3,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
+import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 class ProductTextFieldDecoration extends InputDecoration {
   ProductTextFieldDecoration(BuildContext context, String? hintText)

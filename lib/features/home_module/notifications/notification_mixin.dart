@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
+import 'package:vbaseproject/product/package/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/constants/firebase_query_orders.dart';
-import 'package:vbaseproject/product/utility/firebase/messaging_navigate.dart';
-import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
+import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
 
 mixin NotificationMixin
     on LoadingNotifier<NotificationsView>, State<NotificationsView> {

@@ -1,7 +1,7 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/utility/checker/network_checker.dart';
+import 'package:vbaseproject/product/package/checker/network_checker.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/version_validator.dart';
@@ -40,7 +40,7 @@ class SplashViewModel extends StateNotifier<SplashState> {
     state = state.copyWith(isOperationStaring: false);
   }
 
-  bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen();
+  bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen;
 
   bool _isNeedToForceUpdate() => VersionValidator.check();
 

@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 final class ApproveDialog extends StatelessWidget {
   const ApproveDialog({required this.title, super.key});

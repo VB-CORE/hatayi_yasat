@@ -9,7 +9,7 @@ import 'package:vbaseproject/features/request/project/viewmodel/request_project_
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
