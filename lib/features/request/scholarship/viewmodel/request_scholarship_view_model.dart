@@ -17,7 +17,7 @@ final class RequestScholarshipViewModel
   void initializeForCanApply() {
     final lastApplyDate = _sharedCache.getApplyScholarshipTime();
     if (lastApplyDate == null) return;
-    if (lastApplyDate.difference(DateTime.now()).inDays < AppConstants.kOne) {
+    if (DateTime.now().difference(lastApplyDate).inDays < AppConstants.kOne) {
       state = state.copyWith(canApply: false);
     }
   }
