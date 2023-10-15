@@ -8,7 +8,7 @@ import 'package:vbaseproject/features/home_module/home/view/search/home_search_d
 import 'package:vbaseproject/features/home_module/home/view_model/home_state.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_view_model.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
-import 'package:vbaseproject/product/utility/firebase/messaging_utility.dart';
+import 'package:vbaseproject/product/package/firebase/messaging_utility.dart';
 
 mixin HomeViewMixin
     on AutomaticKeepAliveClientMixin<HomeView>, ConsumerState<HomeView> {

@@ -9,7 +9,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
 import 'package:vbaseproject/product/model/enum/platform_exception_enum.dart';
-import 'package:vbaseproject/product/utility/package/settings/custom_app_settings.dart';
+import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 
 enum PhotoPickType {

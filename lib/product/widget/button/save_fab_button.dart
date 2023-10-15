@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
-class SaveButton extends ConsumerWidget {
+class SaveButton extends StatelessWidget {
   const SaveButton({
     required this.onPressed,
     required this.isSendingRequestCheck,
@@ -15,7 +14,7 @@ class SaveButton extends ConsumerWidget {
   final bool isSendingRequestCheck;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const PagePadding.horizontal16Symmetric() +

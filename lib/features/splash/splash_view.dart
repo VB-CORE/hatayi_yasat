@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/splash/splash_view_mixin.dart';
-
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
@@ -40,6 +40,7 @@ class _SplashViewState extends ConsumerState<SplashView>
                       LocaleKeys.project_name,
                       style: context.general.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
+                        color: ColorCommon(context).whiteAndBlackForTheme,
                         fontSize:
                             context.general.textTheme.displaySmall?.fontSize,
                       ),

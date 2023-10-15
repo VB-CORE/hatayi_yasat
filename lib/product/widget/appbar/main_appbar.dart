@@ -5,8 +5,8 @@ import 'package:vbaseproject/features/settings_module/settings/settings_view.dar
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/button/appbar_icon_button.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 final class MainAppBar extends AppBar {
   MainAppBar({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/decoration/product_text_field_decoration.dart';
+import 'package:vbaseproject/product/utility/decorations/product_text_field_decoration.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 
 class ProductTextField extends StatelessWidget {
