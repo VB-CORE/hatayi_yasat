@@ -6,7 +6,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/file_picker_manager.dart';
+import 'package:vbaseproject/product/utility/package/file_picker/file_extension_enum.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/upload_file_mixin.dart';
 
 final class UploadFileSectionWidget extends StatefulWidget {
@@ -19,7 +19,7 @@ final class UploadFileSectionWidget extends StatefulWidget {
 
   final String hintText;
   final ValueSetter<File> onFilePicked;
-  final List<FileExtension>? allowedExtension;
+  final List<FileExtensionEnum>? allowedExtension;
 
   @override
   State<UploadFileSectionWidget> createState() =>
@@ -34,22 +34,22 @@ class UploadFileSectionWidgetState extends State<UploadFileSectionWidget>
       children: [
         const EmptyBox.smallWidth(),
         ValueListenableBuilder<File?>(
-          valueListenable: documentFile,
+          valueListenable: documentFileNotifier,
           builder: (BuildContext context, File? file, Widget? _) => Expanded(
-            child: isFileNull(file) || isFileNameNull(file!)
+            child: isFilePicked(file)
                 ? _HintText(hintText: widget.hintText)
                 : _UploadedFileText(
-                    fileName: getNameOfFile(file)!,
+                    fileName: getNameOfFile(file!)!,
                     onPressed: () => showPdfFilePreview(file),
                   ),
           ),
         ),
         const EmptyBox.smallWidth(),
         ValueListenableBuilder(
-          valueListenable: documentFile,
+          valueListenable: documentFileNotifier,
           builder: (BuildContext context, File? value, Widget? child) {
             return _UploadButton(
-              isFileNull: isFileNull(value),
+              isFileNull: isFilePicked(value),
               uploadPressed: pickFile,
             );
           },

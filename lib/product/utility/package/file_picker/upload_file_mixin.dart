@@ -1,31 +1,35 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/utility/package/file_picker/default_file_extension.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/file_picker_manager.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/upload_file_section_widget.dart';
 import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog.dart';
 
 mixin UploadFileMixin on State<UploadFileSectionWidget> {
-  final ValueNotifier<File?> documentFile = ValueNotifier<File?>(null);
+  final ValueNotifier<File?> _documentFileNotifier = ValueNotifier<File?>(null);
 
-  bool isFileNull(File? file) => file == null;
-  bool isFileNameNull(File file) => getNameOfFile(file) == null;
+  ValueNotifier<File?> get documentFileNotifier => _documentFileNotifier;
+
+  bool isFilePicked(File? file) =>
+      file != null && getNameOfFile(file).ext.isNotNullOrNoEmpty;
 
   Future<void> pickFile() async {
     final allowedExtension =
-        widget.allowedExtension ?? FileExtension.defaultDocumentExtensions;
-    final result = await FilePickerManager.pickFile(allowedExtension);
+        widget.allowedExtension ?? DefaultFileExtension.documentExtensionList;
+    final result =
+        await FilePickerManager.pickFile(allowedExtensions: allowedExtension);
     if (result == null) return;
     updateFile(result);
     widget.onFilePicked(result);
   }
 
   void updateFile(File file) {
-    documentFile.value = file;
+    _documentFileNotifier.value = file;
   }
 
   String? getNameOfFile(File file) {
-    if (isFileNull(file)) return null;
     final fileName = file.path.split('/').lastOrNull;
     return fileName;
   }
