@@ -7,7 +7,6 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/dialog/force_update_dialog.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 
 class PdfPreviewDialog extends StatelessWidget with CustomDialog {
   const PdfPreviewDialog({required this.file, super.key});
