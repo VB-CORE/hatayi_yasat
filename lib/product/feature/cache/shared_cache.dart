@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/feature/cache/shared_keys.dart';
-import 'package:vbaseproject/product/feature/cache/shared_operation.dart';
+import 'package:vbaseproject/product/feature/cache/shared_operation/base_shared_operation.dart';
 
 final class SharedCache {
   SharedCache._internal();
