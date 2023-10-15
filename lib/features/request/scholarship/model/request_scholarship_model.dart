@@ -15,7 +15,7 @@ final class RequestScholarshipModel extends Equatable {
   final String email;
   final String phoneNumber;
   final String story;
-  final File studentDocument;
+  final File? studentDocument;
 
   @override
   List<Object?> get props => [

@@ -143,6 +143,7 @@ abstract class  LocaleKeys {
   static const request_scholarship_error_service_error = 'request_scholarship.error.service_error';
   static const request_scholarship_error_undefined_error = 'request_scholarship.error.undefined_error';
   static const request_scholarship_error_file_size_error = 'request_scholarship.error.file_size_error';
+  static const request_scholarship_error_no_file_error = 'request_scholarship.error.no_file_error';
   static const request_scholarship_error = 'request_scholarship.error';
   static const request_scholarship = 'request_scholarship';
   static const file_upload_upload = 'file_upload.upload';

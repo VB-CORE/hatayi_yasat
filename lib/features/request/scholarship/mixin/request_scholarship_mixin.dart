@@ -49,7 +49,7 @@ mixin RequestScholarshipMixin
         email: emailController.text,
         phoneNumber: phoneNumberController.text,
         story: storyController.text,
-        studentDocument: pdfFile ?? File(''),
+        studentDocument: pdfFile,
       );
 
   bool get isLoading => ref.watch(requestProjectViewModel).isLoading;

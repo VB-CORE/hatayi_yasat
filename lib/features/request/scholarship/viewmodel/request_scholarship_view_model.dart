@@ -25,7 +25,7 @@ final class RequestScholarshipViewModel
 
   Future<(String?, UploadErrors?)> uploadStudentDocumentPDF() async {
     final file = state.requestScholarshipModel?.studentDocument;
-    if (file == null) return (null, UploadErrors.service);
+    if (file == null) return (null, UploadErrors.noFile);
     final uuid = const Uuid().v4();
     final resultFileLink = await FirebaseStorageService().uploadFile(
       root: RootStorageName.scholarship,
@@ -69,6 +69,8 @@ extension UploadErrorsExtension on UploadErrors {
         return LocaleKeys.request_scholarship_error_file_size_error.tr();
       case UploadErrors.service:
         return LocaleKeys.request_scholarship_error_undefined_error.tr();
+      case UploadErrors.noFile:
+        return LocaleKeys.request_scholarship_error_no_file_error.tr();
     }
   }
 }

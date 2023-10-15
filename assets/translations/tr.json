@@ -165,7 +165,8 @@
       "error": {
         "service_error": "Bir servis hatası oluştu",
         "undefined_error": "Belirlenemeyen bir hata oluştu",
-        "file_size_error": "Girilen dosya boyutunu kontrol edin"
+        "file_size_error": "Girilen dosya boyutunu kontrol edin",
+        "no_file_error": "Lütfen öğrenci belgenizi yükleyiniz"
       }
     },
     "file_upload": {
