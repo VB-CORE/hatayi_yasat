@@ -12,7 +12,7 @@ abstract class BaseSharedOperation {
   Future<void> clear();
 }
 
-class SharedOperation extends BaseSharedOperation
+final class SharedOperation extends BaseSharedOperation
     with SharedOperationGenericMixin {
   @override
   late SharedPreferences _sharedPreferences;
