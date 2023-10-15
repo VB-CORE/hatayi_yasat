@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/news_module/news_details/mixin/news_details_mixin.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class NewsDetailsView extends StatefulWidget {
   const NewsDetailsView({required this.newsModel, super.key});
@@ -72,9 +72,9 @@ class _NewsTitle extends StatelessWidget {
       padding: const PagePadding.allLow() + const PagePadding.onlyTop(),
       child: SelectableText(
         model.title ?? '',
-        style: context.general.textTheme.titleLarge!.copyWith(
+        style: context.general.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
-          color: ColorsCustom.black,
+          color: ColorCommon(context).whiteAndBlackForTheme,
         ),
       ),
     );
@@ -95,8 +95,8 @@ class _NewsContent extends StatelessWidget {
       child: SelectableText(
         model.content ?? '',
         textAlign: TextAlign.justify,
-        style: context.general.textTheme.bodyLarge!.copyWith(
-          color: ColorsCustom.black,
+        style: context.general.textTheme.bodyLarge?.copyWith(
+          color: ColorCommon(context).whiteAndBlackForTheme,
         ),
       ),
     );
@@ -120,7 +120,7 @@ class _SliverAppBar extends StatelessWidget {
       leading: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              context.general.colorScheme.background.withOpacity(0.5),
+              ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
           shape: const CircleBorder(),
           padding: EdgeInsets.zero,
         ),
@@ -129,17 +129,15 @@ class _SliverAppBar extends StatelessWidget {
         },
         child: Icon(
           Icons.arrow_back,
-          color: context.general.colorScheme.background,
+          color: ColorCommon(context).blackAndWhiteForTheme,
         ),
       ),
       actionsIconTheme: IconThemeData(
-        color: context.general.colorScheme.onSurface,
+        color: ColorCommon(context).whiteAndBlackForTheme,
       ),
       flexibleSpace: FlexibleSpaceBar(
         title: isPinned
-            ? Container(
-                color: isPinned ? null : ColorsCustom.black.withOpacity(0.5),
-                width: isPinned ? null : context.sized.width,
+            ? SizedBox(
                 child: Padding(
                   padding: const PagePadding.onlyLeft(),
                   child: Text(
@@ -147,9 +145,7 @@ class _SliverAppBar extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: context.general.textTheme.titleLarge?.copyWith(
-                      color: isPinned
-                          ? context.general.colorScheme.onSurface
-                          : context.general.colorScheme.onSecondary,
+                      color: ColorCommon(context).whiteAndBlackForTheme,
                     ),
                   ),
                 ),
