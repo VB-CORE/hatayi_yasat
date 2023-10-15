@@ -4,11 +4,23 @@ import 'package:life_shared/life_shared.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/features/request/scholarship/model/request_scholarship_model.dart';
 import 'package:vbaseproject/features/request/scholarship/request_scholarship_state.dart';
+import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
 
 final class RequestScholarshipViewModel
     extends StateNotifier<RequestScholarshipState> {
   RequestScholarshipViewModel() : super(const RequestScholarshipState());
+
+  final SharedCache _sharedCache = SharedCache.instance;
+
+  void initializeForCanApply() {
+    final lastApplyDate = _sharedCache.getApplyScholarshipTime();
+    if (lastApplyDate == null) return;
+    if (lastApplyDate.difference(DateTime.now()).inDays < AppConstants.kOne) {
+      state = state.copyWith(canApply: false);
+    }
+  }
 
   void changePolicyCheck({required bool value}) {
     state = state.copyWith(isPolicyChecked: value);
@@ -58,6 +70,7 @@ final class RequestScholarshipViewModel
       return LocaleKeys.request_scholarship_error_undefined_error.tr();
     }
 
+    await _sharedCache.saveApplyScholarshipTime();
     return null;
   }
 }

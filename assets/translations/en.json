@@ -168,6 +168,7 @@
       "student_document": "Student Document",
       "pdf_hint": "file_name.pdf",
       "email": "Email Address",
+      "disable_button_title": "You should wait 1 day to apply for a new scholarship",
       "error": {
         "service_error": "A service error has occurred",
         "undefined_error": "An unidentified error occurred",

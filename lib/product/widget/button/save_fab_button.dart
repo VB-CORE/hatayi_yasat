@@ -1,17 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 class SaveButton extends StatelessWidget {
   const SaveButton({
     required this.onPressed,
     required this.isSendingRequestCheck,
+    required this.title,
     super.key,
   });
 
   final VoidCallback onPressed;
   final bool isSendingRequestCheck;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,10 @@ class SaveButton extends StatelessWidget {
           },
           child: isSendingRequestCheck
               ? const CircularProgressIndicator()
-              : const Text(LocaleKeys.button_save).tr(),
+              : Text(
+                  title,
+                  textAlign: TextAlign.center,
+                ).tr(),
         ),
       ),
     );

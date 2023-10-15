@@ -6,17 +6,17 @@ import 'package:vbaseproject/features/request/company/mixin/request_company_mixi
 import 'package:vbaseproject/features/request/company/request_company_view_model.dart';
 import 'package:vbaseproject/features/request/company/request_state.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/widget/dropdown/category_drop_down.dart';
-import 'package:vbaseproject/product/widget/dropdown/district_drop_down.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
+import 'package:vbaseproject/product/widget/dropdown/category_drop_down.dart';
+import 'package:vbaseproject/product/widget/dropdown/district_drop_down.dart';
 import 'package:vbaseproject/product/widget/text_field/phone_text_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/validator_text_form_field.dart';
 
@@ -50,6 +50,7 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
         },
         isSendingRequestCheck:
             ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
+        title: LocaleKeys.button_save,
       ),
       appBar: AppBar(
         title: const Text(LocaleKeys.requestCompany_title).tr(),

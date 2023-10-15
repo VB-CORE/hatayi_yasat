@@ -168,6 +168,7 @@
       "student_document": "Öğrenci Belgesi",
       "pdf_hint": "dosya_adı.pdf",
       "email": "Email Adresi",
+      "disable_button_title": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
       "error": {
         "service_error": "Bir servis hatası oluştu",
         "undefined_error": "Belirlenemeyen bir hata oluştu",

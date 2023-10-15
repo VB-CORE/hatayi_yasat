@@ -33,6 +33,10 @@ mixin RequestScholarshipMixin
     phoneNumberController = TextEditingController();
     storyController = TextEditingController();
     _initializeViewModel();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(requestProjectViewModel.notifier).initializeForCanApply();
+    });
   }
 
   @override

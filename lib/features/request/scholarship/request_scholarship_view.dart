@@ -33,6 +33,7 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
         onPolicyChecked: changePolicyCheck,
         onSavePressed: uploadAndShowDialog,
         isLoading: isLoading,
+        canApply: ref.read(requestProjectViewModel).canApply,
       ),
       body: WillPopScope(
         onWillPop: popScopeAction,
@@ -77,7 +78,7 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
               ),
             ),
           ),
-        ),
+        ).ext.toDisabled(disable: !ref.read(requestProjectViewModel).canApply),
       ),
     );
   }
@@ -89,11 +90,13 @@ final class _SaveButtonWithPolicyChecked extends StatelessWidget {
     required this.onPolicyChecked,
     required this.onSavePressed,
     required this.isLoading,
+    required this.canApply,
   });
 
   final ValueSetter<bool> onPolicyChecked;
   final VoidCallback onSavePressed;
   final bool isLoading;
+  final bool canApply;
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +107,13 @@ final class _SaveButtonWithPolicyChecked extends StatelessWidget {
         Padding(
           padding: const PagePadding.horizontal16Symmetric(),
           child: KvkkCheckBox(onChanged: onPolicyChecked),
-        ),
+        ).ext.toDisabled(disable: !canApply),
         SaveButton(
-          onPressed: onSavePressed,
+          onPressed: canApply ? onSavePressed : () {},
           isSendingRequestCheck: isLoading,
+          title: canApply
+              ? LocaleKeys.button_save
+              : LocaleKeys.request_scholarship_disable_button_title,
         ),
       ],
     );
