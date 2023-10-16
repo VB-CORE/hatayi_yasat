@@ -8,14 +8,13 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
-import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
-import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 
 class HomeDetailView extends StatefulWidget {
@@ -171,7 +170,7 @@ class _DistrictListTile extends ConsumerWidget {
   }
 }
 
-class _SliverAppBar extends StatefulWidget {
+class _SliverAppBar extends StatelessWidget {
   const _SliverAppBar({
     required this.isPinned,
     required this.model,
@@ -181,63 +180,12 @@ class _SliverAppBar extends StatefulWidget {
   final StoreModel model;
 
   @override
-  State<_SliverAppBar> createState() => _SliverAppBarState();
-}
-
-class _SliverAppBarState extends State<_SliverAppBar> {
-  //Default value is false for now. It'll depend on the cached value after development
-  late final ValueNotifier<bool> favoriteNotifier;
-
-  @override
-  void initState() {
-    super.initState();
-    favoriteNotifier = ValueNotifier<bool>(
-      SharedCache.instance.isFavoritePlace(widget.model.name),
-    );
-  }
-
-  Future<void> _toggleFavorite() async {
-    favoriteNotifier.value = !favoriteNotifier.value;
-
-    //remove or add place to favorites with condition
-    final isSuccess = await (favoriteNotifier.value
-        ? _addFavoritePlace()
-        : _removeFavoritePlace());
-
-    //if any error happen when caching operation then change value again
-    if (!isSuccess) {
-      favoriteNotifier.value = !favoriteNotifier.value;
-    }
-  }
-
-  Future<bool> _addFavoritePlace() async {
-    return SharedCache.instance
-        .setFavoritePlace(FavoritePlaceModel(name: widget.model.name));
-  }
-
-  Future<bool> _removeFavoritePlace() async {
-    return SharedCache.instance
-        .removeFromFavorites(FavoritePlaceModel(name: widget.model.name));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       expandedHeight: WidgetSizes.spacingXxlL13,
       pinned: true,
       actions: [
-        ValueListenableBuilder<bool>(
-          valueListenable: favoriteNotifier,
-          builder: (context, value, child) {
-            return IconButton(
-              onPressed: _toggleFavorite,
-              icon: Icon(
-                value ? Icons.favorite : Icons.favorite_border_outlined,
-                color: context.general.colorScheme.primary,
-              ),
-            );
-          },
-        ),
+        FavoritePlaceButton.fromStore(store: model),
       ],
       leading: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -259,26 +207,26 @@ class _SliverAppBarState extends State<_SliverAppBar> {
       ),
       flexibleSpace: FlexibleSpaceBar(
         title: Container(
-          color: widget.isPinned ? null : Colors.black.withOpacity(0.5),
-          width: widget.isPinned ? null : context.sized.width,
+          color: isPinned ? null : Colors.black.withOpacity(0.5),
+          width: isPinned ? null : context.sized.width,
           child: Padding(
             padding: const PagePadding.onlyLeft(),
             child: Text(
-              widget.model.name,
+              model.name,
               style: context.general.textTheme.titleLarge?.copyWith(
-                color: widget.isPinned
+                color: isPinned
                     ? context.general.colorScheme.onSurface
                     : context.general.colorScheme.onSecondary,
               ),
             ),
           ),
         ),
-        titlePadding: widget.isPinned ? null : EdgeInsets.zero,
+        titlePadding: isPinned ? null : EdgeInsets.zero,
         centerTitle: false,
         background: Hero(
-          tag: ValueKey(widget.model.documentId),
+          tag: ValueKey(model.documentId),
           child: CustomNetworkImage(
-            imageUrl: widget.model.images.firstOrNull,
+            imageUrl: model.images.firstOrNull,
             fit: BoxFit.cover,
           ),
         ),
