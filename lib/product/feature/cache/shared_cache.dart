@@ -18,7 +18,7 @@ final class SharedCache {
   }
 
   Future<void> setFirstAppOpen() async {
-    await _preferences.setBool(SharedKeys.firstAppOpen.name, false);
+    await _sharedOperation.setValue(SharedKeys.firstAppOpen, false);
   }
 
   bool get isFirstAppOpen =>
