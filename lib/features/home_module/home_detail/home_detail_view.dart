@@ -9,13 +9,12 @@ import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
-import 'package:vbaseproject/product/utility/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/index.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
+import 'package:vbaseproject/product/widget/sliver/home_appbar_sliver.dart';
 
 class HomeDetailView extends StatefulWidget {
   const HomeDetailView({required this.model, super.key});
@@ -42,9 +41,9 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
               ValueListenableBuilder<bool>(
                 valueListenable: isPinnedNotifier,
                 builder: (context, value, child) {
-                  return _SliverAppBar(
+                  return HomeAppBarSliver.fromStore(
+                    model: widget.model,
                     isPinned: value,
-                    model: model,
                   );
                 },
               ),
@@ -166,71 +165,6 @@ class _DistrictListTile extends ConsumerWidget {
     return ListTile(
       title: const Text(LocaleKeys.placeDetailView_district).tr(),
       subtitle: Text(town),
-    );
-  }
-}
-
-class _SliverAppBar extends StatelessWidget {
-  const _SliverAppBar({
-    required this.isPinned,
-    required this.model,
-  });
-
-  final bool isPinned;
-  final StoreModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: WidgetSizes.spacingXxlL13,
-      pinned: true,
-      actions: [
-        FavoritePlaceButton.fromStore(store: model),
-      ],
-      leading: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor:
-              context.general.colorScheme.background.withOpacity(0.5),
-          shape: const CircleBorder(),
-          padding: EdgeInsets.zero,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: Icon(
-          Icons.arrow_back,
-          color: context.general.colorScheme.background,
-        ),
-      ),
-      actionsIconTheme: IconThemeData(
-        color: context.general.colorScheme.onSurface,
-      ),
-      flexibleSpace: FlexibleSpaceBar(
-        title: Container(
-          color: isPinned ? null : Colors.black.withOpacity(0.5),
-          width: isPinned ? null : context.sized.width,
-          child: Padding(
-            padding: const PagePadding.onlyLeft(),
-            child: Text(
-              model.name,
-              style: context.general.textTheme.titleLarge?.copyWith(
-                color: isPinned
-                    ? context.general.colorScheme.onSurface
-                    : context.general.colorScheme.onSecondary,
-              ),
-            ),
-          ),
-        ),
-        titlePadding: isPinned ? null : EdgeInsets.zero,
-        centerTitle: false,
-        background: Hero(
-          tag: ValueKey(model.documentId),
-          child: CustomNetworkImage(
-            imageUrl: model.images.firstOrNull,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
     );
   }
 }

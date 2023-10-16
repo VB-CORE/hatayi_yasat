@@ -1,74 +1,46 @@
-import 'dart:convert';
-
-import 'package:kartal/kartal.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
-
-enum SharedKeys { firstAppOpen, favoritePlaces }
+import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/feature/cache/shared_keys.dart';
+import 'package:vbaseproject/product/feature/cache/shared_operation/base_shared_operation.dart';
 
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();
 
-  late SharedPreferences _preferences;
+  late final BaseSharedOperation _sharedOperation;
+
   Future<void> init() async {
-    _preferences = await SharedPreferences.getInstance();
+    _sharedOperation = SharedOperation();
+    await _sharedOperation.init();
   }
 
   Future<void> clear() async {
-    await _preferences.clear();
+    await _sharedOperation.clear();
   }
 
   Future<void> setFirstAppOpen() async {
     await _preferences.setBool(SharedKeys.firstAppOpen.name, false);
   }
 
-  bool isFirstAppOpen() {
-    return _preferences.getBool(SharedKeys.firstAppOpen.name) ?? true;
+  bool get isFirstAppOpen =>
+      _sharedOperation.getValue<bool>(SharedKeys.firstAppOpen) ?? true;
+
+  Future<void> setTheme(ThemeMode mode) async {
+    await _sharedOperation.setValue<int>(SharedKeys.theme, mode.index);
   }
 
-  Future<bool> setFavoritePlace(FavoritePlaceModel favoritePlace) async {
-    final places = getFavoritePlaces()..add(favoritePlace);
+  ThemeMode get theme =>
+      ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ?? 0];
 
-    //safeJsonEncodeCompute not working for encoding..
-    final jsonPlaces = places.map((place) => jsonEncode(place.toJson()));
-
-    return _preferences.setStringList(
-      SharedKeys.favoritePlaces.name,
-      jsonPlaces.toList(),
+  Future<void> saveApplyScholarshipTime() async {
+    await _sharedOperation.setValue<String>(
+      SharedKeys.applyScholarship,
+      DateTime.now().toIso8601String(),
     );
   }
 
-  Future<bool> removeFromFavorites(FavoritePlaceModel favoritePlace) async {
-    final places = getFavoritePlaces()
-      ..removeWhere((place) => place.name == favoritePlace.name);
-
-    //safeJsonEncodeCompute not working for encoding..
-    final jsonPlaces = places.map((place) => jsonEncode(place.toJson()));
-
-    return _preferences.setStringList(
-      SharedKeys.favoritePlaces.name,
-      jsonPlaces.toList(),
-    );
-  }
-
-  bool isFavoritePlace(String name) {
-    final place =
-        getFavoritePlaces().firstWhereOrNull((element) => element.name == name);
-
-    return place != null;
-  }
-
-  List<FavoritePlaceModel> getFavoritePlaces() {
-    final places = _preferences.getStringList(SharedKeys.favoritePlaces.name);
-
-    if (places == null) return [];
-
-    return places.map(
-      (place) {
-        final json = jsonDecode(place);
-        return FavoritePlaceModel.fromJson(json as Map<String, dynamic>);
-      },
-    ).toList();
+  DateTime? getApplyScholarshipTime() {
+    final time = _sharedOperation.getValue<String>(SharedKeys.applyScholarship);
+    if (time == null) return null;
+    return DateTime.parse(time);
   }
 }

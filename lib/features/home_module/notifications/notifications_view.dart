@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home_module/notifications/notification_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/notifier/loading_notifier.dart';
-import 'package:vbaseproject/product/utility/package/shimmer/place_shimmer_list.dart';
+import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
+import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 

@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/items/colors_custom.dart';
+import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class ProductComboBox<T extends ProductDropDownModel> extends StatefulWidget {
   const ProductComboBox({

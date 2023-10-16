@@ -1,10 +1,10 @@
 part of '../campaigns_view.dart';
 
-class _GridBuilder extends ConsumerWidget {
+class _GridBuilder extends StatelessWidget {
   const _GridBuilder({required this.items});
   final List<CampaignModel> items;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SliverPadding(
       padding: const PagePadding.horizontalLowSymmetric(),
       sliver: SliverGrid.builder(

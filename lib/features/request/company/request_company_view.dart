@@ -7,10 +7,10 @@ import 'package:vbaseproject/features/request/company/request_company_view_model
 import 'package:vbaseproject/features/request/company/request_state.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/dropdown/category_drop_down.dart';
-import 'package:vbaseproject/product/utility/dropdown/district_drop_down.dart';
+import 'package:vbaseproject/product/widget/dropdown/category_drop_down.dart';
+import 'package:vbaseproject/product/widget/dropdown/district_drop_down.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';

@@ -60,9 +60,13 @@
     "settings": {
         "title": "Settings",
         "language_title": "Language",
-        "theme_title": "Dark Theme",
+        "theme_title": "{} Theme",
         "version_number_title": "Version Number",
-        "notificationSetting": "Notification Settings"
+        "notificationSetting": "Notification Settings",
+        "themes": {
+            "light": "Light",
+            "dark": "Dark"
+        }
     },
     "home": {
         "places": "Places",
