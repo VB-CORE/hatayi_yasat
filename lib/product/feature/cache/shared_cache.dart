@@ -1,32 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-enum SharedKeys { firstAppOpen, theme }
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/feature/cache/shared_keys.dart';
+import 'package:vbaseproject/product/feature/cache/shared_operation/base_shared_operation.dart';
 
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();
 
-  late SharedPreferences _preferences;
+  late final BaseSharedOperation _sharedOperation;
+
   Future<void> init() async {
-    _preferences = await SharedPreferences.getInstance();
+    _sharedOperation = SharedOperation();
+    await _sharedOperation.init();
   }
 
   Future<void> clear() async {
-    await _preferences.clear();
+    await _sharedOperation.clear();
   }
 
   Future<void> setFirstAppOpen() async {
-    await _preferences.setBool(SharedKeys.firstAppOpen.name, false);
+    await _sharedOperation.setValue(SharedKeys.firstAppOpen, false);
   }
 
   bool get isFirstAppOpen =>
-      _preferences.getBool(SharedKeys.firstAppOpen.name) ?? true;
+      _sharedOperation.getValue<bool>(SharedKeys.firstAppOpen) ?? true;
 
   Future<void> setTheme(ThemeMode mode) async {
-    await _preferences.setInt(SharedKeys.theme.name, mode.index);
+    await _sharedOperation.setValue<int>(SharedKeys.theme, mode.index);
   }
 
   ThemeMode get theme =>
-      ThemeMode.values[_preferences.getInt(SharedKeys.theme.name) ?? 0];
+      ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ?? 0];
+
+  Future<void> saveApplyScholarshipTime() async {
+    await _sharedOperation.setValue<String>(
+      SharedKeys.applyScholarship,
+      DateTime.now().toIso8601String(),
+    );
+  }
+
+  DateTime? getApplyScholarshipTime() {
+    final time = _sharedOperation.getValue<String>(SharedKeys.applyScholarship);
+    if (time == null) return null;
+    return DateTime.parse(time);
+  }
+
+  Future<void> updateNotificaitonLastSeenTime() async {
+    await _sharedOperation.setValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+      DateTime.now().toIso8601String(),
+    );
+  }
+
+  DateTime? getLastNotificationSeenTime() {
+    final lastNotificationSeenTime =
+        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
+    return DateTime.tryParse(lastNotificationSeenTime!);
+  }
 }

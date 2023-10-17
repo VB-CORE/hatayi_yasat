@@ -13,18 +13,21 @@ class HomeAppBarSliver extends StatelessWidget {
     required this.title,
     required this.id,
     required this.imageUrl,
+    this.actions,
     super.key,
   });
 
   factory HomeAppBarSliver.fromStore({
     required StoreModel model,
     required bool isPinned,
+    List<Widget>? actions,
   }) {
     return HomeAppBarSliver(
       isPinned: isPinned,
       title: model.name,
       id: model.documentId,
       imageUrl: model.images.firstOrNull,
+      actions: actions,
     );
   }
 
@@ -44,6 +47,7 @@ class HomeAppBarSliver extends StatelessWidget {
   final String title;
   final String id;
   final String? imageUrl;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class HomeAppBarSliver extends StatelessWidget {
       actionsIconTheme: IconThemeData(
         color: context.general.colorScheme.onSurface,
       ),
+      actions: actions,
       title: !isPinned ? null : Text(title),
       flexibleSpace: FlexibleSpaceBar(
         title: Container(

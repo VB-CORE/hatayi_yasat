@@ -12,6 +12,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/sliver/home_appbar_sliver.dart';
@@ -44,6 +45,9 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                   return HomeAppBarSliver.fromStore(
                     model: widget.model,
                     isPinned: value,
+                    actions: [
+                      FavoritePlaceButton.fromStore(store: widget.model),
+                    ],
                   );
                 },
               ),
