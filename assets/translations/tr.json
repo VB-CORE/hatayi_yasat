@@ -17,8 +17,8 @@
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
         "categoryEmpty": "Kategori seçiniz",
-        "email_format": "Lütfen mailinizi doğru giriniz", 
-        "student_email_format": "Lütfen öğrenci mailinizi giriniz"
+        "emailFormat": "Lütfen mailinizi doğru giriniz", 
+        "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
     },
     "button": {
         "save": "Kaydet",
@@ -61,9 +61,9 @@
     },
     "settings": {
         "title": "Ayarlar",
-        "language_title": "Dil",
-        "theme_title": "{} Tema",
-        "version_number_title": "Versiyon Numarası",
+        "languageTitle": "Dil",
+        "themeTitle": "{} Tema",
+        "versionNumberTitle": "Versiyon Numarası",
         "notificationSetting": "Bildirim Ayarları",
         "themes": {
             "light": "Aydınlık",
@@ -107,8 +107,8 @@
     "notification": {
         "snackbarButtonText": "Aç",
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
-        "business_not_found_error_message": "İşletme bulunamadı",
-        "campaign_not_found_error_message": "Proje bulunamadı"
+        "businessNotFoundErrorMessage": "İşletme bulunamadı",
+        "campaignNotFoundErrorMessage": "Proje bulunamadı"
     },
     "developers": {
         "title": "Geliştiriciler",
@@ -161,22 +161,22 @@
         "nov": "Kasım",
         "dec": "Aralık"
     },
-    "request_scholarship": {
+    "requestScholarship": {
       "title":"Yeni Burs Talebi",
       "contact": "İletişim",
       "story": "Kendinizden Bahsedin",
-      "student_document": "Öğrenci Belgesi",
-      "pdf_hint": "dosya_adı.pdf",
+      "studentDocument": "Öğrenci Belgesi",
+      "pdfHint": "dosya_adı.pdf",
       "email": "Email Adresi",
-      "disable_button_title": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
+      "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
       "error": {
-        "service_error": "Bir servis hatası oluştu",
-        "undefined_error": "Belirlenemeyen bir hata oluştu",
-        "file_size_error": "Girilen dosya boyutunu kontrol edin",
-        "no_file_error": "Lütfen öğrenci belgenizi yükleyiniz"
+        "serviceError": "Bir servis hatası oluştu",
+        "undefinedError": "Belirlenemeyen bir hata oluştu",
+        "fileSizeError": "Girilen dosya boyutunu kontrol edin",
+        "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
       }
     },
-    "file_upload": {
+    "fileUpload": {
       "upload": "Yükle",
       "update": "Güncelle"
     }

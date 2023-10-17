@@ -50,7 +50,7 @@ final class RequestScholarshipViewModel
   Future<String?> uploadScholarship() async {
     final model = state.requestScholarshipModel;
     if (model == null) {
-      return LocaleKeys.request_scholarship_error_undefined_error.tr();
+      return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
     final (pdfLink, errorType) = await uploadStudentDocumentPDF();
     if (errorType != null) return errorType.errorMessage;
@@ -67,7 +67,7 @@ final class RequestScholarshipViewModel
     );
 
     if (response == null) {
-      return LocaleKeys.request_scholarship_error_undefined_error.tr();
+      return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
 
     await _sharedCache.saveApplyScholarshipTime();
@@ -79,11 +79,11 @@ extension UploadErrorsExtension on UploadErrors {
   String get errorMessage {
     switch (this) {
       case UploadErrors.sizeLimit:
-        return LocaleKeys.request_scholarship_error_file_size_error.tr();
+        return LocaleKeys.requestScholarship_error_fileSizeError.tr();
       case UploadErrors.service:
-        return LocaleKeys.request_scholarship_error_undefined_error.tr();
+        return LocaleKeys.requestScholarship_error_undefinedError.tr();
       case UploadErrors.noFile:
-        return LocaleKeys.request_scholarship_error_no_file_error.tr();
+        return LocaleKeys.requestScholarship_error_noFileError.tr();
     }
   }
 }

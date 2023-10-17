@@ -64,9 +64,9 @@ final class ValidatorEmailTextField extends ValidatorField {
     }
     if (value.length < 3) return LocaleKeys.validation_generalText.tr();
 
-    if (!value.ext.isValidEmail) return LocaleKeys.validation_email_format.tr();
+    if (!value.ext.isValidEmail) return LocaleKeys.validation_emailFormat.tr();
     if (!RegexTypes.studentMailRegex.hasMatch(value)) {
-      return LocaleKeys.validation_student_email_format.tr();
+      return LocaleKeys.validation_studentEmailFormat.tr();
     }
     return null;
   }

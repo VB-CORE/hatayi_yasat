@@ -37,11 +37,11 @@ class UploadFileSectionWidgetState extends State<UploadFileSectionWidget>
           valueListenable: documentFileNotifier,
           builder: (BuildContext context, File? file, Widget? _) => Expanded(
             child: isFilePicked(file)
-                ? _HintText(hintText: widget.hintText)
-                : _UploadedFileText(
+                ? _UploadedFileText(
                     fileName: getNameOfFile(file!)!,
                     onPressed: () => showPdfFilePreview(file),
-                  ),
+                  )
+                : _HintText(hintText: widget.hintText),
           ),
         ),
         const EmptyBox.smallWidth(),
@@ -49,7 +49,7 @@ class UploadFileSectionWidgetState extends State<UploadFileSectionWidget>
           valueListenable: documentFileNotifier,
           builder: (BuildContext context, File? value, Widget? child) {
             return _UploadButton(
-              isFileNull: isFilePicked(value),
+              isFileNotNull: isFilePicked(value),
               uploadPressed: pickFile,
             );
           },
@@ -61,8 +61,11 @@ class UploadFileSectionWidgetState extends State<UploadFileSectionWidget>
 
 @immutable
 final class _UploadButton extends StatelessWidget {
-  const _UploadButton({required this.isFileNull, required this.uploadPressed});
-  final bool isFileNull;
+  const _UploadButton({
+    required this.isFileNotNull,
+    required this.uploadPressed,
+  });
+  final bool isFileNotNull;
   final VoidCallback uploadPressed;
 
   @override
@@ -73,9 +76,9 @@ final class _UploadButton extends StatelessWidget {
       ),
       onPressed: uploadPressed,
       label: Text(
-        isFileNull
-            ? LocaleKeys.file_upload_upload
-            : LocaleKeys.file_upload_update,
+        isFileNotNull
+            ? LocaleKeys.fileUpload_update
+            : LocaleKeys.fileUpload_upload,
       ).tr(),
       icon: const Icon(
         Icons.upload_file,

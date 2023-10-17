@@ -27,7 +27,7 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(LocaleKeys.request_scholarship_title).tr(),
+        title: const Text(LocaleKeys.requestScholarship_title).tr(),
       ),
       bottomNavigationBar: _SaveButtonWithPolicyChecked(
         onPolicyChecked: changePolicyCheck,
@@ -46,18 +46,18 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const _TitleText(
-                    title: LocaleKeys.request_scholarship_contact,
+                    title: LocaleKeys.requestScholarship_contact,
                   ),
                   const EmptyBox.smallHeight(),
                   ValidatorTextFormField(
-                    labelText: LocaleKeys.request_scholarship_email,
+                    labelText: LocaleKeys.requestScholarship_email,
                     validator: ValidatorEmailTextField(),
                     controller: emailController,
                   ),
                   const EmptyBox.smallHeight(),
                   PhoneTextFormField(controller: phoneNumberController),
                   const EmptyBox.largeHeight(),
-                  const _TitleText(title: LocaleKeys.request_scholarship_story),
+                  const _TitleText(title: LocaleKeys.requestScholarship_story),
                   const EmptyBox.smallHeight(),
                   ValidatorTextFormField(
                     labelText: '',
@@ -66,11 +66,11 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
                   ),
                   const EmptyBox.middleHeight(),
                   const _TitleText(
-                    title: LocaleKeys.request_scholarship_student_document,
+                    title: LocaleKeys.requestScholarship_studentDocument,
                   ),
                   const EmptyBox.smallHeight(),
                   UploadFileSectionWidget(
-                    hintText: LocaleKeys.request_scholarship_pdf_hint,
+                    hintText: LocaleKeys.requestScholarship_pdfHint,
                     onFilePicked: updatePDFFile,
                   ),
                   const EmptyBox.smallHeight(),
@@ -113,7 +113,7 @@ final class _SaveButtonWithPolicyChecked extends StatelessWidget {
           isSendingRequestCheck: isLoading,
           title: canApply
               ? LocaleKeys.button_save
-              : LocaleKeys.request_scholarship_disable_button_title,
+              : LocaleKeys.requestScholarship_disableButtonTitle,
         ),
       ],
     );

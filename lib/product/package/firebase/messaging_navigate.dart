@@ -5,7 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 
 @immutable
@@ -56,8 +55,7 @@ final class MessagingNavigate {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
-          message:
-              LocaleKeys.notification_business_not_found_error_message.tr(),
+          message: LocaleKeys.notification_businessNotFoundErrorMessage.tr(),
         ),
       );
     }
@@ -80,8 +78,7 @@ final class MessagingNavigate {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
-          message:
-              LocaleKeys.notification_campaign_not_found_error_message.tr(),
+          message: LocaleKeys.notification_campaignNotFoundErrorMessage.tr(),
         ),
       );
     }

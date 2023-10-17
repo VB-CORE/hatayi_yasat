@@ -32,7 +32,7 @@ final class SpeedDialChildModelList {
       ),
       const SpeedDialChildModel(
         destination: RequestScholarshipView(),
-        title: LocaleKeys.request_scholarship_title,
+        title: LocaleKeys.requestScholarship_title,
       ),
     ];
   }

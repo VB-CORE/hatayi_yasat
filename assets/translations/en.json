@@ -17,8 +17,8 @@
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
         "categoryEmpty": "Please choose a category",
-        "email_format": "Please enter your mail correctly", 
-        "student_email_format": "Please enter your student mail"
+        "emailFormat": "Please enter your mail correctly", 
+        "studentEmailFormat": "Please enter your student mail"
     },
     "button": {
         "save": "Save",
@@ -61,9 +61,9 @@
     },
     "settings": {
         "title": "Settings",
-        "language_title": "Language",
-        "theme_title": "{} Theme",
-        "version_number_title": "Version Number",
+        "languageTitle": "Language",
+        "themeTitle": "{} Theme",
+        "versionNumberTitle": "Version Number",
         "notificationSetting": "Notification Settings",
         "themes": {
             "light": "Light",
@@ -107,8 +107,8 @@
     "notification": {
         "snackbarButtonText": "Open",
         "defaultMessage": "A business has resumed operations.",
-        "business_not_found_error_message": "Business not found",
-        "campaign_not_found_error_message": "Project not found"
+        "businessNotFoundErrorMessage": "Business not found",
+        "campaignNotFoundErrorMessage": "Project not found"
     },
     "developers": {
         "title": "Developers",
@@ -161,22 +161,22 @@
         "nov": "November",
         "dec": "December"
     },
-    "request_scholarship": {
+    "requestScholarship": {
       "title":"New Scholarship Request",
       "contact": "Contact",
       "story": "Your Story",
-      "student_document": "Student Document",
-      "pdf_hint": "file_name.pdf",
+      "studentDocument": "Student Document",
+      "pdfHint": "file_name.pdf",
       "email": "Email Address",
-      "disable_button_title": "You should wait 1 day to apply for a new scholarship",
+      "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
       "error": {
-        "service_error": "A service error has occurred",
-        "undefined_error": "An unidentified error occurred",
-        "file_size_error": "Check the entered file size",
-        "no_file_error": "Please upload your student document"
+        "serviceError": "A service error has occurred",
+        "undefinedError": "An unidentified error occurred",
+        "fileSizeError": "Check the entered file size",
+        "noFileError": "Please upload your student document"
       }
     },
-    "file_upload": {
+    "fileUpload": {
       "upload": "Upload",
       "update": "Update"
     }
