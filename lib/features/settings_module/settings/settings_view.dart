@@ -31,7 +31,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
         child: Column(
           children: [
             ListTile(
-              title: Text(LocaleKeys.settings_language_title.tr()),
+              title: Text(LocaleKeys.settings_languageTitle.tr()),
               trailing: const LanguageChangeWidget(),
             ),
             const ListTile(
@@ -39,7 +39,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
               trailing: ThemeSwitchWidget(),
             ),
             ListTile(
-              title: Text(LocaleKeys.settings_version_number_title.tr()),
+              title: Text(LocaleKeys.settings_versionNumberTitle.tr()),
               trailing: const _VersionText(),
             ),
             const NotificationPermissionView(),
@@ -89,7 +89,7 @@ class _ThemeTitle extends ConsumerWidget
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkTheme = appStateWatch(ref).theme == ThemeMode.dark;
     return Text(
-      LocaleKeys.settings_theme_title.tr(
+      LocaleKeys.settings_themeTitle.tr(
         args: [
           if (isDarkTheme)
             LocaleKeys.settings_themes_dark.tr()

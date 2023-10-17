@@ -16,7 +16,9 @@
         "formRequired": "Lütfen formu doldurunuz",
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-        "categoryEmpty": "Kategori seçiniz"
+        "categoryEmpty": "Kategori seçiniz",
+        "emailFormat": "Lütfen mailinizi doğru giriniz", 
+        "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
     },
     "button": {
         "save": "Kaydet",
@@ -59,9 +61,9 @@
     },
     "settings": {
         "title": "Ayarlar",
-        "language_title": "Dil",
-        "theme_title": "{} Tema",
-        "version_number_title": "Versiyon Numarası",
+        "languageTitle": "Dil",
+        "themeTitle": "{} Tema",
+        "versionNumberTitle": "Versiyon Numarası",
         "notificationSetting": "Bildirim Ayarları",
         "themes": {
             "light": "Aydınlık",
@@ -105,8 +107,8 @@
     "notification": {
         "snackbarButtonText": "Aç",
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
-        "business_not_found_error_message": "İşletme bulunamadı",
-        "campaign_not_found_error_message": "Proje bulunamadı"
+        "businessNotFoundErrorMessage": "İşletme bulunamadı",
+        "campaignNotFoundErrorMessage": "Proje bulunamadı"
     },
     "developers": {
         "title": "Geliştiriciler",
@@ -128,6 +130,7 @@
         "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
         "addressTitle": "Adresi haritada açmak ister misiniz?",
         "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
+        "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
         "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
         "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
     },
@@ -157,5 +160,24 @@
         "oct": "Ekim",
         "nov": "Kasım",
         "dec": "Aralık"
+    },
+    "requestScholarship": {
+      "title":"Yeni Burs Talebi",
+      "contact": "İletişim",
+      "story": "Kendinizden Bahsedin",
+      "studentDocument": "Öğrenci Belgesi",
+      "pdfHint": "dosya_adı.pdf",
+      "email": "Email Adresi",
+      "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
+      "error": {
+        "serviceError": "Bir servis hatası oluştu",
+        "undefinedError": "Belirlenemeyen bir hata oluştu",
+        "fileSizeError": "Girilen dosya boyutunu kontrol edin",
+        "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
+      }
+    },
+    "fileUpload": {
+      "upload": "Yükle",
+      "update": "Güncelle"
     }
 }

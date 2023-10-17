@@ -1,20 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/request/company/request_company_view.dart';
-import 'package:vbaseproject/features/request/project/request_project_view.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
+import 'package:vbaseproject/sub_feature/tab/model/speed_dial_child_model.dart';
 import 'package:vbaseproject/sub_feature/tab/model/tab_model.dart';
 
 final class MainTabView extends StatelessWidget {
   MainTabView({super.key});
 
   final tabItems = TabModels.create().tabItems;
+  final speedDialItems = SpeedDialChildModelList().speedDialChildItems;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ final class MainTabView extends StatelessWidget {
         appBar: MainAppBar(context: context),
         body: _BodyTabBarViewWidget(tabItems: tabItems),
         bottomNavigationBar: _BottomAppBarWidget(tabItems: tabItems),
-        floatingActionButton: const _SpeedDialFabWidget(),
+        floatingActionButton: _SpeedDialFabWidget(dialItems: speedDialItems),
       ),
     );
   }
@@ -76,23 +75,22 @@ class _BottomAppBarWidget extends StatelessWidget {
 }
 
 class _SpeedDialFabWidget extends StatelessWidget {
-  const _SpeedDialFabWidget();
+  const _SpeedDialFabWidget({required this.dialItems});
+
+  final List<SpeedDialChildModel> dialItems;
 
   @override
   Widget build(BuildContext context) {
     return CustomSpeedDial(
-      children: [
-        CustomSpeedDialChild(
-          context: context,
-          destination: const RequestProjectView(),
-          label: LocaleKeys.projectRequest_title,
-        ),
-        CustomSpeedDialChild(
-          context: context,
-          destination: const RequestCompanyView(),
-          label: LocaleKeys.requestCompany_title,
-        ),
-      ],
+      children: dialItems
+          .map(
+            (e) => CustomSpeedDialChild(
+              context: context,
+              destination: e.destination,
+              label: e.title,
+            ),
+          )
+          .toList(),
     );
   }
 }
