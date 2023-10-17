@@ -8,6 +8,8 @@ abstract class BaseSharedOperation {
 
   Future<void> init();
   Future<void> setValue<T>(SharedKeys key, T value);
+  Future<bool> setStringList(SharedKeys key, List<String> value);
+  List<String>? getStringList(SharedKeys key);
   T? getValue<T>(SharedKeys key);
   Future<void> delete(SharedKeys key);
   Future<void> clear();
@@ -41,5 +43,15 @@ final class SharedOperation extends BaseSharedOperation
   @override
   Future<void> clear() async {
     await _sharedPreferences.clear();
+  }
+
+  @override
+  Future<bool> setStringList(SharedKeys key, List<String> value) {
+    return _sharedPreferences.setStringList(key.name, value);
+  }
+
+  @override
+  List<String>? getStringList(SharedKeys key) {
+    return _sharedPreferences.getStringList(key.name);
   }
 }
