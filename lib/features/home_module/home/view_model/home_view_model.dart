@@ -2,7 +2,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_state.dart';
 import 'package:vbaseproject/features/home_module/home/view_model/home_view_model_mixin.dart';
-
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/sheet/operation/town_category_operation.dart';
 

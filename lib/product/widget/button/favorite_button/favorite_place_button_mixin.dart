@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
+import 'package:vbaseproject/product/feature/cache/hive/favorite_place_cache_manager.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_provider.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
@@ -15,7 +16,8 @@ mixin FavoritePlaceButtonMixin on ConsumerState<FavoritePlaceButton> {
   void initState() {
     super.initState();
     _favoritePlaceProvider = StateNotifierProvider(
-      (ref) => FavoritePlaceProvider()..checkFavoritePlaceByName(widget.name),
+      (ref) => FavoritePlaceProvider(cacheService: FavoritePlaceCacheManager())
+        ..initAndCheckFavoritePlace(_getFavoritePlace()),
     );
   }
 
