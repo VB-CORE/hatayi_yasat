@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/feature/cache/shared_keys.dart';
 import 'package:vbaseproject/product/feature/cache/shared_operation/base_shared_operation.dart';
 
@@ -42,5 +43,19 @@ final class SharedCache {
     final time = _sharedOperation.getValue<String>(SharedKeys.applyScholarship);
     if (time == null) return null;
     return DateTime.parse(time);
+  }
+
+  Future<void> updateNotificaitonLastSeenTime() async {
+    await _sharedOperation.setValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+      DateTime.now().toIso8601String(),
+    );
+  }
+
+  DateTime? getLastNotificationSeenTime() {
+    final lastNotificationSeenTime =
+        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
+    return DateTime.tryParse(lastNotificationSeenTime!);
   }
 }

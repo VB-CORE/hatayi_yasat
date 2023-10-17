@@ -1,4 +1,5 @@
-class StringConstants {
+final class StringConstants {
+  StringConstants._();
   static const String asteriks = '*';
   static const String phoneHint = '(53X) XX XX';
   static const String twitter = 'Twitter';

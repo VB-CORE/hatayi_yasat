@@ -1,1 +1,6 @@
-enum SharedKeys { firstAppOpen, theme, applyScholarship, favoritePlaces }
+enum SharedKeys {
+  firstAppOpen,
+  theme,
+  applyScholarship,
+  lastNotificationSeenTime,
+}
