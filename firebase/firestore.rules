@@ -71,5 +71,10 @@ service cloud.firestore {
       allow write;
     }
 
+    match /scholarship/{scholarship} {
+      allow read;
+      allow write: if true;
+    }
+
   }
 }

@@ -7,9 +7,9 @@ import 'package:vbaseproject/features/request/project/mixin/request_project_mixi
 import 'package:vbaseproject/features/request/project/request_project_state.dart';
 import 'package:vbaseproject/features/request/project/viewmodel/request_project_view_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
@@ -47,6 +47,7 @@ class _RequestProjectViewState extends ConsumerState<RequestProjectView>
         },
         isSendingRequestCheck:
             ref.watch(_requestProjectViewModel).isSendingRequest,
+        title: LocaleKeys.button_save,
       ),
       body: WillPopScope(
         onWillPop: checkBackButton,

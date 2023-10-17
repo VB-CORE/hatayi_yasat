@@ -17,6 +17,8 @@ abstract class  LocaleKeys {
   static const validation_photoRequired = 'validation.photoRequired';
   static const validation_loseAllData = 'validation.loseAllData';
   static const validation_categoryEmpty = 'validation.categoryEmpty';
+  static const validation_emailFormat = 'validation.emailFormat';
+  static const validation_studentEmailFormat = 'validation.studentEmailFormat';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';
@@ -52,9 +54,9 @@ abstract class  LocaleKeys {
   static const general_confirmationText = 'general.confirmationText';
   static const general = 'general';
   static const settings_title = 'settings.title';
-  static const settings_language_title = 'settings.language_title';
-  static const settings_theme_title = 'settings.theme_title';
-  static const settings_version_number_title = 'settings.version_number_title';
+  static const settings_languageTitle = 'settings.languageTitle';
+  static const settings_themeTitle = 'settings.themeTitle';
+  static const settings_versionNumberTitle = 'settings.versionNumberTitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings_themes_light = 'settings.themes.light';
   static const settings_themes_dark = 'settings.themes.dark';
@@ -91,8 +93,8 @@ abstract class  LocaleKeys {
   static const networkCheck = 'networkCheck';
   static const notification_snackbarButtonText = 'notification.snackbarButtonText';
   static const notification_defaultMessage = 'notification.defaultMessage';
-  static const notification_business_not_found_error_message = 'notification.business_not_found_error_message';
-  static const notification_campaign_not_found_error_message = 'notification.campaign_not_found_error_message';
+  static const notification_businessNotFoundErrorMessage = 'notification.businessNotFoundErrorMessage';
+  static const notification_campaignNotFoundErrorMessage = 'notification.campaignNotFoundErrorMessage';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
@@ -112,6 +114,7 @@ abstract class  LocaleKeys {
   static const dialog_phoneTitle = 'dialog.phoneTitle';
   static const dialog_addressTitle = 'dialog.addressTitle';
   static const dialog_completeRequest = 'dialog.completeRequest';
+  static const dialog_completeScholarshipRequest = 'dialog.completeScholarshipRequest';
   static const dialog_permissionCameraLibrary = 'dialog.permissionCameraLibrary';
   static const dialog_permissionNotification = 'dialog.permissionNotification';
   static const dialog = 'dialog';
@@ -140,5 +143,21 @@ abstract class  LocaleKeys {
   static const months_nov = 'months.nov';
   static const months_dec = 'months.dec';
   static const months = 'months';
+  static const requestScholarship_title = 'requestScholarship.title';
+  static const requestScholarship_contact = 'requestScholarship.contact';
+  static const requestScholarship_story = 'requestScholarship.story';
+  static const requestScholarship_studentDocument = 'requestScholarship.studentDocument';
+  static const requestScholarship_pdfHint = 'requestScholarship.pdfHint';
+  static const requestScholarship_email = 'requestScholarship.email';
+  static const requestScholarship_disableButtonTitle = 'requestScholarship.disableButtonTitle';
+  static const requestScholarship_error_serviceError = 'requestScholarship.error.serviceError';
+  static const requestScholarship_error_undefinedError = 'requestScholarship.error.undefinedError';
+  static const requestScholarship_error_fileSizeError = 'requestScholarship.error.fileSizeError';
+  static const requestScholarship_error_noFileError = 'requestScholarship.error.noFileError';
+  static const requestScholarship_error = 'requestScholarship.error';
+  static const requestScholarship = 'requestScholarship';
+  static const fileUpload_upload = 'fileUpload.upload';
+  static const fileUpload_update = 'fileUpload.update';
+  static const fileUpload = 'fileUpload';
 
 }

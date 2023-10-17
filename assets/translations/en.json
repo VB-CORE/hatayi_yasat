@@ -16,7 +16,9 @@
         "formRequired": "Please fill out the form.",
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "categoryEmpty": "Please choose a category"
+        "categoryEmpty": "Please choose a category",
+        "emailFormat": "Please enter your mail correctly", 
+        "studentEmailFormat": "Please enter your student mail"
     },
     "button": {
         "save": "Save",
@@ -59,9 +61,9 @@
     },
     "settings": {
         "title": "Settings",
-        "language_title": "Language",
-        "theme_title": "{} Theme",
-        "version_number_title": "Version Number",
+        "languageTitle": "Language",
+        "themeTitle": "{} Theme",
+        "versionNumberTitle": "Version Number",
         "notificationSetting": "Notification Settings",
         "themes": {
             "light": "Light",
@@ -106,8 +108,8 @@
     "notification": {
         "snackbarButtonText": "Open",
         "defaultMessage": "A business has resumed operations.",
-        "business_not_found_error_message": "Business not found",
-        "campaign_not_found_error_message": "Project not found"
+        "businessNotFoundErrorMessage": "Business not found",
+        "campaignNotFoundErrorMessage": "Project not found"
     },
     "developers": {
         "title": "Developers",
@@ -131,6 +133,7 @@
         "phoneTitle": "Would you like to call by phone?",
         "addressTitle": "Would you like to open the address on the map?",
         "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
+        "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
         "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
         "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
     },
@@ -161,5 +164,24 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+    },
+    "requestScholarship": {
+      "title":"New Scholarship Request",
+      "contact": "Contact",
+      "story": "Your Story",
+      "studentDocument": "Student Document",
+      "pdfHint": "file_name.pdf",
+      "email": "Email Address",
+      "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
+      "error": {
+        "serviceError": "A service error has occurred",
+        "undefinedError": "An unidentified error occurred",
+        "fileSizeError": "Check the entered file size",
+        "noFileError": "Please upload your student document"
+      }
+    },
+    "fileUpload": {
+      "upload": "Upload",
+      "update": "Update"
     }
 }

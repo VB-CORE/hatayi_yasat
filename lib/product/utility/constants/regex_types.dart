@@ -6,4 +6,8 @@ class RegexTypes {
       );
 
   static RegExp phoneNumberRegex = RegExp('[^0-9]');
+
+  static RegExp studentMailRegex = RegExp(
+    r'[\w.-]+@[\w.-]+\b(edu|edu\..*)\b',
+  );
 }
