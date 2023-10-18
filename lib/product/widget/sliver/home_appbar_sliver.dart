@@ -69,7 +69,7 @@ class HomeAppBarSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: WidgetSizes.spacingXxlL13,
+      expandedHeight: WidgetSizes.spacingXxlL14,
       pinned: true,
       leading: const _LeftCloseButton(),
       actionsIconTheme: IconThemeData(

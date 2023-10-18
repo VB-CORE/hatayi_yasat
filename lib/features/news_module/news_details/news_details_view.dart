@@ -3,9 +3,8 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/news_module/news_details/mixin/news_details_mixin.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
+import 'package:vbaseproject/product/widget/sliver/home_appbar_sliver.dart';
 
 class NewsDetailsView extends StatefulWidget {
   const NewsDetailsView({required this.newsModel, super.key});
@@ -27,7 +26,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView>
             ValueListenableBuilder<bool>(
               valueListenable: isPinnedNotifier,
               builder: (context, value, child) {
-                return _SliverAppBar(
+                return HomeAppBarSliver.fromNews(
                   isPinned: value,
                   model: newsModel,
                 );
@@ -97,68 +96,6 @@ class _NewsContent extends StatelessWidget {
         textAlign: TextAlign.justify,
         style: context.general.textTheme.bodyLarge?.copyWith(
           color: ColorCommon(context).whiteAndBlackForTheme,
-        ),
-      ),
-    );
-  }
-}
-
-class _SliverAppBar extends StatelessWidget {
-  const _SliverAppBar({
-    required this.isPinned,
-    required this.model,
-  });
-
-  final bool isPinned;
-  final NewsModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: WidgetSizes.spacingXxlL14,
-      pinned: true,
-      leading: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor:
-              ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
-          shape: const CircleBorder(),
-          padding: EdgeInsets.zero,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: Icon(
-          Icons.arrow_back,
-          color: ColorCommon(context).blackAndWhiteForTheme,
-        ),
-      ),
-      actionsIconTheme: IconThemeData(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-      ),
-      flexibleSpace: FlexibleSpaceBar(
-        title: isPinned
-            ? SizedBox(
-                child: Padding(
-                  padding: const PagePadding.onlyLeft(),
-                  child: Text(
-                    model.title ?? '',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.general.textTheme.titleLarge?.copyWith(
-                      color: ColorCommon(context).whiteAndBlackForTheme,
-                    ),
-                  ),
-                ),
-              )
-            : const SizedBox.shrink(),
-        titlePadding: isPinned ? null : EdgeInsets.zero,
-        centerTitle: false,
-        background: Hero(
-          tag: ValueKey(model.documentId),
-          child: CustomNetworkImage(
-            imageUrl: model.image,
-            fit: BoxFit.cover,
-          ),
         ),
       ),
     );
