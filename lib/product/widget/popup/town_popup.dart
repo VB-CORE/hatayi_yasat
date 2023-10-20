@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
@@ -44,7 +46,10 @@ class _CategoryPopupState extends ConsumerState<TownPopup> {
               if (_selectedItem != null)
                 Text(
                   _selectedItem!.displayName,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(),
+                  style: context.general.textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: ColorCommon(context).whiteAndBlackForTheme,
+                  ),
                 ),
             ],
           ),

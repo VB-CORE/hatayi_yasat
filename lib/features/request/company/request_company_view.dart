@@ -23,7 +23,7 @@ import 'package:vbaseproject/product/widget/text_field/validator_text_form_field
 final StateNotifierProvider<RequestCompanyViewModel, RequestCompanyState>
     _requestCompanyViewModel = StateNotifierProvider(
   (ref) => RequestCompanyViewModel(
-    ref.read(AppProvider.provider).deviceID ?? '',
+    ref.read(AppProvider.provider).deviceID,
   ),
 );
 

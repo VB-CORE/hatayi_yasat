@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
   const DeveloperProfileCard({
@@ -35,6 +35,7 @@ class DeveloperProfileCard extends StatelessWidget {
                 model.name ?? '',
                 style: context.general.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: ColorCommon(context).whiteAndBlackForTheme,
                 ),
               ),
               const Spacer(),
@@ -50,6 +51,7 @@ class DeveloperProfileCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: context.general.textTheme.bodySmall?.copyWith(
                           decoration: TextDecoration.underline,
+                          color: ColorCommon(context).whiteAndBlackForTheme,
                         ),
                       ),
                     ),

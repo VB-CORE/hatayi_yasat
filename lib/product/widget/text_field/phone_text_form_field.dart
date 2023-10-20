@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-
 import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
 
 class PhoneTextFormField extends StatelessWidget {
@@ -12,9 +12,16 @@ class PhoneTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: const InputDecoration(
+      style: context.general.textTheme.labelLarge?.copyWith(
+        color: ColorCommon(context).whiteAndBlackForTheme,
+      ),
+      decoration: InputDecoration(
         hintText: ProjectGeneralConstant.phoneNumberHint,
-        border: OutlineInputBorder(),
+        hintStyle: context.general.textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: ColorCommon(context).whiteAndBlackForTheme,
+        ),
+        border: const OutlineInputBorder(),
       ),
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
