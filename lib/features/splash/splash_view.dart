@@ -38,12 +38,11 @@ class _SplashViewState extends ConsumerState<SplashView>
                     padding: const PagePadding.onlyLeft10(),
                     child: Text(
                       LocaleKeys.project_name,
-                      style: context.general.textTheme.titleLarge?.copyWith(
+                      style: context.general.textTheme.displaySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: ColorCommon(context).whiteAndBlackForTheme,
-                        fontSize:
-                            context.general.textTheme.displaySmall?.fontSize,
                       ),
+                      textAlign: TextAlign.center,
                     ).tr(),
                   ),
                   const Padding(

@@ -95,7 +95,6 @@ class _SliverDetail extends StatelessWidget {
         ),
         if (model.description.ext.isNotNullOrNoEmpty)
           ListTile(
-            titleTextStyle: context.general.textTheme.titleMedium,
             title: const Text(LocaleKeys.placeDetailView_description).tr(),
             subtitle: Text(model.description ?? ''),
           ),

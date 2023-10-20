@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 
 class SearchFieldDisabled extends StatelessWidget {
@@ -25,6 +26,9 @@ class SearchFieldDisabled extends StatelessWidget {
           prefixIcon: const Icon(Icons.search),
           hintText: hint,
           filled: true,
+          hintStyle: context.general.textTheme.labelLarge?.copyWith(
+            color: ColorCommon(context).whiteAndBlackForTheme,
+          ),
           disabledBorder: OutlineInputBorder(
             borderRadius: CustomRadius.extraLarge,
             borderSide: BorderSide(

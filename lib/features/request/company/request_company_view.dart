@@ -23,7 +23,7 @@ import 'package:vbaseproject/product/widget/text_field/validator_text_form_field
 final StateNotifierProvider<RequestCompanyViewModel, RequestCompanyState>
     _requestCompanyViewModel = StateNotifierProvider(
   (ref) => RequestCompanyViewModel(
-    ref.read(AppProvider.provider).deviceID ?? '',
+    ref.read(AppProvider.provider).deviceID,
   ),
 );
 
@@ -88,7 +88,7 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                   ),
                   ValidatorTextFormField(
                     controller: addressController,
-                    labelText: LocaleKeys.validation_address,
+                    labelText: LocaleKeys.requestCompany_address,
                     validator: ValidatorNormalTextField(),
                     minLine: 3,
                   ),

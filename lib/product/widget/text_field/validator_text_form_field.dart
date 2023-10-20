@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 
@@ -26,8 +28,15 @@ class ValidatorTextFormField extends StatelessWidget {
         controller: controller,
         maxLines: minLine != null ? minLine! + 1 : null,
         textInputAction: textInputAction,
+        style: context.general.textTheme.labelLarge?.copyWith(
+          color: ColorCommon(context).whiteAndBlackForTheme,
+        ),
         decoration: InputDecoration(
           labelText: labelText.tr(),
+          labelStyle: context.general.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: ColorCommon(context).whiteAndBlackForTheme,
+          ),
           border: const OutlineInputBorder(),
         ),
         validator: validator.validate,

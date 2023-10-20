@@ -3,7 +3,6 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/regex_types.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 mixin RedirectionMixin {
   static Future<void> navigateToMapsWithTitle({

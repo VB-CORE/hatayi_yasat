@@ -16,7 +16,7 @@ class CustomSpeedDial extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpeedDial(
       childrenButtonSize: Size(
-        context.sized.dynamicWidth(0.5),
+        context.sized.dynamicWidth(0.6),
         context.sized.dynamicHeight(0.1),
       ),
       icon: Icons.add,

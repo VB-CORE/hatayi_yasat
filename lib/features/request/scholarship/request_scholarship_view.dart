@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/request/scholarship/mixin/request_scholarship_mixin.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
@@ -127,7 +128,10 @@ class _TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title.tr(),
-      style: context.general.textTheme.titleLarge,
+      style: context.general.textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+        color: ColorCommon(context).whiteAndBlackForTheme,
+      ),
     );
   }
 }

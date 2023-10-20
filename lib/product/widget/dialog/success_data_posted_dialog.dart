@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
@@ -23,15 +25,23 @@ class SuccessDataPostedDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
+          Text(
             LocaleKeys.dialog_completeRequest,
             textAlign: TextAlign.center,
+            style: context.general.textTheme.titleLarge?.copyWith(
+              color: ColorCommon(context).whiteAndBlackForTheme,
+            ),
           ).tr(),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text(LocaleKeys.button_close).tr(),
+            child: Text(
+              LocaleKeys.button_close,
+              style: context.general.textTheme.titleLarge?.copyWith(
+                color: ColorCommon(context).whiteAndBlackForTheme,
+              ),
+            ).tr(),
           ),
         ],
       ),

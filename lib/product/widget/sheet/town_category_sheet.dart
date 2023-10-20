@@ -2,11 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/extension/text_extension.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/divider/sheet_gap_divider.dart';
-
 import 'package:vbaseproject/product/widget/popup/category_popup.dart';
 import 'package:vbaseproject/product/widget/popup/town_popup.dart';
 import 'package:vbaseproject/product/widget/sheet/operation/town_category_operation.dart';
@@ -113,7 +112,8 @@ class _SelectListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const PagePadding.horizontalLowSymmetric(),
+      padding: const PagePadding.horizontalLowSymmetric() +
+          const PagePadding.onlyBottom(),
       child: ValueListenableBuilder<bool>(
         valueListenable: _validationNotifier,
         builder: (BuildContext context, bool value, Widget? child) {
@@ -132,7 +132,13 @@ class _SelectListButton extends StatelessWidget {
                 ),
                 onPressed: !value ? null : onComplete.call,
                 child: Center(
-                  child: const Text(LocaleKeys.button_selectedList).tr(),
+                  child: Text(
+                    LocaleKeys.button_selectedList,
+                    style: context.general.textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: ColorCommon(context).whiteAndBlackForTheme,
+                    ),
+                  ).tr(),
                 ),
               ),
             ],

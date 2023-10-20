@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
@@ -65,7 +65,7 @@ class _Body extends StatelessWidget {
         maxWidth: constraints.maxWidth,
         maxHeight: constraints.maxHeight * 0.6,
       ),
-      color: ColorsCustom.black.withOpacity(.4),
+      color: ColorCommon(context).whiteAndBlackForTheme.withOpacity(.7),
       child: Padding(
         padding: const PagePadding.allLow(),
         child: Column(
@@ -95,7 +95,8 @@ class _Publisher extends StatelessWidget {
     return Text(
       LocaleKeys.campaignDetailsView_publishedBy.tr(args: [publisher]),
       style: context.general.textTheme.titleSmall?.copyWith(
-        color: context.general.colorScheme.onSecondary,
+        color: ColorCommon(context).blackAndWhiteForTheme,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
@@ -113,7 +114,8 @@ class _Title extends StatelessWidget {
     return Text(
       name,
       style: context.general.textTheme.titleSmall?.copyWith(
-        color: context.general.colorScheme.onSecondary,
+        color: ColorCommon(context).blackAndWhiteForTheme,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

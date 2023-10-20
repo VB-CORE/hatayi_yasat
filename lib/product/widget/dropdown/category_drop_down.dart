@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
@@ -46,6 +48,10 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: LocaleKeys.requestCompany_category.tr(),
+          labelStyle: context.general.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: ColorCommon(context).whiteAndBlackForTheme,
+          ),
         ),
         onChanged: _onChanged,
         value: _selectedItem,
@@ -79,6 +85,9 @@ class _DropdownTitle extends StatelessWidget {
     return Text(
       name,
       overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.labelLarge?.copyWith(
+        color: ColorCommon(context).whiteAndBlackForTheme,
+      ),
     );
   }
 }

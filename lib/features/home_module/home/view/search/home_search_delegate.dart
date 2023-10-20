@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
@@ -131,7 +132,13 @@ class _EmptyResult extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.clear),
-          const Text(LocaleKeys.message_emptySearch).tr(),
+          Text(
+            LocaleKeys.message_emptySearch,
+            style: context.general.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: ColorCommon(context).whiteAndBlackForTheme,
+            ),
+          ).tr(),
         ],
       ),
     );

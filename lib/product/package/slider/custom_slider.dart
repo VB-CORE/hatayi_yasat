@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 
@@ -90,7 +90,7 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: ColorsCustom.black.withOpacity(.4),
+      color: ColorCommon(context).whiteAndBlackForTheme.withOpacity(.7),
       child: Padding(
         padding: const PagePadding.allLow(),
         child: Text(
@@ -99,7 +99,8 @@ class _Title extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onSecondary,
+            color: ColorCommon(context).blackAndWhiteForTheme,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
