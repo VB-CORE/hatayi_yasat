@@ -57,7 +57,7 @@ dependencies:
   share_plus: ^7.1.0
   screenshot: ^2.1.0
   path_provider: ^2.1.1
-  add_2_calendar: ^2.2.4
+  add_2_calendar: 2.2.4
 
   # ui
   dotted_border: ^2.0.0+3
