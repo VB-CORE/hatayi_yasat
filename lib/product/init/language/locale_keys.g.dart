@@ -67,6 +67,7 @@ abstract class  LocaleKeys {
   static const home_notifications = 'home.notifications';
   static const home = 'home';
   static const message_emptySearch = 'message.emptySearch';
+  static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message = 'message';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
@@ -77,8 +78,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -100,6 +101,8 @@ abstract class  LocaleKeys {
   static const developers = 'developers';
   static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
   static const navigationTabs_campaignsTabTitle = 'navigationTabs.campaignsTabTitle';
+  static const navigationTabs_newsTabTitle = 'navigationTabs.newsTabTitle';
+  static const navigationTabs_settingsTabTitle = 'navigationTabs.settingsTabTitle';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_name = 'projectRequest.name';
@@ -125,6 +128,7 @@ abstract class  LocaleKeys {
   static const notFound_campaign = 'notFound.campaign';
   static const notFound_developers = 'notFound.developers';
   static const notFound_towns = 'notFound.towns';
+  static const notFound_news = 'notFound.news';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';

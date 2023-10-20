@@ -76,7 +76,8 @@
         "notifications": "Bildirimler"
     },
     "message": {
-        "emptySearch": "Sonuç Bulunamadı"
+        "emptySearch": "Sonuç Bulunamadı",
+        "somethingWentWrong": "Bir şeyler yanlış gitti"
     },
     "placeDetailView": {
         "owner": "İşletme Sahibi",
@@ -116,7 +117,9 @@
     },
     "navigationTabs": {
         "placesTabTitle": "Mekanlar",
-        "campaignsTabTitle": "Projeler"
+        "campaignsTabTitle": "Projeler",
+        "newsTabTitle": "Haberler",
+        "settingsTabTitle": "Ayarlar"
     },
     "projectRequest": {
         "title": "Yeni Proje Talebi",
@@ -145,7 +148,8 @@
         "specialAgency": "Özel Kurumlar henüz girilmemiş.",
         "campaign": "Kampanyalar henüz girilmemiş.",
         "developers": "Geliştiriciler henüz girilmemiş.",
-        "towns": "Mekanlar henüz girilmemiş."
+        "towns": "Mekanlar henüz girilmemiş.",
+        "news": "Haberler henüz girilmemiş."
     },
     "months": {
         "jan": "Ocak",

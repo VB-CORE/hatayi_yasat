@@ -3,4 +3,5 @@ enum SharedKeys {
   theme,
   applyScholarship,
   lastNotificationSeenTime,
+  favoritePlaces,
 }

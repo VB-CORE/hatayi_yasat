@@ -13,6 +13,7 @@ class HomeAppBarSliver extends StatelessWidget {
     required this.title,
     required this.id,
     required this.imageUrl,
+    required this.isTitleOnImage,
     this.actions,
     super.key,
   });
@@ -28,6 +29,7 @@ class HomeAppBarSliver extends StatelessWidget {
       id: model.documentId,
       imageUrl: model.images.firstOrNull,
       actions: actions,
+      isTitleOnImage: true,
     );
   }
 
@@ -40,10 +42,25 @@ class HomeAppBarSliver extends StatelessWidget {
       title: model.name ?? '',
       id: model.documentId,
       imageUrl: model.coverPhoto,
+      isTitleOnImage: true,
+    );
+  }
+
+  factory HomeAppBarSliver.fromNews({
+    required NewsModel model,
+    required bool isPinned,
+  }) {
+    return HomeAppBarSliver(
+      isPinned: isPinned,
+      title: model.title ?? '',
+      id: model.documentId,
+      imageUrl: model.image,
+      isTitleOnImage: false,
     );
   }
 
   final bool isPinned;
+  final bool isTitleOnImage;
   final String title;
   final String id;
   final String? imageUrl;
@@ -52,7 +69,7 @@ class HomeAppBarSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: WidgetSizes.spacingXxlL13,
+      expandedHeight: WidgetSizes.spacingXxlL14,
       pinned: true,
       leading: const _LeftCloseButton(),
       actionsIconTheme: IconThemeData(
@@ -61,23 +78,29 @@ class HomeAppBarSliver extends StatelessWidget {
       actions: actions,
       title: !isPinned ? null : Text(title),
       flexibleSpace: FlexibleSpaceBar(
-        title: Container(
-          color: isPinned
-              ? null
-              : ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
-          width: context.sized.width,
-          child: Padding(
-            padding: const PagePadding.onlyLeft(),
-            child: Text(
-              title,
-              maxLines: AppConstants.kThree,
-              overflow: TextOverflow.ellipsis,
-              style: context.general.textTheme.titleLarge?.copyWith(
-                color: ColorCommon(context).blackAndWhiteForTheme,
-              ),
-            ),
-          ),
-        ),
+        title: isTitleOnImage
+            ? Container(
+                color: isPinned
+                    ? null
+                    : ColorCommon(context)
+                        .whiteAndBlackForTheme
+                        .withOpacity(0.5),
+                width: context.sized.width,
+                child: Padding(
+                  padding: const PagePadding.onlyLeft(),
+                  child: isPinned
+                      ? null
+                      : Text(
+                          title,
+                          maxLines: AppConstants.kThree,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.general.textTheme.titleLarge?.copyWith(
+                            color: ColorCommon(context).blackAndWhiteForTheme,
+                          ),
+                        ),
+                ),
+              )
+            : const SizedBox.shrink(),
         titlePadding: EdgeInsets.zero,
         centerTitle: false,
         background: Hero(

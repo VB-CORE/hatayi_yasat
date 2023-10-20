@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/widget/checkbox/product_checkbox.dart';
@@ -22,6 +23,7 @@ class KvkkCheckBox extends StatelessWidget {
               text: LocaleKeys.general_kvkk.tr(),
               style: context.general.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
+                color: ColorCommon(context).whiteAndBlackForTheme,
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -32,8 +34,8 @@ class KvkkCheckBox extends StatelessWidget {
               text: '  ${LocaleKeys.general_kvkkReadApproved.tr()}',
               style: context.general.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: context.general.textTheme.bodySmall?.color
-                    ?.withOpacity(0.5),
+                color:
+                    ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
               ),
             ),
           ],
@@ -60,9 +62,11 @@ class KvkkCheckBox extends StatelessWidget {
           return Scaffold(
             extendBodyBehindAppBar: true,
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.red,
               elevation: 0,
-              iconTheme: const IconThemeData(color: Colors.black),
+              iconTheme: IconThemeData(
+                color: ColorCommon(context).whiteAndBlackForTheme,
+              ),
             ),
             body: SfPdfViewer.asset(Assets.docs.kvkk),
           );
