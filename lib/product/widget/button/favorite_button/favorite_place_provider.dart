@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
-import 'package:vbaseproject/product/feature/cache/cache_service.dart';
+import 'package:vbaseproject/product/feature/cache/cache_service_by_list.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
 
 class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState> {
@@ -26,7 +26,9 @@ class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState> {
   }
 
   void checkFavoritePlace(FavoritePlaceModel favoritePlace) {
-    final place = cacheService.getItemFromList((item) => item == favoritePlace);
+    final place = cacheService.getItemFromList(
+      (item) => item.name == favoritePlace.name,
+    );
 
     state = state.copyWith(
       isFavorite: place != null,
@@ -43,7 +45,7 @@ class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState> {
   Future<void> _removeFavoritePlace(FavoritePlaceModel favoritePlace) async {
     state = state.copyWith(isLoading: true);
     final isRemoved = await cacheService.removeItemFromList(
-      (item) => item == favoritePlace,
+      (item) => item.name == favoritePlace.name,
     );
 
     state = state.copyWith(isFavorite: !isRemoved, isLoading: false);
