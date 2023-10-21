@@ -46,7 +46,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                     model: widget.model,
                     isPinned: value,
                     actions: [
-                      FavoritePlaceButton.fromStore(store: widget.model),
+                      FavoritePlaceButton(store: widget.model),
                     ],
                   );
                 },

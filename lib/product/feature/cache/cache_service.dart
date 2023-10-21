@@ -10,7 +10,9 @@ abstract class CacheService<T extends Object> {
 
   Future<bool> setValue(T value);
 
-  Future<bool> deleteValue();
+  Future<void> deleteValue();
+
+  Future<int> clear();
 }
 
 abstract class CacheServiceByList<TItem extends Object>

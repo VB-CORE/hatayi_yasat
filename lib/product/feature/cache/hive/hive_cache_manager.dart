@@ -4,6 +4,8 @@ import 'package:vbaseproject/product/feature/cache/cache_service.dart';
 import 'package:vbaseproject/product/feature/cache/shared_keys.dart';
 
 abstract class HiveCacheManager<T extends Object> extends CacheService<T> {
+  int get clearErrorValue => -1;
+
   @override
   SharedKeys get key;
 
@@ -28,9 +30,13 @@ abstract class HiveCacheManager<T extends Object> extends CacheService<T> {
   }
 
   @override
-  Future<bool> deleteValue() async {
-    final count = await box?.clear();
-    return (count ?? 0) > 0;
+  Future<void> deleteValue() async {
+    await box?.delete(key.name);
+  }
+
+  @override
+  Future<int> clear() async {
+    return box?.clear() ?? Future.value(clearErrorValue);
   }
 }
 
