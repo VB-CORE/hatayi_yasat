@@ -119,7 +119,7 @@
         "placesTabTitle": "Places",
         "campaignsTabTitle": "Projects",
         "newsTabTitle": "News",
-        "settingsTabTitle": "Settings"
+        "advertiseTabTitle": "Advertises"
     },
     "projectRequest": {
         "title": "New Project Request",
@@ -142,6 +142,16 @@
         "agencyNumber": "Agency Number",
         "agencyAddress": "Agency Address"
     },
+    "advertise": {
+        "title": "Job name:",
+        "description": "Job description:",
+        "gender": "Gender:",
+        "owner": "Employer:",
+        "phone": "Contact:",
+        "callPhone": "Call the employer",
+        "share": "Share the job advertise",
+        "message": "Check out the job posting on the Keep Hatay Alive application:"
+    },
     "notFound": {
         "forRefresh": "Click here to refresh.",
         "notification": "No notifications",
@@ -149,7 +159,8 @@
         "campaign": "Campaigns has not been entered yet.",
         "developers": "Developers has not been entered yet.",
         "towns": "Towns has not been entered yet.",
-        "news": "News has not been entered yet."
+        "news": "News has not been entered yet.",
+        "advertise": "Job postings has not been entered yet."
     },
     "months": {
         "jan": "January",
@@ -164,6 +175,11 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+    },
+    "genders" : {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
     },
     "requestScholarship": {
       "title":"New Scholarship Request",

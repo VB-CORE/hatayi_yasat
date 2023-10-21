@@ -59,10 +59,10 @@ class _PageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isRequestSending) {
-      return const SliverFillRemaining(
+      return SliverFillRemaining(
         child: Padding(
-          padding: PagePadding.onlyTop(),
-          child: PlaceShimmerGrid(),
+          padding: const PagePadding.onlyTop(),
+          child: PlaceShimmerGrid(gridDelegate: _gridDelegate),
         ),
       );
     }
@@ -83,6 +83,7 @@ class _PageBody extends StatelessWidget {
         ),
         _GridBuilder(
           items: items,
+          gridDelegate: _gridDelegate,
         ),
         const SliverToBoxAdapter(
           child: SizedBox(
@@ -90,6 +91,13 @@ class _PageBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  SliverGridDelegateWithFixedCrossAxisCount get _gridDelegate {
+    return const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: AppConstants.kTwo,
+      childAspectRatio: AppConstants.kThree / AppConstants.kFour,
     );
   }
 }

@@ -119,7 +119,7 @@
         "placesTabTitle": "Mekanlar",
         "campaignsTabTitle": "Projeler",
         "newsTabTitle": "Haberler",
-        "settingsTabTitle": "Ayarlar"
+        "advertiseTabTitle": "İş ilanları"
     },
     "projectRequest": {
         "title": "Yeni Proje Talebi",
@@ -142,6 +142,16 @@
         "agencyNumber": "Kurum Numarası",
         "agencyAddress": "Kurum Adresi"
     },
+    "advertise": {
+        "title": "İş adı:",
+        "description": "İş açıklaması:",
+        "gender": "Cinsiyet:",
+        "owner": "İşveren:",
+        "phone": "İletişim:",
+        "callPhone": "İşvereni ara",
+        "share": "İlanı paylaş",
+        "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:"
+    },
     "notFound": {
         "forRefresh": "Yenilemek için buraya dokunun.",
         "notification": "Bildirim yok",
@@ -149,7 +159,8 @@
         "campaign": "Kampanyalar henüz girilmemiş.",
         "developers": "Geliştiriciler henüz girilmemiş.",
         "towns": "Mekanlar henüz girilmemiş.",
-        "news": "Haberler henüz girilmemiş."
+        "news": "Haberler henüz girilmemiş.",
+        "advertise": "İş ilanı henüz girilmemiş."
     },
     "months": {
         "jan": "Ocak",
@@ -164,6 +175,11 @@
         "oct": "Ekim",
         "nov": "Kasım",
         "dec": "Aralık"
+    },
+    "genders" : {
+        "male": "Erkek",
+        "female": "Kadın",
+        "other": "Diğer"
     },
     "requestScholarship": {
       "title":"Yeni Burs Talebi",
