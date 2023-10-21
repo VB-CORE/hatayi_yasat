@@ -142,8 +142,8 @@ class _ActionButtons extends StatelessWidget {
   Future<void> _onShare(BuildContext context) async {
     if (item.title.ext.isNullOrEmpty) return;
     await Share.share(
-      '${LocaleKeys.advertise_callPhone.tr()}'
-      '${item.title}',
+      '${LocaleKeys.advertise_message.tr()}'
+      ' ${item.title}',
     );
   }
 }
