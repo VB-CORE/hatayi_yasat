@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/features/home_module/favorite_places/view/favorite_places_view.dart';
 import 'package:vbaseproject/features/home_module/notifications/notifications_view.dart';
 import 'package:vbaseproject/features/settings_module/settings/settings_view.dart';
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
@@ -28,6 +29,8 @@ final class MainAppBar extends AppBar {
               destination: NotificationsView(),
             ),
             AppbarIconButton(
+              iconData: Icons.favorite_border_outlined,
+              destination: FavoritePlacesView(),
               iconData: Icons.settings_outlined,
               destination: SettingsView(),
             ),

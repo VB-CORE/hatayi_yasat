@@ -17,7 +17,7 @@ mixin FavoritePlaceButtonMixin on ConsumerState<FavoritePlaceButton> {
     super.initState();
     _favoritePlaceProvider = StateNotifierProvider(
       (ref) => FavoritePlaceProvider(cacheService: FavoritePlaceCacheManager())
-        ..initAndCheckFavoritePlace(_getFavoritePlace()),
+        ..initAndCheckFavoritePlace(FavoritePlaceModel.fromStore(widget.store)),
     );
   }
 
@@ -26,16 +26,6 @@ mixin FavoritePlaceButtonMixin on ConsumerState<FavoritePlaceButton> {
 
     await ref
         .read(_favoritePlaceProvider.notifier)
-        .onPressed(_getFavoritePlace());
-  }
-
-  FavoritePlaceModel _getFavoritePlace() {
-    return FavoritePlaceModel(
-      name: widget.name,
-      address: widget.address,
-      images: widget.images,
-      townCode: widget.townCode,
-      documentId: widget.documentId,
-    );
+        .onPressed(FavoritePlaceModel.fromStore(widget.store));
   }
 }

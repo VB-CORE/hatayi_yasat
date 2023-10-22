@@ -17,7 +17,7 @@
         "photoRequired": "Lütfen fotoğraf ekleyiniz",
         "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
         "categoryEmpty": "Kategori seçiniz",
-        "emailFormat": "Lütfen mailinizi doğru giriniz", 
+        "emailFormat": "Lütfen mailinizi doğru giriniz",
         "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
     },
     "button": {
@@ -161,6 +161,7 @@
         "developers": "Geliştiriciler henüz girilmemiş.",
         "towns": "Mekanlar henüz girilmemiş.",
         "news": "Haberler henüz girilmemiş.",
+        "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
         "advertise": "İş ilanı henüz girilmemiş."
     },
     "months": {
@@ -183,22 +184,25 @@
         "other": "Diğer"
     },
     "requestScholarship": {
-      "title":"Yeni Burs Talebi",
-      "contact": "İletişim",
-      "story": "Kendinizden Bahsedin",
-      "studentDocument": "Öğrenci Belgesi",
-      "pdfHint": "dosya_adı.pdf",
-      "email": "Email Adresi",
-      "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
-      "error": {
-        "serviceError": "Bir servis hatası oluştu",
-        "undefinedError": "Belirlenemeyen bir hata oluştu",
-        "fileSizeError": "Girilen dosya boyutunu kontrol edin",
-        "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
-      }
+        "title": "Yeni Burs Talebi",
+        "contact": "İletişim",
+        "story": "Kendinizden Bahsedin",
+        "studentDocument": "Öğrenci Belgesi",
+        "pdfHint": "dosya_adı.pdf",
+        "email": "Email Adresi",
+        "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
+        "error": {
+            "serviceError": "Bir servis hatası oluştu",
+            "undefinedError": "Belirlenemeyen bir hata oluştu",
+            "fileSizeError": "Girilen dosya boyutunu kontrol edin",
+            "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
+        }
     },
     "fileUpload": {
-      "upload": "Yükle",
-      "update": "Güncelle"
+        "upload": "Yükle",
+        "update": "Güncelle"
+    },
+    "favoritePlaces": {
+        "title": "Favori Mekanlar"
     }
 }

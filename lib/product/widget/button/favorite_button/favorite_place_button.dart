@@ -6,28 +6,11 @@ import 'package:vbaseproject/product/widget/button/favorite_button/favorite_plac
 
 class FavoritePlaceButton extends ConsumerStatefulWidget {
   const FavoritePlaceButton({
-    required this.name,
-    required this.address,
-    required this.images,
-    required this.townCode,
+    required this.store,
     super.key,
-    this.documentId = '',
   });
 
-  FavoritePlaceButton.fromStore({
-    required StoreModel store,
-    super.key,
-  })  : name = store.name,
-        address = store.address,
-        documentId = store.documentId,
-        images = store.images,
-        townCode = store.townCode;
-
-  final String name;
-  final String? address;
-  final List<String> images;
-  final int townCode;
-  final String documentId;
+  final StoreModel store;
 
   @override
   ConsumerState<FavoritePlaceButton> createState() =>

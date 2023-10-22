@@ -17,7 +17,7 @@
         "photoRequired": "Please add a photo.",
         "loseAllData": "Your changes will be lost. Do you want to continue?",
         "categoryEmpty": "Please choose a category",
-        "emailFormat": "Please enter your mail correctly", 
+        "emailFormat": "Please enter your mail correctly",
         "studentEmailFormat": "Please enter your student mail"
     },
     "button": {
@@ -161,6 +161,7 @@
         "developers": "Developers has not been entered yet.",
         "towns": "Towns has not been entered yet.",
         "news": "News has not been entered yet.",
+        "favoritePlaces": "There is no any favorite places.",
         "advertise": "Job postings has not been entered yet."
     },
     "months": {
@@ -183,22 +184,25 @@
         "other": "Other"
     },
     "requestScholarship": {
-      "title":"New Scholarship Request",
-      "contact": "Contact",
-      "story": "Your Story",
-      "studentDocument": "Student Document",
-      "pdfHint": "file_name.pdf",
-      "email": "Email Address",
-      "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
-      "error": {
-        "serviceError": "A service error has occurred",
-        "undefinedError": "An unidentified error occurred",
-        "fileSizeError": "Check the entered file size",
-        "noFileError": "Please upload your student document"
-      }
+        "title": "New Scholarship Request",
+        "contact": "Contact",
+        "story": "Your Story",
+        "studentDocument": "Student Document",
+        "pdfHint": "file_name.pdf",
+        "email": "Email Address",
+        "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
+        "error": {
+            "serviceError": "A service error has occurred",
+            "undefinedError": "An unidentified error occurred",
+            "fileSizeError": "Check the entered file size",
+            "noFileError": "Please upload your student document"
+        }
     },
     "fileUpload": {
-      "upload": "Upload",
-      "update": "Update"
+        "upload": "Upload",
+        "update": "Update"
+    },
+    "favoritePlaces": {
+        "title": "Favorite Places"
     }
 }
