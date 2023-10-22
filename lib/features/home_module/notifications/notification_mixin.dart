@@ -36,18 +36,29 @@ mixin NotificationMixin
     if (loadingNotifier.value) return;
 
     showLoading();
-    if (model.type == AppNotificationType.campaign) {
-      await MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
-        context: context,
-        id: model.id,
-        customService: customService,
-      );
-    } else {
-      await MessagingNavigate.instance.detailModelCheckAndNavigate(
-        context: context,
-        id: model.id,
-        customService: customService,
-      );
+
+    switch (model.type) {
+      case AppNotificationType.store:
+        await MessagingNavigate.instance.detailModelCheckAndNavigate(
+          context: context,
+          id: model.id,
+          customService: customService,
+        );
+      case AppNotificationType.campaign:
+        if (!mounted) return;
+        await MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
+          context: context,
+          id: model.id,
+          customService: customService,
+        );
+      case AppNotificationType.news:
+        if (!mounted) return;
+        await MessagingNavigate.instance.detailModelNewsCheckAndNavigate(
+          context: context,
+          id: model.id,
+          customService: customService,
+        );
+      case null:
     }
 
     hideLoading();
