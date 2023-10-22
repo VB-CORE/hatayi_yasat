@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/features/advertise/mixin/advertise_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/aspect_ratios.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_grid.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -41,9 +42,9 @@ class _AdvertiseViewState extends State<AdvertiseView> with AdvertiseViewMixin {
   }
 
   SliverGridDelegateWithFixedCrossAxisCount get _gridDelegate {
-    return const SliverGridDelegateWithFixedCrossAxisCount(
+    return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: AppConstants.kTwo,
-      childAspectRatio: 2.5,
+      childAspectRatio: AspectRatios.horizontalLow.value,
     );
   }
 }
