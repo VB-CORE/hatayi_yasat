@@ -95,6 +95,7 @@ abstract class  LocaleKeys {
   static const notification_defaultMessage = 'notification.defaultMessage';
   static const notification_businessNotFoundErrorMessage = 'notification.businessNotFoundErrorMessage';
   static const notification_campaignNotFoundErrorMessage = 'notification.campaignNotFoundErrorMessage';
+  static const notification_newsNotFoundErrorMessage = 'notification.newsNotFoundErrorMessage';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
@@ -102,7 +103,7 @@ abstract class  LocaleKeys {
   static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
   static const navigationTabs_campaignsTabTitle = 'navigationTabs.campaignsTabTitle';
   static const navigationTabs_newsTabTitle = 'navigationTabs.newsTabTitle';
-  static const navigationTabs_settingsTabTitle = 'navigationTabs.settingsTabTitle';
+  static const navigationTabs_advertiseTabTitle = 'navigationTabs.advertiseTabTitle';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_name = 'projectRequest.name';
@@ -122,6 +123,15 @@ abstract class  LocaleKeys {
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';
   static const specialAgency_agencyAddress = 'specialAgency.agencyAddress';
   static const specialAgency = 'specialAgency';
+  static const advertise_title = 'advertise.title';
+  static const advertise_description = 'advertise.description';
+  static const advertise_gender = 'advertise.gender';
+  static const advertise_owner = 'advertise.owner';
+  static const advertise_phone = 'advertise.phone';
+  static const advertise_callPhone = 'advertise.callPhone';
+  static const advertise_share = 'advertise.share';
+  static const advertise_message = 'advertise.message';
+  static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';
   static const notFound_notification = 'notFound.notification';
   static const notFound_specialAgency = 'notFound.specialAgency';
@@ -130,6 +140,7 @@ abstract class  LocaleKeys {
   static const notFound_towns = 'notFound.towns';
   static const notFound_news = 'notFound.news';
   static const notFound_favoritePlaces = 'notFound.favoritePlaces';
+  static const notFound_advertise = 'notFound.advertise';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -144,6 +155,7 @@ abstract class  LocaleKeys {
   static const months_nov = 'months.nov';
   static const months_dec = 'months.dec';
   static const months = 'months';
+  static const genders = 'genders';
   static const requestScholarship_title = 'requestScholarship.title';
   static const requestScholarship_contact = 'requestScholarship.contact';
   static const requestScholarship_story = 'requestScholarship.story';

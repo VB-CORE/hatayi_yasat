@@ -5,20 +5,22 @@ import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 class PlaceShimmerGrid extends StatelessWidget {
-  const PlaceShimmerGrid({super.key});
+  const PlaceShimmerGrid({required this.gridDelegate, super.key});
+
+  final SliverGridDelegateWithFixedCrossAxisCount gridDelegate;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: _gridDelegate,
+      gridDelegate: gridDelegate,
       itemCount: 10,
       padding: const PagePadding.horizontalSymmetric(),
       shrinkWrap: true,
       itemBuilder: (_, __) => Padding(
         padding: EdgeInsets.all(AppConstants.kFour.toDouble()),
         child: Shimmer.fromColors(
-          baseColor: Colors.grey[300] ?? Colors.grey,
-          highlightColor: Colors.grey[100] ?? Colors.grey,
+          baseColor: context.general.colorScheme.onBackground.withOpacity(.1),
+          highlightColor: context.general.colorScheme.background,
           child: Center(
             child: Column(
               children: [
@@ -26,7 +28,7 @@ class PlaceShimmerGrid extends StatelessWidget {
                   child: Container(
                     height: context.sized.dynamicHeight(.25),
                     width: context.sized.width,
-                    color: context.general.colorScheme.primary,
+                    color: context.general.colorScheme.onPrimary,
                   ),
                 ),
                 const Padding(
@@ -40,13 +42,6 @@ class PlaceShimmerGrid extends StatelessWidget {
       ),
     );
   }
-
-  SliverGridDelegateWithFixedCrossAxisCount get _gridDelegate {
-    return const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: AppConstants.kTwo,
-      childAspectRatio: AppConstants.kThree / AppConstants.kFour,
-    );
-  }
 }
 
 class _EmptyContainerTitle extends StatelessWidget {
@@ -57,7 +52,7 @@ class _EmptyContainerTitle extends StatelessWidget {
     return Container(
       height: 10,
       width: context.sized.width,
-      color: Colors.black,
+      color: context.general.colorScheme.onPrimary,
     );
   }
 }

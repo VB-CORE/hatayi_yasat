@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
+import 'package:vbaseproject/features/news_module/news_details/news_details_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 
@@ -11,6 +12,7 @@ import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 final class MessagingNavigate {
   const MessagingNavigate._();
   static MessagingNavigate instance = const MessagingNavigate._();
+
   Future<StoreModel?> _getDetailModelFromNotification({
     required BuildContext context,
     required String id,
@@ -33,6 +35,20 @@ final class MessagingNavigate {
     final data = await customService.getSingleData(
       model: CampaignModel(),
       path: CollectionPaths.approvedCampaigns,
+      id: id,
+    );
+
+    return data;
+  }
+
+  Future<NewsModel?> _getDetailModelFromNews({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final data = await customService.getSingleData(
+      model: NewsModel(),
+      path: CollectionPaths.news,
       id: id,
     );
 
@@ -79,6 +95,28 @@ final class MessagingNavigate {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
           message: LocaleKeys.notification_campaignNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+  }
+
+  Future<void> detailModelNewsCheckAndNavigate({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final result = await _getDetailModelFromNews(
+      context: context,
+      id: id,
+      customService: customService,
+    );
+    if (!context.mounted) return;
+    if (result != null) {
+      await context.route.navigateToPage(NewsDetailsView(newsModel: result));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        ErrorSnackBar(
+          message: LocaleKeys.notification_newsNotFoundErrorMessage.tr(),
         ),
       );
     }

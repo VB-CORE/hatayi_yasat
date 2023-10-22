@@ -6,6 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_details_view.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/mixin/campaigns_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/aspect_ratios.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_grid.dart';
 import 'package:vbaseproject/product/package/slider/custom_slider.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
@@ -59,10 +60,10 @@ class _PageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isRequestSending) {
-      return const SliverFillRemaining(
+      return SliverFillRemaining(
         child: Padding(
-          padding: PagePadding.onlyTop(),
-          child: PlaceShimmerGrid(),
+          padding: const PagePadding.onlyTop(),
+          child: PlaceShimmerGrid(gridDelegate: _gridDelegate),
         ),
       );
     }
@@ -83,6 +84,7 @@ class _PageBody extends StatelessWidget {
         ),
         _GridBuilder(
           items: items,
+          gridDelegate: _gridDelegate,
         ),
         const SliverToBoxAdapter(
           child: SizedBox(
@@ -90,6 +92,13 @@ class _PageBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  SliverGridDelegateWithFixedCrossAxisCount get _gridDelegate {
+    return SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: AppConstants.kTwo,
+      childAspectRatio: AspectRatios.verticalLow.value,
     );
   }
 }

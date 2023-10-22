@@ -32,18 +32,25 @@ mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
           message: message,
           isOpenListen: (value) {
             if (!value) return;
-            if (type == NotificationType.campaigns) {
-              MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
-                context: context,
-                id: id,
-                customService: customService,
-              );
-            } else {
-              MessagingNavigate.instance.detailModelCheckAndNavigate(
-                context: context,
-                id: id,
-                customService: customService,
-              );
+            switch (type) {
+              case NotificationType.campaigns:
+                MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
+                  context: context,
+                  id: id,
+                  customService: customService,
+                );
+              case NotificationType.project:
+                MessagingNavigate.instance.detailModelCheckAndNavigate(
+                  context: context,
+                  id: id,
+                  customService: customService,
+                );
+              case NotificationType.news:
+                MessagingNavigate.instance.detailModelNewsCheckAndNavigate(
+                  context: context,
+                  id: id,
+                  customService: customService,
+                );
             }
           },
         ),
