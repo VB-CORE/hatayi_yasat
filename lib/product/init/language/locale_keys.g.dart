@@ -95,6 +95,7 @@ abstract class  LocaleKeys {
   static const notification_defaultMessage = 'notification.defaultMessage';
   static const notification_businessNotFoundErrorMessage = 'notification.businessNotFoundErrorMessage';
   static const notification_campaignNotFoundErrorMessage = 'notification.campaignNotFoundErrorMessage';
+  static const notification_newsNotFoundErrorMessage = 'notification.newsNotFoundErrorMessage';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';

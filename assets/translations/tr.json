@@ -109,7 +109,8 @@
         "snackbarButtonText": "Aç",
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
         "businessNotFoundErrorMessage": "İşletme bulunamadı",
-        "campaignNotFoundErrorMessage": "Proje bulunamadı"
+        "campaignNotFoundErrorMessage": "Proje bulunamadı",
+        "newsNotFoundErrorMessage": "Haber bulunamadı"
     },
     "developers": {
         "title": "Geliştiriciler",

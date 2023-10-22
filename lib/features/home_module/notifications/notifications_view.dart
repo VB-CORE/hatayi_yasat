@@ -38,7 +38,6 @@ class _NotificationsViewState extends State<NotificationsView>
         itemBuilder: (context, doc) {
           final model = doc.data();
           if (model == null || model.id.isEmpty) return const SizedBox.shrink();
-
           return Column(
             children: [
               ListTile(
@@ -104,9 +103,12 @@ class _NotificationTypeLeadingIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return model.type == AppNotificationType.campaign
-        ? const Icon(Icons.campaign_outlined)
-        : const Icon(Icons.home_outlined);
+    return switch (model.type) {
+      AppNotificationType.store => const Icon(Icons.home_outlined),
+      AppNotificationType.campaign => const Icon(Icons.campaign_outlined),
+      AppNotificationType.news => const Icon(Icons.newspaper_outlined),
+      null => const SizedBox.shrink(),
+    };
   }
 }
 
