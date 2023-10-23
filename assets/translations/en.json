@@ -112,7 +112,8 @@
         "defaultMessage": "A business has resumed operations.",
         "businessNotFoundErrorMessage": "Business not found",
         "campaignNotFoundErrorMessage": "Project not found",
-        "newsNotFoundErrorMessage": "No news found"
+        "newsNotFoundErrorMessage": "No news found",
+        "advertiseNotFoundErrorMessage": "Advertise not found"
     },
     "developers": {
         "title": "Developers",

@@ -112,7 +112,8 @@
         "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
         "businessNotFoundErrorMessage": "İşletme bulunamadı",
         "campaignNotFoundErrorMessage": "Proje bulunamadı",
-        "newsNotFoundErrorMessage": "Haber bulunamadı"
+        "newsNotFoundErrorMessage": "Haber bulunamadı",
+        "advertiseNotFoundErrorMessage": "İlan bulunamadı"
     },
     "developers": {
         "title": "Geliştiriciler",

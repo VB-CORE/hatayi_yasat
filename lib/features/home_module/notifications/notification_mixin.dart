@@ -60,7 +60,13 @@ mixin NotificationMixin
           customService: customService,
         );
       case AppNotificationType.advertise:
-      // we don't navigate
+        if (!mounted) return;
+        await MessagingNavigate.instance
+            .detailModelAdvertiseCheckAndShowBottomSheet(
+          context: context,
+          id: model.id,
+          customService: customService,
+        );
       case null:
     }
 
