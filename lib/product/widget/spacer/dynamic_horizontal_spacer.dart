@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 /// Returns a [SizedBox] with the given [width].
-class HorizontalSpace extends SizedBox {
+final class HorizontalSpace extends SizedBox {
   const HorizontalSpace({required this.width, super.key});
 
   /// Returns a [SizedBox] with the 2px width.

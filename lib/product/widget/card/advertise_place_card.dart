@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/sheet/advertise_sheet.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class AdvertisePlaceCard extends StatelessWidget {
   const AdvertisePlaceCard({
@@ -13,19 +14,26 @@ class AdvertisePlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(WidgetSizes.spacingXSS),
-      child: ListTile(
-        onTap: () async => AdvertiseSheet.show(context, item: item),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: WidgetSizes.spacingXSs,
+    if (item.title.ext.isNullOrEmpty) return const SizedBox.shrink();
+
+    return InkWell(
+      onTap: () => AdvertiseSheet.show(context, item: item),
+      child: Card(
+        margin: EdgeInsets.zero,
+        child: Padding(
+          padding: const PagePadding.allVeryLow(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _Title(item.title!),
+              const Divider(),
+              if (item.role.ext.isNotNullOrNoEmpty)
+                Expanded(child: _Subtitle(item.role!)),
+              const Spacer(),
+            ],
+          ),
         ),
-        tileColor: context.general.colorScheme.onInverseSurface,
-        dense: true,
-        leading: const Icon(Icons.work_history_outlined),
-        title: item.title.ext.isNullOrEmpty ? null : _Title(item.title!),
-        subtitle: item.role.ext.isNullOrEmpty ? null : _Subtitle(item.role!),
-        trailing: const Icon(Icons.chevron_right_outlined),
       ),
     );
   }
@@ -38,8 +46,12 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 2,
+      maxLines: 3,
       overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: ColorCommon(context).whiteAndBlackForTheme,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 }
@@ -51,8 +63,11 @@ class _Subtitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
+      maxLines: 3,
       overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.labelMedium?.copyWith(
+        color: ColorCommon(context).whiteAndBlackForTheme,
+      ),
     );
   }
 }

@@ -38,6 +38,7 @@ mixin NotificationMixin
     showLoading();
 
     switch (model.type) {
+      case AppNotificationType.advertise:
       case AppNotificationType.store:
         await MessagingNavigate.instance.detailModelCheckAndNavigate(
           context: context,

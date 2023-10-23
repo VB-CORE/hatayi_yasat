@@ -19,10 +19,13 @@ class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState> {
     checkFavoritePlace(favoritePlace);
   }
 
-  Future<void> onPressed(FavoritePlaceModel favoritePlace) async {
-    await (state.isFavorite
-        ? _removeFavoritePlace(favoritePlace)
-        : _setFavoritePlace(favoritePlace));
+  Future<bool> onSaved(FavoritePlaceModel favoritePlace) async {
+    if (state.isFavorite) {
+      await _removeFavoritePlace(favoritePlace);
+      return false;
+    }
+    await _setFavoritePlace(favoritePlace);
+    return true;
   }
 
   void checkFavoritePlace(FavoritePlaceModel favoritePlace) {

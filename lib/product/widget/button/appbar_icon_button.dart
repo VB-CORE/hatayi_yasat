@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-class AppbarIconButton extends StatelessWidget {
-  const AppbarIconButton({
+final class AppBarIconButton extends StatelessWidget {
+  const AppBarIconButton({
     required this.iconData,
     required this.destination,
     super.key,

@@ -16,6 +16,7 @@ import 'package:vbaseproject/product/widget/button/favorite_button/favorite_plac
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/sliver/home_appbar_sliver.dart';
+import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class HomeDetailView extends StatefulWidget {
   const HomeDetailView({required this.model, super.key});
@@ -31,9 +32,16 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
     return Screenshot(
       controller: imageCompressAndWaterMark.screenshotController,
       child: Scaffold(
-        floatingActionButton: _ShareButton(
-          notifier: screenshotNotifier,
-          onPressed: captureAndShare,
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            _FavoriteButton(widget.model),
+            const VerticalSpace.standard(),
+            _ShareButton(
+              notifier: screenshotNotifier,
+              onPressed: captureAndShare,
+            ),
+          ],
         ),
         body: NotificationListener(
           onNotification: listenNotification,
@@ -45,9 +53,7 @@ class _HomeDetailViewState extends State<HomeDetailView> with HomeDetailMixin {
                   return HomeAppBarSliver.fromStore(
                     model: widget.model,
                     isPinned: value,
-                    actions: [
-                      FavoritePlaceButton(store: widget.model),
-                    ],
+                    actions: const [],
                   );
                 },
               ),
@@ -74,6 +80,19 @@ class _ShareButton extends StatelessWidget {
             ? const CircularProgressIndicator.adaptive()
             : const Icon(Icons.share_outlined),
       ),
+    );
+  }
+}
+
+class _FavoriteButton extends StatelessWidget {
+  const _FavoriteButton(this.store);
+  final StoreModel store;
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      heroTag: UniqueKey(),
+      onPressed: () {},
+      child: FavoritePlaceButton(store: store),
     );
   }
 }

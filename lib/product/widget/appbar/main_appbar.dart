@@ -20,17 +20,19 @@ final class MainAppBar extends AppBar {
           ),
           title: const Text(LocaleKeys.project_name).tr(context: context),
           actions: const [
-            AppbarIconButton(
+            AppBarIconButton(
               iconData: Icons.maps_home_work_outlined,
               destination: SpecialAgencyView(),
             ),
-            AppbarIconButton(
+            AppBarIconButton(
               iconData: Icons.notifications_active_outlined,
               destination: NotificationsView(),
             ),
-            AppbarIconButton(
+            AppBarIconButton(
               iconData: Icons.favorite_border_outlined,
               destination: FavoritePlacesView(),
+            ),
+            AppBarIconButton(
               iconData: Icons.settings_outlined,
               destination: SettingsView(),
             ),
