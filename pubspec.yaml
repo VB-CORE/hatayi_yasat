@@ -68,6 +68,9 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_speed_dial: ^7.0.0
 
+  #Flutter
+  video_player: ^2.7.2
+
   # JSON
   json_annotation: ^4.8.0
 
@@ -120,3 +123,4 @@ flutter:
     - assets/docs/
     - assets/lottie/
     - assets/images/
+    - assets/videos/

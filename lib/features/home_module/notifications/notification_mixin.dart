@@ -68,6 +68,6 @@ mixin NotificationMixin
   void _saveAndLastTime() {
     lastNotificationSeenTime =
         SharedCache.instance.getLastNotificationSeenTime();
-    SharedCache.instance.updateNotificaitonLastSeenTime();
+    SharedCache.instance.updateNotificationLastSeenTime();
   }
 }

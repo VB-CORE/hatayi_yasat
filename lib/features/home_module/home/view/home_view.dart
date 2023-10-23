@@ -9,11 +9,13 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_view_mode
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/video_resource_path.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
+import 'package:vbaseproject/product/widget/dialog/index.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
@@ -63,7 +65,21 @@ class _HomeViewState extends ConsumerState<HomeView>
                 searchPressed(ref.read(_homeViewModel));
               }),
               SliverToBoxAdapter(
-                child: _FilterButton(),
+                child: Row(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        VideoDialog.show(
+                          context: context,
+                          path: VideoResourcePath.republic,
+                        );
+                      },
+                      icon: const Icon(Icons.videocam_outlined),
+                      label: const Text('Yaşasın Cumhuriyet!  🇹🇷🇹🇷'),
+                    ),
+                    Expanded(child: _FilterButton()),
+                  ],
+                ),
               ),
               _PageBody(
                 onRefresh: () async =>
