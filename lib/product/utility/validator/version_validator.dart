@@ -1,12 +1,11 @@
 import 'package:kartal/kartal.dart';
-
 import 'package:vbaseproject/product/model/enum/firebase_remote_enums.dart';
 
 final class VersionValidator {
   VersionValidator._init();
   static bool check() {
     final currentVersion = ''.ext.version;
-    final remoteVersion = FirebaseRemoteEnums.version.value;
+    final remoteVersion = FirebaseRemoteEnums.version.valueString;
     if (remoteVersion.isEmpty) return false;
     final currentVersionNumber = int.parse(currentVersion.split('.').join());
     final remoteVersionNumber = int.parse(remoteVersion.split('.').join());

@@ -103,11 +103,13 @@ class _NotificationTypeLeadingIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (model.type) {
+    if (model.type == null) return const SizedBox();
+    return switch (model.type!) {
       AppNotificationType.store => const Icon(Icons.home_outlined),
       AppNotificationType.campaign => const Icon(Icons.campaign_outlined),
       AppNotificationType.news => const Icon(Icons.newspaper_outlined),
-      null => const SizedBox.shrink(),
+      AppNotificationType.advertise =>
+        const Icon(Icons.notifications_active_outlined),
     };
   }
 }

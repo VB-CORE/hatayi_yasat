@@ -77,7 +77,9 @@
     },
     "message": {
         "emptySearch": "Sonuç Bulunamadı",
-        "somethingWentWrong": "Bir şeyler yanlış gitti"
+        "somethingWentWrong": "Bir şeyler yanlış gitti",
+        "addedFavorite": "Favorilere eklendi",
+        "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷"
     },
     "placeDetailView": {
         "owner": "İşletme Sahibi",
@@ -178,7 +180,7 @@
         "nov": "Kasım",
         "dec": "Aralık"
     },
-    "genders" : {
+    "genders": {
         "male": "Erkek",
         "female": "Kadın",
         "other": "Diğer"

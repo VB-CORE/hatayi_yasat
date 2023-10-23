@@ -7,13 +7,20 @@ import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
+import 'package:vbaseproject/sub_feature/tab/mixin/main_tab_view_mixin.dart';
 import 'package:vbaseproject/sub_feature/tab/model/speed_dial_child_model.dart';
 import 'package:vbaseproject/sub_feature/tab/model/tab_model.dart';
 
-final class MainTabView extends StatelessWidget {
-  MainTabView({super.key});
+final class MainTabView extends StatefulWidget {
+  const MainTabView({super.key});
 
+  @override
+  State<MainTabView> createState() => _MainTabViewState();
+}
+
+class _MainTabViewState extends State<MainTabView> with MainTabViewMixin {
   final tabItems = TabModels.create().tabItems;
+
   final speedDialItems = SpeedDialChildModelList().speedDialChildItems;
 
   @override

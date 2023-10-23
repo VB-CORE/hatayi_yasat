@@ -9,11 +9,13 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_view_mode
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/card/place_card.dart';
+import 'package:vbaseproject/product/widget/dialog/index.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
 import 'package:vbaseproject/product/widget/text_field/search_field_disabled.dart';
@@ -63,7 +65,12 @@ class _HomeViewState extends ConsumerState<HomeView>
                 searchPressed(ref.read(_homeViewModel));
               }),
               SliverToBoxAdapter(
-                child: _FilterButton(),
+                child: Row(
+                  children: [
+                    const _RepublicDayButton(),
+                    Expanded(child: _FilterButton()),
+                  ],
+                ),
               ),
               _PageBody(
                 onRefresh: () async =>
@@ -74,6 +81,26 @@ class _HomeViewState extends ConsumerState<HomeView>
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RepublicDayButton extends StatelessWidget {
+  const _RepublicDayButton();
+
+  @override
+  Widget build(BuildContext context) {
+    if (!FirebaseRemoteEnums.specialDay.valueBool) {
+      return const SizedBox.shrink();
+    }
+    return ElevatedButton.icon(
+      onPressed: () {
+        VideoDialogRepublic.show(
+          context: context,
+        );
+      },
+      icon: const Icon(Icons.videocam_outlined),
+      label: const Text(LocaleKeys.message_republicDay).tr(),
     );
   }
 }
