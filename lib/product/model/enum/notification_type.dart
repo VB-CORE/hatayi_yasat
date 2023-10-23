@@ -1,1 +1,1 @@
-enum NotificationType { project, campaigns, news }
+enum NotificationType { project, campaigns, news, advertise }

@@ -51,6 +51,8 @@ mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
                   id: id,
                   customService: customService,
                 );
+              case NotificationType.advertise:
+              // we don't navigate
             }
           },
         ),

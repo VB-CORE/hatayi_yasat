@@ -61,7 +61,7 @@ class _NotificationsViewState extends State<NotificationsView>
                       ),
                   ],
                 ),
-                trailing: const Icon(Icons.chevron_right_outlined),
+                trailing: _NotificationTypeTrailingIcon(model.type),
               ),
               const _CustomDivider(),
             ],
@@ -91,6 +91,17 @@ class _CustomDivider extends StatelessWidget {
       height: AppConstants.kZero.toDouble(),
       thickness: AppConstants.kZero.toDouble(),
     );
+  }
+}
+
+class _NotificationTypeTrailingIcon extends StatelessWidget {
+  const _NotificationTypeTrailingIcon(this.type);
+  final AppNotificationType? type;
+  @override
+  Widget build(BuildContext context) {
+    return const Icon(Icons.chevron_right_outlined)
+        .ext
+        .toVisible(value: type != AppNotificationType.advertise);
   }
 }
 

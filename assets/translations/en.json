@@ -112,7 +112,8 @@
         "defaultMessage": "A business has resumed operations.",
         "businessNotFoundErrorMessage": "Business not found",
         "campaignNotFoundErrorMessage": "Project not found",
-        "newsNotFoundErrorMessage": "No news found"
+        "newsNotFoundErrorMessage": "No news found",
+        "advertiseNotFoundErrorMessage": "Advertise not found"
     },
     "developers": {
         "title": "Developers",
@@ -190,7 +191,7 @@
         "contact": "Contact",
         "story": "Your Story",
         "studentDocument": "Student Document",
-        "pdfHint": "file_name.pdf",
+        "pdfHint": "name_surname.pdf",
         "email": "Email Address",
         "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
         "error": {

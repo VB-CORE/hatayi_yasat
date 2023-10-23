@@ -6,6 +6,7 @@ import 'package:vbaseproject/features/campaign_module/campaign_details/campaign_
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/features/news_module/news_details/news_details_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/widget/sheet/advertise_sheet.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 
 @immutable
@@ -49,6 +50,20 @@ final class MessagingNavigate {
     final data = await customService.getSingleData(
       model: NewsModel(),
       path: CollectionPaths.news,
+      id: id,
+    );
+
+    return data;
+  }
+
+  Future<AdvertiseModel?> _getDetailModelFromAdvertise({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final data = await customService.getSingleData(
+      model: AdvertiseModel(),
+      path: CollectionPaths.approvedAdvertise,
       id: id,
     );
 
@@ -117,6 +132,28 @@ final class MessagingNavigate {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
           message: LocaleKeys.notification_newsNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+  }
+
+  Future<void> detailModelAdvertiseCheckAndShowBottomSheet({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final result = await _getDetailModelFromAdvertise(
+      context: context,
+      id: id,
+      customService: customService,
+    );
+    if (!context.mounted) return;
+    if (result != null) {
+      await AdvertiseSheet.show(context, item: result);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        ErrorSnackBar(
+          message: LocaleKeys.notification_advertiseNotFoundErrorMessage.tr(),
         ),
       );
     }

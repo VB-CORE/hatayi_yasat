@@ -80,8 +80,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -98,6 +98,7 @@ abstract class  LocaleKeys {
   static const notification_businessNotFoundErrorMessage = 'notification.businessNotFoundErrorMessage';
   static const notification_campaignNotFoundErrorMessage = 'notification.campaignNotFoundErrorMessage';
   static const notification_newsNotFoundErrorMessage = 'notification.newsNotFoundErrorMessage';
+  static const notification_advertiseNotFoundErrorMessage = 'notification.advertiseNotFoundErrorMessage';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
