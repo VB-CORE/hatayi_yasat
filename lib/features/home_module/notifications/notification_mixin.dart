@@ -38,8 +38,8 @@ mixin NotificationMixin
     showLoading();
 
     switch (model.type) {
-      case AppNotificationType.advertise:
       case AppNotificationType.store:
+        if (!mounted) return;
         await MessagingNavigate.instance.detailModelCheckAndNavigate(
           context: context,
           id: model.id,
@@ -59,6 +59,8 @@ mixin NotificationMixin
           id: model.id,
           customService: customService,
         );
+      case AppNotificationType.advertise:
+      // we don't navigate
       case null:
     }
 

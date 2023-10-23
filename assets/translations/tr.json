@@ -190,7 +190,7 @@
         "contact": "İletişim",
         "story": "Kendinizden Bahsedin",
         "studentDocument": "Öğrenci Belgesi",
-        "pdfHint": "dosya_adı.pdf",
+        "pdfHint": "ad_soyad.pdf",
         "email": "Email Adresi",
         "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
         "error": {

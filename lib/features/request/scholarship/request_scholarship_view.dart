@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/request/scholarship/mixin/request_scholarship_mixin.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/package/file_picker/upload_file_section_widget.dart';
@@ -61,6 +62,7 @@ class _RequestScholarshipViewState extends ConsumerState<RequestScholarshipView>
                   const _TitleText(title: LocaleKeys.requestScholarship_story),
                   const EmptyBox.smallHeight(),
                   ValidatorTextFormField(
+                    minLine: AppConstants.kTwo,
                     labelText: '',
                     validator: ValidatorNormalTextField(),
                     controller: storyController,
