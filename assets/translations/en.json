@@ -78,7 +78,8 @@
     "message": {
         "emptySearch": "No Results Found",
         "somethingWentWrong": "Something went wrong",
-        "addedFavorite": "Added to favorites"
+        "addedFavorite": "Added to favorites",
+        "republicDay": "Long live the Republic!  🇹🇷🇹🇷'"
     },
     "placeDetailView": {
         "owner": "Business Owner",

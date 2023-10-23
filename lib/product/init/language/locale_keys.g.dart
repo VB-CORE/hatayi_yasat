@@ -69,6 +69,7 @@ abstract class  LocaleKeys {
   static const message_emptySearch = 'message.emptySearch';
   static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message_addedFavorite = 'message.addedFavorite';
+  static const message_republicDay = 'message.republicDay';
   static const message = 'message';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';

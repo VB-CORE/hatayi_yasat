@@ -9,7 +9,7 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_view_mode
 import 'package:vbaseproject/features/home_module/home_detail/home_detail_view.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/video_resource_path.dart';
+import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -67,16 +67,7 @@ class _HomeViewState extends ConsumerState<HomeView>
               SliverToBoxAdapter(
                 child: Row(
                   children: [
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        VideoDialog.show(
-                          context: context,
-                          path: VideoResourcePath.republic,
-                        );
-                      },
-                      icon: const Icon(Icons.videocam_outlined),
-                      label: const Text('Yaşasın Cumhuriyet!  🇹🇷🇹🇷'),
-                    ),
+                    const _RepublicDayButton(),
                     Expanded(child: _FilterButton()),
                   ],
                 ),
@@ -90,6 +81,26 @@ class _HomeViewState extends ConsumerState<HomeView>
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RepublicDayButton extends StatelessWidget {
+  const _RepublicDayButton();
+
+  @override
+  Widget build(BuildContext context) {
+    if (!FirebaseRemoteEnums.specialDay.valueBool) {
+      return const SizedBox.shrink();
+    }
+    return ElevatedButton.icon(
+      onPressed: () {
+        VideoDialogRepublic.show(
+          context: context,
+        );
+      },
+      icon: const Icon(Icons.videocam_outlined),
+      label: const Text(LocaleKeys.message_republicDay).tr(),
     );
   }
 }

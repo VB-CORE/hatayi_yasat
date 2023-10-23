@@ -1,16 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/model/enum/index.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
-import 'package:vbaseproject/product/widget/dialog/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
+import 'package:vbaseproject/sub_feature/tab/mixin/main_tab_view_mixin.dart';
 import 'package:vbaseproject/sub_feature/tab/model/speed_dial_child_model.dart';
 import 'package:vbaseproject/sub_feature/tab/model/tab_model.dart';
 
@@ -21,29 +18,10 @@ final class MainTabView extends StatefulWidget {
   State<MainTabView> createState() => _MainTabViewState();
 }
 
-class _MainTabViewState extends State<MainTabView> {
+class _MainTabViewState extends State<MainTabView> with MainTabViewMixin {
   final tabItems = TabModels.create().tabItems;
 
   final speedDialItems = SpeedDialChildModelList().speedDialChildItems;
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(
-      DurationConstant.durationMedium,
-      () async {
-        if (!FirebaseRemoteEnums.specialDay.valueBool) return;
-        if (SharedCache.instance.isRepublicDayShow) return;
-        await SharedCache.instance.setRepublicDay();
-        if (!mounted) return;
-        await VideoDialog.show(
-          context: context,
-          path: VideoResourcePath.republic,
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

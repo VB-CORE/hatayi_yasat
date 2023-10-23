@@ -5,8 +5,9 @@ import 'package:vbaseproject/product/model/enum/video_resource_path.dart';
 import 'package:video_player/video_player.dart';
 
 final class VideoDialog extends StatefulWidget {
-  const VideoDialog({required this.path, super.key});
+  const VideoDialog({required this.path, super.key, this.closeTitle});
   final VideoResourcePath path;
+  final String? closeTitle;
 
   static Future<void> show({
     required BuildContext context,
@@ -36,6 +37,7 @@ class _VideoDialogState extends State<VideoDialog> {
     Future.microtask(() async {
       await _controller.initialize();
       setState(() {});
+      await _controller.setLooping(true);
       await _controller.play();
     });
   }
@@ -69,9 +71,25 @@ class _VideoDialogState extends State<VideoDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text(LocaleKeys.button_close).tr(),
+          child: Text(widget.closeTitle ?? LocaleKeys.button_close.tr()),
         ),
       ],
+    );
+  }
+}
+
+extension VideoDialogRepublic on VideoDialog {
+  static Future<void> show({
+    required BuildContext context,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      builder: (context) {
+        return VideoDialog(
+          path: VideoResourcePath.republic,
+          closeTitle: LocaleKeys.message_republicDay.tr(),
+        );
+      },
     );
   }
 }
