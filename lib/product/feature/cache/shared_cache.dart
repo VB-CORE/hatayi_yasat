@@ -44,7 +44,8 @@ final class SharedCache {
       false;
 
   ThemeMode get theme =>
-      ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ?? 0];
+      ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ??
+          ThemeMode.light.index];
 
   /// Setters
   ///
@@ -54,7 +55,9 @@ final class SharedCache {
 
   Future<void> setRepublicDay() async {
     await _sharedOperation.setValue<bool>(
-        SharedKeys.republicDayFirstTimeSeen, true);
+      SharedKeys.republicDayFirstTimeSeen,
+      true,
+    );
   }
 
   Future<void> saveApplyScholarshipTime() async {

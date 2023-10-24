@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/default_file_extension.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/file_picker_manager.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/upload_file_section_widget.dart';
+import 'package:vbaseproject/product/package/file_picker/default_file_extension.dart';
+import 'package:vbaseproject/product/package/file_picker/file_picker_manager.dart';
+import 'package:vbaseproject/product/package/file_picker/upload_file_section_widget.dart';
 import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog.dart';
 
 mixin UploadFileMixin on State<UploadFileSectionWidget> {

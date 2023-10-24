@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/file_extension_enum.dart';
+import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
 
 @immutable
 final class DefaultFileExtension {
