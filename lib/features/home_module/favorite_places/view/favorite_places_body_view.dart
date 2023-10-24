@@ -1,7 +1,6 @@
 part of 'favorite_places_view.dart';
 
-class _FavoritePlacesBodyView extends ConsumerWidget
-    with FavoritePlaceConverterMixin {
+class _FavoritePlacesBodyView extends ConsumerWidget {
   const _FavoritePlacesBodyView({required this.favoritePlaceProvider});
   final StateNotifierProvider<FavoritePlacesProvider, FavoritePlacesState>
       favoritePlaceProvider;
@@ -25,19 +24,31 @@ class _FavoritePlacesBodyView extends ConsumerWidget
       padding: const PagePadding.horizontalLowSymmetric(),
       sliver: SliverList.builder(
         itemCount: items.length,
-        itemBuilder: (context, index) => _buildItem(context, items[index]),
+        itemBuilder: (context, index) => _FavoriteItem(
+          item: items[index],
+          refreshCallback:
+              ref.read(favoritePlaceProvider.notifier).getFavoritePlaces,
+        ),
       ),
     );
   }
+}
 
-  Widget _buildItem(BuildContext context, FavoritePlaceModel item) {
+class _FavoriteItem extends ConsumerWidget with FavoritePlaceConverterMixin {
+  const _FavoriteItem({required this.item, required this.refreshCallback});
+  final FavoritePlaceModel item;
+  final VoidCallback refreshCallback;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final store = convertToStore(item);
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: PlaceCard(
         item: store,
         onTap: () {
-          context.route.navigateToPage(HomeDetailView(model: store));
+          context.route
+              .navigateToPage(HomeDetailView(model: store))
+              .whenComplete(refreshCallback);
         },
       ),
     );

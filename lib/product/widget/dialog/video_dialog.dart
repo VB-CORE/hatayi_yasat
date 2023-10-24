@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/aspect_ratios.dart';
 import 'package:vbaseproject/product/model/enum/video_resource_path.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:video_player/video_player.dart';
 
 final class VideoDialog extends StatefulWidget {
@@ -52,15 +54,15 @@ class _VideoDialogState extends State<VideoDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      insetPadding: EdgeInsets.zero,
+      insetPadding: const PagePadding.allLow(),
       actionsPadding: EdgeInsets.zero,
-      content: SizedBox(
+      actionsAlignment: MainAxisAlignment.center,
+      clipBehavior: Clip.hardEdge,
+      content: AspectRatio(
+        aspectRatio: AspectRatios.verticalLow.value,
         child: _controller.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(
-                  _controller,
-                ),
+            ? VideoPlayer(
+                _controller,
               )
             : const Center(
                 child: CircularProgressIndicator(),

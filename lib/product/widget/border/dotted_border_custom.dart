@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 
 class DottedBorderCustom extends StatelessWidget {
@@ -9,6 +10,7 @@ class DottedBorderCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
+      color: ColorCommon(context).whiteAndBlackForTheme,
       borderType: BorderType.RRect,
       radius: context.border.normalRadius,
       dashPattern: const [3, 6],

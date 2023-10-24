@@ -197,6 +197,7 @@
         "error": {
             "serviceError": "A service error has occurred",
             "undefinedError": "An unidentified error occurred",
+            "fileSizeInfo": "File size can be up to {}",
             "fileSizeError": "Check the entered file size",
             "noFileError": "Please upload your student document"
         }

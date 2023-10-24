@@ -27,7 +27,7 @@ class _LanguageChangeWidgetState extends State<LanguageChangeWidget> {
         separatorBuilder: (context, index) => Text(
           _slashSeparator,
           style: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onSurface,
+            color: ColorCommon(context).whiteAndBlackForTheme,
           ),
         ),
       ),
