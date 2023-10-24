@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
@@ -23,9 +25,12 @@ class SuccessScholarshipPostedDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
+          Text(
             LocaleKeys.dialog_completeScholarshipRequest,
             textAlign: TextAlign.center,
+            style: context.general.textTheme.labelLarge?.copyWith(
+              color: ColorCommon(context).whiteAndBlackForTheme,
+            ),
           ).tr(),
           TextButton(
             onPressed: () {
