@@ -4,7 +4,7 @@ import 'package:vbaseproject/features/home_module/home/view_model/home_state.dar
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/widget/sheet/operation/town_category_operation.dart';
 
-mixin HomeViewModelMixin on StateNotifier<HomeState> {
+mixin HomeViewModelMixin on Notifier<HomeState> {
   List<StoreModel> filterWithResult(
     TownCategoryModel value,
     List<StoreModel> allItems,

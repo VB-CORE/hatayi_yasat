@@ -10,7 +10,9 @@ final class MessagingUtility {
 
   static Future<void> init() async {
     await FirebaseMessaging.instance.requestPermission();
-
+    await FirebaseMessaging.instance.getToken().then((value) {
+      print('FirebaseMessaging.instance.getToken() : $value');
+    });
     await Future.wait([
       FirebaseMessaging.instance
           .subscribeToTopic(NotificationTopics.toAll.rawValue),

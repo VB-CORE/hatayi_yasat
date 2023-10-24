@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/model/enum/notification_type.dart';
-import 'package:vbaseproject/product/package/firebase/messaging_navigate.dart';
 import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
 import 'package:vbaseproject/product/widget/snackbar/notification_snack_bar.dart';
+import 'package:vbaseproject/sub_feature/notification_navigate/notificaiton_navigate_parse.dart';
 
 mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
   final CustomService customService = FirebaseService();
@@ -30,30 +30,13 @@ mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
       ..showSnackBar(
         NotificationSnackBar(
           message: message,
-          isOpenListen: (value) {
+          isOpenListen: (value) async {
             if (!value) return;
-            switch (type) {
-              case NotificationType.campaigns:
-                MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
-                  context: context,
-                  id: id,
-                  customService: customService,
-                );
-              case NotificationType.project:
-                MessagingNavigate.instance.detailModelCheckAndNavigate(
-                  context: context,
-                  id: id,
-                  customService: customService,
-                );
-              case NotificationType.news:
-                MessagingNavigate.instance.detailModelNewsCheckAndNavigate(
-                  context: context,
-                  id: id,
-                  customService: customService,
-                );
-              case NotificationType.advertise:
-              // we don't navigate
-            }
+
+            await NotificationNavigateParse(context).makeWithType(
+              id: id,
+              type: type,
+            );
           },
         ),
       );

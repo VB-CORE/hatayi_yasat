@@ -7,8 +7,8 @@ import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/file_extension_enum.dart';
-import 'package:vbaseproject/product/utility/package/file_picker/upload_file_mixin.dart';
+import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
+import 'package:vbaseproject/product/package/file_picker/upload_file_mixin.dart';
 
 final class UploadFileSectionWidget extends StatefulWidget {
   const UploadFileSectionWidget({

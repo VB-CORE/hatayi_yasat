@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
+import 'package:vbaseproject/product/model/enum/redirect_tabs.dart';
 import 'package:vbaseproject/product/utility/extension/category_extension.dart';
 
 class ProductProvider extends StateNotifier<ProductProviderState> {
@@ -75,6 +76,7 @@ class ProductProviderState extends Equatable {
     this.agencyItems = const [],
     this.categoryItems = const [],
     this.campaignItems = const [],
+    this.redirectionPage,
   });
 
   final List<TownModel> townItems;
@@ -83,6 +85,7 @@ class ProductProviderState extends Equatable {
   final List<SpecialAgencyModel> agencyItems;
   final List<CategoryModel> categoryItems;
   final List<CampaignModel> campaignItems;
+  final RedirectTabs? redirectionPage;
 
   List<CategoryModel> get categoryItemsWithAll {
     return [
