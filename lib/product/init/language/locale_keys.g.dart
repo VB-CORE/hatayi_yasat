@@ -168,6 +168,7 @@ abstract class  LocaleKeys {
   static const requestScholarship_disableButtonTitle = 'requestScholarship.disableButtonTitle';
   static const requestScholarship_error_serviceError = 'requestScholarship.error.serviceError';
   static const requestScholarship_error_undefinedError = 'requestScholarship.error.undefinedError';
+  static const requestScholarship_error_fileSizeInfo = 'requestScholarship.error.fileSizeInfo';
   static const requestScholarship_error_fileSizeError = 'requestScholarship.error.fileSizeError';
   static const requestScholarship_error_noFileError = 'requestScholarship.error.noFileError';
   static const requestScholarship_error = 'requestScholarship.error';

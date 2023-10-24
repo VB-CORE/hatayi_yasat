@@ -13,6 +13,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
+import 'package:vbaseproject/product/widget/builder/keyboard_focus_control_widget.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/dropdown/category_drop_down.dart';
@@ -39,84 +40,86 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
     with AppProviderMixin, RequestCompanyMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: SaveButton(
-        onPressed: () async {
-          if (!isCheckValidation()) return;
-          final response = await ref
-              .read(_requestCompanyViewModel.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
-        },
-        isSendingRequestCheck:
-            ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
-        title: LocaleKeys.button_save,
-      ),
-      appBar: AppBar(
-        title: const Text(LocaleKeys.requestCompany_title).tr(),
-      ),
-      body: WillPopScope(
-        onWillPop: checkBackButton,
-        child: Form(
-          key: formKey,
-          autovalidateMode: autoValidate(),
-          child: Padding(
-            padding: const PagePadding.horizontal16Symmetric() +
-                const PagePadding.onlyBottom(),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  DottedAddPhotoButton(
-                    onSelected: onImageSelected,
-                  ),
-                  const EmptyBox.middleHeight(),
-                  ValidatorTextFormField(
-                    controller: companyNameController,
-                    labelText: LocaleKeys.requestCompany_name,
-                    validator: ValidatorNormalTextField(),
-                  ),
-                  ValidatorTextFormField(
-                    controller: companyDescriptionController,
-                    labelText: LocaleKeys.requestCompany_description,
-                    validator: ValidatorNormalTextField(),
-                    minLine: 3,
-                  ),
-                  ValidatorTextFormField(
-                    controller: nameSurnameController,
-                    labelText: LocaleKeys.requestCompany_ownerName,
-                    validator: ValidatorNormalTextField(),
-                  ),
-                  ValidatorTextFormField(
-                    controller: addressController,
-                    labelText: LocaleKeys.requestCompany_address,
-                    validator: ValidatorNormalTextField(),
-                    minLine: 3,
-                  ),
-                  PhoneTextFormField(
-                    controller: phoneController,
-                  ),
-                  CategoryDropDown(
-                    onSelected: onCategorySelected,
-                    items: ref.read(ProductProvider.provider).categoryItems,
-                  ),
-                  DistrictDropDownView(
-                    onSelected: onTownSelected,
-                  ),
-                  KvkkCheckBox(
-                    onChanged: (value) {
-                      onKvkkSelected(value: value);
-                    },
-                  ),
-                ],
+    return KeyboardFocusControlWidget(
+      child: Scaffold(
+        bottomNavigationBar: SaveButton(
+          onPressed: () async {
+            if (!isCheckValidation()) return;
+            final response = await ref
+                .read(_requestCompanyViewModel.notifier)
+                .addNewDataToService(model);
+            await dataSendingComplete(isOkay: response);
+          },
+          isSendingRequestCheck:
+              ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
+          title: LocaleKeys.button_save,
+        ),
+        appBar: AppBar(
+          title: const Text(LocaleKeys.requestCompany_title).tr(),
+        ),
+        body: WillPopScope(
+          onWillPop: checkBackButton,
+          child: Form(
+            key: formKey,
+            autovalidateMode: autoValidate(),
+            child: Padding(
+              padding: const PagePadding.horizontal16Symmetric() +
+                  const PagePadding.onlyBottom(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    DottedAddPhotoButton(
+                      onSelected: onImageSelected,
+                    ),
+                    const EmptyBox.middleHeight(),
+                    ValidatorTextFormField(
+                      controller: companyNameController,
+                      labelText: LocaleKeys.requestCompany_name,
+                      validator: ValidatorNormalTextField(),
+                    ),
+                    ValidatorTextFormField(
+                      controller: companyDescriptionController,
+                      labelText: LocaleKeys.requestCompany_description,
+                      validator: ValidatorNormalTextField(),
+                      minLine: 3,
+                    ),
+                    ValidatorTextFormField(
+                      controller: nameSurnameController,
+                      labelText: LocaleKeys.requestCompany_ownerName,
+                      validator: ValidatorNormalTextField(),
+                    ),
+                    ValidatorTextFormField(
+                      controller: addressController,
+                      labelText: LocaleKeys.requestCompany_address,
+                      validator: ValidatorNormalTextField(),
+                      minLine: 3,
+                    ),
+                    PhoneTextFormField(
+                      controller: phoneController,
+                    ),
+                    CategoryDropDown(
+                      onSelected: onCategorySelected,
+                      items: ref.read(ProductProvider.provider).categoryItems,
+                    ),
+                    DistrictDropDownView(
+                      onSelected: onTownSelected,
+                    ),
+                    KvkkCheckBox(
+                      onChanged: (value) {
+                        onKvkkSelected(value: value);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    ).ext.toDisabled(
-          disable:
-              ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
-          opacity: 0.5,
-        );
+      ).ext.toDisabled(
+            disable:
+                ref.watch(_requestCompanyViewModel).isSendingRequest ?? false,
+            opacity: 0.5,
+          ),
+    );
   }
 }

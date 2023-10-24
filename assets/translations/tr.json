@@ -197,6 +197,7 @@
         "error": {
             "serviceError": "Bir servis hatası oluştu",
             "undefinedError": "Belirlenemeyen bir hata oluştu",
+            "fileSizeInfo": "Dosya boyutu en fazla {} olabilir",
             "fileSizeError": "Girilen dosya boyutunu kontrol edin",
             "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
         }
