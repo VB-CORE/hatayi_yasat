@@ -32,7 +32,7 @@ service cloud.firestore {
     // Admin
 
     match /towns/{document} {
-      allow read;
+      allow read: if true;
       allow write;
     }
 

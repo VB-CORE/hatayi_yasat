@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/utility/extension/index.dart';
 import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
 
-class TownCategoryModel {
-  TownCategoryModel({
+@immutable
+final class TownCategoryModel {
+  const TownCategoryModel({
     required this.town,
     required this.category,
   });
@@ -22,17 +25,29 @@ mixin TownCategoryOperation on ConsumerState<TownCategorySelectSheet> {
   @override
   void initState() {
     super.initState();
-    _selectedTown = widget.initialItem?.town;
-    _selectedCategory = widget.initialItem?.category;
+    _selectedTown = _getInitialTownWithCodeControl();
+    _selectedCategory = _getInitialCategoryWithValueControl();
     _checkValidate();
   }
 
+  CategoryModel? _getInitialCategoryWithValueControl() {
+    return widget.initialItem?.category?.value == kErrorNumber.toInt()
+        ? null
+        : widget.initialItem?.category;
+  }
+
+  TownModel? _getInitialTownWithCodeControl() {
+    return widget.initialItem?.town?.code == kErrorNumber.toInt()
+        ? null
+        : widget.initialItem?.town;
+  }
+
   TownCategoryModel get selectedTownCategory => TownCategoryModel(
-        town: _selectedTown,
-        category: _selectedCategory,
+        town: _selectedTown ?? CategoryExtension.emptyAllTown,
+        category: _selectedCategory ?? CategoryExtension.emptyAll,
       );
 
-  final _emptyTownCategory = TownCategoryModel(
+  final _emptyTownCategory = const TownCategoryModel(
     town: null,
     category: null,
   );
