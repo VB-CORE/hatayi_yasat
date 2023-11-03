@@ -59,6 +59,7 @@ dependencies:
   path_provider: ^2.1.1
   add_2_calendar: ^3.0.1
   in_app_review: ^2.0.8
+  flutter_rating_bar: ^4.0.1
 
   # ui
   dotted_border: ^2.0.0+3

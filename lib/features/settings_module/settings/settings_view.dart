@@ -46,7 +46,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
             const NotificationPermissionView(),
             ListTile(
               title: Text(LocaleKeys.settings_appReviewTitle.tr()),
-              trailing: const Icon(Icons.rate_review_outlined),
+              trailing: const AppRatingWidget(),
               onTap: () => AppReview.instance.openStore(),
             ),
             const Divider(),
