@@ -20,4 +20,6 @@ class AppConstants {
 
   static const String googleMapsUrl = 'comgooglemaps://?q=';
   static const String appleMapsUrl = 'maps://?q=';
+
+  static const String appStoreId = 'id6465691080';
 }

@@ -65,6 +65,7 @@
         "themeTitle": "{} Theme",
         "versionNumberTitle": "Version Number",
         "notificationSetting": "Notification Settings",
+        "appReviewTitle": "Rate the App",
         "themes": {
             "light": "Light",
             "dark": "Dark"

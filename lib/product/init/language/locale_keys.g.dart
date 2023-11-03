@@ -58,6 +58,7 @@ abstract class  LocaleKeys {
   static const settings_themeTitle = 'settings.themeTitle';
   static const settings_versionNumberTitle = 'settings.versionNumberTitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
+  static const settings_appReviewTitle = 'settings.appReviewTitle';
   static const settings_themes_light = 'settings.themes.light';
   static const settings_themes_dark = 'settings.themes.dark';
   static const settings_themes = 'settings.themes';
