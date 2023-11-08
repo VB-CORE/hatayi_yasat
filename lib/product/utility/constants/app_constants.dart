@@ -12,6 +12,7 @@ class AppConstants {
   static const int kTwo = 2;
   static const int kThree = 3;
   static const int kFour = 4;
+  static const int kFive = 5;
 
   static const double defaultMapZoom = 14;
 
