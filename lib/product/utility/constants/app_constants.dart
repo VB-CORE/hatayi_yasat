@@ -23,4 +23,5 @@ class AppConstants {
   static const String appleMapsUrl = 'maps://?q=';
 
   static const String appStoreId = 'id6465691080';
+  static const String kiloByte = 'kb';
 }

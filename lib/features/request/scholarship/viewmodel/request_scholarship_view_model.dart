@@ -52,13 +52,15 @@ final class RequestScholarshipViewModel
     if (model == null) {
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
-    final (pdfLink, errorType) = await uploadStudentDocumentPDF();
+    final (pdfLinkKey, errorType) = await uploadStudentDocumentPDF();
     if (errorType != null) return errorType.errorMessage;
+    if (pdfLinkKey == null) return null;
     final scholarshipModel = ScholarshipModel(
       email: model.email,
       phoneNumber: model.phoneNumber,
       story: model.story,
-      studentDocument: pdfLink!,
+      studentDocument: '',
+      documentFileRef: pdfLinkKey,
     );
 
     final response = await FirebaseService().add<ScholarshipModel>(
