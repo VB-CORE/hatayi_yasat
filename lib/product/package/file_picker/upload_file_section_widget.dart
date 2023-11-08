@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
 import 'package:vbaseproject/product/package/file_picker/upload_file_mixin.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 
 final class UploadFileSectionWidget extends StatefulWidget {
   const UploadFileSectionWidget({
@@ -99,7 +99,7 @@ final class _HintText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      hintText.tr(),
+      '*${hintText.tr()}',
       maxLines: AppConstants.kOne,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.titleMedium?.copyWith(

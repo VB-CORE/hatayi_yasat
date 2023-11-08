@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/regex_types.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 
 abstract class ValidatorField {
   String? validate(String? value);
@@ -62,12 +62,12 @@ final class ValidatorEmailTextField extends ValidatorField {
     if (value == null || value.isEmpty) {
       return LocaleKeys.validation_requiredField.tr();
     }
-    if (value.length < 3) return LocaleKeys.validation_generalText.tr();
+    
+    if (value.length < AppConstants.kThree) {
+      return LocaleKeys.validation_generalText.tr();
+    }
 
     if (!value.ext.isValidEmail) return LocaleKeys.validation_emailFormat.tr();
-    if (!RegexTypes.studentMailRegex.hasMatch(value)) {
-      return LocaleKeys.validation_studentEmailFormat.tr();
-    }
     return null;
   }
 }
