@@ -7,7 +7,7 @@ assignees: VB10
 
 ---
 
-**Describtion**
+**Description**
 
 
 **Screen Preview**
