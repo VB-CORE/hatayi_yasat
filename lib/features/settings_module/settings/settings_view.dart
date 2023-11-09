@@ -7,6 +7,7 @@ import 'package:vbaseproject/features/settings_module/developers/developers_view
 import 'package:vbaseproject/features/settings_module/settings/subview/index.dart';
 import 'package:vbaseproject/features/settings_module/settings/subview/notification_permission_checkbox.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/package/app_review/app_review.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
@@ -43,6 +44,11 @@ class _SettingsViewState extends ConsumerState<SettingsView>
               trailing: const _VersionText(),
             ),
             const NotificationPermissionView(),
+            ListTile(
+              title: Text(LocaleKeys.settings_appReviewTitle.tr()),
+              trailing: const AppRatingWidget(),
+              onTap: () => AppReview.instance.openStore(),
+            ),
             const Divider(),
             ListTile(
               title: Text(LocaleKeys.developers_title.tr()),

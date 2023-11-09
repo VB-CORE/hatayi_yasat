@@ -12,6 +12,7 @@ class AppConstants {
   static const int kTwo = 2;
   static const int kThree = 3;
   static const int kFour = 4;
+  static const int kFive = 5;
 
   static const double defaultMapZoom = 14;
 
@@ -21,5 +22,6 @@ class AppConstants {
   static const String googleMapsUrl = 'comgooglemaps://?q=';
   static const String appleMapsUrl = 'maps://?q=';
 
+  static const String appStoreId = 'id6465691080';
   static const String kiloByte = 'kb';
 }

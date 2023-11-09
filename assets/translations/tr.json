@@ -65,6 +65,7 @@
         "themeTitle": "{} Tema",
         "versionNumberTitle": "Versiyon Numarası",
         "notificationSetting": "Bildirim Ayarları",
+        "appReviewTitle": "Uygulamayı Değerlendirin",
         "themes": {
             "light": "Aydınlık",
             "dark": "Karanlık"
