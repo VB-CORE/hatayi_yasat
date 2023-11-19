@@ -20,6 +20,7 @@ final class TabModels {
   TabModels.create() {
     _tabItems = [
       TabModel(
+        // DemoView
         page: const HomeView(),
         icon: const Icon(Icons.home_outlined),
         title: LocaleKeys.navigationTabs_placesTabTitle,

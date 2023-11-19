@@ -38,7 +38,6 @@ class _HomeViewState extends ConsumerState<HomeView>
         HomeViewMixin,
         NotificationTypeMixin,
         HomeNotificationMixin {
-          
   @override
   void initState() {
     super.initState();
