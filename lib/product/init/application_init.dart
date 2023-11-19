@@ -37,7 +37,7 @@ final class ApplicationInit with HiveAdapterRegistrationMixin {
 
     await Hive.initFlutter();
     await SharedCache.instance.init();
-    // await _injectTestEnvOnDebug();
+    await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
     await FirebaseCrashlytics.instance
         .setCrashlyticsCollectionEnabled(kDebugMode);
