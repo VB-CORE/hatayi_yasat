@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
-import 'package:vbaseproject/product/widget/textfield/custom_search_field.dart';
+import 'package:vbaseproject/product/widget/text_field/index.dart';
 
 class DemoView extends StatefulWidget {
   const DemoView({super.key});
@@ -41,6 +41,10 @@ class _DemoViewState extends State<DemoView> {
               (index) =>
                   MultipleSelectItem(title: 'title $index', id: '$index'),
             ),
+          ),
+          CustomTextFormField(
+            hint: 'Test',
+            controller: TextEditingController(),
           ),
         ],
       ),
