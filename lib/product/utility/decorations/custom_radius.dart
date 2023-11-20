@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 final class CustomRadius {
   const CustomRadius._();
 
-  /// value is 4
+  /// value is 8
   static const BorderRadius small = BorderRadius.all(Radius.circular(8));
 
   /// value is 12
@@ -15,6 +15,4 @@ final class CustomRadius {
 
   /// value is 24
   static const BorderRadius extraLarge = BorderRadius.all(Radius.circular(24));
-
-  // BorderRadius.all/
 }

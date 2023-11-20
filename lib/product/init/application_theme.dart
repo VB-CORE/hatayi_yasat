@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 
 final class ApplicationTheme {
-  ApplicationTheme.build() {
+  ApplicationTheme.build(BuildContext context) {
+    final textTheme = context.general.textTheme;
     final theme = ThemeData.light(useMaterial3: true);
+
     themeData = theme.copyWith(
+      textTheme: GoogleFonts.montserratTextTheme(textTheme),
       colorScheme: theme.colorScheme.copyWith(
         onError: ColorsCustom.braziliante,
+        primary: ColorsCustom.sambacus,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
+import 'package:vbaseproject/product/widget/textfield/custom_search_field.dart';
 
 class DemoView extends StatefulWidget {
   const DemoView({super.key});
@@ -27,6 +28,10 @@ class _DemoViewState extends State<DemoView> {
             icon: Icons.cake,
             title: 'text',
             dateTime: DateTime.now(),
+          ),
+          CustomSearchField(
+            hint: 'Search',
+            onChange: (value) {},
           ),
         ],
       ),
