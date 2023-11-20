@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
 class DemoView extends StatefulWidget {
@@ -12,11 +13,20 @@ class _DemoViewState extends State<DemoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Column(
+      body: Column(
         children: [
-          TitleDescription(
+          const TitleDescription(
             title: 'vb10 birthday',
             description: 'Happpyyyyy new year to all vb10 lovers 🥳',
+          ),
+          const IconWithText(
+            icon: Icons.cake,
+            title: 'text',
+          ),
+          IconWithDateTitle(
+            icon: Icons.cake,
+            title: 'text',
+            dateTime: DateTime.now(),
           ),
         ],
       ),

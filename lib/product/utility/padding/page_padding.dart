@@ -91,32 +91,53 @@ class PagePadding extends EdgeInsets {
   const PagePadding.onlyBottomVeryLow()
       : super.only(bottom: WidgetSizes.spacingXxs);
 
+  /// value is 2
+  const PagePadding.onlyTopVeryLow() : super.only(top: WidgetSizes.spacingXSS);
+
+  /// value is 4
+  const PagePadding.onlyTopLow() : super.only(top: WidgetSizes.spacingXxs);
+
+  /// value is 10
+  const PagePadding.onlyTop() : super.only(top: WidgetSizes.spacingXsMid);
+
   /// value is 12
   const PagePadding.onlyTopMedium() : super.only(top: WidgetSizes.spacingS);
 
-  const PagePadding.onlyTop() : super.only(top: WidgetSizes.spacingXsMid);
+  /// value is 18
   const PagePadding.onlyTopNormalMedium()
       : super.only(top: WidgetSizes.spacingXxl3 / 2);
-  const PagePadding.onlyTopVeryLow() : super.only(top: WidgetSizes.spacingXSS);
-  const PagePadding.onlyTopLow() : super.only(top: WidgetSizes.spacingXxs);
-  const PagePadding.onlyTopLowNormal()
-      : super.only(top: WidgetSizes.spacingXxl3 / 2);
+
+  /// value is 24
   const PagePadding.onlyTopNormal() : super.only(top: WidgetSizes.spacingXl);
+
+  /// value is 30
   const PagePadding.onlyTopNormalX()
       : super.only(top: WidgetSizes.spacingXxl2 - WidgetSizes.spacingXSS);
+
+  /// value is 36
   const PagePadding.onlyTopHigh() : super.only(top: WidgetSizes.spacingXxl3);
 
-  const PagePadding.onlyRight() : super.only(right: WidgetSizes.spacingM);
-  const PagePadding.onlyRightMedium() : super.only(right: WidgetSizes.spacingL);
-  const PagePadding.onlyRightNormal()
-      : super.only(right: WidgetSizes.spacingXl);
-  const PagePadding.onlyRightHigh()
-      : super.only(right: WidgetSizes.spacingXl + WidgetSizes.spacingM);
-
-  const PagePadding.onlyRightLow()
-      : super.only(right: WidgetSizes.spacingXsMid);
+  /// value is 6
   const PagePadding.onlyRightVeryLow()
       : super.only(right: WidgetSizes.spacingXSs);
+
+  /// value is 10
+  const PagePadding.onlyRightLow()
+      : super.only(right: WidgetSizes.spacingXsMid);
+
+  /// value is 16
+  const PagePadding.onlyRight() : super.only(right: WidgetSizes.spacingM);
+
+  /// value is 20
+  const PagePadding.onlyRightMedium() : super.only(right: WidgetSizes.spacingL);
+
+  /// value is 24
+  const PagePadding.onlyRightNormal()
+      : super.only(right: WidgetSizes.spacingXl);
+
+  /// value is 40
+  const PagePadding.onlyRightHigh()
+      : super.only(right: WidgetSizes.spacingXl + WidgetSizes.spacingM);
 
   const PagePadding.horizontalLowVerticalVeryLowSymmetric()
       : super.symmetric(
