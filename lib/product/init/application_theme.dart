@@ -9,7 +9,9 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
-      textTheme: GoogleFonts.montserratTextTheme(textTheme),
+      textTheme: GoogleFonts.montserratTextTheme(textTheme).apply(
+        displayColor: ColorsCustom.sambacus,
+      ),
       colorScheme: theme.colorScheme.copyWith(
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,
