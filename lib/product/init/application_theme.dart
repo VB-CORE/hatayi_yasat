@@ -11,8 +11,8 @@ final class ApplicationTheme {
     themeData = theme.copyWith(
       textTheme: GoogleFonts.montserratTextTheme(textTheme),
       colorScheme: theme.colorScheme.copyWith(
-        onError: ColorsCustom.braziliante,
         primary: ColorsCustom.sambacus,
+        secondary: ColorsCustom.white,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 import 'package:vbaseproject/product/widget/textfield/custom_search_field.dart';
@@ -32,6 +33,14 @@ class _DemoViewState extends State<DemoView> {
           CustomSearchField(
             hint: 'Search',
             onChange: (value) {},
+          ),
+          MultipleSelectButton(
+            onUpdatedSelectedItems: (value) {},
+            items: List.generate(
+              10,
+              (index) =>
+                  MultipleSelectItem(title: 'title $index', id: '$index'),
+            ),
           ),
         ],
       ),
