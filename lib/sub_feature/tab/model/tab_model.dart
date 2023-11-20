@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/features/advertise/view/advertise_view.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/view/campaigns_view.dart';
-import 'package:vbaseproject/features/demo_view.dart';
+import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
 import 'package:vbaseproject/features/news_module/news/view/news_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 
@@ -20,8 +20,7 @@ final class TabModels {
   TabModels.create() {
     _tabItems = [
       TabModel(
-        // DemoView
-        page: const DemoView(),
+        page: const HomeView(),
         icon: const Icon(Icons.home_outlined),
         title: LocaleKeys.navigationTabs_placesTabTitle,
       ),
