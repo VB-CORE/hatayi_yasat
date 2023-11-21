@@ -13,7 +13,7 @@ import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/card/place_card.dart';
+import 'package:vbaseproject/product/widget/card/general_place_card.dart';
 import 'package:vbaseproject/product/widget/dialog/index.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
@@ -184,14 +184,20 @@ class _PageBody extends ConsumerWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const PagePadding.onlyTop(),
-            child: PlaceCard(
+            padding:
+                const PagePadding.onlyTop() + const PagePadding.allVeryLow(),
+            child: GeneralPlaceCard(
               item: items[index],
-              onTap: () {
-                context.route
-                    .navigateToPage(HomeDetailView(model: items[index]));
-              },
+              onCardTap: () => context.route
+                  .navigateToPage(HomeDetailView(model: items[index])),
             ),
+            // PlaceCard(
+            //   item: items[index],
+            //   onTap: () {
+            //     context.route
+            //         .navigateToPage(HomeDetailView(model: items[index]));
+            //   },
+            // ),
           );
         },
       ),

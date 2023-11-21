@@ -21,4 +21,12 @@ class CustomButtonStyle extends ButtonStyle {
       padding: const PagePadding.verticalSymmetric(),
     );
   }
+
+  static ButtonStyle get shrinkWrap {
+    return ButtonStyle(
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      padding: const MaterialStatePropertyAll(EdgeInsets.zero),
+      minimumSize: MaterialStateProperty.all(Size.zero),
+    );
+  }
 }
