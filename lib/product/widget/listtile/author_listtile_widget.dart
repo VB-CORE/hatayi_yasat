@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 final class AuthorListTileWidget extends StatelessWidget {
@@ -27,7 +27,7 @@ final class AuthorListTileWidget extends StatelessWidget {
   }
 }
 
-class _AuthorText extends StatelessWidget {
+final class _AuthorText extends StatelessWidget {
   const _AuthorText({
     required this.text,
     required this.color,
@@ -48,7 +48,7 @@ class _AuthorText extends StatelessWidget {
   }
 }
 
-class _AuthorCircleAvatar extends StatelessWidget {
+final class _AuthorCircleAvatar extends StatelessWidget {
   const _AuthorCircleAvatar({
     required this.image,
   });
@@ -58,7 +58,7 @@ class _AuthorCircleAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: AppConstants.kFourteen.toDouble(),
+      radius: CustomCircleRadius.medium,
       backgroundImage: NetworkImage(image),
     );
   }
