@@ -184,7 +184,8 @@ class _PageBody extends ConsumerWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const PagePadding.onlyTop(),
+            padding:
+                const PagePadding.onlyTop() + const PagePadding.allVeryLow(),
             child: PlaceCard(
               item: items[index],
               onTap: () {
