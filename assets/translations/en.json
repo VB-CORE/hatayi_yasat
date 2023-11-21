@@ -209,5 +209,8 @@
     },
     "favoritePlaces": {
         "title": "Favorite Places"
+    },
+    "uploadShelter": {
+        "title": "Upload Shelter Details"
     }
 }
