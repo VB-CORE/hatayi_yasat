@@ -209,5 +209,8 @@
     },
     "favoritePlaces": {
         "title": "Favori Mekanlar"
+    },
+    "uploadShelter": {
+        "title": "Barınak Ayrıntılarını Yükle"
     }
 }
