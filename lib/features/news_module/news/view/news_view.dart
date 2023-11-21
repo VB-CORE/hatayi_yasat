@@ -7,7 +7,7 @@ import 'package:vbaseproject/features/news_module/news/view/mixin/news_view_mixi
 import 'package:vbaseproject/features/news_module/news_details/news_details_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/shimmer/news_shimmer_list.dart';
-import 'package:vbaseproject/product/widget/card/news_card.dart';
+import 'package:vbaseproject/product/widget/card/old_news_card.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
 class NewsView extends StatefulWidget {
@@ -31,7 +31,7 @@ class _NewsViewState extends State<NewsView> with NewsViewMixin {
         itemBuilder: (context, doc) {
           final model = doc.data();
           if (model == null) return const SizedBox.shrink();
-          return NewsCard(
+          return OldNewsCard(
             item: model,
             onTap: () {
               context.route.navigateToPage(NewsDetailsView(newsModel: model));
