@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
-class GeneralPlaceCard extends ConsumerWidget {
+class GeneralPlaceCard extends StatelessWidget {
   const GeneralPlaceCard({
-    required this.item,
     required this.onCardTap,
     this.onBookmarkIconTap,
     super.key,
   });
 
-  final StoreModel item;
   final VoidCallback onCardTap;
   final VoidCallback? onBookmarkIconTap;
+
+  //  TODO: Static variables will be updated with real model properties.
 
   static const _defaultImage =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCL7KhxLAe5VjNc-IsT8-N-6fCpXP32oHAcYqL7LoXF5Dp1-A8AyUyjto109DZ_dMsSc&usqp=CAU';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = item.images.firstOrNull ?? _defaultImage;
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: onCardTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _Image(imageUrl: imageUrl, id: item.documentId),
+          _Image(imageUrl: _defaultImage, id: const Uuid().v4()),
           const VerticalSpace.xSmall(),
           _TitleRow(
-            name: item.name,
-            isPlaceSaved: item.isApproved,
+            name: 'PS Mimarlık',
+            isPlaceSaved: true,
             onSavePlaceTap: onBookmarkIconTap,
           ),
           const VerticalSpace.xxSmall(),
-          _Description(description: item.description),
+          const _Description(
+            description: 'Mimari Proje/Tadilat/Performans analizi güçlendirme',
+          ),
         ],
       ),
     );
