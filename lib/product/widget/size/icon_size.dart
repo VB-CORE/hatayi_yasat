@@ -7,12 +7,14 @@ enum IconSize {
   smallX(15),
   //size is [25]
   medium(25),
+  //size is [34]
+  large(34),
   //size is [50]
-  large(50),
+  xLarge(50),
   //size is [80]
-  xLarge(80),
+  xxLarge(80),
   //size is [100]
-  xxLarge(100),
+  xxxLarge(100),
   ;
 
   final double value;

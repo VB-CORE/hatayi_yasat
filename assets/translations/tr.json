@@ -72,8 +72,10 @@
         }
     },
     "home": {
+        "specialAgency": "Özel Kurumlar",
+        "categories": "Kategoriler",
         "places": "Mekanlar",
-        "search": "Mekan ara",
+        "search": "Ara",
         "notifications": "Bildirimler"
     },
     "message": {

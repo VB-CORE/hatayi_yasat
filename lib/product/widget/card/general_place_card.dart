@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class GeneralPlaceCard extends StatelessWidget {
@@ -31,13 +31,13 @@ class GeneralPlaceCard extends StatelessWidget {
           _Image(imageUrl: _defaultImage, id: const Uuid().v4()),
           const VerticalSpace.xSmall(),
           _TitleRow(
-            name: 'PS Mimarlık',
-            isPlaceSaved: true,
+            name: 'Test Place 1',
+            isPlaceSaved: false,
             onSavePlaceTap: onBookmarkIconTap,
           ),
-          const VerticalSpace.xxSmall(),
           const _Description(
-            description: 'Mimari Proje/Tadilat/Performans analizi güçlendirme',
+            description:
+                'Even during a disaster, an emergency shelter provides a safe place for people affected by the corona',
           ),
         ],
       ),
@@ -57,7 +57,7 @@ final class _Image extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sized.height * 0.3,
+      height: context.sized.dynamicHeight(.24),
       child: Hero(
         tag: Key(id),
         child: CustomNetworkImage(
@@ -90,9 +90,9 @@ final class _TitleRow extends StatelessWidget {
             name,
             style: context.general.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: ColorCommon(context).whiteAndBlackForTheme,
-              fontSize: context.general.textTheme.titleMedium?.fontSize,
             ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         _BookmarkButton(
@@ -134,11 +134,13 @@ final class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      description ?? '',
-      style: context.general.textTheme.titleMedium?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const PagePadding.vertical6Symmetric(),
+      child: Text(
+        description ?? '',
+        style: context.general.textTheme.bodyMedium,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

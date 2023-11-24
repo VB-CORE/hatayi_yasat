@@ -19,12 +19,12 @@ final class CustomSearchField extends StatelessWidget {
         hintText: hint,
         focusColor: context.general.colorScheme.onError,
         focusedBorder: OutlineInputBorder(
-          borderRadius: CustomRadius.extraLarge,
+          borderRadius: CustomRadius.medium,
           borderSide: BorderSide(color: context.general.colorScheme.primary),
         ),
         hintStyle: context.general.textTheme.titleMedium,
         border: const OutlineInputBorder(
-          borderRadius: CustomRadius.extraLarge,
+          borderRadius: CustomRadius.medium,
         ),
         contentPadding: const PagePadding.horizontalSymmetric(),
         suffixIcon: const Icon(Icons.search_outlined),

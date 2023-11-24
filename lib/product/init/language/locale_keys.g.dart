@@ -63,6 +63,8 @@ abstract class  LocaleKeys {
   static const settings_themes_dark = 'settings.themes.dark';
   static const settings_themes = 'settings.themes';
   static const settings = 'settings';
+  static const home_specialAgency = 'home.specialAgency';
+  static const home_categories = 'home.categories';
   static const home_places = 'home.places';
   static const home_search = 'home.search';
   static const home_notifications = 'home.notifications';
@@ -81,8 +83,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
