@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
-import 'package:vbaseproject/product/widget/text/custom_title_text.dart';
 
-final class CustomClickableTitleText extends StatelessWidget {
-  const CustomClickableTitleText({
+final class ClickableSubTitleText extends StatelessWidget {
+  const ClickableSubTitleText({
     required this.title,
     required this.onTap,
     super.key,
@@ -18,7 +18,10 @@ final class CustomClickableTitleText extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          CustomTitleText(title: title),
+          GeneralSubTitle(
+            value: title,
+            isBold: true,
+          ),
           const Spacer(),
           Icon(
             Icons.chevron_right_outlined,

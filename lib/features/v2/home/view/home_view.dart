@@ -8,8 +8,9 @@ import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/custom_app_bar.dart';
 import 'package:vbaseproject/product/widget/card/general_place_card.dart';
-import 'package:vbaseproject/product/widget/text/custom_clickable_title_text.dart';
-import 'package:vbaseproject/product/widget/text/custom_title_text.dart';
+import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
+import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
 part 'widget/home_categories_area.dart';
@@ -32,7 +33,7 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GeneralScaffold(
       appBar: CustomAppBar(context: context),
       body: Padding(
         padding: const PagePadding.horizontalLowSymmetric() +
@@ -41,15 +42,16 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
           controller: customScrollController,
           slivers: [
             _HomeSearchField(onChanged: () {}),
-            CustomClickableTitleText(
+            ClickableSubTitleText(
               title: LocaleKeys.home_categories.tr(),
               onTap: () {},
             ).ext.sliver,
             const _HomeCategoryCards().ext.sliver,
             SliverPadding(
               padding: const PagePadding.vertical8Symmetric(),
-              sliver: CustomTitleText(
-                title: LocaleKeys.home_places.tr(),
+              sliver: GeneralSubTitle(
+                value: LocaleKeys.home_places.tr(),
+                isBold: true,
               ).ext.sliver,
             ),
             const _HomePlacesArea(),
