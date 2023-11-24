@@ -15,7 +15,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.1
   equatable: ^2.0.5
-  flutter_riverpod: ^2.1.3
+
+  #state management
+  flutter_riverpod: ^2.4.8
+  riverpod_annotation: ^2.3.2
+
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
   syncfusion_flutter_pdfviewer: ^22.2.11
@@ -103,6 +107,7 @@ dev_dependencies:
   json_serializable: ^6.6.1
   very_good_analysis: ^5.1.0
   hive_generator: ^2.0.1
+  riverpod_generator: ^2.3.8
 
 flutter_gen:
   output: lib/product/generated/

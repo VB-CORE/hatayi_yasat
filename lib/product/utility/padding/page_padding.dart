@@ -84,7 +84,7 @@ class PagePadding extends EdgeInsets {
   const PagePadding.vertical12Symmetric()
       : super.symmetric(vertical: WidgetSizes.spacingS);
 
-  /// vertical value 40, horizontal value 10
+  /// vertical value 40 , horizontal value 10
   const PagePadding.highVerticalLowHorizontal()
       : super.symmetric(
           vertical: WidgetSizes.spacingXxl4,

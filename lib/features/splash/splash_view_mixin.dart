@@ -2,12 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/filter_search_view.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 import 'package:vbaseproject/sub_feature/onboard/on_board_view.dart';
-import 'package:vbaseproject/sub_feature/tab/main_tab_view.dart';
 
 mixin SplashViewMixin
     on AppProviderMixin<SplashView>, ConsumerState<SplashView> {
@@ -38,7 +38,7 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
-        ProjectNavigation(context).replaceToWidget(MainTabView());
+        ProjectNavigation(context).replaceToWidget(const FilterSearchView());
       }
     });
   }
