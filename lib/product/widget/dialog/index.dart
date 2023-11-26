@@ -1,4 +1,6 @@
 export 'approve_dialog.dart';
+export 'favorite_clear_all_dialog.dart';
+export 'favorite_delete_dialog.dart';
 export 'force_update_dialog.dart';
 export 'form_latest_data_dialog.dart';
 export 'not_connected_to_internet_dialog.dart';

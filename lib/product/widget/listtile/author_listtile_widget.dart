@@ -7,13 +7,13 @@ final class AuthorListTileWidget extends StatelessWidget {
   const AuthorListTileWidget({
     required this.image,
     required this.text,
-    required this.color,
     super.key,
+    this.trailingWidget,
   });
 
   final String image;
   final String text;
-  final Color color;
+  final Widget? trailingWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ final class AuthorListTileWidget extends StatelessWidget {
       dense: true,
       horizontalTitleGap: WidgetSizes.spacingXs,
       leading: _AuthorCircleAvatar(image: image),
-      title: _AuthorText(text: text, color: color),
+      title: _AuthorText(text: text),
+      trailing: trailingWidget,
     );
   }
 }
@@ -30,11 +31,9 @@ final class AuthorListTileWidget extends StatelessWidget {
 final class _AuthorText extends StatelessWidget {
   const _AuthorText({
     required this.text,
-    required this.color,
   });
 
   final String text;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,6 @@ final class _AuthorText extends StatelessWidget {
       text,
       style: context.general.textTheme.titleMedium?.copyWith(
         fontWeight: FontWeight.bold,
-        color: color,
       ),
     );
   }

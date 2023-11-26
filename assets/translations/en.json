@@ -29,7 +29,9 @@
         "clean": "Clean",
         "selectedList": "List",
         "filter": "Filters",
-        "withoutFilter": "Continue without filtering"
+        "withoutFilter": "Continue without filtering",
+        "iAmSure": "Yes, I am sure",
+        "cancel": "Cancel"
     },
     "component": {
         "picker": {
@@ -207,8 +209,16 @@
         "upload": "Upload",
         "update": "Update"
     },
-    "favoritePlaces": {
-        "title": "Favorite Places"
+    "favorite": {
+        "title": "Favorites",
+        "search": "Search for your favorite",
+        "clearAllButton": "Clear All",
+        "clearAllDialog": {
+            "content": "Are you sure you want to clear all your favorites?"
+        },
+        "deleteDialog": {
+            "content": "It will be removed from the favorite. Are you sure you want to proceed?"
+        }
     },
     "uploadShelter": {
         "title": "Upload Shelter Details"

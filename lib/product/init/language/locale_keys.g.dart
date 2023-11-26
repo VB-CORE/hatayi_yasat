@@ -29,6 +29,8 @@ abstract class  LocaleKeys {
   static const button_selectedList = 'button.selectedList';
   static const button_filter = 'button.filter';
   static const button_withoutFilter = 'button.withoutFilter';
+  static const button_iAmSure = 'button.iAmSure';
+  static const button_cancel = 'button.cancel';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -177,8 +179,14 @@ abstract class  LocaleKeys {
   static const fileUpload_upload = 'fileUpload.upload';
   static const fileUpload_update = 'fileUpload.update';
   static const fileUpload = 'fileUpload';
-  static const favoritePlaces_title = 'favoritePlaces.title';
-  static const favoritePlaces = 'favoritePlaces';
+  static const favorite_title = 'favorite.title';
+  static const favorite_search = 'favorite.search';
+  static const favorite_clearAllButton = 'favorite.clearAllButton';
+  static const favorite_clearAllDialog_content = 'favorite.clearAllDialog.content';
+  static const favorite_clearAllDialog = 'favorite.clearAllDialog';
+  static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
+  static const favorite_deleteDialog = 'favorite.deleteDialog';
+  static const favorite = 'favorite';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
 
