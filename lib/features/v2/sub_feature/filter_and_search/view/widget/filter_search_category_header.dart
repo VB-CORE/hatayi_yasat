@@ -1,14 +1,12 @@
 part of '../filter_search_view.dart';
 
-final class _FilterSearchCategoryHeader extends StatelessWidget {
-  const _FilterSearchCategoryHeader({
-    required this.categories,
-  });
-
-  final List<CategoryModel> categories;
+final class _FilterSearchCategoryHeader extends ConsumerWidget {
+  const _FilterSearchCategoryHeader();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categories = ref.read(ProductProvider.provider).categoryItemsWithAll;
+
     return Row(
       children: [
         Text(
@@ -16,7 +14,11 @@ final class _FilterSearchCategoryHeader extends StatelessWidget {
           style: context.general.textTheme.titleSmall,
         ),
         const Spacer(),
-        Text('${categories.length} items'),
+        Text(
+          LocaleKeys.utils_options.tr(
+            args: [categories.length.toString()],
+          ),
+        ),
       ],
     );
   }
