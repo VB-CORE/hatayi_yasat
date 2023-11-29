@@ -15,17 +15,19 @@ final class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: context.general.textTheme.titleLarge,
+      style: context.general.textTheme.titleLarge?.copyWith(
+        color: context.general.colorScheme.onBackground,
+      ),
       decoration: InputDecoration(
-        hintText: hint,
+        labelText: hint,
         focusColor: context.general.colorScheme.onError,
         focusedBorder: OutlineInputBorder(
-          borderRadius: CustomRadius.extraLarge,
+          borderRadius: CustomRadius.small,
           borderSide: BorderSide(color: context.general.colorScheme.primary),
         ),
         hintStyle: context.general.textTheme.titleMedium,
         border: const OutlineInputBorder(
-          borderRadius: CustomRadius.extraLarge,
+          borderRadius: CustomRadius.small,
         ),
         contentPadding: const PagePadding.horizontalSymmetric(),
       ),
