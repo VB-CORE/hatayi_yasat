@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/constants/icon_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/general_content_title.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class GeneralPlaceCard extends StatelessWidget {
@@ -86,13 +89,10 @@ final class _TitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: Text(
-            name,
-            style: context.general.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          child: GeneralContentTitle(
+            value: name,
+            fontWeight: FontWeight.bold,
+            maxLine: 2,
           ),
         ),
         _BookmarkButton(
@@ -119,10 +119,8 @@ final class _BookmarkButton extends StatelessWidget {
       onPressed: onSavePlaceTap,
       padding: EdgeInsets.zero,
       style: CustomButtonStyle.shrinkWrap,
-      icon: Icon(
-        isPlaceSaved ? Icons.bookmark : Icons.bookmark_border_outlined,
-        color: context.general.colorScheme.primary,
-      ),
+      icon:
+          isPlaceSaved ? IconConstants.bookmark : IconConstants.bookmarkDefault,
     );
   }
 }
@@ -136,11 +134,9 @@ final class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.vertical6Symmetric(),
-      child: Text(
-        description ?? '',
-        style: context.general.textTheme.bodyMedium,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
+      child: GeneralContentSubTitle(
+        value: description ?? '',
+        maxLine: 2,
       ),
     );
   }

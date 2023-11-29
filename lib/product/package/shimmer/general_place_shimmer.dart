@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
+/// GeneralPlaceShimmer is a shimmer that contains 10 items consisting of images, titles and descriptions.
 final class GeneralPlaceShimmer extends StatelessWidget {
   const GeneralPlaceShimmer({super.key});
 
@@ -17,15 +18,16 @@ final class GeneralPlaceShimmer extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Shimmer.fromColors(
-          baseColor: Colors.grey[300] ?? Colors.grey,
-          highlightColor: Colors.grey[100] ?? Colors.grey,
+          baseColor: context.general.colorScheme.onPrimaryContainer,
+          highlightColor:
+              context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
           child: Center(
             child: Column(
               children: [
                 Container(
                   height: context.sized.dynamicHeight(.24),
                   width: context.sized.width,
-                  color: context.general.colorScheme.primary,
+                  color: context.general.colorScheme.secondary,
                 ),
                 const Padding(
                   padding: PagePadding.vertical8Symmetric(),
@@ -47,7 +49,7 @@ final class GeneralPlaceShimmer extends StatelessWidget {
   }
 }
 
-class _EmptyContainerTitle extends StatelessWidget {
+final class _EmptyContainerTitle extends StatelessWidget {
   const _EmptyContainerTitle();
 
   @override
@@ -55,12 +57,12 @@ class _EmptyContainerTitle extends StatelessWidget {
     return Container(
       height: 20,
       width: context.sized.dynamicWidth(.8),
-      color: Colors.black,
+      color: context.general.colorScheme.secondary,
     );
   }
 }
 
-class _EmptyContainerDescription extends StatelessWidget {
+final class _EmptyContainerDescription extends StatelessWidget {
   const _EmptyContainerDescription();
 
   @override
@@ -68,12 +70,12 @@ class _EmptyContainerDescription extends StatelessWidget {
     return Container(
       height: 40,
       width: context.sized.width,
-      color: Colors.black,
+      color: context.general.colorScheme.secondary,
     );
   }
 }
 
-class _EmptyContainerBookmark extends StatelessWidget {
+final class _EmptyContainerBookmark extends StatelessWidget {
   const _EmptyContainerBookmark();
 
   @override
@@ -81,7 +83,7 @@ class _EmptyContainerBookmark extends StatelessWidget {
     return Container(
       height: 20,
       width: 16,
-      color: Colors.black,
+      color: context.general.colorScheme.secondary,
     );
   }
 }

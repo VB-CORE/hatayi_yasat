@@ -4,7 +4,14 @@ import 'package:vbaseproject/features/v2/home/view/home_view.dart';
 
 mixin HomeViewMixin on ConsumerState<HomeView> {
   late final ScrollController customScrollController;
-  void init() {
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  void _init() {
     customScrollController = ScrollController();
   }
 }

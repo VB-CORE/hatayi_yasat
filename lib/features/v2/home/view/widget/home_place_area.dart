@@ -5,7 +5,6 @@ final class _HomePlacesArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Shimmer ismi GeneralPlaceShimmer.
     return SliverList.builder(
       itemCount: 10,
       itemBuilder: (context, index) {

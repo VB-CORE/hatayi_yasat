@@ -1,4 +1,4 @@
-part of '../appbar/custom_app_bar.dart';
+part of '../appbar/custom_popup_menu_app_bar.dart';
 
 final class _CustomPopupMenuItem extends PopupMenuItem {
   _CustomPopupMenuItem({
@@ -6,7 +6,10 @@ final class _CustomPopupMenuItem extends PopupMenuItem {
     required String itemLabel,
     required Widget destination,
   }) : super(
-          child: Text(itemLabel).tr(),
+          child: GeneralContentSubTitle(
+            value: itemLabel.tr(),
+            fontWeight: FontWeight.bold,
+          ),
           onTap: () => context.route.navigateToPage(destination),
         );
 }

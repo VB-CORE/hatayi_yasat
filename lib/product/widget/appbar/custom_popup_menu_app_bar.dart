@@ -5,12 +5,14 @@ import 'package:vbaseproject/features/home_module/favorite_places/view/favorite_
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 part '../popup/custom_popup_item.dart';
 
-final class CustomAppBar extends AppBar {
-  CustomAppBar({
+final class CustomPopupMenuAppbar extends AppBar {
+  CustomPopupMenuAppbar({
     required BuildContext context,
     super.key,
   }) : super(
@@ -21,12 +23,10 @@ final class CustomAppBar extends AppBar {
               height: AppConstants.kOne.toDouble(),
             ),
           ),
-          title: Text(
-            LocaleKeys.project_name,
-            style: context.general.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ).tr(context: context),
+          title: GeneralSubTitle(
+            value: LocaleKeys.project_name.tr(context: context),
+            fontWeight: FontWeight.bold,
+          ),
           actions: [
             const _CustomPopupMenu(),
           ],

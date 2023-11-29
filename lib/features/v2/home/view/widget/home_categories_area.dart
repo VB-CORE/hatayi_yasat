@@ -39,26 +39,23 @@ final class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        children: [
-          Card(
-            color: Colors.grey.shade200,
-            shape: const RoundedRectangleBorder(
-              borderRadius: CustomRadius.extraLarge,
-            ),
-            child: Padding(
-              padding: const PagePadding.horizontalSymmetric() +
-                  const PagePadding.vertical12Symmetric(),
-              child: Text(
-                name.substring(0, 1),
-                style: context.general.textTheme.headlineMedium,
-              ),
+    return Column(
+      children: [
+        Card(
+          color: context.general.colorScheme.onPrimaryContainer,
+          shape: const RoundedRectangleBorder(
+            borderRadius: CustomRadius.extraLarge,
+          ),
+          child: Padding(
+            padding: const PagePadding.horizontalSymmetric() +
+                const PagePadding.vertical12Symmetric(),
+            child: GeneralBigTitle(
+              name.substring(0, 1),
             ),
           ),
-          _CategoryCardTitle(name: name),
-        ],
-      ),
+        ),
+        _CategoryCardTitle(name: name),
+      ],
     );
   }
 }
@@ -74,11 +71,10 @@ final class _CategoryCardTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.onlyTopLow(),
-      child: Text(
-        name,
-        style: context.general.textTheme.bodyMedium,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
+      child: GeneralContentSubTitle(
+        value: name,
+        maxLine: 2,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

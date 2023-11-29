@@ -15,6 +15,7 @@ final class ApplicationTheme {
       colorScheme: theme.colorScheme.copyWith(
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,
+        onPrimaryContainer: ColorsCustom.lightGray,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

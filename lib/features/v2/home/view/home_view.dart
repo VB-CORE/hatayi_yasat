@@ -6,8 +6,10 @@ import 'package:vbaseproject/features/v2/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/appbar/custom_app_bar.dart';
+import 'package:vbaseproject/product/widget/appbar/custom_popup_menu_app_bar.dart';
 import 'package:vbaseproject/product/widget/card/general_place_card.dart';
+import 'package:vbaseproject/product/widget/general/general_big_title.dart';
+import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
 import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
@@ -26,15 +28,9 @@ final class HomeView extends ConsumerStatefulWidget {
 
 class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
   @override
-  void initState() {
-    super.initState();
-    init();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: CustomAppBar(context: context),
+      appBar: CustomPopupMenuAppbar(context: context),
       body: Padding(
         padding: const PagePadding.horizontalLowSymmetric() +
             const PagePadding.onlyTopLow(),
@@ -51,7 +47,7 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
               padding: const PagePadding.vertical8Symmetric(),
               sliver: GeneralSubTitle(
                 value: LocaleKeys.home_places.tr(),
-                isBold: true,
+                fontWeight: FontWeight.bold,
               ).ext.sliver,
             ),
             const _HomePlacesArea(),
