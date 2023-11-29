@@ -29,7 +29,9 @@
         "clean": "Temizle",
         "selectedList": "Listele",
         "filter": "Filtrele",
-        "withoutFilter": "Filtreleme yapmadan devam et"
+        "withoutFilter": "Filtreleme yapmadan devam et",
+        "clearAllSelection": "{} seçimi temizle",
+        "showResult": "Sonucu göster"
     },
     "component": {
         "picker": {
@@ -214,5 +216,8 @@
     },
     "uploadShelter": {
         "title": "Barınak Ayrıntılarını Yükle"
+    },
+    "utils": {
+        "options": "{} seçenek"
     }
 }
