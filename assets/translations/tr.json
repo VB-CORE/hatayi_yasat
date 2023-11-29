@@ -31,7 +31,9 @@
         "filter": "Filtrele",
         "withoutFilter": "Filtreleme yapmadan devam et",
         "iAmSure": "Evet, eminim",
-        "cancel": "İptal"
+        "cancel": "İptal",
+        "clearAllSelection": "{} seçimi temizle",
+        "showResult": "Sonucu göster"
     },
     "component": {
         "picker": {
@@ -222,5 +224,8 @@
     },
     "uploadShelter": {
         "title": "Barınak Ayrıntılarını Yükle"
+    },
+    "utils": {
+        "options": "{} seçenek"
     }
 }

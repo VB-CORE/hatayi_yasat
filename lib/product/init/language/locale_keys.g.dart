@@ -31,6 +31,8 @@ abstract class  LocaleKeys {
   static const button_withoutFilter = 'button.withoutFilter';
   static const button_iAmSure = 'button.iAmSure';
   static const button_cancel = 'button.cancel';
+  static const button_clearAllSelection = 'button.clearAllSelection';
+  static const button_showResult = 'button.showResult';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -83,8 +85,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -189,5 +191,7 @@ abstract class  LocaleKeys {
   static const favorite = 'favorite';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
+  static const utils_options = 'utils.options';
+  static const utils = 'utils';
 
 }

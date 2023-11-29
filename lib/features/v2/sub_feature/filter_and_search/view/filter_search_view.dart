@@ -2,19 +2,24 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/src/models/index.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/provider/filter_search_provider.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/button/general_button_v2.dart';
+import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
 import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
-import 'package:vbaseproject/product/widget/checkbox/product_checkbox.dart';
+import 'package:vbaseproject/product/widget/general/general_button.dart';
+import 'package:vbaseproject/product/widget/general/general_check_box.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
 
 part './widget/filter_search_button.dart';
+part './widget/filter_search_categories.dart';
 part './widget/filter_search_category_header.dart';
+part './widget/filter_search_clear_all.dart';
+part './widget/filter_search_towns.dart';
+part './widget/filter_search_towns_header.dart';
 
-class FilterSearchView extends ConsumerStatefulWidget {
+final class FilterSearchView extends ConsumerStatefulWidget {
   const FilterSearchView({super.key});
 
   @override
@@ -25,61 +30,32 @@ class FilterSearchView extends ConsumerStatefulWidget {
 class _FilterSearchViewState extends ConsumerState<FilterSearchView> {
   @override
   Widget build(BuildContext context) {
-    final categories = ref.read(ProductProvider.provider).categoryItemsWithAll;
-
-    final items = categories
-        .map((e) => MultipleSelectItem(title: e.displayName, id: e.documentId))
-        .toList();
-
-    final towns = ref.read(ProductProvider.provider).townItemsWithAll;
     return GeneralScaffold(
       appBar: AppBar(
-          // title: const GeneralBigTitle('Find your place'),
-          ),
-      body: Column(
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: const _FilterSearchClearAll(),
+        actions: const [
+          CloseButton(),
+        ],
+      ),
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _FilterSearchCategoryHeader(categories: categories),
-          const Divider(),
+          _FilterSearchCategoryHeader(),
+          Divider(),
           Expanded(
             flex: 2,
-            child: MultipleSelectButton(
-              items: items,
-              onUpdatedSelectedItems: (items) {},
-            ),
+            child: _FilterSearchCategories(),
           ),
-          const Divider(),
-          Padding(
-            padding: const PagePadding.onlyTop(),
-            child: Row(
-              children: [
-                Text(
-                  LocaleKeys.component_filter_districts.tr(),
-                  style: context.general.textTheme.titleSmall,
-                ),
-                const Spacer(),
-                Text('${towns.length} items'),
-              ],
-            ),
-          ),
+          _FilterSearchTownsHeader(),
+          Divider(),
           Expanded(
             flex: 2,
-            child: ListView.builder(
-              itemCount: towns.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ProductCheckbox(
-                  title: Text(towns[index].displayName),
-                  onSaved: (value) {},
-                  validator: (value) {
-                    return null;
-                  },
-                );
-              },
-            ),
+            child: _FilterSearchTowns(),
           ),
-          _FilterSearchButton(
-            onPressed: () {},
-          ),
+          _FilterSearchButton(),
         ],
       ),
     );

@@ -31,7 +31,9 @@
         "filter": "Filters",
         "withoutFilter": "Continue without filtering",
         "iAmSure": "Yes, I am sure",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "clearAllSelection": "{} clear selections",
+        "showResult": "Show result"
     },
     "component": {
         "picker": {
@@ -222,5 +224,8 @@
     },
     "uploadShelter": {
         "title": "Upload Shelter Details"
+    },
+    "utils": {
+        "options": "{} option"
     }
 }
