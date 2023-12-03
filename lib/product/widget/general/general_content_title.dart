@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-/// This is a general big title widget with headlineSmall style.
-final class GeneralSubTitle extends StatelessWidget {
-  const GeneralSubTitle({
+/// This is a general content(body) text widget with titleLarge style.
+final class GeneralContentTitle extends StatelessWidget {
+  const GeneralContentTitle({
     required this.value,
-    super.key,
     this.fontWeight,
     this.maxLine,
+    super.key,
   });
 
   final String value;
@@ -18,10 +18,11 @@ final class GeneralSubTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       value,
-      style: context.general.textTheme.headlineSmall?.copyWith(
+      style: context.general.textTheme.titleLarge?.copyWith(
         fontWeight: fontWeight ?? FontWeight.w500,
       ),
       maxLines: maxLine,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
