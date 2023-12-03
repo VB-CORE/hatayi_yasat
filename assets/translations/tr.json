@@ -30,6 +30,8 @@
         "selectedList": "Listele",
         "filter": "Filtrele",
         "withoutFilter": "Filtreleme yapmadan devam et",
+        "iAmSure": "Evet, eminim",
+        "cancel": "İptal",
         "clearAllSelection": "{} seçimi temizle",
         "showResult": "Sonucu göster"
     },
@@ -211,8 +213,16 @@
         "upload": "Yükle",
         "update": "Güncelle"
     },
-    "favoritePlaces": {
-        "title": "Favori Mekanlar"
+    "favorite": {
+        "title": "Favoriler",
+        "search": "Favorinizi arayın",
+        "clearAllButton": "Tümünü Temizle",
+        "clearAllDialog": {
+            "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?"
+        },
+        "deleteDialog": {
+            "content": "Favoriden kaldırılacaktır. Devam etmek istediğinize emin misiniz?"
+        }
     },
     "uploadShelter": {
         "title": "Barınak Ayrıntılarını Yükle"

@@ -44,7 +44,7 @@ class _FavoritePlacesViewState extends ConsumerState<FavoritePlacesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(LocaleKeys.favoritePlaces_title).tr(),
+        title: const Text(LocaleKeys.favorite_title).tr(),
       ),
       body: CustomScrollView(
         slivers: [
