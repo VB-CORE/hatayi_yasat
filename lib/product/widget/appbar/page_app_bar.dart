@@ -18,6 +18,7 @@ final class PageAppBar extends AppBar {
               height: AppConstants.kOne.toDouble(),
             ),
           ),
+          // TODO: Fix => PR birleşince General text widget olarak değiştirilecek.
           title: Text(
             pageTitle.tr(),
             style: context.general.textTheme.titleLarge?.copyWith(

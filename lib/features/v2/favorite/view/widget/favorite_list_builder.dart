@@ -5,7 +5,6 @@ final class _FavoriteListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Shimmer name => AuthorWidgetShimmer
     return SliverList.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
@@ -17,7 +16,6 @@ final class _FavoriteListBuilder extends StatelessWidget {
             // navigate to details
           },
           onDeleteTapped: () {
-            // FavoriteDeleteDialog.show(context);
             // remove from favorites
           },
         );
@@ -50,6 +48,7 @@ final class _FavoriteAuthorWidget extends StatelessWidget {
           text: name,
           trailingWidget: IconButton(
             onPressed: onDeleteTapped.call,
+            // TODO: Fix => IconConstant'a geçirilecek.
             icon: const Icon(Icons.delete),
           ),
         ),

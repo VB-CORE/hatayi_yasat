@@ -37,6 +37,7 @@ final class _AuthorText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Fix => PR birleşince General text widget ile değiştirilecek.
     return Text(
       text,
       style: context.general.textTheme.titleMedium?.copyWith(
