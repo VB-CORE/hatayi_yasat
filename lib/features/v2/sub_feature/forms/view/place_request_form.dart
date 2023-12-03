@@ -1,9 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/mixin/create_request_form_mixin.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/request_form.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/index.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/general/dotted/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
+import 'package:vbaseproject/product/widget/text_field/custom_text_form_selection_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 
 final class PlaceRequestForm extends ConsumerStatefulWidget {
@@ -14,23 +22,72 @@ final class PlaceRequestForm extends ConsumerStatefulWidget {
       _PlaceRequestFormState();
 }
 
-class _PlaceRequestFormState extends ConsumerState<PlaceRequestForm>
+class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
     with PlaceRequestFormMixin {
   @override
-  Widget build(BuildContext context) {
+  Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const GeneralBigTitle('Create Pleace'),
+        title: Text(LocaleKeys.requestCompany_title.tr()),
       ),
-      body: ListView(
-        padding: const PagePadding.all(),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const PagePadding.all(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GeneralButtonV2.active(
+                action: () {},
+                label: LocaleKeys.button_sendRequest.tr(),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: ListViewWithSpace(
         children: [
           const GeneralDottedPhotoAdd(),
           CustomTextFormField(
-            hint: 'Shelter name',
-            controller: TextEditingController(),
+            maxLength: TextFieldMaxLengths.small,
+            hint: LocaleKeys.requestCompany_name.tr(),
+            controller: placeNameController,
+            validator: ValidatorNormalTextField(),
           ),
-          GeneralButtonV2.active(action: () {}, label: 'Complete'),
+          CustomTextFormMultiField(
+            hint: LocaleKeys.requestCompany_description.tr(),
+            controller: placeDescriptionController,
+            textInputType: TextInputType.multiline,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormField(
+            maxLength: TextFieldMaxLengths.small,
+            hint: LocaleKeys.requestCompany_ownerName.tr(),
+            controller: placeOwnerNameController,
+            textInputType: TextInputType.name,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormMultiField(
+            hint: LocaleKeys.requestCompany_address.tr(),
+            controller: placeAddressController,
+            textInputType: TextInputType.streetAddress,
+            autoFills: TextFieldAutoFills.address,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormField(
+            hint: LocaleKeys.requestCompany_phoneNumber.tr(),
+            controller: placePhoneNumberController,
+            textInputType: TextInputType.phone,
+            formatters: TextFieldFormatters.phone,
+            validator: ValidatorPhoneTextField(),
+          ),
+          CustomTextSelectionFormField(
+            hint: LocaleKeys.requestCompany_chooseCategory.tr(),
+            controller: placeCategoryController,
+          ),
+          CustomTextSelectionFormField(
+            hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
+            controller: placeDistrictController,
+          ),
         ],
       ),
     );

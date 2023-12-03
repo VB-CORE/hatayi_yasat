@@ -9,6 +9,14 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
+      appBarTheme: AppBarTheme(
+        foregroundColor: ColorsCustom.white,
+        backgroundColor: ColorsCustom.white,
+        titleTextStyle: textTheme.titleLarge?.copyWith(),
+        iconTheme: const IconThemeData(
+          color: ColorsCustom.white,
+        ),
+      ),
       textTheme: GoogleFonts.montserratTextTheme(textTheme).apply(
         displayColor: ColorsCustom.sambacus,
       ),

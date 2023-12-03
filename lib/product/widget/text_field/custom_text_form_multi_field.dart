@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_auto_fills.dart';
+import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
-import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
+import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_decoration.dart';
 import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_model.dart';
 
-final class CustomTextFormField extends StatelessWidget
+final class CustomTextFormMultiField extends StatelessWidget
     with CustomTextFieldModel {
-  const CustomTextFormField({
+  const CustomTextFormMultiField({
     required this.hint,
     required this.controller,
     required this.validator,
     this.textInputType = TextInputType.text,
     this.maxLength = TextFieldMaxLengths.none,
-    this.formatters = TextFieldFormatters.none,
     this.autoFills = TextFieldAutoFills.normal,
+    this.formatters = TextFieldFormatters.none,
     this.textInputAction = TextInputAction.next,
     super.key,
   });
-
   @override
   final String hint;
   @override
@@ -29,11 +27,11 @@ final class CustomTextFormField extends StatelessWidget
   @override
   final TextFieldMaxLengths maxLength;
   @override
-  final TextFieldFormatters formatters;
+  final TextFieldAutoFills autoFills;
   @override
   final ValidatorField validator;
   @override
-  final TextFieldAutoFills autoFills;
+  final TextFieldFormatters formatters;
   @override
   final TextInputAction textInputAction;
 
@@ -41,16 +39,15 @@ final class CustomTextFormField extends StatelessWidget
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      maxLength: maxLength.value,
-      inputFormatters: formatters.value,
-      keyboardType: textInputType,
-      textInputAction: textInputAction,
-      validator: validator.validate,
       autofillHints: autoFills.value,
-      decoration: CustomTextFieldDecoration(
-        hint: hint,
-        context: context,
-      ),
+      maxLength: TextFieldMaxLengths.veryLarge.value,
+      minLines: TextFieldMaxLengths.minLine,
+      maxLines: TextFieldMaxLengths.maxLine,
+      keyboardType: textInputType,
+      validator: validator.validate,
+      textInputAction: textInputAction,
+      inputFormatters: formatters.value,
+      decoration: CustomTextFieldDecoration(hint: hint, context: context),
     );
   }
 }
