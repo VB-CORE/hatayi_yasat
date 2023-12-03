@@ -2,8 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-final class DialogTextButton extends StatelessWidget {
-  const DialogTextButton({
+/// This button is used only for dialog.
+final class GeneralDialogButton extends StatelessWidget {
+  const GeneralDialogButton({
     required this.onPressed,
     required this.title,
     super.key,
@@ -16,9 +17,11 @@ final class DialogTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed.call,
+
+      // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
       child: Text(
         title,
-        style: context.general.textTheme.bodySmall?.copyWith(
+        style: context.general.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
         ),
       ).tr(),

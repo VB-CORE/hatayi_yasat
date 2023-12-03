@@ -9,6 +9,8 @@ final class _FavoriteClearAllButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed.call,
+
+      // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
       child: Text(
         LocaleKeys.favorite_clearAllButton.tr(),
         style: context.general.textTheme.bodySmall,

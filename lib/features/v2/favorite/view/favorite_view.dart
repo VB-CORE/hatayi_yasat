@@ -28,9 +28,7 @@ class _FavoriteViewState extends State<FavoriteView> {
         pageTitle: LocaleKeys.favorite_title,
         actions: [
           _FavoriteClearAllButton(
-            onPressed: () {
-              //  FavoriteClearAllDialog.show(context);
-            },
+            onPressed: () {},
           ),
         ],
       ),
