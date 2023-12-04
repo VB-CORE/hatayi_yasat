@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/provider/place_request_provider.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/mixin/create_request_form_mixin.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
@@ -13,6 +15,8 @@ import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_text_form_selection_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
+
+part './widget/place_request_send.dart';
 
 final class PlaceRequestForm extends ConsumerStatefulWidget {
   const PlaceRequestForm({super.key});
@@ -30,19 +34,16 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       appBar: AppBar(
         title: Text(LocaleKeys.requestCompany_title.tr()),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const PagePadding.all(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GeneralButtonV2.active(
-                action: () {},
-                label: LocaleKeys.button_sendRequest.tr(),
-              ),
-            ],
-          ),
-        ),
+      bottomNavigationBar: _PlaceRequestSend(
+        () async {
+          await Future.delayed(const Duration(seconds: 2), () {});
+          if (!validateAndSave()) return;
+          final model = requestModel();
+          if (model == null) return;
+          ref
+              .read(placeRequestProviderProvider.notifier)
+              .updateRequestModel(model);
+        },
       ),
       body: ListViewWithSpace(
         children: [
@@ -83,10 +84,14 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
           CustomTextSelectionFormField(
             hint: LocaleKeys.requestCompany_chooseCategory.tr(),
             controller: placeCategoryController,
+            onSelected: updateCategoryItem,
+            validator: TextFieldValidatorIsNullEmpty(),
           ),
           CustomTextSelectionFormField(
             hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
             controller: placeDistrictController,
+            onSelected: updateTownItem,
+            validator: TextFieldValidatorIsNullEmpty(),
           ),
         ],
       ),

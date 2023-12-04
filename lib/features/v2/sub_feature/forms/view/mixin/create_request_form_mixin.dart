@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/request_form.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/place_request_form.dart';
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
 
-mixin PlaceRequestFormMixin on ConsumerState<PlaceRequestForm> {
+mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
+  late final List<TownModel> _townModels;
+  late final List<CategoryModel> _categoryModels;
   final TextEditingController placeNameController = TextEditingController();
   final TextEditingController placeDescriptionController =
       TextEditingController();
@@ -13,6 +19,37 @@ mixin PlaceRequestFormMixin on ConsumerState<PlaceRequestForm> {
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
+
+  SelectSheetModel? _selectedTownItem;
+  SelectSheetModel? _selectedCategoryItem;
+
+  void updateTownItem(SelectSheetModel item) => _selectedTownItem = item;
+  void updateCategoryItem(SelectSheetModel item) =>
+      _selectedCategoryItem = item;
+
+  PlaceRequestModel? requestModel() {
+    if (!validateAndSave()) return null;
+    return PlaceRequestModel(
+      placeName: placeNameController.text,
+      placeDescription: placeDescriptionController.text,
+      placeOwnerName: placeOwnerNameController.text,
+      placeAddress: placeAddressController.text,
+      placePhoneNumber: placePhoneNumberController.text,
+      placeCategory: _categoryModels.firstWhere(
+        (element) => element.documentId == _selectedCategoryItem?.id,
+      ),
+      placeDistrict: _townModels.firstWhere(
+        (element) => element.documentId == _selectedTownItem?.id,
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _townModels = ref.read(ProductProvider.provider).townItems;
+    _categoryModels = ref.read(ProductProvider.provider).categoryItems;
+  }
 
   @override
   void dispose() {

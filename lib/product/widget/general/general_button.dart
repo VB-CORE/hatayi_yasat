@@ -91,12 +91,15 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
                 if (!widget.isAsync) return widget.action();
                 await _asyncAction();
               },
-        child: ValueListenableBuilder(
-          valueListenable: _isLoading,
-          builder: (context, value, _) {
-            if (!value) return _Child(label: widget.label);
-            return const _LoadingWidget();
-          },
+        child: Padding(
+          padding: const PagePadding.vertical12Symmetric(),
+          child: ValueListenableBuilder(
+            valueListenable: _isLoading,
+            builder: (context, value, _) {
+              if (!value) return _Child(label: widget.label);
+              return const _LoadingWidget();
+            },
+          ),
         ),
       ),
     );
@@ -123,15 +126,12 @@ class _Child extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.vertical12Symmetric(),
-      child: Center(
-        child: Text(
-          label,
-          style: context.general.textTheme.titleMedium?.copyWith(
-            color: ColorCommon(context).whiteAndBlackForTheme,
-            fontWeight: FontWeight.w900,
-          ),
+    return Center(
+      child: Text(
+        label,
+        style: context.general.textTheme.titleMedium?.copyWith(
+          color: ColorCommon(context).whiteAndBlackForTheme,
+          fontWeight: FontWeight.w900,
         ),
       ),
     );
