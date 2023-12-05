@@ -23,6 +23,18 @@ mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
   SelectSheetModel? _selectedTownItem;
   SelectSheetModel? _selectedCategoryItem;
 
+  @override
+  bool get isHasAnyData {
+    if (placeNameController.text.isNotEmpty) return true;
+    if (placeDescriptionController.text.isNotEmpty) return true;
+    if (placeOwnerNameController.text.isNotEmpty) return true;
+    if (placeAddressController.text.isNotEmpty) return true;
+    if (placePhoneNumberController.text.isNotEmpty) return true;
+    if (placeCategoryController.text.isNotEmpty) return true;
+    if (placeDistrictController.text.isNotEmpty) return true;
+    return false;
+  }
+
   void updateTownItem(SelectSheetModel item) => _selectedTownItem = item;
   void updateCategoryItem(SelectSheetModel item) =>
       _selectedCategoryItem = item;

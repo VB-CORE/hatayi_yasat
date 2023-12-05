@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,9 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       ),
       body: ListViewWithSpace(
         children: [
-          const GeneralDottedPhotoAdd(),
+          GeneralDottedPhotoAdd(
+            onSelected: (File file) {},
+          ),
           CustomTextFormField(
             maxLength: TextFieldMaxLengths.small,
             hint: LocaleKeys.requestCompany_name.tr(),

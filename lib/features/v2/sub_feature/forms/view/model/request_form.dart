@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/widget/dialog/form_latest_data_dialog.dart';
 
 abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
     extends ConsumerState<T> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final ValueNotifier<bool> _isFirstValidateNotifier = ValueNotifier(false);
 
+  bool get isHasAnyData;
+
   bool validateAndSave() {
     final form = formKey.currentState;
     if (form == null) return false;
     final isValid = form.validate();
     if (isValid) form.save();
-
     _updateFirstValidate();
     return isValid;
   }
@@ -22,11 +24,6 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
   void _updateFirstValidate() {
     if (_isFirstValidateNotifier.value) return;
     _isFirstValidateNotifier.value = true;
-  }
-
-  void onPop() {
-    if (!validateAndSave()) return;
-    context.route.pop();
   }
 
   Widget onBuild(BuildContext context);
@@ -42,7 +39,17 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
           autovalidateMode: isFirstValidate
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          onPopInvoked: (didPop) => didPop ? onPop() : null,
+          onPopInvoked: (didPop) async {
+            if (!isHasAnyData) {
+              await context.route.pop();
+              return;
+            }
+
+            final response = await FormLatestDataDialog.show(context);
+            if (!response) return;
+            if (!context.mounted) return;
+            await context.route.pop();
+          },
           child: child!,
         );
       },
