@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/constants/icon_constants.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 final class ClickableSubTitleText extends StatelessWidget {
   const ClickableSubTitleText({
@@ -23,7 +24,10 @@ final class ClickableSubTitleText extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           const Spacer(),
-          IconConstants.rightChevron,
+          Icon(
+            AppIcons.rightSelect,
+            size: IconSize.large.value,
+          ),
         ],
       ),
     );

@@ -48,7 +48,7 @@ final class _CustomPopupMenu extends StatelessWidget {
             destination: const SpecialAgencyView(),
           ),
           _CustomPopupMenuItem(
-            itemLabel: LocaleKeys.favoritePlaces_title,
+            itemLabel: LocaleKeys.favorite_title,
             context: context,
             destination: const FavoritePlacesView(),
           ),
