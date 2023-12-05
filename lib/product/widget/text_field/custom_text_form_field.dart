@@ -1,55 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_auto_fills.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
-import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_decoration.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_model.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
-final class CustomTextFormField extends StatelessWidget
-    with CustomTextFieldModel {
+final class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     required this.hint,
     required this.controller,
-    required this.validator,
-    this.textInputType = TextInputType.text,
-    this.maxLength = TextFieldMaxLengths.none,
-    this.formatters = TextFieldFormatters.none,
-    this.autoFills = TextFieldAutoFills.normal,
-    this.textInputAction = TextInputAction.next,
     super.key,
   });
-
-  @override
   final String hint;
-  @override
   final TextEditingController controller;
-  @override
-  final TextInputType textInputType;
-  @override
-  final TextFieldMaxLengths maxLength;
-  @override
-  final TextFieldFormatters formatters;
-  @override
-  final ValidatorField validator;
-  @override
-  final TextFieldAutoFills autoFills;
-  @override
-  final TextInputAction textInputAction;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      maxLength: maxLength.value,
-      inputFormatters: formatters.value,
-      keyboardType: textInputType,
-      textInputAction: textInputAction,
-      validator: validator.validate,
-      autofillHints: autoFills.value,
-      decoration: CustomTextFieldDecoration(
-        hint: hint,
-        context: context,
+      style: context.general.textTheme.titleLarge,
+      decoration: InputDecoration(
+        hintText: hint,
+        focusColor: context.general.colorScheme.onError,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: CustomRadius.extraLarge,
+          borderSide: BorderSide(color: context.general.colorScheme.primary),
+        ),
+        hintStyle: context.general.textTheme.titleMedium,
+        border: const OutlineInputBorder(
+          borderRadius: CustomRadius.extraLarge,
+        ),
+        contentPadding: const PagePadding.horizontalSymmetric(),
       ),
     );
   }

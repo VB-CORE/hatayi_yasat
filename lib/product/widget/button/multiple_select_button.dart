@@ -33,28 +33,25 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
     return ValueListenableBuilder(
       valueListenable: selectedItemsNotifier,
       builder: (context, selectedItems, child) {
-        return SingleChildScrollView(
-          child: Wrap(
-            children: List.generate(items.length, (index) {
-              final isSelected = selectedItems.contains(items[index]);
+        return Wrap(
+          children: List.generate(items.length, (index) {
+            final isSelected = selectedItems.contains(items[index]);
 
-              return Padding(
-                padding: const PagePadding.onlyRight(),
-                child: InkWell(
-                  onTap: () {
-                    addOrRemoveItem(items[index]);
-                  },
-                  child: Chip(
-                    padding: EdgeInsets.zero,
-                    backgroundColor: isSelected
-                        ? context.general.colorScheme.primary
-                        : Colors.transparent,
-                    label: _Title(item: items[index], isSelected: isSelected),
-                  ),
+            return Padding(
+              padding: const PagePadding.onlyRight(),
+              child: InkWell(
+                onTap: () {
+                  addOrRemoveItem(items[index]);
+                },
+                child: Chip(
+                  backgroundColor: isSelected
+                      ? context.general.colorScheme.primary
+                      : Colors.transparent,
+                  label: _Title(item: items[index], isSelected: isSelected),
                 ),
-              );
-            }),
-          ),
+              ),
+            );
+          }),
         );
       },
     );
@@ -74,7 +71,7 @@ final class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       item.title,
-      style: context.general.textTheme.titleSmall?.copyWith(
+      style: context.general.textTheme.titleMedium?.copyWith(
         color: isSelected
             ? context.general.colorScheme.secondary
             : context.general.colorScheme.primary,

@@ -30,46 +30,26 @@ class PagePadding extends EdgeInsets {
   const PagePadding.horizontal16Symmetric()
       : super.symmetric(horizontal: WidgetSizes.spacingM);
 
-  /// value is 4
-  const PagePadding.verticalVeryLowSymmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingXxs);
-
-  ///  value is 6
-  const PagePadding.vertical6Symmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingXSs);
-
-  ///  value is 8
-  const PagePadding.vertical8Symmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingXs);
-
-  /// value is 10
-  const PagePadding.verticalLowSymmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingXsMid);
-
-  ///  value is 12
-  const PagePadding.vertical12Symmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingS);
-
-  /// value is 16
-  const PagePadding.verticalMediumSymmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingM);
-
-  /// value is 20
   const PagePadding.verticalSymmetric()
       : super.symmetric(vertical: WidgetSizes.spacingL);
-
-  /// value is 24
-  const PagePadding.verticalNormalSymmetric()
-      : super.symmetric(vertical: WidgetSizes.spacingXl);
-
-  /// value is 32
   const PagePadding.verticalMediumHighSymmetric()
       : super.symmetric(vertical: WidgetSizes.spacingXxl2);
-
-  /// value is 40
+  const PagePadding.verticalMediumSymmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingM);
   const PagePadding.verticalHigh()
       : super.symmetric(vertical: WidgetSizes.spacingXxl4);
-
+  const PagePadding.verticalVeryLowSymmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingXxs);
+  const PagePadding.verticalNormalSymmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingXl);
+  const PagePadding.verticalLowSymmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingXsMid);
+  const PagePadding.vertical8Symmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingXs);
+  const PagePadding.vertical6Symmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingXSs);
+  const PagePadding.vertical12Symmetric()
+      : super.symmetric(vertical: WidgetSizes.spacingS);
   const PagePadding.highVerticalLowHorizontal()
       : super.symmetric(
           vertical: WidgetSizes.spacingXxl4,
