@@ -4,4 +4,7 @@ export 'firebase_env.dart';
 export 'firebase_remote_enums.dart';
 export 'notification_type.dart';
 export 'platform_exception_enum.dart';
+export 'redirect_tabs.dart';
+export 'text_field/text_field_auto_fills.dart';
+export 'text_field/text_field_max_lenghts.dart';
 export 'video_resource_path.dart';

@@ -33,7 +33,8 @@
         "iAmSure": "Yes, I am sure",
         "cancel": "Cancel",
         "clearAllSelection": "{} clear selections",
-        "showResult": "Show result"
+        "showResult": "Show result",
+        "sendRequest": "Send Request"
     },
     "component": {
         "picker": {
@@ -56,7 +57,9 @@
         "phoneNumber": "Phone Number",
         "ownerName": "Full Name",
         "district": "District",
-        "category": "Category"
+        "category": "Category",
+        "chooseCategory": "Choose Category",
+        "chooseDistrict": "Choose District"
     },
     "general": {
         "kvkk": "KVKK",

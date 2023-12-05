@@ -33,7 +33,8 @@
         "iAmSure": "Evet, eminim",
         "cancel": "İptal",
         "clearAllSelection": "{} seçimi temizle",
-        "showResult": "Sonucu göster"
+        "showResult": "Sonucu göster",
+        "sendRequest": "İsteği gönder"
     },
     "component": {
         "picker": {
@@ -56,7 +57,9 @@
         "phoneNumber": "Telefon Numarası",
         "ownerName": "Ad ve Soyad",
         "district": "İlçe",
-        "category": "Kategori"
+        "category": "Kategori",
+        "chooseCategory": "Kategori Seçiniz",
+        "chooseDistrict": "İlçe Seçiniz"
     },
     "general": {
         "kvkk": "KVKK'yı",
