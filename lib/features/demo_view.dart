@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
@@ -44,6 +45,7 @@ class _DemoViewState extends State<DemoView> {
           ),
           CustomTextFormField(
             hint: 'Test',
+            validator: ValidatorNormalTextField(),
             controller: TextEditingController(),
           ),
         ],

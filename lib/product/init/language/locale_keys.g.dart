@@ -29,6 +29,9 @@ abstract class  LocaleKeys {
   static const button_selectedList = 'button.selectedList';
   static const button_filter = 'button.filter';
   static const button_withoutFilter = 'button.withoutFilter';
+  static const button_clearAllSelection = 'button.clearAllSelection';
+  static const button_showResult = 'button.showResult';
+  static const button_sendRequest = 'button.sendRequest';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -48,6 +51,8 @@ abstract class  LocaleKeys {
   static const requestCompany_ownerName = 'requestCompany.ownerName';
   static const requestCompany_district = 'requestCompany.district';
   static const requestCompany_category = 'requestCompany.category';
+  static const requestCompany_chooseCategory = 'requestCompany.chooseCategory';
+  static const requestCompany_chooseDistrict = 'requestCompany.chooseDistrict';
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';
@@ -181,5 +186,7 @@ abstract class  LocaleKeys {
   static const favoritePlaces = 'favoritePlaces';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
+  static const utils_options = 'utils.options';
+  static const utils = 'utils';
 
 }

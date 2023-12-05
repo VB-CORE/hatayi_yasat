@@ -29,7 +29,10 @@
         "clean": "Clean",
         "selectedList": "List",
         "filter": "Filters",
-        "withoutFilter": "Continue without filtering"
+        "withoutFilter": "Continue without filtering",
+        "clearAllSelection": "{} clear selections",
+        "showResult": "Show result",
+        "sendRequest": "Send Request"
     },
     "component": {
         "picker": {
@@ -52,7 +55,9 @@
         "phoneNumber": "Phone Number",
         "ownerName": "Full Name",
         "district": "District",
-        "category": "Category"
+        "category": "Category",
+        "chooseCategory": "Choose Category",
+        "chooseDistrict": "Choose District"
     },
     "general": {
         "kvkk": "KVKK",
@@ -212,5 +217,8 @@
     },
     "uploadShelter": {
         "title": "Upload Shelter Details"
+    },
+    "utils": {
+        "options": "{} option"
     }
 }

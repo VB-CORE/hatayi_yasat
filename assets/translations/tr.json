@@ -29,7 +29,10 @@
         "clean": "Temizle",
         "selectedList": "Listele",
         "filter": "Filtrele",
-        "withoutFilter": "Filtreleme yapmadan devam et"
+        "withoutFilter": "Filtreleme yapmadan devam et",
+        "clearAllSelection": "{} seçimi temizle",
+        "showResult": "Sonucu göster",
+        "sendRequest": "İsteği gönder"
     },
     "component": {
         "picker": {
@@ -52,7 +55,9 @@
         "phoneNumber": "Telefon Numarası",
         "ownerName": "Ad ve Soyad",
         "district": "İlçe",
-        "category": "Kategori"
+        "category": "Kategori",
+        "chooseCategory": "Kategori Seçiniz",
+        "chooseDistrict": "İlçe Seçiniz"
     },
     "general": {
         "kvkk": "KVKK'yı",
@@ -212,5 +217,8 @@
     },
     "uploadShelter": {
         "title": "Barınak Ayrıntılarını Yükle"
+    },
+    "utils": {
+        "options": "{} seçenek"
     }
 }
