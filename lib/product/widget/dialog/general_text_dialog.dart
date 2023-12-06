@@ -38,7 +38,7 @@ final class GeneralTextDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: context.general.colorScheme.secondary,
-      title: GeneralSubTitle(title),
+      title: GeneralSubTitle(value: title),
 
       // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
       content: Text(

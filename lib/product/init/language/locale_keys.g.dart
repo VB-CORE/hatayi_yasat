@@ -90,8 +90,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_phone = 'campaignDetailsView.phone';
+  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/home_module/favorite_places/view/favorite_places_view.dart';
 import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
@@ -47,11 +46,15 @@ final class _CustomPopupMenu extends StatelessWidget {
             context: context,
             destination: const SpecialAgencyView(),
           ),
-          _CustomPopupMenuItem(
-            itemLabel: LocaleKeys.favoritePlaces_title,
-            context: context,
-            destination: const FavoritePlacesView(),
-          ),
+
+          /// TODO: @BerkSartik: bu kisima bakalim
+          /// @BerkSartik: bu kisima bakalim
+          ///
+          // _CustomPopupMenuItem(
+          //   itemLabel: LocaleKeys.favoritePlaces_title.tr(),
+          //   context: context,
+          //   destination: const FavoritePlacesView(),
+          // ),
         ];
       },
     );

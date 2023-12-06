@@ -44,7 +44,9 @@ final class GeneralIconTextDialog extends StatelessWidget {
       backgroundColor: context.general.colorScheme.secondary,
       icon: icon,
       iconColor: context.general.colorScheme.primary,
-      title: GeneralSubTitle(title),
+      title: GeneralSubTitle(
+        value: title,
+      ),
       // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
       content: Text(
         content,
