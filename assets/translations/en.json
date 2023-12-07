@@ -1,224 +1,225 @@
 {
-    "project": {
-        "name": "Keep Hatay Alive"
+  "project": {
+    "name": "Keep Hatay Alive"
+  },
+  "validation": {
+    "fullName": "Name and surname cannot be empty.",
+    "phoneNumber": "Please enter a valid phone number.",
+    "address": "Address cannot be empty.",
+    "needs": "Please select your needs.",
+    "plate": "Please enter a license plate number.",
+    "kvkk": "Please accept KVKK.",
+    "surname": "Please enter your last name.",
+    "confirmationText": "Please accept the confirmation text.",
+    "generalText": "Cannot be empty or less than 3 characters.",
+    "requiredField": "This field cannot be empty.",
+    "formRequired": "Please fill out the form.",
+    "photoRequired": "Please add a photo.",
+    "loseAllData": "Your changes will be lost. Do you want to continue?",
+    "categoryEmpty": "Please choose a category",
+    "emailFormat": "Please enter your mail correctly",
+    "studentEmailFormat": "Please enter your student mail"
+  },
+  "button": {
+    "save": "Save",
+    "addPhoto": "Add Photo",
+    "ok": "OK",
+    "close": "Close",
+    "allFilter": "All",
+    "clean": "Clean",
+    "selectedList": "List",
+    "filter": "Filters",
+    "withoutFilter": "Continue without filtering",
+    "clearAllSelection": "{} clear selections",
+    "showResult": "Show result",
+    "sendRequest": "Send Request"
+  },
+  "component": {
+    "picker": {
+      "camera": "Select from Camera",
+      "gallery": "Select from Gallery",
+      "cropperTitle": "Edit"
     },
-    "validation": {
-        "fullName": "Name and surname cannot be empty.",
-        "phoneNumber": "Please enter a valid phone number.",
-        "address": "Address cannot be empty.",
-        "needs": "Please select your needs.",
-        "plate": "Please enter a license plate number.",
-        "kvkk": "Please accept KVKK.",
-        "surname": "Please enter your last name.",
-        "confirmationText": "Please accept the confirmation text.",
-        "generalText": "Cannot be empty or less than 3 characters.",
-        "requiredField": "This field cannot be empty.",
-        "formRequired": "Please fill out the form.",
-        "photoRequired": "Please add a photo.",
-        "loseAllData": "Your changes will be lost. Do you want to continue?",
-        "categoryEmpty": "Please choose a category",
-        "emailFormat": "Please enter your mail correctly",
-        "studentEmailFormat": "Please enter your student mail"
-    },
-    "button": {
-        "save": "Save",
-        "addPhoto": "Add Photo",
-        "ok": "OK",
-        "close": "Close",
-        "allFilter": "All",
-        "clean": "Clean",
-        "selectedList": "List",
-        "filter": "Filters",
-        "withoutFilter": "Continue without filtering",
-        "clearAllSelection": "{} clear selections",
-        "showResult": "Show result",
-        "sendRequest": "Send Request"
-    },
-    "component": {
-        "picker": {
-            "camera": "Select from Camera",
-            "gallery": "Select from Gallery",
-            "cropperTitle": "Edit"
-        },
-        "filter": {
-            "districts": "Districts",
-            "districtDescription": "You can select and filter the districts here",
-            "categories": "categories",
-            "categoryDescription": "You can select and filter categories here"
-        }
-    },
-    "requestCompany": {
-        "title": "New Business Request",
-        "name": "Business Name",
-        "description": "Business Description",
-        "address": "Business Address",
-        "phoneNumber": "Phone Number",
-        "ownerName": "Full Name",
-        "district": "District",
-        "category": "Category",
-        "chooseCategory": "Choose Category",
-        "chooseDistrict": "Choose District"
-    },
-    "general": {
-        "kvkk": "KVKK",
-        "kvkkReadApproved": " I have read and approved.",
-        "confirmationText": "Please accept the confirmation text."
-    },
-    "settings": {
-        "title": "Settings",
-        "languageTitle": "Language",
-        "themeTitle": "{} Theme",
-        "versionNumberTitle": "Version Number",
-        "notificationSetting": "Notification Settings",
-        "appReviewTitle": "Rate the App",
-        "themes": {
-            "light": "Light",
-            "dark": "Dark"
-        }
-    },
-    "home": {
-        "places": "Places",
-        "search": "Search for places",
-        "notifications": "Notifications"
-    },
-    "message": {
-        "emptySearch": "No Results Found",
-        "somethingWentWrong": "Something went wrong",
-        "addedFavorite": "Added to favorites",
-        "republicDay": "Long live the Republic!  🇹🇷🇹🇷'"
-    },
-    "placeDetailView": {
-        "owner": "Business Owner",
-        "description": "Business Description",
-        "address": "Address",
-        "phoneNumber": "Phone Number",
-        "district": "District",
-        "photos": "Photos"
-    },
-    "campaignDetailsView": {
-        "publisher": "Publisher (Person or Institution Name)",
-        "topic": "Project Topic",
-        "description": "Project Description",
-        "phone": "Phone Number",
-        "expireDate": "Start Date and Time",
-        "photo": "Photos",
-        "publishedBy": "published by {}"
-    },
-    "forceUpdate": {
-        "title": "An Update is Available",
-        "message": "A new version is available, you need to update.",
-        "updateButton": "Update"
-    },
-    "networkCheck": {
-        "message": "Please check your internet connection and try again.",
-        "button": "Try Again"
-    },
-    "notification": {
-        "snackbarButtonText": "Open",
-        "defaultMessage": "A business has resumed operations.",
-        "businessNotFoundErrorMessage": "Business not found",
-        "campaignNotFoundErrorMessage": "Project not found",
-        "newsNotFoundErrorMessage": "No news found",
-        "advertiseNotFoundErrorMessage": "Advertise not found"
-    },
-    "developers": {
-        "title": "Developers",
-        "seeProfileButtonText": "See Profile"
-    },
-    "navigationTabs": {
-        "placesTabTitle": "Places",
-        "campaignsTabTitle": "Projects",
-        "newsTabTitle": "News",
-        "advertiseTabTitle": "Advertises"
-    },
-    "projectRequest": {
-        "title": "New Project Request",
-        "name": "Project Name",
-        "topic": "Project Topic",
-        "description": "Project Description",
-        "publisher": "Publisher (Person or Institution Name)",
-        "expireDate": "Start Date and Time"
-    },
-    "dialog": {
-        "phoneTitle": "Would you like to call by phone?",
-        "addressTitle": "Would you like to open the address on the map?",
-        "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
-        "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
-        "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
-        "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
-    },
-    "specialAgency": {
-        "title": "Special Agency",
-        "agencyNumber": "Agency Number",
-        "agencyAddress": "Agency Address"
-    },
-    "advertise": {
-        "title": "Job name:",
-        "description": "Job description:",
-        "gender": "Gender:",
-        "owner": "Employer:",
-        "phone": "Contact:",
-        "callPhone": "Call the employer",
-        "share": "Share the job advertise",
-        "message": "Check out the job posting on the Keep Hatay Alive application:"
-    },
-    "notFound": {
-        "forRefresh": "Click here to refresh.",
-        "notification": "No notifications",
-        "specialAgency": "Special Agencies has not been entered yet.",
-        "campaign": "Campaigns has not been entered yet.",
-        "developers": "Developers has not been entered yet.",
-        "towns": "Towns has not been entered yet.",
-        "news": "News has not been entered yet.",
-        "favoritePlaces": "There is no any favorite places.",
-        "advertise": "Job postings has not been entered yet."
-    },
-    "months": {
-        "jan": "January",
-        "feb": "February",
-        "mar": "March",
-        "apr": "April",
-        "may": "May",
-        "jun": "June",
-        "jul": "July",
-        "aug": "August",
-        "sep": "September",
-        "oct": "October",
-        "nov": "November",
-        "dec": "December"
-    },
-    "genders": {
-        "male": "Male",
-        "female": "Female",
-        "other": "Other"
-    },
-    "requestScholarship": {
-        "title": "New Scholarship Request",
-        "contact": "Contact",
-        "story": "Your Story",
-        "studentDocument": "Student Document",
-        "pdfHint": "name_surname.pdf",
-        "email": "Email Address",
-        "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
-        "error": {
-            "serviceError": "A service error has occurred",
-            "undefinedError": "An unidentified error occurred",
-            "fileSizeInfo": "File size can be up to {}",
-            "fileSizeError": "Check the entered file size",
-            "noFileError": "Please upload your student document"
-        }
-    },
-    "fileUpload": {
-        "upload": "Upload",
-        "update": "Update"
-    },
-    "favoritePlaces": {
-        "title": "Favorite Places"
-    },
-    "uploadShelter": {
-        "title": "Upload Shelter Details"
-    },
-    "utils": {
-        "options": "{} option"
+    "filter": {
+      "districts": "Districts",
+      "districtDescription": "You can select and filter the districts here",
+      "categories": "categories",
+      "categoryDescription": "You can select and filter categories here"
     }
+  },
+  "requestCompany": {
+    "title": "New Business Request",
+    "name": "Business Name",
+    "description": "Business Description",
+    "address": "Business Address",
+    "phoneNumber": "Phone Number",
+    "ownerName": "Full Name",
+    "district": "District",
+    "category": "Category",
+    "chooseCategory": "Choose Category",
+    "chooseDistrict": "Choose District"
+  },
+  "general": {
+    "kvkk": "KVKK",
+    "kvkkReadApproved": " I have read and approved.",
+    "confirmationText": "Please accept the confirmation text."
+  },
+  "settings": {
+    "title": "Settings",
+    "languageTitle": "Language",
+    "themeTitle": "{} Theme",
+    "versionNumberTitle": "Version Number",
+    "notificationSetting": "Notification Settings",
+    "appReviewTitle": "Rate the App",
+    "themes": {
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "home": {
+    "places": "Places",
+    "search": "Search for places",
+    "notifications": "Notifications"
+  },
+  "message": {
+    "emptySearch": "No Results Found",
+    "somethingWentWrong": "Something went wrong",
+    "addedFavorite": "Added to favorites",
+    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'"
+  },
+  "placeDetailView": {
+    "owner": "Business Owner",
+    "description": "Business Description",
+    "address": "Address",
+    "phoneNumber": "Phone Number",
+    "district": "District",
+    "photos": "Photos"
+  },
+  "campaignDetailsView": {
+    "publisher": "Publisher (Person or Institution Name)",
+    "topic": "Project Topic",
+    "description": "Project Description",
+    "phone": "Phone Number",
+    "expireDate": "Start Date and Time",
+    "photo": "Photos",
+    "publishedBy": "published by {}"
+  },
+  "forceUpdate": {
+    "title": "An Update is Available",
+    "message": "A new version is available, you need to update.",
+    "updateButton": "Update"
+  },
+  "networkCheck": {
+    "message": "Please check your internet connection and try again.",
+    "button": "Try Again"
+  },
+  "notification": {
+    "snackbarButtonText": "Open",
+    "defaultMessage": "A business has resumed operations.",
+    "businessNotFoundErrorMessage": "Business not found",
+    "campaignNotFoundErrorMessage": "Project not found",
+    "newsNotFoundErrorMessage": "No news found",
+    "advertiseNotFoundErrorMessage": "Advertise not found"
+  },
+  "developers": {
+    "title": "Developers",
+    "seeProfileButtonText": "See Profile"
+  },
+  "navigationTabs": {
+    "placesTabTitle": "Places",
+    "campaignsTabTitle": "Projects",
+    "newsTabTitle": "News",
+    "advertiseTabTitle": "Advertises"
+  },
+  "projectRequest": {
+    "title": "New Project Request",
+    "name": "Project Name",
+    "topic": "Project Topic",
+    "description": "Project Description",
+    "publisher": "Publisher (Person or Institution Name)",
+    "expireDate": "Start Date and Time"
+  },
+  "dialog": {
+    "phoneTitle": "Would you like to call by phone?",
+    "addressTitle": "Would you like to open the address on the map?",
+    "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
+    "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
+    "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
+    "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
+  },
+  "specialAgency": {
+    "title": "Special Agency",
+    "agencyNumber": "Agency Number",
+    "agencyAddress": "Agency Address"
+  },
+  "advertise": {
+    "title": "Job name:",
+    "description": "Job description:",
+    "gender": "Gender:",
+    "owner": "Employer:",
+    "phone": "Contact:",
+    "callPhone": "Call the employer",
+    "share": "Share the job advertise",
+    "message": "Check out the job posting on the Keep Hatay Alive application:"
+  },
+  "notFound": {
+    "forRefresh": "Click here to refresh.",
+    "notification": "No notifications",
+    "specialAgency": "Special Agencies has not been entered yet.",
+    "campaign": "Campaigns has not been entered yet.",
+    "developers": "Developers has not been entered yet.",
+    "towns": "Towns has not been entered yet.",
+    "news": "News has not been entered yet.",
+    "favoritePlaces": "There is no any favorite places.",
+    "advertise": "Job postings has not been entered yet."
+  },
+  "months": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  },
+  "genders": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "requestScholarship": {
+    "title": "New Scholarship Request",
+    "contact": "Contact",
+    "phone": "Phone Number",
+    "story": "Your Story",
+    "studentDocument": "Student Document",
+    "pdfHint": "name_surname.pdf",
+    "email": "Email Address",
+    "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
+    "error": {
+      "serviceError": "A service error has occurred",
+      "undefinedError": "An unidentified error occurred",
+      "fileSizeInfo": "File size can be up to {}",
+      "fileSizeError": "Check the entered file size",
+      "noFileError": "Please upload your student document"
+    }
+  },
+  "fileUpload": {
+    "upload": "Upload",
+    "update": "Update"
+  },
+  "favoritePlaces": {
+    "title": "Favorite Places"
+  },
+  "uploadShelter": {
+    "title": "Upload Shelter Details"
+  },
+  "utils": {
+    "options": "{} option"
+  }
 }

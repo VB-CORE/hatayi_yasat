@@ -1,224 +1,225 @@
 {
-    "project": {
-        "name": "Hatay'ı Yaşat"
+  "project": {
+    "name": "Hatay'ı Yaşat"
+  },
+  "validation": {
+    "fullName": "Ad ve soyad boş bırakılamaz.",
+    "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
+    "address": "Adres boş bırakılamaz",
+    "needs": "Lütfen ihtiyacınızı seçiniz",
+    "plate": "Lütfen plaka giriniz",
+    "kvkk": "Lütfen KVKK'yi kabul ediniz",
+    "surname": "Soyadınızı girmelisiniz",
+    "confirmationText": "Onay metnini kabul ediniz",
+    "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
+    "requiredField": "Bu alan boş bırakılamaz",
+    "formRequired": "Lütfen formu doldurunuz",
+    "photoRequired": "Lütfen fotoğraf ekleyiniz",
+    "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
+    "categoryEmpty": "Kategori seçiniz",
+    "emailFormat": "Lütfen mailinizi doğru giriniz",
+    "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
+  },
+  "button": {
+    "save": "Kaydet",
+    "addPhoto": "Fotoğraf Ekle",
+    "ok": "Tamam",
+    "close": "Kapat",
+    "allFilter": "Tümü",
+    "clean": "Temizle",
+    "selectedList": "Listele",
+    "filter": "Filtrele",
+    "withoutFilter": "Filtreleme yapmadan devam et",
+    "clearAllSelection": "{} seçimi temizle",
+    "showResult": "Sonucu göster",
+    "sendRequest": "İsteği gönder"
+  },
+  "component": {
+    "picker": {
+      "camera": "Kamera dan seç",
+      "gallery": "Galeriden seç",
+      "cropperTitle": "Düzenle"
     },
-    "validation": {
-        "fullName": "Ad ve soyad boş bırakılamaz.",
-        "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
-        "address": "Adres boş bırakılamaz",
-        "needs": "Lütfen ihtiyacınızı seçiniz",
-        "plate": "Lütfen plaka giriniz",
-        "kvkk": "Lütfen KVKK'yi kabul ediniz",
-        "surname": "Soyadınızı girmelisiniz",
-        "confirmationText": "Onay metnini kabul ediniz",
-        "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
-        "requiredField": "Bu alan boş bırakılamaz",
-        "formRequired": "Lütfen formu doldurunuz",
-        "photoRequired": "Lütfen fotoğraf ekleyiniz",
-        "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-        "categoryEmpty": "Kategori seçiniz",
-        "emailFormat": "Lütfen mailinizi doğru giriniz",
-        "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
-    },
-    "button": {
-        "save": "Kaydet",
-        "addPhoto": "Fotoğraf Ekle",
-        "ok": "Tamam",
-        "close": "Kapat",
-        "allFilter": "Tümü",
-        "clean": "Temizle",
-        "selectedList": "Listele",
-        "filter": "Filtrele",
-        "withoutFilter": "Filtreleme yapmadan devam et",
-        "clearAllSelection": "{} seçimi temizle",
-        "showResult": "Sonucu göster",
-        "sendRequest": "İsteği gönder"
-    },
-    "component": {
-        "picker": {
-            "camera": "Kamera dan seç",
-            "gallery": "Galeriden seç",
-            "cropperTitle": "Düzenle"
-        },
-        "filter": {
-            "districts": "İlçeler",
-            "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
-            "categories": "Kategoriler",
-            "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz"
-        }
-    },
-    "requestCompany": {
-        "title": "Yeni İşletme Talebi",
-        "name": "İşletme Adı",
-        "description": "İşletme Açıklaması",
-        "address": "İşletme Adresi",
-        "phoneNumber": "Telefon Numarası",
-        "ownerName": "Ad ve Soyad",
-        "district": "İlçe",
-        "category": "Kategori",
-        "chooseCategory": "Kategori Seçiniz",
-        "chooseDistrict": "İlçe Seçiniz"
-    },
-    "general": {
-        "kvkk": "KVKK'yı",
-        "kvkkReadApproved": " okudum, onaylıyorum.",
-        "confirmationText": "Onay metnini kabul ediniz"
-    },
-    "settings": {
-        "title": "Ayarlar",
-        "languageTitle": "Dil",
-        "themeTitle": "{} Tema",
-        "versionNumberTitle": "Versiyon Numarası",
-        "notificationSetting": "Bildirim Ayarları",
-        "appReviewTitle": "Uygulamayı Değerlendirin",
-        "themes": {
-            "light": "Aydınlık",
-            "dark": "Karanlık"
-        }
-    },
-    "home": {
-        "places": "Mekanlar",
-        "search": "Mekan ara",
-        "notifications": "Bildirimler"
-    },
-    "message": {
-        "emptySearch": "Sonuç Bulunamadı",
-        "somethingWentWrong": "Bir şeyler yanlış gitti",
-        "addedFavorite": "Favorilere eklendi",
-        "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷"
-    },
-    "placeDetailView": {
-        "owner": "İşletme Sahibi",
-        "description": "İşletme Açıklaması",
-        "address": "Adres",
-        "phoneNumber": "Telefon Numarası",
-        "district": "İlçe",
-        "photos": "Fotoğraflar"
-    },
-    "campaignDetailsView": {
-        "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-        "topic": "Proje Konusu",
-        "phone": "Telefon Numarası",
-        "description": "Proje Açıklaması",
-        "expireDate": "Başlangıç Tarihi ve Saati",
-        "photo": "Fotoğraflar",
-        "publishedBy": "{} tarafından yayınlandı"
-    },
-    "forceUpdate": {
-        "title": "Bir Güncelleme Var",
-        "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
-        "updateButton": "Güncelle"
-    },
-    "networkCheck": {
-        "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
-        "button": "Yeniden Dene"
-    },
-    "notification": {
-        "snackbarButtonText": "Aç",
-        "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
-        "businessNotFoundErrorMessage": "İşletme bulunamadı",
-        "campaignNotFoundErrorMessage": "Proje bulunamadı",
-        "newsNotFoundErrorMessage": "Haber bulunamadı",
-        "advertiseNotFoundErrorMessage": "İlan bulunamadı"
-    },
-    "developers": {
-        "title": "Geliştiriciler",
-        "seeProfileButtonText": "Profili Görüntüle"
-    },
-    "navigationTabs": {
-        "placesTabTitle": "Mekanlar",
-        "campaignsTabTitle": "Projeler",
-        "newsTabTitle": "Haberler",
-        "advertiseTabTitle": "İş ilanları"
-    },
-    "projectRequest": {
-        "title": "Yeni Proje Talebi",
-        "name": "Proje Adı",
-        "topic": "Proje Konusu",
-        "description": "Proje Açıklaması",
-        "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-        "expireDate": "Başlangıç Tarihi ve Saati"
-    },
-    "dialog": {
-        "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
-        "addressTitle": "Adresi haritada açmak ister misiniz?",
-        "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
-        "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
-        "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
-        "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
-    },
-    "specialAgency": {
-        "title": "Özel Kurumlar",
-        "agencyNumber": "Kurum Numarası",
-        "agencyAddress": "Kurum Adresi"
-    },
-    "advertise": {
-        "title": "İş adı:",
-        "description": "İş açıklaması:",
-        "gender": "Cinsiyet:",
-        "owner": "İşveren:",
-        "phone": "İletişim:",
-        "callPhone": "İşvereni ara",
-        "share": "İlanı paylaş",
-        "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:"
-    },
-    "notFound": {
-        "forRefresh": "Yenilemek için buraya dokunun.",
-        "notification": "Bildirim yok",
-        "specialAgency": "Özel Kurumlar henüz girilmemiş.",
-        "campaign": "Kampanyalar henüz girilmemiş.",
-        "developers": "Geliştiriciler henüz girilmemiş.",
-        "towns": "Mekanlar henüz girilmemiş.",
-        "news": "Haberler henüz girilmemiş.",
-        "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
-        "advertise": "İş ilanı henüz girilmemiş."
-    },
-    "months": {
-        "jan": "Ocak",
-        "feb": "Şubat",
-        "mar": "Mart",
-        "apr": "Nisan",
-        "may": "Mayıs",
-        "jun": "Haziran",
-        "jul": "Temmuz",
-        "aug": "Ağustos",
-        "sep": "Eylül",
-        "oct": "Ekim",
-        "nov": "Kasım",
-        "dec": "Aralık"
-    },
-    "genders": {
-        "male": "Erkek",
-        "female": "Kadın",
-        "other": "Diğer"
-    },
-    "requestScholarship": {
-        "title": "Yeni Burs Talebi",
-        "contact": "İletişim",
-        "story": "Kendinizden Bahsedin",
-        "studentDocument": "Öğrenci Belgesi",
-        "pdfHint": "ad_soyad.pdf",
-        "email": "Email Adresi",
-        "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
-        "error": {
-            "serviceError": "Bir servis hatası oluştu",
-            "undefinedError": "Belirlenemeyen bir hata oluştu",
-            "fileSizeInfo": "Dosya boyutu en fazla {} olabilir",
-            "fileSizeError": "Girilen dosya boyutunu kontrol edin",
-            "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
-        }
-    },
-    "fileUpload": {
-        "upload": "Yükle",
-        "update": "Güncelle"
-    },
-    "favoritePlaces": {
-        "title": "Favori Mekanlar"
-    },
-    "uploadShelter": {
-        "title": "Barınak Ayrıntılarını Yükle"
-    },
-    "utils": {
-        "options": "{} seçenek"
+    "filter": {
+      "districts": "İlçeler",
+      "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
+      "categories": "Kategoriler",
+      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz"
     }
+  },
+  "requestCompany": {
+    "title": "Yeni İşletme Talebi",
+    "name": "İşletme Adı",
+    "description": "İşletme Açıklaması",
+    "address": "İşletme Adresi",
+    "phoneNumber": "Telefon Numarası",
+    "ownerName": "Ad ve Soyad",
+    "district": "İlçe",
+    "category": "Kategori",
+    "chooseCategory": "Kategori Seçiniz",
+    "chooseDistrict": "İlçe Seçiniz"
+  },
+  "general": {
+    "kvkk": "KVKK'yı",
+    "kvkkReadApproved": " okudum, onaylıyorum.",
+    "confirmationText": "Onay metnini kabul ediniz"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "languageTitle": "Dil",
+    "themeTitle": "{} Tema",
+    "versionNumberTitle": "Versiyon Numarası",
+    "notificationSetting": "Bildirim Ayarları",
+    "appReviewTitle": "Uygulamayı Değerlendirin",
+    "themes": {
+      "light": "Aydınlık",
+      "dark": "Karanlık"
+    }
+  },
+  "home": {
+    "places": "Mekanlar",
+    "search": "Mekan ara",
+    "notifications": "Bildirimler"
+  },
+  "message": {
+    "emptySearch": "Sonuç Bulunamadı",
+    "somethingWentWrong": "Bir şeyler yanlış gitti",
+    "addedFavorite": "Favorilere eklendi",
+    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷"
+  },
+  "placeDetailView": {
+    "owner": "İşletme Sahibi",
+    "description": "İşletme Açıklaması",
+    "address": "Adres",
+    "phoneNumber": "Telefon Numarası",
+    "district": "İlçe",
+    "photos": "Fotoğraflar"
+  },
+  "campaignDetailsView": {
+    "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+    "topic": "Proje Konusu",
+    "phone": "Telefon Numarası",
+    "description": "Proje Açıklaması",
+    "expireDate": "Başlangıç Tarihi ve Saati",
+    "photo": "Fotoğraflar",
+    "publishedBy": "{} tarafından yayınlandı"
+  },
+  "forceUpdate": {
+    "title": "Bir Güncelleme Var",
+    "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
+    "updateButton": "Güncelle"
+  },
+  "networkCheck": {
+    "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
+    "button": "Yeniden Dene"
+  },
+  "notification": {
+    "snackbarButtonText": "Aç",
+    "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
+    "businessNotFoundErrorMessage": "İşletme bulunamadı",
+    "campaignNotFoundErrorMessage": "Proje bulunamadı",
+    "newsNotFoundErrorMessage": "Haber bulunamadı",
+    "advertiseNotFoundErrorMessage": "İlan bulunamadı"
+  },
+  "developers": {
+    "title": "Geliştiriciler",
+    "seeProfileButtonText": "Profili Görüntüle"
+  },
+  "navigationTabs": {
+    "placesTabTitle": "Mekanlar",
+    "campaignsTabTitle": "Projeler",
+    "newsTabTitle": "Haberler",
+    "advertiseTabTitle": "İş ilanları"
+  },
+  "projectRequest": {
+    "title": "Yeni Proje Talebi",
+    "name": "Proje Adı",
+    "topic": "Proje Konusu",
+    "description": "Proje Açıklaması",
+    "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+    "expireDate": "Başlangıç Tarihi ve Saati"
+  },
+  "dialog": {
+    "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
+    "addressTitle": "Adresi haritada açmak ister misiniz?",
+    "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
+    "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
+    "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
+  },
+  "specialAgency": {
+    "title": "Özel Kurumlar",
+    "agencyNumber": "Kurum Numarası",
+    "agencyAddress": "Kurum Adresi"
+  },
+  "advertise": {
+    "title": "İş adı:",
+    "description": "İş açıklaması:",
+    "gender": "Cinsiyet:",
+    "owner": "İşveren:",
+    "phone": "İletişim:",
+    "callPhone": "İşvereni ara",
+    "share": "İlanı paylaş",
+    "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:"
+  },
+  "notFound": {
+    "forRefresh": "Yenilemek için buraya dokunun.",
+    "notification": "Bildirim yok",
+    "specialAgency": "Özel Kurumlar henüz girilmemiş.",
+    "campaign": "Kampanyalar henüz girilmemiş.",
+    "developers": "Geliştiriciler henüz girilmemiş.",
+    "towns": "Mekanlar henüz girilmemiş.",
+    "news": "Haberler henüz girilmemiş.",
+    "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
+    "advertise": "İş ilanı henüz girilmemiş."
+  },
+  "months": {
+    "jan": "Ocak",
+    "feb": "Şubat",
+    "mar": "Mart",
+    "apr": "Nisan",
+    "may": "Mayıs",
+    "jun": "Haziran",
+    "jul": "Temmuz",
+    "aug": "Ağustos",
+    "sep": "Eylül",
+    "oct": "Ekim",
+    "nov": "Kasım",
+    "dec": "Aralık"
+  },
+  "genders": {
+    "male": "Erkek",
+    "female": "Kadın",
+    "other": "Diğer"
+  },
+  "requestScholarship": {
+    "title": "Yeni Burs Talebi",
+    "contact": "İletişim",
+    "phone": "Telefon Numarası",
+    "story": "Kendinizden Bahsedin",
+    "studentDocument": "Öğrenci Belgesi",
+    "pdfHint": "ad_soyad.pdf",
+    "email": "Email Adresi",
+    "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
+    "error": {
+      "serviceError": "Bir servis hatası oluştu",
+      "undefinedError": "Belirlenemeyen bir hata oluştu",
+      "fileSizeInfo": "Dosya boyutu en fazla {} olabilir",
+      "fileSizeError": "Girilen dosya boyutunu kontrol edin",
+      "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
+    }
+  },
+  "fileUpload": {
+    "upload": "Yükle",
+    "update": "Güncelle"
+  },
+  "favoritePlaces": {
+    "title": "Favori Mekanlar"
+  },
+  "uploadShelter": {
+    "title": "Barınak Ayrıntılarını Yükle"
+  },
+  "utils": {
+    "options": "{} seçenek"
+  }
 }

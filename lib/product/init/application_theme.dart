@@ -34,6 +34,13 @@ final class ApplicationTheme {
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.black,
       ),
+      dialogBackgroundColor: ColorsCustom.white,
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: ColorsCustom.black,
+        contentTextStyle: context.general.textTheme.bodyMedium?.copyWith(
+          color: ColorsCustom.white,
+        ),
+      ),
     );
   }
   late final ThemeData themeData;

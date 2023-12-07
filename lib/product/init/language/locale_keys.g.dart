@@ -167,6 +167,7 @@ abstract class  LocaleKeys {
   static const genders = 'genders';
   static const requestScholarship_title = 'requestScholarship.title';
   static const requestScholarship_contact = 'requestScholarship.contact';
+  static const requestScholarship_phone = 'requestScholarship.phone';
   static const requestScholarship_story = 'requestScholarship.story';
   static const requestScholarship_studentDocument = 'requestScholarship.studentDocument';
   static const requestScholarship_pdfHint = 'requestScholarship.pdfHint';
