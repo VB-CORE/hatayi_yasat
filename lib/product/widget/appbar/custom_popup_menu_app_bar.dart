@@ -39,6 +39,10 @@ final class _CustomPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      icon: Icon(
+        AppIcons.moreDots,
+        color: context.general.colorScheme.primary,
+      ),
       onSelected: (value) {},
       itemBuilder: (BuildContext context) {
         return [
