@@ -5,6 +5,8 @@ import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/general/title/general_big_bold_max_title.dart';
+import 'package:vbaseproject/product/widget/special/user_special_card.dart';
 
 final class NewsCard extends StatelessWidget {
   const NewsCard({required this.item, required this.onTap, super.key});
@@ -90,34 +92,15 @@ class _NewsInformationArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.horizontalLowSymmetric() +
-          const PagePadding.onlyTopMedium(),
+          const PagePadding.verticalLowSymmetric(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _NewsTitle(title: item.title ?? ''),
+          GeneralBigBoldMaxTitle(item.title ?? ''),
+          const Padding(
+            padding: PagePadding.onlyTopLow(),
+            child: UserSpecialCard(user: SpecialUser.creator),
+          ),
         ],
-      ),
-    );
-  }
-}
-
-final class _NewsTitle extends StatelessWidget {
-  const _NewsTitle({
-    required this.title,
-  });
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title,
-      maxLines: 2,
-      textAlign: TextAlign.left,
-      overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.titleLarge?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.bold,
       ),
     );
   }

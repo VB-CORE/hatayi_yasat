@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
 /// Dialog contains only text and icon. If you want to show it on the screen, you can use the [show] command.
 final class GeneralIconTextDialog extends StatelessWidget {
