@@ -1,1 +1,1 @@
-export 'project_dependecy_mixin.dart';
+export 'project_dependency_mixin.dart';
