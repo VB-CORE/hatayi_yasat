@@ -4,6 +4,7 @@ import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/widget/general/general_content_title.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
+@immutable
 final class PageAppBar extends AppBar {
   PageAppBar({
     required String pageTitle,

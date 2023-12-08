@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 /// This is a general body title widget with titleMedium style.
+@immutable
 final class GeneralBodyTitle extends StatelessWidget {
   const GeneralBodyTitle(this.value, {super.key, this.fontWeight});
 

@@ -6,6 +6,7 @@ import 'package:vbaseproject/product/widget/size/widget_custom_size.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 /// This is a grid shimmer that contains 10 items consisting of 150 height.
+@immutable
 final class GeneralGridShimmer extends StatelessWidget {
   const GeneralGridShimmer({super.key});
 

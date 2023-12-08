@@ -3,6 +3,7 @@ import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 
+@immutable
 final class ClickableSubTitleText extends StatelessWidget {
   const ClickableSubTitleText({
     required this.title,

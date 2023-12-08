@@ -6,6 +6,7 @@ import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
 
+@immutable
 final class EventCard extends StatelessWidget {
   const EventCard({
     required this.onTap,
@@ -22,7 +23,7 @@ final class EventCard extends StatelessWidget {
       onTap: onTap.call,
       child: Column(
         children: [
-          _EventImage(image: campaignModel.photo ?? ''),
+          _EventImage(image: campaignModel.photo),
           const EmptyBox.smallHeight(),
           GeneralContentSubTitle(
             value: campaignModel.name ?? '',
@@ -36,12 +37,13 @@ final class EventCard extends StatelessWidget {
   }
 }
 
+@immutable
 final class _EventImage extends StatelessWidget {
   const _EventImage({
     required this.image,
   });
 
-  final String image;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.da
 import 'package:vbaseproject/product/widget/general/general_body_title.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
+@immutable
 final class AuthorListTileWidget extends StatelessWidget {
   const AuthorListTileWidget({
     required this.image,

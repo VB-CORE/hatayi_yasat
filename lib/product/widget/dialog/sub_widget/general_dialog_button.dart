@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
 
 /// This button is used only for dialog.
+@immutable
 final class GeneralDialogButton extends StatelessWidget {
   const GeneralDialogButton({
     required this.onPressed,

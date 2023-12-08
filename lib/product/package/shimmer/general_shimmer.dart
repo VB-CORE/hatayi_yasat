@@ -7,6 +7,7 @@ import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 /// This shimmer contains 10 items and is created with custom height.
 /// Provides this height with context.sized.dynamicHeight() from Kartal.
+@immutable
 final class GeneralShimmer extends StatelessWidget {
   const GeneralShimmer({required this.height, super.key});
 

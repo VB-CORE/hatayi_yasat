@@ -1,6 +1,7 @@
 part of '../event_view.dart';
 
 // TODO: Fix => Gerçek model ile güncellenecek.
+@immutable
 final class _EventGridBuilder extends StatelessWidget {
   const _EventGridBuilder();
 
