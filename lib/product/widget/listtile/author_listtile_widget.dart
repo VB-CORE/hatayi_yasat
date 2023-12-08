@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
-import 'package:vbaseproject/product/widget/general/general_body_title.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 @immutable

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/widget/general/general_content_title.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 @immutable

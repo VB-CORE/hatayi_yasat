@@ -4,7 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 @immutable
 final class EventCard extends StatelessWidget {

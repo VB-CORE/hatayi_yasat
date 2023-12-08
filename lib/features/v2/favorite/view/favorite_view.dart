@@ -5,8 +5,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
-import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
-import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/listtile/author_listtile_widget.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
