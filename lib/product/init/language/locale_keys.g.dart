@@ -29,6 +29,8 @@ abstract class  LocaleKeys {
   static const button_selectedList = 'button.selectedList';
   static const button_filter = 'button.filter';
   static const button_withoutFilter = 'button.withoutFilter';
+  static const button_iAmSure = 'button.iAmSure';
+  static const button_cancel = 'button.cancel';
   static const button_clearAllSelection = 'button.clearAllSelection';
   static const button_showResult = 'button.showResult';
   static const button_sendRequest = 'button.sendRequest';
@@ -68,6 +70,8 @@ abstract class  LocaleKeys {
   static const settings_themes_dark = 'settings.themes.dark';
   static const settings_themes = 'settings.themes';
   static const settings = 'settings';
+  static const home_specialAgency = 'home.specialAgency';
+  static const home_categories = 'home.categories';
   static const home_places = 'home.places';
   static const home_search = 'home.search';
   static const home_notifications = 'home.notifications';
@@ -183,8 +187,14 @@ abstract class  LocaleKeys {
   static const fileUpload_upload = 'fileUpload.upload';
   static const fileUpload_update = 'fileUpload.update';
   static const fileUpload = 'fileUpload';
-  static const favoritePlaces_title = 'favoritePlaces.title';
-  static const favoritePlaces = 'favoritePlaces';
+  static const favorite_title = 'favorite.title';
+  static const favorite_search = 'favorite.search';
+  static const favorite_clearAllButton = 'favorite.clearAllButton';
+  static const favorite_clearAllDialog_content = 'favorite.clearAllDialog.content';
+  static const favorite_clearAllDialog = 'favorite.clearAllDialog';
+  static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
+  static const favorite_deleteDialog = 'favorite.deleteDialog';
+  static const favorite = 'favorite';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
   static const utils_options = 'utils.options';

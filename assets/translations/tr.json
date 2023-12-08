@@ -30,6 +30,8 @@
     "selectedList": "Listele",
     "filter": "Filtrele",
     "withoutFilter": "Filtreleme yapmadan devam et",
+    "iAmSure": "Evet, eminim",
+    "cancel": "İptal",
     "clearAllSelection": "{} seçimi temizle",
     "showResult": "Sonucu göster",
     "sendRequest": "İsteği gönder"
@@ -77,6 +79,8 @@
     }
   },
   "home": {
+    "specialAgency": "Özel Kurumlar",
+    "categories": "Kategoriler",
     "places": "Mekanlar",
     "search": "Mekan ara",
     "notifications": "Bildirimler"
@@ -195,7 +199,6 @@
   "requestScholarship": {
     "title": "Yeni Burs Talebi",
     "contact": "İletişim",
-    "phone": "Telefon Numarası",
     "story": "Kendinizden Bahsedin",
     "studentDocument": "Öğrenci Belgesi",
     "pdfHint": "ad_soyad.pdf",
@@ -212,6 +215,17 @@
   "fileUpload": {
     "upload": "Yükle",
     "update": "Güncelle"
+  },
+  "favorite": {
+    "title": "Favoriler",
+    "search": "Favorinizi arayın",
+    "clearAllButton": "Tümünü Temizle",
+    "clearAllDialog": {
+      "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?"
+    },
+    "deleteDialog": {
+      "content": "Favoriden kaldırılacaktır. Devam etmek istediğinize emin misiniz?"
+    }
   },
   "favoritePlaces": {
     "title": "Favori Mekanlar"

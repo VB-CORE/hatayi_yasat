@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/constants/icon_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/general_content_title.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class GeneralPlaceCard extends StatelessWidget {
@@ -31,13 +34,13 @@ class GeneralPlaceCard extends StatelessWidget {
           _Image(imageUrl: _defaultImage, id: const Uuid().v4()),
           const VerticalSpace.xSmall(),
           _TitleRow(
-            name: 'PS Mimarlık',
-            isPlaceSaved: true,
+            name: 'Test Place 1',
+            isPlaceSaved: false,
             onSavePlaceTap: onBookmarkIconTap,
           ),
-          const VerticalSpace.xxSmall(),
           const _Description(
-            description: 'Mimari Proje/Tadilat/Performans analizi güçlendirme',
+            description:
+                'Even during a disaster, an emergency shelter provides a safe place for people affected by the corona',
           ),
         ],
       ),
@@ -57,7 +60,7 @@ final class _Image extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sized.height * 0.3,
+      height: context.sized.dynamicHeight(.24),
       child: Hero(
         tag: Key(id),
         child: CustomNetworkImage(
@@ -86,13 +89,10 @@ final class _TitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: Text(
-            name,
-            style: context.general.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: ColorCommon(context).whiteAndBlackForTheme,
-              fontSize: context.general.textTheme.titleMedium?.fontSize,
-            ),
+          child: GeneralContentTitle(
+            value: name,
+            fontWeight: FontWeight.bold,
+            maxLine: 2,
           ),
         ),
         _BookmarkButton(
@@ -119,10 +119,8 @@ final class _BookmarkButton extends StatelessWidget {
       onPressed: onSavePlaceTap,
       padding: EdgeInsets.zero,
       style: CustomButtonStyle.shrinkWrap,
-      icon: Icon(
-        isPlaceSaved ? Icons.bookmark : Icons.bookmark_border_outlined,
-        color: context.general.colorScheme.primary,
-      ),
+      icon:
+          isPlaceSaved ? IconConstants.bookmark : IconConstants.bookmarkDefault,
     );
   }
 }
@@ -134,11 +132,11 @@ final class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      description ?? '',
-      style: context.general.textTheme.titleMedium?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const PagePadding.vertical6Symmetric(),
+      child: GeneralContentSubTitle(
+        value: description ?? '',
+        maxLine: 2,
       ),
     );
   }

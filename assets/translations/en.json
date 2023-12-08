@@ -30,6 +30,8 @@
     "selectedList": "List",
     "filter": "Filters",
     "withoutFilter": "Continue without filtering",
+    "iAmSure": "Yes, I am sure",
+    "cancel": "Cancel",
     "clearAllSelection": "{} clear selections",
     "showResult": "Show result",
     "sendRequest": "Send Request"
@@ -77,6 +79,8 @@
     }
   },
   "home": {
+    "specialAgency": "Special Places",
+    "categories": "Categories",
     "places": "Places",
     "search": "Search for places",
     "notifications": "Notifications"
@@ -195,7 +199,6 @@
   "requestScholarship": {
     "title": "New Scholarship Request",
     "contact": "Contact",
-    "phone": "Phone Number",
     "story": "Your Story",
     "studentDocument": "Student Document",
     "pdfHint": "name_surname.pdf",
@@ -212,6 +215,17 @@
   "fileUpload": {
     "upload": "Upload",
     "update": "Update"
+  },
+  "favorite": {
+    "title": "Favorites",
+    "search": "Search for your favorite",
+    "clearAllButton": "Clear All",
+    "clearAllDialog": {
+      "content": "Are you sure you want to clear all your favorites?"
+    },
+    "deleteDialog": {
+      "content": "It will be removed from the favorite. Are you sure you want to proceed?"
+    }
   },
   "favoritePlaces": {
     "title": "Favorite Places"
