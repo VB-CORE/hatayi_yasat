@@ -6,7 +6,7 @@ import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
-import 'package:vbaseproject/product/widget/general/general_content_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_content_title.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class GeneralPlaceCard extends StatelessWidget {

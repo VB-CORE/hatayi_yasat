@@ -19,8 +19,9 @@ final class AuthorListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.zero,
+      visualDensity: const VisualDensity(vertical: -4),
       dense: true,
+      contentPadding: EdgeInsets.zero,
       horizontalTitleGap: WidgetSizes.spacingXs,
       leading: _AuthorCircleAvatar(image: image),
       title: _AuthorText(text: text),

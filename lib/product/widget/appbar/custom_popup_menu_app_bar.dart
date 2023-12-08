@@ -6,7 +6,7 @@ import 'package:vbaseproject/features/v2/favorite/view/favorite_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
-import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 part '../popup/custom_popup_item.dart';
