@@ -1,5 +1,6 @@
 part of '../news_jobs_view.dart';
 
+@immutable
 final class _NewsJobsTabBar extends StatelessWidget {
   const _NewsJobsTabBar();
 

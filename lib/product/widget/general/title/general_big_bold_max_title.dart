@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 ///
 /// Max line is 2.
 /// Bold and max line.
+@immutable
 final class GeneralBigBoldMaxTitle extends StatelessWidget {
   const GeneralBigBoldMaxTitle(
     this.value, {

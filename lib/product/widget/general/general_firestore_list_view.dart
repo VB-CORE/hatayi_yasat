@@ -6,6 +6,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/shimmer/general_place_shimmer.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
+@immutable
 final class GeneralFirestoreListView<T> extends StatelessWidget {
   const GeneralFirestoreListView({
     required this.query,

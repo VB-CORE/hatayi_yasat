@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/title/general_big_bold_max_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/special/user_special_card.dart';
 
+@immutable
 final class NewsCard extends StatelessWidget {
   const NewsCard({required this.item, required this.onTap, super.key});
 
@@ -75,7 +75,7 @@ class _TransparentBox extends StatelessWidget {
         borderRadius: CustomRadius.large,
       ),
       margin: EdgeInsets.zero,
-      color: ColorCommon(context).blackAndWhiteForTheme.withOpacity(0.45),
+      color: context.general.colorScheme.secondary.withOpacity(0.45),
       child: _NewsInformationArea(item: item),
     );
   }
@@ -95,10 +95,16 @@ class _NewsInformationArea extends StatelessWidget {
           const PagePadding.verticalLowSymmetric(),
       child: Column(
         children: [
-          GeneralBigBoldMaxTitle(item.title ?? ''),
+          GeneralSubTitle(
+            value: item.title ?? '',
+            fontWeight: FontWeight.bold,
+            maxLine: 2,
+          ),
           const Padding(
             padding: PagePadding.onlyTopLow(),
-            child: UserSpecialCard(user: SpecialUser.creator),
+            child: UserSpecialCard(
+              user: SpecialUser.creator,
+            ),
           ),
         ],
       ),

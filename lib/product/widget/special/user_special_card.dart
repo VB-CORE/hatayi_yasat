@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/listtile/author_listtile_widget.dart';
 
+@immutable
 final class SpecialUser {
   const SpecialUser({
     required this.name,
@@ -18,26 +18,15 @@ final class SpecialUser {
   );
 }
 
+@immutable
 final class UserSpecialCard extends StatelessWidget {
   const UserSpecialCard({required this.user, super.key});
   final SpecialUser user;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: CustomCircleRadius.small,
-          backgroundImage: NetworkImage(
-            user.photoUrl,
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const PagePadding.onlyLeftLow(),
-            child: Text(user.name),
-          ),
-        ),
-      ],
+    return AuthorListTileWidget(
+      image: user.photoUrl,
+      text: user.name,
     );
   }
 }

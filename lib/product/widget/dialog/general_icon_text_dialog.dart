@@ -3,6 +3,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
 /// Dialog contains only text and icon. If you want to show it on the screen, you can use the [show] command.
+@immutable
 final class GeneralIconTextDialog extends StatelessWidget {
   const GeneralIconTextDialog({
     required this.title,

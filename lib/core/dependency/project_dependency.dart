@@ -19,6 +19,7 @@ final class ProjectDependency {
   }
 }
 
+@immutable
 final class ProjectDependencyItems {
   const ProjectDependencyItems._();
 

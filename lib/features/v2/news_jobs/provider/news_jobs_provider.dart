@@ -12,7 +12,7 @@ final class NewsJobsProvider extends _$NewsJobsProvider
   @override
   NewsJobsState build() => NewsJobsState();
 
-  CollectionReference<NewsModel?> fetchNewsCollectionReferance() {
+  CollectionReference<NewsModel?> fetchNewsCollectionReference() {
     return firebaseService.collectionReference(
       CollectionPaths.news,
       NewsModel(),
