@@ -23,7 +23,7 @@ import 'package:vbaseproject/product/widget/text_field/index.dart';
 part 'widget/scholarship_request_send.dart';
 part 'widget/upload_size_info.dart';
 
-class ScholarshipRequestForm extends ConsumerStatefulWidget {
+final class ScholarshipRequestForm extends ConsumerStatefulWidget {
   const ScholarshipRequestForm({super.key});
 
   @override
@@ -31,7 +31,7 @@ class ScholarshipRequestForm extends ConsumerStatefulWidget {
       _ScholarshipRequestFormState();
 }
 
-class _ScholarshipRequestFormState
+final class _ScholarshipRequestFormState
     extends RequestFormConsumerState<ScholarshipRequestForm>
     with AppProviderMixin, ScholarshipRequestFormMixin {
   @override

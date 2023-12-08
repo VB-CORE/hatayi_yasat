@@ -13,7 +13,8 @@ import 'package:vbaseproject/product/widget/general/index.dart';
 /// - showing a pdf file
 /// Params:
 /// - [file] is the file that will be shown
-class PdfPreviewDialogV2 extends StatelessWidget with CustomDialog {
+@immutable
+final class PdfPreviewDialogV2 extends StatelessWidget with CustomDialog {
   const PdfPreviewDialogV2({required this.file, super.key});
   final File file;
   @override

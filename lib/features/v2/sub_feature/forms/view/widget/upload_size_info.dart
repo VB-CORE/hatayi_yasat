@@ -1,6 +1,7 @@
 part of '../scholarship_request_form.dart';
 
-class _UploadSizeInfo extends StatelessWidget {
+@immutable
+final class _UploadSizeInfo extends StatelessWidget {
   const _UploadSizeInfo({
     super.key,
   });

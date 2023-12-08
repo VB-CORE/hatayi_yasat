@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:vbaseproject/features/request/scholarship/model/request_scholarship_model.dart';
 
+@immutable
 final class ScholarshipRequestState extends Equatable {
   const ScholarshipRequestState({
     this.scholarshipModel,
