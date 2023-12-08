@@ -4,7 +4,7 @@ import 'package:vbaseproject/product/init/firebase_custom_service.dart';
 import 'package:vbaseproject/product/utility/state/app_provider.dart';
 import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
 
-mixin ProjectDepedendencyMixin {
+mixin ProjectDependencyMixin {
   final FirebaseCustomService firebaseService =
       GetIt.I.get<FirebaseCustomService>();
 

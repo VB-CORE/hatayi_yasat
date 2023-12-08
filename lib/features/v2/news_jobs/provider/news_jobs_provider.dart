@@ -8,7 +8,7 @@ part 'news_jobs_provider.g.dart';
 
 @riverpod
 final class NewsJobsProvider extends _$NewsJobsProvider
-    with ProjectDepedendencyMixin {
+    with ProjectDependencyMixin {
   @override
   NewsJobsState build() => NewsJobsState();
 
