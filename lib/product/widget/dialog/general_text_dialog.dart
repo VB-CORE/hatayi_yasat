@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
 /// Dialog contains only text. If you want to show it on the screen, you can use the [show] command.
+@immutable
 final class GeneralTextDialog extends StatelessWidget {
   const GeneralTextDialog({
     required this.title,

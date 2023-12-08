@@ -16,6 +16,9 @@ dependencies:
   easy_localization: ^3.0.1
   equatable: ^2.0.5
 
+  #Core 
+  get_it: ^7.6.4
+
   #state management
   flutter_riverpod: ^2.4.8
   riverpod_annotation: ^2.3.2
@@ -32,7 +35,6 @@ dependencies:
 
   #core
   cached_network_image: ^3.2.3
-  get_it: ^7.6.4
 
   #util
   uuid: any
@@ -70,7 +72,7 @@ dependencies:
   shimmer: ^3.0.0
   sliver_snap: ^1.2.0
   font_awesome_flutter: ^10.5.0
-  kartal: ^3.4.2
+  kartal: ^3.5.0
   carousel_slider: ^4.2.1
   flutter_speed_dial: ^7.0.0
 
