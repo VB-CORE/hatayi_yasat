@@ -78,7 +78,7 @@ final class _ScholarshipRequestFormState
             style: context.general.textTheme.titleLarge,
           ),
           UploadFileSectionV2(
-            hintText: LocaleKeys.requestScholarship_pdfHint.tr(),
+            hintText: LocaleKeys.requestScholarship_pdfHint,
             onFilePicked: updatePdfFile,
           ),
           const _UploadSizeInfo(),

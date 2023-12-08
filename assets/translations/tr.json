@@ -199,6 +199,7 @@
   "requestScholarship": {
     "title": "Yeni Burs Talebi",
     "contact": "İletişim",
+    "phone": "Telefon Numarası",
     "story": "Kendinizden Bahsedin",
     "studentDocument": "Öğrenci Belgesi",
     "pdfHint": "ad_soyad.pdf",

@@ -35,6 +35,7 @@ final class ApplicationTheme {
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.black,
       ),
+      // TODO:Burak Dialog background color is not working
       dialogBackgroundColor: ColorsCustom.white,
       snackBarTheme: SnackBarThemeData(
         backgroundColor: ColorsCustom.black,

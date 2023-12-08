@@ -195,6 +195,8 @@ abstract class  LocaleKeys {
   static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
   static const favorite_deleteDialog = 'favorite.deleteDialog';
   static const favorite = 'favorite';
+  static const favoritePlaces_title = 'favoritePlaces.title';
+  static const favoritePlaces = 'favoritePlaces';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
   static const utils_options = 'utils.options';

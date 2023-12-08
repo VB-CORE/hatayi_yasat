@@ -199,6 +199,7 @@
   "requestScholarship": {
     "title": "New Scholarship Request",
     "contact": "Contact",
+    "phone": "Phone Number",
     "story": "Your Story",
     "studentDocument": "Student Document",
     "pdfHint": "name_surname.pdf",
