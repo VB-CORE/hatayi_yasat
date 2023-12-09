@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
 import 'package:vbaseproject/product/package/file_picker/upload_file_v2_mixin.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 
@@ -20,6 +17,7 @@ import 'package:vbaseproject/product/widget/general/index.dart';
 ///  - [hintText] is the text that will be shown when no file is uploaded
 ///  - [onFilePicked] is the callback that will be called when a file is uploaded
 ///  - [allowedExtension] is the list of allowed extensions
+// TODO: REMOVE V2 AFTER ALL PROJECTS ARE UPDATED
 final class UploadFileSectionV2 extends StatefulWidget {
   const UploadFileSectionV2({
     required this.hintText,
@@ -99,14 +97,9 @@ final class _HintText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return GeneralBodyTitle(
       '*${hintText.tr()}',
-      maxLines: AppConstants.kOne,
-      overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: ColorCommon(context).whiteAndBlackForTheme,
-      ),
+      fontWeight: FontWeight.bold,
     );
   }
 }
@@ -125,15 +118,10 @@ final class _UploadedFileText extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: Text(
+      child: GeneralBodyTitle(
         fileName,
-        maxLines: AppConstants.kOne,
-        overflow: TextOverflow.ellipsis,
-        style: context.general.textTheme.titleMedium?.copyWith(
-          decoration: TextDecoration.underline,
-          fontWeight: FontWeight.bold,
-          color: ColorCommon(context).whiteAndBlackForTheme,
-        ),
+        fontWeight: FontWeight.bold,
+        textDecoration: TextDecoration.underline,
       ),
     );
   }

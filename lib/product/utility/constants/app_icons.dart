@@ -9,4 +9,5 @@ final class AppIcons {
   static const IconData addPhoto = Icons.add_a_photo_outlined;
   static const IconData camera = Icons.camera_alt_outlined;
   static const IconData gallery = Icons.image_outlined;
+  static const IconData info = Icons.info_outline;
 }

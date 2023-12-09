@@ -12,10 +12,13 @@ import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:vbaseproject/product/package/file_picker/upload_file_section_v2.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
+import 'package:vbaseproject/product/widget/general/general_content_title.dart';
+import 'package:vbaseproject/product/widget/general/general_large_label.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
@@ -73,9 +76,8 @@ final class _ScholarshipRequestFormState
             maxLength: TextFieldMaxLengths.veryLarge,
           ),
           context.sized.emptySizedHeightBoxLow,
-          Text(
-            LocaleKeys.requestScholarship_studentDocument.tr(),
-            style: context.general.textTheme.titleLarge,
+          GeneralContentTitle(
+            value: LocaleKeys.requestScholarship_studentDocument.tr(),
           ),
           UploadFileSectionV2(
             hintText: LocaleKeys.requestScholarship_pdfHint,

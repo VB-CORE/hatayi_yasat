@@ -12,12 +12,11 @@ final class _UploadSizeInfo extends StatelessWidget {
       spacing: AppConstants.kFour.toDouble(),
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        const Icon(Icons.info_outline),
-        Text(
+        const Icon(AppIcons.info),
+        GeneralLargeLabel(
           LocaleKeys.requestScholarship_error_fileSizeInfo.tr(
             args: ['${FileSizes.small.kbValue} ${AppConstants.kiloByte}'],
           ),
-          style: context.general.textTheme.labelLarge,
         ),
       ],
     );

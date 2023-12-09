@@ -7,12 +7,13 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/dialog/force_update_dialog.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
 /// PdfPreviewDialogV2 is a dialog used for
 /// - showing a pdf file
 /// Params:
 /// - [file] is the file that will be shown
+// TODO: REMOVE V2 AFTER ALL PROJECTS ARE UPDATED
 @immutable
 final class PdfPreviewDialogV2 extends StatelessWidget with CustomDialog {
   const PdfPreviewDialogV2({required this.file, super.key});
@@ -30,11 +31,11 @@ final class PdfPreviewDialogV2 extends StatelessWidget with CustomDialog {
         child: SfPdfViewer.file(file),
       ),
       actions: [
-        TextButton(
+        GeneralDialogButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: GeneralBodyTitle(LocaleKeys.button_close.tr()),
+          title: LocaleKeys.button_close.tr(),
         ),
       ],
     );

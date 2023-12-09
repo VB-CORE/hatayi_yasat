@@ -10,6 +10,7 @@ import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog_v2.dart';
 /// UploadFileV2Mixin is a mixin used for
 /// - picking a file using [FilePickerManager]
 /// - notifying ui the picked file using [documentFileNotifier]
+// TODO: REMOVE V2 AFTER ALL PROJECTS ARE UPDATED
 mixin UploadFileV2Mixin on State<UploadFileSectionV2> {
   final ValueNotifier<File?> _documentFileNotifier = ValueNotifier<File?>(null);
 
