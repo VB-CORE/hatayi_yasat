@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 /// This button is used only for dialog.
+@immutable
 final class GeneralDialogButton extends StatelessWidget {
   const GeneralDialogButton({
     required this.onPressed,
@@ -17,14 +18,10 @@ final class GeneralDialogButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed.call,
-
-      // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
-      child: Text(
-        title,
-        style: context.general.textTheme.bodyMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
-      ).tr(),
+      child: GeneralContentSubTitle(
+        value: title.tr(),
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 }

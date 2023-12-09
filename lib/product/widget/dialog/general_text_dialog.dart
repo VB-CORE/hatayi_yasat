@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/widget/general/title/general_content_sub_title.dart';
 import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
 /// Dialog contains only text. If you want to show it on the screen, you can use the [show] command.
@@ -40,12 +41,7 @@ final class GeneralTextDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: context.general.colorScheme.secondary,
       title: GeneralSubTitle(value: title),
-
-      // TODO: Fix => PR birleşince GeneralContentSubTitle widget olarak değiştirilecek.
-      content: Text(
-        content,
-        style: context.general.textTheme.bodyMedium,
-      ),
+      content: GeneralContentSubTitle(value: content),
       actions: actions,
     );
   }

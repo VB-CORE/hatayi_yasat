@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/constants/icon_constants.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
-import 'package:vbaseproject/product/widget/general/title/general_content_title.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 class GeneralPlaceCard extends StatelessWidget {
@@ -119,8 +118,9 @@ final class _BookmarkButton extends StatelessWidget {
       onPressed: onSavePlaceTap,
       padding: EdgeInsets.zero,
       style: CustomButtonStyle.shrinkWrap,
-      icon:
-          isPlaceSaved ? IconConstants.bookmark : IconConstants.bookmarkDefault,
+      icon: Icon(
+        isPlaceSaved ? AppIcons.bookmark : AppIcons.bookmarkDefault,
+      ),
     );
   }
 }

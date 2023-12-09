@@ -33,7 +33,7 @@ final class GeneralBodyTitle extends StatelessWidget {
       maxLines: maxLines,
       overflow: overflow,
       style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: fontWeight,
+        fontWeight: fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
       ),
     );
