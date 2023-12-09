@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
+@immutable
 final class AuthorListTileWidget extends StatelessWidget {
   const AuthorListTileWidget({
     required this.image,
@@ -38,12 +39,9 @@ final class _AuthorText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Fix => PR birleşince General text widget ile değiştirilecek.
-    return Text(
+    return GeneralBodyTitle(
       text,
-      style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
+      fontWeight: FontWeight.bold,
     );
   }
 }

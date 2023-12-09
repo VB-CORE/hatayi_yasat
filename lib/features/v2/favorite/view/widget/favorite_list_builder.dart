@@ -48,8 +48,7 @@ final class _FavoriteAuthorWidget extends StatelessWidget {
           text: name,
           trailingWidget: IconButton(
             onPressed: onDeleteTapped.call,
-            // TODO: Fix => IconConstant'a geçirilecek.
-            icon: const Icon(Icons.delete),
+            icon: const Icon(AppIcons.delete),
           ),
         ),
       ),

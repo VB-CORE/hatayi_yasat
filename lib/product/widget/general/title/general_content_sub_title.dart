@@ -8,11 +8,13 @@ final class GeneralContentSubTitle extends StatelessWidget {
     this.fontWeight,
     this.maxLine,
     super.key,
+    this.textAlign,
   });
 
   final String value;
   final FontWeight? fontWeight;
   final int? maxLine;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ final class GeneralContentSubTitle extends StatelessWidget {
         fontWeight: fontWeight ?? FontWeight.w500,
       ),
       maxLines: maxLine,
+      textAlign: textAlign,
       overflow: TextOverflow.ellipsis,
     );
   }
