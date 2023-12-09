@@ -17,9 +17,9 @@ import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
-import 'package:vbaseproject/product/widget/general/general_content_title.dart';
 import 'package:vbaseproject/product/widget/general/general_large_label.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/general/title/general_content_title.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 
