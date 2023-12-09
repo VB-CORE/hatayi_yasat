@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/utility/constants/icon_constants.dart';
-import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
 final class ClickableSubTitleText extends StatelessWidget {
   const ClickableSubTitleText({

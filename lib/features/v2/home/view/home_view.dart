@@ -8,10 +8,10 @@ import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/custom_popup_menu_app_bar.dart';
 import 'package:vbaseproject/product/widget/card/general_place_card.dart';
-import 'package:vbaseproject/product/widget/general/general_big_title.dart';
 import 'package:vbaseproject/product/widget/general/general_content_sub_title.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
-import 'package:vbaseproject/product/widget/general/general_sub_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_big_title.dart';
+import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 

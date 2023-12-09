@@ -22,6 +22,7 @@ final class GeneralSubTitle extends StatelessWidget {
         fontWeight: fontWeight ?? FontWeight.w500,
       ),
       maxLines: maxLine,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
