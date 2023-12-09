@@ -10,4 +10,5 @@ final class AppIcons {
   static const IconData camera = Icons.camera_alt_outlined;
   static const IconData gallery = Icons.image_outlined;
   static const IconData info = Icons.info_outline;
+  static const IconData calendar = Icons.calendar_today;
 }

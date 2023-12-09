@@ -18,7 +18,9 @@
     "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
     "categoryEmpty": "Kategori seçiniz",
     "emailFormat": "Lütfen mailinizi doğru giriniz",
-    "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz"
+    "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
+    "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
+    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz"
   },
   "button": {
     "save": "Kaydet",
