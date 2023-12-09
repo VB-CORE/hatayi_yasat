@@ -16,7 +16,7 @@ mixin ScholarshipRequestFormMixin
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
   File? selectedPdfFile;
-  bool kvkkChecked = false;
+  bool isKvkkChecked = false;
 
   @override
   bool get isHasAnyData {
@@ -39,7 +39,7 @@ mixin ScholarshipRequestFormMixin
   }
 
   void updateKVKK(bool value) {
-    kvkkChecked = value;
+    isKvkkChecked = value;
   }
 
   @override
