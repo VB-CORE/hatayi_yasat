@@ -175,7 +175,8 @@
         "towns": "Towns has not been entered yet.",
         "news": "News has not been entered yet.",
         "favoritePlaces": "There is no any favorite places.",
-        "advertise": "Job postings has not been entered yet."
+        "advertise": "Job postings has not been entered yet.",
+        "image": "Image could not be loaded."
     },
     "months": {
         "jan": "January",
