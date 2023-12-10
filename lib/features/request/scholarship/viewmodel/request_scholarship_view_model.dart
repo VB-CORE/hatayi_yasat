@@ -60,7 +60,7 @@ final class RequestScholarshipViewModel
       phoneNumber: model.phoneNumber,
       story: model.story,
       studentDocument: '',
-      // documentFileRef: pdfLinkKey,
+      documentFileRef: pdfLinkKey,
     );
 
     final response = await FirebaseService().add<ScholarshipModel>(

@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vbaseproject/features/request/scholarship/model/request_scholarship_model.dart';
-import 'package:vbaseproject/features/v2/sub_feature/forms/provider/scholarship_request_form.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/provider/scholarship_request_state.dart';
 
 part 'scholarship_request_provider.g.dart';
 

@@ -18,7 +18,9 @@
     "loseAllData": "Your changes will be lost. Do you want to continue?",
     "categoryEmpty": "Please choose a category",
     "emailFormat": "Please enter your mail correctly",
-    "studentEmailFormat": "Please enter your student mail"
+    "studentEmailFormat": "Please enter your student mail",
+    "dateAfterNow": "Please enter a date after today",
+    "pleaseAddImage": "Please add an image"
   },
   "button": {
     "save": "Save",

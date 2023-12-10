@@ -13,6 +13,7 @@ final class AppIcons {
   static const IconData addPhoto = Icons.add_a_photo_outlined;
   static const IconData camera = Icons.camera_alt_outlined;
   static const IconData gallery = Icons.image_outlined;
+  static const IconData calendar = Icons.calendar_today;
   static const IconData bookmark = Icons.bookmark_border_outlined;
   static const IconData bookmarkDefault = Icons.bookmark;
   static const IconData home = Icons.home_outlined;
