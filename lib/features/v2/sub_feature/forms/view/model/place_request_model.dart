@@ -18,4 +18,21 @@ final class PlaceRequestModel {
   final String placePhoneNumber;
   final CategoryModel placeCategory;
   final TownModel placeDistrict;
+
+  // create dummy data for testing
+  static PlaceRequestModel dummyData = PlaceRequestModel(
+    placeName: 'Place Name',
+    placeDescription: 'Place Description',
+    placeOwnerName: 'Author',
+    placeAddress: 'Place Address',
+    placePhoneNumber: 'Place Phone Number',
+    placeCategory: const CategoryModel(
+      name: 'Category 0',
+      value: 0,
+    ),
+    placeDistrict: const TownModel(
+      code: 0,
+      name: 'Town 0',
+    ),
+  );
 }

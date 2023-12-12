@@ -2,7 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
-import 'package:vbaseproject/features/v2/sub_feature/forms/view/project_request_form.dart';
+import 'package:vbaseproject/features/v2/sub_feature/details/view/place_detail_view.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
@@ -38,7 +39,9 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
-        ProjectNavigation(context).replaceToWidget(const ProjectRequestForm());
+        ProjectNavigation(context).replaceToWidget(
+          PlaceDetailView(model: PlaceRequestModel.dummyData),
+        );
       }
     });
   }
