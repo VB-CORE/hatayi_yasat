@@ -7,14 +7,13 @@ import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 class JobCardV2 extends StatelessWidget {
   const JobCardV2({
     required this.item,
     super.key,
   });
-
-  final AdvertiseModel item;
 
   factory JobCardV2.dummy() {
     return JobCardV2(
@@ -30,12 +29,16 @@ class JobCardV2 extends StatelessWidget {
     );
   }
 
+  final AdvertiseModel item;
+
   @override
   Widget build(BuildContext context) {
     if (item.title.ext.isNullOrEmpty) return const SizedBox.shrink();
-    return ListTile(
-      title: _Title(item: item),
-      subtitle: _Subtitle(item: item),
+    return Card(
+      child: ListTile(
+        title: _Title(item: item),
+        subtitle: _Subtitle(item: item),
+      ),
     );
   }
 }
@@ -50,16 +53,14 @@ class _Subtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      shape: InputBorder.none,
       tilePadding: EdgeInsets.zero,
       title: Text(item.role ?? ''),
       childrenPadding: context.padding.verticalLow,
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _GenderDetail(item: item),
-        const Divider(),
         _DescriptionDetail(item: item),
-        const Divider(),
         _PhoneDetail(item: item),
       ],
     );
@@ -93,14 +94,14 @@ class _DescriptionDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      item.description ?? '',
-      style: context.general.textTheme.bodySmall?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.w700,
-      ),
-      maxLines: AppConstants.kThree,
-      overflow: TextOverflow.ellipsis,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Describiton:'),
+        GeneralBodyTitle(
+          item.description ?? '',
+        ),
+      ],
     );
   }
 }

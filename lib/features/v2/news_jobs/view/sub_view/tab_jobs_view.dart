@@ -12,13 +12,13 @@ final class TabJobsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final query = ref
         .read(newsJobsProviderProvider.notifier)
-        .fetchNewsCollectionReference();
+        .fetchJobsCollectionReference();
+
     return GeneralFirestoreListView(
       query: query,
       itemBuilder: (context, model) {
-        return NewsCard(
+        return AdvertisePlaceCard(
           item: model,
-          onTap: () {},
         );
       },
       onRetry: () {},

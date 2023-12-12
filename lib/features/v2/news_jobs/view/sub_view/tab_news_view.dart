@@ -13,6 +13,7 @@ final class TabNewsView extends ConsumerWidget {
     final query = ref
         .read(newsJobsProviderProvider.notifier)
         .fetchNewsCollectionReference();
+
     return GeneralFirestoreListView(
       query: query,
       itemBuilder: (context, model) {

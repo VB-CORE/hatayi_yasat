@@ -6,10 +6,10 @@ final class _NewsJobsTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TabBar(
+    return TabBar(
       tabs: [
-        Tab(text: 'News2'),
-        Tab(text: 'Jobs'),
+        Tab(text: LocaleKeys.navigationTabs_newsTabTitle.tr()),
+        Tab(text: LocaleKeys.navigationTabs_advertiseTabTitle.tr()),
       ],
     );
   }

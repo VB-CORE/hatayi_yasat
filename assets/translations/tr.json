@@ -34,7 +34,9 @@
         "cancel": "İptal",
         "clearAllSelection": "{} seçimi temizle",
         "showResult": "Sonucu göster",
-        "sendRequest": "İsteği gönder"
+        "sendRequest": "İsteği gönder",
+        "call": "Ara",
+        "share": "Paylaş"
     },
     "component": {
         "picker": {
@@ -164,6 +166,7 @@
         "phone": "İletişim:",
         "callPhone": "İşvereni ara",
         "share": "İlanı paylaş",
+        "role": "Pozisyon: ",
         "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:"
     },
     "notFound": {
