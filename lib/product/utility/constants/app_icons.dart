@@ -19,4 +19,7 @@ final class AppIcons {
   static const IconData home = Icons.home_outlined;
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings_outlined;
+  static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
+  static const IconData phone = Icons.phone_outlined;
+  static const IconData share = Icons.share_outlined;
 }

@@ -18,4 +18,11 @@ final class NewsJobsProvider extends _$NewsJobsProvider
       NewsModel(),
     );
   }
+
+  CollectionReference<AdvertiseModel?> fetchJobsCollectionReference() {
+    return firebaseService.collectionReference(
+      CollectionPaths.approvedAdvertise,
+      AdvertiseModel(),
+    );
+  }
 }

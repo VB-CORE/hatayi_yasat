@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 
 final class ApplicationTheme {
   ApplicationTheme.build(BuildContext context) {
@@ -9,6 +10,13 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
+      cardTheme: const CardTheme(
+        elevation: 2,
+        color: ColorsCustom.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: CustomRadius.medium,
+        ),
+      ),
       appBarTheme: AppBarTheme(
         foregroundColor: ColorsCustom.white,
         backgroundColor: ColorsCustom.white,

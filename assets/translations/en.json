@@ -36,7 +36,9 @@
     "cancel": "Cancel",
     "clearAllSelection": "{} clear selections",
     "showResult": "Show result",
-    "sendRequest": "Send Request"
+    "sendRequest": "Send Request",
+    "call": "Call",
+    "share": "Share"
   },
   "component": {
     "picker": {
@@ -164,6 +166,7 @@
     "gender": "Gender:",
     "owner": "Employer:",
     "phone": "Contact:",
+    "role": "Role:",
     "callPhone": "Call the employer",
     "share": "Share the job advertise",
     "message": "Check out the job posting on the Keep Hatay Alive application:"
@@ -230,9 +233,6 @@
     "deleteDialog": {
       "content": "It will be removed from the favorite. Are you sure you want to proceed?"
     }
-  },
-  "favoritePlaces": {
-    "title": "Favorite Places"
   },
   "uploadShelter": {
     "title": "Upload Shelter Details"

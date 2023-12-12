@@ -25,6 +25,10 @@ class CustomNetworkImage extends StatelessWidget {
       imageUrl: imageUrl!,
       fit: fit,
       width: context.sized.width,
+      placeholder: (context, url) {
+        // TODO: Add shimmer for loading
+        return const SizedBox.shrink();
+      },
     );
   }
 }

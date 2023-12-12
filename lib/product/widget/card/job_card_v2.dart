@@ -7,14 +7,14 @@ import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
-class JobCardV2 extends StatelessWidget {
+@immutable
+final class JobCardV2 extends StatelessWidget {
   const JobCardV2({
     required this.item,
     super.key,
   });
-
-  final AdvertiseModel item;
 
   factory JobCardV2.dummy() {
     return JobCardV2(
@@ -30,17 +30,21 @@ class JobCardV2 extends StatelessWidget {
     );
   }
 
+  final AdvertiseModel item;
+
   @override
   Widget build(BuildContext context) {
     if (item.title.ext.isNullOrEmpty) return const SizedBox.shrink();
-    return ListTile(
-      title: _Title(item: item),
-      subtitle: _Subtitle(item: item),
+    return Card(
+      child: ListTile(
+        title: _Title(item: item),
+        subtitle: _Subtitle(item: item),
+      ),
     );
   }
 }
 
-class _Subtitle extends StatelessWidget {
+final class _Subtitle extends StatelessWidget {
   const _Subtitle({
     required this.item,
   });
@@ -50,23 +54,21 @@ class _Subtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      shape: InputBorder.none,
       tilePadding: EdgeInsets.zero,
       title: Text(item.role ?? ''),
       childrenPadding: context.padding.verticalLow,
       expandedAlignment: Alignment.centerLeft,
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _GenderDetail(item: item),
-        const Divider(),
         _DescriptionDetail(item: item),
-        const Divider(),
         _PhoneDetail(item: item),
       ],
     );
   }
 }
 
-class _GenderDetail extends StatelessWidget {
+final class _GenderDetail extends StatelessWidget {
   const _GenderDetail({
     required this.item,
   });
@@ -84,7 +86,7 @@ class _GenderDetail extends StatelessWidget {
   }
 }
 
-class _DescriptionDetail extends StatelessWidget {
+final class _DescriptionDetail extends StatelessWidget {
   const _DescriptionDetail({
     required this.item,
   });
@@ -93,19 +95,21 @@ class _DescriptionDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      item.description ?? '',
-      style: context.general.textTheme.bodySmall?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.w700,
-      ),
-      maxLines: AppConstants.kThree,
-      overflow: TextOverflow.ellipsis,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GeneralContentTitle(
+          value: LocaleKeys.advertise_description.tr(),
+        ),
+        GeneralBodyTitle(
+          item.description ?? '',
+        ),
+      ],
     );
   }
 }
 
-class _PhoneDetail extends StatelessWidget {
+final class _PhoneDetail extends StatelessWidget {
   const _PhoneDetail({
     required this.item,
   });
@@ -137,7 +141,7 @@ class _PhoneDetail extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
+final class _Title extends StatelessWidget {
   const _Title({
     required this.item,
   });
@@ -156,7 +160,7 @@ class _Title extends StatelessWidget {
   }
 }
 
-class _OwnerText extends StatelessWidget {
+final class _OwnerText extends StatelessWidget {
   const _OwnerText({
     required this.item,
   });
@@ -174,7 +178,7 @@ class _OwnerText extends StatelessWidget {
   }
 }
 
-class _TitleText extends StatelessWidget {
+final class _TitleText extends StatelessWidget {
   const _TitleText({
     required this.item,
   });
