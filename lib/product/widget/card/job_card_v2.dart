@@ -9,7 +9,8 @@ import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 
-class JobCardV2 extends StatelessWidget {
+@immutable
+final class JobCardV2 extends StatelessWidget {
   const JobCardV2({
     required this.item,
     super.key,
@@ -43,7 +44,7 @@ class JobCardV2 extends StatelessWidget {
   }
 }
 
-class _Subtitle extends StatelessWidget {
+final class _Subtitle extends StatelessWidget {
   const _Subtitle({
     required this.item,
   });
@@ -67,7 +68,7 @@ class _Subtitle extends StatelessWidget {
   }
 }
 
-class _GenderDetail extends StatelessWidget {
+final class _GenderDetail extends StatelessWidget {
   const _GenderDetail({
     required this.item,
   });
@@ -85,7 +86,7 @@ class _GenderDetail extends StatelessWidget {
   }
 }
 
-class _DescriptionDetail extends StatelessWidget {
+final class _DescriptionDetail extends StatelessWidget {
   const _DescriptionDetail({
     required this.item,
   });
@@ -97,7 +98,9 @@ class _DescriptionDetail extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Describiton:'),
+        GeneralContentTitle(
+          value: LocaleKeys.advertise_description.tr(),
+        ),
         GeneralBodyTitle(
           item.description ?? '',
         ),
@@ -106,7 +109,7 @@ class _DescriptionDetail extends StatelessWidget {
   }
 }
 
-class _PhoneDetail extends StatelessWidget {
+final class _PhoneDetail extends StatelessWidget {
   const _PhoneDetail({
     required this.item,
   });
@@ -138,7 +141,7 @@ class _PhoneDetail extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
+final class _Title extends StatelessWidget {
   const _Title({
     required this.item,
   });
@@ -157,7 +160,7 @@ class _Title extends StatelessWidget {
   }
 }
 
-class _OwnerText extends StatelessWidget {
+final class _OwnerText extends StatelessWidget {
   const _OwnerText({
     required this.item,
   });
@@ -175,7 +178,7 @@ class _OwnerText extends StatelessWidget {
   }
 }
 
-class _TitleText extends StatelessWidget {
+final class _TitleText extends StatelessWidget {
   const _TitleText({
     required this.item,
   });

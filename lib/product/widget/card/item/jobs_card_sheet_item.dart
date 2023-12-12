@@ -1,5 +1,6 @@
 part of '../jobs_card.dart';
 
+@immutable
 final class _JobsSheetView extends StatelessWidget {
   const _JobsSheetView({required this.item});
   final AdvertiseModel item;
@@ -40,6 +41,7 @@ final class _JobsSheetView extends StatelessWidget {
   }
 }
 
+@immutable
 final class _CallButton extends StatelessWidget {
   const _CallButton({
     required this.item,
@@ -70,6 +72,7 @@ final class _CallButton extends StatelessWidget {
   }
 }
 
+@immutable
 final class _ShareButton extends StatelessWidget {
   const _ShareButton({
     required this.item,

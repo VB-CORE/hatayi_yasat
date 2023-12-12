@@ -3,6 +3,7 @@ import 'package:kartal/kartal.dart';
 
 /// This is a general action sub title widget with headlineSmall style, underline.
 /// maxLines is 1 with fontWeight 500.
+@immutable
 final class GeneralActionSubTitle extends StatelessWidget {
   /// This widget is clickable for action.
   ///
