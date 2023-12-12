@@ -19,6 +19,8 @@ abstract class  LocaleKeys {
   static const validation_categoryEmpty = 'validation.categoryEmpty';
   static const validation_emailFormat = 'validation.emailFormat';
   static const validation_studentEmailFormat = 'validation.studentEmailFormat';
+  static const validation_dateAfterNow = 'validation.dateAfterNow';
+  static const validation_pleaseAddImage = 'validation.pleaseAddImage';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';
@@ -157,6 +159,7 @@ abstract class  LocaleKeys {
   static const notFound_news = 'notFound.news';
   static const notFound_favoritePlaces = 'notFound.favoritePlaces';
   static const notFound_advertise = 'notFound.advertise';
+  static const notFound_image = 'notFound.image';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -174,6 +177,7 @@ abstract class  LocaleKeys {
   static const genders = 'genders';
   static const requestScholarship_title = 'requestScholarship.title';
   static const requestScholarship_contact = 'requestScholarship.contact';
+  static const requestScholarship_phone = 'requestScholarship.phone';
   static const requestScholarship_story = 'requestScholarship.story';
   static const requestScholarship_studentDocument = 'requestScholarship.studentDocument';
   static const requestScholarship_pdfHint = 'requestScholarship.pdfHint';
@@ -197,6 +201,8 @@ abstract class  LocaleKeys {
   static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
   static const favorite_deleteDialog = 'favorite.deleteDialog';
   static const favorite = 'favorite';
+  static const favoritePlaces_title = 'favoritePlaces.title';
+  static const favoritePlaces = 'favoritePlaces';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
   static const utils_options = 'utils.options';

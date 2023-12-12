@@ -4,5 +4,4 @@ export 'general_check_box.dart';
 export 'general_firestore_list_view.dart';
 export 'general_scaffold.dart';
 export 'space/index.dart';
-export 'title/general_sub_title.dart';
 export 'title/index.dart';
