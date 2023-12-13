@@ -26,10 +26,10 @@ class _NewsJobsViewState extends State<NewsJobsView> {
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
-                const _NewsJobsTabTitleView(),
+                const _NewsJobsTabBar().ext.sliver,
               ];
             },
-            body: const TabJobsView(),
+            body: const _NewsJobsTabView(),
           ),
         ),
       ),

@@ -36,6 +36,8 @@ abstract class  LocaleKeys {
   static const button_clearAllSelection = 'button.clearAllSelection';
   static const button_showResult = 'button.showResult';
   static const button_sendRequest = 'button.sendRequest';
+  static const button_call = 'button.call';
+  static const button_share = 'button.share';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -147,6 +149,7 @@ abstract class  LocaleKeys {
   static const advertise_phone = 'advertise.phone';
   static const advertise_callPhone = 'advertise.callPhone';
   static const advertise_share = 'advertise.share';
+  static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
   static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';

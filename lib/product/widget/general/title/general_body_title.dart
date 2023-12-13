@@ -15,14 +15,12 @@ final class GeneralBodyTitle extends StatelessWidget {
     this.value, {
     super.key,
     this.maxLines,
-    this.overflow,
     this.fontWeight,
     this.textDecoration,
   });
 
   final String value;
   final int? maxLines;
-  final TextOverflow? overflow;
   final FontWeight? fontWeight;
   final TextDecoration? textDecoration;
 
@@ -30,12 +28,12 @@ final class GeneralBodyTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       value,
-      maxLines: maxLines,
-      overflow: overflow,
       style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: fontWeight ?? FontWeight.w600,
+        fontWeight: fontWeight ?? fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
       ),
+      maxLines: maxLines,
+      overflow: maxLines != null ? TextOverflow.ellipsis : null,
     );
   }
 }

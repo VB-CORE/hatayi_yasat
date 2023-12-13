@@ -7,7 +7,7 @@ final class _NewsJobsTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TabBarView(
-      children: [TabJobsView(), TabNewsView()],
+      children: [TabNewsView(), TabJobsView()],
     );
   }
 }
