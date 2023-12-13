@@ -21,18 +21,20 @@ final class PlaceRequestModel {
 
   // create dummy data for testing
   static PlaceRequestModel dummyData = PlaceRequestModel(
-    placeName: 'Place Name',
-    placeDescription: 'Place Description',
-    placeOwnerName: 'Author',
-    placeAddress: 'Place Address',
-    placePhoneNumber: 'Place Phone Number',
+    placeName: 'Harika Restoran',
+    placeDescription:
+        'Harika Restoran, lezzetli yemekleri ve sıcak atmosferiyle ünlü bir mekan. Her bir yemek, özenle seçilmiş malzemelerle hazırlanır ve şeflerimiz tarafından ustalıkla sunulur. Menümüzde dünya mutfağından lezzetler bulabilir, her damak zevkine hitap eden özel tatlar deneyebilirsiniz.',
+    placeOwnerName: 'Ahmet Yılmaz',
+    placeAddress:
+        'Güzel Sokak No: 123, Merkez Mahallesi, Şehir / Ülke Zemin Kat, Kapı No: 5',
+    placePhoneNumber: '+90 123 456 7890',
     placeCategory: const CategoryModel(
-      name: 'Category 0',
+      name: 'Restoran',
       value: 0,
     ),
     placeDistrict: const TownModel(
       code: 0,
-      name: 'Town 0',
+      name: 'Merkez',
     ),
   );
 }

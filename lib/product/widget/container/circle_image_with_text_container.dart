@@ -4,7 +4,12 @@ import 'package:vbaseproject/product/widget/general/title/index.dart';
 import 'package:vbaseproject/product/widget/shadow/general_shadow.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 
-/// CircleImageWithTextContainer is a widget that shows author image and name
+/// `CircleImageWithTextContainer` shows image with text in circle container
+///
+/// Params:
+/// * `imageUrl` is image url for circle avatar
+/// * `name` is text for name
+/// * `backgroundColor` is background color for container
 final class CircleImageWithTextContainer extends StatelessWidget {
   const CircleImageWithTextContainer({
     required this.imageUrl,
@@ -28,7 +33,7 @@ final class CircleImageWithTextContainer extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: context.padding.low,
+        padding: context.padding.low / 2,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -36,6 +41,7 @@ final class CircleImageWithTextContainer extends StatelessWidget {
             context.sized.emptySizedWidthBoxLow,
             context.sized.emptySizedWidthBoxLow,
             _NameTextConstrainedBox(name: name),
+            context.sized.emptySizedWidthBoxNormal,
           ],
         ),
       ),
@@ -43,7 +49,8 @@ final class CircleImageWithTextContainer extends StatelessWidget {
   }
 }
 
-class _ImageCircleAvatar extends StatelessWidget {
+@immutable
+final class _ImageCircleAvatar extends StatelessWidget {
   const _ImageCircleAvatar({
     required this.imageUrl,
     super.key,
@@ -62,6 +69,7 @@ class _ImageCircleAvatar extends StatelessWidget {
   }
 }
 
+@immutable
 final class _NameTextConstrainedBox extends StatelessWidget {
   const _NameTextConstrainedBox({
     required this.name,
@@ -77,6 +85,7 @@ final class _NameTextConstrainedBox extends StatelessWidget {
       ),
       child: GeneralContentSubTitle(
         value: name,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

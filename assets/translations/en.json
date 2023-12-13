@@ -96,10 +96,12 @@
   "placeDetailView": {
     "owner": "Business Owner",
     "description": "Business Description",
-    "address": "Address",
+    "address": "Address Description",
     "phoneNumber": "Phone Number",
     "district": "District",
-    "photos": "Photos"
+    "photos": "Photos",
+    "call": "Call",
+    "find_the_place": "Find the place"
   },
   "campaignDetailsView": {
     "publisher": "Publisher (Person or Institution Name)",

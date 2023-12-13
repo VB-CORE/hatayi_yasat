@@ -19,4 +19,5 @@ final class AppIcons {
   static const IconData home = Icons.home_outlined;
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings_outlined;
+  static const IconData city = Icons.location_city;
 }

@@ -32,12 +32,14 @@ final class GeneralButtonV2 extends StatefulWidget {
     required VoidCallback action,
     required String label,
     bool isEnabled = true,
+    EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
       label: label,
       action: action,
       isAsync: false,
       isEnabled: isEnabled,
+      buttonPadding: buttonPadding,
     );
   }
 
@@ -45,12 +47,14 @@ final class GeneralButtonV2 extends StatefulWidget {
     required AsyncCallback action,
     required String label,
     bool isEnabled = true,
+    EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
       label: label,
       action: action,
       isAsync: true,
       isEnabled: isEnabled,
+      buttonPadding: buttonPadding,
     );
   }
   const GeneralButtonV2._({
@@ -58,13 +62,14 @@ final class GeneralButtonV2 extends StatefulWidget {
     required this.action,
     required this.isAsync,
     this.isEnabled = true,
+    this.buttonPadding = const PagePadding.vertical12Symmetric(),
   });
 
   final String label;
   final FutureOr<void> Function() action;
   final bool isAsync;
   final bool isEnabled;
-
+  final EdgeInsets buttonPadding;
   @override
   State<GeneralButtonV2> createState() => _GeneralButtonV2State();
 }
@@ -92,7 +97,7 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
                 await _asyncAction();
               },
         child: Padding(
-          padding: const PagePadding.vertical12Symmetric(),
+          padding: widget.buttonPadding,
           child: ValueListenableBuilder(
             valueListenable: _isLoading,
             builder: (context, value, _) {
