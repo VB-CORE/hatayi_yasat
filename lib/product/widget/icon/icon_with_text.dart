@@ -18,7 +18,9 @@ final class IconWithText extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: context.general.textTheme.titleSmall,
+            style: context.general.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

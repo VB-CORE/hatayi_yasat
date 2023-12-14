@@ -11,8 +11,10 @@ import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/container/circle_image_with_text_container.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/general/title/general_description_title.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
+import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
 part '../sub_view/place_detail_sub_view.dart';
 
@@ -59,13 +61,15 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                             title: model.placeDistrict.displayName,
                           ),
                           context.sized.emptySizedHeightBoxNormal,
-                          _TitleText.placeDescriptionTitle(),
-                          context.sized.emptySizedHeightBoxLow,
-                          _DescriptionText(text: model.placeDescription),
+                          TitleDescription(
+                            title: LocaleKeys.placeDetailView_description.tr(),
+                            description: model.placeDescription,
+                          ),
                           context.sized.emptySizedHeightBoxNormal,
-                          _TitleText.placeAddressTitle(),
-                          context.sized.emptySizedHeightBoxLow,
-                          _DescriptionText(text: model.placeAddress),
+                          TitleDescription(
+                            title: LocaleKeys.placeDetailView_address.tr(),
+                            description: model.placeAddress,
+                          ),
                           context.sized.emptySizedHeightBoxLow,
                           context.sized.emptySizedHeightBoxLow,
                           _FindThePlaceButton(action: findThePlaceAction),

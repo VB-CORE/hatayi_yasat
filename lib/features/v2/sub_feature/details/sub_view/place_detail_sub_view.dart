@@ -14,7 +14,10 @@ final class _NameTitleAndCallButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _TitleText.withText(placeName),
+        GeneralContentTitle(
+          value: placeName,
+          fontWeight: FontWeight.bold,
+        ),
         _CallButton(action: callAction),
       ],
     );
@@ -32,32 +35,6 @@ final class _CallButton extends StatelessWidget {
       action: () async {},
       label: LocaleKeys.placeDetailView_call.tr(),
       buttonPadding: const PagePadding.vertical6Symmetric(),
-    );
-  }
-}
-
-@immutable
-final class _TitleText extends StatelessWidget {
-  factory _TitleText.placeDescriptionTitle() {
-    return _TitleText._(text: LocaleKeys.placeDetailView_description.tr());
-  }
-
-  factory _TitleText.placeAddressTitle() {
-    return _TitleText._(text: LocaleKeys.placeDetailView_address.tr());
-  }
-
-  factory _TitleText.withText(String text) {
-    return _TitleText._(text: text);
-  }
-
-  const _TitleText._({required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return GeneralContentTitle(
-      value: text,
-      fontWeight: FontWeight.bold,
     );
   }
 }
