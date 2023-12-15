@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'news_jobs_provider.dart';
+part of 'project_detail_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsJobsProviderHash() => r'0f49d5e776db28097b081abd3dfb047282723115';
+String _$projectDetailProviderHash() =>
+    r'3ae6fcfd74c0bd1a06c85c364659b0ff948728ec';
 
-/// See also [NewsJobsProvider].
-@ProviderFor(NewsJobsProvider)
-final newsJobsProviderProvider =
-    AutoDisposeNotifierProvider<NewsJobsProvider, NewsJobsState>.internal(
-  NewsJobsProvider.new,
-  name: r'newsJobsProviderProvider',
+/// See also [ProjectDetailProvider].
+@ProviderFor(ProjectDetailProvider)
+final projectDetailProviderProvider = AutoDisposeNotifierProvider<
+    ProjectDetailProvider, ProjectDetailState>.internal(
+  ProjectDetailProvider.new,
+  name: r'projectDetailProviderProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$newsJobsProviderHash,
+      : _$projectDetailProviderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$NewsJobsProvider = AutoDisposeNotifier<NewsJobsState>;
+typedef _$ProjectDetailProvider = AutoDisposeNotifier<ProjectDetailState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

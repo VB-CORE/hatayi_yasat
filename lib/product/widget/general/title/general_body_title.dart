@@ -17,12 +17,14 @@ final class GeneralBodyTitle extends StatelessWidget {
     this.maxLines,
     this.fontWeight,
     this.textDecoration,
+    this.color,
   });
 
   final String value;
   final int? maxLines;
   final FontWeight? fontWeight;
   final TextDecoration? textDecoration;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ final class GeneralBodyTitle extends StatelessWidget {
       style: context.general.textTheme.titleMedium?.copyWith(
         fontWeight: fontWeight ?? fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
+        color: color,
       ),
       maxLines: maxLines,
       overflow: maxLines != null ? TextOverflow.ellipsis : null,

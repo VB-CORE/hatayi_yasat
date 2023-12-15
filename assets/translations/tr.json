@@ -116,7 +116,10 @@
     "description": "Proje Açıklaması",
     "expireDate": "Başlangıç Tarihi ve Saati",
     "photo": "Fotoğraflar",
-    "publishedBy": "{} tarafından yayınlandı"
+    "publishedBy": "{} tarafından yayınlandı",
+    "startDate": "Başlangıç Tarihi: {}",
+    "time": "Saat: {}",
+    "join_now": "Hemen Katıl"
   },
   "forceUpdate": {
     "title": "Bir Güncelleme Var",

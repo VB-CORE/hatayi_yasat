@@ -116,7 +116,10 @@
     "phone": "Phone Number",
     "expireDate": "Start Date and Time",
     "photo": "Photos",
-    "publishedBy": "published by {}"
+    "publishedBy": "published by {}",
+    "startDate": "Start Date: {}",
+    "time": "Time: {}",
+    "join_now": "Join Now"
   },
   "forceUpdate": {
     "title": "An Update is Available",
