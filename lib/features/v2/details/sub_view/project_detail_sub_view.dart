@@ -1,8 +1,8 @@
 part of '../view/project_detail_view.dart';
 
 @immutable
-final class _ImageWithButtonAndNameStack extends StatelessWidget {
-  const _ImageWithButtonAndNameStack({
+final class _ImageWithBackButtonStack extends StatelessWidget {
+  const _ImageWithBackButtonStack({
     required this.image,
     required this.backButtonAction,
   });

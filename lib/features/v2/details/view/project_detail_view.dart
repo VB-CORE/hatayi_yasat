@@ -39,7 +39,7 @@ class _ProjectDetailViewState extends ConsumerState<ProjectDetailView>
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _ImageWithButtonAndNameStack(
+              _ImageWithBackButtonStack(
                 image: ''.ext.randomImage,
                 backButtonAction: goBackAction,
               ),
