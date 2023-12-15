@@ -97,6 +97,8 @@ abstract class  LocaleKeys {
   static const placeDetailView_phoneNumber = 'placeDetailView.phoneNumber';
   static const placeDetailView_district = 'placeDetailView.district';
   static const placeDetailView_photos = 'placeDetailView.photos';
+  static const placeDetailView_call = 'placeDetailView.call';
+  static const placeDetailView_find_the_place = 'placeDetailView.find_the_place';
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
