@@ -104,10 +104,12 @@
   "placeDetailView": {
     "owner": "İşletme Sahibi",
     "description": "İşletme Açıklaması",
-    "address": "Adres",
+    "address": "Adres Bilgisi",
     "phoneNumber": "Telefon Numarası",
     "district": "İlçe",
-    "photos": "Fotoğraflar"
+    "photos": "Fotoğraflar",
+    "call": "Ara",
+    "find_the_place": "Yol Tarifi Al"
   },
   "campaignDetailsView": {
     "publisher": "Yayımcı (Kişi veya Kurum Adı)",

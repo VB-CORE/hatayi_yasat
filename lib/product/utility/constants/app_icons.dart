@@ -23,4 +23,5 @@ final class AppIcons {
   static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
   static const IconData phone = Icons.phone_outlined;
   static const IconData share = Icons.share_outlined;
+  static const IconData city = Icons.location_city;
 }

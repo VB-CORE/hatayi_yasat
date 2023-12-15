@@ -40,7 +40,8 @@ mixin SplashViewMixin
       }
       if (!next.isOperationStaring) {
         ProjectNavigation(context).replaceToWidget(
-            ProjectDetailView(project: RequestProjectModel.dummyData));
+          ProjectDetailView(project: RequestProjectModel.dummyData),
+        );
       }
     });
   }
