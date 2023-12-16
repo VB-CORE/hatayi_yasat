@@ -9,14 +9,12 @@ final class GeneralContentSmallTitle extends StatelessWidget {
     this.maxLine,
     super.key,
     this.textAlign,
-    this.color,
   });
 
   final String value;
   final FontWeight? fontWeight;
   final int? maxLine;
   final TextAlign? textAlign;
-  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,6 @@ final class GeneralContentSmallTitle extends StatelessWidget {
       value,
       style: context.general.textTheme.labelSmall?.copyWith(
         fontWeight: fontWeight ?? FontWeight.w500,
-        color: color,
       ),
       maxLines: maxLine,
       textAlign: textAlign,
