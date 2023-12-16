@@ -53,21 +53,9 @@ final class _BackButtonContainer extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const PagePadding.allLow(),
-      width: WidgetSizes.spacingXxl9,
-      height: WidgetSizes.spacingXxl9,
-      child: FloatingActionButton(
-        onPressed: onPressed,
-        highlightElevation: kZero,
-        elevation: kZero,
-        backgroundColor: Colors.transparent,
-        child: Icon(
-          AppIcons.leftSelect,
-          size: WidgetSizes.spacingXxl5,
-          color: context.general.colorScheme.secondary,
-        ),
-      ),
+    return BackButtonWidget(
+      onPressed: onPressed,
+      backgroundColor: Colors.transparent,
     );
   }
 }
