@@ -19,6 +19,7 @@ final class RequestProjectModel extends Equatable {
   final String publisher;
   final String phone;
   final DateTime expireDate;
+  // TODO: replace file to String for iamge url instead of file
   final File imageFile;
 
   @override
@@ -31,4 +32,15 @@ final class RequestProjectModel extends Equatable {
         imageFile,
         phone,
       ];
+
+  static RequestProjectModel dummyData = RequestProjectModel(
+    projectName: 'Yazılım Kursu',
+    projectTopic: 'Mobil Uygulama Geliştirme',
+    projectDescription:
+        'Bu kurs, mobil uygulama geliştirmeye yönelik temel bilgileri kapsar.',
+    publisher: 'ABC Eğitim Kurumu',
+    phone: '+90 123 456 78 90',
+    expireDate: DateTime.now().add(const Duration(days: 45)),
+    imageFile: File(''),
+  );
 }
