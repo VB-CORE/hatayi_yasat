@@ -15,8 +15,8 @@ final class _DevelopersWidget extends StatelessWidget {
           value: LocaleKeys.developers_title.tr(),
           fontWeight: FontWeight.bold,
         ),
-        subtitle: GeneralContentSubTitle(
-          value: LocaleKeys.settings_seeDevelopers.tr(),
+        subtitle: const GeneralContentSubTitle(
+          value: LocaleKeys.settings_seeDevelopers,
         ),
         contentPadding: const PagePadding.generalAllNormal(),
         leading: const Icon(

@@ -6,7 +6,7 @@ final class _ChangeLanguageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralExpansionTile(
-      pageTitle: LocaleKeys.settings_languageTitle.tr(),
+      pageTitle: LocaleKeys.settings_languageTitle,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
