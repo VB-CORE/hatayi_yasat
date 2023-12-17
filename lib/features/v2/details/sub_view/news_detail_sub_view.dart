@@ -81,3 +81,23 @@ final class _DateIconAndText extends StatelessWidget {
     );
   }
 }
+
+@immutable
+final class _SelectableContentText extends StatelessWidget {
+  const _SelectableContentText({
+    required this.content,
+    super.key,
+  });
+
+  final String content;
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectableText(
+      content,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+}

@@ -47,9 +47,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                     _DateIconAndText(date: news.createdAt),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
-                    GeneralBodyTitle(
-                      news.content ?? '',
-                    ),
+                    _SelectableContentText(content: news.content ?? ''),
                   ],
                 ),
               ),

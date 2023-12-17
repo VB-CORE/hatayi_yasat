@@ -29,7 +29,7 @@ final class GeneralBodyTitle extends StatelessWidget {
     return Text(
       value,
       style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: fontWeight ?? fontWeight ?? FontWeight.w600,
+        fontWeight: fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
       ),
       maxLines: maxLines,
