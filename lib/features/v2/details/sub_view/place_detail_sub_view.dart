@@ -1,4 +1,4 @@
-part of '../view/place_detail_view.dart';
+part of '../../details/view/place_detail_view.dart';
 
 @immutable
 final class _NameTitleAndCallButton extends StatelessWidget {
@@ -32,7 +32,7 @@ final class _CallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralButtonV2.async(
-      action: () async {},
+      action: action,
       label: LocaleKeys.placeDetailView_call.tr(),
       buttonPadding: const PagePadding.vertical6Symmetric(),
     );
@@ -77,12 +77,12 @@ final class _DescriptionText extends StatelessWidget {
 @immutable
 final class _ImageWithButtonAndNameStack extends StatelessWidget {
   const _ImageWithButtonAndNameStack({
-    required this.randomImage,
+    required this.image,
     required this.placeOwnerName,
     required this.backButtonAction,
   });
 
-  final String randomImage;
+  final String image;
   final String placeOwnerName;
   final AsyncCallback backButtonAction;
 
@@ -91,12 +91,12 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        _ImageSizedBox(randomImage: randomImage),
+        _ImageSizedBox(image: image),
         _BackButtonContainer(
-          onPressed: () {},
+          onPressed: backButtonAction,
         ),
         _CircleImageWithNamePositioned(
-          randomImage: randomImage,
+          image: image,
           placeOwnerName: placeOwnerName,
         ),
       ],
@@ -107,10 +107,10 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
 @immutable
 final class _ImageSizedBox extends StatelessWidget {
   const _ImageSizedBox({
-    required String randomImage,
-  }) : _randomImage = randomImage;
+    required this.image,
+  });
 
-  final String _randomImage;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ final class _ImageSizedBox extends StatelessWidget {
       width: context.sized.width,
       height: context.sized.dynamicHeight(0.3),
       child: CustomNetworkImage(
-        imageUrl: _randomImage,
+        imageUrl: image,
         fit: BoxFit.cover,
       ),
     );
@@ -143,11 +143,11 @@ final class _BackButtonContainer extends StatelessWidget {
 @immutable
 class _CircleImageWithNamePositioned extends StatelessWidget {
   const _CircleImageWithNamePositioned({
-    required this.randomImage,
+    required this.image,
     required this.placeOwnerName,
   });
 
-  final String randomImage;
+  final String image;
   final String placeOwnerName;
 
   @override
@@ -156,7 +156,7 @@ class _CircleImageWithNamePositioned extends StatelessWidget {
       bottom: -WidgetSizes.spacingM,
       left: WidgetSizes.spacingM,
       child: CircleImageWithTextContainer(
-        imageUrl: randomImage,
+        imageUrl: image,
         name: placeOwnerName,
       ),
     );

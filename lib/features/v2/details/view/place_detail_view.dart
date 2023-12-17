@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/v2/sub_feature/details/mixin/place_detail_view_mixin.dart';
+import 'package:vbaseproject/features/v2/details/mixin/place_detail_view_mixin.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
@@ -37,7 +37,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
           child: Column(
             children: [
               _ImageWithButtonAndNameStack(
-                randomImage: randomImage,
+                image: randomImage,
                 placeOwnerName: model.placeOwnerName,
                 backButtonAction: goBackAction,
               ),
