@@ -41,7 +41,7 @@ class MyApp extends ConsumerWidget with AppProviderStateMixin<MyApp> {
       theme: ApplicationTheme.build(context).themeData,
       scaffoldMessengerKey:
           ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
-      home: NewsDetailView(news: NewsModel.dummyData),
+      home: NewsDetailView(news: NewsModel()),
     );
   }
 }
