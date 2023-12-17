@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/features/v2/sub_feature/details/view/place_detail_view.dart';
+import 'package:vbaseproject/features/v2/details/view/place_detail_view.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
 
 /// PlaceDetailViewMixin has the logic for the [PlaceDetailView] widget
