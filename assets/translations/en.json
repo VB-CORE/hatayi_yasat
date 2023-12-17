@@ -73,8 +73,14 @@
   "settings": {
     "title": "Settings",
     "languageTitle": "Language",
+    "currentLanguage": "Current language",
     "themeTitle": "{} Theme",
+    "developersTitle": "Developers",
+    "seeDevelopers": "See full team",
+    "aboutTitle": "About the app",
+    "contactTitle": "Contact us",
     "versionNumberTitle": "Version Number",
+    "notificationtitle": "Notification permission",
     "notificationSetting": "Notification Settings",
     "appReviewTitle": "Rate the App",
     "themes": {

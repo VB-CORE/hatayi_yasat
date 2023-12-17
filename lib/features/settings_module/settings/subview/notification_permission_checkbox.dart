@@ -5,6 +5,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
 import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
+import 'package:vbaseproject/product/widget/general/title/general_body_title.dart';
 
 class NotificationPermissionView extends StatefulWidget {
   const NotificationPermissionView({super.key});
@@ -22,12 +23,13 @@ class _NotificationPermissionViewState extends State<NotificationPermissionView>
       builder:
           (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
         return CheckboxListTile(
+          contentPadding: EdgeInsets.zero,
           value: snapshot.data == PermissionStatus.granted ||
               snapshot.data == PermissionStatus.limited,
           onChanged: (value) {
             _controlCheckBox(value: value ?? false);
           },
-          title: const Text(LocaleKeys.settings_notificationSetting).tr(),
+          title: GeneralBodyTitle(LocaleKeys.settings_notificationSetting.tr()),
         );
       },
     );
