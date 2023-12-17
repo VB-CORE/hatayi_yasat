@@ -7,9 +7,10 @@ import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
 
 class CustomNetworkImage extends StatelessWidget {
-  const CustomNetworkImage({super.key, this.imageUrl, this.fit});
+  const CustomNetworkImage({super.key, this.imageUrl, this.fit, this.height});
   final String? imageUrl;
   final BoxFit? fit;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {
@@ -25,6 +26,7 @@ class CustomNetworkImage extends StatelessWidget {
       imageUrl: imageUrl!,
       fit: fit,
       width: context.sized.width,
+      height: height,
       placeholder: (context, url) {
         // TODO: Add shimmer for loading
         return const SizedBox.shrink();

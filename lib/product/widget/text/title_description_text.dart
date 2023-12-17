@@ -17,7 +17,7 @@ final class TitleDescription extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.general.textTheme.headlineMedium?.copyWith(
+          style: context.general.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
