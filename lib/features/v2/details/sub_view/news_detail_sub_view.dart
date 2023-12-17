@@ -59,3 +59,25 @@ final class _BackButtonContainer extends StatelessWidget {
     );
   }
 }
+
+@immutable
+final class _DateIconAndText extends StatelessWidget {
+  const _DateIconAndText({
+    required this.date,
+  });
+
+  final DateTime? date;
+
+  @override
+  Widget build(BuildContext context) {
+    if (date == null) return const SizedBox.shrink();
+
+    return IconWithText(
+      icon: AppIcons.calendar,
+      title: DateFormat.yMMMEd().format(
+        date!,
+      ),
+      color: context.general.colorScheme.primary.withOpacity(0.7),
+    );
+  }
+}

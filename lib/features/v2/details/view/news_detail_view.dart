@@ -6,7 +6,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/news_detail_view_mixin.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
@@ -44,14 +44,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                       value: news.title ?? '',
                       fontWeight: FontWeight.w900,
                     ),
-                    IconWithText(
-                      icon: AppIcons.calendar,
-                      title: DateFormat.yMMMEd().format(
-                        news.createdAt ?? DateTime.now(),
-                      ),
-                      color:
-                          context.general.colorScheme.primary.withOpacity(0.7),
-                    ),
+                    _DateIconAndText(date: news.createdAt),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
                     GeneralBodyTitle(
