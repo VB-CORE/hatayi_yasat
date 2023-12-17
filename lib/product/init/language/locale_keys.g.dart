@@ -66,14 +66,8 @@ abstract class  LocaleKeys {
   static const general = 'general';
   static const settings_title = 'settings.title';
   static const settings_languageTitle = 'settings.languageTitle';
-  static const settings_currentLanguage = 'settings.currentLanguage';
   static const settings_themeTitle = 'settings.themeTitle';
-  static const settings_developersTitle = 'settings.developersTitle';
-  static const settings_seeDevelopers = 'settings.seeDevelopers';
-  static const settings_aboutTitle = 'settings.aboutTitle';
-  static const settings_contactTitle = 'settings.contactTitle';
   static const settings_versionNumberTitle = 'settings.versionNumberTitle';
-  static const settings_notificationtitle = 'settings.notificationtitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings_appReviewTitle = 'settings.appReviewTitle';
   static const settings_themes_light = 'settings.themes.light';
@@ -212,6 +206,8 @@ abstract class  LocaleKeys {
   static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
   static const favorite_deleteDialog = 'favorite.deleteDialog';
   static const favorite = 'favorite';
+  static const favoritePlaces_title = 'favoritePlaces.title';
+  static const favoritePlaces = 'favoritePlaces';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
   static const utils_options = 'utils.options';

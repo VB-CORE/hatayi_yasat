@@ -73,14 +73,8 @@
   "settings": {
     "title": "Ayarlar",
     "languageTitle": "Dil",
-    "currentLanguage": "Mevcut dil",
     "themeTitle": "{} Tema",
-    "developersTitle": "Geliştiriciler",
-    "seeDevelopers": "Tüm takımı gör",
-    "aboutTitle": "Uygulama hakkında",
-    "contactTitle": "Bize ulaşın",
     "versionNumberTitle": "Versiyon Numarası",
-    "notificationtitle": "Bildirim",
     "notificationSetting": "Bildirim Ayarları",
     "appReviewTitle": "Uygulamayı Değerlendirin",
     "themes": {
