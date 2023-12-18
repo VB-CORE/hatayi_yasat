@@ -15,7 +15,7 @@ void main() async {
       path: initialManager.localize.initialPath,
       startLocale: initialManager.localize.startLocale,
       useOnlyLangCode: true,
-      child: const ProviderScope(child: App()),
+      child: ProviderScope(child: App()),
     ),
   );
 }

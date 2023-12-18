@@ -47,7 +47,7 @@ mixin SplashViewMixin
       }
       if (!next.isOperationStaring) {
         ProjectNavigation(context).replaceToWidget(
-          NewsDetailView(news: NewsModel.dummyData),
+          NewsDetailView(news: NewsModel()),
         );
       }
     });
