@@ -8,7 +8,6 @@ import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
-import 'package:vbaseproject/sub_feature/onboard/on_board_view.dart';
 
 mixin SplashViewMixin
     on AppProviderMixin<SplashView>, ConsumerState<SplashView> {
@@ -23,9 +22,17 @@ mixin SplashViewMixin
         productProvider: ref.read(ProductProvider.provider.notifier),
       ),
     );
+
     ref.listenManual(_homeProvider, (previous, next) async {
       if (next.isNeedToOnBoard) {
-        ProjectNavigation(context).replaceToWidget(const OnBoarView());
+        // const HomeRoute().go(context);
+
+        // HomeDetailRoute().go(context);
+        // await HomeDetailRoute().push(context);
+
+        // HomeDetailRoute($extra: PlaceRequestModel.dummyData);
+
+        // ProjectNavigation(context).replaceToWidget(const OnBoarView());
         return;
       }
       if (next.isNeedToForceUpdate) {

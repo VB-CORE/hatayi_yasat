@@ -35,9 +35,11 @@ dependencies:
 
   #core
   cached_network_image: ^3.2.3
+  go_router: ^9.0.3
+
 
   #util
-  uuid: any
+
   flutter_image_compress: ^2.0.4
   image: ^4.0.17
   google_fonts: ^6.1.0
@@ -110,6 +112,7 @@ dev_dependencies:
   very_good_analysis: ^5.1.0
   hive_generator: ^2.0.1
   riverpod_generator: ^2.3.8
+  go_router_builder: ^2.4.0
 
 flutter_gen:
   output: lib/product/generated/

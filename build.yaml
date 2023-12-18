@@ -5,6 +5,9 @@ targets:
         generate_for:
           - lib/**/*_model.dart
         options:
+      go_router_builder:go_router_builder: # this for @AutoRouterConfig
+        generate_for:
+          - lib/product/navigation/app_router.dart
       riverpod_generator:
         options:
           # Could be changed to "Pod", such that riverpod_generator
