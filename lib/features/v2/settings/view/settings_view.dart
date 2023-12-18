@@ -6,9 +6,11 @@ import 'package:vbaseproject/features/settings_module/developers/developers_view
 import 'package:vbaseproject/features/settings_module/settings/subview/notification_permission_checkbox.dart';
 import 'package:vbaseproject/features/v2/settings/model/contact_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
+import 'package:vbaseproject/product/utility/decorations/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
 import 'package:vbaseproject/product/widget/dropdown/language_dropdown_widget.dart';

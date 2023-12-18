@@ -7,15 +7,16 @@ import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
 import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
 import 'package:vbaseproject/product/widget/general/title/general_body_title.dart';
 
-class NotificationPermissionView extends StatefulWidget {
+@immutable
+final class NotificationPermissionView extends StatefulWidget {
   const NotificationPermissionView({super.key});
   @override
   State<NotificationPermissionView> createState() =>
       _NotificationPermissionViewState();
 }
 
-class _NotificationPermissionViewState extends State<NotificationPermissionView>
-    with _NotificationPermission {
+final class _NotificationPermissionViewState
+    extends State<NotificationPermissionView> with _NotificationPermission {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<PermissionStatus>(

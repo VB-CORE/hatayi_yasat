@@ -1,5 +1,6 @@
 part of '../settings_view.dart';
 
+@immutable
 final class _ContactUsWidget extends StatelessWidget {
   const _ContactUsWidget();
 
@@ -14,6 +15,7 @@ final class _ContactUsWidget extends StatelessWidget {
   }
 }
 
+@immutable
 final class _ContactUsGridView extends StatelessWidget {
   const _ContactUsGridView();
 
@@ -33,6 +35,7 @@ final class _ContactUsGridView extends StatelessWidget {
   }
 }
 
+@immutable
 final class _ContactUsCard extends StatelessWidget {
   const _ContactUsCard({required this.model});
   final ContactModel model;
@@ -62,18 +65,22 @@ final class _ContactUsCard extends StatelessWidget {
   }
 }
 
+@immutable
 final class _UserImage extends StatelessWidget {
   const _UserImage({required this.imageUrl});
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: CustomCircleRadius.large + CustomCircleRadius.small,
-      backgroundImage: NetworkImage(imageUrl),
+    return SizedBox(
+      width: WidgetSizes.spacingXxl9,
+      child: ClipOval(
+        child: CustomNetworkImage(imageUrl: imageUrl),
+      ),
     );
   }
 }
 
+@immutable
 final class _ContactTile extends StatelessWidget {
   const _ContactTile({
     required this.title,

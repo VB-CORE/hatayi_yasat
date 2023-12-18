@@ -1,5 +1,6 @@
 part of '../settings_view.dart';
 
+@immutable
 final class _AppAboutWidget extends StatelessWidget {
   const _AppAboutWidget();
 
@@ -9,15 +10,17 @@ final class _AppAboutWidget extends StatelessWidget {
       color: Colors.transparent,
       elevation: 0,
       shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: const BorderSide()),
+          .copyWith(side: CustomBorderSides.superMaxThick),
       child: ListTile(
         contentPadding: const PagePadding.generalAllNormal(),
         title: GeneralBodyTitle(
           LocaleKeys.settings_aboutTitle.tr(),
           fontWeight: FontWeight.bold,
         ),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {},
+        trailing: const Icon(AppIcons.rightSelect),
+        onTap: () {
+          // navigate to AppAboutView
+        },
       ),
     );
   }

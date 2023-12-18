@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_border_side.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 
-class GeneralExpansionTile extends StatelessWidget {
+@immutable
+final class GeneralExpansionTile extends StatelessWidget {
   const GeneralExpansionTile({
     required this.pageTitle,
     required this.children,
@@ -17,7 +19,7 @@ class GeneralExpansionTile extends StatelessWidget {
     return Card(
       color: Colors.transparent,
       shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: const BorderSide(width: 0.5)),
+          .copyWith(side: CustomBorderSides.medium),
       elevation: 0,
       child: ExpansionTile(
         shape: LinearBorder.none,

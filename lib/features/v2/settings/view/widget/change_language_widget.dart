@@ -1,5 +1,6 @@
 part of '../settings_view.dart';
 
+@immutable
 final class _ChangeLanguageWidget extends StatelessWidget {
   const _ChangeLanguageWidget();
 

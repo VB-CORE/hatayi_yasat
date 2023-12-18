@@ -1,5 +1,6 @@
 part of '../settings_view.dart';
 
+@immutable
 final class _DevelopersWidget extends StatelessWidget {
   const _DevelopersWidget();
 
@@ -9,7 +10,7 @@ final class _DevelopersWidget extends StatelessWidget {
       color: Colors.transparent,
       elevation: 0,
       shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: const BorderSide()),
+          .copyWith(side: CustomBorderSides.superMaxThick),
       child: ListTile(
         title: GeneralContentTitle(
           value: LocaleKeys.developers_title.tr(),
@@ -20,10 +21,10 @@ final class _DevelopersWidget extends StatelessWidget {
         ),
         contentPadding: const PagePadding.generalAllNormal(),
         leading: const Icon(
-          Icons.groups_2_outlined,
+          AppIcons.group,
           size: WidgetSizes.spacingXxl6,
         ),
-        trailing: const Icon(Icons.chevron_right),
+        trailing: const Icon(AppIcons.rightSelect),
         onTap: () => context.route.navigateToPage(const DevelopersView()),
       ),
     );
