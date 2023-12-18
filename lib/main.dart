@@ -3,8 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/v2/details/view/news_detail_view.dart';
+import 'package:vbaseproject/features/v2/settings/view/settings_view.dart';
 import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_init.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
@@ -41,7 +40,7 @@ class MyApp extends ConsumerWidget with AppProviderStateMixin<MyApp> {
       theme: ApplicationTheme.build(context).themeData,
       scaffoldMessengerKey:
           ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
-      home: NewsDetailView(news: NewsModel.dummyData),
+      home: const SettingsView(),
     );
   }
 }

@@ -32,7 +32,7 @@ final class PlaceRequestModel {
       name: 'Restoran',
       value: 0,
     ),
-    placeDistrict: const TownModel(
+    placeDistrict: TownModel(
       code: 0,
       name: 'Merkez',
     ),
