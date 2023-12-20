@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/place_detail_view_mixin.dart';
-import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
@@ -20,7 +20,7 @@ part '../sub_view/place_detail_sub_view.dart';
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
   const PlaceDetailView({required this.model, super.key});
-  final PlaceRequestModel model;
+  final StoreModel model;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -38,7 +38,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             children: [
               _ImageWithButtonAndNameStack(
                 image: randomImage,
-                placeOwnerName: model.placeOwnerName,
+                placeOwnerName: model.owner,
                 backButtonAction: goBackAction,
               ),
               Padding(
@@ -53,22 +53,23 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _NameTitleAndCallButton(
-                            placeName: model.placeName,
+                            placeName: model.name,
                             callAction: callAction,
                           ),
                           IconWithText(
                             icon: AppIcons.city,
-                            title: model.placeDistrict.displayName,
+                            // TODO: This value will change with 'fetchTownFromCode'
+                            title: model.townCode.toString(),
                           ),
                           context.sized.emptySizedHeightBoxNormal,
                           TitleDescription(
                             title: LocaleKeys.placeDetailView_description.tr(),
-                            description: model.placeDescription,
+                            description: model.description ?? '-',
                           ),
                           context.sized.emptySizedHeightBoxNormal,
                           TitleDescription(
                             title: LocaleKeys.placeDetailView_address.tr(),
-                            description: model.placeAddress,
+                            description: model.address ?? '-',
                           ),
                           context.sized.emptySizedHeightBoxLow,
                           context.sized.emptySizedHeightBoxLow,

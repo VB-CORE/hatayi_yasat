@@ -20,9 +20,9 @@ RouteBase get $splashRoute => GoRouteData.$route(
           factory: $HomeRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'detail',
-              name: 'Home detail',
-              factory: $HomeDetailRouteExtension._fromState,
+              path: 'place-detail',
+              name: 'Place Detail',
+              factory: $PlaceDetailRouteExtension._fromState,
             ),
           ],
         ),
@@ -63,13 +63,13 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $HomeDetailRouteExtension on HomeDetailRoute {
-  static HomeDetailRoute _fromState(GoRouterState state) => HomeDetailRoute(
-        $extra: state.extra as PlaceRequestModel,
+extension $PlaceDetailRouteExtension on PlaceDetailRoute {
+  static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
+        $extra: state.extra! as StoreModel,
       );
 
   String get location => GoRouteData.$location(
-        '/home/detail',
+        '/home/place-detail',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);
