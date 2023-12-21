@@ -3,11 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/request/project/model/request_project_model.dart';
-import 'package:vbaseproject/features/v2/details/mixin/project_detail_mixin.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/v2/details/mixin/event_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/extension/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
@@ -16,23 +17,23 @@ import 'package:vbaseproject/product/widget/general/title/general_content_small_
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
-part '../sub_view/project_detail_sub_view.dart';
+part '../sub_view/event_detail_sub_view.dart';
 
-final class ProjectDetailView extends ConsumerStatefulWidget {
-  const ProjectDetailView({
-    required this.project,
+final class EventDetailView extends ConsumerStatefulWidget {
+  const EventDetailView({
+    required this.event,
     super.key,
   });
 
-  final RequestProjectModel project;
+  final CampaignModel event;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ProjectDetailViewState();
+      _EventDetailViewState();
 }
 
-class _ProjectDetailViewState extends ConsumerState<ProjectDetailView>
-    with ProjectDetailMixin {
+class _EventDetailViewState extends ConsumerState<EventDetailView>
+    with EventDetailMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,24 +51,24 @@ class _ProjectDetailViewState extends ConsumerState<ProjectDetailView>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _CircleAvatarWithText(
-                      publisherName: projectModel.publisher,
+                      publisherName: eventModel.publisher ?? '',
                     ),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
                     GeneralSubTitle(
-                      value: projectModel.projectName,
+                      value: eventModel.name ?? '',
                       fontWeight: FontWeight.w900,
                     ),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
-                    _DateAndAddressRow(projectModel: projectModel),
+                    _DateAndAddressRow(projectModel: eventModel),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,
-                    _TitleDescription.topic(topic: projectModel.projectTopic),
+                    _TitleDescription.topic(topic: eventModel.topic ?? ''),
                     context.sized.emptySizedHeightBoxNormal,
                     _TitleDescription.description(
-                      description: projectModel.projectDescription,
+                      description: eventModel.description ?? '',
                     ),
                     context.sized.emptySizedHeightBoxNormal,
                     _JoinNowButton(onPressed: joinNowAction),

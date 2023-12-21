@@ -1,4 +1,4 @@
-part of '../view/project_detail_view.dart';
+part of '../view/event_detail_view.dart';
 
 @immutable
 final class _ImageWithBackButtonStack extends StatelessWidget {
@@ -99,7 +99,7 @@ final class _DateAndAddressRow extends StatelessWidget {
     super.key,
   });
 
-  final RequestProjectModel projectModel;
+  final CampaignModel projectModel;
 
   @override
   Widget build(BuildContext context) {
@@ -114,14 +114,14 @@ final class _DateAndAddressRow extends StatelessWidget {
         context.sized.emptySizedWidthBoxNormal,
         GeneralContentSmallTitle(
           value: LocaleKeys.campaignDetailsView_startDate.tr(
-            args: ['\n${projectModel.expireDate.getMonthName}'],
+            args: ['\n${projectModel.expireDate?.getMonthName}'],
           ),
           maxLine: AppConstants.kTwo,
         ),
         const Spacer(),
         GeneralContentSmallTitle(
           value: LocaleKeys.campaignDetailsView_time.tr(
-            args: ['\n${projectModel.expireDate.getTime}'],
+            args: ['\n${projectModel.expireDate?.getTime}'],
           ),
           maxLine: AppConstants.kTwo,
         ),

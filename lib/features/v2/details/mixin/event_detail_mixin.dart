@@ -1,14 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/features/request/project/model/request_project_model.dart';
-import 'package:vbaseproject/features/v2/details/view/project_detail_view.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/v2/details/view/event_detail_view.dart';
 
-mixin ProjectDetailMixin on ConsumerState<ProjectDetailView> {
+mixin EventDetailMixin on ConsumerState<EventDetailView> {
   // TODO: replace with parameter from constructor
-  late final RequestProjectModel projectModel;
+  late final CampaignModel eventModel;
+
   @override
   void initState() {
     super.initState();
-    projectModel = widget.project;
+    eventModel = widget.event;
   }
 
   Future<void> goBackAction() async {
