@@ -250,5 +250,8 @@
   },
   "utils": {
     "options": "{} option"
+  },
+  "sheet": {
+    "firebase_error": "We cannot reach our servers right now.Please try again later."
   }
 }

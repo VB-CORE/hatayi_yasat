@@ -65,6 +65,10 @@ class $AssetsLottieGen {
   LottieGenImage get connectionLost =>
       const LottieGenImage('assets/lottie/connection_lost.json');
 
+  /// File path: assets/lottie/firebase_error.json
+  LottieGenImage get firebaseError =>
+      const LottieGenImage('assets/lottie/firebase_error.json');
+
   /// File path: assets/lottie/not_found.json
   LottieGenImage get notFound =>
       const LottieGenImage('assets/lottie/not_found.json');
@@ -82,6 +86,7 @@ class $AssetsLottieGen {
         cityLoading,
         cityLoadingBetter,
         connectionLost,
+        firebaseError,
         notFound,
         search,
         success

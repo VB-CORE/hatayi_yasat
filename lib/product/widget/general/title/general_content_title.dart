@@ -7,13 +7,14 @@ final class GeneralContentTitle extends StatelessWidget {
     required this.value,
     this.fontWeight,
     this.maxLine,
+    this.textAlign,
     super.key,
   });
 
   final String value;
   final FontWeight? fontWeight;
   final int? maxLine;
-
+  final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -21,6 +22,7 @@ final class GeneralContentTitle extends StatelessWidget {
       style: context.general.textTheme.titleLarge?.copyWith(
         fontWeight: fontWeight ?? FontWeight.w500,
       ),
+      textAlign: textAlign,
       maxLines: maxLine,
       overflow: TextOverflow.ellipsis,
     );

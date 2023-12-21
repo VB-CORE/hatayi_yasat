@@ -7,13 +7,14 @@ import 'package:vbaseproject/features/v2/details/view/news_detail_view.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:vbaseproject/product/widget/bottom_sheet/firebase_error_bottom_sheet.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 import 'package:vbaseproject/sub_feature/onboard/on_board_view.dart';
 
 mixin SplashViewMixin
     on AppProviderMixin<SplashView>, ConsumerState<SplashView> {
   late final StateNotifierProvider<SplashViewModel, SplashState> _homeProvider;
-
+  final bool _hasFirebaseError = false;
   @override
   void initState() {
     super.initState();
@@ -24,18 +25,22 @@ mixin SplashViewMixin
       ),
     );
     ref.listenManual(_homeProvider, (previous, next) async {
-      if (next.isNeedToOnBoard) {
-        ProjectNavigation(context).replaceToWidget(const OnBoarView());
-        return;
-      }
-      if (next.isNeedToForceUpdate) {
-        return;
-      }
       if (!next.isConnectedToInternet) {
         final response =
             (await NotConnectedToInternetDialog.show(context)) ?? false;
         if (!response) return;
         await ref.read(_homeProvider.notifier).refresh();
+        return;
+      }
+      if (next.isNeedToForceUpdate) {
+        return;
+      }
+      if (_hasFirebaseError) {
+        await FirebaseErrorBottomSheet.show(context);
+        return;
+      }
+      if (next.isNeedToOnBoard) {
+        ProjectNavigation(context).replaceToWidget(const OnBoardView());
         return;
       }
       if (!next.isOperationStaring) {

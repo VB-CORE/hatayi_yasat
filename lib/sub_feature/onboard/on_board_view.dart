@@ -7,13 +7,13 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 
-class OnBoarView extends StatefulWidget {
-  const OnBoarView({super.key});
+class OnBoardView extends StatefulWidget {
+  const OnBoardView({super.key});
   @override
-  State<OnBoarView> createState() => _OnBoarViewState();
+  State<OnBoardView> createState() => _OnBoardViewState();
 }
 
-class _OnBoarViewState extends State<OnBoarView> {
+class _OnBoardViewState extends State<OnBoardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

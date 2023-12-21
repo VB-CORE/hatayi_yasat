@@ -250,5 +250,8 @@
   },
   "utils": {
     "options": "{} seçenek"
+  },
+  "sheet": {
+    "firebase_error": "Şu anda sunucularımıza ulaşamıyoruz. Lütfen daha sonra tekrar deneyin."
   }
 }
