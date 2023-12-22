@@ -7,6 +7,15 @@ final class _EventGridBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dummyData = CampaignModel(
+      name: 'Test Event',
+      topic: 'Buluşma',
+      description: 'Test açıklama',
+      publisher: 'User',
+      expireDate: DateTime.now(),
+      photo:
+          'https://fastly.picsum.photos/id/420/720/720.jpg?hmac=9le6YkBe6BgtPkTUQHVTCbw1X6hb4MeRkiVlS04cT7k',
+    );
     return GridView.builder(
       padding: const PagePadding.onlyTopMedium(),
       itemCount: 10,
@@ -20,7 +29,7 @@ final class _EventGridBuilder extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return EventCard(
           onTap: () {},
-          campaignModel: CampaignEmptyModel.empty,
+          campaignModel: dummyData,
         );
       },
     );

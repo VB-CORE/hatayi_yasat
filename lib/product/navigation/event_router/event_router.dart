@@ -8,7 +8,7 @@ final class EventRoute extends GoRouteData {
   const EventRoute();
 
   static const route = TypedGoRoute<EventRoute>(
-    path: '/event',
+    path: 'event',
     name: 'Events',
     routes: [
       EventDetailsRoute.route,

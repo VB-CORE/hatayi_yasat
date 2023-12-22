@@ -37,7 +37,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
           child: Column(
             children: [
               _ImageWithButtonAndNameStack(
-                image: randomImage,
+                image: model.images.first,
                 placeOwnerName: model.owner,
                 backButtonAction: goBackAction,
               ),
