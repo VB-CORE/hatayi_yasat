@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
-import 'package:vbaseproject/features/v2/details/view/news_detail_view.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/navigation/main_tab_router/main_tab_router.dart';
+import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
@@ -25,14 +25,9 @@ mixin SplashViewMixin
 
     ref.listenManual(_homeProvider, (previous, next) async {
       if (next.isNeedToOnBoard) {
-        // const HomeRoute().go(context);
-
-        // HomeDetailRoute().go(context);
+        const OnboardRoute().go(context);
         // await HomeDetailRoute().push(context);
-
         // HomeDetailRoute($extra: PlaceRequestModel.dummyData);
-
-        // ProjectNavigation(context).replaceToWidget(const OnBoarView());
         return;
       }
       if (next.isNeedToForceUpdate) {
@@ -46,9 +41,7 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
-        ProjectNavigation(context).replaceToWidget(
-          NewsDetailView(news: NewsModel()),
-        );
+        const MainTabRoute().go(context);
       }
     });
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/campaign_module/campaigns/model/campaing_empty_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/custom_popup_menu_app_bar.dart';
 import 'package:vbaseproject/product/widget/card/event_card.dart';

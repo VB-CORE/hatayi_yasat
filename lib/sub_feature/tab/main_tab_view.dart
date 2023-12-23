@@ -1,12 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/widget/appbar/main_appbar.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:vbaseproject/product/widget/speed_dial/custom_speed_dial_child.dart';
@@ -39,7 +36,6 @@ class _MainTabViewState extends ConsumerState<MainTabView>
       child: Scaffold(
         extendBody: true,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        appBar: MainAppBar(context: context),
         body: _BodyTabBarViewWidget(tabItems: _tabItems),
         bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
         floatingActionButton: _SpeedDialFabWidget(dialItems: _speedDialItems),
@@ -76,15 +72,13 @@ class _BottomAppBarWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       notchMargin: WidgetSizes.spacingXs,
       shape: const CircularNotchedRectangle(),
+      color: context.general.colorScheme.secondary,
       child: TabBar(
+        padding: EdgeInsets.zero,
         dividerColor: ColorsCustom.transparent,
-        labelStyle: context.general.textTheme.labelMedium
-            ?.copyWith(fontWeight: FontWeight.bold),
         tabs: tabItems
             .map(
               (e) => Tab(
-                iconMargin: const PagePadding.onlyBottomVeryLow(),
-                text: e.title.tr(),
                 icon: e.icon,
               ),
             )

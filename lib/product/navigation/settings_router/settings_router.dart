@@ -6,7 +6,7 @@ final class SettingsRoute extends GoRouteData {
   const SettingsRoute();
 
   static const route = TypedGoRoute<SettingsRoute>(
-    path: '/settings',
+    path: 'settings',
     name: 'Settings',
     routes: [
       DevelopersRoute.route,
@@ -35,7 +35,7 @@ final class ApplicationInformationRoute extends GoRouteData {
   const ApplicationInformationRoute();
 
   static const route = TypedGoRoute<ApplicationInformationRoute>(
-    path: 'app-info',
+    path: 'appInfo',
     name: 'Application Information',
   );
 

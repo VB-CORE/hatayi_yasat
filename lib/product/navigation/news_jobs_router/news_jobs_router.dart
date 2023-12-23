@@ -7,7 +7,7 @@ import 'package:vbaseproject/features/v2/news_jobs/view/news_jobs_view.dart';
 final class NewsJobsRoute extends GoRouteData {
   const NewsJobsRoute();
   static const route = TypedGoRoute<NewsJobsRoute>(
-    path: '/news-jobs',
+    path: 'newsJobs',
     name: 'News and Jobs',
     routes: [
       NewsDetailRoute.route,
@@ -23,7 +23,7 @@ final class NewsDetailRoute extends GoRouteData {
   NewsDetailRoute({required this.$extra});
 
   static const route = TypedGoRoute<NewsDetailRoute>(
-    path: 'news-detail',
+    path: 'detail',
     name: 'News Details',
   );
 
