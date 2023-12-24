@@ -3,7 +3,6 @@ import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
-import 'package:vbaseproject/product/navigation/main_tab_router/main_tab_router.dart';
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';

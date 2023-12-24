@@ -10,6 +10,7 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
+      scaffoldBackgroundColor: ColorsCustom.white,
       cardTheme: const CardTheme(
         elevation: 2,
         color: ColorsCustom.white,
@@ -18,6 +19,7 @@ final class ApplicationTheme {
         ),
       ),
       appBarTheme: AppBarTheme(
+        scrolledUnderElevation: 0,
         foregroundColor: ColorsCustom.white,
         backgroundColor: ColorsCustom.white,
         titleTextStyle: textTheme.titleLarge?.copyWith(),

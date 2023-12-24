@@ -8,6 +8,7 @@ part of 'app_router.dart';
 
 List<RouteBase> get $appRoutes => [
       $splashRoute,
+      $mainTabRoute,
     ];
 
 RouteBase get $splashRoute => GoRouteData.$route(
@@ -18,43 +19,6 @@ RouteBase get $splashRoute => GoRouteData.$route(
           path: 'onboard',
           name: 'Onboard',
           factory: $OnboardRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'favorite',
-          name: 'Favorite',
-          factory: $FavoriteRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'specialAgency',
-          name: 'Special Agency',
-          factory: $SpecialAgencyRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'placeDetail',
-          name: 'Place Detail',
-          factory: $PlaceDetailRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'mainTab',
-          name: 'Main Tabs',
-          factory: $MainTabRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'developers',
-          name: 'Developers',
-          factory: $DevelopersRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'newsJobs',
-          name: 'News and Jobs',
-          factory: $NewsJobsRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'detail',
-              name: 'News Details',
-              factory: $NewsDetailRouteExtension._fromState,
-            ),
-          ],
         ),
       ],
     );
@@ -93,11 +57,67 @@ extension $OnboardRouteExtension on OnboardRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $mainTabRoute => GoRouteData.$route(
+      path: '/main',
+      factory: $MainTabRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'favorite',
+          name: 'Favorite',
+          factory: $FavoriteRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'specialAgency',
+          name: 'Special Agency',
+          factory: $SpecialAgencyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'placeDetail',
+          name: 'Place Detail',
+          factory: $PlaceDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'developers',
+          name: 'Developers',
+          factory: $DevelopersRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'newsJobs',
+          name: 'News and Jobs',
+          factory: $NewsJobsRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'detail',
+              name: 'News Details',
+              factory: $NewsDetailRouteExtension._fromState,
+            ),
+          ],
+        ),
+      ],
+    );
+
+extension $MainTabRouteExtension on MainTabRoute {
+  static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
+
+  String get location => GoRouteData.$location(
+        '/main',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $FavoriteRouteExtension on FavoriteRoute {
   static FavoriteRoute _fromState(GoRouterState state) => const FavoriteRoute();
 
   String get location => GoRouteData.$location(
-        '/favorite',
+        '/main/favorite',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -115,7 +135,7 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
       const SpecialAgencyRoute();
 
   String get location => GoRouteData.$location(
-        '/specialAgency',
+        '/main/specialAgency',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -130,11 +150,11 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
 
 extension $PlaceDetailRouteExtension on PlaceDetailRoute {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
-        $extra: state.extra! as StoreModel,
+        $extra: state.extra as StoreModel,
       );
 
   String get location => GoRouteData.$location(
-        '/placeDetail',
+        '/main/placeDetail',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);
@@ -149,29 +169,12 @@ extension $PlaceDetailRouteExtension on PlaceDetailRoute {
       context.replace(location, extra: $extra);
 }
 
-extension $MainTabRouteExtension on MainTabRoute {
-  static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
-
-  String get location => GoRouteData.$location(
-        '/mainTab',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
 extension $DevelopersRouteExtension on DevelopersRoute {
   static DevelopersRoute _fromState(GoRouterState state) =>
       const DevelopersRoute();
 
   String get location => GoRouteData.$location(
-        '/developers',
+        '/main/developers',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -188,7 +191,7 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
   static NewsJobsRoute _fromState(GoRouterState state) => const NewsJobsRoute();
 
   String get location => GoRouteData.$location(
-        '/newsJobs',
+        '/main/newsJobs',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -203,11 +206,11 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
 
 extension $NewsDetailRouteExtension on NewsDetailRoute {
   static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
-        $extra: state.extra! as NewsModel,
+        $extra: state.extra as NewsModel,
       );
 
   String get location => GoRouteData.$location(
-        '/newsJobs/detail',
+        '/main/newsJobs/detail',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

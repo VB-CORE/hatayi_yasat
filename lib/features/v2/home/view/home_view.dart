@@ -8,7 +8,6 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/appbar/custom_popup_menu_app_bar.dart';
 import 'package:vbaseproject/product/widget/card/general_place_card.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
@@ -29,11 +28,11 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: CustomPopupMenuAppbar(context: context),
       body: Padding(
         padding: const PagePadding.onlyTopLow(),
         child: CustomScrollView(
           controller: customScrollController,
+          physics: const ClampingScrollPhysics(),
           slivers: [
             _HomeSearchField(onChanged: () {}),
             ClickableSubTitleText(
