@@ -11,6 +11,16 @@ final class ApplicationTheme {
 
     themeData = theme.copyWith(
       scaffoldBackgroundColor: ColorsCustom.white,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: ColorsCustom.sambacus,
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: ColorsCustom.sambacus,
+          surfaceTintColor: ColorsCustom.sambacus,
+        ),
+      ),
+
       cardTheme: const CardTheme(
         elevation: 2,
         color: ColorsCustom.white,
@@ -34,6 +44,7 @@ final class ApplicationTheme {
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,
         onPrimaryContainer: ColorsCustom.lightGray,
+        error: ColorsCustom.imperilRead,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

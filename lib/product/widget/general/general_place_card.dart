@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:uuid/uuid.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/constants/app_icons.dart';
-import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
+import 'package:vbaseproject/product/utility/decorations/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
-class GeneralPlaceCard extends StatelessWidget {
+final class GeneralPlaceCard extends StatelessWidget {
   const GeneralPlaceCard({
     required this.onCardTap,
+    required this.storeModel,
     this.onBookmarkIconTap,
     super.key,
   });
 
   final VoidCallback onCardTap;
   final VoidCallback? onBookmarkIconTap;
-
-  //  TODO: Static variables will be updated with real model properties.
-
-  static const _defaultImage =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCL7KhxLAe5VjNc-IsT8-N-6fCpXP32oHAcYqL7LoXF5Dp1-A8AyUyjto109DZ_dMsSc&usqp=CAU';
+  final StoreModel storeModel;
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +28,16 @@ class GeneralPlaceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _Image(imageUrl: _defaultImage, id: const Uuid().v4()),
+          _Image(
+            imageUrl: storeModel.images.firstOrNull,
+          ),
           const VerticalSpace.xSmall(),
           _TitleRow(
-            name: 'Test Place 1',
-            isPlaceSaved: false,
+            model: storeModel,
             onSavePlaceTap: onBookmarkIconTap,
           ),
-          const _Description(
-            description:
-                'Even during a disaster, an emergency shelter provides a safe place for people affected by the corona',
+          _Description(
+            description: storeModel.description,
           ),
         ],
       ),
@@ -50,21 +48,22 @@ class GeneralPlaceCard extends StatelessWidget {
 final class _Image extends StatelessWidget {
   const _Image({
     required this.imageUrl,
-    required this.id,
   });
 
-  final String imageUrl;
-  final String id;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: context.sized.dynamicHeight(.24),
-      child: Hero(
-        tag: Key(id),
-        child: CustomNetworkImage(
-          imageUrl: imageUrl,
-          fit: BoxFit.cover,
+    return ClipRRect(
+      borderRadius: CustomRadius.medium,
+      child: SizedBox(
+        height: context.sized.dynamicHeight(.25),
+        child: Hero(
+          tag: imageUrl ?? '',
+          child: CustomNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -73,13 +72,11 @@ final class _Image extends StatelessWidget {
 
 final class _TitleRow extends StatelessWidget {
   const _TitleRow({
-    required this.name,
-    required this.isPlaceSaved,
+    required this.model,
     this.onSavePlaceTap,
   });
 
-  final String name;
-  final bool isPlaceSaved;
+  final StoreModel model;
   final VoidCallback? onSavePlaceTap;
 
   @override
@@ -89,38 +86,13 @@ final class _TitleRow extends StatelessWidget {
       children: [
         Expanded(
           child: GeneralContentTitle(
-            value: name,
+            value: model.name,
             fontWeight: FontWeight.bold,
-            maxLine: 2,
+            maxLine: TextFieldMaxLengths.maxLineForText,
           ),
         ),
-        _BookmarkButton(
-          isPlaceSaved: isPlaceSaved,
-          onSavePlaceTap: onSavePlaceTap,
-        ),
+        FavoritePlaceButton(store: model),
       ],
-    );
-  }
-}
-
-final class _BookmarkButton extends StatelessWidget {
-  const _BookmarkButton({
-    required this.isPlaceSaved,
-    required this.onSavePlaceTap,
-  });
-
-  final bool isPlaceSaved;
-  final VoidCallback? onSavePlaceTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onSavePlaceTap,
-      padding: EdgeInsets.zero,
-      style: CustomButtonStyle.shrinkWrap,
-      icon: Icon(
-        isPlaceSaved ? AppIcons.bookmark : AppIcons.bookmarkDefault,
-      ),
     );
   }
 }

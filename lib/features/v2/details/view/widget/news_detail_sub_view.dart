@@ -1,4 +1,4 @@
-part of '../view/news_detail_view.dart';
+part of '../news_detail_view.dart';
 
 @immutable
 final class _ImageWithButtonAndNameStack extends StatelessWidget {

@@ -8,15 +8,18 @@ import 'package:vbaseproject/features/v2/details/mixin/place_detail_view_mixin.d
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
+import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/container/circle_image_with_text_container.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
-part '../sub_view/place_detail_sub_view.dart';
+part 'widget/place_detail_sub_view.dart';
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
   const PlaceDetailView({required this.model, super.key});
@@ -32,57 +35,68 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _ImageWithButtonAndNameStack(
-                image: model.images.first,
-                placeOwnerName: model.owner,
-                backButtonAction: goBackAction,
-              ),
-              Padding(
-                padding: const PagePadding.defaultPadding(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    context.sized.emptySizedHeightBoxNormal,
-                    Padding(
-                      padding: EdgeInsets.zero,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _NameTitleAndCallButton(
-                            placeName: model.name,
-                            callAction: callAction,
-                          ),
-                          IconWithText(
-                            icon: AppIcons.city,
-                            // TODO: This value will change with 'fetchTownFromCode'
-                            title: model.townCode.toString(),
-                          ),
-                          context.sized.emptySizedHeightBoxNormal,
-                          TitleDescription(
-                            title: LocaleKeys.placeDetailView_description.tr(),
-                            description: model.description ?? '-',
-                          ),
-                          context.sized.emptySizedHeightBoxNormal,
-                          TitleDescription(
-                            title: LocaleKeys.placeDetailView_address.tr(),
-                            description: model.address ?? '-',
-                          ),
-                          context.sized.emptySizedHeightBoxLow,
-                          context.sized.emptySizedHeightBoxLow,
-                          _FindThePlaceButton(action: findThePlaceAction),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: context.general.colorScheme.primary,
         ),
+        leading: const CloseButton(),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: Icon(
+              AppIcons.share,
+              color: context.general.colorScheme.primary,
+            ),
+          ),
+          Padding(
+            padding: const PagePadding.onlyRightLow(),
+            child: FavoritePlaceButton(store: model),
+          ),
+        ],
+      ),
+      bottomNavigationBar: _FindThePlaceButton(action: findThePlaceAction),
+      body: ListView(
+        children: [
+          _ImageWithButtonAndNameStack(
+            image: model.images.first,
+            placeOwnerName: model.owner,
+            backButtonAction: goBackAction,
+          ),
+          Padding(
+            padding: const PagePadding.defaultPadding(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const EmptyBox.largeHeight(),
+                Padding(
+                  padding: EdgeInsets.zero,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _NameTitleAndCallButton(
+                        placeName: model.name,
+                        callAction: callAction,
+                      ),
+                      _TownIcon(townCode: model.townCode),
+                      context.sized.emptySizedHeightBoxNormal,
+                      TitleDescription(
+                        title: LocaleKeys.placeDetailView_description.tr(),
+                        description: model.description ?? '-',
+                      ),
+                      context.sized.emptySizedHeightBoxNormal,
+                      TitleDescription(
+                        title: LocaleKeys.placeDetailView_address.tr(),
+                        description: model.address ?? '-',
+                      ),
+                      context.sized.emptySizedHeightBoxLow,
+                      context.sized.emptySizedHeightBoxLow,
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

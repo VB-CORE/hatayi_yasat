@@ -19,7 +19,7 @@ class CustomSpeedDial extends StatelessWidget {
         context.sized.dynamicWidth(0.6),
         context.sized.dynamicHeight(0.1),
       ),
-      backgroundColor: context.general.colorScheme.primary,
+      backgroundColor: context.general.colorScheme.secondary,
       icon: AppIcons.add,
       activeIcon: AppIcons.close,
       overlayColor: context.general.colorScheme.primary,

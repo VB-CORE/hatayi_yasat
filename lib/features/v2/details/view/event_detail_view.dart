@@ -17,7 +17,7 @@ import 'package:vbaseproject/product/widget/general/title/general_content_small_
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
-part '../sub_view/event_detail_sub_view.dart';
+part 'widget/event_detail_sub_view.dart';
 
 final class EventDetailView extends ConsumerStatefulWidget {
   const EventDetailView({

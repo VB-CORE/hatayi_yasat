@@ -48,6 +48,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         appBar: _MainAppBar(context: context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: _BodyTabBarViewWidget(tabItems: _tabItems),
+        resizeToAvoidBottomInset: false,
         bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
         floatingActionButton: _SpeedDialFabWidget(dialItems: _speedDialItems),
       ),

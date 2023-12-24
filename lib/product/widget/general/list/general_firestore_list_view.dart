@@ -7,21 +7,29 @@ import 'package:vbaseproject/product/package/shimmer/general_shimmer.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_shimmer_height.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
+typedef FireStoregeneralBuilder<T> = Widget Function(
+  BuildContext context,
+  T model,
+);
+
 @immutable
 final class GeneralFirestoreListView<T> extends StatelessWidget {
   const GeneralFirestoreListView({
     required this.query,
     required this.itemBuilder,
     required this.onRetry,
+    this.shrinkWrap = false,
     super.key,
   });
+
+  final bool shrinkWrap;
 
   /// That's firebase query for any child
   /// Example: newsCollection _customService.collectionReference(CollectionPaths.news,NewsModel());
   final Query<T?> query;
 
   /// That's builder for any child
-  final Widget Function(BuildContext context, T model) itemBuilder;
+  final FireStoregeneralBuilder<T> itemBuilder;
 
   /// When data is fetching is fail and you want to retry it you can use this callback
   final VoidCallback onRetry;
@@ -30,6 +38,8 @@ final class GeneralFirestoreListView<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return FirestoreListView<T?>(
       query: query,
+      shrinkWrap: shrinkWrap,
+      physics: const ClampingScrollPhysics(),
       loadingBuilder: (_) =>
           const GeneralShimmer(height: CustomShimmerHeight.small),
       emptyBuilder: (_) => NotFoundLottie(

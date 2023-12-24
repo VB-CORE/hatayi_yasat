@@ -12,7 +12,7 @@ import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
 
-part '../sub_view/news_detail_sub_view.dart';
+part 'widget/news_detail_sub_view.dart';
 
 final class NewsDetailView extends ConsumerStatefulWidget {
   const NewsDetailView({required this.news, super.key});

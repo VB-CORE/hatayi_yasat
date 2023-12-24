@@ -1,4 +1,4 @@
-part of '../../details/view/place_detail_view.dart';
+part of '../place_detail_view.dart';
 
 @immutable
 final class _NameTitleAndCallButton extends StatelessWidget {
@@ -12,11 +12,15 @@ final class _NameTitleAndCallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        GeneralContentTitle(
-          value: placeName,
-          fontWeight: FontWeight.bold,
+        Flexible(
+          child: GeneralContentTitle(
+            value: placeName,
+            fontWeight: FontWeight.bold,
+            maxLine: 3,
+          ),
         ),
         _CallButton(action: callAction),
       ],
@@ -49,27 +53,41 @@ final class _FindThePlaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralButtonV2.async(
-      action: action,
-      label: LocaleKeys.placeDetailView_find_the_place.tr(),
+    return UnconstrainedBox(
+      constrainedAxis: Axis.horizontal,
+      child: SafeArea(
+        child: Padding(
+          padding: const PagePadding.horizontalSymmetric(),
+          child: GeneralButtonV2.async(
+            action: action,
+            label: LocaleKeys.placeDetailView_find_the_place.tr(),
+          ),
+        ),
+      ),
     );
   }
 }
 
 @immutable
-final class _DescriptionText extends StatelessWidget {
-  const _DescriptionText({
-    required this.text,
+final class _TownIcon extends ConsumerWidget {
+  const _TownIcon({
+    required this.townCode,
   });
 
-  final String text;
+  final int townCode;
 
   @override
-  Widget build(BuildContext context) {
-    return GeneralContentSubTitle(
-      value: text,
-      maxLine: 5,
-      fontWeight: FontWeight.w500,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final town = ref
+        .watch(ProductProvider.provider.notifier)
+        .fetchTownFromCode(townCode);
+
+    if (town.isEmpty) {
+      return const EmptyBox();
+    }
+    return IconWithText(
+      icon: AppIcons.city,
+      title: town,
     );
   }
 }
@@ -92,9 +110,6 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         _ImageSizedBox(image: image),
-        _BackButtonContainer(
-          onPressed: backButtonAction,
-        ),
         _CircleImageWithNamePositioned(
           image: image,
           placeOwnerName: placeOwnerName,
@@ -114,12 +129,15 @@ final class _ImageSizedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.sized.width,
-      height: context.sized.dynamicHeight(0.3),
-      child: CustomNetworkImage(
-        imageUrl: image,
-        fit: BoxFit.cover,
+    return Hero(
+      tag: image,
+      child: SizedBox(
+        width: context.sized.width,
+        height: context.sized.dynamicHeight(0.3),
+        child: CustomNetworkImage(
+          imageUrl: image,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

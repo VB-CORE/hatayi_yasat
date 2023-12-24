@@ -2,14 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/v2/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/v2/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/card/general_place_card.dart';
+import 'package:vbaseproject/product/widget/general/general_place_card.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/general/list/general_firestore_list_sliver_view.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
@@ -28,28 +31,29 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      body: Padding(
-        padding: const PagePadding.onlyTopLow(),
-        child: CustomScrollView(
-          controller: customScrollController,
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            _HomeSearchField(onChanged: () {}),
-            ClickableSubTitleText(
-              title: LocaleKeys.home_categories.tr(),
-              onTap: () {},
+      body: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          _HomeSearchField(onChanged: () {}),
+          ClickableSubTitleText(
+            title: LocaleKeys.home_categories.tr(),
+            onTap: () {},
+          ).ext.sliver,
+          const SliverPadding(
+            padding: PagePadding.vertical6Symmetric(),
+            sliver: _HomeCategoryCards(),
+          ),
+          SliverPadding(
+            padding: const PagePadding.onlyBottom(),
+            sliver: GeneralSubTitle(
+              value: LocaleKeys.home_places.tr(),
+              fontWeight: FontWeight.bold,
             ).ext.sliver,
-            const _HomeCategoryCards().ext.sliver,
-            SliverPadding(
-              padding: const PagePadding.vertical8Symmetric(),
-              sliver: GeneralSubTitle(
-                value: LocaleKeys.home_places.tr(),
-                fontWeight: FontWeight.bold,
-              ).ext.sliver,
-            ),
-            const _HomePlacesArea(),
-          ],
-        ),
+          ),
+          const _HomePlacesArea(),
+          const EmptyBox.largeXHeight().ext.sliver,
+        ],
       ),
     );
   }

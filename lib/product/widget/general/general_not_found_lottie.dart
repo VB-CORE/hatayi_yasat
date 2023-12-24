@@ -6,8 +6,8 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
-final class NotFoundLottie extends StatelessWidget {
-  const NotFoundLottie({
+final class GeneralNotFoundLottie extends StatelessWidget {
+  const GeneralNotFoundLottie({
     required this.title,
     required this.onRefresh,
     super.key,
@@ -26,7 +26,9 @@ final class NotFoundLottie extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.lottie.notFound.lottie(),
+            //todo last check
+            Assets.lottie.betterNotFound.lottie(),
+
             const SizedBox(height: WidgetSizes.spacingL),
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,

@@ -1,4 +1,4 @@
-part of '../view/event_detail_view.dart';
+part of '../event_detail_view.dart';
 
 @immutable
 final class _ImageWithBackButtonStack extends StatelessWidget {
