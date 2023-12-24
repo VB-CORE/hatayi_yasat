@@ -26,12 +26,13 @@ class _BottomAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(WidgetSizes.spacingL),
+      borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
       child: BottomAppBar(
         height: WidgetSizes.spacingXxl8,
         padding: EdgeInsets.zero,
         notchMargin: WidgetSizes.spacingXs,
         shape: const CircularNotchedRectangle(),
+        elevation: 0,
         child: TabBar(
           padding: EdgeInsets.zero,
           dividerColor: ColorsCustom.transparent,
