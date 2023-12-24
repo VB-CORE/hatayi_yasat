@@ -6,10 +6,10 @@ final class GeneralCheckBox extends StatefulWidget {
   const GeneralCheckBox({
     required this.onUpdate,
     required this.title,
-    this.initialValue = false,
+    this.value = false,
     super.key,
   });
-  final bool initialValue;
+  final bool value;
   final ValueChanged<bool> onUpdate;
   final String title;
   @override
@@ -17,11 +17,18 @@ final class GeneralCheckBox extends StatefulWidget {
 }
 
 class _GeneralCheckBoxState extends State<GeneralCheckBox> {
-  late bool _value;
+  bool _value = false;
+
   @override
-  void initState() {
-    super.initState();
-    _value = widget.initialValue;
+  void didUpdateWidget(covariant GeneralCheckBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value != _value) {
+      Future.microtask(() {
+        setState(() {
+          _value = widget.value;
+        });
+      });
+    }
   }
 
   void _updateCheckBoxValue(bool value) {

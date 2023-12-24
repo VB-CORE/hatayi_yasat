@@ -93,6 +93,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
             ),
           ],
         ),
+        GoRouteData.$route(
+          path: 'filter',
+          name: 'Filter',
+          factory: $FilterRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -223,4 +228,21 @@ extension $NewsDetailRouteExtension on NewsDetailRoute {
 
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
+}
+
+extension $FilterRouteExtension on FilterRoute {
+  static FilterRoute _fromState(GoRouterState state) => const FilterRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/filter',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }

@@ -5,6 +5,15 @@ mixin MultipleSelectButtonMixin on State<MultipleSelectButton> {
   final ValueNotifier<List<MultipleSelectItem>> selectedItemsNotifier =
       ValueNotifier([]);
 
+  @override
+  void didUpdateWidget(covariant MultipleSelectButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (selectedItemsNotifier.value != widget.selectedItems) {
+      selectedItemsNotifier.value = widget.selectedItems;
+    }
+  }
+
   /// Core items
   late final List<MultipleSelectItem> items;
 

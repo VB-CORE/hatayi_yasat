@@ -17,10 +17,8 @@ final class ApplicationTheme {
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
           foregroundColor: ColorsCustom.sambacus,
-          surfaceTintColor: ColorsCustom.sambacus,
         ),
       ),
-
       cardTheme: const CardTheme(
         elevation: 2,
         color: ColorsCustom.white,
@@ -34,7 +32,7 @@ final class ApplicationTheme {
         backgroundColor: ColorsCustom.white,
         titleTextStyle: textTheme.titleLarge?.copyWith(),
         iconTheme: const IconThemeData(
-          color: ColorsCustom.white,
+          color: ColorsCustom.sambacus,
         ),
       ),
       textTheme: GoogleFonts.montserratTextTheme(textTheme).apply(
@@ -56,8 +54,6 @@ final class ApplicationTheme {
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.black,
       ),
-      // TODO:Burak Dialog background color is not working
-      dialogBackgroundColor: ColorsCustom.white,
       snackBarTheme: SnackBarThemeData(
         backgroundColor: ColorsCustom.black,
         contentTextStyle: context.general.textTheme.bodyMedium?.copyWith(

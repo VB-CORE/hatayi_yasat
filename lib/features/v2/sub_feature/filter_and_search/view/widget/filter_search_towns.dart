@@ -5,11 +5,13 @@ final class _FilterSearchTowns extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final towns = ref.read(ProductProvider.provider).townItemsWithAll;
+    final towns = ref.read(ProductProvider.provider).townItems;
+    final selectedItems = ref.watch(filterWithSearchProvider).selectedTowns;
     return ListView.builder(
       itemCount: towns.length,
       itemBuilder: (BuildContext context, int index) {
         return GeneralCheckBox(
+          value: selectedItems.contains(towns[index]),
           title: towns[index].displayName,
           onUpdate: (value) {
             ref

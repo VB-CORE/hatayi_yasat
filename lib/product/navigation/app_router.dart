@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/v2/details/view/place_detail_view.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
@@ -33,6 +34,7 @@ final class SplashRoute extends GoRouteData {
     PlaceDetailRoute.route,
     DevelopersRoute.route,
     NewsJobsRoute.route,
+    FilterRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData {
@@ -57,4 +59,17 @@ final class PlaceDetailRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       PlaceDetailView(model: $extra);
+}
+
+final class FilterRoute extends GoRouteData {
+  const FilterRoute();
+
+  static const route = TypedGoRoute<FilterRoute>(
+    path: 'filter',
+    name: 'Filter',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const FilterSearchView();
 }

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/v2/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/v2/home/view/mixin/home_view_mixin.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
@@ -38,7 +39,12 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
           _HomeSearchField(onChanged: () {}),
           ClickableSubTitleText(
             title: LocaleKeys.home_categories.tr(),
-            onTap: () {},
+            onTap: () async {
+              final result =
+                  await const FilterRoute().push<FilterSelected?>(context);
+              if (result == null) return;
+              print(result);
+            },
           ).ext.sliver,
           const SliverPadding(
             padding: PagePadding.vertical6Symmetric(),

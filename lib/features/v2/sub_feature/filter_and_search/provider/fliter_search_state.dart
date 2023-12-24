@@ -14,6 +14,9 @@ final class FilterSearchState extends Equatable {
         selectedTowns,
       ];
 
+  int get selectedItemsCount =>
+      selectedCategories.length + selectedTowns.length;
+
   final List<MultipleSelectItem> selectedCategories;
   final List<TownModel> selectedTowns;
 

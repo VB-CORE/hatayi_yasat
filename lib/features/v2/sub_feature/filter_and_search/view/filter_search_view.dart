@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kartal/kartal.dart' show ContextExtension;
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/provider/filter_search_provider.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
@@ -34,7 +37,7 @@ class _FilterSearchViewState extends ConsumerState<FilterSearchView> {
       appBar: AppBar(
         centerTitle: false,
         automaticallyImplyLeading: false,
-        titleSpacing: 0,
+        titleSpacing: kZero,
         title: const _FilterSearchClearAll(),
         actions: const [
           CloseButton(),

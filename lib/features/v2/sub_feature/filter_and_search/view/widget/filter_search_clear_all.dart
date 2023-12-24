@@ -13,7 +13,16 @@ final class _FilterSearchClearAll extends ConsumerWidget {
         child: Row(
           children: [
             const Icon(Icons.delete_outline),
-            Text(LocaleKeys.button_clearAllSelection.tr()),
+            Text(
+              LocaleKeys.button_clearAllSelection.tr(
+                args: [
+                  ref
+                      .watch(filterWithSearchProvider)
+                      .selectedItemsCount
+                      .toString(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

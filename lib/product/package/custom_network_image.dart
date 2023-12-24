@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
@@ -28,8 +29,17 @@ class CustomNetworkImage extends StatelessWidget {
       width: context.sized.width,
       height: height,
       placeholder: (context, url) {
-        // TODO: Add shimmer for loading
-        return const SizedBox.shrink();
+        return Shimmer.fromColors(
+          baseColor: context.general.colorScheme.onPrimaryContainer,
+          highlightColor:
+              context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
+          child: Container(
+            alignment: Alignment.center,
+            height: height,
+            width: context.sized.width,
+            color: context.general.colorScheme.secondary,
+          ),
+        );
       },
     );
   }
