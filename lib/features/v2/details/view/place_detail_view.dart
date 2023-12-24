@@ -78,18 +78,17 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         callAction: callAction,
                       ),
                       _TownIcon(townCode: model.townCode),
-                      context.sized.emptySizedHeightBoxNormal,
-                      TitleDescription(
-                        title: LocaleKeys.placeDetailView_description.tr(),
-                        description: model.description ?? '-',
+                      Padding(
+                        padding: const PagePadding.verticalSymmetric(),
+                        child: TitleDescription(
+                          title: LocaleKeys.placeDetailView_description.tr(),
+                          description: model.description ?? '-',
+                        ),
                       ),
-                      context.sized.emptySizedHeightBoxNormal,
                       TitleDescription(
                         title: LocaleKeys.placeDetailView_address.tr(),
                         description: model.address ?? '-',
                       ),
-                      context.sized.emptySizedHeightBoxLow,
-                      context.sized.emptySizedHeightBoxLow,
                     ],
                   ),
                 ),
