@@ -19,12 +19,19 @@ class FavoritePlaceButton extends ConsumerStatefulWidget {
 }
 
 class _FavoritePlaceButtonState extends ConsumerState<FavoritePlaceButton>
-    with AppProviderMixin<FavoritePlaceButton>, FavoritePlaceButtonMixin {
+    with
+        AppProviderMixin<FavoritePlaceButton>,
+        FavoritePlaceButtonMixin,
+        AppProviderMixin {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: GeneralFavoriteIcon(isFavorite: isFavorite),
+      child: GeneralFavoriteIcon(
+        isFavorite: productStateWatch.favoritePlaces.any(
+          (element) => element.documentId == widget.store.documentId,
+        ),
+      ),
     );
   }
 }

@@ -6,9 +6,8 @@ import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
-import 'package:vbaseproject/product/utility/state/app_provider.dart';
 
-final class App extends ConsumerWidget with AppProviderStateMixin<App> {
+final class App extends ConsumerWidget with AppProviderStateMixin {
   App({super.key});
 
   final _router = GoRouter(
@@ -30,8 +29,7 @@ final class App extends ConsumerWidget with AppProviderStateMixin<App> {
       builder: AppBuilder.build,
       themeMode: appStateWatch(ref).theme,
       theme: ApplicationTheme.build(context).themeData,
-      scaffoldMessengerKey:
-          ref.read(AppProvider.provider.notifier).scaffoldMessengerKey,
+      scaffoldMessengerKey: appProvider(ref).scaffoldMessengerKey,
       // home: NewsDetailView(news: NewsModel.dummyData),
     );
   }

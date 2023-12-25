@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/general/title/general_content_sub_title.dart';
 import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
@@ -35,12 +37,6 @@ class _MainTabViewState extends ConsumerState<MainTabView>
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(ProductProvider.provider, (previous, next) {
-      if (previous?.redirectionPage != next.redirectionPage) {
-        controller.animateTo(previous!.redirectionPage!.index);
-      }
-    });
-
     return DefaultTabController(
       length: _tabItems.length,
       child: Scaffold(

@@ -56,8 +56,9 @@ dependencies:
 
   #database
   shared_preferences: ^2.2.1
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  hive: ^4.0.0-dev.2
+  isar_flutter_libs: ^4.0.0-dev.13
+
 
   #package
   image_picker: ^1.0.4
@@ -110,7 +111,7 @@ dev_dependencies:
   logger: ^2.0.1
   json_serializable: ^6.6.1
   very_good_analysis: ^5.1.0
-  hive_generator: ^2.0.1
+  
   riverpod_generator: ^2.3.8
   go_router_builder: ^2.4.0
 

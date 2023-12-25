@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vbaseproject/product/package/image/custom_circle_network_image.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
@@ -8,24 +11,44 @@ final class AuthorListTileWidget extends StatelessWidget {
   const AuthorListTileWidget({
     required this.image,
     required this.text,
+    required this.describtion,
+    this.onDeleteTapped,
     super.key,
-    this.trailingWidget,
   });
 
   final String image;
   final String text;
-  final Widget? trailingWidget;
-
+  final String describtion;
+  final VoidCallback? onDeleteTapped;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      visualDensity: const VisualDensity(vertical: -4),
-      dense: true,
-      contentPadding: EdgeInsets.zero,
-      horizontalTitleGap: WidgetSizes.spacingXs,
-      leading: _AuthorCircleAvatar(image: image),
-      title: _AuthorText(text: text),
-      trailing: trailingWidget,
+    return Row(
+      children: [
+        _AuthorCircleAvatar(image: image),
+        Expanded(
+          flex: 8,
+          child: Padding(
+            padding: const PagePadding.onlyLeft(),
+            child: ListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              horizontalTitleGap: WidgetSizes.spacingXs,
+              title: _AuthorText(text: text),
+              subtitle: describtion.isEmpty
+                  ? null
+                  : GeneralContentSubTitle(
+                      value: describtion,
+                    ),
+              trailing: onDeleteTapped == null
+                  ? null
+                  : IconButton(
+                      onPressed: onDeleteTapped,
+                      icon: const Icon(AppIcons.delete),
+                    ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -55,9 +78,9 @@ final class _AuthorCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: CustomCircleRadius.medium,
-      backgroundImage: NetworkImage(image),
+    return CustomCircleNetworkImage(
+      imageUrl: image,
+      radius: CustomCircleRadius.xLarge,
     );
   }
 }

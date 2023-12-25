@@ -69,7 +69,7 @@ final class _FindThePlaceButton extends StatelessWidget {
 }
 
 @immutable
-final class _TownIcon extends ConsumerWidget {
+final class _TownIcon extends ConsumerWidget with AppProviderStateMixin {
   const _TownIcon({
     required this.townCode,
   });
@@ -78,9 +78,7 @@ final class _TownIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final town = ref
-        .watch(ProductProvider.provider.notifier)
-        .fetchTownFromCode(townCode);
+    final town = productProvider(ref).fetchTownFromCode(townCode);
 
     if (town.isEmpty) {
       return const EmptyBox();

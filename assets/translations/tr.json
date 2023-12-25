@@ -99,7 +99,8 @@
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷"
+    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷",
+    "emptyFavorite": "Favori listeniz boş"
   },
   "placeDetailView": {
     "owner": "İşletme Sahibi",

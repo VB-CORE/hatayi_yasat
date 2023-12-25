@@ -1,11 +1,12 @@
 part of '../filter_search_view.dart';
 
-final class _FilterSearchTowns extends ConsumerWidget {
+final class _FilterSearchTowns extends ConsumerWidget
+    with AppProviderStateMixin {
   const _FilterSearchTowns();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final towns = ref.read(ProductProvider.provider).townItems;
+    final towns = productState(ref).townItems;
     final selectedItems = ref.watch(filterWithSearchProvider).selectedTowns;
     return ListView.builder(
       itemCount: towns.length,

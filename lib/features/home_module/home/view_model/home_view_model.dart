@@ -10,7 +10,7 @@ final class HomeViewModel extends Notifier<HomeState> with HomeViewModelMixin {
   HomeViewModel();
 
   void init() {
-    _productProvider = ref.read(ProductProvider.provider.notifier);
+    // _productProvider = ref.read(ProductProvider.provider.notifier);
     _customService = FirebaseCustomService();
   }
 
@@ -28,7 +28,7 @@ final class HomeViewModel extends Notifier<HomeState> with HomeViewModelMixin {
       path: CollectionPaths.approvedApplications,
     );
 
-    _productProvider.saveStores(items);
+    // _productProvider.saveStores(items);
     state = state.copyWith(
       isServiceRequestSending: false,
       items: items,

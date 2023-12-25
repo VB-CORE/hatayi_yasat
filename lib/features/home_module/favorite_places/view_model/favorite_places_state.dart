@@ -1,4 +1,3 @@
-import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
 
 class FavoritePlacesState extends FavoritePlaceState {
@@ -15,7 +14,7 @@ class FavoritePlacesState extends FavoritePlaceState {
           isLoading: false,
         );
 
-  final List<FavoritePlaceModel> favoritePlaces;
+  final List<dynamic> favoritePlaces;
 
   @override
   List<Object?> get props => [
@@ -28,7 +27,7 @@ class FavoritePlacesState extends FavoritePlaceState {
   FavoritePlacesState copyWith({
     bool? isLoading,
     bool? isFavorite,
-    List<FavoritePlaceModel>? favoritePlaces,
+    List<dynamic>? favoritePlaces,
   }) {
     return FavoritePlacesState(
       isLoading: isLoading ?? super.isLoading,

@@ -5,7 +5,6 @@ import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
 mixin SplashViewMixin
@@ -18,7 +17,7 @@ mixin SplashViewMixin
     _homeProvider = StateNotifierProvider(
       (ref) => SplashViewModel(
         appProvider: appProvider,
-        productProvider: ref.read(ProductProvider.provider.notifier),
+        productProvider: productProvider,
       ),
     );
 

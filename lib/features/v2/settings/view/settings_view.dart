@@ -7,7 +7,7 @@ import 'package:vbaseproject/features/v2/settings/model/contact_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/settings_router/settings_router.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';

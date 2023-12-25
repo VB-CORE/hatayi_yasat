@@ -10,8 +10,6 @@ import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_butto
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/state/app_provider.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
 import 'package:vbaseproject/product/widget/builder/keyboard_focus_control_widget.dart';
 import 'package:vbaseproject/product/widget/button/save_fab_button.dart';
@@ -24,7 +22,7 @@ import 'package:vbaseproject/product/widget/text_field/validator_text_form_field
 final StateNotifierProvider<RequestCompanyViewModel, RequestCompanyState>
     _requestCompanyViewModel = StateNotifierProvider(
   (ref) => RequestCompanyViewModel(
-    ref.read(AppProvider.provider).deviceID,
+    'ref.read(AppProvider.provider).deviceID',
   ),
 );
 
@@ -99,7 +97,6 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                     ),
                     CategoryDropDown(
                       onSelected: onCategorySelected,
-                      items: ref.read(ProductProvider.provider).categoryItems,
                     ),
                     DistrictDropDownView(
                       onSelected: onTownSelected,

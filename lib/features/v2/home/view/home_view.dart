@@ -43,7 +43,6 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
               final result =
                   await const FilterRoute().push<FilterSelected?>(context);
               if (result == null) return;
-              print(result);
             },
           ).ext.sliver,
           const SliverPadding(

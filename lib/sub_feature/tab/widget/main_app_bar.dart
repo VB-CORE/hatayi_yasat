@@ -3,7 +3,6 @@ part of '../main_tab_view.dart';
 final class _MainAppBar extends AppBar {
   _MainAppBar({
     required BuildContext context,
-    super.key,
   }) : super(
           centerTitle: true,
           bottom: PreferredSize(
@@ -28,6 +27,7 @@ final class _CustomPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      color: context.general.colorScheme.secondary,
       icon: Icon(
         AppIcons.moreDots,
         color: context.general.colorScheme.primary,
@@ -35,16 +35,16 @@ final class _CustomPopupMenu extends StatelessWidget {
       onSelected: (value) {},
       itemBuilder: (BuildContext context) {
         return [
-          _CustomPopupMenuItem(
+          _CustomPopupMenuItem<void>(
             itemLabel: LocaleKeys.specialAgency_title,
             destination: () {
-              // const SpecialAgencyRoute().push<SpecialAgencyRoute>(context);
+              const SpecialAgencyRoute().go(context);
             },
           ),
-          _CustomPopupMenuItem(
+          _CustomPopupMenuItem<void>(
             itemLabel: LocaleKeys.favorite_title,
             destination: () {
-              // const FavoriteRoute().push<FavoriteRoute>(context);
+              const FavoriteRoute().go(context);
             },
           ),
         ];
@@ -62,6 +62,6 @@ final class _CustomPopupMenuItem<T> extends PopupMenuItem<T> {
             value: itemLabel.tr(),
             fontWeight: FontWeight.bold,
           ),
-          onTap: () => destination,
+          onTap: destination,
         );
 }

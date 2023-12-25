@@ -6,6 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/utility/state/items/product_provider_state.dart';
 import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 class DistrictDropDownView extends ConsumerStatefulWidget {
@@ -20,9 +21,8 @@ class DistrictDropDownView extends ConsumerStatefulWidget {
 }
 
 class _DistrictDropDownViewState extends ConsumerState<DistrictDropDownView> {
-  ProductProvider get appProvider =>
-      ref.read(ProductProvider.provider.notifier);
-  ProductProviderState get appState => ref.read(ProductProvider.provider);
+  ProductProvider get appProvider => ProductProvider();
+  ProductProviderState get appState => const ProductProviderState();
   late final List<TownModel> items;
   TownModel? _selectedItem;
 

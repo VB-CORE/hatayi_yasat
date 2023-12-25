@@ -7,7 +7,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
 
-class CustomNetworkImage extends StatelessWidget {
+final class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage({super.key, this.imageUrl, this.fit, this.height});
   final String? imageUrl;
   final BoxFit? fit;

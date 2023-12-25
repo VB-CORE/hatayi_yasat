@@ -99,7 +99,8 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'"
+    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
+    "emptyFavorite": "Favori listeniz boş"
   },
   "placeDetailView": {
     "owner": "Business Owner",

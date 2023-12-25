@@ -9,10 +9,10 @@ import 'package:vbaseproject/product/widget/size/widget_size.dart';
 final class GeneralNotFoundLottie extends StatelessWidget {
   const GeneralNotFoundLottie({
     required this.title,
-    required this.onRefresh,
+    this.onRefresh,
     super.key,
   });
-  final VoidCallback onRefresh;
+  final VoidCallback? onRefresh;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,11 @@ final class GeneralNotFoundLottie extends StatelessWidget {
                     color: ColorCommon(context).whiteAndBlackForTheme,
                   ),
                 ),
-                TextButton(
-                  onPressed: onRefresh,
-                  child: Text(LocaleKeys.notFound_forRefresh.tr()),
-                ),
+                if (onRefresh != null)
+                  TextButton(
+                    onPressed: onRefresh,
+                    child: Text(LocaleKeys.notFound_forRefresh.tr()),
+                  ),
               ],
             ),
           ],

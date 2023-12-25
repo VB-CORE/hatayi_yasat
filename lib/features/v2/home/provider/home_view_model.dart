@@ -3,7 +3,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
 import 'package:vbaseproject/features/v2/home/provider/home_state.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 part 'home_view_model.g.dart';
 
@@ -11,7 +10,7 @@ part 'home_view_model.g.dart';
 final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   @override
   HomeState build() {
-    final categories = ref.read(ProductProvider.provider).categoryItems;
+    final categories = ref.read(productProviderState).categoryItems;
     return HomeState(
       categories: categories,
     );

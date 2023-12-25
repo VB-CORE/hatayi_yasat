@@ -7,17 +7,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/core/dependency/project_dependency.dart';
+import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
 import 'package:vbaseproject/core/init/core_localize.dart';
 import 'package:vbaseproject/firebase_options.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/init/hive_adapter_registration_mixin.dart';
 import 'package:vbaseproject/product/model/enum/firebase_env.dart';
 
 @immutable
-final class ApplicationInit with HiveAdapterRegistrationMixin {
+final class ApplicationInit {
   ApplicationInit();
 
   final CoreLocalize localize = CoreLocalize();
@@ -35,14 +34,12 @@ final class ApplicationInit with HiveAdapterRegistrationMixin {
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
 
-    await Hive.initFlutter();
     await SharedCache.instance.init();
     // await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
     await FirebaseCrashlytics.instance
         .setCrashlyticsCollectionEnabled(kDebugMode);
 
-    registerHiveAdapters();
     ProjectDependency.setup();
     ProjectDependencyItems.appProvider
         .changeAppTheme(theme: SharedCache.instance.theme);

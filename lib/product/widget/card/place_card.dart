@@ -4,9 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 
 class PlaceCard extends ConsumerWidget {
@@ -63,9 +62,7 @@ class PlaceCard extends ConsumerWidget {
                 Padding(
                   padding: const PagePadding.onlyLeft(),
                   child: Text(
-                    ref
-                        .watch(ProductProvider.provider.notifier)
-                        .fetchTownFromCode(item.townCode),
+                    '   .watch(ProductProvider.provider.notifier).fetchTownFromCode(item.townCode)',
                     style: context.general.textTheme.titleSmall?.copyWith(
                       color: ColorCommon(context).whiteAndBlackForTheme,
                     ),
