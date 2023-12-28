@@ -96,6 +96,7 @@ class _RequestCompanyViewState extends ConsumerState<RequestCompanyView>
                       controller: phoneController,
                     ),
                     CategoryDropDown(
+                      items: productState.categoryItems,
                       onSelected: onCategorySelected,
                     ),
                     DistrictDropDownView(
