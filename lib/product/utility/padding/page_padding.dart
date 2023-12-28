@@ -154,6 +154,10 @@ class PagePadding extends EdgeInsets {
   const PagePadding.onlyBottomNormal()
       : super.only(bottom: WidgetSizes.spacingXl);
 
+  /// value is 72
+  const PagePadding.onlyBottomHigh()
+      : super.only(bottom: WidgetSizes.spacingXxl9);
+
   /// value is 16
   const PagePadding.onlyBottom() : super.only(bottom: WidgetSizes.spacingM);
 

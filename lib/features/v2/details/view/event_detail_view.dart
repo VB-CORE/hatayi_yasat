@@ -6,6 +6,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/event_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
@@ -42,7 +43,7 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
           child: Column(
             children: [
               _ImageWithBackButtonStack(
-                image: ''.ext.randomImage,
+                image: eventModel.photo ?? '',
                 backButtonAction: goBackAction,
               ),
               Padding(
@@ -59,6 +60,7 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                     GeneralSubTitle(
                       value: eventModel.name ?? '',
                       fontWeight: FontWeight.w900,
+                      maxLine: TextFieldMaxLengths.maxLineForText,
                     ),
                     context.sized.emptySizedHeightBoxLow,
                     context.sized.emptySizedHeightBoxLow,

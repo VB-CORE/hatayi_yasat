@@ -98,6 +98,18 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Filter',
           factory: $FilterRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'event',
+          name: 'Events',
+          factory: $EventRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'details',
+              name: 'Event Details',
+              factory: $EventDetailsRouteExtension._fromState,
+            ),
+          ],
+        ),
       ],
     );
 
@@ -245,4 +257,42 @@ extension $FilterRouteExtension on FilterRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EventRouteExtension on EventRoute {
+  static EventRoute _fromState(GoRouterState state) => const EventRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/event',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EventDetailsRouteExtension on EventDetailsRoute {
+  static EventDetailsRoute _fromState(GoRouterState state) => EventDetailsRoute(
+        $extra: state.extra as CampaignModel,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/event/details',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
 }

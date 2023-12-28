@@ -5,6 +5,7 @@ import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/v2/details/view/place_detail_view.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
+import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
@@ -35,6 +36,7 @@ final class SplashRoute extends GoRouteData {
     DevelopersRoute.route,
     NewsJobsRoute.route,
     FilterRoute.route,
+    EventRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData {
