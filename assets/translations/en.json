@@ -122,7 +122,7 @@
     "publishedBy": "published by {}",
     "startDate": "Start Date: {}",
     "time": "Time: {}",
-    "join_now": "Join Now"
+    "addReminder": "Add Reminder"
   },
   "forceUpdate": {
     "title": "An Update is Available",

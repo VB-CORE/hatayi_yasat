@@ -23,7 +23,7 @@ final class EventCard extends StatelessWidget {
       onTap: onTap.call,
       child: Column(
         children: [
-          _EventImage(image: campaignModel.photo),
+          _EventImage(image: campaignModel.coverPhoto),
           const EmptyBox.smallHeight(),
           GeneralContentSubTitle(
             value: campaignModel.name ?? '',

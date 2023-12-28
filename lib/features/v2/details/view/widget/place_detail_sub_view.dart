@@ -57,7 +57,8 @@ final class _FindThePlaceButton extends StatelessWidget {
       constrainedAxis: Axis.horizontal,
       child: SafeArea(
         child: Padding(
-          padding: const PagePadding.horizontalSymmetric(),
+          padding: const PagePadding.horizontalSymmetric() +
+              const PagePadding.vertical6Symmetric(),
           child: GeneralButtonV2.async(
             action: action,
             label: LocaleKeys.placeDetailView_find_the_place.tr(),
