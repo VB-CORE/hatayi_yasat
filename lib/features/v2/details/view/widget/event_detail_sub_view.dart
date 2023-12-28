@@ -55,7 +55,7 @@ final class _BackButtonContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackButtonWidget(
       onPressed: onPressed,
-      backgroundColor: Colors.transparent,
+      backgroundColor: context.general.colorScheme.primary,
     );
   }
 }
@@ -164,14 +164,27 @@ final class _TitleDescription extends StatelessWidget {
 }
 
 @immutable
-final class _JoinNowButton extends StatelessWidget {
-  const _JoinNowButton({required this.onPressed});
-  final AsyncCallback onPressed;
+final class _AddCalendarButton extends StatelessWidget {
+  const _AddCalendarButton({
+    required this.action,
+  });
+
+  final AsyncCallback action;
+
   @override
   Widget build(BuildContext context) {
-    return GeneralButtonV2.async(
-      action: onPressed,
-      label: LocaleKeys.campaignDetailsView_join_now.tr(),
+    return UnconstrainedBox(
+      constrainedAxis: Axis.horizontal,
+      child: SafeArea(
+        child: Padding(
+          padding: const PagePadding.horizontalSymmetric() +
+              const PagePadding.vertical6Symmetric(),
+          child: GeneralButtonV2.async(
+            action: action,
+            label: LocaleKeys.campaignDetailsView_addReminder.tr(),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -38,12 +38,13 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: _AddCalendarButton(action: addReminderAction),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               _ImageWithBackButtonStack(
-                image: eventModel.photo ?? '',
+                image: eventModel.coverPhoto ?? '',
                 backButtonAction: goBackAction,
               ),
               Padding(
@@ -73,7 +74,6 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                       description: eventModel.description ?? '',
                     ),
                     context.sized.emptySizedHeightBoxNormal,
-                    _JoinNowButton(onPressed: joinNowAction),
                   ],
                 ),
               ),
