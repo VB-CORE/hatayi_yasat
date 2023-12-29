@@ -10,7 +10,7 @@ final class _DevelopersWidget extends StatelessWidget {
       color: Colors.transparent,
       elevation: 0,
       shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.superMaxThick),
+          .copyWith(side: CustomBorderSides.medium),
       child: ListTile(
         title: GeneralContentTitle(
           value: LocaleKeys.developers_title.tr(),
