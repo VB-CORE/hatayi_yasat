@@ -19,7 +19,6 @@ final class _DevelopersWidget extends StatelessWidget {
         subtitle: GeneralContentSubTitle(
           value: LocaleKeys.settings_seeDevelopers.tr(),
         ),
-        contentPadding: const PagePadding.generalAllNormal(),
         leading: const Icon(
           AppIcons.group,
           size: WidgetSizes.spacingXxl6,

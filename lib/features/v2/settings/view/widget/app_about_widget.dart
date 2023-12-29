@@ -12,7 +12,6 @@ final class _AppAboutWidget extends StatelessWidget {
       shape: context.border.roundedRectangleAllBorderNormal
           .copyWith(side: CustomBorderSides.superMaxThick),
       child: ListTile(
-        contentPadding: const PagePadding.generalAllNormal(),
         title: GeneralBodyTitle(
           LocaleKeys.settings_aboutTitle.tr(),
           fontWeight: FontWeight.bold,
