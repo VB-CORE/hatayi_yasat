@@ -15,7 +15,7 @@ final class _SpecialAgencyListBuilder extends ConsumerWidget {
       title: LocaleKeys.notFound_specialAgency,
       itemBuilder: (context, model) {
         return Padding(
-          padding: const PagePadding.onlyBottom(),
+          padding: const PagePadding.vertical6Symmetric(),
           child: SpecialAgencyCard(model: model),
         );
       },

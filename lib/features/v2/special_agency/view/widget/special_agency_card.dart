@@ -11,39 +11,36 @@ final class SpecialAgencyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ExpansionTile(
-        shape: const Border(),
-        title: Text(model.name ?? ''),
-        children: [
-          _ListTileWidget(
-            iconData: Icons.phone_outlined,
-            mainTitle: LocaleKeys.specialAgency_agencyNumber,
-            subTitle: model.phone ?? '',
-            onTapEvent: () {
-              final phone = model.phone;
-              if (phone.ext.isNullOrEmpty) return;
-              RedirectionMixin.openToPhone(
-                context: context,
-                phoneNumber: phone ?? '',
-              );
-            },
-          ),
-          _ListTileWidget(
-            iconData: Icons.location_on_outlined,
-            mainTitle: LocaleKeys.specialAgency_agencyAddress,
-            subTitle: model.address ?? '',
-            onTapEvent: () async {
-              final latLongString =
-                  '${model.latLong.latitude},${model.latLong.longitude}';
-              await RedirectionMixin.navigateToMapsWithTitle(
-                context: context,
-                placeAddress: latLongString,
-              );
-            },
-          ),
-        ],
-      ),
+    return GeneralExpansionTile(
+      pageTitle: model.name ?? '',
+      children: [
+        _ListTileWidget(
+          iconData: Icons.phone_outlined,
+          mainTitle: LocaleKeys.specialAgency_agencyNumber,
+          subTitle: model.phone ?? '',
+          onTapEvent: () {
+            final phone = model.phone;
+            if (phone.ext.isNullOrEmpty) return;
+            RedirectionMixin.openToPhone(
+              context: context,
+              phoneNumber: phone ?? '',
+            );
+          },
+        ),
+        _ListTileWidget(
+          iconData: Icons.location_on_outlined,
+          mainTitle: LocaleKeys.specialAgency_agencyAddress,
+          subTitle: model.address ?? '',
+          onTapEvent: () async {
+            final latLongString =
+                '${model.latLong.latitude},${model.latLong.longitude}';
+            await RedirectionMixin.navigateToMapsWithTitle(
+              context: context,
+              placeAddress: latLongString,
+            );
+          },
+        ),
+      ],
     );
   }
 }

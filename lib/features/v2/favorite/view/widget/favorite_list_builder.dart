@@ -56,7 +56,7 @@ final class _FavoriteAuthorWidget extends StatelessWidget {
         child: AuthorListTileWidget(
           image: model.images.first,
           text: model.owner,
-          describtion: model.name,
+          description: model.name,
           onDeleteTapped: onDeleteTapped,
         ),
       ),

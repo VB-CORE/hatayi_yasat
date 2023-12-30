@@ -8,8 +8,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
-import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
-import 'package:vbaseproject/product/widget/general/list/general_firestore_list_view.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 part 'widget/special_agency_card.dart';
 part 'widget/special_agency_list_builder.dart';

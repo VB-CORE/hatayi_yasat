@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/v2/news_jobs/provider/news_jobs_provider.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:vbaseproject/product/widget/card/index.dart';
@@ -18,6 +19,7 @@ final class TabNewsView extends ConsumerWidget {
 
     return GeneralFirestoreListView(
       query: query,
+      title: LocaleKeys.notFound_news,
       itemBuilder: (context, model) {
         return NewsCard(
           item: model,

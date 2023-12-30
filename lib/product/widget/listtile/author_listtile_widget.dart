@@ -11,14 +11,14 @@ final class AuthorListTileWidget extends StatelessWidget {
   const AuthorListTileWidget({
     required this.image,
     required this.text,
-    required this.describtion,
+    required this.description,
     this.onDeleteTapped,
     super.key,
   });
 
   final String image;
   final String text;
-  final String describtion;
+  final String description;
   final VoidCallback? onDeleteTapped;
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,10 @@ final class AuthorListTileWidget extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               horizontalTitleGap: WidgetSizes.spacingXs,
               title: _AuthorText(text: text),
-              subtitle: describtion.isEmpty
+              subtitle: description.isEmpty
                   ? null
                   : GeneralContentSubTitle(
-                      value: describtion,
+                      value: description,
                     ),
               trailing: onDeleteTapped == null
                   ? null
