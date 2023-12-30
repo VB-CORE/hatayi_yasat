@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/shimmer/general_shimmer.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_shimmer_height.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
@@ -18,11 +17,14 @@ final class GeneralFirestoreListView<T> extends StatelessWidget {
     required this.query,
     required this.itemBuilder,
     required this.onRetry,
+    required this.title,
     this.shrinkWrap = false,
     super.key,
   });
 
   final bool shrinkWrap;
+
+  final String title;
 
   /// That's firebase query for any child
   /// Example: newsCollection _customService.collectionReference(CollectionPaths.news,NewsModel());
@@ -43,7 +45,7 @@ final class GeneralFirestoreListView<T> extends StatelessWidget {
       loadingBuilder: (_) =>
           const GeneralShimmer(height: CustomShimmerHeight.small),
       emptyBuilder: (_) => NotFoundLottie(
-        title: LocaleKeys.notFound_news.tr(),
+        title: title.tr(),
         onRefresh: onRetry,
       ),
       itemBuilder: (context, doc) {
