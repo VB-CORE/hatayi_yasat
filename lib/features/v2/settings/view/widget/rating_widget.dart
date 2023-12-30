@@ -1,25 +1,23 @@
 part of '../settings_view.dart';
 
 @immutable
-final class _AppAboutWidget extends StatelessWidget {
-  const _AppAboutWidget();
+final class _RatingWidget extends StatelessWidget {
+  const _RatingWidget();
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.transparent,
       elevation: 0,
       shape: context.border.roundedRectangleAllBorderNormal
           .copyWith(side: CustomBorderSides.medium),
       child: ListTile(
         title: GeneralBodyTitle(
-          LocaleKeys.settings_aboutTitle.tr(),
+          LocaleKeys.settings_appReviewTitle.tr(),
           fontWeight: FontWeight.bold,
+          maxLines: 1,
         ),
-        trailing: const Icon(AppIcons.rightSelect),
-        onTap: () {
-          // navigate to AppAboutView
-        },
+        trailing: const AppRatingWidget(),
+        onTap: () => AppReview.instance.openStore(),
       ),
     );
   }

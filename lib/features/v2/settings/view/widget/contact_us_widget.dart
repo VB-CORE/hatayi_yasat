@@ -22,17 +22,21 @@ final class _ContactUsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      padding: const PagePadding.onlyBottom(),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: ContactModel.dummyModels.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisExtent: WidgetSizes.spacingXxlL13,
-      ),
+      gridDelegate: _delegate,
       itemBuilder: (context, i) =>
           _ContactUsCard(model: ContactModel.dummyModels[i]),
     );
   }
+
+  SliverGridDelegateWithFixedCrossAxisCount get _delegate =>
+      const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisExtent: WidgetSizes.spacingXxlL13,
+      );
 }
 
 @immutable

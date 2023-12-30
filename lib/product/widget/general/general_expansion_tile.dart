@@ -27,9 +27,7 @@ final class GeneralExpansionTile extends StatelessWidget {
           pageTitle.tr(),
           fontWeight: FontWeight.bold,
         ),
-        tilePadding: const PagePadding.generalAllNormal(),
-        childrenPadding: const PagePadding.horizontal16Symmetric() +
-            const PagePadding.onlyBottom(),
+        childrenPadding: const PagePadding.horizontal16Symmetric(),
         children: children,
       ),
     );
