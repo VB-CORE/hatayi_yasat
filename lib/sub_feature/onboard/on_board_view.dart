@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
 
 class OnBoarView extends StatefulWidget {
   const OnBoarView({super.key});
@@ -31,7 +31,7 @@ class _OnBoarViewState extends State<OnBoarView> {
               child: _AppBar(() async {
                 await SharedCache.instance.setFirstAppOpen();
                 if (!mounted) return;
-                context.go('/');
+                const SplashRoute().pushReplacement(context);
               }),
             ),
           ],

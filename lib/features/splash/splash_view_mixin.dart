@@ -23,7 +23,7 @@ mixin SplashViewMixin
 
     ref.listenManual(_homeProvider, (previous, next) async {
       if (next.isNeedToOnBoard) {
-        const OnboardRoute().go(context);
+        const OnboardRoute().pushReplacement(context);
         // await HomeDetailRoute().push(context);
         // HomeDetailRoute($extra: PlaceRequestModel.dummyData);
         return;
