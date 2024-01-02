@@ -32,6 +32,7 @@ dependencies:
   #third-party
   app_settings: ^5.1.1
   permission_handler: ^11.0.0
+  flutter_inappwebview: ^6.0.0
 
   #core
   cached_network_image: ^3.2.3

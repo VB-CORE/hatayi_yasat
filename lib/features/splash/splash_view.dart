@@ -8,6 +8,7 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -17,7 +18,10 @@ class SplashView extends ConsumerStatefulWidget {
 }
 
 class _SplashViewState extends ConsumerState<SplashView>
-    with AppProviderMixin, SplashViewMixin {
+    with
+        AppProviderMixin,
+        SingleTickerProviderStateMixin<SplashView>,
+        SplashViewMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +33,10 @@ class _SplashViewState extends ConsumerState<SplashView>
             children: [
               SizedBox(
                 height: context.sized.dynamicHeight(.3),
-                child: Assets.lottie.cityLoadingBetter.lottie(),
+                child: Assets.lottie.cityLoadingBetter.lottie(
+                  controller: lottieController,
+                  onLoaded: onLoadedLottie,
+                ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -46,8 +53,11 @@ class _SplashViewState extends ConsumerState<SplashView>
                     ).tr(),
                   ),
                   const Padding(
-                    padding: PagePadding.onlyTop(),
-                    child: CircularProgressIndicator(),
+                    padding: PagePadding.onlyLeft(),
+                    child: SizedBox.square(
+                      dimension: WidgetSizes.spacingXxl2,
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
                 ],
               ),

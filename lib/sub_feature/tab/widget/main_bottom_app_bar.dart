@@ -33,6 +33,7 @@ class _BottomAppBarWidget extends StatelessWidget {
         notchMargin: WidgetSizes.spacingXs,
         shape: const CircularNotchedRectangle(),
         elevation: 0,
+        color: context.general.colorScheme.secondary,
         child: TabBar(
           padding: EdgeInsets.zero,
           dividerColor: ColorsCustom.transparent,

@@ -18,6 +18,13 @@ final class _AppAboutWidget extends StatelessWidget {
         ),
         trailing: const Icon(AppIcons.rightSelect),
         onTap: () {
+          showModalBottomSheet<void>(
+            context: context,
+            enableDrag: false,
+            builder: (context) {
+              return const AppAboutView();
+            },
+          );
           // navigate to AppAboutView
         },
       ),

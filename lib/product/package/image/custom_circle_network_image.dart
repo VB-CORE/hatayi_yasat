@@ -28,7 +28,6 @@ final class CustomCircleNetworkImage extends StatelessWidget {
     }
     return CachedNetworkImage(
       imageUrl: imageUrl!,
-      width: radius,
       imageBuilder: (context, imageProvider) => CircleAvatar(
         backgroundImage: imageProvider,
         radius: radius,

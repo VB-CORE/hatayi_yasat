@@ -28,9 +28,10 @@ final class AuthorListTileWidget extends StatelessWidget {
         Expanded(
           flex: 8,
           child: Padding(
-            padding: const PagePadding.onlyLeft(),
+            padding: const PagePadding.onlyLeft10(),
             child: ListTile(
               dense: true,
+              minLeadingWidth: 0,
               contentPadding: EdgeInsets.zero,
               horizontalTitleGap: WidgetSizes.spacingXs,
               title: _AuthorText(text: text),
@@ -65,6 +66,7 @@ final class _AuthorText extends StatelessWidget {
     return GeneralBodyTitle(
       text,
       fontWeight: FontWeight.bold,
+      textDecoration: TextDecoration.underline,
     );
   }
 }
@@ -80,7 +82,7 @@ final class _AuthorCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCircleNetworkImage(
       imageUrl: image,
-      radius: CustomCircleRadius.xLarge,
+      radius: CustomCircleRadius.medium,
     );
   }
 }

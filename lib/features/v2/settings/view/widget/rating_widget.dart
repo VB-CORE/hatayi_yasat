@@ -6,18 +6,20 @@ final class _RatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.medium),
-      child: ListTile(
-        title: GeneralBodyTitle(
-          LocaleKeys.settings_appReviewTitle.tr(),
-          fontWeight: FontWeight.bold,
-          maxLines: 1,
+    return Padding(
+      padding: const PagePadding.onlyTop(),
+      child: Card(
+        elevation: 0,
+        shape: context.border.roundedRectangleAllBorderNormal
+            .copyWith(side: CustomBorderSides.medium),
+        child: ListTile(
+          title: GeneralBodyTitle(
+            LocaleKeys.settings_appReviewTitle.tr(),
+            fontWeight: FontWeight.bold,
+          ),
+          trailing: const AppRatingWidget(),
+          onTap: () => AppReview.instance.openStore(),
         ),
-        trailing: const AppRatingWidget(),
-        onTap: () => AppReview.instance.openStore(),
       ),
     );
   }

@@ -8,10 +8,12 @@ import 'package:vbaseproject/features/v2/details/mixin/news_detail_view_mixin.da
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
+import 'package:vbaseproject/product/widget/special/user_special_card.dart';
 
 part 'widget/news_detail_sub_view.dart';
 
@@ -28,6 +30,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -36,19 +39,20 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.all(),
+                padding: const PagePadding.horizontalSymmetric(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    context.sized.emptySizedHeightBoxLow,
+                    const EmptyBox.smallHeight(),
                     GeneralSubTitle(
                       value: news.title ?? '',
                       fontWeight: FontWeight.w900,
                       maxLine: TextFieldMaxLengths.maxLine,
                     ),
+                    const EmptyBox.smallHeight(),
                     _DateIconAndText(date: news.createdAt),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    const EmptyBox.smallHeight(),
+                    const UserSpecialCard(user: SpecialUser.creator),
                     _SelectableContentText(content: news.content ?? ''),
                   ],
                 ),

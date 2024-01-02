@@ -7,7 +7,6 @@ import 'package:vbaseproject/product/init/application_init.dart';
 void main() async {
   final initialManager = ApplicationInit();
 
-  /// await olmadan çalıştıralim
   await initialManager.start();
   runApp(
     EasyLocalization(

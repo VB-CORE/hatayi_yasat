@@ -16,8 +16,10 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         _ImageSizedBox(image: image),
-        _BackButtonContainer(
-          onPressed: backButtonAction,
+        SafeArea(
+          child: _BackButtonContainer(
+            onPressed: backButtonAction,
+          ),
         ),
       ],
     );
