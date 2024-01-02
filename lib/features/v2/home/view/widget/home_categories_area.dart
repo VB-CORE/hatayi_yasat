@@ -12,7 +12,9 @@ final class _HomeCategoryCards extends ConsumerWidget {
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.red,
-      onTap: () {},
+      onTap: () async {
+        final result = await const FilterRoute().push<FilterSelected?>(context);
+      },
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         physics: const NeverScrollableScrollPhysics(),
