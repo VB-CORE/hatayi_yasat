@@ -41,15 +41,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         ),
         leading: const CloseButton(),
         actions: [
-          TextButton(
-            onPressed: () {
-              '${model.name} ${model.address}'.ext.share();
-            },
-            child: Icon(
-              AppIcons.share,
-              color: context.general.colorScheme.primary,
-            ),
-          ),
+          _ShareAdressButton(model: model),
           Padding(
             padding: const PagePadding.onlyRightLow(),
             child: FavoritePlaceButton(store: model),
@@ -98,6 +90,27 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+final class _ShareAdressButton extends StatelessWidget {
+  const _ShareAdressButton({
+    required this.model,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        '${model.name} ${model.address}'.ext.share();
+      },
+      child: Icon(
+        AppIcons.share,
+        color: context.general.colorScheme.primary,
       ),
     );
   }
