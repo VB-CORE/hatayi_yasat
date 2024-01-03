@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -47,6 +48,10 @@ final class ApplicationInit {
 
   Future<void> _injectTestEnvOnDebug() async {
     if (kReleaseMode) return;
+    FirebaseFunctions.instance.useFunctionsEmulator(
+      FirebaseEnv.localPath,
+      FirebaseEnv.functions.port,
+    );
     await FirebaseStorage.instance.useStorageEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.storage.port,

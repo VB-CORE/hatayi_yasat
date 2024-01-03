@@ -53,6 +53,7 @@ dependencies:
   cloud_firestore: ^4.4.2
   firebase_crashlytics: ^3.3.6
   firebase_ui_firestore: ^1.5.11
+  cloud_functions: ^4.5.8
 
   #database
   shared_preferences: ^2.2.1
