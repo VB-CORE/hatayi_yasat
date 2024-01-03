@@ -42,7 +42,9 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         leading: const CloseButton(),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              '${model.name} ${model.address}'.ext.share();
+            },
             child: Icon(
               AppIcons.share,
               color: context.general.colorScheme.primary,

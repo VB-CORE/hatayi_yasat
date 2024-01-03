@@ -10,6 +10,7 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
+      dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: ColorsCustom.sambacus,
