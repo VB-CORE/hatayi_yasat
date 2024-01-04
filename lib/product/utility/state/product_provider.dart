@@ -89,4 +89,7 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
           storeModelCache.getAll().map((e) => e.storeModel).toList(),
     );
   }
+
+  /// This method removes all add favorite places from local storage.
+  void removeAllFavoritePlaces() => storeModelCache.removeAll();
 }
