@@ -71,6 +71,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         placeName: model.name,
                         callAction: callAction,
                       ),
+                      _VisitCountRow(model: model),
                       _TownIcon(townCode: model.townCode),
                       Padding(
                         padding: const PagePadding.verticalSymmetric(),
@@ -90,6 +91,33 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _VisitCountRow extends StatelessWidget {
+  const _VisitCountRow({
+    required this.model,
+    super.key,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: WidgetSizes.spacingL,
+      child: FittedBox(
+        child: Row(
+          children: [
+            const Padding(
+              padding: PagePadding.onlyRightLow(),
+              child: Icon(Icons.visibility_outlined),
+            ),
+            GeneralBodyTitle(model.visitCount.toString()),
+          ],
+        ),
       ),
     );
   }

@@ -67,6 +67,7 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   String fetchTownFromCode(int? code) {
+    if (code == null) return '';
     return state.townItems
             .firstWhereOrNull(
               (element) => element.code == code,

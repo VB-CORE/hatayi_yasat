@@ -6,22 +6,22 @@ part of 'place_detail_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$placeRequestProviderHash() =>
-    r'52bbae60d5096c32f896db3f500e7ec599fb7887';
+String _$placeDetailProviderHash() =>
+    r'51370b0ac44ca8a8fc66fb1072926556f1f9e021';
 
-/// See also [PlaceRequestProvider].
-@ProviderFor(PlaceRequestProvider)
-final placeRequestProviderProvider = AutoDisposeNotifierProvider<
-    PlaceRequestProvider, PlaceDetailState>.internal(
-  PlaceRequestProvider.new,
-  name: r'placeRequestProviderProvider',
+/// See also [PlaceDetailProvider].
+@ProviderFor(PlaceDetailProvider)
+final placeDetailProviderProvider =
+    AutoDisposeNotifierProvider<PlaceDetailProvider, PlaceDetailState>.internal(
+  PlaceDetailProvider.new,
+  name: r'placeDetailProviderProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$placeRequestProviderHash,
+      : _$placeDetailProviderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PlaceRequestProvider = AutoDisposeNotifier<PlaceDetailState>;
+typedef _$PlaceDetailProvider = AutoDisposeNotifier<PlaceDetailState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
