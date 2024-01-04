@@ -8,7 +8,6 @@ import 'package:vbaseproject/features/v2/details/mixin/news_detail_view_mixin.da
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
-import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
@@ -43,17 +42,27 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const EmptyBox.smallHeight(),
-                    GeneralSubTitle(
-                      value: news.title ?? '',
-                      fontWeight: FontWeight.w900,
-                      maxLine: TextFieldMaxLengths.maxLine,
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: GeneralSubTitle(
+                        value: news.title ?? '',
+                        fontWeight: FontWeight.w900,
+                        maxLine: TextFieldMaxLengths.maxLine,
+                      ),
                     ),
-                    const EmptyBox.smallHeight(),
-                    _DateIconAndText(date: news.createdAt),
-                    const EmptyBox.smallHeight(),
-                    const UserSpecialCard(user: SpecialUser.creator),
-                    _SelectableContentText(content: news.content ?? ''),
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: _DateIconAndText(date: news.createdAt),
+                    ),
+                    const Padding(
+                      padding: PagePadding.onlyTopMedium(),
+                      child: UserSpecialCard(user: SpecialUser.creator),
+                    ),
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child:
+                          _SelectableContentText(content: news.content ?? ''),
+                    ),
                   ],
                 ),
               ),

@@ -13,14 +13,14 @@ final class ContactModel {
     ContactModel(
       imageUrl:
           'https://pbs.twimg.com/profile_images/1509340693956861953/8xDGlT75_400x400.jpg',
-      mail: 'abc@gmail.com',
+      mail: 'grafikhtyapp@gmail.com',
       name: 'Veli Bacık',
       twitterUrl: 'https://twitter.com/10VBacik',
     ),
     ContactModel(
       imageUrl:
           'https://pbs.twimg.com/profile_images/1643695427840098306/ugEFQ49l_400x400.jpg',
-      mail: 'abc@gmail.com',
+      mail: 'grafikhtyapp@gmail.com',
       name: 'Grafik Herif',
       twitterUrl: 'https://twitter.com/grafikherif',
     ),

@@ -46,7 +46,12 @@ final class _ContactUsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.transparent,
+      shape: context.border.roundedRectangleAllBorderNormal
+          .copyWith(side: CustomBorderSides.maxThick),
+      elevation: 0,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const EmptyBox.smallHeight(),
           _UserImage(imageUrl: model.imageUrl),
@@ -97,6 +102,7 @@ final class _ContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: true,
       title: GeneralBodyTitle(title),
       trailing: Icon(icon),
       onTap: onTap,

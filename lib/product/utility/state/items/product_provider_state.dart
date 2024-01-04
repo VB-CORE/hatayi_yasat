@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:life_shared/life_shared.dart';
 
 @immutable
-class ProductProviderState extends Equatable {
+final class ProductProviderState extends Equatable {
   const ProductProviderState({
     this.townItems = const [],
     this.storeItems = const [],

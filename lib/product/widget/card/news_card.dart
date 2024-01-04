@@ -75,7 +75,7 @@ class _TransparentBox extends StatelessWidget {
         borderRadius: CustomRadius.large,
       ),
       margin: EdgeInsets.zero,
-      color: context.general.colorScheme.secondary.withOpacity(0.45),
+      color: context.general.colorScheme.secondary.withOpacity(0.60),
       child: _NewsInformationArea(item: item),
     );
   }

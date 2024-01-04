@@ -96,7 +96,6 @@ final class _CircleAvatarWithText extends StatelessWidget {
 final class _DateAndAddressRow extends StatelessWidget {
   const _DateAndAddressRow({
     required this.projectModel,
-    super.key,
   });
 
   final CampaignModel projectModel;
@@ -156,9 +155,12 @@ final class _TitleDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TitleDescription(
-      title: title,
-      description: description,
+    return Padding(
+      padding: const PagePadding.vertical8Symmetric(),
+      child: TitleDescription(
+        title: title,
+        description: description,
+      ),
     );
   }
 }

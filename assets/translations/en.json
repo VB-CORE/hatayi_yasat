@@ -80,7 +80,7 @@
     "aboutTitle": "About the app",
     "contactTitle": "Contact us",
     "versionNumberTitle": "Version Number",
-    "notificationtitle": "Notification permission",
+    "notificationTitle": "Notification permission",
     "notificationSetting": "Notification Settings",
     "appReviewTitle": "Rate the App",
     "themes": {
@@ -100,7 +100,7 @@
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
-    "emptyFavorite": "Favori listeniz boş"
+    "emptyFavorite": "Your favorites list is empty"
   },
   "placeDetailView": {
     "owner": "Business Owner",

@@ -52,9 +52,10 @@ class _SplashViewState extends ConsumerState<SplashView>
                       textAlign: TextAlign.center,
                     ).tr(),
                   ),
-                  const Padding(
-                    padding: PagePadding.onlyLeft(),
-                    child: SizedBox.square(
+                  Padding(
+                    padding: const PagePadding.onlyLeft() +
+                        const PagePadding.onlyTop(),
+                    child: const SizedBox.square(
                       dimension: WidgetSizes.spacingXxl2,
                       child: CircularProgressIndicator(),
                     ),
