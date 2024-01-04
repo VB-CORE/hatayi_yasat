@@ -12,7 +12,11 @@ final class _ChangeLanguageWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GeneralBodyTitle(LocaleKeys.settings_currentLanguage.tr()),
+            GeneralBodyTitle(
+              LocaleKeys.settings_currentLanguage.tr(
+                context: context,
+              ),
+            ),
             const IntrinsicWidth(child: LanguageDropdownWidget()),
           ],
         ),

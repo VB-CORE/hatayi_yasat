@@ -1,9 +1,9 @@
 part of '../home_view.dart';
 
 final class _HomeSearchField extends StatelessWidget {
-  const _HomeSearchField({required this.onChanged});
+  const _HomeSearchField({required this.onChange});
 
-  final VoidCallback onChanged;
+  final ValueChanged<String> onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +11,7 @@ final class _HomeSearchField extends StatelessWidget {
       padding: const PagePadding.verticalVeryLowSymmetric(),
       sliver: CustomSearchField(
         hint: LocaleKeys.home_search.tr(),
-        onChange: (value) {
-          onChanged.call();
-        },
+        onChange: onChange,
       ).ext.sliver,
     );
   }

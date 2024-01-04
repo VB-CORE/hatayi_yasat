@@ -13,7 +13,7 @@ final class _AppAboutWidget extends StatelessWidget {
           .copyWith(side: CustomBorderSides.medium),
       child: ListTile(
         title: GeneralBodyTitle(
-          LocaleKeys.settings_aboutTitle.tr(),
+          LocaleKeys.settings_aboutTitle.tr(context: context),
           fontWeight: FontWeight.bold,
         ),
         trailing: const Icon(AppIcons.rightSelect),

@@ -36,7 +36,7 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          _HomeSearchField(onChanged: () {}),
+          _HomeSearchField(onChange: (value) {}),
           ClickableSubTitleText(
             title: LocaleKeys.home_categories.tr(),
             onTap: () async {

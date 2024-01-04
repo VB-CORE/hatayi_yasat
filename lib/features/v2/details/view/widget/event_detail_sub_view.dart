@@ -96,7 +96,6 @@ final class _CircleAvatarWithText extends StatelessWidget {
 final class _DateAndAddressRow extends StatelessWidget {
   const _DateAndAddressRow({
     required this.projectModel,
-    super.key,
   });
 
   final CampaignModel projectModel;

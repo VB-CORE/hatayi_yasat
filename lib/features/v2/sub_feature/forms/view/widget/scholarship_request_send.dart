@@ -5,7 +5,6 @@ final class _ScholarshipRequestSend extends StatelessWidget {
   const _ScholarshipRequestSend({
     required this.onTapped,
     required this.onKVKKChanged,
-    super.key,
   });
 
   final AsyncCallback onTapped;

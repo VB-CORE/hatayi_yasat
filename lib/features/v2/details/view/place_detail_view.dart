@@ -99,7 +99,6 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 class _VisitCountRow extends StatelessWidget {
   const _VisitCountRow({
     required this.model,
-    super.key,
   });
 
   final StoreModel model;

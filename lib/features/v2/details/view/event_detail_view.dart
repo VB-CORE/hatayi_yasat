@@ -10,6 +10,7 @@ import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenght
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/extension/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
@@ -55,25 +56,20 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                     _CircleAvatarWithText(
                       publisherName: eventModel.publisher ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    const EmptyBox.middleHeight(),
                     GeneralSubTitle(
                       value: eventModel.name ?? '',
                       fontWeight: FontWeight.w900,
                       maxLine: TextFieldMaxLengths.maxLineForText,
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    const EmptyBox.middleHeight(),
                     _DateAndAddressRow(projectModel: eventModel),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    const EmptyBox.middleHeight(),
                     _TitleDescription.topic(topic: eventModel.topic ?? ''),
-                    context.sized.emptySizedHeightBoxNormal,
+                    const EmptyBox.middleHeight(),
                     _TitleDescription.description(
                       description: eventModel.description ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxNormal,
                   ],
                 ),
               ),

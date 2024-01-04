@@ -88,7 +88,6 @@ final class _DateIconAndText extends StatelessWidget {
 final class _SelectableContentText extends StatelessWidget {
   const _SelectableContentText({
     required this.content,
-    super.key,
   });
 
   final String content;
