@@ -73,7 +73,7 @@ abstract class  LocaleKeys {
   static const settings_aboutTitle = 'settings.aboutTitle';
   static const settings_contactTitle = 'settings.contactTitle';
   static const settings_versionNumberTitle = 'settings.versionNumberTitle';
-  static const settings_notificationtitle = 'settings.notificationtitle';
+  static const settings_notificationTitle = 'settings.notificationTitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings_appReviewTitle = 'settings.appReviewTitle';
   static const settings_themes_light = 'settings.themes.light';

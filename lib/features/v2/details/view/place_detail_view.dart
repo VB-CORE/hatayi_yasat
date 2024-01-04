@@ -41,7 +41,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         ),
         leading: const CloseButton(),
         actions: [
-          _ShareAdressButton(model: model),
+          _ShareAddressButton(model: model),
           Padding(
             padding: const PagePadding.onlyRightLow(),
             child: FavoritePlaceButton(store: model),
@@ -96,7 +96,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   }
 }
 
-class _VisitCountRow extends StatelessWidget {
+final class _VisitCountRow extends StatelessWidget {
   const _VisitCountRow({
     required this.model,
   });
@@ -122,8 +122,8 @@ class _VisitCountRow extends StatelessWidget {
   }
 }
 
-final class _ShareAdressButton extends StatelessWidget {
-  const _ShareAdressButton({
+final class _ShareAddressButton extends StatelessWidget {
+  const _ShareAddressButton({
     required this.model,
   });
 

@@ -155,9 +155,12 @@ final class _TitleDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TitleDescription(
-      title: title,
-      description: description,
+    return Padding(
+      padding: const PagePadding.vertical8Symmetric(),
+      child: TitleDescription(
+        title: title,
+        description: description,
+      ),
     );
   }
 }

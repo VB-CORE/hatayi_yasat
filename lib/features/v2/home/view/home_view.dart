@@ -37,27 +37,31 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
         physics: const ClampingScrollPhysics(),
         slivers: [
           _HomeSearchField(onChange: (value) {}),
-          ClickableSubTitleText(
-            title: LocaleKeys.home_categories.tr(),
-            onTap: () async {
-              final result =
-                  await const FilterRoute().push<FilterSelected?>(context);
-              if (result == null) return;
-            },
-          ).ext.sliver,
+          SliverPadding(
+            padding: const PagePadding.onlyTopMedium(),
+            sliver: ClickableSubTitleText(
+              title: LocaleKeys.home_categories.tr(),
+              onTap: () async {
+                final result =
+                    await const FilterRoute().push<FilterSelected?>(context);
+                if (result == null) return;
+              },
+            ).ext.sliver,
+          ),
           const SliverPadding(
             padding: PagePadding.vertical6Symmetric(),
             sliver: _HomeCategoryCards(),
           ),
           SliverPadding(
-            padding: const PagePadding.onlyBottom(),
+            padding:
+                const PagePadding.onlyBottom() + const PagePadding.onlyTop(),
             sliver: GeneralSubTitle(
               value: LocaleKeys.home_places.tr(),
               fontWeight: FontWeight.bold,
             ).ext.sliver,
           ),
           const _HomePlacesArea(),
-          const EmptyBox.largeXHeight().ext.sliver,
+          const EmptyBox.largeXxHeight().ext.sliver,
         ],
       ),
     );
