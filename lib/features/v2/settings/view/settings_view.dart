@@ -43,6 +43,7 @@ final class SettingsView extends StatelessWidget {
           const Divider().ext.sliver,
           const _AppAboutWidget().ext.sliver,
           const _RatingWidget().ext.sliver,
+          const EmptyBox.largeXHeight().ext.sliver,
         ],
       ),
     );

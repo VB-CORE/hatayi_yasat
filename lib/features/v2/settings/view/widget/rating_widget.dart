@@ -14,7 +14,7 @@ final class _RatingWidget extends StatelessWidget {
             .copyWith(side: CustomBorderSides.medium),
         child: ListTile(
           title: GeneralBodyTitle(
-            LocaleKeys.settings_appReviewTitle.tr(),
+            LocaleKeys.settings_appReviewTitle.tr(context: context),
             fontWeight: FontWeight.bold,
           ),
           trailing: const AppRatingWidget(),

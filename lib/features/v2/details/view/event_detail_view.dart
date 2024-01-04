@@ -48,32 +48,30 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.all(),
+                padding: const PagePadding.defaultPadding() +
+                    const PagePadding.onlyTopMedium(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _CircleAvatarWithText(
                       publisherName: eventModel.publisher ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    GeneralSubTitle(
-                      value: eventModel.name ?? '',
-                      fontWeight: FontWeight.w900,
-                      maxLine: TextFieldMaxLengths.maxLineForText,
+                    Padding(
+                      padding: const PagePadding.onlyTop(),
+                      child: GeneralSubTitle(
+                        value: eventModel.name ?? '',
+                        fontWeight: FontWeight.w900,
+                        maxLine: TextFieldMaxLengths.maxLine,
+                      ),
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    _DateAndAddressRow(projectModel: eventModel),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: _DateAndAddressRow(projectModel: eventModel),
+                    ),
                     _TitleDescription.topic(topic: eventModel.topic ?? ''),
-                    context.sized.emptySizedHeightBoxNormal,
                     _TitleDescription.description(
                       description: eventModel.description ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxNormal,
                   ],
                 ),
               ),

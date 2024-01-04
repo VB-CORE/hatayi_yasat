@@ -31,9 +31,10 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
       appBar: PageAppBar(
         pageTitle: LocaleKeys.favorite_title,
         actions: [
-          _FavoriteClearAllButton(
-            onPressed: () {},
-          ),
+          if (ref.watch(favoriteViewModelProvider).favoritePlaces.isNotEmpty)
+            _FavoriteClearAllButton(
+              onPressed: () {},
+            ),
         ],
       ),
       body: CustomScrollView(

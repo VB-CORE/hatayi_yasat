@@ -13,11 +13,11 @@ final class _DevelopersWidget extends StatelessWidget {
           .copyWith(side: CustomBorderSides.medium),
       child: ListTile(
         title: GeneralContentTitle(
-          value: LocaleKeys.developers_title.tr(),
+          value: LocaleKeys.developers_title.tr(context: context),
           fontWeight: FontWeight.bold,
         ),
         subtitle: GeneralContentSubTitle(
-          value: LocaleKeys.settings_seeDevelopers.tr(),
+          value: LocaleKeys.settings_seeDevelopers.tr(context: context),
         ),
         leading: const Icon(
           AppIcons.group,
