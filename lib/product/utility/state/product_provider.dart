@@ -91,5 +91,10 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   /// This method removes all added favorite places from local storage.
-  void removeAllFavoritePlaces() => storeModelCache.removeAll();
+  void removeAllFavoritePlaces() {
+    final isAllFavoritePlacesRemoved = storeModelCache.removeAll();
+    if (isAllFavoritePlacesRemoved) {
+      state = state.copyWith(favoritePlaces: []);
+    }
+  }
 }
