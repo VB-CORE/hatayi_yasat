@@ -1,4 +1,3 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,24 +36,6 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          FloatingActionButton(
-            onPressed: () async {
-              final callable = FirebaseFunctions.instance.httpsCallable(
-                'search',
-                options: HttpsCallableOptions(
-                  timeout: const Duration(seconds: 5),
-                ),
-              );
-
-              // Fonksiyonu parametreler ile çağırın (eğer varsa)
-              final results = await callable.call(<String, dynamic>{
-                'term': 'rumo',
-                'page': '1',
-              });
-
-              print(results);
-            },
-          ).ext.sliver,
           _HomeSearchField(onChanged: () {}),
           ClickableSubTitleText(
             title: LocaleKeys.home_categories.tr(),
@@ -82,3 +63,23 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
     );
   }
 }
+
+
+  // FloatingActionButton(
+  //           onPressed: () async {
+  //             final callable = FirebaseFunctions.instance.httpsCallable(
+  //               'search',
+  //               options: HttpsCallableOptions(
+  //                 timeout: const Duration(seconds: 5),
+  //               ),
+  //             );
+
+  //             // Fonksiyonu parametreler ile çağırın (eğer varsa)
+  //             final results = await callable.call(<String, dynamic>{
+  //               'term': 'rumo',
+  //               'page': '1',
+  //             });
+
+  //             print(results);
+  //           },
+  //         ).ext.sliver,
