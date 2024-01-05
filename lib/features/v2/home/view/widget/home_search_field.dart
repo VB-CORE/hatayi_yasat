@@ -9,11 +9,21 @@ final class _HomeSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: const PagePadding.onlyTop(),
-      sliver: CustomSearchField(
-        hint: LocaleKeys.home_search.tr(),
-        onChange: (value) {
-          onChanged.call();
+      sliver: InkWell(
+        onTap: () {
+          showSearch(
+            context: context,
+            delegate: PlaceSearchDelegate(),
+          );
         },
+        child: IgnorePointer(
+          child: CustomSearchField(
+            hint: LocaleKeys.home_search.tr(),
+            onChange: (value) {
+              onChanged.call();
+            },
+          ),
+        ),
       ).ext.sliver,
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,9 +7,12 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/v2/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/v2/home/view/mixin/home_view_mixin.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
+import 'package:vbaseproject/features/v2/sub_feature/search/place_search_delegate.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
+import 'package:vbaseproject/product/model/search_response_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/package/firebase/custom_functions.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
