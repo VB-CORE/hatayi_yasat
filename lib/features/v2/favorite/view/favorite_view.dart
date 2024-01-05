@@ -35,7 +35,6 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
             _FavoriteClearAllButton(
               onPressed: () => ref
                   .read(favoriteViewModelProvider.notifier)
-                  .productProvider
                   .removeAllFavoritePlaces(),
             ),
         ],
