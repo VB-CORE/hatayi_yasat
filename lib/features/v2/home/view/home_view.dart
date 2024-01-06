@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart'
     show ContextExtension, SizedBoxExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
@@ -15,6 +14,8 @@ import 'package:vbaseproject/product/model/search_response_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/general_place_card.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
@@ -33,7 +34,8 @@ final class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
+class _HomeViewState extends ConsumerState<HomeView>
+    with NotificationTypeMixin, AppProviderMixin<HomeView>, HomeViewMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
@@ -72,23 +74,3 @@ class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
     );
   }
 }
-
-
-  // FloatingActionButton(
-  //           onPressed: () async {
-  //             final callable = FirebaseFunctions.instance.httpsCallable(
-  //               'search',
-  //               options: HttpsCallableOptions(
-  //                 timeout: const Duration(seconds: 5),
-  //               ),
-  //             );
-
-  //             // Fonksiyonu parametreler ile çağırın (eğer varsa)
-  //             final results = await callable.call(<String, dynamic>{
-  //               'term': 'rumo',
-  //               'page': '1',
-  //             });
-
-  //             print(results);
-  //           },
-  //         ).ext.sliver,

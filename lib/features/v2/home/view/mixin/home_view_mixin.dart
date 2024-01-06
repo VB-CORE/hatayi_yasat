@@ -28,7 +28,6 @@ mixin HomeViewMixin
   }
 
   Future<void> _navigateToDetail(NotificationModel model) async {
-    final (type) = modelConvertToType(model);
     await NotificationNavigateParse(context).makeWithModel(
       model: model,
     );
