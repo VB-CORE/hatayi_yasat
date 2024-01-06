@@ -50,7 +50,9 @@
       "districts": "Districts",
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
-      "categoryDescription": "You can select and filter categories here"
+      "categoryDescription": "You can select and filter categories here",
+      "filterResult":"Filter Result"
+
     }
   },
   "requestCompany": {
