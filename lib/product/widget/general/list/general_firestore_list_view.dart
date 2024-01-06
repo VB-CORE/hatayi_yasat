@@ -6,7 +6,7 @@ import 'package:vbaseproject/product/package/shimmer/general_shimmer.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_shimmer_height.dart';
 import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 
-typedef FireStoregeneralBuilder<T> = Widget Function(
+typedef FireStoreGeneralBuilder<T> = Widget Function(
   BuildContext context,
   T model,
 );
@@ -31,7 +31,7 @@ final class GeneralFirestoreListView<T> extends StatelessWidget {
   final Query<T?> query;
 
   /// That's builder for any child
-  final FireStoregeneralBuilder<T> itemBuilder;
+  final FireStoreGeneralBuilder<T> itemBuilder;
 
   /// When data is fetching is fail and you want to retry it you can use this callback
   final VoidCallback onRetry;

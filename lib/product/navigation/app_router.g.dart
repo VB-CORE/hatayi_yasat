@@ -110,6 +110,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
             ),
           ],
         ),
+        GoRouteData.$route(
+          path: 'filterResult',
+          name: 'Filter Result',
+          factory: $FilterResultRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -283,6 +288,27 @@ extension $EventDetailsRouteExtension on EventDetailsRoute {
 
   String get location => GoRouteData.$location(
         '/main/event/details',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $FilterResultRouteExtension on FilterResultRoute {
+  static FilterResultRoute _fromState(GoRouterState state) => FilterResultRoute(
+        state.extra as FilterSelected,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/filterResult',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

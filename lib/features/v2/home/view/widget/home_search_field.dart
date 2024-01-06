@@ -1,9 +1,7 @@
 part of '../home_view.dart';
 
 final class _HomeSearchField extends StatelessWidget {
-  const _HomeSearchField({required this.onChanged});
-
-  final VoidCallback onChanged;
+  const _HomeSearchField();
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +17,7 @@ final class _HomeSearchField extends StatelessWidget {
         child: IgnorePointer(
           child: CustomSearchField(
             hint: LocaleKeys.home_search.tr(),
-            onChange: (value) {
-              onChanged.call();
-            },
+            onChange: (value) {},
           ),
         ),
       ).ext.sliver,

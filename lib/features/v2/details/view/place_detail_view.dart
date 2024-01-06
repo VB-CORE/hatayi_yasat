@@ -105,16 +105,16 @@ final class _VisitCountRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: WidgetSizes.spacingL,
       child: FittedBox(
         child: Row(
           children: [
-            const Padding(
+            Padding(
               padding: PagePadding.onlyRightLow(),
               child: Icon(Icons.visibility_outlined),
             ),
-            GeneralBodyTitle(model.visitCount.toString()),
+            // GeneralBodyTitle(model.visitCount.toString()),
           ],
         ),
       ),

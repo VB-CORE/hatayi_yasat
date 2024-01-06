@@ -13,8 +13,10 @@ mixin AppProviderMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 
   ProductProvider get productProvider =>
       ref.read(ProjectDependencyItems.productProviderState.notifier);
+
   ProductProviderState get productState =>
       ref.read(ProjectDependencyItems.productProviderState);
+
   ProductProviderState get productStateWatch =>
       ref.watch(ProjectDependencyItems.productProviderState);
 }

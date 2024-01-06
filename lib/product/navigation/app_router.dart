@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/v2/details/view/place_detail_view.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
@@ -37,6 +39,7 @@ final class SplashRoute extends GoRouteData {
     NewsJobsRoute.route,
     FilterRoute.route,
     EventRoute.route,
+    FilterResultRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData {
@@ -74,4 +77,20 @@ final class FilterRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const FilterSearchView();
+}
+
+final class FilterResultRoute extends GoRouteData {
+  const FilterResultRoute(this.$extra);
+
+  static const route = TypedGoRoute<FilterResultRoute>(
+    path: 'filterResult',
+    name: 'Filter Result',
+  );
+
+  final FilterSelected $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => FilterResultView(
+        filter: $extra,
+      );
 }
