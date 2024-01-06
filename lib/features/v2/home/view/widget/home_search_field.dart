@@ -8,11 +8,18 @@ final class _HomeSearchField extends StatelessWidget {
     return SliverPadding(
       padding: const PagePadding.onlyTop(),
       sliver: InkWell(
-        onTap: () {
-          showSearch(
+        onTap: () async {
+          final response = await showSearch<SearchResponse>(
             context: context,
             delegate: PlaceSearchDelegate(),
           );
+
+          if (response == null) return;
+          if (!context.mounted) return;
+          PlaceDetailRoute(
+            $extra: StoreModel.empty(),
+            id: response.id,
+          ).go(context);
         },
         child: IgnorePointer(
           child: CustomSearchField(

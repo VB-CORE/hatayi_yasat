@@ -8,7 +8,6 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -55,10 +54,7 @@ class _SplashViewState extends ConsumerState<SplashView>
                   Padding(
                     padding: const PagePadding.onlyLeft() +
                         const PagePadding.onlyTop(),
-                    child: const SizedBox.square(
-                      dimension: WidgetSizes.spacingXxl2,
-                      child: CircularProgressIndicator(),
-                    ),
+                    child: Assets.lottie.loadingGray.lottie(),
                   ),
                 ],
               ),

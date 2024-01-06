@@ -56,7 +56,8 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
             child: ListTile(
               onTap: () {
                 context.pop();
-                PlaceDetailRoute($extra: model).go(context);
+                PlaceDetailRoute($extra: model, id: model.documentId)
+                    .go(context);
               },
               title: Text(model.name),
             ),

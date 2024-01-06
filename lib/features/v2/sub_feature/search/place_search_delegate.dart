@@ -50,7 +50,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
             query: query,
             items: snapshot.data!,
             onSelected: (value) {
-              // close(context, value);
+              close(context, value);
             },
           );
         } else {
@@ -60,14 +60,6 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
             ),
           );
         }
-      },
-    );
-
-    return _BuildResult(
-      query: query,
-      items: const [],
-      onSelected: (value) {
-        // close(context, value);
       },
     );
   }
@@ -84,7 +76,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
         query: query,
         items: _history,
         onSelected: (value) {
-          // close(context, value);
+          close(context, value);
         },
       );
     }

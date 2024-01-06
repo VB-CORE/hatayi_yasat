@@ -72,7 +72,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           factory: $SpecialAgencyRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'placeDetail',
+          path: 'placeDetail/:id',
           name: 'Place Detail',
           factory: $PlaceDetailRouteExtension._fromState,
         ),
@@ -172,11 +172,12 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
 
 extension $PlaceDetailRouteExtension on PlaceDetailRoute {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
+        id: state.pathParameters['id']!,
         $extra: state.extra as StoreModel,
       );
 
   String get location => GoRouteData.$location(
-        '/main/placeDetail',
+        '/main/placeDetail/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

@@ -52,18 +52,21 @@ final class MainTabRoute extends GoRouteData {
 
 /// You can use this route for home and favorite place cards
 final class PlaceDetailRoute extends GoRouteData {
-  PlaceDetailRoute({required this.$extra});
+  PlaceDetailRoute({required this.$extra, required this.id});
 
   static const route = TypedGoRoute<PlaceDetailRoute>(
-    path: 'placeDetail',
+    path: 'placeDetail/:id',
     name: 'Place Detail',
   );
 
   final StoreModel $extra;
+  final String id;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      PlaceDetailView(model: $extra);
+  Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
+        model: $extra,
+        id: id,
+      );
 }
 
 final class FilterRoute extends GoRouteData {
