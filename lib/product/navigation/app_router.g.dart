@@ -72,7 +72,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           factory: $SpecialAgencyRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'placeDetail',
+          path: 'placeDetail/:id',
           name: 'Place Detail',
           factory: $PlaceDetailRouteExtension._fromState,
         ),
@@ -109,6 +109,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
               factory: $EventDetailsRouteExtension._fromState,
             ),
           ],
+        ),
+        GoRouteData.$route(
+          path: 'filterResult',
+          name: 'Filter Result',
+          factory: $FilterResultRouteExtension._fromState,
         ),
       ],
     );
@@ -167,11 +172,12 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
 
 extension $PlaceDetailRouteExtension on PlaceDetailRoute {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
+        id: state.pathParameters['id']!,
         $extra: state.extra as StoreModel,
       );
 
   String get location => GoRouteData.$location(
-        '/main/placeDetail',
+        '/main/placeDetail/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);
@@ -283,6 +289,27 @@ extension $EventDetailsRouteExtension on EventDetailsRoute {
 
   String get location => GoRouteData.$location(
         '/main/event/details',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $FilterResultRouteExtension on FilterResultRoute {
+  static FilterResultRoute _fromState(GoRouterState state) => FilterResultRoute(
+        state.extra as FilterSelected,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/filterResult',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

@@ -50,7 +50,8 @@
       "districts": "İlçeler",
       "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
       "categories": "Kategoriler",
-      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz"
+      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
+      "filterResult":"Filtreleme sonucu"
     }
   },
   "requestCompany": {

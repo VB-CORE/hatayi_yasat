@@ -5,11 +5,11 @@ final class _FavoriteListBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoireViewModelProvider = ref.watch(favoriteViewModelProvider);
+    final favoriteProvider = ref.watch(favoriteViewModelProvider);
 
-    final favoritePlaces = favoireViewModelProvider.filteredPlaces.isEmpty
-        ? favoireViewModelProvider.favoritePlaces
-        : favoireViewModelProvider.filteredPlaces;
+    final favoritePlaces = favoriteProvider.filteredPlaces.isEmpty
+        ? favoriteProvider.favoritePlaces
+        : favoriteProvider.filteredPlaces;
 
     if (favoritePlaces.isEmpty) {
       return SliverFillRemaining(
@@ -23,7 +23,10 @@ final class _FavoriteListBuilder extends ConsumerWidget {
         return _FavoriteAuthorWidget(
           model: favoritePlaces[index],
           onCardTapped: () {
-            PlaceDetailRoute($extra: favoritePlaces[index]).go(context);
+            PlaceDetailRoute(
+                    $extra: favoritePlaces[index],
+                    id: favoritePlaces[index].documentId)
+                .go(context);
           },
           onDeleteTapped: () {
             ref

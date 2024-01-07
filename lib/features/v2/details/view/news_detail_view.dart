@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/news_detail_view_mixin.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';

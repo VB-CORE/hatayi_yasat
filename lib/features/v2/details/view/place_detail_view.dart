@@ -7,6 +7,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/place_detail_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
+import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
@@ -22,8 +23,9 @@ import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 part 'widget/place_detail_sub_view.dart';
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
-  const PlaceDetailView({required this.model, super.key});
+  const PlaceDetailView({required this.model, required this.id, super.key});
   final StoreModel model;
+  final String id;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -31,9 +33,15 @@ final class PlaceDetailView extends ConsumerStatefulWidget {
 }
 
 class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
-    with PlaceDetailViewMixin {
+    with AppProviderMixin<PlaceDetailView>, PlaceDetailViewMixin {
   @override
   Widget build(BuildContext context) {
+    if (model.documentId.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: const PlaceShimmerList(),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -71,7 +79,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         placeName: model.name,
                         callAction: callAction,
                       ),
-                      _VisitCountRow(model: model),
+                      // _VisitCountRow(model: model),
                       _TownIcon(townCode: model.townCode),
                       Padding(
                         padding: const PagePadding.verticalSymmetric(),
@@ -105,16 +113,16 @@ final class _VisitCountRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: WidgetSizes.spacingL,
       child: FittedBox(
         child: Row(
           children: [
-            const Padding(
+            Padding(
               padding: PagePadding.onlyRightLow(),
               child: Icon(Icons.visibility_outlined),
             ),
-            GeneralBodyTitle(model.visitCount.toString()),
+            // GeneralBodyTitle(model.visitCount.toString()),
           ],
         ),
       ),

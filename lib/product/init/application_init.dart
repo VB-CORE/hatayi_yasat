@@ -36,7 +36,7 @@ final class ApplicationInit {
     await remoteConfig.fetchAndActivate();
 
     await SharedCache.instance.init();
-    await _injectTestEnvOnDebug();
+    // await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
     await FirebaseCrashlytics.instance
         .setCrashlyticsCollectionEnabled(kDebugMode);
@@ -47,7 +47,6 @@ final class ApplicationInit {
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    if (kReleaseMode) return;
     FirebaseFunctions.instance.useFunctionsEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.functions.port,

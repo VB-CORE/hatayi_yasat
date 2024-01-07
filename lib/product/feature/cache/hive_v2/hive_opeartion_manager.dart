@@ -39,4 +39,11 @@ final class HiveOperationManager<T extends CacheModel>
   void update(T data) {
     _box.put(data.id, data);
   }
+
+  @override
+  bool removeAll() {
+    _box.clear();
+    final itemList = getAll();
+    return itemList.isEmpty;
+  }
 }

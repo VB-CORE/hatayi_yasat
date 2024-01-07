@@ -23,7 +23,7 @@ class FirestoreSliverListView<T> extends StatelessWidget {
   });
   final Query<T?> query;
 
-  final FireStoregeneralBuilder<T> itemBuilder;
+  final FireStoreGeneralBuilder<T> itemBuilder;
 
   final VoidCallback onRetry;
 

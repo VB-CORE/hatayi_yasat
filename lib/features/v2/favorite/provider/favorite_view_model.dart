@@ -30,6 +30,15 @@ final class FavoriteViewModel extends _$FavoriteViewModel
     );
   }
 
+  /// It removes all favorite places in Favorites view.
+  void removeAllFavoritePlaces() {
+    final isAllFavoritePlacesRemoved =
+        productProvider.removeAllFavoritePlaces();
+    if (isAllFavoritePlacesRemoved) {
+      state = state.copyWith(favoritePlaces: _items);
+    }
+  }
+
   void searchFavorites(String value) {
     state = state.copyWith(
       filteredPlaces: state.favoritePlaces

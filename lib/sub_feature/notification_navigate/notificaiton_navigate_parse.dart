@@ -57,7 +57,7 @@ final class NotificationNavigateParse with NotificationTypeMixin {
   Future<void> makeWithModel({
     required NotificationModel model,
   }) async {
-    final (type, id) = modelConvertToType(model);
+    final (type, _) = modelConvertToType(model);
     if (type == null) return;
   }
 }

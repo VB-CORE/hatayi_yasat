@@ -14,6 +14,9 @@ final class _HomeCategoryCards extends ConsumerWidget {
       highlightColor: Colors.red,
       onTap: () async {
         final result = await const FilterRoute().push<FilterSelected?>(context);
+        if (result == null) return;
+        if (!context.mounted) return;
+        FilterResultRoute(result).go(context);
       },
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

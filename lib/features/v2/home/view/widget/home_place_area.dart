@@ -15,7 +15,8 @@ final class _HomePlacesArea extends ConsumerWidget {
           padding: const PagePadding.onlyBottom(),
           child: GeneralPlaceCard(
             onCardTap: () {
-              PlaceDetailRoute($extra: model).push<PlaceDetailRoute>(context);
+              PlaceDetailRoute($extra: model, id: model.documentId)
+                  .push<PlaceDetailRoute>(context);
             },
             storeModel: model,
             onBookmarkIconTap: () {},

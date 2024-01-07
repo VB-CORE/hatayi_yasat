@@ -69,6 +69,10 @@ class $AssetsLottieGen {
   LottieGenImage get connectionLost =>
       const LottieGenImage('assets/lottie/connection_lost.json');
 
+  /// File path: assets/lottie/loading_gray.json
+  LottieGenImage get loadingGray =>
+      const LottieGenImage('assets/lottie/loading_gray.json');
+
   /// File path: assets/lottie/not_found.json
   LottieGenImage get notFound =>
       const LottieGenImage('assets/lottie/not_found.json');
@@ -87,6 +91,7 @@ class $AssetsLottieGen {
         cityLoading,
         cityLoadingBetter,
         connectionLost,
+        loadingGray,
         notFound,
         search,
         success
