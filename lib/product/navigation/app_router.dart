@@ -70,16 +70,21 @@ final class PlaceDetailRoute extends GoRouteData {
 }
 
 final class FilterRoute extends GoRouteData {
-  const FilterRoute();
+  const FilterRoute({
+    this.$extra,
+  });
 
   static const route = TypedGoRoute<FilterRoute>(
     path: 'filter',
     name: 'Filter',
   );
 
+  final String? $extra;
+
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const FilterSearchView();
+  Widget build(BuildContext context, GoRouterState state) => FilterSearchView(
+        selectedCategoryId: $extra,
+      );
 }
 
 final class FilterResultRoute extends GoRouteData {

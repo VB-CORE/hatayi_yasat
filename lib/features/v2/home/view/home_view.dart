@@ -20,6 +20,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/general_place_card.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/general/list/general_firestore_list_sliver_view.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 

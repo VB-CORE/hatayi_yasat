@@ -3,30 +3,37 @@ part of '../home_view.dart';
 final class _HomeCategoryCards extends ConsumerWidget {
   const _HomeCategoryCards();
   static const _maxCategoryItemLength = 6;
+  static const _otherCategoryValue = 1000;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categories = ref.watch(homeViewModelProvider).categories
       ..take(_maxCategoryItemLength)
-      ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length));
+      ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
 
-    return InkWell(
-      splashColor: Colors.transparent,
-      highlightColor: Colors.red,
-      onTap: () async {
-        final result = await const FilterRoute().push<FilterSelected?>(context);
-        if (result == null) return;
-        if (!context.mounted) return;
-        FilterResultRoute(result).go(context);
-      },
-      child: SingleChildScrollView(
+      /// remove other category
+      ..removeWhere((element) => element.value == _otherCategoryValue);
+
+    return SizedBox(
+      height: context.sized.dynamicHeight(.1),
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: categories
-              .map((e) => _CategoryCard(name: e.displayName))
-              .toList(),
-        ),
+        itemCount: categories.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const PagePadding.onlyRightVeryLow(),
+            child: _CategoryCard(
+              onTap: () async {
+                final result =
+                    await FilterRoute($extra: categories[index].documentId)
+                        .push<FilterSelected?>(context);
+                if (result == null) return;
+                if (!context.mounted) return;
+                FilterResultRoute(result).go(context);
+              },
+              name: categories[index].displayName,
+            ),
+          );
+        },
       ),
     ).ext.sliver;
   }
@@ -35,31 +42,37 @@ final class _HomeCategoryCards extends ConsumerWidget {
 final class _CategoryCard extends StatelessWidget {
   const _CategoryCard({
     required this.name,
+    required this.onTap,
   });
 
   final String name;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.sized.dynamicWidth(.2),
-      child: Column(
-        children: [
-          Card(
-            color: context.general.colorScheme.onPrimaryContainer,
-            shape: const RoundedRectangleBorder(
-              borderRadius: CustomRadius.extraLarge,
-            ),
-            child: Padding(
-              padding: const PagePadding.horizontalSymmetric() +
-                  const PagePadding.vertical12Symmetric(),
-              child: GeneralBigTitle(
-                name[0],
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        width: WidgetSizes.spacingXxl9,
+        child: Column(
+          children: [
+            Card(
+              color: context.general.colorScheme.onPrimaryContainer,
+              shape: const RoundedRectangleBorder(
+                borderRadius: CustomRadius.extraLarge,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const PagePadding.vertical12Symmetric(),
+                  child: GeneralBigTitle(
+                    name[0],
+                  ),
+                ),
               ),
             ),
-          ),
-          _CategoryCardTitle(name: name),
-        ],
+            Expanded(child: _CategoryCardTitle(name: name)),
+          ],
+        ),
       ),
     );
   }

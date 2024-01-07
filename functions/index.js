@@ -22,15 +22,16 @@ const SEARCH_PATH = "/applications_search";
 
 axios.defaults.headers.common['SECRET'] = SECRET;
 
-exports.search = functions.https.onCall(async (data, context) => {
-  const { term, page } = data;
+exports.search = functions.https.onCall(async (data, _) => {
+  const { term } = data;
   const target = 0;
+  const page = -1;
   try {
     const mongoResponse = await axios.get(BASE_URL + SEARCH_PATH, {
       params: { term, target, page }
     });
 
-    const response = mongoResponse.data.map((item) => { return { name: item.name, id: item._id } });
+    const response = mongoResponse.data.map((item) => { return { name: item.name, id: item.id } });
 
     return response;
   } catch (error) {

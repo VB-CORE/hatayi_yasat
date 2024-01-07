@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kartal/kartal.dart' show ContextExtension;
+import 'package:kartal/kartal.dart' show ContextExtension, IterableExtension;
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/provider/filter_search_provider.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
@@ -23,14 +23,37 @@ part './widget/filter_search_towns.dart';
 part './widget/filter_search_towns_header.dart';
 
 final class FilterSearchView extends ConsumerStatefulWidget {
-  const FilterSearchView({super.key});
+  const FilterSearchView({
+    super.key,
+    this.selectedCategoryId,
+  });
+
+  final String? selectedCategoryId;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _FilterSearchViewState();
 }
 
-class _FilterSearchViewState extends ConsumerState<FilterSearchView> {
+class _FilterSearchViewState extends ConsumerState<FilterSearchView>
+    with AppProviderMixin<FilterSearchView> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final selectedCategoryId = widget.selectedCategoryId;
+      if (selectedCategoryId == null) return;
+      final category = productState.categoryItems.firstWhereOrNull(
+        (element) => element.documentId == selectedCategoryId,
+      );
+      if (category == null) return;
+      ref.read(filterWithSearchProvider.notifier).updateSelectedCategory([
+        MultipleSelectItem(title: category.displayName, id: selectedCategoryId),
+      ]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(

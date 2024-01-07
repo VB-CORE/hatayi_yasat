@@ -24,7 +24,7 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     final item = await appProvider.customService.getSingleData<StoreModel>(
       model: StoreModel.empty(),
       path: CollectionPaths.approvedApplications,
-      id: '02cb5984-ad67-4413-98ec-5938074ec8c5',
+      id: id,
     );
     state = state.copyWith(storeModel: item, isFetching: false);
   }
