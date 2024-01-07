@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart' show ContextExtension, IterableExtension;
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/provider/filter_search_provider.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/mixin/filter_search_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
@@ -36,24 +37,7 @@ final class FilterSearchView extends ConsumerStatefulWidget {
 }
 
 class _FilterSearchViewState extends ConsumerState<FilterSearchView>
-    with AppProviderMixin<FilterSearchView> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final selectedCategoryId = widget.selectedCategoryId;
-      if (selectedCategoryId == null) return;
-      final category = productState.categoryItems.firstWhereOrNull(
-        (element) => element.documentId == selectedCategoryId,
-      );
-      if (category == null) return;
-      ref.read(filterWithSearchProvider.notifier).updateSelectedCategory([
-        MultipleSelectItem(title: category.displayName, id: selectedCategoryId),
-      ]);
-    });
-  }
-
+    with AppProviderMixin<FilterSearchView>, FilterSearchViewMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(

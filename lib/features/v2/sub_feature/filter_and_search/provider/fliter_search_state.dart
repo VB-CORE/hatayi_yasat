@@ -21,7 +21,7 @@ final class FilterSearchState extends Equatable {
   final List<TownModel> selectedTowns;
 
   bool get isSelectedItems =>
-      selectedCategories.isNotEmpty && selectedTowns.isNotEmpty;
+      selectedCategories.isNotEmpty || selectedTowns.isNotEmpty;
 
   FilterSearchState copyWith({
     List<MultipleSelectItem>? selectedCategories,
