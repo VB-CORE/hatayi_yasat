@@ -1,24 +1,19 @@
 part of '../event_view.dart';
 
-// TODO: Fix => Gerçek model ile güncellenecek.
 @immutable
-final class _EventGridBuilder extends StatelessWidget {
+final class _EventGridBuilder extends ConsumerWidget {
   const _EventGridBuilder();
 
   @override
-  Widget build(BuildContext context) {
-    final dummyData = CampaignModel(
-      name: 'Test Event',
-      topic: 'Buluşma',
-      description: 'Test açıklama',
-      publisher: 'User',
-      expireDate: DateTime.now(),
-      photo:
-          'https://fastly.picsum.photos/id/420/720/720.jpg?hmac=9le6YkBe6BgtPkTUQHVTCbw1X6hb4MeRkiVlS04cT7k',
-    );
-    return GridView.builder(
-      padding: const PagePadding.onlyTopMedium(),
-      itemCount: 10,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final query = ref
+        .read(eventViewModelProvider.notifier)
+        .fetchCampaignCollectionReference();
+
+    return FirestoreGridView(
+      query: query,
+      padding: const PagePadding.onlyTopMedium() +
+          const PagePadding.onlyBottomHigh(),
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -26,10 +21,14 @@ final class _EventGridBuilder extends StatelessWidget {
         mainAxisSpacing: WidgetSizes.spacingS,
         mainAxisExtent: context.sized.dynamicHeight(0.24),
       ),
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, doc) {
+        final model = doc.data();
+        if (model == null) return const SizedBox.shrink();
         return EventCard(
-          onTap: () {},
-          campaignModel: dummyData,
+          onTap: () {
+            EventDetailsRoute($extra: model).push<EventDetailsRoute>(context);
+          },
+          campaignModel: model,
         );
       },
     );

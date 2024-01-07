@@ -7,7 +7,7 @@ final class _ChangeNotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GeneralExpansionTile(
-      pageTitle: LocaleKeys.settings_notificationtitle,
+      pageTitle: LocaleKeys.settings_notificationTitle,
       children: [
         NotificationPermissionView(),
       ],

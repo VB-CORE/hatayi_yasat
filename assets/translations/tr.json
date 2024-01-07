@@ -50,7 +50,8 @@
       "districts": "İlçeler",
       "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
       "categories": "Kategoriler",
-      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz"
+      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
+      "filterResult":"Filtreleme sonucu"
     }
   },
   "requestCompany": {
@@ -80,7 +81,7 @@
     "aboutTitle": "Uygulama hakkında",
     "contactTitle": "Bize ulaşın",
     "versionNumberTitle": "Versiyon Numarası",
-    "notificationtitle": "Bildirim",
+    "notificationTitle": "Bildirim",
     "notificationSetting": "Bildirim izni",
     "appReviewTitle": "Uygulamayı Değerlendirin",
     "themes": {
@@ -99,7 +100,8 @@
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷"
+    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷",
+    "emptyFavorite": "Favori listeniz boş"
   },
   "placeDetailView": {
     "owner": "İşletme Sahibi",
@@ -121,7 +123,7 @@
     "publishedBy": "{} tarafından yayınlandı",
     "startDate": "Başlangıç Tarihi: {}",
     "time": "Saat: {}",
-    "join_now": "Hemen Katıl"
+    "addReminder": "Hatırlatıcı Ekle"
   },
   "forceUpdate": {
     "title": "Bir Güncelleme Var",

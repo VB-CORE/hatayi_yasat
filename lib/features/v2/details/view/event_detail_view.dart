@@ -6,7 +6,8 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/event_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/extension/index.dart';
@@ -17,7 +18,7 @@ import 'package:vbaseproject/product/widget/general/title/general_content_small_
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
-part '../sub_view/event_detail_sub_view.dart';
+part 'widget/event_detail_sub_view.dart';
 
 final class EventDetailView extends ConsumerStatefulWidget {
   const EventDetailView({
@@ -37,41 +38,40 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: _AddCalendarButton(action: addReminderAction),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               _ImageWithBackButtonStack(
-                image: ''.ext.randomImage,
+                image: eventModel.coverPhoto ?? '',
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.all(),
+                padding: const PagePadding.defaultPadding() +
+                    const PagePadding.onlyTopMedium(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _CircleAvatarWithText(
                       publisherName: eventModel.publisher ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    GeneralSubTitle(
-                      value: eventModel.name ?? '',
-                      fontWeight: FontWeight.w900,
+                    Padding(
+                      padding: const PagePadding.onlyTop(),
+                      child: GeneralSubTitle(
+                        value: eventModel.name ?? '',
+                        fontWeight: FontWeight.w900,
+                        maxLine: TextFieldMaxLengths.maxLine,
+                      ),
                     ),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    _DateAndAddressRow(projectModel: eventModel),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: _DateAndAddressRow(projectModel: eventModel),
+                    ),
                     _TitleDescription.topic(topic: eventModel.topic ?? ''),
-                    context.sized.emptySizedHeightBoxNormal,
                     _TitleDescription.description(
                       description: eventModel.description ?? '',
                     ),
-                    context.sized.emptySizedHeightBoxNormal,
-                    _JoinNowButton(onPressed: joinNowAction),
                   ],
                 ),
               ),

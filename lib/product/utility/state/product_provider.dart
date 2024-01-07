@@ -1,21 +1,34 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
+import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:vbaseproject/product/init/firebase_custom_service.dart';
-import 'package:vbaseproject/product/model/enum/redirect_tabs.dart';
-import 'package:vbaseproject/product/utility/extension/category_extension.dart';
+import 'package:vbaseproject/product/utility/state/items/product_provider_state.dart';
 
-class ProductProvider extends StateNotifier<ProductProviderState> {
+final class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
 
   final _firebaseService = FirebaseCustomService();
-  static final provider =
-      StateNotifierProvider<ProductProvider, ProductProviderState>((_) {
-    return ProductProvider();
-  });
+
+  late HiveOperationManager<StoreModelCache> storeModelCache;
+
+  Future<void> initWhenApplicationStart() async {
+    final productCache = ProjectDependencyItems.productCache;
+    await Future.wait([
+      fetchDistrictAndSaveSession(),
+      fetchDevelopersAndAgency(),
+      fetchCategories(),
+      productCache.init(),
+    ]);
+
+    storeModelCache = productCache.storeModelCache;
+    state = state.copyWith(
+      favoritePlaces:
+          storeModelCache.getAll().map((e) => e.storeModel).toList(),
+    );
+  }
 
   Future<void> fetchDistrictAndSaveSession() async {
     final items = await _firebaseService.getList<TownModel>(
@@ -49,15 +62,12 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
     state = state.copyWith(categoryItems: items);
   }
 
-  void saveStores(List<StoreModel> storeItems) {
-    state = state.copyWith(storeItems: storeItems);
-  }
-
   void saveCampaigns(List<CampaignModel> campaignItems) {
     state = state.copyWith(campaignItems: campaignItems);
   }
 
   String fetchTownFromCode(int? code) {
+    if (code == null) return '';
     return state.townItems
             .firstWhereOrNull(
               (element) => element.code == code,
@@ -65,67 +75,30 @@ class ProductProvider extends StateNotifier<ProductProviderState> {
             ?.name ??
         '';
   }
-}
 
-@immutable
-class ProductProviderState extends Equatable {
-  const ProductProviderState({
-    this.townItems = const [],
-    this.storeItems = const [],
-    this.developerItems = const [],
-    this.agencyItems = const [],
-    this.categoryItems = const [],
-    this.campaignItems = const [],
-    this.redirectionPage,
-  });
+  void addOrRemoveFavoritePlace(StoreModel store) {
+    if (state.favoritePlaces
+        .any((element) => element.documentId == store.documentId)) {
+      storeModelCache.delete(StoreModelCache(storeModel: store));
+    } else {
+      storeModelCache.add(StoreModelCache(storeModel: store));
+    }
 
-  final List<TownModel> townItems;
-  final List<StoreModel> storeItems;
-  final List<DeveloperModel> developerItems;
-  final List<SpecialAgencyModel> agencyItems;
-  final List<CategoryModel> categoryItems;
-  final List<CampaignModel> campaignItems;
-  final RedirectTabs? redirectionPage;
-
-  List<CategoryModel> get categoryItemsWithAll {
-    return [
-      CategoryExtension.emptyAll,
-      ...categoryItems,
-    ];
-  }
-
-  List<TownModel> get townItemsWithAll {
-    return [
-      CategoryExtension.emptyAllTown,
-      ...townItems,
-    ];
-  }
-
-  @override
-  List<Object> get props => [
-        townItems,
-        storeItems,
-        developerItems,
-        agencyItems,
-        categoryItems,
-        campaignItems,
-      ];
-
-  ProductProviderState copyWith({
-    List<TownModel>? townItems,
-    List<StoreModel>? storeItems,
-    List<DeveloperModel>? developerItems,
-    List<SpecialAgencyModel>? agencyItems,
-    List<CategoryModel>? categoryItems,
-    List<CampaignModel>? campaignItems,
-  }) {
-    return ProductProviderState(
-      townItems: townItems ?? this.townItems,
-      storeItems: storeItems ?? this.storeItems,
-      developerItems: developerItems ?? this.developerItems,
-      agencyItems: agencyItems ?? this.agencyItems,
-      categoryItems: categoryItems ?? this.categoryItems,
-      campaignItems: campaignItems ?? this.campaignItems,
+    state = state.copyWith(
+      favoritePlaces:
+          storeModelCache.getAll().map((e) => e.storeModel).toList(),
     );
+  }
+
+  /// It clears all favorite places from local storage
+  ///
+  /// And deselects favorite icon in GeneralPlaceCard
+  bool removeAllFavoritePlaces() {
+    final isAllFavoritePlacesRemoved = storeModelCache.removeAll();
+    if (isAllFavoritePlacesRemoved) {
+      state = state.copyWith(favoritePlaces: []);
+    }
+
+    return isAllFavoritePlacesRemoved;
   }
 }

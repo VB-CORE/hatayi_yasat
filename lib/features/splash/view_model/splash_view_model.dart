@@ -32,11 +32,8 @@ class SplashViewModel extends StateNotifier<SplashState> {
       return;
     }
 
-    await Future.wait([
-      productProvider.fetchDistrictAndSaveSession(),
-      productProvider.fetchDevelopersAndAgency(),
-      productProvider.fetchCategories(),
-    ]);
+    await productProvider.initWhenApplicationStart();
+
     state = state.copyWith(isOperationStaring: false);
   }
 

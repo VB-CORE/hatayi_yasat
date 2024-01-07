@@ -12,25 +12,27 @@ final class TitleDescription extends StatelessWidget {
   final String description;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: context.general.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Padding(
-          padding: const PagePadding.onlyTopLow(),
-          child: Text(
-            description,
-            style: context.general.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
+    return SelectionArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: context.general.textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const PagePadding.onlyTopLow(),
+            child: Text(
+              description,
+              style: context.general.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

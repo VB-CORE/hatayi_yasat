@@ -17,7 +17,10 @@ class SplashView extends ConsumerStatefulWidget {
 }
 
 class _SplashViewState extends ConsumerState<SplashView>
-    with AppProviderMixin, SplashViewMixin {
+    with
+        AppProviderMixin,
+        SingleTickerProviderStateMixin<SplashView>,
+        SplashViewMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,10 @@ class _SplashViewState extends ConsumerState<SplashView>
             children: [
               SizedBox(
                 height: context.sized.dynamicHeight(.3),
-                child: Assets.lottie.cityLoadingBetter.lottie(),
+                child: Assets.lottie.cityLoadingBetter.lottie(
+                  controller: lottieController,
+                  onLoaded: onLoadedLottie,
+                ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -45,9 +51,10 @@ class _SplashViewState extends ConsumerState<SplashView>
                       textAlign: TextAlign.center,
                     ).tr(),
                   ),
-                  const Padding(
-                    padding: PagePadding.onlyTop(),
-                    child: CircularProgressIndicator(),
+                  Padding(
+                    padding: const PagePadding.onlyLeft() +
+                        const PagePadding.onlyTop(),
+                    child: Assets.lottie.loadingGray.lottie(),
                   ),
                 ],
               ),

@@ -10,7 +10,13 @@ final class _FilterSearchButton extends ConsumerWidget {
       child: SafeArea(
         child: GeneralButtonV2.active(
           action: () {
-            ref.read(filterWithSearchProvider.notifier).filterSelected();
+            final provider = ref.read(filterWithSearchProvider);
+            context.pop(
+              FilterSelected(
+                selectedCategories: provider.selectedCategories,
+                selectedTowns: provider.selectedTowns,
+              ),
+            );
           },
           isEnabled: ref.watch(filterWithSearchProvider).isSelectedItems,
           label: LocaleKeys.button_showResult.tr(),

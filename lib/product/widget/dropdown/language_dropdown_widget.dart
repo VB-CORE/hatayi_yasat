@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/core/init/core_localize.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_border_side.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/title/index.dart';
 
 final class LanguageDropdownWidget extends StatelessWidget {
@@ -29,6 +30,7 @@ final class LanguageDropdownWidget extends StatelessWidget {
   }
 
   InputDecoration get _decoration => InputDecoration(
+        contentPadding: const PagePadding.horizontalLowSymmetric(),
         border: _border,
         focusedBorder: _border,
       );

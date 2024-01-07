@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lenghts.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
 import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_decoration.dart';

@@ -87,8 +87,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
   }
 }
 
-class _ThemeTitle extends ConsumerWidget
-    with AppProviderStateMixin<_ThemeTitle> {
+class _ThemeTitle extends ConsumerWidget with AppProviderStateMixin {
   const _ThemeTitle();
 
   @override

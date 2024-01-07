@@ -18,10 +18,12 @@ final class MultipleSelectButton extends StatefulWidget {
   const MultipleSelectButton({
     required this.items,
     required this.onUpdatedSelectedItems,
+    this.selectedItems = const [],
     super.key,
   });
   final List<MultipleSelectItem> items;
   final ValueChanged<List<MultipleSelectItem>> onUpdatedSelectedItems;
+  final List<MultipleSelectItem> selectedItems;
   @override
   State<MultipleSelectButton> createState() => _MultipleSelectButtonState();
 }

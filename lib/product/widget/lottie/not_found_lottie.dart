@@ -6,7 +6,7 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
-class NotFoundLottie extends StatelessWidget {
+final class NotFoundLottie extends StatelessWidget {
   const NotFoundLottie({
     required this.title,
     required this.onRefresh,

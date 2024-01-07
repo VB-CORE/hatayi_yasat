@@ -22,17 +22,21 @@ final class _ContactUsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      padding: const PagePadding.onlyBottom(),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: ContactModel.dummyModels.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisExtent: WidgetSizes.spacingXxlL13,
-      ),
+      gridDelegate: _delegate,
       itemBuilder: (context, i) =>
           _ContactUsCard(model: ContactModel.dummyModels[i]),
     );
   }
+
+  SliverGridDelegateWithFixedCrossAxisCount get _delegate =>
+      const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisExtent: WidgetSizes.spacingXxlL13,
+      );
 }
 
 @immutable
@@ -42,7 +46,12 @@ final class _ContactUsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.transparent,
+      shape: context.border.roundedRectangleAllBorderNormal
+          .copyWith(side: CustomBorderSides.maxThick),
+      elevation: 0,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const EmptyBox.smallHeight(),
           _UserImage(imageUrl: model.imageUrl),
@@ -93,6 +102,7 @@ final class _ContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: true,
       title: GeneralBodyTitle(title),
       trailing: Icon(icon),
       onTap: onTap,

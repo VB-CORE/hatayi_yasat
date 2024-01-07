@@ -8,6 +8,7 @@ part of 'app_router.dart';
 
 List<RouteBase> get $appRoutes => [
       $splashRoute,
+      $mainTabRoute,
     ];
 
 RouteBase get $splashRoute => GoRouteData.$route(
@@ -18,43 +19,6 @@ RouteBase get $splashRoute => GoRouteData.$route(
           path: 'onboard',
           name: 'Onboard',
           factory: $OnboardRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'favorite',
-          name: 'Favorite',
-          factory: $FavoriteRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'specialAgency',
-          name: 'Special Agency',
-          factory: $SpecialAgencyRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'placeDetail',
-          name: 'Place Detail',
-          factory: $PlaceDetailRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'mainTab',
-          name: 'Main Tabs',
-          factory: $MainTabRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'developers',
-          name: 'Developers',
-          factory: $DevelopersRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'newsJobs',
-          name: 'News and Jobs',
-          factory: $NewsJobsRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'detail',
-              name: 'News Details',
-              factory: $NewsDetailRouteExtension._fromState,
-            ),
-          ],
         ),
       ],
     );
@@ -93,11 +57,89 @@ extension $OnboardRouteExtension on OnboardRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $mainTabRoute => GoRouteData.$route(
+      path: '/main',
+      factory: $MainTabRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'favorite',
+          name: 'Favorite',
+          factory: $FavoriteRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'specialAgency',
+          name: 'Special Agency',
+          factory: $SpecialAgencyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'placeDetail/:id',
+          name: 'Place Detail',
+          factory: $PlaceDetailRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'developers',
+          name: 'Developers',
+          factory: $DevelopersRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'newsJobs',
+          name: 'News and Jobs',
+          factory: $NewsJobsRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'detail',
+              name: 'News Details',
+              factory: $NewsDetailRouteExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: 'filter',
+          name: 'Filter',
+          factory: $FilterRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'event',
+          name: 'Events',
+          factory: $EventRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'details',
+              name: 'Event Details',
+              factory: $EventDetailsRouteExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: 'filterResult',
+          name: 'Filter Result',
+          factory: $FilterResultRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $MainTabRouteExtension on MainTabRoute {
+  static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
+
+  String get location => GoRouteData.$location(
+        '/main',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $FavoriteRouteExtension on FavoriteRoute {
   static FavoriteRoute _fromState(GoRouterState state) => const FavoriteRoute();
 
   String get location => GoRouteData.$location(
-        '/favorite',
+        '/main/favorite',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -115,7 +157,7 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
       const SpecialAgencyRoute();
 
   String get location => GoRouteData.$location(
-        '/specialAgency',
+        '/main/specialAgency',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -130,11 +172,12 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
 
 extension $PlaceDetailRouteExtension on PlaceDetailRoute {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
-        $extra: state.extra! as StoreModel,
+        id: state.pathParameters['id']!,
+        $extra: state.extra as StoreModel,
       );
 
   String get location => GoRouteData.$location(
-        '/placeDetail',
+        '/main/placeDetail/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);
@@ -149,29 +192,12 @@ extension $PlaceDetailRouteExtension on PlaceDetailRoute {
       context.replace(location, extra: $extra);
 }
 
-extension $MainTabRouteExtension on MainTabRoute {
-  static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
-
-  String get location => GoRouteData.$location(
-        '/mainTab',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
 extension $DevelopersRouteExtension on DevelopersRoute {
   static DevelopersRoute _fromState(GoRouterState state) =>
       const DevelopersRoute();
 
   String get location => GoRouteData.$location(
-        '/developers',
+        '/main/developers',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -188,7 +214,7 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
   static NewsJobsRoute _fromState(GoRouterState state) => const NewsJobsRoute();
 
   String get location => GoRouteData.$location(
-        '/newsJobs',
+        '/main/newsJobs',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -203,11 +229,91 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
 
 extension $NewsDetailRouteExtension on NewsDetailRoute {
   static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
-        $extra: state.extra! as NewsModel,
+        $extra: state.extra as NewsModel,
       );
 
   String get location => GoRouteData.$location(
-        '/newsJobs/detail',
+        '/main/newsJobs/detail',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $FilterRouteExtension on FilterRoute {
+  static FilterRoute _fromState(GoRouterState state) => FilterRoute(
+        $extra: state.extra as String?,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/filter',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $EventRouteExtension on EventRoute {
+  static EventRoute _fromState(GoRouterState state) => const EventRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/event',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EventDetailsRouteExtension on EventDetailsRoute {
+  static EventDetailsRoute _fromState(GoRouterState state) => EventDetailsRoute(
+        $extra: state.extra as CampaignModel,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/event/details',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $FilterResultRouteExtension on FilterResultRoute {
+  static FilterResultRoute _fromState(GoRouterState state) => FilterResultRoute(
+        state.extra as FilterSelected,
+      );
+
+  String get location => GoRouteData.$location(
+        '/main/filterResult',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

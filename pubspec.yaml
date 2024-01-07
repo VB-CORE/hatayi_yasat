@@ -2,7 +2,7 @@ name: vbaseproject
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 3.0.0
+version: 4.0.0
 
 environment:
   sdk: ">=3.1.3 <4.0.0"
@@ -16,7 +16,7 @@ dependencies:
   easy_localization: ^3.0.1
   equatable: ^2.0.5
 
-  #Core 
+  #Core
   get_it: ^7.6.4
 
   #state management
@@ -32,11 +32,11 @@ dependencies:
   #third-party
   app_settings: ^5.1.1
   permission_handler: ^11.0.0
+  flutter_inappwebview: ^6.0.0
 
   #core
   cached_network_image: ^3.2.3
   go_router: ^9.0.3
-
 
   #util
 
@@ -53,11 +53,12 @@ dependencies:
   cloud_firestore: ^4.4.2
   firebase_crashlytics: ^3.3.6
   firebase_ui_firestore: ^1.5.11
+  cloud_functions: ^4.5.8
 
   #database
   shared_preferences: ^2.2.1
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  hive: ^4.0.0-dev.2
+  isar_flutter_libs: ^4.0.0-dev.13
 
   #package
   image_picker: ^1.0.4
@@ -65,7 +66,7 @@ dependencies:
   share_plus: ^7.1.0
   screenshot: ^2.1.0
   path_provider: ^2.1.1
-  add_2_calendar: ^3.0.1
+  add_2_calendar: 3.0.1
   in_app_review: ^2.0.8
   flutter_rating_bar: ^4.0.1
 
@@ -110,7 +111,7 @@ dev_dependencies:
   logger: ^2.0.1
   json_serializable: ^6.6.1
   very_good_analysis: ^5.1.0
-  hive_generator: ^2.0.1
+
   riverpod_generator: ^2.3.8
   go_router_builder: ^2.4.0
 

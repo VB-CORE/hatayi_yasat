@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/place_request_model.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/request_form.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/place_request_form.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
 
 mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
@@ -59,8 +59,10 @@ mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
   @override
   void initState() {
     super.initState();
-    _townModels = ref.read(ProductProvider.provider).townItems;
-    _categoryModels = ref.read(ProductProvider.provider).categoryItems;
+    final productProviderState =
+        ref.read(ProjectDependencyItems.productProviderState);
+    _townModels = productProviderState.townItems;
+    _categoryModels = productProviderState.categoryItems;
   }
 
   @override
