@@ -89,4 +89,16 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
           storeModelCache.getAll().map((e) => e.storeModel).toList(),
     );
   }
+
+  /// It clears all favorite places from local storage
+  ///
+  /// And deselects favorite icon in GeneralPlaceCard
+  bool removeAllFavoritePlaces() {
+    final isAllFavoritePlacesRemoved = storeModelCache.removeAll();
+    if (isAllFavoritePlacesRemoved) {
+      state = state.copyWith(favoritePlaces: []);
+    }
+
+    return isAllFavoritePlacesRemoved;
+  }
 }

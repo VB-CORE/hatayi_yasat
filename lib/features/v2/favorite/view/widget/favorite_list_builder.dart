@@ -5,11 +5,11 @@ final class _FavoriteListBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoireViewModelProvider = ref.watch(favoriteViewModelProvider);
+    final favoriteProvider = ref.watch(favoriteViewModelProvider);
 
-    final favoritePlaces = favoireViewModelProvider.filteredPlaces.isEmpty
-        ? favoireViewModelProvider.favoritePlaces
-        : favoireViewModelProvider.filteredPlaces;
+    final favoritePlaces = favoriteProvider.filteredPlaces.isEmpty
+        ? favoriteProvider.favoritePlaces
+        : favoriteProvider.filteredPlaces;
 
     if (favoritePlaces.isEmpty) {
       return SliverFillRemaining(
