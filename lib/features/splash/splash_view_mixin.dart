@@ -8,9 +8,9 @@ import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/navigation/project_navigation.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/bottom_sheet/firebase_error_bottom_sheet.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
+import 'package:vbaseproject/sub_feature/onboard/on_board_view.dart';
 
 mixin SplashViewMixin
     on

@@ -11,5 +11,6 @@ final class OnboardRoute extends GoRouteData {
   );
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const OnBoarView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const OnBoardView();
 }
