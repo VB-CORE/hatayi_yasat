@@ -5,6 +5,7 @@ final class StringConstants {
   static const String twitter = 'Twitter';
   static const String instagram = 'Instagram';
   static const String mail = 'Mail';
+  static const String expireDate = 'expireDate';
 
   /// Social Media Urls
   static const String twitterUrl = 'https://twitter.com/grafikherif';

@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
 import 'package:vbaseproject/features/campaign_module/campaigns/model/campaign_empty_model.dart';
 import 'package:vbaseproject/features/v2/event/provider/event_state.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
 
 part 'event_view_model.g.dart';
 
@@ -15,10 +16,15 @@ final class EventViewModel extends _$EventViewModel
     return const EventState();
   }
 
-  CollectionReference<CampaignModel?> fetchCampaignCollectionReference() {
-    return firebaseService.collectionReference(
-      CollectionPaths.approvedCampaigns,
-      CampaignEmptyModel.empty,
-    );
+  Query<CampaignModel?> fetchCampaignQuery() {
+    return firebaseService
+        .collectionReference(
+          CollectionPaths.approvedCampaigns,
+          CampaignEmptyModel.empty,
+        )
+        .where(
+          StringConstants.expireDate,
+          isGreaterThanOrEqualTo: DateTime.now(),
+        );
   }
 }

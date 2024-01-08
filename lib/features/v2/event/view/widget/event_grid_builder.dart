@@ -6,9 +6,8 @@ final class _EventGridBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final query = ref
-        .read(eventViewModelProvider.notifier)
-        .fetchCampaignCollectionReference();
+    final query =
+        ref.read(eventViewModelProvider.notifier).fetchCampaignQuery();
 
     return FirestoreGridView(
       query: query,
