@@ -14,6 +14,8 @@ mixin HomeViewMixin
   @override
   void initState() {
     super.initState();
+    MessagingUtility.init();
+    listenToNotification();
   }
 
   Future<void> listenToNotification() async {

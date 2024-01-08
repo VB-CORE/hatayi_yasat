@@ -23,15 +23,26 @@ final class _NotificationPermissionViewState
       future: Permission.notification.status,
       builder:
           (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
-        return CheckboxListTile(
-          contentPadding: EdgeInsets.zero,
-          value: snapshot.data == PermissionStatus.granted ||
-              snapshot.data == PermissionStatus.limited,
-          onChanged: (value) {
-            _controlCheckBox(value: value ?? false);
-          },
-          title: GeneralBodyTitle(
-            LocaleKeys.settings_notificationSetting.tr(context: context),
+        final isGranted = snapshot.data == PermissionStatus.granted ||
+            snapshot.data == PermissionStatus.limited;
+
+        /// When user is enabled to notifications we are ignoring the widget
+        /// if u want to change it can be change manually
+        return IgnorePointer(
+          ignoring: isGranted,
+          child: AnimatedOpacity(
+            duration: Durations.medium2,
+            opacity: isGranted ? 0.3 : 1,
+            child: CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              value: isGranted,
+              onChanged: (value) {
+                _controlCheckBox(value: value ?? false);
+              },
+              title: GeneralBodyTitle(
+                LocaleKeys.settings_notificationSetting.tr(context: context),
+              ),
+            ),
           ),
         );
       },
