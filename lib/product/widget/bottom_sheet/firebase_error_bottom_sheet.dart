@@ -21,7 +21,7 @@ final class FirebaseErrorBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const PagePadding.all(),
       child: Column(
         children: [
