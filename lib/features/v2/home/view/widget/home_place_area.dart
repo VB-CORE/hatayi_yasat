@@ -5,14 +5,25 @@ final class _HomePlacesArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SliverList.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
+    final query =
+        ref.read(homeViewModelProvider.notifier).fetchJobsCollectionReference();
+
+    return FirestoreSliverListView(
+      query: query,
+      itemBuilder: (context, model) {
         return Padding(
-          padding: const PagePadding.onlyBottomMedium(),
-          child: GeneralPlaceCard(onCardTap: () {}),
+          padding: const PagePadding.onlyBottom(),
+          child: GeneralPlaceCard(
+            onCardTap: () {
+              PlaceDetailRoute($extra: model, id: model.documentId)
+                  .push<PlaceDetailRoute>(context);
+            },
+            storeModel: model,
+            onBookmarkIconTap: () {},
+          ),
         );
       },
+      onRetry: () {},
     );
   }
 }

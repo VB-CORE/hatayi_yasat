@@ -6,7 +6,7 @@ import 'package:vbaseproject/features/campaign_module/campaign_details/mixin/cam
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_utility.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/formatter/custom_date_time_formatter.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';

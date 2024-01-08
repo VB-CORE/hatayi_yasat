@@ -27,6 +27,7 @@ final class UserSpecialCard extends StatelessWidget {
     return AuthorListTileWidget(
       image: user.photoUrl,
       text: user.name,
+      description: '',
     );
   }
 }

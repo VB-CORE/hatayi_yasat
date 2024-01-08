@@ -6,14 +6,17 @@ final class GeneralBigTitle extends StatelessWidget {
   const GeneralBigTitle(
     this.value, {
     super.key,
+    this.maxLines,
   });
 
   final String value;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       value,
+      maxLines: maxLines,
       style: context.general.textTheme.headlineMedium?.copyWith(
         fontWeight: FontWeight.bold,
       ),

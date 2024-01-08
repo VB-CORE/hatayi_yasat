@@ -24,12 +24,10 @@ final class GeneralExpansionTile extends StatelessWidget {
       child: ExpansionTile(
         shape: LinearBorder.none,
         title: GeneralBodyTitle(
-          pageTitle.tr(),
+          pageTitle.tr(context: context),
           fontWeight: FontWeight.bold,
         ),
-        tilePadding: const PagePadding.generalAllNormal(),
-        childrenPadding: const PagePadding.horizontal16Symmetric() +
-            const PagePadding.onlyBottom(),
+        childrenPadding: const PagePadding.horizontal16Symmetric(),
         children: children,
       ),
     );

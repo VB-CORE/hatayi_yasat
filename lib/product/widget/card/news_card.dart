@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
@@ -75,7 +75,7 @@ class _TransparentBox extends StatelessWidget {
         borderRadius: CustomRadius.large,
       ),
       margin: EdgeInsets.zero,
-      color: context.general.colorScheme.secondary.withOpacity(0.45),
+      color: context.general.colorScheme.secondary.withOpacity(0.60),
       child: _NewsInformationArea(item: item),
     );
   }
@@ -100,11 +100,8 @@ class _NewsInformationArea extends StatelessWidget {
             fontWeight: FontWeight.bold,
             maxLine: 2,
           ),
-          const Padding(
-            padding: PagePadding.onlyTopLow(),
-            child: UserSpecialCard(
-              user: SpecialUser.creator,
-            ),
+          const UserSpecialCard(
+            user: SpecialUser.creator,
           ),
         ],
       ),

@@ -2,9 +2,7 @@ part of '../scholarship_request_form.dart';
 
 @immutable
 final class _UploadSizeInfo extends StatelessWidget {
-  const _UploadSizeInfo({
-    super.key,
-  });
+  const _UploadSizeInfo();
 
   @override
   Widget build(BuildContext context) {

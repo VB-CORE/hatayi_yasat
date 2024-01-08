@@ -9,9 +9,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vbaseproject/features/home_module/home_detail/mixin/home_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/dialog/phone_zoom_dialog.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
@@ -181,13 +180,14 @@ class _DistrictListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final town = ref
-        .watch(ProductProvider.provider.notifier)
-        .fetchTownFromCode(model.townCode);
-    return ListTile(
-      title: const Text(LocaleKeys.placeDetailView_district).tr(),
-      subtitle: Text(town),
-    );
+    return const Text('data');
+    // final town = ref
+    //     .watch(ProductProvider.provider.notifier)
+    //     .fetchTownFromCode(model.townCode);
+    // return ListTile(
+    //   title: const Text(LocaleKeys.placeDetailView_district).tr(),
+    //   subtitle: Text(town),
+    // );
   }
 }
 

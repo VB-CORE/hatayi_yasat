@@ -1,22 +1,37 @@
 part of '../favorite_view.dart';
 
-final class _FavoriteListBuilder extends StatelessWidget {
+final class _FavoriteListBuilder extends ConsumerWidget {
   const _FavoriteListBuilder();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteProvider = ref.watch(favoriteViewModelProvider);
+
+    final favoritePlaces = favoriteProvider.filteredPlaces.isEmpty
+        ? favoriteProvider.favoritePlaces
+        : favoriteProvider.filteredPlaces;
+
+    if (favoritePlaces.isEmpty) {
+      return SliverFillRemaining(
+        child:
+            GeneralNotFoundLottie(title: LocaleKeys.message_emptyFavorite.tr()),
+      );
+    }
     return SliverList.builder(
-      itemCount: 10,
+      itemCount: favoritePlaces.length,
       itemBuilder: (context, index) {
         return _FavoriteAuthorWidget(
-          name: 'Test Author $index',
-          image:
-              'https://fastly.picsum.photos/id/64/200/200.jpg?hmac=lJVbDn4h2axxkM72s1w8X1nQxUS3y7li49cyg0tQBZU',
+          model: favoritePlaces[index],
           onCardTapped: () {
-            // navigate to details
+            PlaceDetailRoute(
+                    $extra: favoritePlaces[index],
+                    id: favoritePlaces[index].documentId)
+                .go(context);
           },
           onDeleteTapped: () {
-            // remove from favorites
+            ref
+                .read(favoriteViewModelProvider.notifier)
+                .removeFavorite(favoritePlaces[index]);
           },
         );
       },
@@ -26,14 +41,12 @@ final class _FavoriteListBuilder extends StatelessWidget {
 
 final class _FavoriteAuthorWidget extends StatelessWidget {
   const _FavoriteAuthorWidget({
-    required this.name,
-    required this.image,
+    required this.model,
     required this.onCardTapped,
     required this.onDeleteTapped,
   });
 
-  final String name;
-  final String image;
+  final StoreModel model;
   final VoidCallback onCardTapped;
   final VoidCallback onDeleteTapped;
 
@@ -44,12 +57,10 @@ final class _FavoriteAuthorWidget extends StatelessWidget {
       child: Padding(
         padding: const PagePadding.vertical6Symmetric(),
         child: AuthorListTileWidget(
-          image: image,
-          text: name,
-          trailingWidget: IconButton(
-            onPressed: onDeleteTapped.call,
-            icon: const Icon(AppIcons.delete),
-          ),
+          image: model.images.first,
+          text: model.owner,
+          description: model.name,
+          onDeleteTapped: onDeleteTapped,
         ),
       ),
     );

@@ -1,14 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+import 'package:kartal/kartal.dart'
+    show ContextExtension, SizedBoxExtension, WidgetExtension;
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/features/v2/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/v2/home/view/mixin/home_view_mixin.dart';
+import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
+import 'package:vbaseproject/features/v2/sub_feature/search/place_search_delegate.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:vbaseproject/product/model/search_response_model.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/appbar/custom_popup_menu_app_bar.dart';
-import 'package:vbaseproject/product/widget/card/general_place_card.dart';
+import 'package:vbaseproject/product/widget/general/general_place_card.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/general/list/general_firestore_list_sliver_view.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
@@ -23,33 +35,42 @@ final class HomeView extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> with HomeViewMixin {
+class _HomeViewState extends ConsumerState<HomeView>
+    with NotificationTypeMixin, AppProviderMixin<HomeView>, HomeViewMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: CustomPopupMenuAppbar(context: context),
-      body: Padding(
-        padding: const PagePadding.horizontalLowSymmetric() +
-            const PagePadding.onlyTopLow(),
-        child: CustomScrollView(
-          controller: customScrollController,
-          slivers: [
-            _HomeSearchField(onChanged: () {}),
-            ClickableSubTitleText(
+      body: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const ClampingScrollPhysics(),
+        slivers: [
+          const _HomeSearchField(),
+          SliverPadding(
+            padding: const PagePadding.onlyTopMedium(),
+            sliver: ClickableSubTitleText(
               title: LocaleKeys.home_categories.tr(),
-              onTap: () {},
+              onTap: () async {
+                final result =
+                    await const FilterRoute().push<FilterSelected?>(context);
+                if (result == null) return;
+              },
             ).ext.sliver,
-            const _HomeCategoryCards().ext.sliver,
-            SliverPadding(
-              padding: const PagePadding.vertical8Symmetric(),
-              sliver: GeneralSubTitle(
-                value: LocaleKeys.home_places.tr(),
-                fontWeight: FontWeight.bold,
-              ).ext.sliver,
-            ),
-            const _HomePlacesArea(),
-          ],
-        ),
+          ),
+          const SliverPadding(
+            padding: PagePadding.vertical6Symmetric(),
+            sliver: _HomeCategoryCards(),
+          ),
+          SliverPadding(
+            padding:
+                const PagePadding.onlyBottom() + const PagePadding.onlyTop(),
+            sliver: GeneralSubTitle(
+              value: LocaleKeys.home_places.tr(),
+              fontWeight: FontWeight.bold,
+            ).ext.sliver,
+          ),
+          const _HomePlacesArea(),
+          const EmptyBox.largeXxHeight().ext.sliver,
+        ],
       ),
     );
   }

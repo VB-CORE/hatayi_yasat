@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/settings_module/special_agency/special_agency_view.dart';
-import 'package:vbaseproject/features/v2/favorite/view/favorite_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
@@ -47,13 +48,15 @@ final class _CustomPopupMenu extends StatelessWidget {
         return [
           _CustomPopupMenuItem(
             itemLabel: LocaleKeys.specialAgency_title,
-            context: context,
-            destination: const SpecialAgencyView(),
+            destination: () {
+              const SpecialAgencyRoute().push<SpecialAgencyRoute>(context);
+            },
           ),
           _CustomPopupMenuItem(
             itemLabel: LocaleKeys.favorite_title,
-            context: context,
-            destination: const FavoriteView(),
+            destination: () {
+              const FavoriteRoute().push<FavoriteRoute>(context);
+            },
           ),
         ];
       },

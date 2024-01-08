@@ -47,6 +47,7 @@ abstract class  LocaleKeys {
   static const component_filter_districtDescription = 'component.filter.districtDescription';
   static const component_filter_categories = 'component.filter.categories';
   static const component_filter_categoryDescription = 'component.filter.categoryDescription';
+  static const component_filter_filterResult = 'component.filter.filterResult';
   static const component_filter = 'component.filter';
   static const component = 'component';
   static const requestCompany_title = 'requestCompany.title';
@@ -73,7 +74,7 @@ abstract class  LocaleKeys {
   static const settings_aboutTitle = 'settings.aboutTitle';
   static const settings_contactTitle = 'settings.contactTitle';
   static const settings_versionNumberTitle = 'settings.versionNumberTitle';
-  static const settings_notificationtitle = 'settings.notificationtitle';
+  static const settings_notificationTitle = 'settings.notificationTitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings_appReviewTitle = 'settings.appReviewTitle';
   static const settings_themes_light = 'settings.themes.light';
@@ -90,6 +91,7 @@ abstract class  LocaleKeys {
   static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message_addedFavorite = 'message.addedFavorite';
   static const message_republicDay = 'message.republicDay';
+  static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
@@ -109,7 +111,7 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
   static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
   static const campaignDetailsView_time = 'campaignDetailsView.time';
-  static const campaignDetailsView_join_now = 'campaignDetailsView.join_now';
+  static const campaignDetailsView_addReminder = 'campaignDetailsView.addReminder';
   static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
   static const forceUpdate_message = 'forceUpdate.message';

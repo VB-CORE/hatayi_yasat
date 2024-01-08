@@ -1,0 +1,19 @@
+targets:
+  $default:
+    builders:
+      json_serializable:json_serializable:
+        generate_for:
+          - lib/**/*_model.dart
+        options:
+      go_router_builder:go_router_builder: # this for @AutoRouterConfig
+        generate_for:
+          - lib/product/navigation/app_router.dart
+      riverpod_generator:
+        options:
+          # Could be changed to "Pod", such that riverpod_generator
+          # would generate "countPod" instead of "countProvider"
+          provider_name_suffix: "Provider" # (default)
+          # Similar to provider_name_sufix, this is an option for renaming
+          # providers with parameters ("families").
+          # This takes precedence over provider_name_suffix.
+          provider_family_name_suffix: "Provider" # (default)

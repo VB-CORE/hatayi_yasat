@@ -34,13 +34,13 @@ class _FavoritePlacesBodyView extends ConsumerWidget {
   }
 }
 
-class _FavoriteItem extends ConsumerWidget with FavoritePlaceConverterMixin {
+class _FavoriteItem extends ConsumerWidget {
   const _FavoriteItem({required this.item, required this.refreshCallback});
-  final FavoritePlaceModel item;
+  final dynamic item;
   final VoidCallback refreshCallback;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final store = convertToStore(item);
+    final store = StoreModel.empty();
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: PlaceCard(

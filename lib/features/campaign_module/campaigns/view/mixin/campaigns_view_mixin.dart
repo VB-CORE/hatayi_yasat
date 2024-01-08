@@ -9,7 +9,7 @@ import 'package:vbaseproject/product/utility/state/product_provider.dart';
 final StateNotifierProvider<CampaignsViewModel, CampaignsState>
     _campaignsViewModel = StateNotifierProvider(
   (ref) => CampaignsViewModel(
-    productProvider: ref.read(ProductProvider.provider.notifier),
+    productProvider: ProductProvider(),
     customService: FirebaseCustomService(),
   ),
 );

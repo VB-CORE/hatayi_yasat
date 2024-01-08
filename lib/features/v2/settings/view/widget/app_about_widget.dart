@@ -10,15 +10,21 @@ final class _AppAboutWidget extends StatelessWidget {
       color: Colors.transparent,
       elevation: 0,
       shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.superMaxThick),
+          .copyWith(side: CustomBorderSides.medium),
       child: ListTile(
-        contentPadding: const PagePadding.generalAllNormal(),
         title: GeneralBodyTitle(
-          LocaleKeys.settings_aboutTitle.tr(),
+          LocaleKeys.settings_aboutTitle.tr(context: context),
           fontWeight: FontWeight.bold,
         ),
         trailing: const Icon(AppIcons.rightSelect),
         onTap: () {
+          showModalBottomSheet<void>(
+            context: context,
+            enableDrag: false,
+            builder: (context) {
+              return const AppAboutView();
+            },
+          );
           // navigate to AppAboutView
         },
       ),

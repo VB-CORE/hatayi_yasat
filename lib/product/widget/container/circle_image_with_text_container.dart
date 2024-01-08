@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/title/index.dart';
 import 'package:vbaseproject/product/widget/shadow/general_shadow.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 
 /// `CircleImageWithTextContainer` shows image with text in circle container
 ///
@@ -24,7 +26,7 @@ final class CircleImageWithTextContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: backgroundColor ?? context.general.colorScheme.secondary,
         borderRadius: context.border.highBorderRadius,
@@ -33,15 +35,16 @@ final class CircleImageWithTextContainer extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: context.padding.low / 2,
+        padding: const PagePadding.allVeryLow(),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             _ImageCircleAvatar(imageUrl: imageUrl),
-            context.sized.emptySizedWidthBoxLow,
-            context.sized.emptySizedWidthBoxLow,
-            _NameTextConstrainedBox(name: name),
-            context.sized.emptySizedWidthBoxNormal,
+            Padding(
+              padding: const PagePadding.onlyLeftLow() +
+                  const PagePadding.onlyRightLow(),
+              child: _NameTextConstrainedBox(name: name),
+            ),
           ],
         ),
       ),
@@ -60,11 +63,15 @@ final class _ImageCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundImage: NetworkImage(
-        imageUrl,
+    return ClipRRect(
+      borderRadius: CustomRadius.extraLarge,
+      child: SizedBox.square(
+        dimension: CustomRadius.extraLarge.topLeft.x,
+        child: CustomNetworkImage(
+          imageUrl: imageUrl,
+          fit: BoxFit.cover,
+        ),
       ),
-      radius: WidgetSizes.spacingSs,
     );
   }
 }

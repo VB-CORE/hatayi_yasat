@@ -1,11 +1,12 @@
 part of '../filter_search_view.dart';
 
-final class _FilterSearchCategoryHeader extends ConsumerWidget {
+final class _FilterSearchCategoryHeader extends ConsumerWidget
+    with AppProviderStateMixin {
   const _FilterSearchCategoryHeader();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories = ref.read(ProductProvider.provider).categoryItemsWithAll;
+    final categories = productState(ref).categoryItems;
 
     return Row(
       children: [

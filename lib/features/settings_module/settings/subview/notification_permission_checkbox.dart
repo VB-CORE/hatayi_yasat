@@ -30,7 +30,9 @@ final class _NotificationPermissionViewState
           onChanged: (value) {
             _controlCheckBox(value: value ?? false);
           },
-          title: GeneralBodyTitle(LocaleKeys.settings_notificationSetting.tr()),
+          title: GeneralBodyTitle(
+            LocaleKeys.settings_notificationSetting.tr(context: context),
+          ),
         );
       },
     );

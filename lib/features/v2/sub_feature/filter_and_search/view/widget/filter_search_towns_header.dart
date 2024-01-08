@@ -1,11 +1,12 @@
 part of '../filter_search_view.dart';
 
-final class _FilterSearchTownsHeader extends ConsumerWidget {
+final class _FilterSearchTownsHeader extends ConsumerWidget
+    with AppProviderStateMixin {
   const _FilterSearchTownsHeader();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final towns = ref.read(ProductProvider.provider).townItemsWithAll;
+    final towns = productState(ref).townItems;
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: Row(

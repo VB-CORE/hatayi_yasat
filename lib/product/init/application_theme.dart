@@ -10,6 +10,16 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
 
     themeData = theme.copyWith(
+      dialogBackgroundColor: ColorsCustom.white,
+      scaffoldBackgroundColor: ColorsCustom.white,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: ColorsCustom.sambacus,
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: ColorsCustom.sambacus,
+        ),
+      ),
       cardTheme: const CardTheme(
         elevation: 2,
         color: ColorsCustom.white,
@@ -18,11 +28,12 @@ final class ApplicationTheme {
         ),
       ),
       appBarTheme: AppBarTheme(
+        scrolledUnderElevation: 0,
         foregroundColor: ColorsCustom.white,
         backgroundColor: ColorsCustom.white,
         titleTextStyle: textTheme.titleLarge?.copyWith(),
         iconTheme: const IconThemeData(
-          color: ColorsCustom.white,
+          color: ColorsCustom.sambacus,
         ),
       ),
       textTheme: GoogleFonts.montserratTextTheme(textTheme).apply(
@@ -32,6 +43,7 @@ final class ApplicationTheme {
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,
         onPrimaryContainer: ColorsCustom.lightGray,
+        error: ColorsCustom.imperilRead,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(
@@ -43,8 +55,6 @@ final class ApplicationTheme {
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.black,
       ),
-      // TODO:Burak Dialog background color is not working
-      dialogBackgroundColor: ColorsCustom.white,
       snackBarTheme: SnackBarThemeData(
         backgroundColor: ColorsCustom.black,
         contentTextStyle: context.general.textTheme.bodyMedium?.copyWith(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
@@ -23,7 +23,7 @@ final class EventCard extends StatelessWidget {
       onTap: onTap.call,
       child: Column(
         children: [
-          _EventImage(image: campaignModel.photo),
+          _EventImage(image: campaignModel.coverPhoto),
           const EmptyBox.smallHeight(),
           GeneralContentSubTitle(
             value: campaignModel.name ?? '',

@@ -18,6 +18,7 @@ final class PageAppBar extends AppBar {
               height: AppConstants.kOne.toDouble(),
             ),
           ),
+          centerTitle: false,
           title: GeneralContentTitle(
             value: pageTitle.tr(),
             fontWeight: FontWeight.bold,

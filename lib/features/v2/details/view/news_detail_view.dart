@@ -5,14 +5,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/details/mixin/news_detail_view_mixin.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
+import 'package:vbaseproject/product/widget/special/user_special_card.dart';
 
-part '../sub_view/news_detail_sub_view.dart';
+part 'widget/news_detail_sub_view.dart';
 
 final class NewsDetailView extends ConsumerStatefulWidget {
   const NewsDetailView({required this.news, super.key});
@@ -27,27 +29,40 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
               _ImageWithButtonAndNameStack(
-                image: ''.ext.randomImage,
+                image: news.image ?? '',
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.all(),
+                padding: const PagePadding.horizontalSymmetric(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    context.sized.emptySizedHeightBoxLow,
-                    GeneralSubTitle(
-                      value: news.title ?? '',
-                      fontWeight: FontWeight.w900,
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: GeneralSubTitle(
+                        value: news.title ?? '',
+                        fontWeight: FontWeight.w900,
+                        maxLine: TextFieldMaxLengths.maxLine,
+                      ),
                     ),
-                    _DateIconAndText(date: news.createdAt),
-                    context.sized.emptySizedHeightBoxLow,
-                    context.sized.emptySizedHeightBoxLow,
-                    _SelectableContentText(content: news.content ?? ''),
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child: _DateIconAndText(date: news.createdAt),
+                    ),
+                    const Padding(
+                      padding: PagePadding.onlyTopMedium(),
+                      child: UserSpecialCard(user: SpecialUser.creator),
+                    ),
+                    Padding(
+                      padding: const PagePadding.onlyTopMedium(),
+                      child:
+                          _SelectableContentText(content: news.content ?? ''),
+                    ),
                   ],
                 ),
               ),

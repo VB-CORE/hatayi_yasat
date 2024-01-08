@@ -50,7 +50,9 @@
       "districts": "Districts",
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
-      "categoryDescription": "You can select and filter categories here"
+      "categoryDescription": "You can select and filter categories here",
+      "filterResult":"Filter Result"
+
     }
   },
   "requestCompany": {
@@ -80,7 +82,7 @@
     "aboutTitle": "About the app",
     "contactTitle": "Contact us",
     "versionNumberTitle": "Version Number",
-    "notificationtitle": "Notification permission",
+    "notificationTitle": "Notification permission",
     "notificationSetting": "Notification Settings",
     "appReviewTitle": "Rate the App",
     "themes": {
@@ -99,7 +101,8 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'"
+    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
+    "emptyFavorite": "Your favorites list is empty"
   },
   "placeDetailView": {
     "owner": "Business Owner",
@@ -121,7 +124,7 @@
     "publishedBy": "published by {}",
     "startDate": "Start Date: {}",
     "time": "Time: {}",
-    "join_now": "Join Now"
+    "addReminder": "Add Reminder"
   },
   "forceUpdate": {
     "title": "An Update is Available",

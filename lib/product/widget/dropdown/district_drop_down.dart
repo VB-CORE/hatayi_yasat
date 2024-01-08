@@ -5,10 +5,10 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
-class DistrictDropDownView extends ConsumerStatefulWidget {
+final class DistrictDropDownView extends ConsumerStatefulWidget {
   const DistrictDropDownView({
     required this.onSelected,
     super.key,
@@ -19,17 +19,15 @@ class DistrictDropDownView extends ConsumerStatefulWidget {
       _DistrictDropDownViewState();
 }
 
-class _DistrictDropDownViewState extends ConsumerState<DistrictDropDownView> {
-  ProductProvider get appProvider =>
-      ref.read(ProductProvider.provider.notifier);
-  ProductProviderState get appState => ref.read(ProductProvider.provider);
+final class _DistrictDropDownViewState
+    extends ConsumerState<DistrictDropDownView> with AppProviderMixin {
   late final List<TownModel> items;
   TownModel? _selectedItem;
 
   @override
   void initState() {
     super.initState();
-    items = appState.townItems;
+    items = productState.townItems;
   }
 
   @override

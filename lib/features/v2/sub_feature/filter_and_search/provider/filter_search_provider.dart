@@ -31,6 +31,4 @@ final class FilterWithSearch extends _$FilterWithSearch {
   void clearAllSelection() {
     state = const FilterSearchState();
   }
-
-  void filterSelected() {}
 }
