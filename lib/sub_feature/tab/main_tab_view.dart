@@ -46,7 +46,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         body: _BodyTabBarViewWidget(tabItems: _tabItems),
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
-        floatingActionButton: _SpeedDialFabWidget(dialItems: _speedDialItems),
+        floatingActionButton: const _SpeedDialFabWidget(),
       ),
     );
   }

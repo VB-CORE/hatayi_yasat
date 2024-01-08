@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kartal/kartal.dart' show SizedBoxExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/provider/scholarship_request_provider.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/mixin/scholarship_request_form_mixin.dart';
@@ -40,6 +41,7 @@ final class _ScholarshipRequestFormState
   Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(onPressed: () => context.pop()),
         title: Text(LocaleKeys.requestScholarship_title.tr()),
       ),
       bottomNavigationBar: _ScholarshipRequestSend(

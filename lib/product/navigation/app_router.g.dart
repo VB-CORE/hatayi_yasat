@@ -115,6 +115,21 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Filter Result',
           factory: $FilterResultRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'placeRequestForm',
+          name: 'Place Request Form',
+          factory: $PlaceRequestFormRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'projectRequestForm',
+          name: 'Project Request Form',
+          factory: $ProjectRequestFormRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'scholarShipRequestForm',
+          name: 'ScholarShip Request Form',
+          factory: $ScholarShipRequestFormRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -326,4 +341,58 @@ extension $FilterResultRouteExtension on FilterResultRoute {
 
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
+}
+
+extension $PlaceRequestFormRouteExtension on PlaceRequestFormRoute {
+  static PlaceRequestFormRoute _fromState(GoRouterState state) =>
+      const PlaceRequestFormRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/placeRequestForm',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ProjectRequestFormRouteExtension on ProjectRequestFormRoute {
+  static ProjectRequestFormRoute _fromState(GoRouterState state) =>
+      const ProjectRequestFormRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/projectRequestForm',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ScholarShipRequestFormRouteExtension on ScholarShipRequestFormRoute {
+  static ScholarShipRequestFormRoute _fromState(GoRouterState state) =>
+      const ScholarShipRequestFormRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/scholarShipRequestForm',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }

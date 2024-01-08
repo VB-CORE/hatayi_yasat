@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/provider/place_request_provider.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/mixin/create_request_form_mixin.dart';
 import 'package:vbaseproject/features/v2/sub_feature/forms/view/model/request_form.dart';
@@ -34,11 +35,11 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
   Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(onPressed: () => context.pop()),
         title: Text(LocaleKeys.requestCompany_title.tr()),
       ),
       bottomNavigationBar: _PlaceRequestSend(
         () async {
-          await Future.delayed(const Duration(seconds: 2), () {});
           if (!validateAndSave()) return;
           final model = requestModel();
           if (model == null) return;

@@ -6,6 +6,7 @@ import 'package:vbaseproject/features/v2/details/view/place_detail_view.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/filter_search_view.dart';
+import 'package:vbaseproject/features/v2/sub_feature/forms/view/index.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
@@ -40,6 +41,11 @@ final class SplashRoute extends GoRouteData {
     FilterRoute.route,
     EventRoute.route,
     FilterResultRoute.route,
+
+    // Forms
+    PlaceRequestFormRoute.route,
+    ProjectRequestFormRoute.route,
+    ScholarShipRequestFormRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData {
@@ -101,4 +107,43 @@ final class FilterResultRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => FilterResultView(
         filter: $extra,
       );
+}
+
+final class PlaceRequestFormRoute extends GoRouteData {
+  const PlaceRequestFormRoute();
+
+  static const route = TypedGoRoute<PlaceRequestFormRoute>(
+    path: 'placeRequestForm',
+    name: 'Place Request Form',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const PlaceRequestForm();
+}
+
+final class ProjectRequestFormRoute extends GoRouteData {
+  const ProjectRequestFormRoute();
+
+  static const route = TypedGoRoute<ProjectRequestFormRoute>(
+    path: 'projectRequestForm',
+    name: 'Project Request Form',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ProjectRequestForm();
+}
+
+final class ScholarShipRequestFormRoute extends GoRouteData {
+  const ScholarShipRequestFormRoute();
+
+  static const route = TypedGoRoute<ScholarShipRequestFormRoute>(
+    path: 'scholarShipRequestForm',
+    name: 'ScholarShip Request Form',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ScholarshipRequestForm();
 }

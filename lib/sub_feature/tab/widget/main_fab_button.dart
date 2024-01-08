@@ -1,18 +1,17 @@
 part of '../main_tab_view.dart';
 
 final class _SpeedDialFabWidget extends StatelessWidget {
-  const _SpeedDialFabWidget({required this.dialItems});
-
-  final List<SpeedDialChildModel> dialItems;
+  const _SpeedDialFabWidget();
 
   @override
   Widget build(BuildContext context) {
+    final items = SpeedDialChildModelList().speedDialChildItems;
     return CustomSpeedDial(
-      children: dialItems
+      children: items
           .map(
-            (e) => CustomSpeedDialChild(
+            (e) => CustomSpeedDialRouteChild(
               context: context,
-              destination: e.destination,
+              location: e.location,
               label: e.title,
             ),
           )
