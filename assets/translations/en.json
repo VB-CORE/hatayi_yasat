@@ -51,8 +51,7 @@
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
       "categoryDescription": "You can select and filter categories here",
-      "filterResult":"Filter Result"
-
+      "filterResult": "Filter Result"
     }
   },
   "requestCompany": {
@@ -139,7 +138,7 @@
     "snackbarButtonText": "Open",
     "defaultMessage": "A business has resumed operations.",
     "businessNotFoundErrorMessage": "Business not found",
-    "campaignNotFoundErrorMessage": "Project not found",
+    "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
     "advertiseNotFoundErrorMessage": "Advertise not found"
   },
@@ -189,7 +188,7 @@
     "forRefresh": "Click here to refresh.",
     "notification": "No notifications",
     "specialAgency": "Special Agencies has not been entered yet.",
-    "campaign": "Campaigns has not been entered yet.",
+    "campaign": "Events has not been entered yet.",
     "developers": "Developers has not been entered yet.",
     "towns": "Towns has not been entered yet.",
     "news": "News has not been entered yet.",
