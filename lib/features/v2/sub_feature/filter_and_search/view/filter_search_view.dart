@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kartal/kartal.dart' show ContextExtension, IterableExtension;
+import 'package:kartal/kartal.dart' show ContextExtension;
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/provider/filter_search_provider.dart';
 import 'package:vbaseproject/features/v2/sub_feature/filter_and_search/view/mixin/filter_search_view_mixin.dart';

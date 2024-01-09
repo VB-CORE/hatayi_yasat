@@ -1,3 +1,5 @@
+// ignore_for_file: use_setters_to_change_properties
+
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/core/dependency/project_dependency_items.dart';

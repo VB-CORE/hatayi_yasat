@@ -1,3 +1,5 @@
+// ignore_for_file: use_setters_to_change_properties
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';

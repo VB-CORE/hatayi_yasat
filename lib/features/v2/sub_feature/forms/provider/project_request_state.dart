@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:vbaseproject/features/request/project/model/request_project_model.dart';
+import 'package:vbaseproject/product/model/request_project_model.dart';
 
 @immutable
 final class ProjectRequestState extends Equatable {
