@@ -108,36 +108,12 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        _ImageSizedBox(image: image),
+        CustomImageWithViewDialog(image: image),
         _CircleImageWithNamePositioned(
           image: image,
           placeOwnerName: placeOwnerName,
         ),
       ],
-    );
-  }
-}
-
-@immutable
-final class _ImageSizedBox extends StatelessWidget {
-  const _ImageSizedBox({
-    required this.image,
-  });
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Hero(
-      tag: image,
-      child: SizedBox(
-        width: context.sized.width,
-        height: context.sized.dynamicHeight(0.3),
-        child: CustomNetworkImage(
-          imageUrl: image,
-          fit: BoxFit.cover,
-        ),
-      ),
     );
   }
 }

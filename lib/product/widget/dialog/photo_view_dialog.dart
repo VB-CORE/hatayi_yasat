@@ -1,18 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/dialog/force_update_dialog.dart';
+import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
-class PhoneZoomDialog extends StatelessWidget with CustomDialog {
-  const PhoneZoomDialog({required this.imageUrl, super.key});
+final class PhotoViewDialog extends StatelessWidget with CustomDialog {
+  const PhotoViewDialog({required this.imageUrl, super.key});
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      insetPadding: const PagePadding.allLow(),
+      insetPadding: const PagePadding.allVeryLow(),
       title: InteractiveViewer(
         maxScale: 3,
         minScale: 1,
@@ -20,12 +21,17 @@ class PhoneZoomDialog extends StatelessWidget with CustomDialog {
           imageUrl: imageUrl,
         ),
       ),
+      titlePadding: EdgeInsets.zero +
+          const PagePadding.horizontal16Symmetric() +
+          const PagePadding.onlyTopNormalMedium(),
+      actionsAlignment: MainAxisAlignment.center,
+      actionsPadding: EdgeInsets.zero,
       actions: [
-        TextButton(
+        GeneralDialogButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
-          child: const Text(LocaleKeys.button_close).tr(),
+          title: LocaleKeys.button_close,
         ),
       ],
     );
