@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProductScrollBar extends StatelessWidget {
+final class ProductScrollBar extends StatelessWidget {
   const ProductScrollBar({
     required this.child,
     this.thumbVisibility = true,
