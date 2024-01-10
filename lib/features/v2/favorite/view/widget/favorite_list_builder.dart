@@ -24,9 +24,9 @@ final class _FavoriteListBuilder extends ConsumerWidget {
           model: favoritePlaces[index],
           onCardTapped: () {
             PlaceDetailRoute(
-                    $extra: favoritePlaces[index],
-                    id: favoritePlaces[index].documentId)
-                .go(context);
+              $extra: favoritePlaces[index],
+              id: favoritePlaces[index].documentId,
+            ).go(context);
           },
           onDeleteTapped: () {
             ref
