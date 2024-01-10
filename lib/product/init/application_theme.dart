@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 
@@ -60,6 +61,9 @@ final class ApplicationTheme {
         contentTextStyle: context.general.textTheme.bodyMedium?.copyWith(
           color: ColorsCustom.white,
         ),
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thickness: MaterialStatePropertyAll(AppConstants.kOne.toDouble()),
       ),
     );
   }

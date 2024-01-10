@@ -15,10 +15,13 @@ mixin FilterSearchViewMixin
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final selectedCategoryId = widget.selectedCategoryId;
       if (selectedCategoryId == null) return;
+
       final category = productState.categoryItems.firstWhereOrNull(
         (element) => element.documentId == selectedCategoryId,
       );
+
       if (category == null) return;
+
       ref.read(filterWithSearchProvider.notifier).updateSelectedCategory([
         MultipleSelectItem(title: category.displayName, id: selectedCategoryId),
       ]);
