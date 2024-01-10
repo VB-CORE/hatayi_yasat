@@ -12,6 +12,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:vbaseproject/product/model/search_response_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
