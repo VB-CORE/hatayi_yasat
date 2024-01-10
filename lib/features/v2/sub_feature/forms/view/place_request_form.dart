@@ -16,7 +16,8 @@ import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/general/dotted/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
-import 'package:vbaseproject/product/widget/text_field/custom_text_form_selection_field.dart';
+import 'package:vbaseproject/product/widget/text_field/custom_category_field.dart';
+import 'package:vbaseproject/product/widget/text_field/custom_district_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 
 part './widget/place_request_send.dart';
@@ -86,17 +87,19 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             formatters: TextFieldFormatters.phone,
             validator: ValidatorPhoneTextField(),
           ),
-          CustomTextSelectionFormField(
+          CustomCategorySelectionFormField(
+            items: categoryModels,
             hint: LocaleKeys.requestCompany_chooseCategory.tr(),
             controller: placeCategoryController,
             onSelected: updateCategoryItem,
             validator: TextFieldValidatorIsNullEmpty(),
           ),
-          CustomTextSelectionFormField(
+          CustomDistrictSelectionFormField(
             hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
             controller: placeDistrictController,
             onSelected: updateTownItem,
             validator: TextFieldValidatorIsNullEmpty(),
+            items: townModels,
           ),
         ],
       ),
