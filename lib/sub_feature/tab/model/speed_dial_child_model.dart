@@ -20,7 +20,6 @@ final class SpeedDialChildModelList {
   }
 
   void _fillItems() {
-    PlaceRequestFormRoute.route.path;
     _speedDialChildItems = [
       SpeedDialChildModel(
         location: const PlaceRequestFormRoute().location,

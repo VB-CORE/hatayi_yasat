@@ -1,10 +1,9 @@
-const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { onCall, HttpsError } = require("firebase-functions/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const axios = require("axios");
 const functions = require("firebase-functions");
 
 setGlobalOptions({ maxInstances: 10 });
-
 
 if (process.env.FUNCTIONS_EMULATOR) {
   require("dotenv").config();
@@ -20,7 +19,7 @@ const SECRET = process.env.FUNCTIONS_EMULATOR
 
 const SEARCH_PATH = "/applications_search";
 
-axios.defaults.headers.common['SECRET'] = SECRET;
+axios.defaults.headers.common["SECRET"] = SECRET;
 
 exports.search = functions.https.onCall(async (data, _) => {
   const { term } = data;
@@ -28,10 +27,12 @@ exports.search = functions.https.onCall(async (data, _) => {
   const page = -1;
   try {
     const mongoResponse = await axios.get(BASE_URL + SEARCH_PATH, {
-      params: { term, target, page }
+      params: { term, target, page },
     });
 
-    const response = mongoResponse.data.map((item) => { return { name: item.name, id: item.id } });
+    const response = mongoResponse.data.map((item) => {
+      return { name: item.name, id: item.id };
+    });
 
     return response;
   } catch (error) {

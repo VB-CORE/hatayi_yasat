@@ -5,7 +5,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
 
-/// DateTimeFormFieldV2 is a widget that allows:
+/// DateTimeFormField is a widget that allows:
 ///  - Select a date from a calendar
 ///  - Show the selected date
 ///  - Validate that the selected date is after now
@@ -14,16 +14,15 @@ import 'package:vbaseproject/product/utility/validator/index.dart';
 ///
 /// Params:
 ///  - [onDateSelected] is a callback that returns the selected date
-// TODO: REMOVE V2 AFTER ALL PROJECTS ARE UPDATED
-class DateTimeFormFieldV2 extends StatefulWidget {
-  const DateTimeFormFieldV2({required this.onDateSelected, super.key});
+final class DateTimeFormField extends StatefulWidget {
+  const DateTimeFormField({required this.onDateSelected, super.key});
   final ValueSetter<DateTime> onDateSelected;
   @override
-  State<DateTimeFormFieldV2> createState() => _DateTimeFormFieldState();
+  State<DateTimeFormField> createState() => _DateTimeFormFieldState();
 }
 
-class _DateTimeFormFieldState extends State<DateTimeFormFieldV2>
-    with _DateTimeFormFieldV2Mixin {
+class _DateTimeFormFieldState extends State<DateTimeFormField>
+    with _DateTimeFormFieldMixin {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -42,7 +41,7 @@ class _DateTimeFormFieldState extends State<DateTimeFormFieldV2>
   }
 }
 
-mixin _DateTimeFormFieldV2Mixin on State<DateTimeFormFieldV2> {
+mixin _DateTimeFormFieldMixin on State<DateTimeFormField> {
   DateTime? _selectedDate;
   late final TextEditingController _controller;
   @override

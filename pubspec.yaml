@@ -52,7 +52,7 @@ dependencies:
   firebase_messaging: ^14.6.7
   cloud_firestore: ^4.4.2
   firebase_crashlytics: ^3.3.6
-  firebase_ui_firestore: ^1.5.11
+  firebase_ui_firestore: ^1.6.1
   cloud_functions: ^4.5.8
 
   #database
