@@ -164,29 +164,3 @@ final class _TitleDescription extends StatelessWidget {
     );
   }
 }
-
-@immutable
-final class _AddCalendarButton extends StatelessWidget {
-  const _AddCalendarButton({
-    required this.action,
-  });
-
-  final AsyncCallback action;
-
-  @override
-  Widget build(BuildContext context) {
-    return UnconstrainedBox(
-      constrainedAxis: Axis.horizontal,
-      child: SafeArea(
-        child: Padding(
-          padding: const PagePadding.horizontalSymmetric() +
-              const PagePadding.vertical6Symmetric(),
-          child: GeneralButtonV2.async(
-            action: action,
-            label: LocaleKeys.campaignDetailsView_addReminder.tr(),
-          ),
-        ),
-      ),
-    );
-  }
-}

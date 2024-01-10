@@ -123,7 +123,11 @@
     "publishedBy": "published by {}",
     "startDate": "Start Date: {}",
     "time": "Time: {}",
-    "addReminder": "Add Reminder"
+    "optionsDialogTitle": "Options",
+    "optionsDialogContent": "Please select what you want to do from the options.",
+    "seeOptionsButton": "See Options",
+    "addReminderButton": "Add Reminder to Calendar",
+    "redirectWhatsappButton": "Send Message on Whatsapp"
   },
   "forceUpdate": {
     "title": "An Update is Available",

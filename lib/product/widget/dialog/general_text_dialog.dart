@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/widget/general/title/general_content_sub_title.dart';
 import 'package:vbaseproject/product/widget/general/title/general_sub_title.dart';
 
@@ -41,7 +42,10 @@ final class GeneralTextDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: context.general.colorScheme.secondary,
       title: GeneralSubTitle(value: title),
-      content: GeneralContentSubTitle(value: content),
+      content: GeneralContentSubTitle(
+        value: content,
+        maxLine: TextFieldMaxLengths.maxLine,
+      ),
       actions: actions,
     );
   }
