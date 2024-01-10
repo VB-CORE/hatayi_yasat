@@ -33,7 +33,6 @@ final class MainTabView extends ConsumerStatefulWidget {
 class _MainTabViewState extends ConsumerState<MainTabView>
     with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
   final _tabItems = TabModels.create().tabItems;
-  final _speedDialItems = SpeedDialChildModelList().speedDialChildItems;
 
   @override
   Widget build(BuildContext context) {

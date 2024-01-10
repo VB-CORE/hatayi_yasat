@@ -10,6 +10,7 @@ import 'package:vbaseproject/product/widget/general/index.dart';
 
 part './item/jobs_card_sheet_item.dart';
 
+@immutable
 final class JobsCard extends StatelessWidget {
   const JobsCard({required this.item, super.key});
   final AdvertiseModel item;

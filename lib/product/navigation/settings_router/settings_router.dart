@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/v2/developers/view/developers_view.dart';
+import 'package:vbaseproject/features/developers/view/developers_view.dart';
 
 final class SettingsRoute extends GoRouteData {
   const SettingsRoute();

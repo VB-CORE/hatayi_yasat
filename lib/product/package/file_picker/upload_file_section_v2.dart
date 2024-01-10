@@ -17,9 +17,8 @@ import 'package:vbaseproject/product/widget/general/index.dart';
 ///  - [hintText] is the text that will be shown when no file is uploaded
 ///  - [onFilePicked] is the callback that will be called when a file is uploaded
 ///  - [allowedExtension] is the list of allowed extensions
-// TODO: REMOVE V2 AFTER ALL PROJECTS ARE UPDATED
-final class UploadFileSectionV2 extends StatefulWidget {
-  const UploadFileSectionV2({
+final class UploadFileSection extends StatefulWidget {
+  const UploadFileSection({
     required this.hintText,
     required this.onFilePicked,
     this.allowedExtension,
@@ -31,11 +30,11 @@ final class UploadFileSectionV2 extends StatefulWidget {
   final List<FileExtensionEnum>? allowedExtension;
 
   @override
-  State<UploadFileSectionV2> createState() => UploadFileSectionV2State();
+  State<UploadFileSection> createState() => UploadFileSectionV2State();
 }
 
-class UploadFileSectionV2State extends State<UploadFileSectionV2>
-    with UploadFileV2Mixin {
+class UploadFileSectionV2State extends State<UploadFileSection>
+    with UploadFileMixin {
   @override
   Widget build(BuildContext context) {
     return Row(
