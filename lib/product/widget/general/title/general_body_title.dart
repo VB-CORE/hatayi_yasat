@@ -6,7 +6,6 @@ import 'package:kartal/kartal.dart';
 /// Params:
 /// - [value] is the text that will be shown
 /// - [maxLines] is the maximum number of lines for the text
-/// - [overflow] is the text overflow strategy
 /// - [fontWeight] is the font weight of the text
 /// - [textDecoration] is the decoration of the text
 @immutable

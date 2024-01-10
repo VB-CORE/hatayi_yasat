@@ -4,7 +4,7 @@ import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 /// Returns a [SizedBox] with the given [width].
 final class HorizontalSpace extends SizedBox {
-  const HorizontalSpace({required this.width, super.key});
+  const HorizontalSpace({super.width, super.key});
 
   /// Returns a [SizedBox] with the 2px width.
   const HorizontalSpace.xxxSmall({Key? key})
@@ -47,6 +47,4 @@ final class HorizontalSpace extends SizedBox {
           key: key,
           width: (percentage / 100) * context.sized.width,
         );
-  @override
-  final double width;
 }

@@ -17,6 +17,6 @@ enum TextFieldAutoFills {
   phone([AutofillHints.telephoneNumber]),
   ;
 
-  final List<String> value;
   const TextFieldAutoFills(this.value);
+  final List<String> value;
 }
