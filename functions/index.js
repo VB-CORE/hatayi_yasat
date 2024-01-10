@@ -1,4 +1,4 @@
-const { onCall, HttpsError } = require("firebase-functions/https");
+const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const axios = require("axios");
 const functions = require("firebase-functions");
