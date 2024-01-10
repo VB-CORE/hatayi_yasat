@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/v2/event/view/event_view.dart';
-import 'package:vbaseproject/features/v2/home/view/home_view.dart';
-import 'package:vbaseproject/features/v2/news_jobs/view/news_jobs_view.dart';
-import 'package:vbaseproject/features/v2/settings/view/settings_view.dart';
+import 'package:vbaseproject/features/event/view/event_view.dart';
+import 'package:vbaseproject/features/home/view/home_view.dart';
+import 'package:vbaseproject/features/news_jobs/view/news_jobs_view.dart';
+import 'package:vbaseproject/features/settings/view/settings_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 

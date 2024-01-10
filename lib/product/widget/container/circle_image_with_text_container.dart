@@ -56,7 +56,6 @@ final class CircleImageWithTextContainer extends StatelessWidget {
 final class _ImageCircleAvatar extends StatelessWidget {
   const _ImageCircleAvatar({
     required this.imageUrl,
-    super.key,
   });
 
   final String imageUrl;

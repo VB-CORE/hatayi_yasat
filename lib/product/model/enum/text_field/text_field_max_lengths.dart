@@ -14,8 +14,9 @@ enum TextFieldMaxLengths {
   /// 200
   veryLarge(200);
 
-  final int? value;
   const TextFieldMaxLengths(this.value);
+
+  final int? value;
 
   /// 5: For line length in text field
   static const int maxLine = 5;

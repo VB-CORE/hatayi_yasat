@@ -5,7 +5,8 @@ import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/sheet/advertise_sheet.dart';
 
-class AdvertisePlaceCard extends StatelessWidget {
+@immutable
+final class AdvertisePlaceCard extends StatelessWidget {
   const AdvertisePlaceCard({
     required this.item,
     super.key,
@@ -39,7 +40,7 @@ class AdvertisePlaceCard extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
+final class _Title extends StatelessWidget {
   const _Title(this.text);
   final String text;
   @override
@@ -56,7 +57,7 @@ class _Title extends StatelessWidget {
   }
 }
 
-class _Subtitle extends StatelessWidget {
+final class _Subtitle extends StatelessWidget {
   const _Subtitle(this.text);
   final String text;
   @override
