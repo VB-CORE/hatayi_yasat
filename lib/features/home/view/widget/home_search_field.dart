@@ -7,27 +7,31 @@ final class _HomeSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: const PagePadding.onlyTop(),
-      sliver: InkWell(
-        onTap: () async {
-          final response = await showSearch<SearchResponse>(
-            context: context,
-            delegate: PlaceSearchDelegate(),
-          );
+      sliver: SliverAppBar(
+        floating: true,
+        titleSpacing: kZero,
+        title: InkWell(
+          onTap: () async {
+            final response = await showSearch<SearchResponse>(
+              context: context,
+              delegate: PlaceSearchDelegate(),
+            );
 
-          if (response == null) return;
-          if (!context.mounted) return;
-          PlaceDetailRoute(
-            $extra: StoreModel.empty(),
-            id: response.id,
-          ).go(context);
-        },
-        child: IgnorePointer(
-          child: CustomSearchField(
-            hint: LocaleKeys.home_search.tr(),
-            onChange: (value) {},
+            if (response == null) return;
+            if (!context.mounted) return;
+            PlaceDetailRoute(
+              $extra: StoreModel.empty(),
+              id: response.id,
+            ).go(context);
+          },
+          child: IgnorePointer(
+            child: CustomSearchField(
+              hint: LocaleKeys.home_search.tr(),
+              onChange: (value) {},
+            ),
           ),
         ),
-      ).ext.sliver,
+      ),
     );
   }
 }

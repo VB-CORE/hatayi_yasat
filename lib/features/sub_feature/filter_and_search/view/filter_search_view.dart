@@ -15,6 +15,7 @@ import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
 import 'package:vbaseproject/product/widget/general/general_button.dart';
 import 'package:vbaseproject/product/widget/general/general_check_box.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
+import 'package:vbaseproject/product/widget/scrollbar/product_scroll_bar.dart';
 
 part './widget/filter_search_button.dart';
 part './widget/filter_search_categories.dart';
