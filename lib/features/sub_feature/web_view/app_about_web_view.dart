@@ -43,7 +43,7 @@ final class _LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return progress != 100
+    return progress != AppConstants.progressMaxValue
         ? const Align(
             alignment: Alignment.topCenter,
             child: CircularProgressIndicator(),

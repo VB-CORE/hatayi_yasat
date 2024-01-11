@@ -29,9 +29,9 @@ final class FavoriteViewModel extends _$FavoriteViewModel
     state = state.copyWith(
       favoritePlaces: _items,
     );
-    if (state.searchWord.isNotEmpty) {
-      searchFavorites(state.searchWord);
-    }
+
+    if (state.searchWord.isEmpty) return;
+    searchFavorites(state.searchWord);
   }
 
   /// It removes all favorite places in Favorites view.

@@ -10,7 +10,9 @@ import 'package:vbaseproject/product/utility/constants/string_constants.dart';
 mixin EventDetailMixin on ConsumerState<EventDetailView> {
   late final CampaignModel eventModel;
 
-  late final bool phoneIsAvailable;
+  late final bool _phoneIsAvailable;
+
+  bool get phoneIsAvailable => _phoneIsAvailable;
 
   @override
   void initState() {
@@ -36,10 +38,10 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
     if (phoneNumber.ext.isNullOrEmpty ||
         phoneNumber.ext.phoneFormatValue ==
             StringConstants.tenDigitZeroPhoneNumber) {
-      phoneIsAvailable = false;
+      _phoneIsAvailable = false;
       return;
     }
-    phoneIsAvailable = true;
+    _phoneIsAvailable = true;
   }
 
   Future<void> redirectWhatsapp() async {

@@ -15,6 +15,10 @@ class AppConstants {
   static const int kFive = 5;
   static const int kFourteen = 14;
 
+  /// [progressMaxValue] value is 100
+  static const int progressMaxValue = 100;
+
+  /// [defaultMapZoom] value is 14
   static const double defaultMapZoom = 14;
 
   static const String googleMapsPlaceLink =
