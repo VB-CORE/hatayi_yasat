@@ -15,32 +15,11 @@ final class _ImageWithBackButtonStack extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        _ImageSizedBox(image: image),
+        CustomImageWithViewDialog(image: image),
         _BackButtonContainer(
           onPressed: backButtonAction,
         ),
       ],
-    );
-  }
-}
-
-@immutable
-final class _ImageSizedBox extends StatelessWidget {
-  const _ImageSizedBox({
-    required this.image,
-  });
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.sized.width,
-      height: context.sized.dynamicHeight(0.3),
-      child: CustomNetworkImage(
-        imageUrl: image,
-        fit: BoxFit.cover,
-      ),
     );
   }
 }
@@ -160,32 +139,6 @@ final class _TitleDescription extends StatelessWidget {
       child: TitleDescription(
         title: title,
         description: description,
-      ),
-    );
-  }
-}
-
-@immutable
-final class _AddCalendarButton extends StatelessWidget {
-  const _AddCalendarButton({
-    required this.action,
-  });
-
-  final AsyncCallback action;
-
-  @override
-  Widget build(BuildContext context) {
-    return UnconstrainedBox(
-      constrainedAxis: Axis.horizontal,
-      child: SafeArea(
-        child: Padding(
-          padding: const PagePadding.horizontalSymmetric() +
-              const PagePadding.vertical6Symmetric(),
-          child: GeneralButtonV2.async(
-            action: action,
-            label: LocaleKeys.campaignDetailsView_addReminder.tr(),
-          ),
-        ),
       ),
     );
   }

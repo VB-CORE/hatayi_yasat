@@ -6,7 +6,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
@@ -17,6 +16,7 @@ import 'package:vbaseproject/product/widget/button/favorite_button/favorite_plac
 import 'package:vbaseproject/product/widget/container/circle_image_with_text_container.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
+import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 

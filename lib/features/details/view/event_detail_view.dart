@@ -7,14 +7,16 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/mixin/event_detail_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/extension/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
+import 'package:vbaseproject/product/widget/dialog/general_text_dialog.dart';
+import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/general/title/general_content_small_title.dart';
+import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
@@ -38,7 +40,34 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _AddCalendarButton(action: addReminderAction),
+      bottomNavigationBar: UnconstrainedBox(
+        constrainedAxis: Axis.horizontal,
+        child: SafeArea(
+          child: Padding(
+            padding: const PagePadding.horizontalSymmetric() +
+                const PagePadding.vertical6Symmetric(),
+            child: GeneralButtonV2.async(
+              label: LocaleKeys.campaignDetailsView_seeOptionsButton.tr(),
+              action: () => GeneralTextDialog.show(
+                context,
+                LocaleKeys.campaignDetailsView_optionsDialogTitle.tr(),
+                LocaleKeys.campaignDetailsView_optionsDialogContent.tr(),
+                [
+                  GeneralDialogButton(
+                    title: LocaleKeys.campaignDetailsView_addReminderButton,
+                    onPressed: addReminderAction,
+                  ),
+                  GeneralDialogButton(
+                    title:
+                        LocaleKeys.campaignDetailsView_redirectWhatsappButton,
+                    onPressed: redirectWhatsapp,
+                  ).ext.toDisabled(disable: !phoneIsAvailable),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

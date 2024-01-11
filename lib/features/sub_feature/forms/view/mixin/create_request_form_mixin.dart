@@ -9,8 +9,8 @@ import 'package:vbaseproject/features/sub_feature/forms/view/place_request_form.
 import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
 
 mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
-  late final List<TownModel> _townModels;
-  late final List<CategoryModel> _categoryModels;
+  late final List<TownModel> townModels;
+  late final List<CategoryModel> categoryModels;
   final TextEditingController placeNameController = TextEditingController();
   final TextEditingController placeDescriptionController =
       TextEditingController();
@@ -49,10 +49,10 @@ mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
       placeOwnerName: placeOwnerNameController.text,
       placeAddress: placeAddressController.text,
       placePhoneNumber: placePhoneNumberController.text,
-      placeCategory: _categoryModels.firstWhere(
+      placeCategory: categoryModels.firstWhere(
         (element) => element.documentId == _selectedCategoryItem?.id,
       ),
-      placeDistrict: _townModels.firstWhere(
+      placeDistrict: townModels.firstWhere(
         (element) => element.documentId == _selectedTownItem?.id,
       ),
     );
@@ -63,8 +63,8 @@ mixin PlaceRequestFormMixin on RequestFormConsumerState<PlaceRequestForm> {
     super.initState();
     final productProviderState =
         ref.read(ProjectDependencyItems.productProviderState);
-    _townModels = productProviderState.townItems;
-    _categoryModels = productProviderState.categoryItems;
+    townModels = productProviderState.townItems;
+    categoryModels = productProviderState.categoryItems;
   }
 
   @override

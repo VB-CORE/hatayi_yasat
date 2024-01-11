@@ -25,9 +25,13 @@ final class FavoriteViewModel extends _$FavoriteViewModel
 
   void removeFavorite(StoreModel model) {
     productProvider.addOrRemoveFavoritePlace(model);
+
     state = state.copyWith(
       favoritePlaces: _items,
     );
+
+    if (state.searchWord.isEmpty) return;
+    searchFavorites(state.searchWord);
   }
 
   /// It removes all favorite places in Favorites view.
@@ -41,6 +45,7 @@ final class FavoriteViewModel extends _$FavoriteViewModel
 
   void searchFavorites(String value) {
     state = state.copyWith(
+      searchWord: value,
       filteredPlaces: state.favoritePlaces
           .where(
             (element) => findByNameOrCompanyName(element, value),

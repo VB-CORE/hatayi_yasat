@@ -11,6 +11,7 @@ final class AppAboutView extends StatefulWidget {
 }
 
 class _AppAboutViewState extends State<AppAboutView> {
+  int progress = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +20,34 @@ class _AppAboutViewState extends State<AppAboutView> {
           LocaleKeys.settings_aboutTitle.tr(),
         ),
       ),
-      body: InAppWebView(
-        initialUrlRequest: URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
+      body: Stack(
+        children: [
+          _LoadingWidget(progress),
+          InAppWebView(
+            onProgressChanged: (controller, progress) {
+              this.progress = progress;
+            },
+            initialUrlRequest:
+                URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
+          ),
+        ],
       ),
     );
+  }
+}
+
+final class _LoadingWidget extends StatelessWidget {
+  const _LoadingWidget(this.progress);
+
+  final int progress;
+
+  @override
+  Widget build(BuildContext context) {
+    return progress != AppConstants.progressMaxValue
+        ? const Align(
+            alignment: Alignment.topCenter,
+            child: CircularProgressIndicator(),
+          )
+        : const SizedBox.shrink();
   }
 }

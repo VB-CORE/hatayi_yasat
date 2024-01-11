@@ -6,12 +6,12 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/mixin/news_detail_view_mixin.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
+import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:vbaseproject/product/widget/special/user_special_card.dart';
 
 part 'widget/news_detail_sub_view.dart';

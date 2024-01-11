@@ -57,13 +57,11 @@ class KvkkCheckBox extends StatelessWidget {
     Navigator.push(
       context,
       CupertinoPageRoute<void>(
-        fullscreenDialog: true,
         builder: (BuildContext context) {
           return Scaffold(
-            extendBodyBehindAppBar: true,
             appBar: AppBar(
-              backgroundColor: Colors.red,
-              elevation: 0,
+              backgroundColor: context.general.colorScheme.secondary,
+              elevation: 1,
               iconTheme: IconThemeData(
                 color: ColorCommon(context).whiteAndBlackForTheme,
               ),

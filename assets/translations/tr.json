@@ -51,7 +51,7 @@
       "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
       "categories": "Kategoriler",
       "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
-      "filterResult":"Filtreleme sonucu"
+      "filterResult": "Filtreleme sonucu"
     }
   },
   "requestCompany": {
@@ -123,7 +123,11 @@
     "publishedBy": "{} tarafından yayınlandı",
     "startDate": "Başlangıç Tarihi: {}",
     "time": "Saat: {}",
-    "addReminder": "Hatırlatıcı Ekle"
+    "optionsDialogTitle": "Seçenekler",
+    "optionsDialogContent": "Lütfen seçeneklerden yapmak istediğinizi seçiniz.",
+    "seeOptionsButton": "Seçenekleri Görüntüle",
+    "addReminderButton": "Takvime Hatırlatıcı Ekle",
+    "redirectWhatsappButton": "Whatsapp'tan Mesaj Gönder"
   },
   "forceUpdate": {
     "title": "Bir Güncelleme Var",
@@ -138,7 +142,7 @@
     "snackbarButtonText": "Aç",
     "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
     "businessNotFoundErrorMessage": "İşletme bulunamadı",
-    "campaignNotFoundErrorMessage": "Proje bulunamadı",
+    "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
     "newsNotFoundErrorMessage": "Haber bulunamadı",
     "advertiseNotFoundErrorMessage": "İlan bulunamadı"
   },
@@ -188,7 +192,7 @@
     "forRefresh": "Yenilemek için buraya dokunun.",
     "notification": "Bildirim yok",
     "specialAgency": "Özel Kurumlar henüz girilmemiş.",
-    "campaign": "Kampanyalar henüz girilmemiş.",
+    "campaign": "Etkinlikler henüz girilmemiş.",
     "developers": "Geliştiriciler henüz girilmemiş.",
     "towns": "Mekanlar henüz girilmemiş.",
     "news": "Haberler henüz girilmemiş.",

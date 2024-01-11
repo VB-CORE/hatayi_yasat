@@ -20,6 +20,10 @@ final class _EventGridBuilder extends ConsumerWidget {
         mainAxisSpacing: WidgetSizes.spacingS,
         mainAxisExtent: context.sized.dynamicHeight(0.24),
       ),
+      emptyBuilder: (_) => NotFoundLottie(
+        title: LocaleKeys.notFound_campaign.tr(),
+        onRefresh: () {},
+      ),
       itemBuilder: (context, doc) {
         final model = doc.data();
         if (model == null) return const SizedBox.shrink();

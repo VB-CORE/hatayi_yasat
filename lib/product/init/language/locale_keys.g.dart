@@ -111,7 +111,11 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
   static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
   static const campaignDetailsView_time = 'campaignDetailsView.time';
-  static const campaignDetailsView_addReminder = 'campaignDetailsView.addReminder';
+  static const campaignDetailsView_optionsDialogTitle = 'campaignDetailsView.optionsDialogTitle';
+  static const campaignDetailsView_optionsDialogContent = 'campaignDetailsView.optionsDialogContent';
+  static const campaignDetailsView_seeOptionsButton = 'campaignDetailsView.seeOptionsButton';
+  static const campaignDetailsView_addReminderButton = 'campaignDetailsView.addReminderButton';
+  static const campaignDetailsView_redirectWhatsappButton = 'campaignDetailsView.redirectWhatsappButton';
   static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
   static const forceUpdate_message = 'forceUpdate.message';
