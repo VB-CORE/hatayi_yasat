@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kartal/kartal.dart' show SizedBoxExtension;
+import 'package:kartal/kartal.dart' show SizedBoxExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/sub_feature/forms/provider/scholarship_request_provider.dart';
 import 'package:vbaseproject/features/sub_feature/forms/view/mixin/scholarship_request_form_mixin.dart';
@@ -53,8 +53,10 @@ final class _ScholarshipRequestFormState
           ref
               .read(scholarshipRequestProviderProvider.notifier)
               .updateRequestModel(model);
+          await uploadAndShowDialog();
         },
         onKVKKChanged: updateKVKK,
+        canApply: ref.read(scholarshipRequestProviderProvider).canApply,
       ),
       body: ListViewWithSpace(
         children: [

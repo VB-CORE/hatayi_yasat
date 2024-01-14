@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vbaseproject/product/widget/dialog/form_latest_data_dialog.dart';
 
 abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
@@ -41,14 +41,14 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
               : AutovalidateMode.disabled,
           onPopInvoked: (didPop) async {
             if (!isHasAnyData) {
-              await context.route.pop();
+              context.pop();
               return;
             }
 
             final response = await FormLatestDataDialog.show(context);
             if (!response) return;
             if (!context.mounted) return;
-            await context.route.pop();
+            context.pop();
           },
           child: child!,
         );

@@ -40,7 +40,7 @@ final class CustomCircleNetworkImage extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             height: radius,
-            width: context.sized.width,
+            width: context.sized.dynamicWidth(.1),
             color: context.general.colorScheme.secondary,
           ),
         );

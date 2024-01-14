@@ -4,19 +4,21 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
 import 'package:vbaseproject/features/sub_feature/forms/view/scholarship_request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/request_scholarship_model.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
+import 'package:vbaseproject/product/widget/dialog/success_scholarship_posted_dialog.dart';
 
 mixin ScholarshipRequestFormMixin
     on
         AppProviderMixin<ScholarshipRequestForm>,
         RequestFormConsumerState<ScholarshipRequestForm> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController bioController = TextEditingController();
+  late final TextEditingController emailController;
+  late final TextEditingController phoneController;
+  late final TextEditingController bioController;
   File? selectedPdfFile;
   bool isKvkkChecked = false;
 
@@ -26,6 +28,14 @@ mixin ScholarshipRequestFormMixin
     if (phoneController.text.isNotEmpty) return true;
     if (bioController.text.isNotEmpty) return true;
     return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    phoneController = TextEditingController();
+    bioController = TextEditingController();
   }
 
   @override
@@ -65,5 +75,26 @@ mixin ScholarshipRequestFormMixin
       story: bioController.text.trim(),
       studentDocument: selectedPdfFile,
     );
+  }
+
+  void _clear() {
+    emailController.clear();
+    phoneController.clear();
+    bioController.clear();
+    selectedPdfFile = null;
+  }
+
+  Future<void> uploadAndShowDialog() async {
+    final isSuccess = validateAndSave();
+    await uploadScholarshipStatus(isSuccess: isSuccess);
+  }
+
+  Future<void> uploadScholarshipStatus({required bool isSuccess}) async {
+    if (!isSuccess) return;
+
+    _clear();
+    await SuccessScholarshipPostedDialog.show(context);
+    if (!mounted) return;
+    context.pop();
   }
 }
