@@ -12,11 +12,6 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
   @override
   PlaceRequestState build() => const PlaceRequestState();
 
-  void changeLoading() {
-    state =
-        state.copyWith(isSendingRequest: !(state.isSendingRequest ?? false));
-  }
-
   Future<bool> addNewDataToService(
     PlaceRequestModel placeRequestModel,
   ) async {
@@ -24,6 +19,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       placeRequestModel: placeRequestModel,
       isSendingRequest: true,
     );
+
     final uuid = const Uuid().v4();
     final bytes = await placeRequestModel.imageFile.readAsBytes();
     final uploadImage = await FirebaseStorageService().uploadImage(
@@ -54,18 +50,13 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       path: CollectionPaths.unApprovedApplications,
     );
 
-    if (response == null) {
-      state = state.copyWith(
-        isSendingRequest: false,
-        isServiceError: true,
-      );
-      return false;
-    }
-
     state = state.copyWith(
       isSendingRequest: false,
-      isServiceError: true,
     );
+
+    if (response == null) {
+      return false;
+    }
 
     return true;
   }

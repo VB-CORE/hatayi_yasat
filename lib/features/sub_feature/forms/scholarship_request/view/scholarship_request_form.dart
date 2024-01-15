@@ -49,12 +49,10 @@ final class _ScholarshipRequestFormState
           if (!validateAndSave()) return;
           final model = getRequestModel();
           if (model == null) return;
-          ref
-              .read(scholarshipRequestProviderProvider.notifier)
-              .updateModel(model);
+
           await ref
               .read(scholarshipRequestProviderProvider.notifier)
-              .uploadScholarship();
+              .uploadScholarship(model);
           await uploadAndShowDialog();
         },
         onKVKKChanged: updateKVKK,

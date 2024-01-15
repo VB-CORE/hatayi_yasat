@@ -7,7 +7,7 @@ part of 'project_request_provider.dart';
 // **************************************************************************
 
 String _$projectRequestProviderHash() =>
-    r'4a7dbf9a068c2cf9f0ffd253c7e5a6ff139a7034';
+    r'f2b27292a4306f9a51b504e94c4ffd9a5ca89be3';
 
 /// See also [ProjectRequestProvider].
 @ProviderFor(ProjectRequestProvider)

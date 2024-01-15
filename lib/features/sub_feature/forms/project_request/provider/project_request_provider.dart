@@ -12,11 +12,6 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
   @override
   ProjectRequestState build() => const ProjectRequestState();
 
-  void changeLoading() {
-    state =
-        state.copyWith(isSendingRequest: !(state.isSendingRequest ?? false));
-  }
-
   Future<bool> addNewDataToService(
     RequestProjectModel requestProjectModel,
   ) async {
@@ -24,8 +19,8 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
       requestProjectModel: requestProjectModel,
       isSendingRequest: true,
     );
-    final uuid = const Uuid().v4();
 
+    final uuid = const Uuid().v4();
     final bytes = await requestProjectModel.imageFile.readAsBytes();
     final uploadImage = await FirebaseStorageService().uploadImage(
       fileBytes: bytes,
@@ -33,7 +28,7 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
       key: uuid,
     );
 
-    if (uploadImage == null) return _resetWithError();
+    if (uploadImage == null) return false;
 
     final modelStorage = CampaignModel(
       name: requestProjectModel.projectName,
@@ -51,21 +46,12 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
       path: CollectionPaths.unApprovedCampaigns,
     );
 
-    if (response == null) return _resetWithError();
-
     state = state.copyWith(
       isSendingRequest: false,
-      isServiceError: false,
     );
+
+    if (response == null) return false;
 
     return true;
-  }
-
-  bool _resetWithError() {
-    state = state.copyWith(
-      isSendingRequest: false,
-      isServiceError: true,
-    );
-    return false;
   }
 }

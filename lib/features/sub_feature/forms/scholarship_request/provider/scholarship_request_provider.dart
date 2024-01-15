@@ -17,11 +17,6 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
 
   final SharedCache _sharedCache = SharedCache.instance;
 
-  void changeLoading() {
-    state =
-        state.copyWith(isSendingRequest: !(state.isSendingRequest ?? false));
-  }
-
   void initializeForCanApply() {
     state = state.copyWith(canApply: true);
     final lastApplyDate = _sharedCache.getApplyScholarshipTime();
@@ -30,10 +25,6 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
       state = state.copyWith(canApply: false);
       return;
     }
-  }
-
-  void updateModel(RequestScholarshipModel model) {
-    state = state.copyWith(scholarshipModel: model);
   }
 
   Future<(String?, UploadErrors?)> uploadStudentDocumentPDF() async {
@@ -49,7 +40,13 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
     return resultFileLink;
   }
 
-  Future<String?> uploadScholarship() async {
+  Future<String?> uploadScholarship(
+    RequestScholarshipModel requestScholarshipModel,
+  ) async {
+    state = state.copyWith(
+      scholarshipModel: requestScholarshipModel,
+      isSendingRequest: true,
+    );
     final model = state.scholarshipModel;
     if (model == null) {
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
@@ -70,10 +67,13 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
       path: CollectionPaths.scholarship,
     );
 
+    state = state.copyWith(
+      isSendingRequest: false,
+    );
+
     if (response == null) {
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
-
     await _sharedCache.saveApplyScholarshipTime();
     return null;
   }
