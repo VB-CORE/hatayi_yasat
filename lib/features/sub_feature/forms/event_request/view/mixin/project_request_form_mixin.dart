@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/project_request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/event_request/view/project_request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/request_project_model.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';

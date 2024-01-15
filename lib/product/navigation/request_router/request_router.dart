@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/place_request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/project_request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/scholarship_request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/index.dart';
 
 final class RequestProjectRoute extends GoRouteData {
   const RequestProjectRoute();

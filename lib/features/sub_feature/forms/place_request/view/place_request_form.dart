@@ -1,18 +1,18 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/provider/place_request_provider.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/mixin/create_request_form_mixin.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
+import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
+import 'package:vbaseproject/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
+import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
+import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/general/dotted/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
@@ -20,7 +20,7 @@ import 'package:vbaseproject/product/widget/text_field/custom_category_field.dar
 import 'package:vbaseproject/product/widget/text_field/custom_district_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 
-part './widget/place_request_send.dart';
+part 'widget/place_request_send.dart';
 
 final class PlaceRequestForm extends ConsumerStatefulWidget {
   const PlaceRequestForm({super.key});
@@ -31,7 +31,7 @@ final class PlaceRequestForm extends ConsumerStatefulWidget {
 }
 
 class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
-    with PlaceRequestFormMixin {
+    with AppProviderMixin, PlaceRequestFormMixin {
   @override
   Widget onBuild(BuildContext context) {
     return Scaffold(
@@ -40,20 +40,24 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
         title: Text(LocaleKeys.requestCompany_title.tr()),
       ),
       bottomNavigationBar: _PlaceRequestSend(
-        () async {
+        onTapped: () async {
           if (!validateAndSave()) return;
           final model = requestModel();
           if (model == null) return;
-          ref
+          final response = await ref
               .read(placeRequestProviderProvider.notifier)
-              .updateRequestModel(model);
+              .addNewDataToService(model);
+          await dataSendingComplete(isOkay: response);
         },
-      ),
+        onKVKKChanged: updateKVKK,
+      ).ext.toDisabled(
+            disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
+                false,
+            opacity: 0.5,
+          ),
       body: ListViewWithSpace(
         children: [
-          GeneralDottedPhotoAdd(
-            onSelected: (File file) {},
-          ),
+          GeneralDottedPhotoAdd(onSelected: onImageSelected),
           CustomTextFormField(
             maxLength: TextFieldMaxLengths.small,
             hint: LocaleKeys.requestCompany_name.tr(),
@@ -102,7 +106,11 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             items: townModels,
           ),
         ],
-      ),
+      ).ext.toDisabled(
+            disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
+                false,
+            opacity: 0.5,
+          ),
     );
   }
 }

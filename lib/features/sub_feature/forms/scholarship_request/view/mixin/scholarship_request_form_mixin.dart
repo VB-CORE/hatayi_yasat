@@ -5,12 +5,12 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/scholarship_request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/view/scholarship_request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/request_scholarship_model.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/success_scholarship_posted_dialog.dart';
+import 'package:vbaseproject/product/widget/dialog/index.dart';
 
 mixin ScholarshipRequestFormMixin
     on
@@ -93,7 +93,10 @@ mixin ScholarshipRequestFormMixin
     if (!isSuccess) return;
 
     _clear();
-    await SuccessScholarshipPostedDialog.show(context);
+    await GeneralFormSuccessDialog.show(
+      context,
+      LocaleKeys.dialog_completeScholarshipRequest,
+    );
     if (!mounted) return;
     context.pop();
   }

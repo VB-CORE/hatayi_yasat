@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/provider/project_request_provider.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/mixin/project_request_form_mixin.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/event_request/provider/project_request_provider.dart';
+import 'package:vbaseproject/features/sub_feature/forms/event_request/view/mixin/project_request_form_mixin.dart';
+import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
@@ -18,7 +18,7 @@ import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart'
 import 'package:vbaseproject/product/widget/text_field/date_time_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';
 
-part './widget/project_request_send.dart';
+part 'widget/project_request_send.dart';
 
 final class ProjectRequestForm extends ConsumerStatefulWidget {
   const ProjectRequestForm({super.key});

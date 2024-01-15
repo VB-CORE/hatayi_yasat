@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart' show SizedBoxExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/sub_feature/forms/provider/scholarship_request_provider.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/mixin/scholarship_request_form_mixin.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/model/request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
+import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/view/mixin/scholarship_request_form_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/index.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
@@ -56,7 +56,6 @@ final class _ScholarshipRequestFormState
           await uploadAndShowDialog();
         },
         onKVKKChanged: updateKVKK,
-        canApply: ref.read(scholarshipRequestProviderProvider).canApply,
       ),
       body: ListViewWithSpace(
         children: [

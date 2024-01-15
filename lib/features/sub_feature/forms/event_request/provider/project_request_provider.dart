@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:vbaseproject/features/sub_feature/forms/provider/project_request_state.dart';
+import 'package:vbaseproject/features/sub_feature/forms/event_request/provider/project_request_state.dart';
 import 'package:vbaseproject/product/model/request_project_model.dart';
 
 part 'project_request_provider.g.dart';

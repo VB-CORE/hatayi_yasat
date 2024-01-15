@@ -7,7 +7,7 @@ part of 'place_request_provider.dart';
 // **************************************************************************
 
 String _$placeRequestProviderHash() =>
-    r'8ec861fbbafaf0aea8ad3afbc169f26735eb63fa';
+    r'380c932df54bfa7f02c6f97fd3e82af06b20009e';
 
 /// See also [PlaceRequestProvider].
 @ProviderFor(PlaceRequestProvider)

@@ -5,12 +5,10 @@ final class _ScholarshipRequestSend extends StatelessWidget {
   const _ScholarshipRequestSend({
     required this.onTapped,
     required this.onKVKKChanged,
-    required this.canApply,
   });
 
   final AsyncCallback onTapped;
   final ValueSetter<bool> onKVKKChanged;
-  final bool canApply;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +19,10 @@ final class _ScholarshipRequestSend extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            KvkkCheckBox(onChanged: onKVKKChanged)
-                .ext
-                .toDisabled(disable: !canApply),
+            KvkkCheckBox(onChanged: onKVKKChanged),
             GeneralButtonV2.async(
               action: onTapped,
-              label: canApply
-                  ? LocaleKeys.button_save.tr()
-                  : LocaleKeys.requestScholarship_disableButtonTitle.tr(),
+              label: LocaleKeys.button_save.tr(),
             ),
           ],
         ),
