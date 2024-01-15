@@ -14,7 +14,7 @@ final class _HomeCategoryCards extends ConsumerWidget {
       ..removeWhere((element) => element.value == _otherCategoryValue);
 
     return SizedBox(
-      height: context.sized.dynamicHeight(.1),
+      height: context.sized.dynamicHeight(.12),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,

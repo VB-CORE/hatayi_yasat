@@ -1,17 +1,19 @@
 part of '../scholarship_request_form.dart';
 
 @immutable
-final class _ScholarshipRequestSend extends StatelessWidget {
+final class _ScholarshipRequestSend extends ConsumerWidget {
   const _ScholarshipRequestSend({
     required this.onTapped,
     required this.onKVKKChanged,
+    required this.canApply,
   });
 
   final AsyncCallback onTapped;
   final ValueSetter<bool> onKVKKChanged;
+  final bool canApply;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Padding(
         padding: const PagePadding.horizontalSymmetric() +
@@ -22,8 +24,13 @@ final class _ScholarshipRequestSend extends StatelessWidget {
             KvkkCheckBox(onChanged: onKVKKChanged),
             GeneralButtonV2.async(
               action: onTapped,
-              label: LocaleKeys.button_save.tr(),
-            ),
+              label: canApply
+                  ? LocaleKeys.button_save.tr()
+                  : LocaleKeys.requestScholarship_disableButtonTitle.tr(),
+            ).ext.toDisabled(
+                  disable: !canApply,
+                  opacity: 0.5,
+                ),
           ],
         ),
       ),

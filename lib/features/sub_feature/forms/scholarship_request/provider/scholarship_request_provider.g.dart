@@ -7,7 +7,7 @@ part of 'scholarship_request_provider.dart';
 // **************************************************************************
 
 String _$scholarshipRequestProviderHash() =>
-    r'560ebe660f8cd5321cd0643ab8fc9a32b2e94bf1';
+    r'295ca45d2dfe873b5c43fb57562afefea87da045';
 
 /// See also [ScholarshipRequestProvider].
 @ProviderFor(ScholarshipRequestProvider)

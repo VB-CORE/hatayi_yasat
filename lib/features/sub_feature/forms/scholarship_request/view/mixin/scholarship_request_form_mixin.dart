@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
+import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
 import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/view/scholarship_request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/request_scholarship_model.dart';
@@ -16,11 +17,11 @@ mixin ScholarshipRequestFormMixin
     on
         AppProviderMixin<ScholarshipRequestForm>,
         RequestFormConsumerState<ScholarshipRequestForm> {
-  late final TextEditingController emailController;
-  late final TextEditingController phoneController;
-  late final TextEditingController bioController;
+  late final TextEditingController emailController = TextEditingController();
+  late final TextEditingController phoneController = TextEditingController();
+  late final TextEditingController bioController = TextEditingController();
   File? selectedPdfFile;
-  bool isKvkkChecked = false;
+  bool _isKvkkChecked = false;
 
   @override
   bool get isHasAnyData {
@@ -33,9 +34,11 @@ mixin ScholarshipRequestFormMixin
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    phoneController = TextEditingController();
-    bioController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(scholarshipRequestProviderProvider.notifier)
+          .initializeForCanApply();
+    });
   }
 
   @override
@@ -46,12 +49,19 @@ mixin ScholarshipRequestFormMixin
     super.dispose();
   }
 
+  void _clear() {
+    emailController.clear();
+    phoneController.clear();
+    bioController.clear();
+    selectedPdfFile = null;
+  }
+
   void updatePdfFile(File? file) {
     selectedPdfFile = file;
   }
 
   void updateKVKK(bool value) {
-    isKvkkChecked = value;
+    _isKvkkChecked = value;
   }
 
   @override
@@ -75,13 +85,6 @@ mixin ScholarshipRequestFormMixin
       story: bioController.text.trim(),
       studentDocument: selectedPdfFile,
     );
-  }
-
-  void _clear() {
-    emailController.clear();
-    phoneController.clear();
-    bioController.clear();
-    selectedPdfFile = null;
   }
 
   Future<void> uploadAndShowDialog() async {

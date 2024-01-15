@@ -46,17 +46,27 @@ final class _ScholarshipRequestFormState
       ),
       bottomNavigationBar: _ScholarshipRequestSend(
         onTapped: () async {
-          await Future<void>.delayed(Durations.extralong4);
           if (!validateAndSave()) return;
           final model = getRequestModel();
           if (model == null) return;
           ref
               .read(scholarshipRequestProviderProvider.notifier)
-              .updateRequestModel(model);
+              .updateModel(model);
+          await ref
+              .read(scholarshipRequestProviderProvider.notifier)
+              .uploadScholarship();
           await uploadAndShowDialog();
         },
         onKVKKChanged: updateKVKK,
-      ),
+        canApply:
+            ref.read(scholarshipRequestProviderProvider).canApply ?? false,
+      ).ext.toDisabled(
+            disable: ref
+                    .watch(scholarshipRequestProviderProvider)
+                    .isSendingRequest ??
+                false,
+            opacity: 0.5,
+          ),
       body: ListViewWithSpace(
         children: [
           CustomTextFormField(
@@ -87,7 +97,13 @@ final class _ScholarshipRequestFormState
           ),
           const _UploadSizeInfo(),
         ],
-      ),
+      ).ext.toDisabled(
+            disable: ref
+                    .watch(scholarshipRequestProviderProvider)
+                    .isSendingRequest ??
+                false,
+            opacity: 0.5,
+          ),
     );
   }
 }
