@@ -13,8 +13,10 @@ final class CustomCircleNetworkImage extends StatelessWidget {
     super.key,
     this.imageUrl,
   });
+
   final String? imageUrl;
   final double radius;
+
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {
@@ -26,6 +28,7 @@ final class CustomCircleNetworkImage extends StatelessWidget {
         ),
       );
     }
+
     return CachedNetworkImage(
       imageUrl: imageUrl!,
       imageBuilder: (context, imageProvider) => CircleAvatar(

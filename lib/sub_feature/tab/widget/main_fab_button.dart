@@ -5,7 +5,7 @@ final class _SpeedDialFabWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = SpeedDialChildModelList().speedDialChildItems;
+    final items = SpeedDialChildModelList(context: context).speedDialChildItems;
     return CustomSpeedDial(
       children: items
           .map(
