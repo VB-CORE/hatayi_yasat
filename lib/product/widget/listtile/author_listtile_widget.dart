@@ -22,27 +22,34 @@ final class AuthorListTileWidget extends StatelessWidget {
   final VoidCallback? onDeleteTapped;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.onlyLeft10(),
-      child: ListTile(
-        dense: true,
-        minLeadingWidth: 0,
-        contentPadding: EdgeInsets.zero,
-        horizontalTitleGap: WidgetSizes.spacingXs,
-        leading: _AuthorCircleAvatar(image: image),
-        title: _AuthorText(text: text),
-        subtitle: description.isEmpty
-            ? null
-            : GeneralContentSubTitle(
-                value: description,
-              ),
-        trailing: onDeleteTapped == null
-            ? null
-            : IconButton(
-                onPressed: onDeleteTapped,
-                icon: const Icon(AppIcons.delete),
-              ),
-      ),
+    return Row(
+      children: [
+        _AuthorCircleAvatar(image: image),
+        Expanded(
+          flex: 8,
+          child: Padding(
+            padding: const PagePadding.onlyLeft10(),
+            child: ListTile(
+              dense: true,
+              minLeadingWidth: 0,
+              contentPadding: EdgeInsets.zero,
+              horizontalTitleGap: WidgetSizes.spacingXs,
+              title: _AuthorText(text: text),
+              subtitle: description.isEmpty
+                  ? null
+                  : GeneralContentSubTitle(
+                      value: description,
+                    ),
+              trailing: onDeleteTapped == null
+                  ? null
+                  : IconButton(
+                      onPressed: onDeleteTapped,
+                      icon: const Icon(AppIcons.delete),
+                    ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

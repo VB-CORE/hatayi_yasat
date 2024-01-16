@@ -24,6 +24,6 @@ enum TextFieldMaxLengths {
   /// 2: For line length in text field
   static const int maxLineForText = 2;
 
-  /// 2: For line length in text field
+  /// 1: For line length in text field
   static const int minLine = 1;
 }

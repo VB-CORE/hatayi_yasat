@@ -188,7 +188,7 @@ extension $SpecialAgencyRouteExtension on SpecialAgencyRoute {
 extension $PlaceDetailRouteExtension on PlaceDetailRoute {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
         id: state.pathParameters['id']!,
-        $extra: state.extra! as StoreModel,
+        $extra: state.extra as StoreModel,
       );
 
   String get location => GoRouteData.$location(
@@ -244,7 +244,7 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
 
 extension $NewsDetailRouteExtension on NewsDetailRoute {
   static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
-        $extra: state.extra! as NewsModel,
+        $extra: state.extra as NewsModel,
       );
 
   String get location => GoRouteData.$location(
@@ -303,7 +303,7 @@ extension $EventRouteExtension on EventRoute {
 
 extension $EventDetailsRouteExtension on EventDetailsRoute {
   static EventDetailsRoute _fromState(GoRouterState state) => EventDetailsRoute(
-        $extra: state.extra! as CampaignModel,
+        $extra: state.extra as CampaignModel,
       );
 
   String get location => GoRouteData.$location(
@@ -324,7 +324,7 @@ extension $EventDetailsRouteExtension on EventDetailsRoute {
 
 extension $FilterResultRouteExtension on FilterResultRoute {
   static FilterResultRoute _fromState(GoRouterState state) => FilterResultRoute(
-        state.extra! as FilterSelected,
+        state.extra as FilterSelected,
       );
 
   String get location => GoRouteData.$location(

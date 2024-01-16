@@ -6,7 +6,7 @@ import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/view/filter_search_view.dart';
-import 'package:vbaseproject/features/sub_feature/forms/view/index.dart';
+import 'package:vbaseproject/features/sub_feature/forms/index.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
