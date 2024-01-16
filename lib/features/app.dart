@@ -6,6 +6,7 @@ import 'package:vbaseproject/product/app_builder.dart';
 import 'package:vbaseproject/product/init/application_theme.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
+import 'package:vbaseproject/product/widget/builder/keyboard_focus_control_widget.dart';
 
 final class App extends ConsumerWidget with AppProviderStateMixin {
   App({super.key});
@@ -20,17 +21,19 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      builder: AppBuilder.build,
-      themeMode: appStateWatch(ref).theme,
-      theme: ApplicationTheme.build(context).themeData,
-      scaffoldMessengerKey: appProvider(ref).scaffoldMessengerKey,
-      // home: NewsDetailView(news: NewsModel.dummyData),
+    return KeyboardFocusControlWidget(
+      child: MaterialApp.router(
+        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        builder: AppBuilder.build,
+        themeMode: appStateWatch(ref).theme,
+        theme: ApplicationTheme.build(context).themeData,
+        scaffoldMessengerKey: appProvider(ref).scaffoldMessengerKey,
+        // home: NewsDetailView(news: NewsModel.dummyData),
+      ),
     );
   }
 }

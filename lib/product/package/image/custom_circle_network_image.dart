@@ -13,8 +13,10 @@ final class CustomCircleNetworkImage extends StatelessWidget {
     super.key,
     this.imageUrl,
   });
+
   final String? imageUrl;
   final double radius;
+
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {
@@ -26,6 +28,7 @@ final class CustomCircleNetworkImage extends StatelessWidget {
         ),
       );
     }
+
     return CachedNetworkImage(
       imageUrl: imageUrl!,
       imageBuilder: (context, imageProvider) => CircleAvatar(
@@ -37,11 +40,10 @@ final class CustomCircleNetworkImage extends StatelessWidget {
           baseColor: context.general.colorScheme.onPrimaryContainer,
           highlightColor:
               context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
-          child: Container(
-            alignment: Alignment.center,
-            height: radius,
-            width: context.sized.width,
-            color: context.general.colorScheme.secondary,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.general.colorScheme.secondary,
+            ),
           ),
         );
       },

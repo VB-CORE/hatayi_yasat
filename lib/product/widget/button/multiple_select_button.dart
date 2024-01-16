@@ -35,35 +35,40 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
     with MultipleSelectButtonMixin {
   @override
   Widget build(BuildContext context) {
-    return ProductScrollBar(
-      child: ValueListenableBuilder(
-        valueListenable: selectedItemsNotifier,
-        builder: (context, selectedItems, _) {
-          return SingleChildScrollView(
-            controller: scrollController,
-            child: Wrap(
-              children: List.generate(items.length, (index) {
-                final isSelected = selectedItems.contains(items[index]);
+    /// device width added to align ScrollBar at the right of the screen
+    return SizedBox(
+      width: context.general.mediaSize.width,
+      child: ProductScrollBar(
+        child: ValueListenableBuilder(
+          valueListenable: selectedItemsNotifier,
+          builder: (context, selectedItems, _) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: Wrap(
+                children: List.generate(items.length, (index) {
+                  final isSelected = selectedItems.contains(items[index]);
 
-                return Padding(
-                  padding: const PagePadding.onlyRight(),
-                  child: InkWell(
-                    onTap: () {
-                      addOrRemoveItem(items[index]);
-                    },
-                    child: Chip(
-                      padding: EdgeInsets.zero,
-                      backgroundColor: isSelected
-                          ? context.general.colorScheme.primary
-                          : Colors.transparent,
-                      label: _Title(item: items[index], isSelected: isSelected),
+                  return Padding(
+                    padding: const PagePadding.onlyRight(),
+                    child: InkWell(
+                      onTap: () {
+                        addOrRemoveItem(items[index]);
+                      },
+                      child: Chip(
+                        padding: EdgeInsets.zero,
+                        backgroundColor: isSelected
+                            ? context.general.colorScheme.primary
+                            : Colors.transparent,
+                        label:
+                            _Title(item: items[index], isSelected: isSelected),
+                      ),
                     ),
-                  ),
-                );
-              }),
-            ),
-          );
-        },
+                  );
+                }),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
