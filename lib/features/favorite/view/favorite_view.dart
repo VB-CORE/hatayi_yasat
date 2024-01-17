@@ -8,6 +8,8 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
+import 'package:vbaseproject/product/widget/dialog/general_text_dialog.dart';
+import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:vbaseproject/product/widget/general/general_not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/listtile/author_listtile_widget.dart';
@@ -33,9 +35,12 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
         actions: [
           if (ref.watch(favoriteViewModelProvider).favoritePlaces.isNotEmpty)
             _FavoriteClearAllButton(
-              onPressed: () => ref
-                  .read(favoriteViewModelProvider.notifier)
-                  .removeAllFavoritePlaces(),
+              onPressed: (value) {
+                if (!value) return;
+                ref
+                    .read(favoriteViewModelProvider.notifier)
+                    .removeAllFavoritePlaces();
+              },
             ),
         ],
       ),
