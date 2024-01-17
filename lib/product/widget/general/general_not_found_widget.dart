@@ -9,10 +9,10 @@ import 'package:vbaseproject/product/widget/size/widget_size.dart';
 final class GeneralNotFoundWidget extends StatelessWidget {
   const GeneralNotFoundWidget({
     required this.title,
-    required this.onRefresh,
+    this.onRefresh,
     super.key,
   });
-  final VoidCallback onRefresh;
+  final VoidCallback? onRefresh;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -39,10 +39,11 @@ final class GeneralNotFoundWidget extends StatelessWidget {
                 GeneralContentSubTitle(
                   value: title,
                 ),
-                TextButton(
-                  onPressed: onRefresh,
-                  child: Text(LocaleKeys.notFound_forRefresh.tr()),
-                ),
+                if (onRefresh != null)
+                  TextButton(
+                    onPressed: onRefresh,
+                    child: Text(LocaleKeys.notFound_forRefresh.tr()),
+                  ),
               ],
             ),
           ],

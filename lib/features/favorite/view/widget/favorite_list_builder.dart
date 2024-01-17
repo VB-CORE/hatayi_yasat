@@ -14,7 +14,7 @@ final class _FavoriteListBuilder extends ConsumerWidget {
     if (favoritePlaces.isEmpty) {
       return SliverFillRemaining(
         child:
-            GeneralNotFoundLottie(title: LocaleKeys.message_emptyFavorite.tr()),
+            GeneralNotFoundWidget(title: LocaleKeys.message_emptyFavorite.tr()),
       );
     }
     return SliverList.builder(
