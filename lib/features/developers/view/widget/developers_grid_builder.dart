@@ -25,7 +25,7 @@ final class _DevelopersGridBuilder extends ConsumerWidget {
         if (model == null) return const SizedBox.shrink();
         return DeveloperProfileCard(model: model);
       },
-      emptyBuilder: (_) => NotFoundLottie(
+      emptyBuilder: (_) => GeneralNotFoundWidget(
         title: LocaleKeys.notFound_developers.tr(),
         onRefresh: () {},
       ),

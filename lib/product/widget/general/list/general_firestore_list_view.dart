@@ -4,7 +4,7 @@ import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/package/shimmer/general_shimmer.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_shimmer_height.dart';
-import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 
 typedef FireStoreGeneralBuilder<T> = Widget Function(
   BuildContext context,
@@ -44,7 +44,7 @@ final class GeneralFirestoreListView<T> extends StatelessWidget {
       physics: const ClampingScrollPhysics(),
       loadingBuilder: (_) =>
           const GeneralShimmer(height: CustomShimmerHeight.small),
-      emptyBuilder: (_) => NotFoundLottie(
+      emptyBuilder: (_) => GeneralNotFoundWidget(
         title: title.tr(),
         onRefresh: onRetry,
       ),
