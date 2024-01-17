@@ -1,6 +1,20 @@
 part of '../home_view.dart';
 
-final class _HomeCategoryCards extends ConsumerWidget {
+/// It will help to navigate filter screen and get result from filter screen
+mixin _FilterMixin {
+  Future<void> pushToFilter({
+    required BuildContext context,
+    String? category,
+  }) async {
+    final result =
+        await FilterRoute($extra: category).push<FilterSelected?>(context);
+    if (result == null) return;
+    if (!context.mounted) return;
+    FilterResultRoute(result).go(context);
+  }
+}
+
+final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
   const _HomeCategoryCards();
   static const _maxCategoryItemLength = 6;
   static const _otherCategoryValue = 1000;
@@ -14,7 +28,7 @@ final class _HomeCategoryCards extends ConsumerWidget {
       ..removeWhere((element) => element.value == _otherCategoryValue);
 
     return SizedBox(
-      height: context.sized.dynamicHeight(.12),
+      height: WidgetSizes.spacingXxl9 + WidgetSizes.spacingM,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
@@ -23,12 +37,10 @@ final class _HomeCategoryCards extends ConsumerWidget {
             padding: const PagePadding.onlyRightVeryLow(),
             child: _CategoryCard(
               onTap: () async {
-                final result =
-                    await FilterRoute($extra: categories[index].documentId)
-                        .push<FilterSelected?>(context);
-                if (result == null) return;
-                if (!context.mounted) return;
-                FilterResultRoute(result).go(context);
+                await pushToFilter(
+                  context: context,
+                  category: categories[index].documentId,
+                );
               },
               name: categories[index].displayName,
             ),
