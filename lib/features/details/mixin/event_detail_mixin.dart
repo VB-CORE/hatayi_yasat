@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kartal/kartal.dart' show StringExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/view/event_detail_view.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
