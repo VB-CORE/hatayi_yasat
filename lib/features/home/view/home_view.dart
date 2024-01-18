@@ -37,7 +37,11 @@ final class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView>
-    with NotificationTypeMixin, AppProviderMixin<HomeView>, HomeViewMixin {
+    with
+        NotificationTypeMixin,
+        AppProviderMixin<HomeView>,
+        HomeViewMixin,
+        _FilterMixin {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
@@ -51,9 +55,7 @@ class _HomeViewState extends ConsumerState<HomeView>
             sliver: ClickableSubTitleText(
               title: LocaleKeys.home_categories.tr(),
               onTap: () async {
-                final result =
-                    await const FilterRoute().push<FilterSelected?>(context);
-                if (result == null) return;
+                await pushToFilter(context: context);
               },
             ).ext.sliver,
           ),

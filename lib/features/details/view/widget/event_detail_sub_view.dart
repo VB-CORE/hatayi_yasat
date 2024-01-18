@@ -12,30 +12,7 @@ final class _ImageWithBackButtonStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        CustomImageWithViewDialog(image: image),
-        _BackButtonContainer(
-          onPressed: backButtonAction,
-        ),
-      ],
-    );
-  }
-}
-
-@immutable
-final class _BackButtonContainer extends StatelessWidget {
-  const _BackButtonContainer({
-    required this.onPressed,
-  });
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return BackButtonWidget(
-      onPressed: onPressed,
-      backgroundColor: context.general.colorScheme.primary,
-    );
+    return CustomImageWithViewDialog(image: image);
   }
 }
 
@@ -84,12 +61,14 @@ final class _DateAndAddressRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          AppIcons.calendarFilled,
-          color: context.general.colorScheme.primary,
-          size: WidgetSizes.spacingXxl3,
+        Padding(
+          padding: const PagePadding.onlyRightLow(),
+          child: Icon(
+            AppIcons.calendarFilled,
+            color: context.general.colorScheme.primary,
+            size: WidgetSizes.spacingXxl3,
+          ),
         ),
-        context.sized.emptySizedWidthBoxNormal,
         GeneralContentSmallTitle(
           value: LocaleKeys.campaignDetailsView_startDate.tr(
             args: ['\n${projectModel.expireDate?.getMonthName}'],
@@ -103,6 +82,7 @@ final class _DateAndAddressRow extends StatelessWidget {
           ),
           maxLine: AppConstants.kTwo,
         ),
+        const Spacer(),
       ],
     );
   }

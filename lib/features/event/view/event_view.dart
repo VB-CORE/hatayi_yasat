@@ -9,8 +9,8 @@ import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/builder/firestore_grid_view.dart';
 import 'package:vbaseproject/product/widget/card/event_card.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
-import 'package:vbaseproject/product/widget/lottie/not_found_lottie.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 part 'widget/event_grid_builder.dart';

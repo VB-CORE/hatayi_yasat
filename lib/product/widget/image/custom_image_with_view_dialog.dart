@@ -7,10 +7,12 @@ import 'package:vbaseproject/product/widget/dialog/photo_view_dialog.dart';
 final class CustomImageWithViewDialog extends StatelessWidget {
   const CustomImageWithViewDialog({
     required this.image,
+    this.height,
     super.key,
   });
 
   final String image;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ final class CustomImageWithViewDialog extends StatelessWidget {
       },
       child: SizedBox(
         width: context.sized.width,
-        height: context.sized.dynamicHeight(0.3),
+        height: height == null ? null : context.sized.dynamicHeight(0.3),
         child: CustomNetworkImage(
           imageUrl: image,
           fit: BoxFit.cover,

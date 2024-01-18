@@ -7,6 +7,7 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/search_response_model.dart';
 import 'package:vbaseproject/product/package/firebase/custom_functions.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 
 final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
   PlaceSearchDelegate();
@@ -20,7 +21,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
         onPressed: () {
           query = '';
         },
-        icon: const Icon(Icons.clear),
+        icon: const Icon(AppIcons.delete),
       ),
     ];
   }
@@ -33,7 +34,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
       const InputDecorationTheme();
 
   Widget _buildResultsOrSuggestions(BuildContext context) {
-    if (query.length < 3) {
+    if (query.trim().length < 3) {
       return Center(
         child: Assets.lottie.search.lottie(
           height: context.sized.dynamicHeight(.2),
