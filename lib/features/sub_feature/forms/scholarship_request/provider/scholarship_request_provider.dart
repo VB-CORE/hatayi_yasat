@@ -31,6 +31,7 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
     final file = state.scholarshipModel?.studentDocument;
     if (file == null) return (null, UploadErrors.noFile);
     final uuid = const Uuid().v4();
+
     final resultFileLink = await FirebaseStorageService().uploadFile(
       root: RootStorageName.scholarship,
       key: uuid,
@@ -51,15 +52,22 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
     if (model == null) {
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
+
     final (pdfLinkKey, errorType) = await uploadStudentDocumentPDF();
-    if (errorType != null) return errorType.errorMessage;
-    if (pdfLinkKey == null) return null;
+    if (pdfLinkKey == null && errorType != null) {
+      state = state.copyWith(
+        isSendingRequest: false,
+      );
+
+      return errorType.errorMessage;
+    }
+
     final scholarshipModel = ScholarshipModel(
       email: model.email,
       phoneNumber: model.phoneNumber,
       story: model.story,
       studentDocument: '',
-      documentFileRef: pdfLinkKey,
+      documentFileRef: pdfLinkKey!,
     );
 
     final response = await FirebaseService().add<ScholarshipModel>(

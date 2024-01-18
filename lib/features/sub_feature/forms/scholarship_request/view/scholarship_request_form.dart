@@ -50,10 +50,14 @@ final class _ScholarshipRequestFormState
           final model = getRequestModel();
           if (model == null) return;
 
-          await ref
+          final response = await ref
               .read(scholarshipRequestProviderProvider.notifier)
               .uploadScholarship(model);
-          await uploadAndShowDialog();
+          if (response == null) {
+            await uploadAndShowDialog();
+            return;
+          }
+          await showErrorSnackbar(title: response);
         },
         onKVKKChanged: updateKVKK,
         canApply:

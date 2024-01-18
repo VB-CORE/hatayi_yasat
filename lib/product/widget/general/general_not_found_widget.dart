@@ -1,18 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
-final class NotFoundLottie extends StatelessWidget {
-  const NotFoundLottie({
+final class GeneralNotFoundWidget extends StatelessWidget {
+  const GeneralNotFoundWidget({
     required this.title,
-    required this.onRefresh,
+    this.onRefresh,
     super.key,
   });
-  final VoidCallback onRefresh;
+  final VoidCallback? onRefresh;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -26,23 +26,24 @@ final class NotFoundLottie extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.lottie.notFound.lottie(),
+            Assets.svg.svgNotFound.svg(
+              height: context.sized.dynamicHeight(.16),
+              width: context.sized.dynamicWidth(.16),
+            ),
             const SizedBox(height: WidgetSizes.spacingL),
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               alignment: WrapAlignment.center,
               direction: Axis.vertical,
               children: [
-                Text(
-                  title,
-                  style: context.general.textTheme.bodyMedium?.copyWith(
-                    color: ColorCommon(context).whiteAndBlackForTheme,
+                GeneralContentSubTitle(
+                  value: title,
+                ),
+                if (onRefresh != null)
+                  TextButton(
+                    onPressed: onRefresh,
+                    child: Text(LocaleKeys.notFound_forRefresh.tr()),
                   ),
-                ),
-                TextButton(
-                  onPressed: onRefresh,
-                  child: Text(LocaleKeys.notFound_forRefresh.tr()),
-                ),
               ],
             ),
           ],

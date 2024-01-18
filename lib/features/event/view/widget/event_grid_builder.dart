@@ -20,7 +20,7 @@ final class _EventGridBuilder extends ConsumerWidget {
         mainAxisSpacing: WidgetSizes.spacingS,
         mainAxisExtent: context.sized.dynamicHeight(0.24),
       ),
-      emptyBuilder: (_) => NotFoundLottie(
+      emptyBuilder: (_) => GeneralNotFoundWidget(
         title: LocaleKeys.notFound_campaign.tr(),
         onRefresh: () {},
       ),

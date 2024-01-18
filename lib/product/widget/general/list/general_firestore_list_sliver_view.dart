@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/shimmer/general_shimmer.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_shimmer_height.dart';
-import 'package:vbaseproject/product/widget/general/general_not_found_lottie.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/general/list/general_firestore_list_view.dart';
 
 typedef FirestoreEmptyBuilder = Widget Function(BuildContext context);
@@ -43,7 +43,7 @@ class FirestoreSliverListView<T> extends StatelessWidget {
 
         if (snapshot.docs.isEmpty || snapshot.hasError) {
           return SliverFillRemaining(
-            child: GeneralNotFoundLottie(
+            child: GeneralNotFoundWidget(
               title: LocaleKeys.notFound_news.tr(),
               onRefresh: onRetry,
             ),

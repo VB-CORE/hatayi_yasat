@@ -103,4 +103,8 @@ mixin ScholarshipRequestFormMixin
     if (!mounted) return;
     context.pop();
   }
+
+  Future<void> showErrorSnackbar({required String title}) async {
+    appProvider.showSnackbarMessage(title);
+  }
 }
