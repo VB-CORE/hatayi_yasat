@@ -52,5 +52,6 @@ final class FavoriteViewModel extends _$FavoriteViewModel
           )
           .toList(),
     );
+    print(state.filteredPlaces);
   }
 }
