@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/view/event_detail_view.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
@@ -7,10 +8,6 @@ import 'package:vbaseproject/product/package/calendar/calendar_utility.dart';
 
 mixin EventDetailMixin on ConsumerState<EventDetailView> {
   late final CampaignModel eventModel;
-
-  late final bool _phoneIsAvailable;
-
-  bool get phoneIsAvailable => _phoneIsAvailable;
 
   @override
   void initState() {
@@ -28,5 +25,11 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
         campaignModel: eventModel,
       ),
     );
+  }
+
+  void sendAMessageWithPhone() {
+    final phoneNumber = eventModel.phone ?? '';
+    if (phoneNumber.isEmpty) return;
+    phoneNumber.ext.shareWhatsApp();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// This class is for app icons.
 final class AppIcons {
@@ -30,4 +31,6 @@ final class AppIcons {
 
   static const IconData favorite = Icons.favorite;
   static const IconData favoriteBorder = Icons.favorite_border_outlined;
+
+  static const IconData sendMessage = FontAwesomeIcons.whatsapp;
 }
