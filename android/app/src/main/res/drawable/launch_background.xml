@@ -7,8 +7,8 @@
         android:height="30dp"
         android:drawable="@color/app_white" />
     <item
-        android:height="250dp"
-        android:width="250dp"
+        android:height="300dp"
+        android:width="300dp"
         android:gravity="center">
         <bitmap
             android:gravity="fill_horizontal|fill_vertical"
