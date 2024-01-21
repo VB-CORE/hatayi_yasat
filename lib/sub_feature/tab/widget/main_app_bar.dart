@@ -16,6 +16,8 @@ final class _MainAppBar extends AppBar {
             fontWeight: FontWeight.bold,
           ),
           actions: [
+            IconButton(
+                onPressed: () {}, icon: const Icon(AppIcons.notifications)),
             const _CustomPopupMenu(),
           ],
         );

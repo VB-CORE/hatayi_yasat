@@ -33,4 +33,5 @@ final class AppIcons {
   static const IconData favoriteBorder = Icons.favorite_border_outlined;
 
   static const IconData sendMessage = FontAwesomeIcons.whatsapp;
+  static const IconData notifications = Icons.notifications_outlined;
 }
