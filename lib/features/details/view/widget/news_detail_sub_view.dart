@@ -1,47 +1,6 @@
 part of '../news_detail_view.dart';
 
 @immutable
-final class _ImageWithButtonAndNameStack extends StatelessWidget {
-  const _ImageWithButtonAndNameStack({
-    required this.image,
-    required this.backButtonAction,
-  });
-
-  final String image;
-  final AsyncCallback backButtonAction;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        CustomImageWithViewDialog(image: image),
-        SafeArea(
-          child: _BackButtonContainer(
-            onPressed: backButtonAction,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-@immutable
-final class _BackButtonContainer extends StatelessWidget {
-  const _BackButtonContainer({
-    required this.onPressed,
-  });
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return BackButtonWidget(
-      onPressed: onPressed,
-      backgroundColor: Colors.transparent,
-    );
-  }
-}
-
-@immutable
 final class _DateIconAndText extends StatelessWidget {
   const _DateIconAndText({
     required this.date,

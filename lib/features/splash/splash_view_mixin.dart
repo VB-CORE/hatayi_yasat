@@ -6,6 +6,7 @@ import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
+import 'package:vbaseproject/product/package/firebase/index.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
@@ -35,6 +36,10 @@ mixin SplashViewMixin
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+
+    MessagingUtility.getToken().then((value) {
+      print('token: $value');
+    });
 
     _homeProvider = StateNotifierProvider(
       (ref) => SplashViewModel(

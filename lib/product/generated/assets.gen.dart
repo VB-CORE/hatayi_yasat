@@ -25,6 +25,9 @@ class $AssetsDocsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_app.png
+  AssetGenImage get icApp => const AssetGenImage('assets/icons/ic_app.png');
+
   /// File path: assets/icons/ic_car_help.png
   AssetGenImage get icCarHelp =>
       const AssetGenImage('assets/icons/ic_car_help.png');
@@ -38,7 +41,7 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/ic_watermark.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icCarHelp, icMapHelp, icWatermark];
+  List<AssetGenImage> get values => [icApp, icCarHelp, icMapHelp, icWatermark];
 }
 
 class $AssetsImagesGen {

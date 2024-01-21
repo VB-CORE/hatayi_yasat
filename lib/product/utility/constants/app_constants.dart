@@ -22,14 +22,10 @@ class AppConstants {
   /// [defaultMapZoom] value is 14
   static const double defaultMapZoom = 14;
 
-  static const String googleMapsPlaceLink =
-      'https://www.google.com/maps/search/?api=1&query=';
-
   static const String homeWebsiteUrl = 'https://www.hatayiyasat.com/';
-
-  static const String googleMapsUrl = 'comgooglemaps://?q=';
-  static const String appleMapsUrl = 'maps://?q=';
 
   static const String appStoreId = 'id6465691080';
   static const String kiloByte = 'kb';
+
+  static const String appName = "Hatay'ı Yaşat";
 }
