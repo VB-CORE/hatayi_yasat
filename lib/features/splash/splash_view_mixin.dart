@@ -4,11 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
 import 'package:vbaseproject/features/splash/view_model/splash_view_model.dart';
-import 'package:vbaseproject/product/navigation/app_router.dart';
-import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
-import 'package:vbaseproject/product/package/firebase/index.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/not_connected_to_internet_dialog.dart';
 
 mixin SplashViewMixin
     on
@@ -37,10 +33,6 @@ mixin SplashViewMixin
     super.initState();
     _controller = AnimationController(vsync: this);
 
-    MessagingUtility.getToken().then((value) {
-      print('token: $value');
-    });
-
     _homeProvider = StateNotifierProvider(
       (ref) => SplashViewModel(
         appProvider: appProvider,
@@ -48,28 +40,28 @@ mixin SplashViewMixin
       ),
     );
 
-    ref.listenManual(_homeProvider, (previous, next) async {
-      // When init done, stop lottie animation
-      _controller.stop();
+    // ref.listenManual(_homeProvider, (previous, next) async {
+    //   // When init done, stop lottie animation
+    //   _controller.stop();
 
-      if (next.isNeedToOnBoard) {
-        const OnboardRoute().pushReplacement(context);
-        return;
-      }
-      if (next.isNeedToForceUpdate) {
-        return;
-      }
+    //   if (next.isNeedToOnBoard) {
+    //     const OnboardRoute().pushReplacement(context);
+    //     return;
+    //   }
+    //   if (next.isNeedToForceUpdate) {
+    //     return;
+    //   }
 
-      if (!next.isConnectedToInternet) {
-        final response =
-            (await NotConnectedToInternetDialog.show(context)) ?? false;
-        if (!response) return;
-        await ref.read(_homeProvider.notifier).refresh();
-        return;
-      }
-      if (!next.isOperationStaring) {
-        const MainTabRoute().go(context);
-      }
-    });
+    //   if (!next.isConnectedToInternet) {
+    //     final response =
+    //         (await NotConnectedToInternetDialog.show(context)) ?? false;
+    //     if (!response) return;
+    //     await ref.read(_homeProvider.notifier).refresh();
+    //     return;
+    //   }
+    //   if (!next.isOperationStaring) {
+    //     const MainTabRoute().go(context);
+    //   }
+    // });
   }
 }
