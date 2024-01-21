@@ -24,4 +24,17 @@ mixin NotificationTypeMixin {
 
     return (null, '');
   }
+
+  NotificationType fromAppNotifications(AppNotificationType type) {
+    switch (type) {
+      case AppNotificationType.store:
+        return NotificationType.project;
+      case AppNotificationType.campaign:
+        return NotificationType.campaigns;
+      case AppNotificationType.news:
+        return NotificationType.news;
+      case AppNotificationType.advertise:
+        return NotificationType.advertise;
+    }
+  }
 }

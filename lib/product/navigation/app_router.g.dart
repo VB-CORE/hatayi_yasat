@@ -111,6 +111,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           ],
         ),
         GoRouteData.$route(
+          path: 'notifications',
+          name: 'Notifications',
+          factory: $NotificationsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'filterResult',
           name: 'Filter Result',
           factory: $FilterResultRouteExtension._fromState,
@@ -320,6 +325,24 @@ extension $EventDetailsRouteExtension on EventDetailsRoute {
 
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
+}
+
+extension $NotificationsRouteExtension on NotificationsRoute {
+  static NotificationsRoute _fromState(GoRouterState state) =>
+      const NotificationsRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/notifications',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $FilterResultRouteExtension on FilterResultRoute {

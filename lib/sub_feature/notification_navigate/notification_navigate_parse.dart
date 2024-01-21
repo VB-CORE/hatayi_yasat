@@ -15,7 +15,6 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         await MessagingNavigate.instance.detailModelCheckAndNavigate(
           context: context,
           id: id,
-          customService: _customService,
         );
         return;
       case NotificationType.campaigns:
@@ -57,7 +56,8 @@ final class NotificationNavigateParse with NotificationTypeMixin {
   Future<void> makeWithModel({
     required NotificationModel model,
   }) async {
-    final (type, _) = modelConvertToType(model);
+    final (type, id) = modelConvertToType(model);
     if (type == null) return;
+    await _make(id, type);
   }
 }

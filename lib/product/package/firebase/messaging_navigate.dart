@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/details/view/event_detail_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:vbaseproject/product/widget/sheet/advertise_sheet.dart';
 import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
@@ -59,9 +58,9 @@ final class MessagingNavigate {
   Future<void> detailModelCheckAndNavigate({
     required BuildContext context,
     required String id,
-    required CustomService customService,
   }) async {
-    PlaceDetailRoute($extra: StoreModel.empty(), id: id).go(context);
+    await PlaceDetailRoute($extra: StoreModel.empty(), id: id)
+        .push<void>(context);
   }
 
   Future<void> detailModelCampaignCheckAndNavigate({
@@ -76,7 +75,7 @@ final class MessagingNavigate {
     );
     if (!context.mounted) return;
     if (result != null) {
-      await context.route.navigateToPage(EventDetailView(event: result));
+      await EventDetailsRoute($extra: result).push<void>(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
@@ -98,7 +97,7 @@ final class MessagingNavigate {
     );
     if (!context.mounted) return;
     if (result != null) {
-      NewsDetailRoute($extra: result).go(context);
+      await NewsDetailRoute($extra: result).push<void>(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(

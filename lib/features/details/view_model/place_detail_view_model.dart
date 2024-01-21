@@ -26,6 +26,10 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
       path: CollectionPaths.approvedApplications,
       id: id,
     );
-    state = state.copyWith(storeModel: item, isFetching: false);
+    state = state.copyWith(
+      storeModel: item,
+      isFetching: false,
+      isError: item == null,
+    );
   }
 }

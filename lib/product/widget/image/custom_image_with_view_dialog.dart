@@ -11,14 +11,15 @@ final class CustomImageWithViewDialog extends StatelessWidget {
     super.key,
   });
 
-  final String image;
+  final String? image;
   final double? height;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        PhotoViewDialog(imageUrl: image).show(context);
+        if (image.ext.isNullOrEmpty) return;
+        PhotoViewDialog(imageUrl: image!).show(context);
       },
       child: SizedBox(
         width: context.sized.width,

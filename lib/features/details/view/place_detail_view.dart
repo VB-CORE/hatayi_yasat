@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/mixin/place_detail_view_mixin.dart';
+import 'package:vbaseproject/features/details/view_model/place_detail_view_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
@@ -14,6 +15,7 @@ import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/container/circle_image_with_text_container.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
@@ -36,6 +38,17 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     with AppProviderMixin<PlaceDetailView>, PlaceDetailViewMixin {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(placeDetailViewModelProvider);
+
+    if (!state.isError) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: GeneralNotFoundWidget(
+          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+
     if (model.documentId.isEmpty) {
       return Scaffold(
         appBar: AppBar(),

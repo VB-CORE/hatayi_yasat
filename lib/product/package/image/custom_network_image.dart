@@ -6,6 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
+import 'package:vbaseproject/product/widget/size/index.dart';
 
 final class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage({super.key, this.imageUrl, this.fit, this.height});
@@ -35,7 +36,7 @@ final class CustomNetworkImage extends StatelessWidget {
               context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
           child: Container(
             alignment: Alignment.center,
-            height: height,
+            height: height ?? (WidgetSizes.spacingXxl12 * 2),
             width: context.sized.width,
             color: context.general.colorScheme.secondary,
           ),

@@ -100,9 +100,7 @@ class _NewsInformationArea extends StatelessWidget {
             fontWeight: FontWeight.bold,
             maxLine: 2,
           ),
-          const UserSpecialCard(
-            user: SpecialUser.creator,
-          ),
+          const UserSpecialCard(),
         ],
       ),
     );

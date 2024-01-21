@@ -22,6 +22,10 @@ final class MessagingUtility {
     ]);
   }
 
+  static Future<String> getToken() async {
+    return await FirebaseMessaging.instance.getToken() ?? '';
+  }
+
   static Future<NotificationModel?> getInitialData() async {
     final response = await FirebaseMessaging.instance.getInitialMessage();
 
