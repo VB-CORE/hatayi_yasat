@@ -58,7 +58,6 @@ final class MessagingNavigate {
   Future<void> detailModelCheckAndNavigate({
     required BuildContext context,
     required String id,
-    required CustomService customService,
   }) async {
     await PlaceDetailRoute($extra: StoreModel.empty(), id: id)
         .push<void>(context);

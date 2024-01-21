@@ -36,7 +36,7 @@ final class CustomNetworkImage extends StatelessWidget {
               context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
           child: Container(
             alignment: Alignment.center,
-            height: height ?? WidgetSizes.spacingXxl12,
+            height: height ?? (WidgetSizes.spacingXxl12 * 2),
             width: context.sized.width,
             color: context.general.colorScheme.secondary,
           ),

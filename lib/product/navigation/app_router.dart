@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/view/place_detail_view.dart';
+import 'package:vbaseproject/features/notifications/notifications_view.dart';
 import 'package:vbaseproject/features/splash/splash_view.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/view/filter_result_view.dart';
@@ -40,6 +41,7 @@ final class SplashRoute extends GoRouteData {
     NewsJobsRoute.route,
     FilterRoute.route,
     EventRoute.route,
+    NotificationsRoute.route,
     FilterResultRoute.route,
 
     // Forms
@@ -146,4 +148,17 @@ final class ScholarShipRequestFormRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ScholarshipRequestForm();
+}
+
+final class NotificationsRoute extends GoRouteData {
+  const NotificationsRoute();
+
+  static const route = TypedGoRoute<NotificationsRoute>(
+    path: 'notifications',
+    name: 'Notifications',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NotificationsView();
 }

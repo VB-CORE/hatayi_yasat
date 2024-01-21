@@ -15,7 +15,6 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         await MessagingNavigate.instance.detailModelCheckAndNavigate(
           context: context,
           id: id,
-          customService: _customService,
         );
         return;
       case NotificationType.campaigns:

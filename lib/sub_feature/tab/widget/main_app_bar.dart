@@ -17,7 +17,10 @@ final class _MainAppBar extends AppBar {
           ),
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(AppIcons.notifications)),
+                onPressed: () {
+                  const NotificationsRoute().go(context);
+                },
+                icon: const Icon(AppIcons.notifications)),
             const _CustomPopupMenu(),
           ],
         );

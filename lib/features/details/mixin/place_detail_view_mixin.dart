@@ -19,9 +19,6 @@ mixin PlaceDetailViewMixin
             id: widget.id,
           );
     });
-    // ref
-    //     .read(placeDetailViewModelProvider.notifier)
-    //     .init(model: widget.model, id: widget.id);
   }
 
   StoreModel get model {
