@@ -4,23 +4,33 @@ final class _MainAppBar extends AppBar {
   _MainAppBar({
     required BuildContext context,
   }) : super(
-          centerTitle: true,
+          centerTitle: false,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
             child: Divider(
               height: AppConstants.kOne.toDouble(),
             ),
           ),
-          title: GeneralSubTitle(
-            value: LocaleKeys.project_name.tr(context: context),
-            fontWeight: FontWeight.bold,
+          automaticallyImplyLeading: false,
+          titleSpacing: WidgetSizes.spacingXSs,
+          title: Row(
+            children: [
+              Assets.icons.icApp.image(
+                width: WidgetSizes.spacingXxl2,
+              ),
+              GeneralSubTitle(
+                value: LocaleKeys.project_name.tr(context: context),
+                fontWeight: FontWeight.bold,
+              ),
+            ],
           ),
           actions: [
             IconButton(
-                onPressed: () {
-                  const NotificationsRoute().go(context);
-                },
-                icon: const Icon(AppIcons.notifications)),
+              onPressed: () {
+                const NotificationsRoute().go(context);
+              },
+              icon: const Icon(AppIcons.notifications),
+            ),
             const _CustomPopupMenu(),
           ],
         );
