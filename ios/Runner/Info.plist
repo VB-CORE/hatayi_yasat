@@ -69,6 +69,7 @@
 			<string>googlemaps</string>
 			<string>http</string>
 			<string>https</string>
+			<string>whatsapp</string>
 		</array>
 
 		<key>NSAppTransportSecurity</key>

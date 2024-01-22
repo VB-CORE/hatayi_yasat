@@ -101,7 +101,8 @@
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
-    "emptyFavorite": "Your favorites list is empty"
+    "emptyFavorite": "Your favorites list is empty",
+    "openEventDetailPhone": "Hello, I want to get information about the event named {}"
   },
   "placeDetailView": {
     "owner": "Business Owner",

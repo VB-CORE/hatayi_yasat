@@ -71,6 +71,8 @@ dependencies:
   in_app_review: ^2.0.8
   flutter_rating_bar: ^4.0.1
   uuid: ^3.0.7
+  url_launcher: ^6.2.3
+  whatsapp_unilink: ^2.1.0
 
   # ui
   dotted_border: ^2.0.0+3

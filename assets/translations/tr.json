@@ -187,7 +187,8 @@
     "callPhone": "İşvereni ara",
     "share": "İlanı paylaş",
     "role": "Pozisyon: ",
-    "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:"
+    "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:",
+    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' "
   },
   "notFound": {
     "forRefresh": "Yenilemek için buraya dokunun.",

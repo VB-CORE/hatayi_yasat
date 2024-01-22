@@ -167,6 +167,7 @@ abstract class  LocaleKeys {
   static const advertise_share = 'advertise.share';
   static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
+  static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
   static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';
   static const notFound_notification = 'notFound.notification';

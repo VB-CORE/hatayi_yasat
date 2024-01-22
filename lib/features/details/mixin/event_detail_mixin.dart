@@ -1,10 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vbaseproject/features/details/view/event_detail_view.dart';
+import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
 import 'package:vbaseproject/product/package/calendar/calendar_utility.dart';
+import 'package:vbaseproject/product/utility/formatter/phone_formatter.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 mixin EventDetailMixin on ConsumerState<EventDetailView> {
   late final CampaignModel eventModel;
@@ -27,9 +32,23 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
     );
   }
 
+  String get _phoneNumber => PhoneFormatter.format(eventModel.phone);
+
+  void callUser() {
+    if (_phoneNumber.isEmpty) return;
+
+    _phoneNumber.ext.launchPhone;
+  }
+
   void sendAMessageWithPhone() {
-    final phoneNumber = eventModel.phone ?? '';
-    if (phoneNumber.isEmpty) return;
-    phoneNumber.ext.shareWhatsApp();
+    if (_phoneNumber.isEmpty) return;
+    launchUrl(
+      WhatsAppUnilink(
+        phoneNumber: _phoneNumber,
+        text: LocaleKeys.advertise_openEventDetailPhone
+            .tr(args: [eventModel.name ?? '']),
+      ).asUri(),
+      mode: LaunchMode.externalApplication,
+    );
   }
 }

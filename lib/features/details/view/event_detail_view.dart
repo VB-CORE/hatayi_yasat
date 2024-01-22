@@ -44,6 +44,10 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
         leading: const CloseButton(),
         actions: [
           IconButton(
+            onPressed: callUser,
+            icon: const Icon(AppIcons.phone),
+          ),
+          IconButton(
             onPressed: sendAMessageWithPhone,
             icon: const Icon(AppIcons.sendMessage),
           ),
