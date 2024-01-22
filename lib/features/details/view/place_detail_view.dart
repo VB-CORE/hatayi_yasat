@@ -40,7 +40,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   Widget build(BuildContext context) {
     final state = ref.watch(placeDetailViewModelProvider);
 
-    if (!state.isError) {
+    if (state.isError) {
       return Scaffold(
         appBar: AppBar(),
         body: GeneralNotFoundWidget(
