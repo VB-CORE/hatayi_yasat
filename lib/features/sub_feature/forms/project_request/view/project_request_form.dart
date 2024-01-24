@@ -8,14 +8,14 @@ import 'package:vbaseproject/features/sub_feature/forms/project_request/provider
 import 'package:vbaseproject/features/sub_feature/forms/project_request/view/mixin/project_request_form_mixin.dart';
 import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:vbaseproject/product/model/enum/text_field/index.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
-import 'package:vbaseproject/product/widget/general/dotted/general_dotted_photo_add.dart';
-import 'package:vbaseproject/product/widget/general/general_button.dart';
+import 'package:vbaseproject/product/widget/general/dotted/index.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
 import 'package:vbaseproject/product/widget/text_field/date_time_form_field.dart';
 import 'package:vbaseproject/product/widget/text_field/index.dart';

@@ -10,7 +10,7 @@ import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/package/firebase/filter/general_category_town_filter.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/list/general_firestore_list_view.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 final class FilterResultView extends ConsumerStatefulWidget {
   const FilterResultView({required this.filter, super.key});

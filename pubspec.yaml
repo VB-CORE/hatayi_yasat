@@ -110,6 +110,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
+
   logger: ^2.0.1
   json_serializable: ^6.6.1
   very_good_analysis: ^5.1.0

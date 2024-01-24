@@ -5,7 +5,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:vbaseproject/product/widget/card/index.dart';
-import 'package:vbaseproject/product/widget/general/list/general_firestore_list_view.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 
 @immutable
 final class TabNewsView extends ConsumerWidget {
