@@ -1,6 +1,5 @@
 export 'custom_search_field.dart';
 export 'custom_text_form_field.dart';
-export 'custom_text_form_multi_field.dart';
 export 'labeled_product_textfield.dart';
 export 'phone_text_form_field.dart';
 export 'product_textfield.dart';

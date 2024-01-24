@@ -16,9 +16,6 @@ dependencies:
   easy_localization: ^3.0.1
   equatable: ^2.0.5
 
-  #Core
-  get_it: ^7.6.4
-
   #state management
   flutter_riverpod: ^2.4.8
   riverpod_annotation: ^2.3.2
@@ -114,9 +111,8 @@ dev_dependencies:
   logger: ^2.0.1
   json_serializable: ^6.6.1
   very_good_analysis: ^5.1.0
-
+  hive_generator: ^2.0.1
   riverpod_generator: ^2.3.8
-  go_router_builder: ^2.4.0
 
 flutter_gen:
   output: lib/product/generated/
