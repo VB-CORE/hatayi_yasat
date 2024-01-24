@@ -81,8 +81,10 @@ final class ValidatorEmailTextField extends ValidatorField {
 final class ValidatorPhoneTextField extends ValidatorField {
   @override
   String? validate(String? value) {
-    return value.ext.phoneFormatValue.ext.isNotNullOrNoEmpty
-        ? null
-        : LocaleKeys.validation_phoneNumber.tr();
+    if (value.ext.phoneFormatValue.ext.isNullOrEmpty ||
+        value.ext.phoneFormatValue.length < AppConstants.kTen) {
+      return LocaleKeys.validation_phoneNumber.tr();
+    }
+    return null;
   }
 }

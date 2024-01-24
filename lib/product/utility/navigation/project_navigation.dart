@@ -12,4 +12,8 @@ final class ProjectNavigation {
       ),
     );
   }
+
+  void pushToWidget(Widget child) {
+    context.route.navigateToPage(child);
+  }
 }
