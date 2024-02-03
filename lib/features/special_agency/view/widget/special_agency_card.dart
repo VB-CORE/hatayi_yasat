@@ -1,0 +1,71 @@
+part of '../special_agency_view.dart';
+
+@immutable
+final class SpecialAgencyCard extends StatelessWidget {
+  const SpecialAgencyCard({
+    required this.model,
+    super.key,
+  });
+
+  final SpecialAgencyModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return GeneralExpansionTile(
+      pageTitle: model.name ?? '',
+      children: [
+        _ListTileWidget(
+          iconData: Icons.phone_outlined,
+          mainTitle: LocaleKeys.specialAgency_agencyNumber,
+          subTitle: model.phone ?? '',
+          onTapEvent: () {
+            final phone = model.phone;
+            if (phone.ext.isNullOrEmpty) return;
+            RedirectionMixin.openToPhone(
+              context: context,
+              phoneNumber: phone ?? '',
+            );
+          },
+        ),
+        _ListTileWidget(
+          iconData: Icons.location_on_outlined,
+          mainTitle: LocaleKeys.specialAgency_agencyAddress,
+          subTitle: model.address ?? '',
+          onTapEvent: () async {
+            final latLongString =
+                '${model.latLong.latitude},${model.latLong.longitude}';
+            await RedirectionMixin.navigateToMapsWithTitle(
+              context: context,
+              placeAddress: latLongString,
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+@immutable
+final class _ListTileWidget extends StatelessWidget {
+  const _ListTileWidget({
+    required this.iconData,
+    required this.mainTitle,
+    required this.subTitle,
+    required this.onTapEvent,
+  });
+
+  final String mainTitle;
+  final String subTitle;
+  final IconData iconData;
+  final VoidCallback onTapEvent;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      trailing: Icon(iconData),
+      title: Text(mainTitle).tr(),
+      subtitle: Text(subTitle),
+      onTap: onTapEvent.call,
+    );
+  }
+}

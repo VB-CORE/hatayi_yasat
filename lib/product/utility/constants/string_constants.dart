@@ -4,6 +4,9 @@ final class StringConstants {
   static const String phoneHint = '(53X) XX XX';
   static const String twitter = 'Twitter';
   static const String instagram = 'Instagram';
+  static const String mail = 'Mail';
+  static const String expireDate = 'expireDate';
+  static const String tenDigitZeroPhoneNumber = '0000000000';
 
   /// Social Media Urls
   static const String twitterUrl = 'https://twitter.com/grafikherif';

@@ -19,6 +19,8 @@ abstract class  LocaleKeys {
   static const validation_categoryEmpty = 'validation.categoryEmpty';
   static const validation_emailFormat = 'validation.emailFormat';
   static const validation_studentEmailFormat = 'validation.studentEmailFormat';
+  static const validation_dateAfterNow = 'validation.dateAfterNow';
+  static const validation_pleaseAddImage = 'validation.pleaseAddImage';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';
@@ -29,6 +31,13 @@ abstract class  LocaleKeys {
   static const button_selectedList = 'button.selectedList';
   static const button_filter = 'button.filter';
   static const button_withoutFilter = 'button.withoutFilter';
+  static const button_iAmSure = 'button.iAmSure';
+  static const button_cancel = 'button.cancel';
+  static const button_clearAllSelection = 'button.clearAllSelection';
+  static const button_showResult = 'button.showResult';
+  static const button_sendRequest = 'button.sendRequest';
+  static const button_call = 'button.call';
+  static const button_share = 'button.share';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -38,6 +47,7 @@ abstract class  LocaleKeys {
   static const component_filter_districtDescription = 'component.filter.districtDescription';
   static const component_filter_categories = 'component.filter.categories';
   static const component_filter_categoryDescription = 'component.filter.categoryDescription';
+  static const component_filter_filterResult = 'component.filter.filterResult';
   static const component_filter = 'component.filter';
   static const component = 'component';
   static const requestCompany_title = 'requestCompany.title';
@@ -48,6 +58,8 @@ abstract class  LocaleKeys {
   static const requestCompany_ownerName = 'requestCompany.ownerName';
   static const requestCompany_district = 'requestCompany.district';
   static const requestCompany_category = 'requestCompany.category';
+  static const requestCompany_chooseCategory = 'requestCompany.chooseCategory';
+  static const requestCompany_chooseDistrict = 'requestCompany.chooseDistrict';
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';
@@ -55,14 +67,22 @@ abstract class  LocaleKeys {
   static const general = 'general';
   static const settings_title = 'settings.title';
   static const settings_languageTitle = 'settings.languageTitle';
+  static const settings_currentLanguage = 'settings.currentLanguage';
   static const settings_themeTitle = 'settings.themeTitle';
+  static const settings_developersTitle = 'settings.developersTitle';
+  static const settings_seeDevelopers = 'settings.seeDevelopers';
+  static const settings_aboutTitle = 'settings.aboutTitle';
+  static const settings_contactTitle = 'settings.contactTitle';
   static const settings_versionNumberTitle = 'settings.versionNumberTitle';
+  static const settings_notificationTitle = 'settings.notificationTitle';
   static const settings_notificationSetting = 'settings.notificationSetting';
   static const settings_appReviewTitle = 'settings.appReviewTitle';
   static const settings_themes_light = 'settings.themes.light';
   static const settings_themes_dark = 'settings.themes.dark';
   static const settings_themes = 'settings.themes';
   static const settings = 'settings';
+  static const home_specialAgency = 'home.specialAgency';
+  static const home_categories = 'home.categories';
   static const home_places = 'home.places';
   static const home_search = 'home.search';
   static const home_notifications = 'home.notifications';
@@ -71,6 +91,7 @@ abstract class  LocaleKeys {
   static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message_addedFavorite = 'message.addedFavorite';
   static const message_republicDay = 'message.republicDay';
+  static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
@@ -78,6 +99,8 @@ abstract class  LocaleKeys {
   static const placeDetailView_phoneNumber = 'placeDetailView.phoneNumber';
   static const placeDetailView_district = 'placeDetailView.district';
   static const placeDetailView_photos = 'placeDetailView.photos';
+  static const placeDetailView_call = 'placeDetailView.call';
+  static const placeDetailView_find_the_place = 'placeDetailView.find_the_place';
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
@@ -86,6 +109,13 @@ abstract class  LocaleKeys {
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
+  static const campaignDetailsView_startDate = 'campaignDetailsView.startDate';
+  static const campaignDetailsView_time = 'campaignDetailsView.time';
+  static const campaignDetailsView_optionsDialogTitle = 'campaignDetailsView.optionsDialogTitle';
+  static const campaignDetailsView_optionsDialogContent = 'campaignDetailsView.optionsDialogContent';
+  static const campaignDetailsView_seeOptionsButton = 'campaignDetailsView.seeOptionsButton';
+  static const campaignDetailsView_addReminderButton = 'campaignDetailsView.addReminderButton';
+  static const campaignDetailsView_redirectWhatsappButton = 'campaignDetailsView.redirectWhatsappButton';
   static const campaignDetailsView = 'campaignDetailsView';
   static const forceUpdate_title = 'forceUpdate.title';
   static const forceUpdate_message = 'forceUpdate.message';
@@ -99,6 +129,7 @@ abstract class  LocaleKeys {
   static const notification_businessNotFoundErrorMessage = 'notification.businessNotFoundErrorMessage';
   static const notification_campaignNotFoundErrorMessage = 'notification.campaignNotFoundErrorMessage';
   static const notification_newsNotFoundErrorMessage = 'notification.newsNotFoundErrorMessage';
+  static const notification_placeNotFoundErrorMessage = 'notification.placeNotFoundErrorMessage';
   static const notification_advertiseNotFoundErrorMessage = 'notification.advertiseNotFoundErrorMessage';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
@@ -134,7 +165,9 @@ abstract class  LocaleKeys {
   static const advertise_phone = 'advertise.phone';
   static const advertise_callPhone = 'advertise.callPhone';
   static const advertise_share = 'advertise.share';
+  static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
+  static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
   static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';
   static const notFound_notification = 'notFound.notification';
@@ -145,6 +178,7 @@ abstract class  LocaleKeys {
   static const notFound_news = 'notFound.news';
   static const notFound_favoritePlaces = 'notFound.favoritePlaces';
   static const notFound_advertise = 'notFound.advertise';
+  static const notFound_image = 'notFound.image';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -162,6 +196,7 @@ abstract class  LocaleKeys {
   static const genders = 'genders';
   static const requestScholarship_title = 'requestScholarship.title';
   static const requestScholarship_contact = 'requestScholarship.contact';
+  static const requestScholarship_phone = 'requestScholarship.phone';
   static const requestScholarship_story = 'requestScholarship.story';
   static const requestScholarship_studentDocument = 'requestScholarship.studentDocument';
   static const requestScholarship_pdfHint = 'requestScholarship.pdfHint';
@@ -177,9 +212,17 @@ abstract class  LocaleKeys {
   static const fileUpload_upload = 'fileUpload.upload';
   static const fileUpload_update = 'fileUpload.update';
   static const fileUpload = 'fileUpload';
-  static const favoritePlaces_title = 'favoritePlaces.title';
-  static const favoritePlaces = 'favoritePlaces';
+  static const favorite_title = 'favorite.title';
+  static const favorite_search = 'favorite.search';
+  static const favorite_clearAllButton = 'favorite.clearAllButton';
+  static const favorite_clearAllDialog_content = 'favorite.clearAllDialog.content';
+  static const favorite_clearAllDialog = 'favorite.clearAllDialog';
+  static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';
+  static const favorite_deleteDialog = 'favorite.deleteDialog';
+  static const favorite = 'favorite';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
+  static const utils_options = 'utils.options';
+  static const utils = 'utils';
 
 }
