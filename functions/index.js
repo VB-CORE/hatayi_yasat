@@ -1,8 +1,7 @@
-const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const axios = require("axios");
 const functions = require("firebase-functions");
-const { onDocumentCreated } = require("firebase-functions/v2/firestore");
+// const { onDocumentCreated } = require("firebase-functions/firestore");
 
 setGlobalOptions({ maxInstances: 10 });
 
@@ -42,21 +41,21 @@ exports.search = functions.https.onCall(async (data, _) => {
   }
 });
 
-exports.addOnIndexToMongo = onDocumentCreated(
-  "/approvedApplications/{documentId}",
-  async (event) => {
-    const original = event.data.data();
+exports.addDataToMongo = functions.firestore
+  .document("/approvedApplications/{documentId}")
+  .onCreate(async (change, context) => {
+    const original = change.data();
     const target = 0;
 
     const jsonBody = JSON.stringify({
-      id: event.params.documentId,
+      id: change.id,
       ...original,
     });
-
     const mongoResponse = await axios.post(BASE_URL + ADD_PATH, jsonBody, {
       params: { target },
     });
 
+
+    console.log(mongoResponse);
     return mongoResponse != null;
-  }
-);
+  });
