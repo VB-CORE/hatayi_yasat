@@ -41,7 +41,7 @@ exports.search = functions.https.onCall(async (data, _) => {
   }
 });
 
-exports.addDataToMongo = functions.firestore
+exports.addToIndexMongo = functions.firestore
   .document("/approvedApplications/{documentId}")
   .onCreate(async (change, context) => {
     const original = change.data();
