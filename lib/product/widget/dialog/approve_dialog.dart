@@ -35,7 +35,7 @@ final class ApproveDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: EdgeInsets.zero,
+      insetPadding: const EdgeInsets.all(20),
       content: Row(
         children: [
           SizedBox.square(

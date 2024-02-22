@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/advertise/view/advertise_view.dart';
-import 'package:vbaseproject/features/campaign_module/campaigns/view/campaigns_view.dart';
-import 'package:vbaseproject/features/home_module/home/view/home_view.dart';
-import 'package:vbaseproject/features/news_module/news/view/news_view.dart';
+import 'package:vbaseproject/features/event/view/event_view.dart';
+import 'package:vbaseproject/features/home/view/home_view.dart';
+import 'package:vbaseproject/features/news_jobs/view/news_jobs_view.dart';
+import 'package:vbaseproject/features/settings/view/settings_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 
 final class TabModel {
   TabModel({
@@ -21,22 +22,22 @@ final class TabModels {
     _tabItems = [
       TabModel(
         page: const HomeView(),
-        icon: const Icon(Icons.home_outlined),
+        icon: const Icon(AppIcons.home),
         title: LocaleKeys.navigationTabs_placesTabTitle,
       ),
       TabModel(
-        page: const CampaignsView(),
-        icon: const Icon(Icons.campaign_outlined),
+        page: const EventView(),
+        icon: const Icon(AppIcons.event),
         title: LocaleKeys.navigationTabs_campaignsTabTitle,
       ),
       TabModel(
-        page: const NewsView(),
-        icon: const Icon(Icons.newspaper_outlined),
+        page: const NewsJobsView(),
+        icon: const Icon(AppIcons.textSnippet),
         title: LocaleKeys.navigationTabs_newsTabTitle,
       ),
       TabModel(
-        page: const AdvertiseView(),
-        icon: const Icon(Icons.work_outline),
+        page: const SettingsView(),
+        icon: const Icon(AppIcons.settings),
         title: LocaleKeys.navigationTabs_advertiseTabTitle,
       ),
     ];

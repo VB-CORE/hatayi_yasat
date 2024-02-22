@@ -64,7 +64,7 @@ final class PhotoPickerManager {
 
   Future<File> createFile(String path) async {
     final file = File(path);
-    if ((await file.exists()) == false) {
+    if ((file.existsSync()) == false) {
       await file.create(recursive: true);
     }
     return file;
@@ -81,7 +81,7 @@ final class PhotoPickerManager {
       type: ApproveDialogType.cameraPermission,
     );
 
-    if (response == null || !response) return;
+    if (!response) return;
     CustomAppSettings.open(type: CustomAppSettingsType.library_permission);
   }
 }

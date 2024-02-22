@@ -4,7 +4,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
 
 class CategoryPopup extends ConsumerStatefulWidget {
   const CategoryPopup({
@@ -26,7 +25,7 @@ class _CategoryPopupState extends ConsumerState<CategoryPopup> {
   @override
   void initState() {
     super.initState();
-    items = ref.read(ProductProvider.provider).categoryItemsWithAll;
+    items = [];
     _selectedItem = widget.initialItem ?? items.firstOrNull;
   }
 

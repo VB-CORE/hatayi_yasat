@@ -13,17 +13,20 @@ abstract class ValidatorField {
   }
 }
 
+/// It is used for text field validation for general text
 final class ValidatorNormalTextField extends ValidatorField {
   @override
   String? validate(String? value) {
     if (value == null || value.isEmpty) {
       return LocaleKeys.validation_requiredField.tr();
     }
-    if (value.length < 3) return LocaleKeys.validation_generalText.tr();
+    final trimmedValue = value.trim();
+    if (trimmedValue.length < 3) return LocaleKeys.validation_generalText.tr();
     return null;
   }
 }
 
+/// It is used for text field validation
 final class TextFieldValidatorIsNullEmpty extends ValidatorField {
   @override
   String? validate(String? value) {
@@ -34,6 +37,7 @@ final class TextFieldValidatorIsNullEmpty extends ValidatorField {
   }
 }
 
+/// It is used for date time validation
 final class DateTimeValidator extends ValidatorField {
   @override
   String? validate(String? value) {
@@ -56,18 +60,31 @@ final class DateTimeValidator extends ValidatorField {
   }
 }
 
+/// It is used for email validation
 final class ValidatorEmailTextField extends ValidatorField {
   @override
   String? validate(String? value) {
     if (value == null || value.isEmpty) {
       return LocaleKeys.validation_requiredField.tr();
     }
-    
+
     if (value.length < AppConstants.kThree) {
       return LocaleKeys.validation_generalText.tr();
     }
 
     if (!value.ext.isValidEmail) return LocaleKeys.validation_emailFormat.tr();
+    return null;
+  }
+}
+
+/// It is used for phone number validation for kartal package formatter
+final class ValidatorPhoneTextField extends ValidatorField {
+  @override
+  String? validate(String? value) {
+    if (value.ext.phoneFormatValue.ext.isNullOrEmpty ||
+        value.ext.phoneFormatValue.length < AppConstants.kTen) {
+      return LocaleKeys.validation_phoneNumber.tr();
+    }
     return null;
   }
 }

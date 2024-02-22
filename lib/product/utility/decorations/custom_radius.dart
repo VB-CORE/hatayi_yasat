@@ -15,4 +15,7 @@ final class CustomRadius {
 
   /// value is 24
   static const BorderRadius extraLarge = BorderRadius.all(Radius.circular(24));
+
+  /// value is 32
+  static const BorderRadius xxLarge = BorderRadius.all(Radius.circular(32));
 }

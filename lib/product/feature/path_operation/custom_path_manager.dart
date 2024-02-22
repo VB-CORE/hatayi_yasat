@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:path_provider/path_provider.dart';
 
 final class CustomPathManager {
@@ -15,7 +16,7 @@ final class CustomPathManager {
     final directory = await getTemporaryDirectory();
     final path = '${directory.path}/$fileName';
     final file = File(path);
-    if (await file.exists()) {
+    if (file.existsSync()) {
       return file.readAsBytes();
     }
     return null;

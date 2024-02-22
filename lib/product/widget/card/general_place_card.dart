@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:uuid/uuid.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/package/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/decorations/style/custom_button_style.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
+import 'package:vbaseproject/product/utility/decorations/index.dart';
+import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
 
-class GeneralPlaceCard extends StatelessWidget {
+@immutable
+final class GeneralPlaceCard extends StatelessWidget {
   const GeneralPlaceCard({
     required this.onCardTap,
+    required this.storeModel,
     this.onBookmarkIconTap,
     super.key,
   });
 
   final VoidCallback onCardTap;
   final VoidCallback? onBookmarkIconTap;
-
-  //  TODO: Static variables will be updated with real model properties.
-
-  static const _defaultImage =
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpCL7KhxLAe5VjNc-IsT8-N-6fCpXP32oHAcYqL7LoXF5Dp1-A8AyUyjto109DZ_dMsSc&usqp=CAU';
+  final StoreModel storeModel;
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +29,16 @@ class GeneralPlaceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _Image(imageUrl: _defaultImage, id: const Uuid().v4()),
+          _Image(
+            imageUrl: storeModel.images.firstOrNull,
+          ),
           const VerticalSpace.xSmall(),
           _TitleRow(
-            name: 'PS Mimarlık',
-            isPlaceSaved: true,
+            model: storeModel,
             onSavePlaceTap: onBookmarkIconTap,
           ),
-          const VerticalSpace.xxSmall(),
-          const _Description(
-            description: 'Mimari Proje/Tadilat/Performans analizi güçlendirme',
+          _Description(
+            description: storeModel.description,
           ),
         ],
       ),
@@ -48,21 +49,22 @@ class GeneralPlaceCard extends StatelessWidget {
 final class _Image extends StatelessWidget {
   const _Image({
     required this.imageUrl,
-    required this.id,
   });
 
-  final String imageUrl;
-  final String id;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: context.sized.height * 0.3,
-      child: Hero(
-        tag: Key(id),
-        child: CustomNetworkImage(
-          imageUrl: imageUrl,
-          fit: BoxFit.cover,
+    return ClipRRect(
+      borderRadius: CustomRadius.medium,
+      child: SizedBox(
+        height: context.sized.dynamicHeight(.25),
+        child: Hero(
+          tag: imageUrl ?? '',
+          child: CustomNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -71,13 +73,11 @@ final class _Image extends StatelessWidget {
 
 final class _TitleRow extends StatelessWidget {
   const _TitleRow({
-    required this.name,
-    required this.isPlaceSaved,
+    required this.model,
     this.onSavePlaceTap,
   });
 
-  final String name;
-  final bool isPlaceSaved;
+  final StoreModel model;
   final VoidCallback? onSavePlaceTap;
 
   @override
@@ -86,43 +86,14 @@ final class _TitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: Text(
-            name,
-            style: context.general.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: ColorCommon(context).whiteAndBlackForTheme,
-              fontSize: context.general.textTheme.titleMedium?.fontSize,
-            ),
+          child: GeneralContentTitle(
+            value: model.name,
+            fontWeight: FontWeight.bold,
+            maxLine: TextFieldMaxLengths.maxLineForText,
           ),
         ),
-        _BookmarkButton(
-          isPlaceSaved: isPlaceSaved,
-          onSavePlaceTap: onSavePlaceTap,
-        ),
+        FavoritePlaceButton(store: model),
       ],
-    );
-  }
-}
-
-final class _BookmarkButton extends StatelessWidget {
-  const _BookmarkButton({
-    required this.isPlaceSaved,
-    required this.onSavePlaceTap,
-  });
-
-  final bool isPlaceSaved;
-  final VoidCallback? onSavePlaceTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onSavePlaceTap,
-      padding: EdgeInsets.zero,
-      style: CustomButtonStyle.shrinkWrap,
-      icon: Icon(
-        isPlaceSaved ? Icons.bookmark : Icons.bookmark_border_outlined,
-        color: context.general.colorScheme.primary,
-      ),
     );
   }
 }
@@ -134,11 +105,11 @@ final class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      description ?? '',
-      style: context.general.textTheme.titleMedium?.copyWith(
-        color: ColorCommon(context).whiteAndBlackForTheme,
-        fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const PagePadding.vertical6Symmetric(),
+      child: GeneralContentSubTitle(
+        value: description ?? '',
+        maxLine: 2,
       ),
     );
   }

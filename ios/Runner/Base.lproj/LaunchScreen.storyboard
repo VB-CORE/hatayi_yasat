@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,15 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="6Vw-13-JW7">
-                                <rect key="frame" x="76.666666666666686" y="362" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_banner" translatesAutoresizingMaskIntoConstraints="NO" id="6Vw-13-JW7">
+                                <rect key="frame" x="39.333333333333343" y="213" width="314.33333333333326" height="426"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Vw-13-JW7" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.150235" id="7mI-ap-lw9"/>
+                            <constraint firstItem="6Vw-13-JW7" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.5" id="7mI-ap-lw9"/>
                             <constraint firstItem="6Vw-13-JW7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="JhP-Kv-PIu"/>
-                            <constraint firstItem="6Vw-13-JW7" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.610687" id="jHi-oE-YdF"/>
+                            <constraint firstItem="6Vw-13-JW7" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="jHi-oE-YdF"/>
                             <constraint firstItem="6Vw-13-JW7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lOQ-QA-i6m"/>
                         </constraints>
                     </view>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_icon" width="500" height="500"/>
+        <image name="app_banner" width="336" height="280"/>
     </resources>
 </document>

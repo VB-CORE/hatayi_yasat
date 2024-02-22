@@ -1,38 +1,41 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/features/request/company/request_company_view.dart';
-import 'package:vbaseproject/features/request/project/request_project_view.dart';
-import 'package:vbaseproject/features/request/scholarship/request_scholarship_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/navigation/app_router.dart';
 
 @immutable
 final class SpeedDialChildModel {
   const SpeedDialChildModel({
-    required this.destination,
+    required this.location,
     required this.title,
   });
 
-  final Widget destination;
+  /// route path adress
+  final String location;
   final String title;
 }
 
 final class SpeedDialChildModelList {
-  SpeedDialChildModelList() {
-    _fillItems();
+  SpeedDialChildModelList({required BuildContext context}) {
+    _context = context;
+    _fillItems(_context);
   }
 
-  void _fillItems() {
+  late BuildContext _context;
+
+  void _fillItems(BuildContext context) {
     _speedDialChildItems = [
-      const SpeedDialChildModel(
-        destination: RequestProjectView(),
-        title: LocaleKeys.projectRequest_title,
+      SpeedDialChildModel(
+        location: const PlaceRequestFormRoute().location,
+        title: LocaleKeys.requestCompany_title.tr(context: context),
       ),
-      const SpeedDialChildModel(
-        destination: RequestCompanyView(),
-        title: LocaleKeys.requestCompany_title,
+      SpeedDialChildModel(
+        location: const ProjectRequestFormRoute().location,
+        title: LocaleKeys.projectRequest_title.tr(context: context),
       ),
-      const SpeedDialChildModel(
-        destination: RequestScholarshipView(),
-        title: LocaleKeys.requestScholarship_title,
+      SpeedDialChildModel(
+        location: const ScholarShipRequestFormRoute().location,
+        title: LocaleKeys.requestScholarship_title.tr(context: context),
       ),
     ];
   }

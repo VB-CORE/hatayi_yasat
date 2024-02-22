@@ -1,56 +1,38 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/features/home_module/home_detail/models/favorite_place_model.dart';
-import 'package:vbaseproject/product/feature/cache/cache_service_by_list.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
+import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
 
-class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState> {
+class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState>
+    with ProjectDependencyMixin {
   FavoritePlaceProvider({required this.cacheService})
       : super(
           const FavoritePlaceState(isLoading: false, isFavorite: false),
         );
 
-  final CacheServiceByList<FavoritePlaceModel> cacheService;
+  final HiveOperationManager<StoreModelCache> cacheService;
 
-  Future<void> initAndCheckFavoritePlace(
-    FavoritePlaceModel favoritePlace,
-  ) async {
+  void initAndCheckFavoritePlace(
+    StoreModel favoritePlace,
+  ) {
     state = state.copyWith(isLoading: true);
-    await cacheService.init();
     checkFavoritePlace(favoritePlace);
   }
 
-  Future<bool> onSaved(FavoritePlaceModel favoritePlace) async {
-    if (state.isFavorite) {
-      await _removeFavoritePlace(favoritePlace);
-      return false;
-    }
-    await _setFavoritePlace(favoritePlace);
+  Future<bool> onSaved(StoreModel favoritePlace) async {
+    productProvider.addOrRemoveFavoritePlace(favoritePlace);
+
     return true;
   }
 
-  void checkFavoritePlace(FavoritePlaceModel favoritePlace) {
-    final place = cacheService.getItemFromList(
-      (item) => item.name == favoritePlace.name,
-    );
+  void checkFavoritePlace(StoreModel favoritePlace) {
+    final place = cacheService.get(favoritePlace.documentId);
 
     state = state.copyWith(
       isFavorite: place != null,
       isLoading: false,
     );
-  }
-
-  Future<void> _setFavoritePlace(FavoritePlaceModel favoritePlace) async {
-    state = state.copyWith(isLoading: true);
-    final isAdded = await cacheService.addItemToList(favoritePlace);
-    state = state.copyWith(isFavorite: isAdded, isLoading: false);
-  }
-
-  Future<void> _removeFavoritePlace(FavoritePlaceModel favoritePlace) async {
-    state = state.copyWith(isLoading: true);
-    final isRemoved = await cacheService.removeItemFromList(
-      (item) => item.name == favoritePlace.name,
-    );
-
-    state = state.copyWith(isFavorite: !isRemoved, isLoading: false);
   }
 }
