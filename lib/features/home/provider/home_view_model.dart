@@ -16,10 +16,14 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     );
   }
 
-  CollectionReference<StoreModel?> fetchJobsCollectionReference() {
+  CollectionReference<StoreModel?> fetchApprovedCollectionReference() {
     return firebaseService.collectionReference(
       CollectionPaths.approvedApplications,
       StoreModel.empty(),
     );
+  }
+
+  void changeHomeViewCardType() {
+    state = state.copyWith(isGridView: !state.isGridView);
   }
 }

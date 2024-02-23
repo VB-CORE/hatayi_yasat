@@ -8,6 +8,7 @@ import 'package:vbaseproject/features/sub_feature/filter_and_search/model/filter
 import 'package:vbaseproject/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:vbaseproject/features/sub_feature/forms/index.dart';
+import 'package:vbaseproject/product/model/news_model_copy.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
@@ -15,6 +16,8 @@ import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_route
 import 'package:vbaseproject/product/navigation/onboard_router/onboard_router.dart';
 import 'package:vbaseproject/product/navigation/settings_router/settings_router.dart';
 import 'package:vbaseproject/sub_feature/tab/main_tab_view.dart';
+
+export 'package:life_shared/life_shared.dart' show NewsModel;
 
 part 'app_router.g.dart';
 
