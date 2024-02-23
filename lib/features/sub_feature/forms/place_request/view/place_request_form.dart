@@ -8,18 +8,15 @@ import 'package:vbaseproject/features/sub_feature/forms/place_request/provider/p
 import 'package:vbaseproject/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
 import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/index.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/general/dotted/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
-import 'package:vbaseproject/product/widget/text_field/custom_category_field.dart';
-import 'package:vbaseproject/product/widget/text_field/custom_district_field.dart';
-import 'package:vbaseproject/product/widget/text_field/index.dart';
+import 'package:vbaseproject/product/widget/time_text_field.dart';
 
 part 'widget/place_request_send.dart';
 
@@ -45,10 +42,10 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
           if (!validateAndSave()) return;
           final model = requestModel();
           if (model == null) return;
-          final response = await ref
-              .read(placeRequestProviderProvider.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
+          // final response = await ref
+          //     .read(placeRequestProviderProvider.notifier)
+          //     .addNewDataToService(model);
+          // await dataSendingComplete(isOkay: response);
         },
         onKVKKChanged: updateKVKK,
       ).ext.toDisabled(
@@ -59,53 +56,80 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       body: ListViewWithSpace(
         children: [
           GeneralDottedPhotoAdd(onSelected: onImageSelected),
-          CustomTextFormField(
-            maxLength: TextFieldMaxLengths.small,
-            hint: LocaleKeys.requestCompany_name.tr(),
-            controller: placeNameController,
-            validator: ValidatorNormalTextField(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'İşletme çalışma saatleri',
+                style: context.general.textTheme.titleMedium,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TimeFormField(
+                      hintText: 'Başlangıç',
+                      onTimeSelected: (time) {},
+                    ),
+                  ),
+                  const EmptyBox.largeWidth(),
+                  Expanded(
+                    child: TimeFormField(
+                      hintText: 'Bitiş',
+                      prefixIcon: AppIcons.timerOff,
+                      onTimeSelected: (time) {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.requestCompany_description.tr(),
-            controller: placeDescriptionController,
-            textInputType: TextInputType.multiline,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormField(
-            maxLength: TextFieldMaxLengths.small,
-            hint: LocaleKeys.requestCompany_ownerName.tr(),
-            controller: placeOwnerNameController,
-            textInputType: TextInputType.name,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.requestCompany_address.tr(),
-            controller: placeAddressController,
-            textInputType: TextInputType.streetAddress,
-            autoFills: TextFieldAutoFills.address,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormField(
-            hint: LocaleKeys.requestCompany_phoneNumber.tr(),
-            controller: placePhoneNumberController,
-            textInputType: TextInputType.phone,
-            formatters: TextFieldFormatters.phone,
-            validator: ValidatorPhoneTextField(),
-          ),
-          CustomCategorySelectionFormField(
-            items: categoryModels,
-            hint: LocaleKeys.requestCompany_chooseCategory.tr(),
-            controller: placeCategoryController,
-            onSelected: updateCategoryItem,
-            validator: TextFieldValidatorIsNullEmpty(),
-          ),
-          CustomDistrictSelectionFormField(
-            hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
-            controller: placeDistrictController,
-            onSelected: updateTownItem,
-            validator: TextFieldValidatorIsNullEmpty(),
-            items: townModels,
-          ),
+          // CustomTextFormField(
+          //   maxLength: TextFieldMaxLengths.small,
+          //   hint: LocaleKeys.requestCompany_name.tr(),
+          //   controller: placeNameController,
+          //   validator: ValidatorNormalTextField(),
+          // ),
+          // CustomTextFormMultiField(
+          //   hint: LocaleKeys.requestCompany_description.tr(),
+          //   controller: placeDescriptionController,
+          //   textInputType: TextInputType.multiline,
+          //   validator: ValidatorNormalTextField(),
+          // ),
+          // CustomTextFormField(
+          //   maxLength: TextFieldMaxLengths.small,
+          //   hint: LocaleKeys.requestCompany_ownerName.tr(),
+          //   controller: placeOwnerNameController,
+          //   textInputType: TextInputType.name,
+          //   validator: ValidatorNormalTextField(),
+          // ),
+          // CustomTextFormMultiField(
+          //   hint: LocaleKeys.requestCompany_address.tr(),
+          //   controller: placeAddressController,
+          //   textInputType: TextInputType.streetAddress,
+          //   autoFills: TextFieldAutoFills.address,
+          //   validator: ValidatorNormalTextField(),
+          // ),
+          // CustomTextFormField(
+          //   hint: LocaleKeys.requestCompany_phoneNumber.tr(),
+          //   controller: placePhoneNumberController,
+          //   textInputType: TextInputType.phone,
+          //   formatters: TextFieldFormatters.phone,
+          //   validator: ValidatorPhoneTextField(),
+          // ),
+          // CustomCategorySelectionFormField(
+          //   items: categoryModels,
+          //   hint: LocaleKeys.requestCompany_chooseCategory.tr(),
+          //   controller: placeCategoryController,
+          //   onSelected: updateCategoryItem,
+          //   validator: TextFieldValidatorIsNullEmpty(),
+          // ),
+          // CustomDistrictSelectionFormField(
+          //   hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
+          //   controller: placeDistrictController,
+          //   onSelected: updateTownItem,
+          //   validator: TextFieldValidatorIsNullEmpty(),
+          //   items: townModels,
+          // ),
         ],
       ).ext.toDisabled(
             disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??

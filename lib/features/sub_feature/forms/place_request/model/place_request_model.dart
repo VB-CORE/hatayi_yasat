@@ -13,6 +13,8 @@ final class PlaceRequestModel extends Equatable {
     required this.placeCategory,
     required this.placeDistrict,
     required this.imageFile,
+    required this.startTime,
+    required this.endTime,
   });
 
   final String placeName;
@@ -23,6 +25,8 @@ final class PlaceRequestModel extends Equatable {
   final CategoryModel placeCategory;
   final TownModel placeDistrict;
   final File imageFile;
+  final String startTime;
+  final String endTime;
 
   @override
   List<Object?> get props => [
@@ -34,5 +38,7 @@ final class PlaceRequestModel extends Equatable {
         placeDistrict,
         placeCategory,
         imageFile,
+        startTime,
+        endTime,
       ];
 }

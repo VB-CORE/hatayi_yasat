@@ -31,6 +31,8 @@ mixin PlaceRequestFormMixin
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
+  final TextEditingController startTimeController = TextEditingController();
+  final TextEditingController endTimeController = TextEditingController();
 
   SelectSheetModel? _selectedTownItem;
   SelectSheetModel? _selectedCategoryItem;
@@ -56,6 +58,8 @@ mixin PlaceRequestFormMixin
     placePhoneNumberController.dispose();
     placeCategoryController.dispose();
     placeDistrictController.dispose();
+    startTimeController.dispose();
+    endTimeController.dispose();
   }
 
   void clear() {
@@ -64,6 +68,8 @@ mixin PlaceRequestFormMixin
     placeOwnerNameController.clear();
     placeAddressController.clear();
     placePhoneNumberController.clear();
+    startTimeController.clear();
+    endTimeController.clear();
     _selectedCategoryItem = null;
     _imageFile = null;
     _selectedTownItem = null;
@@ -78,6 +84,8 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
+    if (startTimeController.text.isNotEmpty) return true;
+    if (endTimeController.text.isNotEmpty) return true;
     if (_selectedTownItem != null) return true;
     if (_selectedCategoryItem != null) return true;
     if (_imageFile != null) return true;
@@ -100,6 +108,8 @@ mixin PlaceRequestFormMixin
       placeOwnerName: placeOwnerNameController.text,
       placeAddress: placeAddressController.text,
       placePhoneNumber: placePhoneNumberController.text,
+      startTime: startTimeController.text,
+      endTime: endTimeController.text,
       placeCategory: categoryModels.firstWhere(
         (element) => element.documentId == _selectedCategoryItem?.id,
       ),
