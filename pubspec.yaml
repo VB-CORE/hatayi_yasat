@@ -73,6 +73,7 @@ dependencies:
   uuid: ^3.0.7
   url_launcher: ^6.2.3
   whatsapp_unilink: ^2.1.0
+  kartal: ^4.0.0-dev2
 
   # ui
   dotted_border: ^2.0.0+3

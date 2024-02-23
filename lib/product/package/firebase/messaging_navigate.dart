@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/news_model_copy.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
@@ -97,7 +98,8 @@ final class MessagingNavigate {
     );
     if (!context.mounted) return;
     if (result != null) {
-      await NewsDetailRoute($extra: result).push<void>(context);
+      await NewsDetailRoute($extra: NewsModelCopy.fromNewsModel(result))
+          .push<void>(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(

@@ -9,7 +9,11 @@ final class _HomeSearchField extends StatelessWidget {
       padding: const PagePadding.onlyTop(),
       sliver: SliverAppBar(
         floating: true,
+        pinned: true,
         titleSpacing: kZero,
+        actions: const [
+          _ViewDesignButton(),
+        ],
         title: InkWell(
           onTap: () async {
             final response = await showSearch<SearchResponse>(
@@ -33,5 +37,55 @@ final class _HomeSearchField extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+final class _ViewDesignButton extends ConsumerStatefulWidget {
+  const _ViewDesignButton({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ViewDesignButtonState();
+}
+
+class _ViewDesignButtonState extends ConsumerState<_ViewDesignButton>
+    with SingleTickerProviderStateMixin, _ViewDesignMixin {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.list_view,
+        progress: animation,
+      ),
+      onPressed: () async {
+        final isGridDesign = ref.read(homeViewModelProvider).isGridView;
+        isGridDesign ? await controller.reverse() : await controller.forward();
+        ref.read(homeViewModelProvider.notifier).changeHomeViewCardType();
+      },
+    );
+  }
+}
+
+mixin _ViewDesignMixin
+    on
+        ConsumerState<_ViewDesignButton>,
+        SingleTickerProviderStateMixin<_ViewDesignButton> {
+  late final AnimationController controller;
+  late final Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Durations.short4,
+    );
+    animation = Tween<double>(begin: 1, end: 0).animate(controller);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

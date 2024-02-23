@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/view/news_detail_view.dart';
 import 'package:vbaseproject/features/news_jobs/view/news_jobs_view.dart';
+import 'package:vbaseproject/product/model/news_model_copy.dart';
 
 final class NewsJobsRoute extends GoRouteData {
   const NewsJobsRoute();
@@ -27,9 +27,9 @@ final class NewsDetailRoute extends GoRouteData {
     name: 'News Details',
   );
 
-  final NewsModel $extra;
+  final NewsModelCopy $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      NewsDetailView(news: $extra);
+      NewsDetailView(news: $extra.toNewsModel());
 }
