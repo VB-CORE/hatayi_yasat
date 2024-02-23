@@ -118,7 +118,6 @@ dev_dependencies:
 
   riverpod_generator: ^2.3.8
   go_router_builder: ^2.4.0
-
 flutter_gen:
   output: lib/product/generated/
   integrations:
