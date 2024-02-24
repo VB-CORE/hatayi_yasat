@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +12,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:vbaseproject/product/model/search_response_model.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
@@ -24,6 +26,7 @@ import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
+part 'widget/advertisement_slider.dart';
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
 part 'widget/home_search_field.dart';
@@ -48,7 +51,9 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const _HomeSearchField(),
+          //TODO: remove it
+          //const _HomeSearchField(),
+          const _AdvertisementSlider(),
           SliverPadding(
             padding: const PagePadding.onlyTopMedium(),
             sliver: ClickableSubTitleText(
