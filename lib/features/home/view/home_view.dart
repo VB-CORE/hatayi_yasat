@@ -2,8 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart'
-    show ContextExtension, SizedBoxExtension, WidgetExtension;
+import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
