@@ -7,12 +7,14 @@ final class GeneralContentTitle extends StatelessWidget {
     required this.value,
     this.fontWeight,
     this.maxLine,
+    this.color,
     super.key,
   });
 
   final String value;
   final FontWeight? fontWeight;
   final int? maxLine;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ final class GeneralContentTitle extends StatelessWidget {
       value,
       style: context.general.textTheme.titleLarge?.copyWith(
         fontWeight: fontWeight ?? FontWeight.w500,
+        color: color,
       ),
       maxLines: maxLine,
       overflow: TextOverflow.ellipsis,

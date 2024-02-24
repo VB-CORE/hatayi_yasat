@@ -11,15 +11,25 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   @override
   HomeState build() {
     final categories = ref.read(productProviderState).categoryItems;
+    final isHomeViewGrid =
+        ref.read(productProviderState.notifier).isHomeViewGrid;
     return HomeState(
       categories: categories,
+      isGridView: isHomeViewGrid,
     );
   }
 
-  CollectionReference<StoreModel?> fetchJobsCollectionReference() {
+  CollectionReference<StoreModel?> fetchApprovedCollectionReference() {
     return firebaseService.collectionReference(
       CollectionPaths.approvedApplications,
       StoreModel.empty(),
     );
+  }
+
+  void changeHomeViewCardType() {
+    state = state.copyWith(isGridView: !state.isGridView);
+    ref.read(productProviderState.notifier).saveLatestGridViewType(
+          isSelected: state.isGridView,
+        );
   }
 }

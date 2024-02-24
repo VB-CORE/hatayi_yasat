@@ -249,7 +249,7 @@ extension $NewsJobsRouteExtension on NewsJobsRoute {
 
 extension $NewsDetailRouteExtension on NewsDetailRoute {
   static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
-        $extra: state.extra as NewsModel,
+        $extra: state.extra as NewsModelCopy,
       );
 
   String get location => GoRouteData.$location(

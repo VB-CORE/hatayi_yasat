@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vbaseproject/features/news_jobs/provider/news_jobs_provider.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:vbaseproject/product/model/news_model_copy.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:vbaseproject/product/widget/card/index.dart';
@@ -24,7 +25,8 @@ final class TabNewsView extends ConsumerWidget {
         return NewsCard(
           item: model,
           onTap: () {
-            NewsDetailRoute($extra: model).push<NewsDetailRoute>(context);
+            NewsDetailRoute($extra: NewsModelCopy.fromNewsModel(model))
+                .push<NewsDetailRoute>(context);
           },
         );
       },
