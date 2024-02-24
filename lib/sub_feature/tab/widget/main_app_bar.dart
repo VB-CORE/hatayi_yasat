@@ -26,22 +26,6 @@ final class _MainAppBar extends AppBar {
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.search_outlined),
-              onPressed: () async {
-                final response = await showSearch<SearchResponse>(
-                  context: context,
-                  delegate: PlaceSearchDelegate(),
-                );
-
-                if (response == null) return;
-                if (!context.mounted) return;
-                PlaceDetailRoute(
-                  $extra: StoreModel.empty(),
-                  id: response.id,
-                ).go(context);
-              },
-            ),
-            IconButton(
               onPressed: () {
                 const NotificationsRoute().go(context);
               },

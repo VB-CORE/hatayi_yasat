@@ -51,8 +51,7 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          //TODO: remove it
-          //const _HomeSearchField(),
+          const _HomeSearchField(),
           const _AdvertisementSlider(),
           SliverPadding(
             padding: const PagePadding.onlyTopMedium(),
