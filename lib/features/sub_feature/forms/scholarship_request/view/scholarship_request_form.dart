@@ -14,7 +14,7 @@ import 'package:vbaseproject/product/package/file_picker/upload_file_section_v2.
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+
 import 'package:vbaseproject/product/utility/validator/index.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';

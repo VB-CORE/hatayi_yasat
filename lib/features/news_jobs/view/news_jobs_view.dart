@@ -4,11 +4,8 @@ import 'package:kartal/kartal.dart';
 import 'package:vbaseproject/features/news_jobs/view/sub_view/tab_jobs_view.dart';
 import 'package:vbaseproject/features/news_jobs/view/sub_view/tab_news_view.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
 
 part 'widget/news_jobs_tab_bar.dart';
-part 'widget/news_jobs_tab_title.dart';
 part 'widget/news_jobs_tab_view.dart';
 
 final class NewsJobsView extends StatefulWidget {

@@ -7,11 +7,9 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:vbaseproject/features/details/view_model/place_detail_view_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/back_button_widget.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/container/circle_image_with_text_container.dart';
@@ -19,7 +17,6 @@ import 'package:vbaseproject/product/widget/general/general_not_found_widget.dar
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/icon/index.dart';
 import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
 part 'widget/place_detail_sub_view.dart';
@@ -112,32 +109,6 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-final class _VisitCountRow extends StatelessWidget {
-  const _VisitCountRow({
-    required this.model,
-  });
-
-  final StoreModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      height: WidgetSizes.spacingL,
-      child: FittedBox(
-        child: Row(
-          children: [
-            Padding(
-              padding: PagePadding.onlyRightLow(),
-              child: Icon(Icons.visibility_outlined),
-            ),
-            // GeneralBodyTitle(model.visitCount.toString()),
-          ],
-        ),
       ),
     );
   }

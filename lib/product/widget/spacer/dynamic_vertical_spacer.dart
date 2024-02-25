@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
+import 'package:life_shared/life_shared.dart';
 
 class VerticalSpace extends SizedBox {
   const VerticalSpace({required this.height, super.key});

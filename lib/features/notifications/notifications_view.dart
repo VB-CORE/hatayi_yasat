@@ -5,10 +5,8 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/notifications/notification_mixin.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/shimmer/place_shimmer_list.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
 

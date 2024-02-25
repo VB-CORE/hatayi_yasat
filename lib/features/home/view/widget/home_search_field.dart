@@ -41,7 +41,7 @@ final class _HomeSearchField extends StatelessWidget {
 }
 
 final class _ViewDesignButton extends ConsumerStatefulWidget {
-  const _ViewDesignButton({super.key});
+  const _ViewDesignButton();
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>

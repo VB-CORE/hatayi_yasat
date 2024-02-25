@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart'
-    show ContextExtension, SizedBoxExtension, WidgetExtension;
+import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
@@ -17,12 +16,10 @@ import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/card/general_place_card.dart';
 import 'package:vbaseproject/product/widget/card/place/general_place_grid_card.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/general/list/general_firestore_list_sliver_view.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 

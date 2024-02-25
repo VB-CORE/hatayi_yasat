@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/widget/general/space/general_space_vertical.dart';
 
 /// ListView with space between children

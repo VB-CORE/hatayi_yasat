@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/aspect_ratios.dart';
 import 'package:vbaseproject/product/model/enum/video_resource_path.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:video_player/video_player.dart';
 
 final class VideoDialog extends StatefulWidget {

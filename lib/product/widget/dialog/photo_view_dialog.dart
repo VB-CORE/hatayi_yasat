@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/dialog/force_update_dialog.dart';
 import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 

@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/duration_constant.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 /// General button for all project
 /// For async action use async constructor
@@ -169,24 +168,6 @@ final class _GeneralButtonStyle extends ButtonStyle {
               borderRadius: CustomRadius.medium,
               side: BorderSide(
                 color: context.general.colorScheme.primary,
-                width: AppConstants.kTwo.toDouble(),
-              ),
-            ),
-          ),
-        );
-}
-
-final class _GeneralButtonEmptyStyle extends ButtonStyle {
-  _GeneralButtonEmptyStyle(BuildContext context)
-      : super(
-          backgroundColor: MaterialStateProperty.all<Color>(
-            context.general.colorScheme.secondary,
-          ),
-          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
-            RoundedRectangleBorder(
-              borderRadius: CustomRadius.medium,
-              side: BorderSide(
-                color: context.general.colorScheme.primary.withOpacity(0.3),
                 width: AppConstants.kTwo.toDouble(),
               ),
             ),

@@ -4,10 +4,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:vbaseproject/product/package/image/custom_network_image.dart';
 import 'package:vbaseproject/product/utility/decorations/index.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 
 @immutable
 final class GeneralPlaceGridCard extends StatelessWidget {
@@ -94,19 +92,6 @@ final class _TitleRow extends StatelessWidget {
         maxLines: TextFieldMaxLengths.maxLineForText,
         color: context.general.colorScheme.onPrimary,
       ),
-    );
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: GeneralContentTitle(
-            value: model.name,
-            fontWeight: FontWeight.bold,
-            maxLine: TextFieldMaxLengths.maxLineForText,
-          ),
-        ),
-        FavoritePlaceButton(store: model),
-      ],
     );
   }
 }
