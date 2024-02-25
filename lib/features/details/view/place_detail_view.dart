@@ -10,7 +10,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/widget/button/back_button_widget.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/container/circle_image_with_text_container.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';

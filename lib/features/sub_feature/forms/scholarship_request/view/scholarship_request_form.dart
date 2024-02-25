@@ -14,7 +14,6 @@ import 'package:lifeclient/product/package/file_picker/upload_file_section_v2.da
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/general/index.dart';

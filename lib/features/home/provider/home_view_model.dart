@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/home/provider/home_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_view_model.g.dart';
 
