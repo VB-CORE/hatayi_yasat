@@ -1,4 +1,4 @@
-import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 
 /// it's help for navigate to news detail page
 final class NewsModelCopy {

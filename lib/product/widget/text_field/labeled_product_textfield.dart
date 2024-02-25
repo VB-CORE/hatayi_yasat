@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/constants/string_constants.dart';
-import 'package:vbaseproject/product/widget/text_field/product_textfield.dart';
+import 'package:lifeclient/product/utility/constants/string_constants.dart';
+import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
 
 class LabeledProductTextField extends StatelessWidget {
   const LabeledProductTextField({

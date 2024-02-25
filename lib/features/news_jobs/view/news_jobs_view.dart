@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/news_jobs/view/sub_view/tab_jobs_view.dart';
-import 'package:vbaseproject/features/news_jobs/view/sub_view/tab_news_view.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/features/news_jobs/view/sub_view/tab_jobs_view.dart';
+import 'package:lifeclient/features/news_jobs/view/sub_view/tab_news_view.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 
 part 'widget/news_jobs_tab_bar.dart';
 part 'widget/news_jobs_tab_view.dart';

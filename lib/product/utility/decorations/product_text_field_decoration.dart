@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 
 class ProductTextFieldDecoration extends InputDecoration {
   ProductTextFieldDecoration(BuildContext context, String? hintText)

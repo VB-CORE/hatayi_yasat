@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/app_cache_model.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
-import 'package:vbaseproject/product/init/firebase_custom_service.dart';
-import 'package:vbaseproject/product/utility/state/items/product_provider_state.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/init/firebase_custom_service.dart';
+import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
 final class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
+import 'package:lifeclient/product/model/constant/project_general_constant.dart';
 
 class AnimatedPageSwitch extends StatelessWidget {
   const AnimatedPageSwitch({

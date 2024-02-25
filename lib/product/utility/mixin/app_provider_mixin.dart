@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/product/utility/state/app_provider.dart';
-import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
-import 'package:vbaseproject/product/utility/state/items/product_provider_state.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/product/utility/state/app_provider.dart';
+import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
+import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
+import 'package:lifeclient/product/utility/state/product_provider.dart';
 
 mixin AppProviderMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   AppProvider get appProvider =>

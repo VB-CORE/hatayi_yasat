@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/enum/text_field/index.dart';
-import 'package:vbaseproject/product/utility/validator/index.dart';
+import 'package:lifeclient/product/model/enum/text_field/index.dart';
+import 'package:lifeclient/product/utility/validator/index.dart';
 
 mixin CustomTextFieldModel {
   String get hint;

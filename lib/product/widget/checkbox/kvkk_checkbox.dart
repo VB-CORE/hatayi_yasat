@@ -4,10 +4,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/generated/assets.gen.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/widget/checkbox/product_checkbox.dart';
+import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/widget/checkbox/product_checkbox.dart';
 
 class KvkkCheckBox extends StatelessWidget {
   const KvkkCheckBox({required this.onChanged, super.key});

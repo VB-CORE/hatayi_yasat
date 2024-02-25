@@ -1,5 +1,5 @@
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
+import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
 
 final class FilterSelected {
   FilterSelected({

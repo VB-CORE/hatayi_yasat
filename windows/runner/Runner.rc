@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "vbaseproject" "\0"
+            VALUE "FileDescription", "lifeclient" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "vbaseproject" "\0"
+            VALUE "InternalName", "lifeclient" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "vbaseproject.exe" "\0"
-            VALUE "ProductName", "vbaseproject" "\0"
+            VALUE "OriginalFilename", "lifeclient.exe" "\0"
+            VALUE "ProductName", "lifeclient" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

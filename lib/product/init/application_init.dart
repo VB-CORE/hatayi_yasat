@@ -9,12 +9,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/core/dependency/project_dependency.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/core/init/core_localize.dart';
-import 'package:vbaseproject/firebase_options.dart';
-import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/model/enum/firebase_env.dart';
+import 'package:lifeclient/core/dependency/project_dependency.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/init/core_localize.dart';
+import 'package:lifeclient/firebase_options.dart';
+import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/model/enum/firebase_env.dart';
 
 @immutable
 final class ApplicationInit {

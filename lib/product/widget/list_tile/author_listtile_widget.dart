@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/package/image/custom_circle_network_image.dart';
-import 'package:vbaseproject/product/utility/constants/app_icons.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_circle_radius.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/custom_circle_radius.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 final class AuthorListTileWidget extends StatelessWidget {

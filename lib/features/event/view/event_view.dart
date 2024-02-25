@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/event/provider/event_view_model.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/navigation/app_router.dart';
-import 'package:vbaseproject/product/navigation/event_router/event_router.dart';
-import 'package:vbaseproject/product/widget/builder/firestore_grid_view.dart';
-import 'package:vbaseproject/product/widget/card/event_card.dart';
-import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:lifeclient/features/event/provider/event_view_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/event_router/event_router.dart';
+import 'package:lifeclient/product/widget/builder/firestore_grid_view.dart';
+import 'package:lifeclient/product/widget/card/event_card.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 part 'widget/event_grid_builder.dart';
 

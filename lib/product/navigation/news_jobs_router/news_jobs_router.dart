@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/details/view/news_detail_view.dart';
-import 'package:vbaseproject/features/news_jobs/view/news_jobs_view.dart';
-import 'package:vbaseproject/product/model/news_model_copy.dart';
+import 'package:lifeclient/features/details/view/news_detail_view.dart';
+import 'package:lifeclient/features/news_jobs/view/news_jobs_view.dart';
+import 'package:lifeclient/product/model/news_model_copy.dart';
 
 final class NewsJobsRoute extends GoRouteData {
   const NewsJobsRoute();

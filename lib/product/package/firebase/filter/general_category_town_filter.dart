@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/package/firebase/filter/category_code_filter.dart';
-import 'package:vbaseproject/product/package/firebase/filter/town_code_filter.dart';
-import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
+import 'package:lifeclient/product/package/firebase/filter/category_code_filter.dart';
+import 'package:lifeclient/product/package/firebase/filter/town_code_filter.dart';
+import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
 
 final class GeneralCategoryTownFilter {
   GeneralCategoryTownFilter({

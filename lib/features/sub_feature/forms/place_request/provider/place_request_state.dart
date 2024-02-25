@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/place_request_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
 
 final class PlaceRequestState extends Equatable {
   const PlaceRequestState({

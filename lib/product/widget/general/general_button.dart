@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/constants/duration_constant.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/duration_constant.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 /// General button for all project
 /// For async action use async constructor

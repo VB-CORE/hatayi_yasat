@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/widget/button/mixin/multiple_select_button_mixin.dart';
-import 'package:vbaseproject/product/widget/scrollbar/product_scroll_bar.dart';
+import 'package:lifeclient/product/widget/button/mixin/multiple_select_button_mixin.dart';
+import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
 final class MultipleSelectItem extends Equatable {
   const MultipleSelectItem({required this.title, required this.id});

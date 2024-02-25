@@ -3,12 +3,12 @@ import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/notifications/notification_mixin.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
-import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
-import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
+import 'package:lifeclient/features/notifications/notification_mixin.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
+import 'package:lifeclient/product/widget/notifier/loading_notifier.dart';
 
 final class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
