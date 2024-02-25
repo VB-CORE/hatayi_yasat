@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/home/provider/home_state.dart';
+import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_view_model.g.dart';
@@ -26,10 +27,22 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     );
   }
 
+  Query<StoreModel?> fetchApprovedCollectionQuery() {
+    return firebaseService.queryWithOrderBy(
+      path: CollectionPaths.approvedApplications,
+      model: StoreModel.empty(),
+      orderBy: MapEntry('createdAt', state.sortingType == SortingTypes.newest),
+    );
+  }
+
   void changeHomeViewCardType() {
     state = state.copyWith(isGridView: !state.isGridView);
     ref.read(productProviderState.notifier).saveLatestGridViewType(
           isSelected: state.isGridView,
         );
+  }
+
+  void changeSortingType(SortingTypes type) {
+    state = state.copyWith(sortingType: type);
   }
 }
