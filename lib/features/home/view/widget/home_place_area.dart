@@ -10,6 +10,10 @@ final class _HomePlacesArea extends ConsumerWidget {
         .fetchApprovedCollectionReference();
 
     return FirestoreSliverListView(
+      emptyBuilder: (context) => GeneralNotFoundWidget(
+        title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+        onRefresh: () {},
+      ),
       query: query,
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
       itemGridBuilder: (context, model) {

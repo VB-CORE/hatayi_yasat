@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/home/view/home_view.dart';
-import 'package:vbaseproject/product/package/firebase/messaging_utility.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
-import 'package:vbaseproject/sub_feature/notification_navigate/notification_navigate_parse.dart';
+import 'package:lifeclient/features/home/view/home_view.dart';
+import 'package:lifeclient/product/package/firebase/messaging_utility.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
+import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
 mixin HomeViewMixin
     on

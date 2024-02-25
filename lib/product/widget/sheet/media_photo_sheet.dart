@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/photo_picker/photo_picker_manager.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dart';
 
 class MediaOrPhoto extends StatelessWidget {
   const MediaOrPhoto({super.key});

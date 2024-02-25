@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
 
 final class HiveCacheManager extends CacheManager {
   HiveCacheManager({super.path});

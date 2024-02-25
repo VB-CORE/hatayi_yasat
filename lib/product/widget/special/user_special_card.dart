@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/listtile/author_listtile_widget.dart';
-import 'package:vbaseproject/product/widget/special/special_user.dart';
+import 'package:lifeclient/product/widget/list_tile/author_listtile_widget.dart';
+import 'package:lifeclient/product/widget/special/special_user.dart';
 
 @immutable
 final class UserSpecialCard extends StatelessWidget {

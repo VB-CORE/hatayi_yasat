@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 final class GeneralShadow extends BoxShadow {
   GeneralShadow.sampleGrayShadow()

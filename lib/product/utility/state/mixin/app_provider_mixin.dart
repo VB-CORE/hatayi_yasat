@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/model/enum/notification_type.dart';
-import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
-import 'package:vbaseproject/product/widget/snackbar/error_snack_bar.dart';
-import 'package:vbaseproject/product/widget/snackbar/notification_snack_bar.dart';
-import 'package:vbaseproject/sub_feature/notification_navigate/notification_navigate_parse.dart';
+import 'package:lifeclient/product/model/enum/notification_type.dart';
+import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
+import 'package:lifeclient/product/widget/snackbar/error_snack_bar.dart';
+import 'package:lifeclient/product/widget/snackbar/notification_snack_bar.dart';
+import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
 mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
   final CustomService customService = FirebaseService();

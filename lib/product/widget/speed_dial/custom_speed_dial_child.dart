@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 class CustomSpeedDialChild extends SpeedDialChild {
   CustomSpeedDialChild({

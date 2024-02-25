@@ -1,12 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/divider/sheet_gap_divider.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/widget/divider/sheet_gap_divider.dart';
 
-part './widget/select_sheet/select_sheet_save_button.dart';
 part './widget/select_sheet/select_sheet_sub_card.dart';
 
 final class SelectSheetModel {

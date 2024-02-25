@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 @immutable
 final class AppReview {

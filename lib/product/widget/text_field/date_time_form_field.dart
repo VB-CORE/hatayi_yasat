@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/utility/validator/index.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/utility/validator/index.dart';
 
 /// DateTimeFormField is a widget that allows:
 ///  - Select a date from a calendar

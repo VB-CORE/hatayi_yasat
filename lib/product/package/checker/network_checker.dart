@@ -4,9 +4,7 @@ final class NetworkChecker {
   NetworkChecker._init();
 
   static Future<bool> checkConnection() async {
-    /// TODO: check connection
     final connectionResult = await Connectivity().checkConnectivity();
-    // if (connectionResult == ConnectivityResult.none) return false;
-    return true;
+    return connectionResult != ConnectivityResult.none;
   }
 }
