@@ -12,7 +12,6 @@ final class _SpecialAgencyListBuilder extends ConsumerWidget {
 
     return GeneralFirestoreListView(
       query: query,
-      title: LocaleKeys.notFound_specialAgency,
       itemBuilder: (context, model) {
         return Padding(
           padding: const PagePadding.vertical6Symmetric(),
@@ -20,6 +19,11 @@ final class _SpecialAgencyListBuilder extends ConsumerWidget {
         );
       },
       onRetry: () {},
+      emptyBuilder: (BuildContext context) {
+        return const GeneralNotFoundWidget(
+          title: LocaleKeys.notFound_specialAgency,
+        );
+      },
     );
   }
 }

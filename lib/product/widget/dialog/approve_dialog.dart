@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 final class ApproveDialog extends StatelessWidget {
   const ApproveDialog({required this.title, super.key});

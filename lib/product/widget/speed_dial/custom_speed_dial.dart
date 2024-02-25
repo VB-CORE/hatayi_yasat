@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/opacity/custom_opacity.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 
 class CustomSpeedDial extends StatelessWidget {
   const CustomSpeedDial({

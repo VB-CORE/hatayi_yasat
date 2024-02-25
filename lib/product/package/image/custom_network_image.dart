@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/widget/icon/icon_with_text.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
 
 final class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage({super.key, this.imageUrl, this.fit, this.height});

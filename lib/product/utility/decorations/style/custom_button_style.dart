@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 @immutable
 class CustomButtonStyle extends ButtonStyle {

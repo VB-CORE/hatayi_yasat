@@ -6,13 +6,12 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/favorite/provider/favorite_view_model.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
+import 'package:vbaseproject/product/widget/app_bar/page_app_bar.dart';
 import 'package:vbaseproject/product/widget/dialog/general_text_dialog.dart';
 import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/listtile/author_listtile_widget.dart';
+import 'package:vbaseproject/product/widget/list_tile/author_listtile_widget.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
 
 part 'widget/favorite_clear_all_button.dart';

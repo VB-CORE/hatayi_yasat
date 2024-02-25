@@ -9,8 +9,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
 import 'package:vbaseproject/product/package/firebase/filter/general_category_town_filter.dart';
 import 'package:vbaseproject/product/utility/mixin/index.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:vbaseproject/product/widget/general/general_not_found_widget.dart';
 
 final class FilterResultView extends ConsumerStatefulWidget {
   const FilterResultView({required this.filter, super.key});
@@ -43,7 +42,9 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
       ),
       body: GeneralFirestoreListView(
         query: query,
-        title: LocaleKeys.notFound_specialAgency,
+        emptyBuilder: (context) => GeneralNotFoundWidget(
+          title: LocaleKeys.notFound_specialAgency.tr(),
+        ),
         itemBuilder: (context, model) {
           return Padding(
             padding: const PagePadding.vertical6Symmetric(),

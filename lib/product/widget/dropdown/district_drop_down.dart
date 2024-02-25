@@ -6,7 +6,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 final class DistrictDropDownView extends ConsumerStatefulWidget {
   const DistrictDropDownView({

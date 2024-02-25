@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+
 import 'package:vbaseproject/product/widget/general/index.dart';
 
 part './item/jobs_card_sheet_item.dart';

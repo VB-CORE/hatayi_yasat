@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:life_shared/life_shared.dart';
 
 final class TitleDescription extends StatelessWidget {
   const TitleDescription({

@@ -5,7 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/product/common/color_common.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/decorations/custom_border_side.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
   const DeveloperProfileCard({

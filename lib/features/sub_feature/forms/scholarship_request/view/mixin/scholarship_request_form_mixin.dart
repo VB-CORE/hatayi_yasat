@@ -21,6 +21,8 @@ mixin ScholarshipRequestFormMixin
   late final TextEditingController phoneController = TextEditingController();
   late final TextEditingController bioController = TextEditingController();
   File? selectedPdfFile;
+
+  /// TODO: This is a temporary solution. It should be removed after the KVKK checkbox is implemented.
   bool _isKvkkChecked = false;
 
   @override

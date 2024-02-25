@@ -73,6 +73,7 @@ mixin ProjectRequestFormMixin
     expireDate = value;
   }
 
+  /// TODO: This method should be updated with the new checkbox widget
   void updateKVKK(bool value) => _isKvkkChecked = value;
 
   void clear() {

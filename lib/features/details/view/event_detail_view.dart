@@ -10,10 +10,8 @@ import 'package:vbaseproject/product/model/enum/text_field/text_field_max_length
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';
 import 'package:vbaseproject/product/utility/extension/index.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/text/title_description_text.dart';
 
 part 'widget/event_detail_sub_view.dart';

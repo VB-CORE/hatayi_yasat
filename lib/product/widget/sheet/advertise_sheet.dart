@@ -5,8 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
 import 'package:vbaseproject/product/widget/spacer/dynamic_horizontal_spacer.dart';
 
 class AdvertiseSheet extends StatelessWidget {

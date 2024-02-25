@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 
 class PaddingNormalButton extends StatelessWidget {
   const PaddingNormalButton({

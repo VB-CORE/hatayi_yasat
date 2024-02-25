@@ -88,6 +88,7 @@ mixin PlaceRequestFormMixin
   void updateCategoryItem(SelectSheetModel item) =>
       _selectedCategoryItem = item;
 
+  /// TODO: This method should be updated with the new checkbox widget
   void updateKVKK(bool value) => _isKvkkChecked = value;
 
   void onImageSelected(File value) => _imageFile = value;
