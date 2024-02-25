@@ -1,7 +1,7 @@
 import 'package:life_shared/life_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:vbaseproject/features/sub_feature/filter_and_search/provider/filter_search_state.dart';
-import 'package:vbaseproject/product/widget/button/index.dart';
+import 'package:lifeclient/features/sub_feature/filter_and_search/provider/filter_search_state.dart';
+import 'package:lifeclient/product/widget/button/index.dart';
 
 part 'filter_search_provider.g.dart';
 

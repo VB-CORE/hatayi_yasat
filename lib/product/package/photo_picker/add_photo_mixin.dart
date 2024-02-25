@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/package/photo_picker/dotted_add_photo_button.dart';
-import 'package:vbaseproject/product/package/photo_picker/photo_picker_manager.dart';
-import 'package:vbaseproject/product/widget/sheet/media_photo_sheet.dart';
+import 'package:lifeclient/product/package/photo_picker/dotted_add_photo_button.dart';
+import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dart';
+import 'package:lifeclient/product/widget/sheet/media_photo_sheet.dart';
 
 mixin AddPhotoMixin on State<DottedAddPhotoButton> {
   File? photoFile;

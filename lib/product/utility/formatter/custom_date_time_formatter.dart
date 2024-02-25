@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/extension/date_time_extension.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 
 @immutable
 final class CustomDateTimeFormatter {

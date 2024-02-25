@@ -1,4 +1,4 @@
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 
 enum ApproveDialogType {
   notificationPermission(LocaleKeys.dialog_permissionNotification),

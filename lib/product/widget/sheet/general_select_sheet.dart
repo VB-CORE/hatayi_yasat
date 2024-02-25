@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/widget/divider/sheet_gap_divider.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/widget/divider/sheet_gap_divider.dart';
 
 part './widget/select_sheet/select_sheet_sub_card.dart';
 

@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/widget/sheet/town_select_sheet.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/widget/sheet/town_select_sheet.dart';
 
 class FilterButton extends ConsumerStatefulWidget {
   const FilterButton({

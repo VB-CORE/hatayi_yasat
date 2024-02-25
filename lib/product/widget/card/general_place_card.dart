@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/decorations/index.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/decorations/index.dart';
 
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/spacer/dynamic_vertical_spacer.dart';
+import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/spacer/dynamic_vertical_spacer.dart';
 
 @immutable
 final class GeneralPlaceCard extends StatelessWidget {

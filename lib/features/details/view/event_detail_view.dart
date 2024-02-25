@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/details/mixin/event_detail_mixin.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/constants/app_icons.dart';
-import 'package:vbaseproject/product/utility/extension/index.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/image/custom_image_with_view_dialog.dart';
-import 'package:vbaseproject/product/widget/text/title_description_text.dart';
+import 'package:lifeclient/features/details/mixin/event_detail_mixin.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
+import 'package:lifeclient/product/widget/text/title_description_text.dart';
 
 part 'widget/event_detail_sub_view.dart';
 

@@ -1,6 +1,6 @@
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/model/enum/notification_type.dart';
+import 'package:lifeclient/product/model/enum/notification_type.dart';
 
 mixin NotificationTypeMixin {
   (NotificationType?, String) modelConvertToType(

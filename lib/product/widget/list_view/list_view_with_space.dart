@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/widget/general/space/general_space_vertical.dart';
+import 'package:lifeclient/product/widget/general/space/general_space_vertical.dart';
 
 /// ListView with space between children
 /// [children] is required

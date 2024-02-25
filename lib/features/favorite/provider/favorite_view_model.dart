@@ -1,8 +1,8 @@
 import 'package:life_shared/life_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
-import 'package:vbaseproject/features/favorite/provider/favorite_state.dart';
-import 'package:vbaseproject/product/utility/mixin/store_model_mixin.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/features/favorite/provider/favorite_state.dart';
+import 'package:lifeclient/product/utility/mixin/store_model_mixin.dart';
 
 part 'favorite_view_model.g.dart';
 

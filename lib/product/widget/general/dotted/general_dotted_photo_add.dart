@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/widget/animated/animated_page_change.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
-import 'package:vbaseproject/product/widget/sheet/general_media_sheet.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/widget/animated/animated_page_change.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/sheet/general_media_sheet.dart';
 
 /// GeneralDottedPhotoAdd is a widget that is used to add photo
 final class GeneralDottedPhotoAdd extends StatefulWidget {

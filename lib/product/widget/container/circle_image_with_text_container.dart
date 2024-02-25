@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
-import 'package:vbaseproject/product/widget/general/title/index.dart';
-import 'package:vbaseproject/product/widget/shadow/general_shadow.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/widget/general/title/index.dart';
+import 'package:lifeclient/product/widget/shadow/general_shadow.dart';
 
 /// `CircleImageWithTextContainer` shows image with text in circle container
 ///

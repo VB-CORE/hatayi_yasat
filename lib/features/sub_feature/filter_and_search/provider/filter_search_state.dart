@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/widget/button/index.dart';
+import 'package:lifeclient/product/widget/button/index.dart';
 
 final class FilterSearchState extends Equatable {
   const FilterSearchState({

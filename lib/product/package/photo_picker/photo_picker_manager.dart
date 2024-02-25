@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
-import 'package:vbaseproject/product/model/enum/platform_exception_enum.dart';
-import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
-import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
+import 'package:lifeclient/product/model/enum/platform_exception_enum.dart';
+import 'package:lifeclient/product/package/settings/custom_app_settings.dart';
+import 'package:lifeclient/product/widget/dialog/approve_dialog.dart';
 
 enum PhotoPickType {
   gallery,

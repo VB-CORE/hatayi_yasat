@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart' show StringExtension;
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/details/view/place_detail_view.dart';
-import 'package:vbaseproject/features/details/view_model/place_detail_view_model.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
+import 'package:lifeclient/features/details/view/place_detail_view.dart';
+import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 
 mixin PlaceDetailViewMixin
     on ConsumerState<PlaceDetailView>, AppProviderMixin<PlaceDetailView> {

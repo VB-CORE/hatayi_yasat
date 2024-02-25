@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/enum/index.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
-import 'package:vbaseproject/product/utility/validator/index.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_decoration.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_model.dart';
+import 'package:lifeclient/product/model/enum/index.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:lifeclient/product/utility/validator/index.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_decoration.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_model.dart';
 
 final class CustomTextFormMultiField extends StatelessWidget
     with CustomTextFieldModel {

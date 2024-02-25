@@ -5,13 +5,13 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
-import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/view/scholarship_request_form.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/request_scholarship_model.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/index.dart';
+import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
+import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
+import 'package:lifeclient/features/sub_feature/forms/scholarship_request/view/scholarship_request_form.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/request_scholarship_model.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/index.dart';
 
 mixin ScholarshipRequestFormMixin
     on

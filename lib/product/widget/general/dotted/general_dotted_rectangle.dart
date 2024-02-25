@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 /// Project dotted rectangle widget
 final class GeneralDottedRectangle extends StatelessWidget {

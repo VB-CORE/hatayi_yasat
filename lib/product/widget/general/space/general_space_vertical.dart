@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 
 /// SizedBox height 0 for vertical space
 final class GeneralSpaceVertical extends SizedBox {

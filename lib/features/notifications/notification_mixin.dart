@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/notifications/notifications_view.dart';
-import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
-import 'package:vbaseproject/product/widget/notifier/loading_notifier.dart';
-import 'package:vbaseproject/sub_feature/notification_navigate/notification_navigate_parse.dart';
+import 'package:lifeclient/features/notifications/notifications_view.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
+import 'package:lifeclient/product/widget/notifier/loading_notifier.dart';
+import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
 mixin NotificationMixin
     on

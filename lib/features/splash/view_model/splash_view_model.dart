@@ -1,10 +1,10 @@
 import 'package:riverpod/riverpod.dart';
-import 'package:vbaseproject/features/splash/view_model/splash_state.dart';
-import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/package/checker/network_checker.dart';
-import 'package:vbaseproject/product/utility/state/app_provider.dart';
-import 'package:vbaseproject/product/utility/state/product_provider.dart';
-import 'package:vbaseproject/product/utility/validator/version_validator.dart';
+import 'package:lifeclient/features/splash/view_model/splash_state.dart';
+import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/package/checker/network_checker.dart';
+import 'package:lifeclient/product/utility/state/app_provider.dart';
+import 'package:lifeclient/product/utility/state/product_provider.dart';
+import 'package:lifeclient/product/utility/validator/version_validator.dart';
 
 class SplashViewModel extends StateNotifier<SplashState> {
   SplashViewModel({required this.productProvider, required this.appProvider})

@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vbaseproject/features/details/view/event_detail_view.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/calendar/calendar_model.dart';
-import 'package:vbaseproject/product/package/calendar/calendar_utility.dart';
-import 'package:vbaseproject/product/utility/formatter/phone_formatter.dart';
+import 'package:lifeclient/features/details/view/event_detail_view.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/calendar/calendar_model.dart';
+import 'package:lifeclient/product/package/calendar/calendar_utility.dart';
+import 'package:lifeclient/product/utility/formatter/phone_formatter.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 mixin EventDetailMixin on ConsumerState<EventDetailView> {

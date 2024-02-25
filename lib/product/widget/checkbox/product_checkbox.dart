@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 
 class ProductCheckbox extends FormField<bool> {
   ProductCheckbox({

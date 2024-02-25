@@ -5,12 +5,12 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/sub_feature/forms/project_request/view/project_request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/request_project_model.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/general_form_success_dialog.dart';
+import 'package:lifeclient/features/sub_feature/forms/project_request/view/project_request_form.dart';
+import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/request_project_model.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
 
 mixin ProjectRequestFormMixin
     on

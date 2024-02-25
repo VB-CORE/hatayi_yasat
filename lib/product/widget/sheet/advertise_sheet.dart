@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/redirection_mixin.dart';
-import 'package:vbaseproject/product/widget/spacer/dynamic_horizontal_spacer.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
+import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
 
 class AdvertiseSheet extends StatelessWidget {
   const AdvertiseSheet({required this.item, super.key});
