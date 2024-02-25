@@ -37,4 +37,6 @@ final class AppIcons {
 
   static const IconData menu = Icons.menu_outlined;
   static const IconData list = Icons.list_alt_outlined;
+
+  static const IconData location = Icons.location_on;
 }

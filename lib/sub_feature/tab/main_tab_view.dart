@@ -6,6 +6,7 @@ import 'package:vbaseproject/product/generated/assets.gen.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/navigation/agency_router/agency_router.dart';
 import 'package:vbaseproject/product/navigation/app_router.dart';
+import 'package:vbaseproject/product/navigation/chain_stores_router/chain_stores_router.dart';
 import 'package:vbaseproject/product/navigation/favorite_router/favorite_router.dart';
 import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 import 'package:vbaseproject/product/utility/constants/app_icons.dart';

@@ -257,5 +257,8 @@
   },
   "utils": {
     "options": "{} option"
+  },
+  "chain_stores": {
+    "title": "Chain Stores"
   }
 }

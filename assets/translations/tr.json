@@ -258,5 +258,8 @@
   },
   "utils": {
     "options": "{} seçenek"
+  },
+  "chain_stores": {
+    "title": "Zincir Mağazalar"
   }
 }

@@ -224,5 +224,7 @@ abstract class  LocaleKeys {
   static const uploadShelter = 'uploadShelter';
   static const utils_options = 'utils.options';
   static const utils = 'utils';
+  static const chain_stores_title = 'chain_stores.title';
+  static const chain_stores = 'chain_stores';
 
 }

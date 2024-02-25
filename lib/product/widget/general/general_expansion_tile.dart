@@ -10,9 +10,11 @@ final class GeneralExpansionTile extends StatelessWidget {
   const GeneralExpansionTile({
     required this.pageTitle,
     required this.children,
+    this.subTitle,
     super.key,
   });
   final String pageTitle;
+  final String? subTitle;
   final List<Widget> children;
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ final class GeneralExpansionTile extends StatelessWidget {
           pageTitle.tr(context: context),
           fontWeight: FontWeight.bold,
         ),
+        subtitle: subTitle != null ? Text(subTitle!) : const SizedBox.shrink(),
         childrenPadding: const PagePadding.horizontal16Symmetric(),
         children: children,
       ),
