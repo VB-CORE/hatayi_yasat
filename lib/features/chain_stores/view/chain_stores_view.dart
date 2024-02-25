@@ -4,7 +4,7 @@ import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
 import 'package:vbaseproject/product/utility/constants/index.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/appbar/page_app_bar.dart';
-import 'package:vbaseproject/product/widget/general/general_expansion_tile.dart';
+import 'package:vbaseproject/product/widget/general/general_expansion_image_tile.dart';
 import 'package:vbaseproject/product/widget/general/general_scaffold.dart';
 
 final class ChainStoresView extends StatefulWidget {
@@ -15,6 +15,8 @@ final class ChainStoresView extends StatefulWidget {
 }
 
 final class _ChainStoresViewState extends State<ChainStoresView> {
+  final _dummyLogoImage =
+      'https://cdn.freelogovectors.net/wp-content/uploads/2012/02/turkcelllogo.png';
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
@@ -24,9 +26,10 @@ final class _ChainStoresViewState extends State<ChainStoresView> {
         child: ListView.builder(
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
-            return GeneralExpansionTile(
+            return GeneralExpansionImageTile(
               pageTitle: 'Zincir Mağaza $index',
               subTitle: 'Zincir Mağaza Açıklama',
+              imageUrl: _dummyLogoImage,
               children: List.generate(
                 4,
                 (index) => ListTile(
