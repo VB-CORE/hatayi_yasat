@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/special_agency/provider/special_agency_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'special_agency_view_model.g.dart';
 
