@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
+import 'package:vbaseproject/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:vbaseproject/features/sub_feature/forms/place_request/model/place_request_model.dart';
 import 'package:vbaseproject/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
@@ -33,6 +34,40 @@ mixin PlaceRequestFormMixin
   final TextEditingController placeDistrictController = TextEditingController();
   final TextEditingController startTimeController = TextEditingController();
   final TextEditingController endTimeController = TextEditingController();
+
+  OpenAndCloseTimeValidationModel get timeValidationModel {
+    final openTimeHour = startTimeController.text.split(':').firstOrNull;
+    final openTimeMinute = startTimeController.text.split(':').lastOrNull;
+
+    final closeTimeHour = endTimeController.text.split(':').firstOrNull;
+    final closeTimeMinute = endTimeController.text.split(':').lastOrNull;
+
+    if (openTimeHour == null ||
+        openTimeMinute == null ||
+        closeTimeHour == null ||
+        closeTimeMinute == null) {
+      return const OpenAndCloseTimeValidationModel();
+    } else {
+      final openTime = TimeOfDay(
+        hour: int.tryParse(openTimeHour)!,
+        minute: int.tryParse(openTimeMinute)!,
+      );
+
+      final closeTime = TimeOfDay(
+        hour: int.tryParse(closeTimeHour)!,
+        minute: int.tryParse(closeTimeMinute)!,
+      );
+
+      return OpenAndCloseTimeValidationModel(
+        openTime: openTime,
+        closeTime: closeTime,
+      );
+    }
+  }
+
+  set timeValidationModel(OpenAndCloseTimeValidationModel model) {
+    timeValidationModel = model;
+  }
 
   SelectSheetModel? _selectedTownItem;
   SelectSheetModel? _selectedCategoryItem;
@@ -84,8 +119,7 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
-    if (startTimeController.text.isNotEmpty) return true;
-    if (endTimeController.text.isNotEmpty) return true;
+    if (timeValidationModel.isValid) return true;
     if (_selectedTownItem != null) return true;
     if (_selectedCategoryItem != null) return true;
     if (_imageFile != null) return true;
@@ -108,8 +142,7 @@ mixin PlaceRequestFormMixin
       placeOwnerName: placeOwnerNameController.text,
       placeAddress: placeAddressController.text,
       placePhoneNumber: placePhoneNumberController.text,
-      startTime: startTimeController.text,
-      endTime: endTimeController.text,
+      timeValidationModel: timeValidationModel,
       placeCategory: categoryModels.firstWhere(
         (element) => element.documentId == _selectedCategoryItem?.id,
       ),

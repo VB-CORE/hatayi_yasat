@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
+import 'package:vbaseproject/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:vbaseproject/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
 import 'package:vbaseproject/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
+import 'package:vbaseproject/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
 import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
 import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
 import 'package:vbaseproject/product/utility/padding/page_padding.dart';
 import 'package:vbaseproject/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:vbaseproject/product/widget/general/dotted/index.dart';
 import 'package:vbaseproject/product/widget/general/index.dart';
 import 'package:vbaseproject/product/widget/list_view/list_view_with_space.dart';
-import 'package:vbaseproject/product/widget/time_text_field.dart';
 
 part 'widget/place_request_send.dart';
 
@@ -39,6 +38,7 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       ),
       bottomNavigationBar: _PlaceRequestSend(
         onTapped: () async {
+          print('ok');
           if (!validateAndSave()) return;
           final model = requestModel();
           if (model == null) return;
@@ -56,32 +56,9 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       body: ListViewWithSpace(
         children: [
           GeneralDottedPhotoAdd(onSelected: onImageSelected),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'İşletme çalışma saatleri',
-                style: context.general.textTheme.titleMedium,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TimeFormField(
-                      hintText: 'Başlangıç',
-                      onTimeSelected: (time) {},
-                    ),
-                  ),
-                  const EmptyBox.largeWidth(),
-                  Expanded(
-                    child: TimeFormField(
-                      hintText: 'Bitiş',
-                      prefixIcon: AppIcons.timerOff,
-                      onTimeSelected: (time) {},
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          OpenAndCloseTimePicker(
+            onTimeSelected: (OpenAndCloseTimeValidationModel model) =>
+                timeValidationModel = model,
           ),
           // CustomTextFormField(
           //   maxLength: TextFieldMaxLengths.small,

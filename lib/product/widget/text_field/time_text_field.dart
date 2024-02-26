@@ -25,8 +25,6 @@ class _TimeFormFieldState extends State<TimeFormField>
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: true,
-      textAlign: TextAlign.left,
-      textInputAction: TextInputAction.next,
       controller: _timeController,
       decoration: InputDecoration(
         hintText: widget.hintText,
