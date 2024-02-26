@@ -4,79 +4,56 @@ final class _AdvertisementSlider extends StatelessWidget {
   const _AdvertisementSlider();
 
   //TODO: replace list when backend ready!
-  List<int> get _mockAdvertisements => const <int>[1, 2, 3, 4, 5];
+  List<AdvertisementModel> get _mockAdvertisements =>
+      const <AdvertisementModel>[
+        AdvertisementModel.mock1(),
+        AdvertisementModel.mock2(),
+      ];
 
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: const PagePadding.onlyTopMedium(),
       sliver: CarouselSlider(
-        options: _buildOptions(),
-        items: _mockAdvertisements.map((_) {
-          return _buildItem(context);
+        options: CustomCarouselOptions.advertisement(
+          height: context.sized.dynamicHeight(.2),
+        ),
+        items: _mockAdvertisements.map((item) {
+          return _buildItem(context, item);
         }).toList(),
       ).ext.sliver,
     );
   }
 
-  Padding _buildItem(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
+  Padding _buildItem(BuildContext context, AdvertisementModel item) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
         horizontal: WidgetSizes.spacingXs,
       ),
-      child: _AdvertisementItem(),
-    );
-  }
-
-  CarouselOptions _buildOptions() {
-    return CarouselOptions(
-      height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxs,
-      autoPlayAnimationDuration: DurationConstant.durationNormal,
-      autoPlayCurve: Curves.easeOut,
-      autoPlay: true,
+      child: _AdvertisementItem(item),
     );
   }
 }
 
-class _AdvertisementItem extends StatelessWidget {
-  const _AdvertisementItem();
+final class _AdvertisementItem extends StatelessWidget {
+  const _AdvertisementItem(this.item);
+
+  final AdvertisementModel item;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: const CustomNetworkImage(),
+      child: CustomNetworkImage(imageUrl: item.imageUrl),
       onTap: () async => _onPressed(context),
     );
   }
 
-  Future<void> _onPressed(BuildContext context) {
-    //TODO: Don't show bottom sheet if image couldn't load
-    return showModalBottomSheet<void>(
-      context: context,
-      builder: (context) {
-        return Padding(
-          padding: const PagePadding.all(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GeneralButtonV2.active(
-                action: () {},
-                //TODO: localize
-                label: 'Linki Aç',
-              ),
-              Padding(
-                padding: const PagePadding.onlyTop(),
-                child: GeneralButtonV2.active(
-                  action: () {},
-                  //TODO: localize
-                  label: 'Paylaş',
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+  Future<void> _onPressed(BuildContext context) async {
+    if (item.link.ext.isNotNullOrNoEmpty) {
+      return showModalBottomSheet<void>(
+        builder: (_) => _AdvertisementDetailView(item),
+        context: context,
+      );
+    }
   }
 }

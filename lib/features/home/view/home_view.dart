@@ -2,10 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
+import 'package:kartal/kartal.dart'
+    show ContextExtension, SizedBoxExtension, StringExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:vbaseproject/features/home/provider/home_view_model.dart';
 import 'package:vbaseproject/features/home/view/mixin/home_view_mixin.dart';
+import 'package:vbaseproject/features/sub_feature/carousel/custom_carousel_options.dart';
 import 'package:vbaseproject/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:vbaseproject/features/sub_feature/search/place_search_delegate.dart';
 import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
@@ -26,7 +28,9 @@ import 'package:vbaseproject/product/widget/general/list/general_firestore_list_
 import 'package:vbaseproject/product/widget/size/index.dart';
 import 'package:vbaseproject/product/widget/text/clickable_title_text.dart';
 import 'package:vbaseproject/product/widget/text_field/custom_search_field.dart';
+import 'package:vbaseproject/sub_feature/advertisement/models/advertisement_model.dart';
 
+part 'widget/advertisement_detail_view.dart';
 part 'widget/advertisement_slider.dart';
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
