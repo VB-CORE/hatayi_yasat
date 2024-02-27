@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/constants/duration_constant.dart';
-import 'package:vbaseproject/product/widget/size/widget_size.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 
 final class CustomCarouselOptions extends CarouselOptions {
   ///Advertisement slider options
