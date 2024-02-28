@@ -255,6 +255,11 @@
   "uploadShelter": {
     "title": "Upload Shelter Details"
   },
+  "sorting":{
+      "time":{ 
+      "newest": "Newest to oldest",
+      "oldest":"Oldest to newest"}
+  },
   "utils": {
     "options": "{} option"
   }

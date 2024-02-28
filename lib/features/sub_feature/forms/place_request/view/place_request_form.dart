@@ -9,8 +9,7 @@ import 'package:lifeclient/features/sub_feature/forms/place_request/provider/pla
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/enum/index.dart';
-import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:lifeclient/product/model/enum/text_field/index.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
