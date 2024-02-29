@@ -16,13 +16,14 @@ import 'package:lifeclient/product/widget/general/title/general_content_sub_titl
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
-import 'package:lifeclient/sub_feature/tab/mixin/main_tab_view_mixin.dart';
-import 'package:lifeclient/sub_feature/tab/model/speed_dial_child_model.dart';
-import 'package:lifeclient/sub_feature/tab/model/tab_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
 
-part './widget/main_app_bar.dart';
-part './widget/main_bottom_app_bar.dart';
-part './widget/main_fab_button.dart';
+part 'widget/main_app_bar.dart';
+part 'widget/main_bottom_app_bar.dart';
+part 'widget/main_fab_button.dart';
 
 final class MainTabView extends ConsumerStatefulWidget {
   const MainTabView({super.key});
@@ -37,16 +38,23 @@ class _MainTabViewState extends ConsumerState<MainTabView>
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: _tabItems.length,
-      child: Scaffold(
-        extendBody: true,
-        appBar: _MainAppBar(context: context),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        body: _BodyTabBarViewWidget(tabItems: _tabItems),
-        resizeToAvoidBottomInset: false,
-        bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
-        floatingActionButton: const _SpeedDialFabWidget(),
+    return NotificationListener<ScrollUpdateNotification>(
+      onNotification: (notification) {
+        listenScrollUpdateNotification(notification);
+        return true;
+      },
+      child: DefaultTabController(
+        length: _tabItems.length,
+        child: Scaffold(
+          extendBody: true,
+          appBar: _MainAppBar(context: context),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          body: _BodyTabBarViewWidget(tabItems: _tabItems),
+          resizeToAvoidBottomInset: false,
+          bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
+          floatingActionButton: const _SpeedDialFabWidget(),
+        ),
       ),
     );
   }

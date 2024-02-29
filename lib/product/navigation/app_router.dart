@@ -15,7 +15,7 @@ import 'package:lifeclient/product/navigation/favorite_router/favorite_router.da
 import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:lifeclient/product/navigation/onboard_router/onboard_router.dart';
 import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
-import 'package:lifeclient/sub_feature/tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
 

@@ -16,7 +16,7 @@ class _BodyTabBarViewWidget extends StatelessWidget {
   }
 }
 
-class _BottomAppBarWidget extends StatelessWidget {
+final class _BottomAppBarWidget extends ConsumerWidget {
   const _BottomAppBarWidget({
     required this.tabItems,
   });
@@ -24,7 +24,9 @@ class _BottomAppBarWidget extends StatelessWidget {
   final List<TabModel> tabItems;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isScrolledBottom =
+        ref.watch(mainTabViewModelProvider).isScrolledBottom;
     return ClipRRect(
       borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
       child: BottomAppBar(
@@ -32,13 +34,14 @@ class _BottomAppBarWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         notchMargin: WidgetSizes.spacingXs,
         shape: const CircularNotchedRectangle(),
-        elevation: 0,
-        color: context.general.colorScheme.secondary,
+        elevation: kZero,
+        color: context.general.colorScheme.secondary
+            .withOpacity(isScrolledBottom ? .7 : 1),
         child: TabBar(
           padding: EdgeInsets.zero,
           dividerColor: ColorsCustom.transparent,
           labelPadding: EdgeInsets.zero,
-          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: const BoxDecoration(),
           tabs: tabItems
               .map(
                 (e) => Tab(child: e.icon),
