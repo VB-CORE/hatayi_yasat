@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/product/model/enum/index.dart';
-import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:lifeclient/product/model/enum/text_field/index.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_decoration.dart';
 import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_model.dart';

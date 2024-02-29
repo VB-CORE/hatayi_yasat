@@ -5,9 +5,8 @@ final class _HomePlacesArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final query = ref
-        .read(homeViewModelProvider.notifier)
-        .fetchApprovedCollectionReference();
+    final query =
+        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
 
     return FirestoreSliverListView(
       emptyBuilder: (context) => GeneralNotFoundWidget(
