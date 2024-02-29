@@ -8,43 +8,38 @@ final class _AdvertisementSlider extends StatelessWidget {
       const <AdvertisementModel>[
         AdvertisementModel.mock1(),
         AdvertisementModel.mock2(),
+        AdvertisementModel.mock3(),
       ];
 
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: const PagePadding.onlyTopMedium(),
-      sliver: CarouselSlider(
-        options: CustomCarouselOptions.advertisement(
-          height: context.sized.dynamicHeight(.2),
-        ),
-        items: _mockAdvertisements.map((item) {
-          return _buildItem(context, item);
-        }).toList(),
+      sliver: CarouselSlider.builder(
+        itemBuilder: (context, index, realIndex) =>
+            _AdvertisementItem(_mockAdvertisements[index]),
+        options: CustomCarouselOptions.advertisement(),
+        itemCount: _mockAdvertisements.length,
       ).ext.sliver,
-    );
-  }
-
-  Padding _buildItem(BuildContext context, AdvertisementModel item) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: WidgetSizes.spacingXs,
-      ),
-      child: _AdvertisementItem(item),
     );
   }
 }
 
-class _AdvertisementItem extends StatelessWidget {
+final class _AdvertisementItem extends StatelessWidget {
   const _AdvertisementItem(this.item);
 
   final AdvertisementModel item;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: CustomNetworkImage(imageUrl: item.imageUrl),
-      onTap: () async => _onPressed(context),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: WidgetSizes.spacingXs,
+      ),
+      child: InkWell(
+        child: CustomNetworkImage(imageUrl: item.imageUrl),
+        onTap: () async => _onPressed(context),
+      ),
     );
   }
 

@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart'
     show ContextExtension, SizedBoxExtension, StringExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/home/provider/home_view_model.dart';
-import 'package:lifeclient/features/home/view/mixin/home_view_mixin.dart';
+import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
+import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/carousel/custom_carousel_options.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
@@ -53,6 +53,13 @@ class _HomeViewState extends ConsumerState<HomeView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await pushToFilter(context: context);
+        },
+        child: const Icon(Icons.filter_list),
+      ),
       body: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),

@@ -13,7 +13,6 @@ final class _EventGridBuilder extends ConsumerWidget {
       query: query,
       padding: const PagePadding.onlyTopMedium() +
           const PagePadding.onlyBottomHigh(),
-      shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: WidgetSizes.spacingSs,
