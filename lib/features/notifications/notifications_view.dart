@@ -113,6 +113,8 @@ final class _NotificationTypeLeadingIcon extends StatelessWidget {
       AppNotificationType.news => const Icon(Icons.newspaper_outlined),
       AppNotificationType.advertise =>
         const Icon(Icons.notifications_active_outlined),
+      // TODO: Handle this case.
+      AppNotificationType.link => throw UnimplementedError(),
     };
   }
 }
