@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
-import 'package:lifeclient/features/event/view/event_view.dart';
+import 'package:lifeclient/features/main/event/view/event_view.dart';
 
 final class EventRoute extends GoRouteData {
   const EventRoute();

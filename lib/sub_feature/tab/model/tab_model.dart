@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/features/event/view/event_view.dart';
+import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
-import 'package:lifeclient/features/news_jobs/view/news_jobs_view.dart';
-import 'package:lifeclient/features/settings/view/settings_view.dart';
+import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
+import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 

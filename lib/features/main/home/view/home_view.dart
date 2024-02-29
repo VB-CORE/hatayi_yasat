@@ -7,7 +7,6 @@ import 'package:kartal/kartal.dart'
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
-import 'package:lifeclient/features/sub_feature/carousel/custom_carousel_options.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -16,6 +15,7 @@ import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.
 import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/carousel/custom_carousel_options.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
