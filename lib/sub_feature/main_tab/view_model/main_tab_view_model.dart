@@ -11,7 +11,6 @@ final class MainTabViewModel extends _$MainTabViewModel {
   }
 
   void updateBottomBarValue({required bool isScrolledBottom}) {
-    print('updateBottomBarValue $isScrolledBottom');
     if (state.isScrolledBottom == isScrolledBottom) return;
     state = state.copyWith(isScrolledBottom: isScrolledBottom);
   }
