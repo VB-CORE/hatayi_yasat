@@ -38,6 +38,7 @@ abstract class  LocaleKeys {
   static const button_sendRequest = 'button.sendRequest';
   static const button_call = 'button.call';
   static const button_share = 'button.share';
+  static const button_error = 'button.error';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -228,5 +229,9 @@ abstract class  LocaleKeys {
   static const sorting = 'sorting';
   static const utils_options = 'utils.options';
   static const utils = 'utils';
+  static const advertisementBoard_openUrl = 'advertisementBoard.openUrl';
+  static const advertisementBoard_launchUrlError = 'advertisementBoard.launchUrlError';
+  static const advertisementBoard_shareAdvertisementSubject = 'advertisementBoard.shareAdvertisementSubject';
+  static const advertisementBoard = 'advertisementBoard';
 
 }

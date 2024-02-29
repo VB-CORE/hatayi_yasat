@@ -35,6 +35,8 @@ mixin NotificationTypeMixin {
         return NotificationType.news;
       case AppNotificationType.advertise:
         return NotificationType.advertise;
+      case AppNotificationType.link:
+        return NotificationType.link;
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart'
     show ContextExtension, SizedBoxExtension, StringExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/home/provider/advertisement_board/advertisement_board_view_model.dart';
 import 'package:lifeclient/features/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/carousel/custom_carousel_options.dart';
@@ -22,6 +23,8 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/product/widget/button/index.dart';
+import 'package:lifeclient/product/widget/button/open_url_general_button.dart';
+import 'package:lifeclient/product/widget/button/share_advertisement_general_button.dart';
 import 'package:lifeclient/product/widget/card/general_place_card.dart';
 import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
@@ -29,8 +32,8 @@ import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
 import 'package:lifeclient/product/widget/text_field/custom_search_field.dart';
-import 'package:lifeclient/sub_feature/advertisement/models/advertisement_model.dart';
 
+part 'widget/advertisement_board_item.dart';
 part 'widget/advertisement_detail_view.dart';
 part 'widget/advertisement_slider.dart';
 part 'widget/home_categories_area.dart';

@@ -43,6 +43,9 @@ final class NotificationNavigateParse with NotificationTypeMixin {
           customService: _customService,
         );
         return;
+      case NotificationType.link:
+        //TODO: add code here
+        return;
     }
   }
 

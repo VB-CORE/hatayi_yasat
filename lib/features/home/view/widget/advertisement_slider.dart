@@ -1,59 +1,39 @@
 part of '../home_view.dart';
 
-final class _AdvertisementSlider extends StatelessWidget {
+final class _AdvertisementSlider extends ConsumerWidget {
   const _AdvertisementSlider();
 
-  //TODO: replace list when backend ready!
-  List<AdvertisementModel> get _mockAdvertisements =>
-      const <AdvertisementModel>[
-        AdvertisementModel.mock1(),
-        AdvertisementModel.mock2(),
-      ];
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = ref.watch(advertisementBoardViewModelProvider).advertisements;
     return SliverPadding(
       padding: const PagePadding.onlyTopMedium(),
-      sliver: CarouselSlider(
-        options: CustomCarouselOptions.advertisement(
-          height: context.sized.dynamicHeight(.2),
-        ),
-        items: _mockAdvertisements.map((item) {
-          return _buildItem(context, item);
-        }).toList(),
-      ).ext.sliver,
+      sliver: _buildSlider(context, items).ext.sliver,
     );
   }
 
-  Padding _buildItem(BuildContext context, AdvertisementModel item) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: WidgetSizes.spacingXs,
+  Widget _buildSlider(
+    BuildContext context,
+    List<AdBoardModel> items,
+  ) {
+    if (items.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return CarouselSlider(
+      options: CustomCarouselOptions.advertisement(
+        height: context.sized.dynamicHeight(.2),
       ),
+      items: items.map((item) {
+        return _buildItem(context, item);
+      }).toList(),
+    );
+  }
+
+  Padding _buildItem(BuildContext context, AdBoardModel item) {
+    return Padding(
+      padding: const PagePadding.vertical8Symmetric(),
       child: _AdvertisementItem(item),
     );
-  }
-}
-
-class _AdvertisementItem extends StatelessWidget {
-  const _AdvertisementItem(this.item);
-
-  final AdvertisementModel item;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      child: CustomNetworkImage(imageUrl: item.imageUrl),
-      onTap: () async => _onPressed(context),
-    );
-  }
-
-  Future<void> _onPressed(BuildContext context) async {
-    if (item.link.ext.isNotNullOrNoEmpty) {
-      return showModalBottomSheet<void>(
-        builder: (_) => _AdvertisementDetailView(item),
-        context: context,
-      );
-    }
   }
 }

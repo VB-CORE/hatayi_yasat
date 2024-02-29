@@ -38,7 +38,8 @@
     "showResult": "Show result",
     "sendRequest": "Send Request",
     "call": "Call",
-    "share": "Share"
+    "share": "Share",
+    "error": "Error"
   },
   "component": {
     "picker": {
@@ -255,12 +256,18 @@
   "uploadShelter": {
     "title": "Upload Shelter Details"
   },
-  "sorting":{
-      "time":{ 
+  "sorting": {
+    "time": {
       "newest": "Newest to oldest",
-      "oldest":"Oldest to newest"}
+      "oldest": "Oldest to newest"
+    }
   },
   "utils": {
     "options": "{} option"
+  },
+  "advertisementBoard": {
+    "openUrl": "Open Url",
+    "launchUrlError": "An error occurred when launch url",
+    "shareAdvertisementSubject": "Visit advertisement owner: {}"
   }
 }
