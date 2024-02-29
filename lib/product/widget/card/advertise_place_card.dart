@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
-
 import 'package:lifeclient/product/widget/sheet/advertise_sheet.dart';
 
 @immutable
@@ -29,9 +28,7 @@ final class AdvertisePlaceCard extends StatelessWidget {
             children: [
               _Title(item.title!),
               const Divider(),
-              if (item.role.ext.isNotNullOrNoEmpty)
-                Expanded(child: _Subtitle(item.role!)),
-              const Spacer(),
+              if (item.role.ext.isNotNullOrNoEmpty) _Subtitle(item.role!),
             ],
           ),
         ),

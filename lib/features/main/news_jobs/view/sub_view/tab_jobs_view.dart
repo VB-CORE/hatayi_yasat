@@ -24,8 +24,11 @@ final class TabJobsView extends ConsumerWidget {
         );
       },
       itemBuilder: (context, model) {
-        return AdvertisePlaceCard(
-          item: model,
+        return Padding(
+          padding: const PagePadding.generalAllLow(),
+          child: AdvertisePlaceCard(
+            item: model,
+          ),
         );
       },
       onRetry: () {},

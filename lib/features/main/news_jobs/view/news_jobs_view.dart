@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:lifeclient/features/main/news_jobs/view/sub_view/tab_jobs_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/sub_view/tab_news_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -17,18 +16,14 @@ final class NewsJobsView extends StatefulWidget {
 class _NewsJobsViewState extends State<NewsJobsView> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: SafeArea(
-          child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                const _NewsJobsTabBar().ext.sliver,
-              ];
-            },
-            body: const _NewsJobsTabView(),
-          ),
+        body: Column(
+          children: [
+            _NewsJobsTabBar(),
+            Expanded(child: _NewsJobsTabView()),
+          ],
         ),
       ),
     );
