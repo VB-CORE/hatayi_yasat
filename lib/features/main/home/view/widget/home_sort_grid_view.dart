@@ -1,35 +1,15 @@
 part of '../home_view.dart';
 
-final class _HomeSearchField extends StatelessWidget {
-  const _HomeSearchField();
+final class _HomeSortGridView extends StatelessWidget {
+  const _HomeSortGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const PagePadding.onlyTop(),
-      sliver: SliverAppBar(
-        floating: true,
-        pinned: true,
-        titleSpacing: kZero,
-        actions: const [
-          _ViewDesignButton(),
-          _SortPlaceButton(),
-        ],
-        title: InkWell(
-          onTap: () async {
-            await showSearch<SearchResponse>(
-              context: context,
-              delegate: PlaceSearchDelegate(),
-            );
-          },
-          child: IgnorePointer(
-            child: CustomSearchField(
-              hint: LocaleKeys.home_search.tr(),
-              onChange: (value) {},
-            ),
-          ),
-        ),
-      ),
+    return const Row(
+      children: [
+        _ViewDesignButton(),
+        _SortPlaceButton(),
+      ],
     );
   }
 }
