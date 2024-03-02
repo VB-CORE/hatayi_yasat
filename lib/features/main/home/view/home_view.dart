@@ -64,19 +64,21 @@ class _HomeViewState extends ConsumerState<HomeView>
             padding: PagePadding.vertical6Symmetric(),
             sliver: _HomeCategoryCards(),
           ),
-          SliverPadding(
-            padding:
-                const PagePadding.onlyBottom() + const PagePadding.onlyTop(),
-            sliver: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GeneralSubTitle(
-                  value: LocaleKeys.home_places.tr(),
-                  fontWeight: FontWeight.bold,
-                ),
-                const _HomeSortGridView(),
-              ],
-            ).ext.sliver,
+          SliverAppBar(
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: EdgeInsets.zero,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GeneralSubTitle(
+                    value: LocaleKeys.home_places.tr(),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const _HomeSortGridView(),
+                ],
+              ),
+            ),
           ),
           const _HomePlacesArea(),
           const EmptyBox.largeXxHeight().ext.sliver,
