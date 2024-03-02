@@ -11,12 +11,13 @@ final class _FilterSearchButton extends ConsumerWidget {
         child: GeneralButtonV2.active(
           action: () {
             final provider = ref.read(filterWithSearchProvider);
-            context.pop(
+
+            FilterResultRoute(
               FilterSelected(
                 selectedCategories: provider.selectedCategories,
                 selectedTowns: provider.selectedTowns,
               ),
-            );
+            ).push<void>(context);
           },
           isEnabled: ref.watch(filterWithSearchProvider).isSelectedItems,
           label: LocaleKeys.button_showResult.tr(),

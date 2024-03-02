@@ -17,17 +17,10 @@ final class _HomeSearchField extends StatelessWidget {
         ],
         title: InkWell(
           onTap: () async {
-            final response = await showSearch<SearchResponse>(
+            await showSearch<SearchResponse>(
               context: context,
               delegate: PlaceSearchDelegate(),
             );
-
-            if (response == null) return;
-            if (!context.mounted) return;
-            await PlaceDetailRoute(
-              $extra: StoreModel.empty(),
-              id: response.id,
-            ).push<void>(context);
           },
           child: IgnorePointer(
             child: CustomSearchField(

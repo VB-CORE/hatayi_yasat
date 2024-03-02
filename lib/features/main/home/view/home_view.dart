@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart'
-    show ContextExtension, SizedBoxExtension, StringExtension, WidgetExtension;
+    show ContextExtension, StringExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
@@ -57,8 +57,8 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const _HomeSearchField(),
           const _AdvertisementSlider(),
+          const _HomeSearchField(),
           SliverPadding(
             padding: const PagePadding.onlyTopMedium(),
             sliver: ClickableSubTitleText(

@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart' show ContextExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/provider/filter_search_provider.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/mixin/filter_search_view_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/animated/animated_page_change.dart';
