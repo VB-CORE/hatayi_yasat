@@ -24,10 +24,10 @@ final class _HomeSearchField extends StatelessWidget {
 
             if (response == null) return;
             if (!context.mounted) return;
-            PlaceDetailRoute(
+            await PlaceDetailRoute(
               $extra: StoreModel.empty(),
               id: response.id,
-            ).go(context);
+            ).push<void>(context);
           },
           child: IgnorePointer(
             child: CustomSearchField(
