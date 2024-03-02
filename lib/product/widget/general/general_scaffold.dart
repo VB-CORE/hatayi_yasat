@@ -7,7 +7,11 @@ final class GeneralScaffold extends Scaffold {
     required Widget body,
     super.appBar,
     super.key,
+    super.floatingActionButton,
+    super.floatingActionButtonLocation,
+    super.backgroundColor,
   }) : super(
+          extendBody: true,
           body: Padding(
             padding: const PagePadding.horizontal16Symmetric(),
             child: body,

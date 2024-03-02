@@ -70,7 +70,6 @@ dependencies:
   add_2_calendar: 3.0.1
   in_app_review: ^2.0.8
   flutter_rating_bar: ^4.0.1
-  uuid: ^4.3.3
   url_launcher: ^6.2.3
   whatsapp_unilink: ^2.1.0
   kartal: ^4.0.0-dev2
@@ -98,7 +97,7 @@ dependencies:
 
 dependency_overrides:
   kartal: ^4.0.0-dev2
-
+  uuid: ^4.3.3
   connectivity_plus:
     git:
       url: https://github.com/fluttercommunity/plus_plugins

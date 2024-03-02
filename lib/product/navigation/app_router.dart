@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
-import 'package:lifeclient/features/notifications/notifications_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
+import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
 import 'package:lifeclient/product/navigation/event_router/event_router.dart';
@@ -15,7 +15,7 @@ import 'package:lifeclient/product/navigation/favorite_router/favorite_router.da
 import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:lifeclient/product/navigation/onboard_router/onboard_router.dart';
 import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
-import 'package:lifeclient/sub_feature/tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
 
