@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/product/app_builder.dart';
-import 'package:vbaseproject/product/init/application_theme.dart';
-import 'package:vbaseproject/product/navigation/app_router.dart';
-import 'package:vbaseproject/product/utility/mixin/index.dart';
-import 'package:vbaseproject/product/widget/builder/keyboard_focus_control_widget.dart';
+import 'package:lifeclient/product/app_builder.dart';
+import 'package:lifeclient/product/init/application_theme.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/builder/keyboard_focus_control_widget.dart';
 
 final class App extends ConsumerWidget with AppProviderStateMixin {
   App({super.key});

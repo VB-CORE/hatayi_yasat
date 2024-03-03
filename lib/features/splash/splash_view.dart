@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/features/splash/splash_view_mixin.dart';
-import 'package:vbaseproject/product/generated/assets.gen.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/splash/splash_view_mixin.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});

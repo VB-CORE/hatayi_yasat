@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_state.dart';
 
 class FavoritePlaceProvider extends StateNotifier<FavoritePlaceState>
     with ProjectDependencyMixin {

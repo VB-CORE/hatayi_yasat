@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_state.dart';
+import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/request_scholarship_model.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vbaseproject/features/sub_feature/forms/scholarship_request/provider/scholarship_request_state.dart';
-import 'package:vbaseproject/product/feature/cache/shared_cache.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/request_scholarship_model.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
 
 part 'scholarship_request_provider.g.dart';
 

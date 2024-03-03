@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
-import 'package:vbaseproject/product/package/file_picker/upload_file_v2_mixin.dart';
-import 'package:vbaseproject/product/utility/decorations/empty_box.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
+import 'package:lifeclient/product/package/file_picker/upload_file_v2_mixin.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 /// UploadFileSectionV2 is a widget used for
 ///  - uploading a file

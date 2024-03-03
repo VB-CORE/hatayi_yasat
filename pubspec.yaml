@@ -1,4 +1,4 @@
-name: vbaseproject
+name: lifeclient
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
@@ -25,7 +25,7 @@ dependencies:
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
-  syncfusion_flutter_pdfviewer: ^22.2.11
+  syncfusion_flutter_pdfviewer: ^24.2.7
   webview_flutter: ^4.0.2
 
   #third-party
@@ -70,9 +70,9 @@ dependencies:
   add_2_calendar: 3.0.1
   in_app_review: ^2.0.8
   flutter_rating_bar: ^4.0.1
-  uuid: ^3.0.7
   url_launcher: ^6.2.3
   whatsapp_unilink: ^2.1.0
+  kartal: ^4.0.0-dev2
 
   # ui
   dotted_border: ^2.0.0+3
@@ -100,7 +100,7 @@ dependencies:
 
 dependency_overrides:
   kartal: ^4.0.0-dev2
-
+  uuid: ^4.3.3
   connectivity_plus:
     git:
       url: https://github.com/fluttercommunity/plus_plugins
@@ -120,7 +120,6 @@ dev_dependencies:
 
   riverpod_generator: ^2.3.8
   go_router_builder: ^2.4.0
-
 flutter_gen:
   output: lib/product/generated/
   integrations:

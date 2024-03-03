@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/init/firebase_custom_service.dart';
-import 'package:vbaseproject/product/model/enum/notification_type.dart';
-import 'package:vbaseproject/product/package/firebase/messaging_navigate.dart';
-import 'package:vbaseproject/product/utility/mixin/notification_type_mixin.dart';
+import 'package:lifeclient/product/init/firebase_custom_service.dart';
+import 'package:lifeclient/product/model/enum/notification_type.dart';
+import 'package:lifeclient/product/package/firebase/messaging_navigate.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 
 final class NotificationNavigateParse with NotificationTypeMixin {
   NotificationNavigateParse(this.context);

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 /// This button is used only for dialog.
 @immutable

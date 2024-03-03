@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/features/app.dart';
-import 'package:vbaseproject/product/init/application_init.dart';
+import 'package:lifeclient/features/app.dart';
+import 'package:lifeclient/product/init/application_init.dart';
 
 void main() async {
   final initialManager = ApplicationInit();

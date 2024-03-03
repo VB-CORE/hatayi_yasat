@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/utility/maps_utility.dart';
-import 'package:vbaseproject/product/utility/constants/regex_types.dart';
+import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 mixin RedirectionMixin {
   static Future<void> navigateToMapsWithTitle({

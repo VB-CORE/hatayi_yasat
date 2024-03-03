@@ -119,21 +119,6 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
 }
 
 @immutable
-final class _BackButtonContainer extends StatelessWidget {
-  const _BackButtonContainer({
-    required this.onPressed,
-  });
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return BackButtonWidget(
-      onPressed: onPressed,
-      backgroundColor: context.general.colorScheme.primary,
-    );
-  }
-}
-
-@immutable
 class _CircleImageWithNamePositioned extends StatelessWidget {
   const _CircleImageWithNamePositioned({
     required this.image,

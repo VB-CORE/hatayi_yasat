@@ -256,6 +256,11 @@
   "uploadShelter": {
     "title": "Barınak Ayrıntılarını Yükle"
   },
+    "sorting":{
+    "time":{ 
+      "newest": "Yeniden eskiye",
+      "oldest": "Eskiden yeniye"}
+  },
   "utils": {
     "options": "{} seçenek"
   }

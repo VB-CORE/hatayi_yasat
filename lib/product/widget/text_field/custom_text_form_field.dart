@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_auto_fills.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_formatters.dart';
-import 'package:vbaseproject/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_decoration.dart';
-import 'package:vbaseproject/product/widget/text_field/widget/custom_text_field_model.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_auto_fills.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_decoration.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_model.dart';
 
 final class CustomTextFormField extends StatelessWidget
     with CustomTextFieldModel {

@@ -36,4 +36,8 @@ final class AppIcons {
 
   static const IconData sendMessage = FontAwesomeIcons.whatsapp;
   static const IconData notifications = Icons.notifications_outlined;
+
+  static const IconData menu = Icons.menu_outlined;
+  static const IconData list = Icons.list_alt_outlined;
+  static const IconData check = Icons.check_outlined;
 }

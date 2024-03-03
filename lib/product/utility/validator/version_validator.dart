@@ -1,5 +1,5 @@
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/model/enum/firebase_remote_enums.dart';
+import 'package:lifeclient/product/model/enum/firebase_remote_enums.dart';
 
 final class VersionValidator {
   VersionValidator._init();

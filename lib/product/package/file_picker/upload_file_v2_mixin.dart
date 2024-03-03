@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/package/file_picker/default_file_extension.dart';
-import 'package:vbaseproject/product/package/file_picker/file_picker_manager.dart';
-import 'package:vbaseproject/product/package/file_picker/upload_file_section_v2.dart';
-import 'package:vbaseproject/product/widget/dialog/pdf_preview_dialog.dart';
+import 'package:lifeclient/product/package/file_picker/default_file_extension.dart';
+import 'package:lifeclient/product/package/file_picker/file_picker_manager.dart';
+import 'package:lifeclient/product/package/file_picker/upload_file_section_v2.dart';
+import 'package:lifeclient/product/widget/dialog/pdf_preview_dialog.dart';
 
 /// UploadFileV2Mixin is a mixin used for
 /// - picking a file using [FilePickerManager]

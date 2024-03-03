@@ -1,11 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
-import 'package:vbaseproject/product/init/firebase_custom_service.dart';
-import 'package:vbaseproject/product/utility/state/items/product_provider_state.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/init/firebase_custom_service.dart';
+import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
 final class ProductProvider extends StateNotifier<ProductProviderState> {
   ProductProvider() : super(const ProductProviderState());
@@ -13,6 +14,7 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
   final _firebaseService = FirebaseCustomService();
 
   late HiveOperationManager<StoreModelCache> storeModelCache;
+  late HiveOperationManager<AppCacheModel> appModelCache;
 
   Future<void> initWhenApplicationStart() async {
     final productCache = ProjectDependencyItems.productCache;
@@ -24,10 +26,18 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
     ]);
 
     storeModelCache = productCache.storeModelCache;
+    appModelCache = productCache.appModelCache;
     state = state.copyWith(
       favoritePlaces:
           storeModelCache.getAll().map((e) => e.storeModel).toList(),
     );
+  }
+
+  bool get isHomeViewGrid =>
+      appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? false;
+
+  void saveLatestGridViewType({required bool isSelected}) {
+    appModelCache.add(AppCacheModel(isHomeViewGrid: isSelected));
   }
 
   Future<void> fetchDistrictAndSaveSession() async {

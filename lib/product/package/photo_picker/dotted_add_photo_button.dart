@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/constant/project_general_constant.dart';
-import 'package:vbaseproject/product/package/photo_picker/add_photo_mixin.dart';
-import 'package:vbaseproject/product/utility/decorations/colors_custom.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/border/dotted_border_custom.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/constant/project_general_constant.dart';
+import 'package:lifeclient/product/package/photo_picker/add_photo_mixin.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/widget/border/dotted_border_custom.dart';
 
 class DottedAddPhotoButton extends StatefulWidget {
   const DottedAddPhotoButton({required this.onSelected, super.key});

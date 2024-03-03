@@ -1,7 +1,7 @@
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/features/details/view_model/place_detail_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_mixin.dart';
-import 'package:vbaseproject/features/details/view_model/place_detail_state.dart';
 
 part 'place_detail_view_model.g.dart';
 

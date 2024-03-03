@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/widget/size/icon_size.dart';
+import 'package:life_shared/life_shared.dart';
 
 final class GeneralCheckBox extends StatefulWidget {
   const GeneralCheckBox({

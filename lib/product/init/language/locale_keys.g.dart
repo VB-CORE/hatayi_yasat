@@ -222,6 +222,10 @@ abstract class  LocaleKeys {
   static const favorite = 'favorite';
   static const uploadShelter_title = 'uploadShelter.title';
   static const uploadShelter = 'uploadShelter';
+  static const sorting_time_newest = 'sorting.time.newest';
+  static const sorting_time_oldest = 'sorting.time.oldest';
+  static const sorting_time = 'sorting.time';
+  static const sorting = 'sorting';
   static const utils_options = 'utils.options';
   static const utils = 'utils';
 

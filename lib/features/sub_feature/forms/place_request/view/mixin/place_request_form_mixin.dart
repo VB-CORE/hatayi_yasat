@@ -6,15 +6,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/place_request_model.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/view/place_request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/general_form_success_dialog.dart';
-import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
+
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
+import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
+import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 
 mixin PlaceRequestFormMixin
     on
@@ -130,6 +131,7 @@ mixin PlaceRequestFormMixin
   void updateCategoryItem(SelectSheetModel item) =>
       _selectedCategoryItem = item;
 
+  /// TODO: This method should be updated with the new checkbox widget
   void updateKVKK(bool value) => _isKvkkChecked = value;
 
   void onImageSelected(File value) => _imageFile = value;
