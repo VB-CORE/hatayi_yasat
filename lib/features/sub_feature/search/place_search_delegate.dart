@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -20,6 +21,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
     SearchResponse response,
     BuildContext context,
   ) async {
+    ProjectDependencyItems.productProvider.saveLastSearch(query);
     await PlaceDetailRoute(
       $extra: StoreModel.empty(),
       id: response.id,
@@ -47,6 +49,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
 
   Widget _buildResultsOrSuggestions(BuildContext context) {
     if (query.trim().length < 3) {
+      // final items = ProjectDependencyItems.productProviderState.;
       return Center(
         child: Assets.lottie.search.lottie(
           height: context.sized.dynamicHeight(.2),
