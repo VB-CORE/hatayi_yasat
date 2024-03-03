@@ -74,6 +74,10 @@ class $AssetsLottieGen {
   LottieGenImage get connectionLost =>
       const LottieGenImage('assets/lottie/connection_lost.json');
 
+  /// File path: assets/lottie/info_place_lottie.json
+  LottieGenImage get infoPlaceLottie =>
+      const LottieGenImage('assets/lottie/info_place_lottie.json');
+
   /// File path: assets/lottie/loading_gray.json
   LottieGenImage get loadingGray =>
       const LottieGenImage('assets/lottie/loading_gray.json');
@@ -81,6 +85,10 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/search.json
   LottieGenImage get search =>
       const LottieGenImage('assets/lottie/search.json');
+
+  /// File path: assets/lottie/searching_place_lottie.json
+  LottieGenImage get searchingPlaceLottie =>
+      const LottieGenImage('assets/lottie/searching_place_lottie.json');
 
   /// File path: assets/lottie/success.json
   LottieGenImage get success =>
@@ -92,8 +100,10 @@ class $AssetsLottieGen {
         cityLoading,
         cityLoadingBetter,
         connectionLost,
+        infoPlaceLottie,
         loadingGray,
         search,
+        searchingPlaceLottie,
         success
       ];
 }

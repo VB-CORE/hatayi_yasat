@@ -50,6 +50,18 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
   Widget _buildResultsOrSuggestions(BuildContext context) {
     if (query.trim().length < 3) {
       // final items = ProjectDependencyItems.productProviderState.;
+
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.lottie.search.lottie(
+              height: context.sized.dynamicHeight(.2),
+            ),
+            const Text('Arama yapmak için en az 3 karakter girmelisiniz.'),
+          ],
+        ),
+      );
       return Center(
         child: Assets.lottie.search.lottie(
           height: context.sized.dynamicHeight(.2),
@@ -98,6 +110,22 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
     }
 
     if (_history.isNotEmpty) _history.clear();
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.lottie.search.lottie(
+            height: context.sized.dynamicHeight(.2),
+          ),
+          const Text(
+            'Arama yapabilmek için en az 3 karakter girip klavyenizden Ara kısmına basınız.',
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+
     return Center(
       child: Assets.lottie.search.lottie(
         height: context.sized.dynamicHeight(.2),
