@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
+import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 
 abstract class ValidatorField {
   String? validate(String? value);
@@ -86,5 +89,25 @@ final class ValidatorPhoneTextField extends ValidatorField {
       return LocaleKeys.validation_phoneNumber.tr();
     }
     return null;
+  }
+}
+
+final class ValidateCloseDate extends ValidatorField {
+  ValidateCloseDate({required this.controller});
+
+  final TimePickerController controller;
+  @override
+  String? validate(String? value) {
+    if (value.ext.isNullOrEmpty) {
+      return LocaleKeys.validation_pickATime.tr();
+    }
+    final closeTime = value!.toTimeOfDay;
+    final openTime = controller.time;
+    if (openTime == null) return LocaleKeys.validation_pickATime.tr();
+    if (closeTime.isAfter(openTime)) {
+      return null;
+    } else {
+      return LocaleKeys.validation_closeTimeMustBeAfterStartTime.tr();
+    }
   }
 }

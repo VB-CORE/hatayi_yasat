@@ -21,6 +21,8 @@ abstract class  LocaleKeys {
   static const validation_studentEmailFormat = 'validation.studentEmailFormat';
   static const validation_dateAfterNow = 'validation.dateAfterNow';
   static const validation_pleaseAddImage = 'validation.pleaseAddImage';
+  static const validation_pickATime = 'validation.pickATime';
+  static const validation_closeTimeMustBeAfterStartTime = 'validation.closeTimeMustBeAfterStartTime';
   static const validation = 'validation';
   static const button_save = 'button.save';
   static const button_addPhoto = 'button.addPhoto';
@@ -60,6 +62,9 @@ abstract class  LocaleKeys {
   static const requestCompany_category = 'requestCompany.category';
   static const requestCompany_chooseCategory = 'requestCompany.chooseCategory';
   static const requestCompany_chooseDistrict = 'requestCompany.chooseDistrict';
+  static const requestCompany_workingHours = 'requestCompany.workingHours';
+  static const requestCompany_start = 'requestCompany.start';
+  static const requestCompany_end = 'requestCompany.end';
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';

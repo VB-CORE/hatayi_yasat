@@ -20,7 +20,9 @@
     "emailFormat": "Please enter your mail correctly",
     "studentEmailFormat": "Please enter your student mail",
     "dateAfterNow": "Please enter a date after today",
-    "pleaseAddImage": "Please add an image"
+    "pleaseAddImage": "Please add an image",
+       "pickATime": "Please pick a time.",
+    "closeTimeMustBeAfterStartTime": "Close time must be after start time."
   },
   "button": {
     "save": "Save",
@@ -64,7 +66,10 @@
     "district": "District",
     "category": "Category",
     "chooseCategory": "Choose Category",
-    "chooseDistrict": "Choose District"
+    "chooseDistrict": "Choose District",
+     "workingHours": "Working Hours",
+    "start": "Start",
+    "end": "End"
   },
   "general": {
     "kvkk": "KVKK",

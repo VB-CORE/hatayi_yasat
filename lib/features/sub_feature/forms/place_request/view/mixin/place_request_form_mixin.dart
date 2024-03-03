@@ -13,6 +13,7 @@ import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
@@ -23,6 +24,8 @@ mixin PlaceRequestFormMixin
         RequestFormConsumerState<PlaceRequestForm> {
   late final List<TownModel> townModels;
   late final List<CategoryModel> categoryModels;
+  final TimePickerController openTimeController = TimePickerController();
+  final TimePickerController closeTimeController = TimePickerController();
   final TextEditingController placeNameController = TextEditingController();
   final TextEditingController placeDescriptionController =
       TextEditingController();
@@ -33,47 +36,15 @@ mixin PlaceRequestFormMixin
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
-  final TextEditingController startTimeController = TextEditingController();
-  final TextEditingController endTimeController = TextEditingController();
+  final ValueNotifier<SelectSheetModel?> _selecteTownNotifier =
+      ValueNotifier(null);
 
-  OpenAndCloseTimeValidationModel get timeValidationModel {
-    final openTimeHour = startTimeController.text.split(':').firstOrNull;
-    final openTimeMinute = startTimeController.text.split(':').lastOrNull;
+  final ValueNotifier<SelectSheetModel?> _selecteCategoryNotifier =
+      ValueNotifier(null);
 
-    final closeTimeHour = endTimeController.text.split(':').firstOrNull;
-    final closeTimeMinute = endTimeController.text.split(':').lastOrNull;
+  final ValueNotifier<bool> isKVKKCheckedNotifier = ValueNotifier(false);
 
-    if (openTimeHour == null ||
-        openTimeMinute == null ||
-        closeTimeHour == null ||
-        closeTimeMinute == null) {
-      return const OpenAndCloseTimeValidationModel();
-    } else {
-      final openTime = TimeOfDay(
-        hour: int.tryParse(openTimeHour)!,
-        minute: int.tryParse(openTimeMinute)!,
-      );
-
-      final closeTime = TimeOfDay(
-        hour: int.tryParse(closeTimeHour)!,
-        minute: int.tryParse(closeTimeMinute)!,
-      );
-
-      return OpenAndCloseTimeValidationModel(
-        openTime: openTime,
-        closeTime: closeTime,
-      );
-    }
-  }
-
-  set timeValidationModel(OpenAndCloseTimeValidationModel model) {
-    timeValidationModel = model;
-  }
-
-  SelectSheetModel? _selectedTownItem;
-  SelectSheetModel? _selectedCategoryItem;
   File? _imageFile;
-  bool _isKvkkChecked = false;
 
   @override
   void initState() {
@@ -94,8 +65,6 @@ mixin PlaceRequestFormMixin
     placePhoneNumberController.dispose();
     placeCategoryController.dispose();
     placeDistrictController.dispose();
-    startTimeController.dispose();
-    endTimeController.dispose();
   }
 
   void clear() {
@@ -104,12 +73,11 @@ mixin PlaceRequestFormMixin
     placeOwnerNameController.clear();
     placeAddressController.clear();
     placePhoneNumberController.clear();
-    startTimeController.clear();
-    endTimeController.clear();
-    _selectedCategoryItem = null;
+    openTimeController.clear();
+    closeTimeController.clear();
+    _selecteCategoryNotifier.value = null;
     _imageFile = null;
-    _selectedTownItem = null;
-    _isKvkkChecked = false;
+    _selecteCategoryNotifier.value = null;
   }
 
   @override
@@ -120,21 +88,29 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
-    if (timeValidationModel.isValid) return true;
-    if (_selectedTownItem != null) return true;
-    if (_selectedCategoryItem != null) return true;
+    if (_selecteTownNotifier.value != null) return true;
+    if (_selecteCategoryNotifier.value != null) return true;
+    if (openTimeController.isValid) return true;
+    if (closeTimeController.isValid) return true;
     if (_imageFile != null) return true;
     return false;
   }
 
-  void updateTownItem(SelectSheetModel item) => _selectedTownItem = item;
-  void updateCategoryItem(SelectSheetModel item) =>
-      _selectedCategoryItem = item;
+  void updateTownItem(SelectSheetModel item) {
+    _selecteTownNotifier.value = item;
+  }
 
-  /// TODO: This method should be updated with the new checkbox widget
-  void updateKVKK(bool value) => _isKvkkChecked = value;
+  void updateCategoryItem(SelectSheetModel item) {
+    _selecteCategoryNotifier.value = item;
+  }
 
-  void onImageSelected(File value) => _imageFile = value;
+  void updateKVKK({required bool value}) {
+    isKVKKCheckedNotifier.value = value;
+  }
+
+  void onImageSelected(File value) {
+    _imageFile = value;
+  }
 
   PlaceRequestModel? requestModel() {
     if (!validateAndSave()) return null;
@@ -144,12 +120,15 @@ mixin PlaceRequestFormMixin
       placeOwnerName: placeOwnerNameController.text,
       placeAddress: placeAddressController.text,
       placePhoneNumber: placePhoneNumberController.text,
-      timeValidationModel: timeValidationModel,
+      timeValidationModel: OpenAndCloseTimeValidationModel(
+        closeTime: closeTimeController.time,
+        openTime: openTimeController.time,
+      ),
       placeCategory: categoryModels.firstWhere(
-        (element) => element.documentId == _selectedCategoryItem?.id,
+        (element) => element.documentId == _selecteCategoryNotifier.value?.id,
       ),
       placeDistrict: townModels.firstWhere(
-        (element) => element.documentId == _selectedTownItem?.id,
+        (element) => element.documentId == _selecteTownNotifier.value?.id,
       ),
       imageFile: _imageFile ?? File(''),
     );

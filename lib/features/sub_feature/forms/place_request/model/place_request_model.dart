@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 
 final class PlaceRequestModel extends Equatable {
   const PlaceRequestModel({

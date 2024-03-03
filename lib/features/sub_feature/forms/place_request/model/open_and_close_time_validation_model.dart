@@ -11,7 +11,8 @@ final class OpenAndCloseTimeValidationModel {
 
   bool get isValid =>
       (openTime != null && closeTime != null) &&
-      (openTime!.hour < closeTime!.hour);
+      (openTime!.hour < closeTime!.hour &&
+          openTime!.minute < closeTime!.minute);
 
   bool get isNotValid => !isValid;
 
