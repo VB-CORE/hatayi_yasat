@@ -6,11 +6,7 @@ mixin _FilterMixin {
     required BuildContext context,
     String? category,
   }) async {
-    final result =
-        await FilterRoute($extra: category).push<FilterSelected?>(context);
-    if (result == null) return;
-    if (!context.mounted) return;
-    FilterResultRoute(result).go(context);
+    FilterRoute($extra: category).go(context);
   }
 }
 

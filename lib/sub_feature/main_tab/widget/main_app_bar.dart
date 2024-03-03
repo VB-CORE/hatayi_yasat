@@ -26,6 +26,15 @@ final class _MainAppBar extends AppBar {
           ),
           actions: [
             IconButton(
+              onPressed: () async {
+                await showSearch<SearchResponse>(
+                  context: context,
+                  delegate: PlaceSearchDelegate(),
+                );
+              },
+              icon: const Icon(AppIcons.search),
+            ),
+            IconButton(
               onPressed: () {
                 const NotificationsRoute().go(context);
               },
