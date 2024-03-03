@@ -89,13 +89,11 @@ dependencies:
   # JSON
   json_annotation: ^4.8.0
 
-  # life_shared:
-  #   git:
-  #     url: https://github.com/VB-CORE/life_shared.git
+   life_shared:
+     git:
+       url: https://github.com/VB-CORE/life_shared.git
 
-  life_shared:
-    path: ../life_shared
-      
+
   file_picker: ^5.5.0
 
 dependency_overrides:
