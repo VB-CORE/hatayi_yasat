@@ -11,7 +11,6 @@ final class AdvertisementBoardViewModel extends _$AdvertisementBoardViewModel
     with ProjectDependencyMixin {
   @override
   AdvertisementBoardState build() {
-    fetchAdvertisements();
     return const AdvertisementBoardState.empty();
   }
 

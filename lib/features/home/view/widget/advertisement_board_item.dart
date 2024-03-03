@@ -17,11 +17,14 @@ final class _AdvertisementItem extends StatelessWidget {
   }
 
   Future<void> _onPressed(BuildContext context) async {
-    if (item.link.ext.isNotNullOrNoEmpty) {
-      return showModalBottomSheet<void>(
-        builder: (_) => _AdvertisementDetailView(item),
-        context: context,
-      );
+    final link = item.link;
+    if (link.ext.isNullOrEmpty) {
+      return;
     }
+
+    return showModalBottomSheet<void>(
+      builder: (_) => _AdvertisementDetailView(item),
+      context: context,
+    );
   }
 }

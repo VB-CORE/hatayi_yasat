@@ -28,9 +28,11 @@ final class OpenUrlGeneralButton extends StatelessWidget {
       isLaunched = false;
     }
 
-    if (!isLaunched && context.mounted) {
-      await _showErrorDialog(context);
+    if (isLaunched || !context.mounted) {
+      return;
     }
+
+    await _showErrorDialog(context);
   }
 
   Future<void> _showErrorDialog(BuildContext context) async {

@@ -1,10 +1,18 @@
 part of '../home_view.dart';
 
-final class _AdvertisementSlider extends ConsumerWidget {
+final class _AdvertisementSlider extends ConsumerStatefulWidget {
   const _AdvertisementSlider();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_AdvertisementSlider> createState() =>
+      _AdvertisementSliderState();
+}
+
+final class _AdvertisementSliderState
+    extends ConsumerState<_AdvertisementSlider>
+    with _AdvertisementSliderStateMixin {
+  @override
+  Widget build(BuildContext context) {
     final items = ref.watch(advertisementBoardViewModelProvider).advertisements;
     return SliverPadding(
       padding: const PagePadding.onlyTopMedium(),
@@ -35,5 +43,17 @@ final class _AdvertisementSlider extends ConsumerWidget {
       padding: const PagePadding.vertical8Symmetric(),
       child: _AdvertisementItem(item),
     );
+  }
+}
+
+mixin _AdvertisementSliderStateMixin on ConsumerState<_AdvertisementSlider> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() async {
+      await ref
+          .read(advertisementBoardViewModelProvider.notifier)
+          .fetchAdvertisements();
+    });
   }
 }
