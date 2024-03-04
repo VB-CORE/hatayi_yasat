@@ -7,18 +7,22 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/enum/text_field/index.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_auto_fills.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/validator/index.dart';
+import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/general/dotted/index.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/list_view_with_space.dart';
 import 'package:lifeclient/product/widget/text_field/custom_category_field.dart';
 import 'package:lifeclient/product/widget/text_field/custom_district_field.dart';
-import 'package:lifeclient/product/widget/text_field/index.dart';
+import 'package:lifeclient/product/widget/text_field/custom_text_form_field.dart';
+import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
 part 'widget/place_request_send.dart';
 
@@ -49,7 +53,7 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
               .addNewDataToService(model);
           await dataSendingComplete(isOkay: response);
         },
-        onKVKKChanged: updateKVKK,
+        onKVKKChanged: (val) => updateKVKK(value: val),
       ).ext.toDisabled(
             disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
                 false,
@@ -58,6 +62,10 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
       body: ListViewWithSpace(
         children: [
           GeneralDottedPhotoAdd(onSelected: onImageSelected),
+          OpenAndCloseTimePicker(
+            closeTimeController: closeTimeController,
+            openTimeController: openTimeController,
+          ),
           CustomTextFormField(
             maxLength: TextFieldMaxLengths.small,
             hint: LocaleKeys.requestCompany_name.tr(),

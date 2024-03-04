@@ -20,7 +20,9 @@
     "emailFormat": "Lütfen mailinizi doğru giriniz",
     "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
-    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz"
+    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
+    "pickATime": "Lütfen bir saat seçiniz.",
+    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır."
   },
   "button": {
     "save": "Kaydet",
@@ -64,7 +66,10 @@
     "district": "İlçe",
     "category": "Kategori",
     "chooseCategory": "Kategori Seçiniz",
-    "chooseDistrict": "İlçe Seçiniz"
+    "chooseDistrict": "İlçe Seçiniz",
+    "workingHours": "İşletme Çalışma Saatleri",
+    "start": "Başlangıç",
+    "end": "Bitiş"
   },
   "general": {
     "kvkk": "KVKK'yı",
