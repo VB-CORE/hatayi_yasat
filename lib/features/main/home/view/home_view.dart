@@ -1,9 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart'
-    show ContextExtension, StringExtension, WidgetExtension;
+import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
@@ -11,8 +9,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/package/image/custom_network_image.dart';
-import 'package:lifeclient/product/utility/carousel/custom_carousel_options.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -24,10 +20,8 @@ import 'package:lifeclient/product/widget/general/general_not_found_widget.dart'
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
-import 'package:lifeclient/sub_feature/advertisement/models/advertisement_model.dart';
+import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
 
-part 'widget/advertisement_detail_view.dart';
-part 'widget/advertisement_slider.dart';
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
 part 'widget/home_sort_grid_view.dart';
@@ -52,7 +46,7 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
-          const _AdvertisementSlider(),
+          const AdvertisementSlider(),
           SliverPadding(
             padding: const PagePadding.onlyTopMedium(),
             sliver: ClickableSubTitleText(
