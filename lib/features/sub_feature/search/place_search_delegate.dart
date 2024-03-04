@@ -11,6 +11,7 @@ import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/firebase/custom_functions.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
   PlaceSearchDelegate();
@@ -48,24 +49,13 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
       const InputDecorationTheme();
 
   Widget _buildResultsOrSuggestions(BuildContext context) {
-    if (query.trim().length < 3) {
-      // final items = ProjectDependencyItems.productProviderState.;
-
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.lottie.search.lottie(
-              height: context.sized.dynamicHeight(.2),
-            ),
-            const Text('Arama yapmak için en az 3 karakter girmelisiniz.'),
-          ],
-        ),
-      );
-      return Center(
-        child: Assets.lottie.search.lottie(
-          height: context.sized.dynamicHeight(.2),
-        ),
+    if (!query.isNotEmptyAndLength) {
+      if (_history.isNotEmpty) _history.clear();
+      return _InitialEmptyResult(
+        onSelected: (value) {
+          query = value;
+          showResults(context);
+        },
       );
     }
 
@@ -81,13 +71,13 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
               _navigateDetail(value, context);
             },
           );
-        } else {
-          return Center(
-            child: Assets.lottie.search.lottie(
-              height: context.sized.dynamicHeight(.2),
-            ),
-          );
         }
+
+        return Center(
+          child: Assets.lottie.searchingPlaceLottie.lottie(
+            height: context.sized.dynamicHeight(.2),
+          ),
+        );
       },
     );
   }
@@ -109,26 +99,64 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
       );
     }
 
-    if (_history.isNotEmpty) _history.clear();
+    return _InitialEmptyResult(
+      onSelected: (value) {
+        query = value;
+        showResults(context);
+      },
+    );
+  }
+}
 
+class _InitialEmptyResult extends StatelessWidget {
+  const _InitialEmptyResult({required this.onSelected});
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final lastSearchItems =
+        ProjectDependencyItems.productProvider.lastSearchItems;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Assets.lottie.search.lottie(
+          if (lastSearchItems.isNotEmpty)
+            Padding(
+              padding: const PagePadding.horizontal16Symmetric() +
+                  const PagePadding.onlyTopLow(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const GeneralBodyTitle('Son Aramalar'),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: lastSearchItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TextButton.icon(
+                        onPressed: () {
+                          onSelected.call(lastSearchItems[index]);
+                        },
+                        icon: const Icon(Icons.done_all_outlined),
+                        label: Text(lastSearchItems[index]),
+                        style: TextButton.styleFrom(
+                          alignment: Alignment.centerLeft,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          const Spacer(),
+          Assets.lottie.infoPlaceLottie.lottie(
             height: context.sized.dynamicHeight(.2),
           ),
           const Text(
             'Arama yapabilmek için en az 3 karakter girip klavyenizden Ara kısmına basınız.',
             textAlign: TextAlign.center,
           ),
+          const Spacer(),
         ],
-      ),
-    );
-
-    return Center(
-      child: Assets.lottie.search.lottie(
-        height: context.sized.dynamicHeight(.2),
       ),
     );
   }
@@ -180,7 +208,7 @@ class _EmptyResult extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.clear),
+          const Icon(AppIcons.clear),
           Text(
             LocaleKeys.message_emptySearch,
             style: context.general.textTheme.bodyLarge?.copyWith(
@@ -192,4 +220,8 @@ class _EmptyResult extends StatelessWidget {
       ),
     );
   }
+}
+
+extension _QueryCheckExtension on String {
+  bool get isNotEmptyAndLength => isNotEmpty && trim().length > 2;
 }

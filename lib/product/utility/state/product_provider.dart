@@ -112,9 +112,11 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
     return isAllFavoritePlacesRemoved;
   }
 
+  List<String> get lastSearchItems =>
+      appModelCache.get(AppCacheModel.appModelId)?.lastSearchItems ?? [];
   void saveLastSearch(String searchTerm) {
-    final appCacheModel = appModelCache.get(AppCacheModel.appModelId);
-    if (appCacheModel == null) return;
+    final appCacheModel =
+        appModelCache.get(AppCacheModel.appModelId) ?? const AppCacheModel();
 
     final currentItems = appCacheModel.lastSearchItems.toList();
     if (currentItems.contains(searchTerm)) return;
