@@ -99,6 +99,9 @@ abstract class  LocaleKeys {
   static const message_republicDay = 'message.republicDay';
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
+  static const search_latestSearch = 'search.latestSearch';
+  static const search_minumumSearch = 'search.minumumSearch';
+  static const search = 'search';
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
   static const placeDetailView_address = 'placeDetailView.address';

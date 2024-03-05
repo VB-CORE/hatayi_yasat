@@ -11,22 +11,14 @@ import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/firebase/custom_functions.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
-final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
+part './view/place_build_response_result.dart';
+part './view/place_search_empty_result.dart';
+
+final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
+    with _PlaceSearchMixin {
   PlaceSearchDelegate();
-
-  List<SearchResponse> _history = [];
-
-  Future<void> _navigateDetail(
-    SearchResponse response,
-    BuildContext context,
-  ) async {
-    ProjectDependencyItems.productProvider.saveLastSearch(query);
-    await PlaceDetailRoute(
-      $extra: StoreModel.empty(),
-      id: response.id,
-    ).push<void>(context);
-  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -47,39 +39,6 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
   InputDecorationTheme? get searchFieldDecorationTheme =>
       const InputDecorationTheme();
 
-  Widget _buildResultsOrSuggestions(BuildContext context) {
-    if (query.trim().length < 3) {
-      // final items = ProjectDependencyItems.productProviderState.;
-      return Center(
-        child: Assets.lottie.search.lottie(
-          height: context.sized.dynamicHeight(.2),
-        ),
-      );
-    }
-
-    return FutureBuilder<List<SearchResponse>>(
-      future: CustomFunctions().searchPlaces(query),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          _history = snapshot.data!;
-          return _BuildResult(
-            query: query,
-            items: snapshot.data!,
-            onSelected: (value) {
-              _navigateDetail(value, context);
-            },
-          );
-        } else {
-          return Center(
-            child: Assets.lottie.search.lottie(
-              height: context.sized.dynamicHeight(.2),
-            ),
-          );
-        }
-      },
-    );
-  }
-
   @override
   Widget buildResults(BuildContext context) {
     return _buildResultsOrSuggestions(context);
@@ -88,7 +47,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isNotEmpty && _history.isNotEmpty) {
-      return _BuildResult(
+      return _PlaceSearchResponseResult(
         query: query,
         items: _history,
         onSelected: (value) {
@@ -97,71 +56,64 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse> {
       );
     }
 
-    if (_history.isNotEmpty) _history.clear();
-    return Center(
-      child: Assets.lottie.search.lottie(
-        height: context.sized.dynamicHeight(.2),
-      ),
+    return _PlaceSearchEmptyResult(
+      onSelected: (value) {
+        query = value;
+        showResults(context);
+      },
     );
   }
-}
 
-class _BuildResult extends StatelessWidget {
-  const _BuildResult({
-    required this.items,
-    required this.onSelected,
-    required this.query,
-  });
+  Widget _buildResultsOrSuggestions(BuildContext context) {
+    if (!query.isNotEmptyAndLength) {
+      if (_history.isNotEmpty) _history.clear();
+      return _PlaceSearchEmptyResult(
+        onSelected: (value) {
+          query = value;
+          showResults(context);
+        },
+      );
+    }
 
-  final List<SearchResponse> items;
-  final ValueChanged<SearchResponse> onSelected;
-  final String query;
+    return FutureBuilder<List<SearchResponse>>(
+      future: CustomFunctions().searchPlaces(query),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          _history = snapshot.data ?? [];
+          return _PlaceSearchResponseResult(
+            query: query,
+            items: snapshot.data!,
+            onSelected: (value) {
+              _navigateDetail(value, context);
+            },
+          );
+        }
 
-  @override
-  Widget build(BuildContext context) {
-    if (items.isEmpty) return const _EmptyResult();
-
-    return ListView.separated(
-      itemCount: items.length,
-      separatorBuilder: (context, index) {
-        return const Divider();
-      },
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: FaIcon(
-            FontAwesomeIcons.store,
-            size: context.sized.normalValue,
+        return Center(
+          child: Assets.lottie.searchingPlaceLottie.lottie(
+            height: context.sized.dynamicHeight(.2),
           ),
-          title: Text(items[index].name),
-          trailing: const Icon(Icons.chevron_right_outlined),
-          onTap: () {
-            onSelected.call(items[index]);
-          },
         );
       },
     );
   }
 }
 
-class _EmptyResult extends StatelessWidget {
-  const _EmptyResult();
+extension _QueryCheckExtension on String {
+  bool get isNotEmptyAndLength => isNotEmpty && trim().length > 2;
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.clear),
-          Text(
-            LocaleKeys.message_emptySearch,
-            style: context.general.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: ColorCommon(context).whiteAndBlackForTheme,
-            ),
-          ).tr(),
-        ],
-      ),
-    );
+mixin _PlaceSearchMixin on SearchDelegate<SearchResponse> {
+  List<SearchResponse> _history = [];
+
+  Future<void> _navigateDetail(
+    SearchResponse response,
+    BuildContext context,
+  ) async {
+    ProjectDependencyItems.productProvider.saveLastSearch(query);
+    await PlaceDetailRoute(
+      $extra: StoreModel.empty(),
+      id: response.id,
+    ).push<void>(context);
   }
 }
