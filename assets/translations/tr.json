@@ -40,7 +40,8 @@
     "showResult": "Sonucu göster",
     "sendRequest": "İsteği gönder",
     "call": "Ara",
-    "share": "Paylaş"
+    "share": "Paylaş",
+    "error": "Hata"
   },
   "component": {
     "picker": {
@@ -261,12 +262,18 @@
   "uploadShelter": {
     "title": "Barınak Ayrıntılarını Yükle"
   },
-    "sorting":{
-    "time":{ 
+  "sorting": {
+    "time": {
       "newest": "Yeniden eskiye",
-      "oldest": "Eskiden yeniye"}
+      "oldest": "Eskiden yeniye"
+    }
   },
   "utils": {
     "options": "{} seçenek"
+  },
+  "advertisementBoard": {
+    "openUrl": "Linki Aç",
+    "launchUrlError": "Link açılırken bir hata meydana geldi",
+    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   }
 }

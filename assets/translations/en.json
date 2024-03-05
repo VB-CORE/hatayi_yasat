@@ -21,7 +21,7 @@
     "studentEmailFormat": "Please enter your student mail",
     "dateAfterNow": "Please enter a date after today",
     "pleaseAddImage": "Please add an image",
-       "pickATime": "Please pick a time.",
+    "pickATime": "Please pick a time.",
     "closeTimeMustBeAfterStartTime": "Close time must be after start time."
   },
   "button": {
@@ -40,7 +40,8 @@
     "showResult": "Show result",
     "sendRequest": "Send Request",
     "call": "Call",
-    "share": "Share"
+    "share": "Share",
+    "error": "Error"
   },
   "component": {
     "picker": {
@@ -67,7 +68,7 @@
     "category": "Category",
     "chooseCategory": "Choose Category",
     "chooseDistrict": "Choose District",
-     "workingHours": "Working Hours",
+    "workingHours": "Working Hours",
     "start": "Start",
     "end": "End"
   },
@@ -260,12 +261,18 @@
   "uploadShelter": {
     "title": "Upload Shelter Details"
   },
-  "sorting":{
-      "time":{ 
+  "sorting": {
+    "time": {
       "newest": "Newest to oldest",
-      "oldest":"Oldest to newest"}
+      "oldest": "Oldest to newest"
+    }
   },
   "utils": {
     "options": "{} option"
+  },
+  "advertisementBoard": {
+    "openUrl": "Open Url",
+    "launchUrlError": "An error occurred when launch url",
+    "shareAdvertisementSubject": "Visit advertisement owner: {}"
   }
 }
