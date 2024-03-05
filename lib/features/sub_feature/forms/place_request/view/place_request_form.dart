@@ -67,7 +67,7 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             openTimeController: openTimeController,
           ),
           CustomTextFormField(
-            maxLength: TextFieldMaxLengths.small,
+            maxLength: TextFieldMaxLengths.large,
             hint: LocaleKeys.requestCompany_name.tr(),
             controller: placeNameController,
             validator: ValidatorNormalTextField(),
