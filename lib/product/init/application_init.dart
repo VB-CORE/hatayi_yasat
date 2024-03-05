@@ -38,9 +38,16 @@ final class ApplicationInit {
     await SharedCache.instance.init();
     await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
-    await FirebaseCrashlytics.instance
-        .setCrashlyticsCollectionEnabled(kDebugMode);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
+    FlutterError.onError = (errorDetails) {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    };
+    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
     ProjectDependency.setup();
     ProjectDependencyItems.appProvider
         .changeAppTheme(theme: SharedCache.instance.theme);
