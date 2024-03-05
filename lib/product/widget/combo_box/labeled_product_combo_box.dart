@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/constants/string_constants.dart';
-import 'package:vbaseproject/product/widget/combo_box/product_combo_box.dart';
+import 'package:lifeclient/product/utility/constants/string_constants.dart';
+import 'package:lifeclient/product/widget/combo_box/product_combo_box.dart';
 
 class LabeledProductComboBox<T extends ProductDropDownModel>
     extends StatelessWidget {

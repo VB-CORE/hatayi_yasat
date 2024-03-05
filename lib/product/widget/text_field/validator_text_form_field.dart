@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/utility/validator/validator_text_field.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 
 class ValidatorTextFormField extends StatelessWidget {
   const ValidatorTextFormField({

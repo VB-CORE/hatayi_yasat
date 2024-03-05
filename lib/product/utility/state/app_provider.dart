@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/constants/app_constants.dart';
-import 'package:vbaseproject/product/utility/state/items/app_provider_state.dart';
-import 'package:vbaseproject/product/utility/state/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
+import 'package:lifeclient/product/utility/state/mixin/app_provider_mixin.dart';
 
 final class AppProvider extends StateNotifier<AppProviderState>
     with AppProviderOperationMixin {

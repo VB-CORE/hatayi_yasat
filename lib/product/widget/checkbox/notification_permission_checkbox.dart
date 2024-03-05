@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/model/enum/approve_dialog_type.dart';
-import 'package:vbaseproject/product/package/settings/custom_app_settings.dart';
-import 'package:vbaseproject/product/widget/dialog/approve_dialog.dart';
-import 'package:vbaseproject/product/widget/general/title/general_body_title.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
+import 'package:lifeclient/product/package/settings/custom_app_settings.dart';
+import 'package:lifeclient/product/widget/dialog/approve_dialog.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_title.dart';
 
 @immutable
 final class NotificationPermissionView extends StatefulWidget {

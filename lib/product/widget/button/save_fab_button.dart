@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
+import 'package:life_shared/life_shared.dart';
 
 class SaveButton extends StatelessWidget {
   const SaveButton({

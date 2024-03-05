@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 
 final class PlaceRequestModel extends Equatable {
   const PlaceRequestModel({
@@ -13,6 +14,7 @@ final class PlaceRequestModel extends Equatable {
     required this.placeCategory,
     required this.placeDistrict,
     required this.imageFile,
+    required this.timeValidationModel,
   });
 
   final String placeName;
@@ -23,6 +25,7 @@ final class PlaceRequestModel extends Equatable {
   final CategoryModel placeCategory;
   final TownModel placeDistrict;
   final File imageFile;
+  final OpenAndCloseTimeValidationModel timeValidationModel;
 
   @override
   List<Object?> get props => [
@@ -34,5 +37,6 @@ final class PlaceRequestModel extends Equatable {
         placeDistrict,
         placeCategory,
         imageFile,
+        timeValidationModel,
       ];
 }

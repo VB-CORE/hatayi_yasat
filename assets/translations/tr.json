@@ -20,7 +20,9 @@
     "emailFormat": "Lütfen mailinizi doğru giriniz",
     "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
-    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz"
+    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
+    "pickATime": "Lütfen bir saat seçiniz.",
+    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır."
   },
   "button": {
     "save": "Kaydet",
@@ -38,7 +40,8 @@
     "showResult": "Sonucu göster",
     "sendRequest": "İsteği gönder",
     "call": "Ara",
-    "share": "Paylaş"
+    "share": "Paylaş",
+    "error": "Hata"
   },
   "component": {
     "picker": {
@@ -64,7 +67,10 @@
     "district": "İlçe",
     "category": "Kategori",
     "chooseCategory": "Kategori Seçiniz",
-    "chooseDistrict": "İlçe Seçiniz"
+    "chooseDistrict": "İlçe Seçiniz",
+    "workingHours": "İşletme Çalışma Saatleri",
+    "start": "Başlangıç",
+    "end": "Bitiş"
   },
   "general": {
     "kvkk": "KVKK'yı",
@@ -256,8 +262,19 @@
   "uploadShelter": {
     "title": "Barınak Ayrıntılarını Yükle"
   },
+  "sorting": {
+    "time": {
+      "newest": "Yeniden eskiye",
+      "oldest": "Eskiden yeniye"
+    }
+  },
   "utils": {
     "options": "{} seçenek"
+  },
+  "advertisementBoard": {
+    "openUrl": "Linki Aç",
+    "launchUrlError": "Link açılırken bir hata meydana geldi",
+    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
   "chain_stores": {
     "title": "Zincir Mağazalar"

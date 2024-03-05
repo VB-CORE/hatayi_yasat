@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/generated/assets.gen.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/widget/dialog/sub_widget/general_dialog_button.dart';
-import 'package:vbaseproject/product/widget/general/title/general_body_title.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_title.dart';
 
 /// This widget was prepared using success lottie for successful situations.
 /// You can use it by simply sending a title or description.

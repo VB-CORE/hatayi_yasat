@@ -6,14 +6,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/core/dependency/project_dependency_items.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/place_request_model.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/view/place_request_form.dart';
-import 'package:vbaseproject/features/sub_feature/forms/request_form.dart';
-import 'package:vbaseproject/product/init/language/locale_keys.g.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/dialog/general_form_success_dialog.dart';
-import 'package:vbaseproject/product/widget/sheet/general_select_sheet.dart';
+
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
+import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
+import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 
 mixin PlaceRequestFormMixin
     on
@@ -21,6 +24,8 @@ mixin PlaceRequestFormMixin
         RequestFormConsumerState<PlaceRequestForm> {
   late final List<TownModel> townModels;
   late final List<CategoryModel> categoryModels;
+  final TimePickerController openTimeController = TimePickerController();
+  final TimePickerController closeTimeController = TimePickerController();
   final TextEditingController placeNameController = TextEditingController();
   final TextEditingController placeDescriptionController =
       TextEditingController();
@@ -31,11 +36,15 @@ mixin PlaceRequestFormMixin
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
+  final ValueNotifier<SelectSheetModel?> _selecteTownNotifier =
+      ValueNotifier(null);
 
-  SelectSheetModel? _selectedTownItem;
-  SelectSheetModel? _selectedCategoryItem;
+  final ValueNotifier<SelectSheetModel?> _selecteCategoryNotifier =
+      ValueNotifier(null);
+
+  final ValueNotifier<bool> isKVKKCheckedNotifier = ValueNotifier(false);
+
   File? _imageFile;
-  bool _isKvkkChecked = false;
 
   @override
   void initState() {
@@ -64,10 +73,11 @@ mixin PlaceRequestFormMixin
     placeOwnerNameController.clear();
     placeAddressController.clear();
     placePhoneNumberController.clear();
-    _selectedCategoryItem = null;
+    openTimeController.clear();
+    closeTimeController.clear();
+    _selecteCategoryNotifier.value = null;
     _imageFile = null;
-    _selectedTownItem = null;
-    _isKvkkChecked = false;
+    _selecteCategoryNotifier.value = null;
   }
 
   @override
@@ -78,19 +88,29 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
-    if (_selectedTownItem != null) return true;
-    if (_selectedCategoryItem != null) return true;
+    if (_selecteTownNotifier.value != null) return true;
+    if (_selecteCategoryNotifier.value != null) return true;
+    if (openTimeController.isValid) return true;
+    if (closeTimeController.isValid) return true;
     if (_imageFile != null) return true;
     return false;
   }
 
-  void updateTownItem(SelectSheetModel item) => _selectedTownItem = item;
-  void updateCategoryItem(SelectSheetModel item) =>
-      _selectedCategoryItem = item;
+  void updateTownItem(SelectSheetModel item) {
+    _selecteTownNotifier.value = item;
+  }
 
-  void updateKVKK(bool value) => _isKvkkChecked = value;
+  void updateCategoryItem(SelectSheetModel item) {
+    _selecteCategoryNotifier.value = item;
+  }
 
-  void onImageSelected(File value) => _imageFile = value;
+  void updateKVKK({required bool value}) {
+    isKVKKCheckedNotifier.value = value;
+  }
+
+  void onImageSelected(File value) {
+    _imageFile = value;
+  }
 
   PlaceRequestModel? requestModel() {
     if (!validateAndSave()) return null;
@@ -100,11 +120,15 @@ mixin PlaceRequestFormMixin
       placeOwnerName: placeOwnerNameController.text,
       placeAddress: placeAddressController.text,
       placePhoneNumber: placePhoneNumberController.text,
+      timeValidationModel: OpenAndCloseTimeValidationModel(
+        closeTime: closeTimeController.time,
+        openTime: openTimeController.time,
+      ),
       placeCategory: categoryModels.firstWhere(
-        (element) => element.documentId == _selectedCategoryItem?.id,
+        (element) => element.documentId == _selecteCategoryNotifier.value?.id,
       ),
       placeDistrict: townModels.firstWhere(
-        (element) => element.documentId == _selectedTownItem?.id,
+        (element) => element.documentId == _selecteTownNotifier.value?.id,
       ),
       imageFile: _imageFile ?? File(''),
     );

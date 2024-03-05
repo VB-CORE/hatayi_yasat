@@ -1,9 +1,11 @@
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_state.dart';
+import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
+import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/model/place_request_model.dart';
-import 'package:vbaseproject/features/sub_feature/forms/place_request/provider/place_request_state.dart';
 
 part 'place_request_provider.g.dart';
 
@@ -39,9 +41,10 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       images: [uploadImage],
       townCode: placeRequestModel.placeDistrict.code ?? 0,
       createdAt: DateTime.now(),
+      openTime: placeRequestModel.timeValidationModel.openTime?.stringValue,
+      closeTime: placeRequestModel.timeValidationModel.closeTime?.stringValue,
       updatedAt: DateTime.now(),
       isApproved: false,
-      // TODO: Get deviceId
       deviceID: '',
     );
 

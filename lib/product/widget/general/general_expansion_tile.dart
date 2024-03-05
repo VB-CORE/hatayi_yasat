@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_border_side.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/general/index.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/decorations/custom_border_side.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 final class GeneralExpansionTile extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vbaseproject/product/utility/mixin/app_provider_mixin.dart';
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_button.dart';
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_provider.dart';
-import 'package:vbaseproject/product/widget/button/favorite_button/favorite_place_state.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_provider.dart';
+import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_state.dart';
 
 mixin FavoritePlaceButtonMixin
     on

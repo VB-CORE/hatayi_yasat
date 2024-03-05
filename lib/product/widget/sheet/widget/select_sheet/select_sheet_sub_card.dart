@@ -4,14 +4,17 @@ final class _SelectSheetSubCard extends StatelessWidget {
   const _SelectSheetSubCard({
     required this.item,
     required this.onSelected,
+    required this.isSelectedInitial,
   });
 
   final SelectSheetModel item;
   final ValueChanged<SelectSheetModel?> onSelected;
+  final bool isSelectedInitial;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       dense: true,
+      leading: isSelectedInitial ? const Icon(AppIcons.check) : null,
       onTap: () {
         onSelected.call(item);
       },

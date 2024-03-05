@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:vbaseproject/product/utility/constants/index.dart';
-import 'package:vbaseproject/product/utility/extension/index.dart';
-import 'package:vbaseproject/product/widget/sheet/town_category_sheet.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
+import 'package:lifeclient/product/widget/sheet/town_category_sheet.dart';
 
 @immutable
 final class TownCategoryModel {

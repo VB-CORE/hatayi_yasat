@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
-import 'package:vbaseproject/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 
 @immutable
 final class ImageManipulation {

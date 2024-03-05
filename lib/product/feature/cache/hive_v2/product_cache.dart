@@ -1,7 +1,7 @@
-import 'package:vbaseproject/product/feature/cache/hive_v2/cache_manager.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/app_cache_model.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})

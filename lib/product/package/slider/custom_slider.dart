@@ -1,11 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:vbaseproject/product/common/color_common.dart';
-import 'package:vbaseproject/product/package/image/custom_network_image.dart';
-import 'package:vbaseproject/product/utility/decorations/custom_radius.dart';
-import 'package:vbaseproject/product/utility/padding/page_padding.dart';
-import 'package:vbaseproject/product/widget/size/index.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 final class SliderModel {
   SliderModel({required this.title, required this.imageUrl});

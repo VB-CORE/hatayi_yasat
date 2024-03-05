@@ -17,6 +17,8 @@ final class AppIcons {
   static const IconData gallery = Icons.image_outlined;
   static const IconData calendar = Icons.calendar_today;
   static const IconData calendarFilled = Icons.calendar_month_rounded;
+  static const IconData timerOn = Icons.timer_outlined;
+  static const IconData timerOff = Icons.timer_off;
 
   static const IconData home = Icons.home_outlined;
   static const IconData search = Icons.search_outlined;
@@ -39,4 +41,5 @@ final class AppIcons {
   static const IconData list = Icons.list_alt_outlined;
 
   static const IconData location = Icons.location_on;
+  static const IconData check = Icons.check_outlined;
 }

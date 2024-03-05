@@ -1,4 +1,4 @@
-part of '../appbar/custom_popup_menu_app_bar.dart';
+part of '../app_bar/custom_popup_menu_app_bar.dart';
 
 final class _CustomPopupMenuItem extends PopupMenuItem<dynamic> {
   _CustomPopupMenuItem({

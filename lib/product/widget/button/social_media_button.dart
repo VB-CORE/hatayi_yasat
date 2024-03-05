@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:vbaseproject/product/widget/spacer/dynamic_horizontal_spacer.dart';
+import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
 
 class SocialMediaButton extends StatefulWidget {
   final IconData icon;

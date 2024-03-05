@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vbaseproject/features/favorite/view/favorite_view.dart';
+import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
 
 final class FavoriteRoute extends GoRouteData {
   const FavoriteRoute();

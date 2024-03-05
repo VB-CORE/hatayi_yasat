@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vbaseproject/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
 
 part 'app_cache_model.g.dart';
 
@@ -8,6 +8,7 @@ part 'app_cache_model.g.dart';
 final class AppCacheModel with CacheModel, EquatableMixin {
   const AppCacheModel({
     this.isHomeViewGrid = false,
+    this.lastSearchItems = const [],
   });
 
   factory AppCacheModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +18,7 @@ final class AppCacheModel with CacheModel, EquatableMixin {
   static const String appModelId = 'app_model_cache';
 
   final bool isHomeViewGrid;
+  final List<String> lastSearchItems;
 
   @override
   List<Object> get props => [id];

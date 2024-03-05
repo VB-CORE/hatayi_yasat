@@ -4,8 +4,8 @@ import 'dart:typed_data';
 import 'package:life_shared/life_shared.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:vbaseproject/product/feature/path_operation/custom_path_manager.dart';
-import 'package:vbaseproject/product/package/image_manipulation/image_manipulation.dart';
+import 'package:lifeclient/product/feature/path_operation/custom_path_manager.dart';
+import 'package:lifeclient/product/package/image_manipulation/image_manipulation.dart';
 
 final class ImageCompressAndWaterMark {
   ImageCompressAndWaterMark(this.storeModel);

@@ -97,38 +97,38 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
     required this.image,
     required this.placeOwnerName,
     required this.backButtonAction,
+    required this.model,
   });
 
   final String image;
   final String placeOwnerName;
   final AsyncCallback backButtonAction;
+  final StoreModel model;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
+      alignment: Alignment.bottomCenter,
       children: [
         CustomImageWithViewDialog(image: image),
-        _CircleImageWithNamePositioned(
-          image: image,
-          placeOwnerName: placeOwnerName,
+        Positioned.fill(
+          bottom: -WidgetSizes.spacingM,
+          left: WidgetSizes.spacingM,
+          right: WidgetSizes.spacingM,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              _CircleImageWithNamePositioned(
+                image: image,
+                placeOwnerName: placeOwnerName,
+              ),
+              const Spacer(),
+              _OpenCloseTime(model: model),
+            ],
+          ),
         ),
       ],
-    );
-  }
-}
-
-@immutable
-final class _BackButtonContainer extends StatelessWidget {
-  const _BackButtonContainer({
-    required this.onPressed,
-  });
-  final VoidCallback onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return BackButtonWidget(
-      onPressed: onPressed,
-      backgroundColor: context.general.colorScheme.primary,
     );
   }
 }
@@ -145,13 +145,50 @@ class _CircleImageWithNamePositioned extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: -WidgetSizes.spacingM,
-      left: WidgetSizes.spacingM,
-      child: CircleImageWithTextContainer(
-        imageUrl: image,
-        name: placeOwnerName,
-      ),
+    return CircleImageWithTextContainer(
+      imageUrl: image,
+      name: placeOwnerName,
+    );
+  }
+}
+
+class _OpenCloseTime extends StatelessWidget {
+  const _OpenCloseTime({
+    required this.model,
+    super.key,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    final times = [model.openTime, model.closeTime];
+    if (times.any((element) => element.ext.isNullOrEmpty)) {
+      return const SizedBox.shrink();
+    }
+    return Row(
+      children: times
+          .mapIndexed(
+            (i, e) => Padding(
+              padding: i == WidgetSizes.zero
+                  ? const PagePadding.onlyRightVeryLow()
+                  : EdgeInsets.zero,
+              child: Chip(
+                backgroundColor: context.general.colorScheme.secondary,
+                elevation: WidgetSizes.spacingXxs,
+                shadowColor: ColorCommon(context).whiteAndBlackForTheme,
+                shape: const StadiumBorder(
+                  side: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: const PagePadding.allVeryLow(),
+                label: Text(e!),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

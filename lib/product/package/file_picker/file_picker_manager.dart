@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart' hide FileType;
-import 'package:vbaseproject/product/package/file_picker/default_file_extension.dart';
-import 'package:vbaseproject/product/package/file_picker/file_extension_enum.dart';
+import 'package:lifeclient/product/package/file_picker/default_file_extension.dart';
+import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 
 @immutable
 final class FilePickerManager {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:vbaseproject/product/utility/validator/index.dart';
-import 'package:vbaseproject/product/widget/button/multiple_select_button.dart';
-import 'package:vbaseproject/product/widget/icon/index.dart';
-import 'package:vbaseproject/product/widget/text/title_description_text.dart';
-import 'package:vbaseproject/product/widget/text_field/index.dart';
+import 'package:lifeclient/product/utility/validator/index.dart';
+import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
+import 'package:lifeclient/product/widget/icon/index.dart';
+import 'package:lifeclient/product/widget/text/title_description_text.dart';
+import 'package:lifeclient/product/widget/text_field/index.dart';
 
 class DemoView extends StatefulWidget {
   const DemoView({super.key});

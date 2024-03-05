@@ -1,5 +1,5 @@
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:vbaseproject/product/model/search_response_model.dart';
+import 'package:lifeclient/product/model/search_response_model.dart';
 
 final class CustomFunctions {
   static const String _search = 'search';
