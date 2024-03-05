@@ -6,6 +6,8 @@ import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
+import 'package:lifeclient/product/model/constant/project_general_constant.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
 final class ProductProvider extends StateNotifier<ProductProviderState> {
@@ -121,11 +123,10 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
     final currentItems = appCacheModel.lastSearchItems.toList();
     if (currentItems.contains(searchTerm)) return;
 
-    if (currentItems.length >= 5) {
-      currentItems.removeAt(0);
+    if (currentItems.length >= ProjectGeneralConstant.maxLatestSearchCount) {
+      currentItems.removeAt(kZero.toInt());
     }
     currentItems.add(searchTerm);
-
     appModelCache.add(AppCacheModel(lastSearchItems: currentItems));
   }
 }

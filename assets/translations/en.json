@@ -104,6 +104,10 @@
     "emptyFavorite": "Your favorites list is empty",
     "openEventDetailPhone": "Hello, I want to get information about the event named {}"
   },
+  "search": {
+    "latestSearch": "Latest Searches",
+    "minumumSearch": "Please enter at least 3 characters to search then press search button from the keyboard"
+  },
   "placeDetailView": {
     "owner": "Business Owner",
     "description": "Business Description",
@@ -255,10 +259,11 @@
   "uploadShelter": {
     "title": "Upload Shelter Details"
   },
-  "sorting":{
-      "time":{ 
+  "sorting": {
+    "time": {
       "newest": "Newest to oldest",
-      "oldest":"Oldest to newest"}
+      "oldest": "Oldest to newest"
+    }
   },
   "utils": {
     "options": "{} option"

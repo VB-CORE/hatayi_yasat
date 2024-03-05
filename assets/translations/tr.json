@@ -103,6 +103,10 @@
     "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷",
     "emptyFavorite": "Favori listeniz boş"
   },
+  "search": {
+    "latestSearch": "Son Aramalar",
+    "minumumSearch": "'Arama yapabilmek için en az {} karakter girip klavyenizden Ara kısmına basınız."
+  },
   "placeDetailView": {
     "owner": "İşletme Sahibi",
     "description": "İşletme Açıklaması",
@@ -256,10 +260,11 @@
   "uploadShelter": {
     "title": "Barınak Ayrıntılarını Yükle"
   },
-    "sorting":{
-    "time":{ 
+  "sorting": {
+    "time": {
       "newest": "Yeniden eskiye",
-      "oldest": "Eskiden yeniye"}
+      "oldest": "Eskiden yeniye"
+    }
   },
   "utils": {
     "options": "{} seçenek"
