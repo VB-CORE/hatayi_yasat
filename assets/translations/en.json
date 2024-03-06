@@ -278,5 +278,9 @@
     "openUrl": "Open Url",
     "launchUrlError": "An error occurred when launch url",
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
+  },
+  "whatsNew": {
+    "title": "What's New",
+    "homeView": "🏠 You can now see the latest news, events, and job postings on the home page."
   }
 }

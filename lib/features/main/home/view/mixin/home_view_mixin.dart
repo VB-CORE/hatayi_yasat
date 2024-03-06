@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
+import 'package:lifeclient/features/sub_feature/whats_new/whats_new_sheet_manager.dart';
 import 'package:lifeclient/product/package/firebase/messaging_utility.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
@@ -16,6 +17,7 @@ mixin HomeViewMixin
     super.initState();
     MessagingUtility.init();
     listenToNotification();
+    WhatsNewSheetManager(context: context).show();
   }
 
   Future<void> listenToNotification() async {

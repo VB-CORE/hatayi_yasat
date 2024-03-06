@@ -241,5 +241,8 @@ abstract class  LocaleKeys {
   static const advertisementBoard_launchUrlError = 'advertisementBoard.launchUrlError';
   static const advertisementBoard_shareAdvertisementSubject = 'advertisementBoard.shareAdvertisementSubject';
   static const advertisementBoard = 'advertisementBoard';
+  static const whatsNew_title = 'whatsNew.title';
+  static const whatsNew_homeView = 'whatsNew.homeView';
+  static const whatsNew = 'whatsNew';
 
 }

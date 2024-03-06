@@ -4,5 +4,6 @@ enum SharedKeys {
   applyScholarship,
   lastNotificationSeenTime,
   favoritePlaces,
-  republicDayFirstTimeSeen,
+
+  currentVersion
 }
