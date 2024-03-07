@@ -153,10 +153,7 @@ class _CircleImageWithNamePositioned extends StatelessWidget {
 }
 
 class _OpenCloseTime extends StatelessWidget {
-  const _OpenCloseTime({
-    required this.model,
-    super.key,
-  });
+  const _OpenCloseTime({required this.model});
 
   final StoreModel model;
 
@@ -166,6 +163,7 @@ class _OpenCloseTime extends StatelessWidget {
     if (times.any((element) => element.ext.isNullOrEmpty)) {
       return const SizedBox.shrink();
     }
+
     return Row(
       children: times
           .mapIndexed(
@@ -174,7 +172,7 @@ class _OpenCloseTime extends StatelessWidget {
                   ? const PagePadding.onlyRightVeryLow()
                   : EdgeInsets.zero,
               child: Chip(
-                backgroundColor: context.general.colorScheme.secondary,
+                backgroundColor: _backgroundColor(context),
                 elevation: WidgetSizes.spacingXxs,
                 shadowColor: ColorCommon(context).whiteAndBlackForTheme,
                 shape: const StadiumBorder(
@@ -190,5 +188,11 @@ class _OpenCloseTime extends StatelessWidget {
           )
           .toList(),
     );
+  }
+
+  Color? _backgroundColor(BuildContext context) {
+    return model.isStoreOpen
+        ? context.general.colorScheme.primaryContainer.withOpacity(.6)
+        : context.general.colorScheme.error.withOpacity(.6);
   }
 }
