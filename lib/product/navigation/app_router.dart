@@ -10,6 +10,7 @@ import 'package:lifeclient/features/sub_feature/forms/index.dart';
 import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
+import 'package:lifeclient/product/navigation/chain_stores_router/chain_stores_router.dart';
 import 'package:lifeclient/product/navigation/event_router/event_router.dart';
 import 'package:lifeclient/product/navigation/favorite_router/favorite_router.dart';
 import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';

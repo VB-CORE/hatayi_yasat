@@ -206,7 +206,8 @@
     "news": "Haberler henüz girilmemiş.",
     "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
     "advertise": "İş ilanı henüz girilmemiş.",
-    "image": "Resim yüklenemedi."
+    "image": "Resim yüklenemedi.",
+    "chainStore": "Zincir mağaza henüz girilmemiş."
   },
   "months": {
     "jan": "Ocak",
