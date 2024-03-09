@@ -46,7 +46,10 @@ final class _NotificationsViewState extends State<NotificationsView>
                 dense: true,
                 leading: _NotificationTypeLeadingIcon(model: model),
                 onTap: () => navigateToDetail(model),
-                title: Text(model.body ?? ''),
+                title: Text(
+                  _title(model) ?? '',
+                  maxLines: AppConstants.kTwo,
+                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -71,6 +74,9 @@ final class _NotificationsViewState extends State<NotificationsView>
       ),
     );
   }
+
+  String? _title(AppNotificationModel model) =>
+      model.type == AppNotificationType.link ? model.title : model.body;
 }
 
 final class _CustomDivider extends StatelessWidget {
@@ -106,15 +112,14 @@ final class _NotificationTypeLeadingIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (model.type == null) return const SizedBox();
+    if (model.type == null) return const SizedBox.shrink();
     return switch (model.type!) {
       AppNotificationType.store => const Icon(Icons.home_outlined),
       AppNotificationType.campaign => const Icon(Icons.campaign_outlined),
       AppNotificationType.news => const Icon(Icons.newspaper_outlined),
       AppNotificationType.advertise =>
         const Icon(Icons.notifications_active_outlined),
-      // TODO: Handle this case.
-      AppNotificationType.link => throw UnimplementedError(),
+      AppNotificationType.link => const Icon(Icons.link_outlined),
     };
   }
 }

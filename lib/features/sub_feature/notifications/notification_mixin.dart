@@ -40,8 +40,11 @@ mixin NotificationMixin
 
     showLoading();
 
+    final id =
+        model.type == AppNotificationType.link ? model.documentId : model.id;
+
     await NotificationNavigateParse(context).makeWithType(
-      id: model.id,
+      id: id,
       type: fromAppNotifications(model.type!),
     );
 
