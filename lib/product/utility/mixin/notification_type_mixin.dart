@@ -6,6 +6,10 @@ mixin NotificationTypeMixin {
   (NotificationType?, String) modelConvertToType(
     NotificationModel model,
   ) {
+    if (model.link.ext.isNotNullOrNoEmpty && model.id.ext.isNotNullOrNoEmpty) {
+      return (NotificationType.link, model.id!);
+    }
+
     if (model.id.ext.isNotNullOrNoEmpty) {
       return (NotificationType.project, model.id!);
     }
@@ -36,7 +40,7 @@ mixin NotificationTypeMixin {
       case AppNotificationType.advertise:
         return NotificationType.advertise;
       case AppNotificationType.link:
-        throw UnimplementedError();
+        return NotificationType.link;
     }
   }
 }

@@ -43,6 +43,14 @@ final class NotificationNavigateParse with NotificationTypeMixin {
           customService: _customService,
         );
         return;
+      case NotificationType.link:
+        if (!context.mounted) return;
+        await MessagingNavigate.instance.detailModelLinkCheckAndBottomSheet(
+          context: context,
+          id: id,
+          customService: _customService,
+        );
+        return;
     }
   }
 

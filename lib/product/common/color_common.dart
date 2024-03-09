@@ -10,6 +10,7 @@ final class ColorCommon {
   final BuildContext context;
 
   static const Color sameWhiteColor = ColorsCustom.white;
+  static const Color linkColor = ColorsCustom.brandeisBlue;
 
   /// means [ThemeData].light == white
   Color get whiteAndBlackForTheme {
