@@ -210,7 +210,8 @@
     "news": "Haberler henüz girilmemiş.",
     "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
     "advertise": "İş ilanı henüz girilmemiş.",
-    "image": "Resim yüklenemedi."
+    "image": "Resim yüklenemedi.",
+    "chainStore": "Zincir mağaza henüz girilmemiş."
   },
   "months": {
     "jan": "Ocak",
@@ -279,5 +280,8 @@
     "openUrl": "Linki Aç",
     "launchUrlError": "Link açılırken bir hata meydana geldi",
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
+  },
+  "chain_stores": {
+    "title": "Zincir Mağazalar"
   }
 }

@@ -9,6 +9,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/chain_stores_router/chain_stores_router.dart';
 import 'package:lifeclient/product/navigation/favorite_router/favorite_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
