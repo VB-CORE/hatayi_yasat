@@ -10,7 +10,6 @@ final class _ChainStoreListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: implement after merge shared pull request
     final query = ref
         .read(chainStoreProviderProvider.notifier)
         .fetchChainStoreCollectionReference();

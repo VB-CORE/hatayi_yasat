@@ -76,5 +76,10 @@ service cloud.firestore {
       allow write: if true;
     }
 
+    match /chainStores/{chainStores} {
+      allow read;
+      allow write: if true;
+    }
+
   }
 }
