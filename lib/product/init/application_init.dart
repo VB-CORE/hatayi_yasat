@@ -54,7 +54,7 @@ final class ApplicationInit {
   }
 
   Future<void> _injectTestEnvOnDebug() async {
-    if (!kDebugMode) return;
+    if (kDebugMode) return;
     FirebaseFunctions.instance.useFunctionsEmulator(
       FirebaseEnv.localPath,
       FirebaseEnv.functions.port,

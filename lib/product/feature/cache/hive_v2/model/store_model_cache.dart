@@ -9,7 +9,7 @@ final class StoreModelCache with CacheModel, EquatableMixin {
 
   final StoreModel storeModel;
   @override
-  CacheModel fromDynamicJson(dynamic json) {
+  StoreModelCache fromDynamicJson(dynamic json) {
     if (json is! Map<String, dynamic>) throw Exception('Invalid json type');
     final id = json['id'];
     if (id is! String) throw Exception('Invalid id type');
