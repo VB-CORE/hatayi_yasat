@@ -4,7 +4,7 @@ default_platform(:android)
 APP_TRACK_INTERNAL = "internal"
 APP_JSON_KEY = "./fastlane/secret/google_play.json"
 APP_BUNDLE_PATH = "../build/app/outputs/bundle/release/app-release.aab"
-VERSION_NUMBER = "3.1.0"
+VERSION_NUMBER = "5.0.0"
 
 platform :android do
   lane :release do |options|

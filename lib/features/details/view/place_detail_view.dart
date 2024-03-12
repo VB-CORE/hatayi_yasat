@@ -7,6 +7,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
 import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
