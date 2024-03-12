@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/details/view/link_detail_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
@@ -107,6 +108,42 @@ final class MessagingNavigate {
         ),
       );
     }
+  }
+
+  Future<void> detailModelLinkCheckAndBottomSheet({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final result = await _getDetailModelFromLink(
+      context: context,
+      id: id,
+      customService: customService,
+    );
+    if (!context.mounted) return;
+    if (result != null) {
+      await LinkDetailView.show(context: context, model: result);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        ErrorSnackBar(
+          message: LocaleKeys.notification_newsNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+  }
+
+  Future<AppNotificationModel?> _getDetailModelFromLink({
+    required BuildContext context,
+    required String id,
+    required CustomService customService,
+  }) async {
+    final data = await customService.getSingleData(
+      model: AppNotificationModel(),
+      path: CollectionPaths.notifications,
+      id: id,
+    );
+
+    return data;
   }
 
   Future<void> detailModelAdvertiseCheckAndShowBottomSheet({

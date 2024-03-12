@@ -19,6 +19,8 @@ final class MessagingUtility {
           .subscribeToTopic(NotificationTopics.news.rawValue),
       FirebaseMessaging.instance
           .subscribeToTopic(NotificationTopics.advertise.rawValue),
+      FirebaseMessaging.instance
+          .subscribeToTopic(NotificationTopics.toAllLinked.rawValue),
     ]);
   }
 

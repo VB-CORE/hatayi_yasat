@@ -193,4 +193,11 @@ final class _OpenCloseTime extends StatelessWidget {
       label: Text(times.join(' - ')),
     );
   }
+
+  Color? _backgroundColor(BuildContext context) {
+    final storeModel = StoreModelHelper(model: model);
+    return (storeModel.isStoreOpen ?? false)
+        ? context.general.colorScheme.primaryContainer.withOpacity(.6)
+        : context.general.colorScheme.error.withOpacity(.6);
+  }
 }
