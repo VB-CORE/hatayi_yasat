@@ -191,7 +191,8 @@ class _OpenCloseTime extends StatelessWidget {
   }
 
   Color? _backgroundColor(BuildContext context) {
-    return model.isStoreOpen
+    final storeModel = StoreModelHelper(model: model);
+    return (storeModel.isStoreOpen ?? false)
         ? context.general.colorScheme.primaryContainer.withOpacity(.6)
         : context.general.colorScheme.error.withOpacity(.6);
   }
