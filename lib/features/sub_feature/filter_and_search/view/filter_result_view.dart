@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 // import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
@@ -50,9 +49,8 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
             padding: const PagePadding.vertical6Symmetric(),
             child: ListTile(
               onTap: () {
-                context.pop();
                 PlaceDetailRoute($extra: model, id: model.documentId)
-                    .go(context);
+                    .push<void>(context);
               },
               title: Text(model.name),
             ),
