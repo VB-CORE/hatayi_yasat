@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/text_field/index.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 final class GeneralNotFoundWidget extends StatelessWidget {
@@ -31,21 +32,19 @@ final class GeneralNotFoundWidget extends StatelessWidget {
               width: context.sized.dynamicWidth(.16),
             ),
             const SizedBox(height: WidgetSizes.spacingL),
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
-              direction: Axis.vertical,
-              children: [
-                GeneralContentSubTitle(
-                  value: title,
-                ),
-                if (onRefresh != null)
-                  TextButton(
-                    onPressed: onRefresh,
-                    child: Text(LocaleKeys.notFound_forRefresh.tr()),
-                  ),
-              ],
+            Padding(
+              padding: const PagePadding.all(),
+              child: GeneralContentSubTitle(
+                value: title,
+                maxLine: TextFieldMaxLengths.maxLine,
+                textAlign: TextAlign.center,
+              ),
             ),
+            if (onRefresh != null)
+              TextButton(
+                onPressed: onRefresh,
+                child: Text(LocaleKeys.notFound_forRefresh.tr()),
+              ),
           ],
         ),
       ),

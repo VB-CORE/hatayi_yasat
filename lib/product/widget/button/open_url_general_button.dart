@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:lifeclient/product/widget/general/general_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 final class OpenUrlGeneralButton extends StatelessWidget {
   const OpenUrlGeneralButton({required this.url, super.key});
@@ -23,7 +23,7 @@ final class OpenUrlGeneralButton extends StatelessWidget {
     var isLaunched = false;
 
     try {
-      isLaunched = await launchUrl(Uri.parse(url));
+      isLaunched = await url.ext.launchWebsite;
     } catch (_) {
       isLaunched = false;
     }
@@ -38,8 +38,8 @@ final class OpenUrlGeneralButton extends StatelessWidget {
   Future<void> _showErrorDialog(BuildContext context) async {
     await GeneralTextDialog.show(
       context,
-      LocaleKeys.button_error,
-      LocaleKeys.advertisementBoard_launchUrlError,
+      LocaleKeys.button_error.tr(),
+      LocaleKeys.advertisementBoard_launchUrlError.tr(),
       [
         GeneralDialogButton(
           onPressed: () => Navigator.pop(context),

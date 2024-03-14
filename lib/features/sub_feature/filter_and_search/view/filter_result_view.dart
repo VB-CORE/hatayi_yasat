@@ -42,7 +42,7 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
       body: GeneralFirestoreListView(
         query: query,
         emptyBuilder: (context) => GeneralNotFoundWidget(
-          title: LocaleKeys.notFound_specialAgency.tr(),
+          title: LocaleKeys.component_filter_resultEmpty.tr(),
         ),
         itemBuilder: (context, model) {
           return Padding(
