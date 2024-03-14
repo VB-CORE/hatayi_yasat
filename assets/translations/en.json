@@ -54,8 +54,7 @@
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
       "categoryDescription": "You can select and filter categories here",
-      "filterResult": "Filter Result",
-      "resultEmpty": "No results found with the filtering criteria you chose."
+      "filterResult": "Filter Result"
     }
   },
   "requestCompany": {
@@ -156,7 +155,6 @@
     "businessNotFoundErrorMessage": "Business not found",
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
-    "placeNotFoundErrorMessage": "Place not found",
     "advertiseNotFoundErrorMessage": "Advertise not found"
   },
   "developers": {

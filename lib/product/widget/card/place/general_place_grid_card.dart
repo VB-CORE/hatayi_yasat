@@ -45,12 +45,7 @@ final class GeneralPlaceGridCard extends StatelessWidget {
             Positioned(
               top: WidgetSizes.spacingXSs,
               right: WidgetSizes.spacingXSs,
-              child: CircleAvatar(
-                radius: CustomCircleRadius.medium,
-                backgroundColor:
-                    context.general.colorScheme.secondary.withOpacity(0.9),
-                child: FavoritePlaceButton(store: storeModel),
-              ),
+              child: FavoritePlaceButton(store: storeModel),
             ),
           ],
         ),
