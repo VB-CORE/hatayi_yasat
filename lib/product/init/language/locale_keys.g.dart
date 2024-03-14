@@ -51,6 +51,7 @@ abstract class  LocaleKeys {
   static const component_filter_categories = 'component.filter.categories';
   static const component_filter_categoryDescription = 'component.filter.categoryDescription';
   static const component_filter_filterResult = 'component.filter.filterResult';
+  static const component_filter_resultEmpty = 'component.filter.resultEmpty';
   static const component_filter = 'component.filter';
   static const component = 'component';
   static const requestCompany_title = 'requestCompany.title';
@@ -98,6 +99,7 @@ abstract class  LocaleKeys {
   static const message_addedFavorite = 'message.addedFavorite';
   static const message_republicDay = 'message.republicDay';
   static const message_emptyFavorite = 'message.emptyFavorite';
+  static const message_openEventDetailPhone = 'message.openEventDetailPhone';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
   static const search_minumumSearch = 'search.minumumSearch';
@@ -113,8 +115,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -172,11 +174,10 @@ abstract class  LocaleKeys {
   static const advertise_gender = 'advertise.gender';
   static const advertise_owner = 'advertise.owner';
   static const advertise_phone = 'advertise.phone';
+  static const advertise_role = 'advertise.role';
   static const advertise_callPhone = 'advertise.callPhone';
   static const advertise_share = 'advertise.share';
-  static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
-  static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
   static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';
   static const notFound_notification = 'notFound.notification';
