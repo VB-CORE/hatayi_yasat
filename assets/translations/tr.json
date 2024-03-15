@@ -54,7 +54,8 @@
       "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
       "categories": "Kategoriler",
       "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
-      "filterResult": "Filtreleme sonucu"
+      "filterResult": "Filtreleme sonucu",
+      "resultEmpty": "Seçtiğiniz filtreleme kriterlerine uygun sonuç bulunamadı."
     }
   },
   "requestCompany": {
