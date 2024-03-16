@@ -36,7 +36,7 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   bool get isHomeViewGrid =>
-      appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? false;
+      appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? true;
 
   void saveLatestGridViewType({required bool isSelected}) {
     appModelCache.add(AppCacheModel(isHomeViewGrid: isSelected));
