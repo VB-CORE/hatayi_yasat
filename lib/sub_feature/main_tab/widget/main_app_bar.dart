@@ -69,7 +69,7 @@ final class _CustomPopupMenu extends StatelessWidget {
           _CustomPopupMenuItem<void>(
             itemLabel: LocaleKeys.favorite_title,
             destination: () {
-              const FavoriteRoute().go(context);
+              const FavoriteRoute().push<void>(context);
             },
           ),
           _CustomPopupMenuItem<void>(
