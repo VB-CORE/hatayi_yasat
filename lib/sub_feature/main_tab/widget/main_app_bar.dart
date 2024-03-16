@@ -51,6 +51,7 @@ final class _CustomPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      elevation: 0,
       color: context.general.colorScheme.secondary,
       icon: Icon(
         AppIcons.moreDots,

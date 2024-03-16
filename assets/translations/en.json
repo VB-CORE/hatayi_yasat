@@ -283,6 +283,8 @@
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
   },
   "chain_stores": {
-    "title": "Chain Stores"
+    "title": "Chain Stores",
+    "showAllSubBranches": "Show all sub-store {}",
+    "subBranchesTitle": "{} Store ({})"
   }
 }
