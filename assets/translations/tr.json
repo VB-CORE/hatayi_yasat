@@ -283,6 +283,8 @@
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
   "chain_stores": {
-    "title": "Zincir Mağazalar"
+    "title": "Zincir Mağazalar",
+    "showAllSubBranches": "Tüm şubeleri göster {}",
+    "subBranchesTitle": "{} Şubeleri ({})"
   }
 }
