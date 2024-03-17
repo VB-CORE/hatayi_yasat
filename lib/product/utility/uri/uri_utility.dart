@@ -1,3 +1,4 @@
+import 'package:kartal/kartal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UriUtility {
@@ -23,6 +24,10 @@ class UriUtility {
   }
 
   void launch() {
-    launchUrl(toUri);
+    try {
+      launchUrl(toUri);
+    } catch (e) {
+      CustomLogger.showError<dynamic>(e);
+    }
   }
 }
