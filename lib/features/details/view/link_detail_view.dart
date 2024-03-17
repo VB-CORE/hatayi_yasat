@@ -4,7 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/style/button_rectangle_border.dart';
-import 'package:lifeclient/product/utility/uri/uri_utility.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
 final class LinkDetailView extends StatelessWidget {
@@ -120,7 +120,7 @@ final class _LinkAndShare extends StatelessWidget {
       contentPadding: const PagePadding.horizontalSymmetric() +
           const PagePadding.verticalLowSymmetric() +
           const PagePadding.onlyBottomLow(),
-      onTap: () => model.id.ext.launchWebsite,
+      onTap: () => model.id.withHttps.ext.launchWebsite,
       title: _Link(model: model),
       trailing: _Share(model: model),
     );
