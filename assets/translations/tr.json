@@ -281,6 +281,9 @@
     "launchUrlError": "Link açılırken bir hata meydana geldi",
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
+  "chain_stores": {
+    "title": "Zincir Mağazalar"
+  },
   "whatsNew": {
     "title": "Yenilikler",
     "homeView": "🏠 Ana sayfada uzerinde siralama ve goruntu degistirme opsyionu eklendi"

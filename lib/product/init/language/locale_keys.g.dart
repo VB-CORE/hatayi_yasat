@@ -242,10 +242,10 @@ abstract class  LocaleKeys {
   static const advertisementBoard_launchUrlError = 'advertisementBoard.launchUrlError';
   static const advertisementBoard_shareAdvertisementSubject = 'advertisementBoard.shareAdvertisementSubject';
   static const advertisementBoard = 'advertisementBoard';
+  static const chain_stores_title = 'chain_stores.title';
+  static const chain_stores = 'chain_stores';
   static const whatsNew_title = 'whatsNew.title';
   static const whatsNew_homeView = 'whatsNew.homeView';
   static const whatsNew = 'whatsNew';
-  static const chain_stores_title = 'chain_stores.title';
-  static const chain_stores = 'chain_stores';
 
 }
