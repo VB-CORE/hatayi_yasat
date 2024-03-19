@@ -188,6 +188,7 @@ abstract class  LocaleKeys {
   static const notFound_favoritePlaces = 'notFound.favoritePlaces';
   static const notFound_advertise = 'notFound.advertise';
   static const notFound_image = 'notFound.image';
+  static const notFound_chainStore = 'notFound.chainStore';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -244,5 +245,7 @@ abstract class  LocaleKeys {
   static const whatsNew_title = 'whatsNew.title';
   static const whatsNew_homeView = 'whatsNew.homeView';
   static const whatsNew = 'whatsNew';
+  static const chain_stores_title = 'chain_stores.title';
+  static const chain_stores = 'chain_stores';
 
 }

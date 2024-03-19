@@ -82,6 +82,14 @@ class $AssetsLottieGen {
   LottieGenImage get loadingGray =>
       const LottieGenImage('assets/lottie/loading_gray.json');
 
+  /// File path: assets/lottie/place_close_lottie.json
+  LottieGenImage get placeCloseLottie =>
+      const LottieGenImage('assets/lottie/place_close_lottie.json');
+
+  /// File path: assets/lottie/place_open_lottie.json
+  LottieGenImage get placeOpenLottie =>
+      const LottieGenImage('assets/lottie/place_open_lottie.json');
+
   /// File path: assets/lottie/search.json
   LottieGenImage get search =>
       const LottieGenImage('assets/lottie/search.json');
@@ -102,6 +110,8 @@ class $AssetsLottieGen {
         connectionLost,
         infoPlaceLottie,
         loadingGray,
+        placeCloseLottie,
+        placeOpenLottie,
         search,
         searchingPlaceLottie,
         success

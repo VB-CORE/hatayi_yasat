@@ -12,8 +12,10 @@ final class GeneralExpansionTile extends StatelessWidget {
     required this.children,
     super.key,
   });
+
   final String pageTitle;
   final List<Widget> children;
+
   @override
   Widget build(BuildContext context) {
     return Card(

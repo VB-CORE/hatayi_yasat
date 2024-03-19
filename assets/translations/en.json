@@ -209,7 +209,8 @@
     "news": "News has not been entered yet.",
     "favoritePlaces": "There is no any favorite places.",
     "advertise": "Job postings has not been entered yet.",
-    "image": "Image could not be loaded."
+    "image": "Image could not be loaded.",
+    "chainStore": "Chain stores has not been entered yet."
   },
   "months": {
     "jan": "January",
@@ -279,6 +280,8 @@
     "launchUrlError": "An error occurred when launch url",
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
   },
+  "chain_stores": {
+    "title": "Chain Stores"
   "whatsNew": {
     "title": "What's New",
     "homeView": "🏠 You can now see the latest news, events, and job postings on the home page."
