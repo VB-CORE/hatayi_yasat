@@ -26,27 +26,5 @@ final class WhatsNewSheetManager {
       currentAppVersion: getApplicationVersionNumber.toInt(),
       savedAppVersion: getSavedVersion,
     );
-
-    // if (applicationVersionValue.isEmpty) return;
-    // final getApplicationVersionNumber =
-    //     double.parse(''.ext.version.split('.').join());
-
-    // //// it's not needs to show change log when application first install
-    // if (getSavedVersion == kErrorNumber) {
-    //   await _saveCurrentVersion(getApplicationVersionNumber.toInt());
-    //   return;
-    // }
-
-    // if (getApplicationVersionNumber == kErrorNumber) return;
-    // if (getSavedVersion >= getApplicationVersionNumber) return;
-    // await _saveCurrentVersion(getApplicationVersionNumber.toInt());
-    // await showModalBottomSheet<void>(
-    //   context: context,
-    //   builder: (context) => const WhatsNewSheet(),
-    // );
   }
-
-  // Future<void> _saveCurrentVersion(int version) async {
-  //   await SharedCache.instance.saveCurrentVersion(version);
-  // }
 }

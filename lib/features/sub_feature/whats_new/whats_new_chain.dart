@@ -12,6 +12,7 @@ abstract interface class WhatsNewChain {
     required int currentAppVersion,
     required int savedAppVersion,
   });
+
   Future<void> saveCurrentVersion(int version) async {
     await SharedCache.instance.saveCurrentVersion(version);
   }
@@ -67,6 +68,7 @@ final class EndWhatsNewChain extends WhatsNewChain {
     required int savedAppVersion,
   }) async {
     await saveCurrentVersion(currentAppVersion);
+
     await showModalBottomSheet<void>(
       context: context,
       builder: (context) => const WhatsNewSheet(),

@@ -106,7 +106,6 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
     "emptyFavorite": "Your favorites list is empty",
     "openEventDetailPhone": "Hello, I want to get information about the event named {}"
   },
@@ -284,7 +283,11 @@
     "title": "Chain Stores"
   },
   "whatsNew": {
-    "title": "What's New",
-    "homeView": "🏠 You can now see the latest news, events, and job postings on the home page."
+    "title": "What's New v5.0.0 🎉",
+    "advertiseBannerView": "📢 You can now advertise and highlight your business.",
+    "homeView": "🏠 The homepage now offers a dual-view to reach more businesses easily.",
+    "chainView": "🛍 A chain store screen has been added.",
+    "notificationViewLink": "🔔 An option to open links from notifications has been added.",
+    "bugFixes": "🐞 Bug fixes have been made."
   }
 }
