@@ -107,7 +107,6 @@
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "republicDay": "Yaşasın Cumhuriyet!  🇹🇷🇹🇷",
     "emptyFavorite": "Favori listeniz boş"
   },
   "search": {
@@ -286,5 +285,13 @@
     "title": "Zincir Mağazalar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
+  },
+  "whatsNew": {
+    "title": "Yenilikler v5.0.0 🎉",
+    "advertiseBannerView": "📢 Artık reklam verip firmanızı öne çıkartabilirsiniz.",
+    "homeView": "🏠 Ana sayfa üzerinde ikili görünüm ile daha çok işletmeye ulaşabilirsiniz.",
+    "chainView": "🛍 Zincir mağaza ekranı eklendi.",
+    "notificationViewLink": "🔔 Bildirimler üzerinden link açma opsiyonu eklendi.",
+    "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   }
 }

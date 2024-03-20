@@ -7,4 +7,3 @@ export 'general_text_dialog.dart';
 export 'not_connected_to_internet_dialog.dart';
 export 'pdf_preview_dialog.dart';
 export 'photo_view_dialog.dart';
-export 'video_dialog.dart';

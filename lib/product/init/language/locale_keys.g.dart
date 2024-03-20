@@ -97,7 +97,6 @@ abstract class  LocaleKeys {
   static const message_emptySearch = 'message.emptySearch';
   static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message_addedFavorite = 'message.addedFavorite';
-  static const message_republicDay = 'message.republicDay';
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
@@ -247,5 +246,12 @@ abstract class  LocaleKeys {
   static const chain_stores_showAllSubBranches = 'chain_stores.showAllSubBranches';
   static const chain_stores_subBranchesTitle = 'chain_stores.subBranchesTitle';
   static const chain_stores = 'chain_stores';
+  static const whatsNew_title = 'whatsNew.title';
+  static const whatsNew_advertiseBannerView = 'whatsNew.advertiseBannerView';
+  static const whatsNew_homeView = 'whatsNew.homeView';
+  static const whatsNew_chainView = 'whatsNew.chainView';
+  static const whatsNew_notificationViewLink = 'whatsNew.notificationViewLink';
+  static const whatsNew_bugFixes = 'whatsNew.bugFixes';
+  static const whatsNew = 'whatsNew';
 
 }
