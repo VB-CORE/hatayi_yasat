@@ -50,7 +50,7 @@ final class ControlVersionWhatsNewChain extends WhatsNewChain {
     required int currentAppVersion,
     required int savedAppVersion,
   }) async {
-    if (savedAppVersion != currentAppVersion) return;
+    if (savedAppVersion == currentAppVersion) return;
 
     await nextChain?.show(
       currentAppVersion: currentAppVersion,
