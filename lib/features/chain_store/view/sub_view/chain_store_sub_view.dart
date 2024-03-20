@@ -36,7 +36,7 @@ class _SubItemBranch extends StatelessWidget {
     required this.model,
   });
 
-  final List<StoreModel> safeBranches;
+  final List<StoreModelSnapshot> safeBranches;
   final ChainStoreModel model;
   @override
   Widget build(BuildContext context) {
