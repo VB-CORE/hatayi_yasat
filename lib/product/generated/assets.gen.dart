@@ -58,18 +58,6 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
-  /// File path: assets/lottie/better_not_found.json
-  LottieGenImage get betterNotFound =>
-      const LottieGenImage('assets/lottie/better_not_found.json');
-
-  /// File path: assets/lottie/city_loading.json
-  LottieGenImage get cityLoading =>
-      const LottieGenImage('assets/lottie/city_loading.json');
-
-  /// File path: assets/lottie/city_loading_better.json
-  LottieGenImage get cityLoadingBetter =>
-      const LottieGenImage('assets/lottie/city_loading_better.json');
-
   /// File path: assets/lottie/connection_lost.json
   LottieGenImage get connectionLost =>
       const LottieGenImage('assets/lottie/connection_lost.json');
@@ -82,18 +70,6 @@ class $AssetsLottieGen {
   LottieGenImage get loadingGray =>
       const LottieGenImage('assets/lottie/loading_gray.json');
 
-  /// File path: assets/lottie/place_close_lottie.json
-  LottieGenImage get placeCloseLottie =>
-      const LottieGenImage('assets/lottie/place_close_lottie.json');
-
-  /// File path: assets/lottie/place_open_lottie.json
-  LottieGenImage get placeOpenLottie =>
-      const LottieGenImage('assets/lottie/place_open_lottie.json');
-
-  /// File path: assets/lottie/search.json
-  LottieGenImage get search =>
-      const LottieGenImage('assets/lottie/search.json');
-
   /// File path: assets/lottie/searching_place_lottie.json
   LottieGenImage get searchingPlaceLottie =>
       const LottieGenImage('assets/lottie/searching_place_lottie.json');
@@ -104,15 +80,9 @@ class $AssetsLottieGen {
 
   /// List of all assets
   List<LottieGenImage> get values => [
-        betterNotFound,
-        cityLoading,
-        cityLoadingBetter,
         connectionLost,
         infoPlaceLottie,
         loadingGray,
-        placeCloseLottie,
-        placeOpenLottie,
-        search,
         searchingPlaceLottie,
         success
       ];

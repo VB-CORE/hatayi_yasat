@@ -31,21 +31,17 @@ final class GeneralNotFoundWidget extends StatelessWidget {
               width: context.sized.dynamicWidth(.16),
             ),
             const SizedBox(height: WidgetSizes.spacingL),
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
-              direction: Axis.vertical,
-              children: [
-                GeneralContentSubTitle(
-                  value: title,
-                ),
-                if (onRefresh != null)
-                  TextButton(
-                    onPressed: onRefresh,
-                    child: Text(LocaleKeys.notFound_forRefresh.tr()),
-                  ),
-              ],
+            Padding(
+              padding: const PagePadding.all(),
+              child: GeneralContentSubTitle(
+                value: title,
+              ),
             ),
+            if (onRefresh != null)
+              TextButton(
+                onPressed: onRefresh,
+                child: Text(LocaleKeys.notFound_forRefresh.tr()),
+              ),
           ],
         ),
       ),

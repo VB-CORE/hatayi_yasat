@@ -54,7 +54,8 @@
       "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
       "categories": "Kategoriler",
       "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
-      "filterResult": "Filtreleme sonucu"
+      "filterResult": "Filtreleme sonucu",
+      "resultEmpty": "Seçtiğiniz filtreleme kriterlerine uygun sonuç bulunamadı."
     }
   },
   "requestCompany": {
@@ -281,7 +282,9 @@
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
   "chain_stores": {
-    "title": "Zincir Mağazalar"
+    "title": "Zincir Mağazalar",
+    "showAllSubBranches": "Tüm şubeleri göster {}",
+    "subBranchesTitle": "{} Şubeleri ({})"
   },
   "whatsNew": {
     "title": "Yenilikler v5.0.0 🎉",

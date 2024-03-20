@@ -4,6 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/style/button_rectangle_border.dart';
+import 'package:lifeclient/product/utility/uri/uri_utility.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
 final class LinkDetailView extends StatelessWidget {
@@ -115,11 +116,11 @@ final class _LinkAndShare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: ColorCommon.sameWhiteColor,
+      tileColor: context.general.colorScheme.secondary,
       contentPadding: const PagePadding.horizontalSymmetric() +
           const PagePadding.verticalLowSymmetric() +
           const PagePadding.onlyBottomLow(),
-      onTap: () => model.id.ext.launchWebsiteCustom(),
+      onTap: () => UriUtility(address: model.id).launch(),
       title: _Link(model: model),
       trailing: _Share(model: model),
     );
@@ -158,7 +159,7 @@ final class _Link extends StatelessWidget {
       style: context.general.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w600,
         decoration: TextDecoration.underline,
-        color: ColorCommon.linkColor,
+        color: context.general.colorScheme.onSecondaryContainer,
       ),
     );
   }

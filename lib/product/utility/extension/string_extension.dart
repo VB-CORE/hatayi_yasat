@@ -5,4 +5,12 @@ extension StringExtension on String {
   TimeOfDay get toTimeOfDay {
     return TimeOfDayExt.fromString(this);
   }
+
+  String get withHttps {
+    if (startsWith('http')) {
+      return this;
+    } else {
+      return 'https://$this';
+    }
+  }
 }

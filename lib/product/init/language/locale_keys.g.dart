@@ -51,6 +51,7 @@ abstract class  LocaleKeys {
   static const component_filter_categories = 'component.filter.categories';
   static const component_filter_categoryDescription = 'component.filter.categoryDescription';
   static const component_filter_filterResult = 'component.filter.filterResult';
+  static const component_filter_resultEmpty = 'component.filter.resultEmpty';
   static const component_filter = 'component.filter';
   static const component = 'component';
   static const requestCompany_title = 'requestCompany.title';
@@ -242,6 +243,8 @@ abstract class  LocaleKeys {
   static const advertisementBoard_shareAdvertisementSubject = 'advertisementBoard.shareAdvertisementSubject';
   static const advertisementBoard = 'advertisementBoard';
   static const chain_stores_title = 'chain_stores.title';
+  static const chain_stores_showAllSubBranches = 'chain_stores.showAllSubBranches';
+  static const chain_stores_subBranchesTitle = 'chain_stores.subBranchesTitle';
   static const chain_stores = 'chain_stores';
   static const whatsNew_title = 'whatsNew.title';
   static const whatsNew_advertiseBannerView = 'whatsNew.advertiseBannerView';

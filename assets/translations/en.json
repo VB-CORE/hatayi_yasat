@@ -54,7 +54,8 @@
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
       "categoryDescription": "You can select and filter categories here",
-      "filterResult": "Filter Result"
+      "filterResult": "Filter Result",
+      "resultEmpty": "No results found with the filtering criteria you chose."
     }
   },
   "requestCompany": {
@@ -154,6 +155,7 @@
     "businessNotFoundErrorMessage": "Business not found",
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
+    "placeNotFoundErrorMessage": "Place not found",
     "advertiseNotFoundErrorMessage": "Advertise not found"
   },
   "developers": {
@@ -280,7 +282,9 @@
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
   },
   "chain_stores": {
-    "title": "Chain Stores"
+    "title": "Chain Stores",
+      "showAllSubBranches": "Show all sub-store {}",
+    "subBranchesTitle": "{} Store ({})"
   },
   "whatsNew": {
     "title": "What's New v5.0.0 🎉",
