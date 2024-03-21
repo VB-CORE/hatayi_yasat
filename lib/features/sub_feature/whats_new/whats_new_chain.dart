@@ -31,7 +31,6 @@ final class FirstTimeWhatsNewChain extends WhatsNewChain {
     /// save first time current version number to cache
     if (savedAppVersion == kErrorNumber) {
       await saveCurrentVersion(currentAppVersion);
-      return;
     }
 
     await nextChain?.show(
@@ -67,8 +66,6 @@ final class EndWhatsNewChain extends WhatsNewChain {
     required int currentAppVersion,
     required int savedAppVersion,
   }) async {
-    await saveCurrentVersion(currentAppVersion);
-
     await showModalBottomSheet<void>(
       context: context,
       builder: (context) => const WhatsNewSheet(),
