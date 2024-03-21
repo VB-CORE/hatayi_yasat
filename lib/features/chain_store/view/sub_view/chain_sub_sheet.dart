@@ -20,7 +20,7 @@ final class ChainSubSheet extends StatelessWidget {
 
   static void show({
     required BuildContext context,
-    required List<StoreModelSnapshot> storeList,
+    required List<StoreModel> storeList,
     required String chainName,
   }) {
     showModalBottomSheet<void>(
@@ -34,7 +34,7 @@ final class ChainSubSheet extends StatelessWidget {
     );
   }
 
-  final List<StoreModelSnapshot> storeList;
+  final List<StoreModel> storeList;
   final String chainName;
 
   @override
@@ -70,7 +70,7 @@ final class _ChainStoreBranchWidget extends StatelessWidget {
   const _ChainStoreBranchWidget({
     required this.store,
   });
-  final StoreModelSnapshot store;
+  final StoreModel store;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class _PhoneIconButton extends StatelessWidget {
     required this.branch,
   });
 
-  final StoreModelSnapshot branch;
+  final StoreModel branch;
 
   Future<void> launchPhoneWithPhoneNumber(
     BuildContext context,
@@ -128,7 +128,7 @@ class _LocationIconButton extends StatelessWidget {
     required this.branch,
   });
 
-  final StoreModelSnapshot branch;
+  final StoreModel branch;
 
   Future<void> launchMapWithLatLong(
     BuildContext context,
@@ -149,7 +149,7 @@ class _LocationIconButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(AppIcons.location),
       onPressed: () {
-        launchMapWithLatLong(context, branch.latlong);
+        launchMapWithLatLong(context, branch.latLong);
       },
     );
   }
