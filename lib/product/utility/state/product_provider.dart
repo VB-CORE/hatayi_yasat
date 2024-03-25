@@ -129,4 +129,10 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
     currentItems.add(searchTerm);
     appModelCache.add(AppCacheModel(lastSearchItems: currentItems));
   }
+
+  void clearLastSearch() {
+    final appCacheModel = appModelCache.get(AppCacheModel.appModelId);
+    if (appCacheModel == null) return;
+    appModelCache.removeAll();
+  }
 }
