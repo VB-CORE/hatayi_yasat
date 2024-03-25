@@ -5,37 +5,37 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000254">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000442">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: automatic_code_signing" time="0.040087">
+      <testcase classname="fastlane.lanes" name="1: automatic_code_signing" time="0.050399">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: increment_version_number" time="0.191371">
+      <testcase classname="fastlane.lanes" name="2: increment_version_number" time="0.211481">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: latest_testflight_build_number" time="5.843749">
+      <testcase classname="fastlane.lanes" name="3: latest_testflight_build_number" time="3.322376">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: increment_build_number" time="0.227834">
+      <testcase classname="fastlane.lanes" name="4: increment_build_number" time="0.2085">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: gym" time="347.494332">
+      <testcase classname="fastlane.lanes" name="5: gym" time="319.013252">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: upload_to_testflight" time="1042.855016">
+      <testcase classname="fastlane.lanes" name="6: upload_to_testflight" time="929.16548">
         
       </testcase>
     
