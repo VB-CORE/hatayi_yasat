@@ -9,6 +9,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/firebase/filter/general_category_town_filter.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/card/index.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
 final class FilterResultView extends ConsumerStatefulWidget {
@@ -47,14 +48,14 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
         ),
         itemBuilder: (context, model) {
           return Padding(
-            padding: const PagePadding.vertical6Symmetric(),
-            child: ListTile(
-              onTap: () {
+            padding: const PagePadding.allLow(),
+            child: GeneralPlaceCard(
+              storeModel: model,
+              onCardTap: () {
                 context.pop();
                 PlaceDetailRoute($extra: model, id: model.documentId)
                     .go(context);
               },
-              title: Text(model.name),
             ),
           );
         },
