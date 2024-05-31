@@ -21,6 +21,7 @@ import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
+import 'package:lifeclient/sub_feature/tourism/view/tourism_map_view.dart';
 
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';
@@ -42,6 +43,17 @@ class _HomeViewState extends ConsumerState<HomeView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100),
+        child: FloatingActionButton(
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (context) => const TourismMapView(),
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
