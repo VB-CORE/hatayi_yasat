@@ -22,9 +22,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <!-- Set custom default icon for notification -->
-        
-        <!--    TODO - UPDATE API KEY    -->
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="API KEY WILL BE ADDED"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCif1JAPAiFSxYUqGjvZ6OEbQi83ZEG-IY"/>
 
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_notification" />
