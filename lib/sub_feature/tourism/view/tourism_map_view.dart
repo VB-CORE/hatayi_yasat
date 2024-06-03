@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -11,38 +9,56 @@ class TourismMapView extends StatefulWidget {
 }
 
 class _TourismMapViewState extends State<TourismMapView> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  late GoogleMapController mapController;
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  final LatLng _start = const LatLng(37.7749, -122.4194); // San Francisco
+  final LatLng _end = const LatLng(34.0522, -118.2437); // Los Angeles
 
-  static const CameraPosition _kLake = CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
+  final Set<Polyline> _polylines = {};
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: _controller.complete,
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+  void initState() {
+    super.initState();
+    _polylines.add(
+      Polyline(
+        polylineId: const PolylineId('line1'),
+        points: [_start, _end],
+        color: Colors.blue,
+        width: 5,
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Google Maps Demo'),
+      ),
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _start,
+          zoom: 6,
+        ),
+        polylines: _polylines,
+        markers: {
+          Marker(
+            markerId: const MarkerId('start'),
+            position: _start,
+            infoWindow: const InfoWindow(title: 'Start'),
+          ),
+          Marker(
+            markerId: const MarkerId('end'),
+            position: _end,
+            infoWindow: const InfoWindow(title: 'End'),
+          ),
+        },
+      ),
+    );
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
   }
 }

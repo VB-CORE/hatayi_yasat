@@ -47,7 +47,7 @@ class _ChainStoreBranchWidget extends StatelessWidget {
     required this.onLocationTap,
     required this.onCallTap,
   });
-  final StoreModelSnapshot branch;
+  final StoreModel branch;
   final AsyncValueGetterWithContext<GeoPoint> onLocationTap;
   final AsyncValueGetterWithContext<String> onCallTap;
 
@@ -60,7 +60,7 @@ class _ChainStoreBranchWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const EmptyBox.xSmallHeight(),
-          _BranchAddressText(branchAddress: branch.address),
+          _BranchAddressText(branchAddress: branch.address ?? ''),
         ],
       ),
       trailing: Row(
@@ -81,7 +81,7 @@ class _PhoneIconButton extends StatelessWidget {
   });
 
   final AsyncValueGetterWithContext<String> onCallTap;
-  final StoreModelSnapshot branch;
+  final StoreModel branch;
 
   @override
   Widget build(BuildContext context) {
@@ -99,13 +99,14 @@ class _LocationIconButton extends StatelessWidget {
   });
 
   final AsyncValueGetterWithContext<GeoPoint> onLocationTap;
-  final StoreModelSnapshot branch;
+  final StoreModel branch;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(AppIcons.location),
-      onPressed: () => onLocationTap(context, branch.latlong),
+      onPressed: () =>
+          onLocationTap(context, branch.latLong ?? const GeoPoint(0, 0)),
     );
   }
 }
