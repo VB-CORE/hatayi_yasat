@@ -1,7 +1,7 @@
 import 'package:kartal/kartal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UriUtility {
+final class UriUtility {
   UriUtility({
     required this.address,
   });

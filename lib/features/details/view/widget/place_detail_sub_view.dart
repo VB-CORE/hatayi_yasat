@@ -152,41 +152,45 @@ class _CircleImageWithNamePositioned extends StatelessWidget {
   }
 }
 
-class _OpenCloseTime extends StatelessWidget {
-  const _OpenCloseTime({required this.model});
+final class _OpenCloseTime extends StatelessWidget {
+  const _OpenCloseTime({
+    required this.model,
+    super.key,
+  });
 
   final StoreModel model;
 
   @override
   Widget build(BuildContext context) {
+    final isOpenOrClose = StoreModelHelper(model: model).isStoreOpen;
+
+    if (isOpenOrClose == null) {
+      return const SizedBox.shrink();
+    }
+
     final times = [model.openTime, model.closeTime];
     if (times.any((element) => element.ext.isNullOrEmpty)) {
       return const SizedBox.shrink();
     }
 
-    return Row(
-      children: times
-          .mapIndexed(
-            (i, e) => Padding(
-              padding: i == WidgetSizes.zero
-                  ? const PagePadding.onlyRightVeryLow()
-                  : EdgeInsets.zero,
-              child: Chip(
-                backgroundColor: _backgroundColor(context),
-                elevation: WidgetSizes.spacingXxs,
-                shadowColor: ColorCommon(context).whiteAndBlackForTheme,
-                shape: const StadiumBorder(
-                  side: BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                padding: const PagePadding.allVeryLow(),
-                label: Text(e!),
-              ),
-            ),
-          )
-          .toList(),
+    return Chip(
+      backgroundColor: context.general.colorScheme.secondary,
+      elevation: WidgetSizes.spacingXxs,
+      shadowColor: context.general.colorScheme.secondary,
+      shape: const StadiumBorder(
+        side: BorderSide(
+          color: Colors.transparent,
+        ),
+      ),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      padding: const PagePadding.allVeryLow(),
+      avatar: CircleAvatar(
+        radius: WidgetSizes.spacingXs,
+        backgroundColor: isOpenOrClose
+            ? context.general.colorScheme.onTertiaryContainer
+            : context.general.colorScheme.error,
+      ),
+      label: Text(times.join(' - ')),
     );
   }
 

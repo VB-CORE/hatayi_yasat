@@ -42,8 +42,6 @@ final class SettingsView extends StatelessWidget {
           const Divider().ext.sliver,
           const _AppAboutWidget().ext.sliver,
           const _RatingWidget().ext.sliver,
-          // bottomNavigationBar height = 60 = WidgetSizes.spacingXxl8
-          // FabButton height = WidgetSizes.spacingXxl2
           const EmptyBox(
             height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxl2,
           ).ext.sliver,

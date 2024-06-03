@@ -19,7 +19,7 @@ const SECRET = process.env.FUNCTIONS_EMULATOR
 
 const SEARCH_PATH = "/applications_search";
 const ADD_PATH = "/application_insert";
-
+const DELETE_PATH = "/delete_application";
 axios.defaults.headers.common["SECRET"] = SECRET;
 
 exports.search = functions.https.onCall(async (data, _) => {
@@ -46,7 +46,6 @@ exports.addToIndexMongo = functions.firestore
   .onCreate(async (change, context) => {
     const original = change.data();
     const target = 0;
-
     const jsonBody = JSON.stringify({
       id: change.id,
       ...original,
@@ -56,6 +55,18 @@ exports.addToIndexMongo = functions.firestore
     });
 
 
-    console.log(mongoResponse);
+    return mongoResponse != null;
+  });
+
+
+
+exports.removeToIndexMongo = functions.firestore
+  .document("/approvedApplications/{documentId}")
+  .onDelete(async (change, context) => {
+    const target = 0;
+    const mongoResponse = await axios.delete(BASE_URL + DELETE_PATH, {
+      params: { target, id: change.id },
+    });
+
     return mongoResponse != null;
   });

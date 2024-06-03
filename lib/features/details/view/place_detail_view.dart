@@ -6,10 +6,10 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
-import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/container/circle_image_with_text_container.dart';
@@ -87,7 +87,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _NameTitleAndCallButton(
-                        placeName: model.name,
+                        placeName: model.updatedName,
                         callAction: callAction,
                       ),
                       // _VisitCountRow(model: model),
@@ -127,7 +127,7 @@ final class _ShareAddressButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        '${model.name} ${model.address}'.ext.share();
+        '${model.updatedName} ${model.address}'.ext.share();
       },
       child: Icon(
         AppIcons.share,
