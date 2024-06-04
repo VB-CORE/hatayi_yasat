@@ -44,7 +44,7 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
       body: GeneralFirestoreListView(
         query: query,
         emptyBuilder: (context) => GeneralNotFoundWidget(
-          title: LocaleKeys.notFound_specialAgency.tr(),
+          title: LocaleKeys.component_filter_resultEmpty.tr(),
         ),
         itemBuilder: (context, model) {
           return Padding(
@@ -54,7 +54,7 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
               onCardTap: () {
                 context.pop();
                 PlaceDetailRoute($extra: model, id: model.documentId)
-                    .go(context);
+                    .push<void>(context);
               },
             ),
           );

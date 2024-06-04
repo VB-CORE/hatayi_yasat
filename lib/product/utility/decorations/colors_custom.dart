@@ -13,4 +13,5 @@ final class ColorsCustom {
   static const Color royalPeacock = Color(0xff27AAE5);
   static const Color transparent = Color(0x00000000);
   static const Color black = Color(0xFF000000);
+  static const Color green = Color(0xFF00FF00);
 }

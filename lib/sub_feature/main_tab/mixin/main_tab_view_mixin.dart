@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:lifeclient/features/sub_feature/whats_new/whats_new_sheet_manager.dart';
 import 'package:lifeclient/product/model/enum/redirect_tabs.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
@@ -31,5 +32,6 @@ mixin MainTabViewMixin
       length: RedirectTabs.values.length,
       vsync: this,
     );
+    WhatsNewSheetManager(context: context).show();
   }
 }

@@ -6,6 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/favorite/provider/favorite_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';

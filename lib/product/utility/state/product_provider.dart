@@ -36,7 +36,7 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
   }
 
   bool get isHomeViewGrid =>
-      appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? false;
+      appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? true;
 
   void saveLatestGridViewType({required bool isSelected}) {
     appModelCache.add(AppCacheModel(isHomeViewGrid: isSelected));
@@ -128,5 +128,11 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
     }
     currentItems.add(searchTerm);
     appModelCache.add(AppCacheModel(lastSearchItems: currentItems));
+  }
+
+  void clearLastSearch() {
+    final appCacheModel = appModelCache.get(AppCacheModel.appModelId);
+    if (appCacheModel == null) return;
+    appModelCache.removeAll();
   }
 }

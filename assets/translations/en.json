@@ -54,7 +54,8 @@
       "districtDescription": "You can select and filter the districts here",
       "categories": "categories",
       "categoryDescription": "You can select and filter categories here",
-      "filterResult": "Filter Result"
+      "filterResult": "Filter Result",
+      "resultEmpty": "No results found with the filtering criteria you chose."
     }
   },
   "requestCompany": {
@@ -106,7 +107,6 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "republicDay": "Long live the Republic!  🇹🇷🇹🇷'",
     "emptyFavorite": "Your favorites list is empty",
     "openEventDetailPhone": "Hello, I want to get information about the event named {}"
   },
@@ -155,6 +155,7 @@
     "businessNotFoundErrorMessage": "Business not found",
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
+    "placeNotFoundErrorMessage": "Place not found",
     "advertiseNotFoundErrorMessage": "Advertise not found"
   },
   "developers": {
@@ -281,6 +282,16 @@
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
   },
   "chain_stores": {
-    "title": "Chain Stores"
+    "title": "Chain Stores",
+      "showAllSubBranches": "Show all sub-store {}",
+    "subBranchesTitle": "{} Store ({})"
+  },
+  "whatsNew": {
+    "title": "What's New v5.0.0 🎉",
+    "advertiseBannerView": "📢 You can now advertise and highlight your business.",
+    "homeView": "🏠 The homepage now offers a dual-view to reach more businesses easily.",
+    "chainView": "🛍 A chain store screen has been added.",
+    "notificationViewLink": "🔔 An option to open links from notifications has been added.",
+    "bugFixes": "🐞 Bug fixes have been made."
   }
 }

@@ -47,17 +47,10 @@ class _HomeViewState extends ConsumerState<HomeView>
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
-          SliverPadding(
-            padding: const PagePadding.onlyTopMedium(),
-            sliver: ClickableSubTitleText(
-              title: LocaleKeys.home_categories.tr(),
-              onTap: () => pushToFilter(context: context),
-            ).ext.sliver,
+          _CategoriesTitle(
+            onTap: () => pushToFilter(context: context),
           ),
-          const SliverPadding(
-            padding: PagePadding.vertical6Symmetric(),
-            sliver: _HomeCategoryCards(),
-          ),
+          const _CategoriesItems(),
           SliverAppBar(
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
@@ -78,6 +71,52 @@ class _HomeViewState extends ConsumerState<HomeView>
           const EmptyBox.largeXxHeight().ext.sliver,
         ],
       ),
+    );
+  }
+}
+
+final class _CategoriesItems extends ConsumerWidget {
+  const _CategoriesItems({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasCategories =
+        ref.watch(homeViewModelProvider).categories.isNotEmpty;
+    if (!hasCategories) {
+      return const SliverToBoxAdapter(
+        child: SizedBox.shrink(),
+      );
+    }
+    return const SliverPadding(
+      padding: PagePadding.vertical6Symmetric(),
+      sliver: _HomeCategoryCards(),
+    );
+  }
+}
+
+final class _CategoriesTitle extends ConsumerWidget {
+  const _CategoriesTitle({
+    required this.onTap,
+    super.key,
+  });
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasCategories =
+        ref.watch(homeViewModelProvider).categories.isNotEmpty;
+    if (!hasCategories) {
+      return const SliverToBoxAdapter(
+        child: SizedBox.shrink(),
+      );
+    }
+    return SliverPadding(
+      padding: const PagePadding.onlyTopMedium(),
+      sliver: ClickableSubTitleText(
+        title: LocaleKeys.home_categories.tr(),
+        onTap: onTap,
+      ).ext.sliver,
     );
   }
 }

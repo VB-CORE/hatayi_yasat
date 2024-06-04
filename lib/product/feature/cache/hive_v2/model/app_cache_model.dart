@@ -24,12 +24,14 @@ final class AppCacheModel with CacheModel, EquatableMixin {
   List<Object> get props => [id];
 
   @override
-  CacheModel fromDynamicJson(json) {
+  AppCacheModel fromDynamicJson(json) {
     if (json is! Map<String, dynamic>) throw Exception('Invalid json type');
     return AppCacheModel.fromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$AppCacheModelToJson(this);
+  Map<String, dynamic> toJson() {
+    return _$AppCacheModelToJson(this);
+  }
 
   @override
   String get id => appModelId;
