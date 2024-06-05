@@ -7,7 +7,7 @@ part of 'chain_store_provider.dart';
 // **************************************************************************
 
 String _$chainStoreProviderHash() =>
-    r'2aa2ab127e84b5d127395506ea5e05f0a6404daa';
+    r'41e52a50d0f5a57c68a677a182884514002805cf';
 
 /// See also [ChainStoreProvider].
 @ProviderFor(ChainStoreProvider)

@@ -6,6 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/location_permission_service.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
+import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
@@ -22,7 +23,6 @@ import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
-import 'package:lifeclient/sub_feature/tourism/view/tourism_map_view.dart';
 
 part 'widget/home_categories_area.dart';
 part 'widget/home_place_area.dart';

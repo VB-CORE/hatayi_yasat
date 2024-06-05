@@ -12,4 +12,12 @@ final class GeneralShadow extends BoxShadow {
             AppConstants.kThree.toDouble(),
           ), // changes position of shado
         );
+
+  const GeneralShadow.tourismPlaceCard()
+      : super(
+          color: Colors.black12,
+          blurRadius: 10,
+          spreadRadius: 2,
+          offset: const Offset(0, 3),
+        );
 }
