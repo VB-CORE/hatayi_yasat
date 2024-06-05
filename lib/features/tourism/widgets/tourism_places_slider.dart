@@ -11,17 +11,14 @@ final class _TourismPlacesSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.horizontalHighSymmetric(),
-      child: CarouselSlider(
-        options: _buildOptions(),
-        items: locations.map((location) {
-          return _TourismPlaceCard(
-            location: location,
-            onItemTap: onItemTap,
-          );
-        }).toList(),
-      ),
+    return CarouselSlider(
+      options: _buildOptions(),
+      items: locations.map((location) {
+        return _TourismPlaceCard(
+          location: location,
+          onItemTap: onItemTap,
+        );
+      }).toList(),
     );
   }
 
@@ -30,7 +27,7 @@ final class _TourismPlacesSlider extends StatelessWidget {
       height: WidgetSizes.spacingXxl9,
       enableInfiniteScroll: false,
       enlargeCenterPage: true,
-      viewportFraction: 0.64,
+      viewportFraction: 0.5,
     );
   }
 }
