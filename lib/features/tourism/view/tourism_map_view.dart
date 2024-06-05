@@ -28,6 +28,8 @@ class _TourismMapViewState extends State<TourismMapView>
       body: Stack(
         children: [
           GoogleMap(
+            mapToolbarEnabled: false,
+            zoomControlsEnabled: false,
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: _locations.first.position,
