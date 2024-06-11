@@ -96,7 +96,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.0.0
+      ref: v5.1.0
 
   file_picker: ^5.5.0
 

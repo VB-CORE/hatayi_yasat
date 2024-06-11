@@ -6,13 +6,15 @@ final class _TourismPlaceCard extends StatelessWidget {
     required this.onItemTap,
   });
 
-  final TourismMapModel location;
+  final TouristicPlaceModel location;
   final void Function(LatLng position) onItemTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onItemTap(location.position),
+      onTap: () => onItemTap(
+        LatLng(location.latLong.latitude, location.latLong.longitude),
+      ),
       child: Container(
         width: WidgetSizes.spacingXxlL12,
         decoration: BoxDecorations.tourismPlaceCard(),
@@ -34,7 +36,7 @@ final class _TourismPlaceCard extends StatelessWidget {
 
   Text _buildDescription(BuildContext context) {
     return Text(
-      location.description,
+      location.description ?? '',
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.bodySmall?.copyWith(
@@ -45,7 +47,7 @@ final class _TourismPlaceCard extends StatelessWidget {
 
   Text _buildTitle(BuildContext context) {
     return Text(
-      location.name,
+      location.title ?? '',
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.titleSmall?.copyWith(

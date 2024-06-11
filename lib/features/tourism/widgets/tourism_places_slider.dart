@@ -6,7 +6,7 @@ final class _TourismPlacesSlider extends StatelessWidget {
     required this.onItemTap,
   });
 
-  final List<TourismMapModel> locations;
+  final List<TouristicPlaceModel> locations;
   final void Function(LatLng position) onItemTap;
 
   @override

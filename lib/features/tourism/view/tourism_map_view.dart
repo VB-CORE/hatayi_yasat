@@ -1,25 +1,27 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/tourism/models/tourism_map_model.dart';
+import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
 
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
 
-class TourismMapView extends StatefulWidget {
+class TourismMapView extends ConsumerStatefulWidget {
   const TourismMapView({super.key});
 
   @override
-  State<TourismMapView> createState() => _TourismMapViewState();
+  ConsumerState<TourismMapView> createState() => _TourismMapViewState();
 }
 
-class _TourismMapViewState extends State<TourismMapView>
+class _TourismMapViewState extends ConsumerState<TourismMapView>
     with _TourismMapStateHelper {
   @override
   Widget build(BuildContext context) {
+    placeList = ref.watch(tourismViewModelProvider).placeList;
     return Scaffold(
       appBar: AppBar(
         //TODO: localization
@@ -31,20 +33,25 @@ class _TourismMapViewState extends State<TourismMapView>
             mapToolbarEnabled: false,
             zoomControlsEnabled: false,
             onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _locations.first.position,
-              zoom: 10,
-            ),
             markers: Set.from(_markers),
             polylines: Set.from(_polylines),
             myLocationEnabled: true,
+            initialCameraPosition: CameraPosition(
+              target: placeList.isNotEmpty
+                  ? LatLng(
+                      placeList.first.latLong.latitude,
+                      placeList.first.latLong.longitude,
+                    )
+                  : const LatLng(36.845487, 36.221312),
+              zoom: 10,
+            ),
           ),
           Positioned(
             bottom: 20,
             left: 0,
             right: 0,
             child: _TourismPlacesSlider(
-              locations: _locations,
+              locations: placeList,
               onItemTap: _onPlaceTapped,
             ),
           ),
@@ -54,50 +61,85 @@ class _TourismMapViewState extends State<TourismMapView>
   }
 }
 
-mixin _TourismMapStateHelper on State<TourismMapView> {
+mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   late GoogleMapController _mapController;
-  final List<Marker> _markers = [];
+
+  List<Marker> get _markers => ref
+      .watch(tourismViewModelProvider)
+      .placeList
+      .map(
+        (e) => Marker(
+          markerId: MarkerId(e.documentId),
+          position: LatLng(e.latLong.latitude, e.latLong.longitude),
+          infoWindow: InfoWindow(
+            title: e.title,
+            snippet: e.description,
+            onTap: () {
+              _onMarkerTapped(LatLng(e.latLong.latitude, e.latLong.longitude));
+            },
+          ),
+        ),
+      )
+      .toList();
   final List<Polyline> _polylines = [];
-  final List<TourismMapModel> _locations = [
-    const TourismMapModel(
-      name: 'Sydney Opera House',
-      description: 'Famous Sydney landmark',
-      latitude: -33.8567844,
-      longitude: 151.213108,
-    ),
-    const TourismMapModel(
-      name: 'Sydney Harbour Bridge',
-      description: 'Iconic bridge in Sydney',
-      latitude: -33.852306,
-      longitude: 151.210787,
-    ),
-    const TourismMapModel(
-      name: 'Bondi Beach',
-      description: 'Popular beach in Sydney',
-      latitude: -33.890844,
-      longitude: 151.274292,
-    ),
-  ];
+
+  // final List<TourismMapModel> _locations = [
+  //   const TourismMapModel(
+  //     name: 'Sydney Opera House',
+  //     description: 'Famous Sydney landmark',
+  //     latitude: -33.8567844,
+  //     longitude: 151.213108,
+  //   ),
+  //   const TourismMapModel(
+  //     name: 'Sydney Harbour Bridge',
+  //     description: 'Iconic bridge in Sydney',
+  //     latitude: -33.852306,
+  //     longitude: 151.210787,
+  //   ),
+  //   const TourismMapModel(
+  //     name: 'Bondi Beach',
+  //     description: 'Popular beach in Sydney',
+  //     latitude: -33.890844,
+  //     longitude: 151.274292,
+  //   ),
+  // ];
 
   LatLng? _selectedPosition;
+
+  List<TouristicPlaceModel> placeList = [];
 
   @override
   void initState() {
     super.initState();
+    Future.microtask(() async {
+      await ref.read(tourismViewModelProvider.notifier).fetchTouristicPlaces();
+    });
+    _loadMarkers();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _loadMarkers();
   }
 
   void _loadMarkers() {
-    for (final location in _locations) {
+    for (final location in placeList) {
       _markers.add(
         Marker(
-          markerId: MarkerId(location.name),
-          position: location.position,
+          markerId: MarkerId(location.documentId),
+          position:
+              LatLng(location.latLong.latitude, location.latLong.longitude),
           infoWindow: InfoWindow(
-            title: location.name,
+            title: location.title,
             snippet: location.description,
             onTap: () {
-              _onMarkerTapped(location.position);
+              _onMarkerTapped(
+                LatLng(
+                  location.latLong.latitude,
+                  location.latLong.longitude,
+                ),
+              );
             },
           ),
         ),
