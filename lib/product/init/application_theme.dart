@@ -46,6 +46,8 @@ final class ApplicationTheme {
         onPrimaryContainer: ColorsCustom.lightGray,
         error: ColorsCustom.imperilRead,
         primaryContainer: ColorsCustom.braziliante,
+        onTertiaryContainer: ColorsCustom.green,
+        onSecondaryContainer: ColorsCustom.royalPeacock,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

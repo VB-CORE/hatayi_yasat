@@ -116,11 +116,11 @@ final class _LinkAndShare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: ColorCommon.sameWhiteColor,
+      tileColor: context.general.colorScheme.secondary,
       contentPadding: const PagePadding.horizontalSymmetric() +
           const PagePadding.verticalLowSymmetric() +
           const PagePadding.onlyBottomLow(),
-      onTap: () async => UriUtility(address: model.id).launch(),
+      onTap: () => UriUtility(address: model.id).launch(),
       title: _Link(model: model),
       trailing: _Share(model: model),
     );
@@ -159,7 +159,7 @@ final class _Link extends StatelessWidget {
       style: context.general.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w600,
         decoration: TextDecoration.underline,
-        color: ColorCommon.linkColor,
+        color: context.general.colorScheme.onSecondaryContainer,
       ),
     );
   }

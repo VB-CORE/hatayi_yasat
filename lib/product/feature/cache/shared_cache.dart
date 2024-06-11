@@ -39,25 +39,22 @@ final class SharedCache {
   bool get isFirstAppOpen =>
       _sharedOperation.getValue<bool>(SharedKeys.firstAppOpen) ?? true;
 
-  bool get isRepublicDayShow =>
-      _sharedOperation.getValue<bool>(SharedKeys.republicDayFirstTimeSeen) ??
-      false;
+  int get version =>
+      _sharedOperation.getValue<int>(SharedKeys.currentVersion) ?? -1;
+
+  Future<void> saveCurrentVersion(int version) {
+    return _sharedOperation.setValue<int>(
+      SharedKeys.currentVersion,
+      version,
+    );
+  }
 
   ThemeMode get theme =>
       ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ??
           ThemeMode.light.index];
 
-  /// Setters
-  ///
   Future<void> setTheme(ThemeMode mode) async {
     await _sharedOperation.setValue<int>(SharedKeys.theme, mode.index);
-  }
-
-  Future<void> setRepublicDay() async {
-    await _sharedOperation.setValue<bool>(
-      SharedKeys.republicDayFirstTimeSeen,
-      true,
-    );
   }
 
   Future<void> saveApplyScholarshipTime() async {

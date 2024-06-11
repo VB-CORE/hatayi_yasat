@@ -23,142 +23,66 @@ final class _ChainStoreListWidget extends ConsumerWidget {
       itemBuilder: (context, model) {
         final branches = model.branches;
         final safeBranches = branches.ext.makeSafe();
-        return GeneralExpansionImageTile(
-          pageTitle: model.name,
-          subTitle: model.description,
-          imageUrl: model.logoImageUrl,
-          children: List.generate(
-            safeBranches.length,
-            (index) => _ChainStoreBranchWidget(
-              branch: safeBranches[index],
-              onLocationTap: onLocationTap,
-              onCallTap: onCallTap,
-            ),
-          ),
-        );
+
+        return _SubItemBranch(safeBranches: safeBranches, model: model);
       },
     );
   }
 }
 
-class _ChainStoreBranchWidget extends StatelessWidget {
-  const _ChainStoreBranchWidget({
-    required this.branch,
-    required this.onLocationTap,
-    required this.onCallTap,
+class _SubItemBranch extends StatelessWidget {
+  const _SubItemBranch({
+    required this.safeBranches,
+    required this.model,
   });
-  final StoreModel branch;
-  final AsyncValueGetterWithContext<GeoPoint> onLocationTap;
-  final AsyncValueGetterWithContext<String> onCallTap;
 
+  final List<StoreModel> safeBranches;
+  final ChainStoreModel model;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: _BranchNameText(branchName: branch.name),
+      onTap: () {
+        ChainSubSheet.show(
+          context: context,
+          storeList: safeBranches,
+          chainName: model.name,
+        );
+      },
+      shape: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: context.general.colorScheme.primary.withOpacity(0.4),
+        ),
+      ),
+      leading: SizedBox.square(
+        dimension: WidgetSizes.spacingXxl4,
+        child: ClipOval(
+          child: CustomNetworkImage(
+            imageUrl: model.logoImageUrl,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      trailing: const Icon(AppIcons.rightArrow),
+      title: GeneralBodyTitle(
+        model.name,
+        fontWeight: FontWeight.bold,
+      ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const EmptyBox.xSmallHeight(),
-          _BranchAddressText(branchAddress: branch.address ?? ''),
+          GeneralContentSmallTitle(
+            value: model.description,
+          ),
+          Padding(
+            padding: const PagePadding.onlyTopLow(),
+            child: GeneralContentSmallTitle(
+              value: LocaleKeys.chain_stores_showAllSubBranches.tr(
+                args: [safeBranches.length.toString()],
+              ),
+            ),
+          ),
         ],
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _LocationIconButton(onLocationTap: onLocationTap, branch: branch),
-          _PhoneIconButton(onCallTap: onCallTap, branch: branch),
-        ],
-      ),
-    );
-  }
-}
-
-class _PhoneIconButton extends StatelessWidget {
-  const _PhoneIconButton({
-    required this.onCallTap,
-    required this.branch,
-  });
-
-  final AsyncValueGetterWithContext<String> onCallTap;
-  final StoreModel branch;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(AppIcons.phone),
-      onPressed: () => onCallTap(context, branch.phone),
-    );
-  }
-}
-
-class _LocationIconButton extends StatelessWidget {
-  const _LocationIconButton({
-    required this.onLocationTap,
-    required this.branch,
-  });
-
-  final AsyncValueGetterWithContext<GeoPoint> onLocationTap;
-  final StoreModel branch;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(AppIcons.location),
-      onPressed: () =>
-          onLocationTap(context, branch.latLong ?? const GeoPoint(0, 0)),
-    );
-  }
-}
-
-class _BranchAddressText extends StatelessWidget {
-  const _BranchAddressText({
-    required this.branchAddress,
-  });
-
-  final String branchAddress;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      branchAddress,
-      style: context.general.textTheme.bodySmall,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-    );
-  }
-}
-
-class _BranchPhoneText extends StatelessWidget {
-  const _BranchPhoneText({
-    required this.branchPhone,
-  });
-
-  final String branchPhone;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      branchPhone,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-    );
-  }
-}
-
-class _BranchNameText extends StatelessWidget {
-  const _BranchNameText({
-    required this.branchName,
-  });
-
-  final String branchName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      branchName,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
     );
   }
 }

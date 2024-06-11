@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
@@ -19,8 +20,8 @@ final class TabJobsView extends ConsumerWidget {
     return GeneralFirestoreListView(
       query: query,
       emptyBuilder: (context) {
-        return const GeneralNotFoundWidget(
-          title: LocaleKeys.notFound_advertise,
+        return GeneralNotFoundWidget(
+          title: LocaleKeys.notFound_advertise.tr(),
         );
       },
       itemBuilder: (context, model) {

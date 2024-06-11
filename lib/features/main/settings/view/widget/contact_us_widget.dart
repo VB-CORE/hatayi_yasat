@@ -80,10 +80,10 @@ final class _UserImage extends StatelessWidget {
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: WidgetSizes.spacingXxl9,
+    return SizedBox.square(
+      dimension: WidgetSizes.spacingXxl9,
       child: ClipOval(
-        child: CustomNetworkImage(imageUrl: imageUrl),
+        child: FittedBox(child: CustomNetworkImage(imageUrl: imageUrl)),
       ),
     );
   }

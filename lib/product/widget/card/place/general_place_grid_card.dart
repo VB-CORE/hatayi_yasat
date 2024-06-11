@@ -4,6 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
+import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
@@ -45,7 +46,12 @@ final class GeneralPlaceGridCard extends StatelessWidget {
             Positioned(
               top: WidgetSizes.spacingXSs,
               right: WidgetSizes.spacingXSs,
-              child: FavoritePlaceButton(store: storeModel),
+              child: CircleAvatar(
+                radius: CustomCircleRadius.medium,
+                backgroundColor:
+                    context.general.colorScheme.secondary.withOpacity(0.9),
+                child: FavoritePlaceButton(store: storeModel),
+              ),
             ),
           ],
         ),
@@ -76,18 +82,16 @@ final class _Image extends StatelessWidget {
 final class _TitleRow extends StatelessWidget {
   const _TitleRow({
     required this.model,
-    this.onSavePlaceTap,
   });
 
   final StoreModel model;
-  final VoidCallback? onSavePlaceTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.allLow(),
       child: GeneralBodyTitle(
-        model.name,
+        model.updatedName,
         fontWeight: FontWeight.bold,
         maxLines: TextFieldMaxLengths.maxLineForText,
         color: context.general.colorScheme.onPrimary,
