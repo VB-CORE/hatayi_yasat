@@ -73,7 +73,6 @@ dependencies:
   url_launcher: ^6.2.3
   whatsapp_unilink: ^2.1.0
   kartal: ^4.0.0-dev2
-  flutter_polyline_points: ^2.0.0
 
   # ui
   dotted_border: ^2.0.0+3

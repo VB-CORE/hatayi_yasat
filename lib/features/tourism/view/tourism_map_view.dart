@@ -26,8 +26,6 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
     with _TourismMapStateHelper {
   @override
   Widget build(BuildContext context) {
-    final placeList = ref.watch(tourismViewModelProvider).placeList;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -58,7 +56,7 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
               carouselController: ref
                   .read(tourismViewModelProvider.notifier)
                   .carouselController,
-              locations: placeList,
+              locations: ref.watch(tourismViewModelProvider).placeList,
               onItemTap: (LatLng latlng) => ref
                   .read(tourismViewModelProvider.notifier)
                   .animateToPosition(latlng, zoom: WidgetSizes.spacingS),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/service/location_permission_service.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
@@ -47,22 +48,16 @@ class _HomeViewState extends ConsumerState<HomeView>
         padding: const EdgeInsets.only(bottom: 100),
         child: FloatingActionButton(
           onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (context) => const TourismMapView(),
-              ),
-            );
-            // final service = LocationPermissionService();
-            // final isGranted = await service.ensurePermission();
-            // if (mounted && isGranted) {
-            //   await Navigator.push(
-            //     context,
-            //     MaterialPageRoute<void>(
-            //       builder: (context) => const TourismMapView(),
-            //     ),
-            //   );
-            // }
+            final service = LocationPermissionService();
+            final isGranted = await service.ensurePermission();
+            if (mounted && isGranted) {
+              await Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const TourismMapView(),
+                ),
+              );
+            }
           },
         ),
       ),
