@@ -283,7 +283,7 @@
   },
   "chain_stores": {
     "title": "Chain Stores",
-      "showAllSubBranches": "Show all sub-store {}",
+    "showAllSubBranches": "Show all sub-store {}",
     "subBranchesTitle": "{} Store ({})"
   },
   "whatsNew": {
@@ -293,5 +293,8 @@
     "chainView": "🛍 A chain store screen has been added.",
     "notificationViewLink": "🔔 An option to open links from notifications has been added.",
     "bugFixes": "🐞 Bug fixes have been made."
+  },
+  "tourismView": {
+    "onTapMarkerWindow": "Tap to get directions"
   }
 }

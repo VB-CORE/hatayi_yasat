@@ -18,17 +18,34 @@ final class _TourismPlaceCard extends StatelessWidget {
       child: Container(
         width: WidgetSizes.spacingXxlL12,
         decoration: BoxDecorations.tourismPlaceCard(),
-        child: Padding(
-          padding: const PagePadding.allLow(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildTitle(context),
-              const SizedBox(height: 5),
-              _buildDescription(context),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: CustomRadius.tourismPlaceCard,
+              child: SizedBox.square(
+                dimension: WidgetSizes.spacingXxl12,
+                child: CustomNetworkImage(
+                  imageUrl: location.photo,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const EmptyBox.xSmallHeight(),
+            Expanded(
+              child: Padding(
+                padding: const PagePadding.allLow(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildTitle(context),
+                    const EmptyBox.smallHeight(),
+                    Expanded(child: _buildDescription(context)),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

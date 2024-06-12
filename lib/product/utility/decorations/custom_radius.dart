@@ -24,4 +24,9 @@ final class CustomRadius {
     topLeft: Radius.circular(16),
     topRight: Radius.circular(16),
   );
+
+  static const BorderRadius tourismPlaceCard = BorderRadius.only(
+    topRight: Radius.circular(10),
+    topLeft: Radius.circular(10),
+  );
 }

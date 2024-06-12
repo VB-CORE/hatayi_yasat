@@ -4,8 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/tourism/mixin/geo_point_converter_mixin.dart';
 import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
@@ -21,38 +26,42 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
     with _TourismMapStateHelper {
   @override
   Widget build(BuildContext context) {
-    placeList = ref.watch(tourismViewModelProvider).placeList;
+    final placeList = ref.watch(tourismViewModelProvider).placeList;
+
     return Scaffold(
-      appBar: AppBar(
-        //TODO: localization
-        title: const Text('Tourism Map'),
-      ),
       body: Stack(
         children: [
           GoogleMap(
             mapToolbarEnabled: false,
             zoomControlsEnabled: false,
-            onMapCreated: _onMapCreated,
-            markers: Set.from(_markers),
-            polylines: Set.from(_polylines),
+            onMapCreated: (controller) => ref
+                .read(tourismViewModelProvider.notifier)
+                .onMapCreated(controller),
+            markers: Set.from(ref.watch(tourismViewModelProvider).markerList),
             myLocationEnabled: true,
-            initialCameraPosition: CameraPosition(
-              target: placeList.isNotEmpty
-                  ? LatLng(
-                      placeList.first.latLong.latitude,
-                      placeList.first.latLong.longitude,
-                    )
-                  : const LatLng(36.845487, 36.221312),
-              zoom: 10,
+            initialCameraPosition:
+                ref.read(tourismViewModelProvider).initialPosition,
+          ),
+          Positioned(
+            left: WidgetSizes.spacingXl,
+            top: WidgetSizes.spacingXxl4,
+            child: CircleAvatar(
+              backgroundColor: context.general.colorScheme.onTertiary,
+              child: const BackButton(),
             ),
           ),
           Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
+            bottom: WidgetSizes.spacingL,
+            left: kZero,
+            right: kZero,
             child: _TourismPlacesSlider(
+              carouselController: ref
+                  .read(tourismViewModelProvider.notifier)
+                  .carouselController,
               locations: placeList,
-              onItemTap: _onPlaceTapped,
+              onItemTap: (LatLng latlng) => ref
+                  .read(tourismViewModelProvider.notifier)
+                  .animateToPosition(latlng, zoom: WidgetSizes.spacingS),
             ),
           ),
         ],
@@ -62,126 +71,11 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
 }
 
 mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
-  late GoogleMapController _mapController;
-
-  List<Marker> get _markers => ref
-      .watch(tourismViewModelProvider)
-      .placeList
-      .map(
-        (e) => Marker(
-          markerId: MarkerId(e.documentId),
-          position: LatLng(e.latLong.latitude, e.latLong.longitude),
-          infoWindow: InfoWindow(
-            title: e.title,
-            snippet: e.description,
-            onTap: () {
-              _onMarkerTapped(LatLng(e.latLong.latitude, e.latLong.longitude));
-            },
-          ),
-        ),
-      )
-      .toList();
-  final List<Polyline> _polylines = [];
-
-  // final List<TourismMapModel> _locations = [
-  //   const TourismMapModel(
-  //     name: 'Sydney Opera House',
-  //     description: 'Famous Sydney landmark',
-  //     latitude: -33.8567844,
-  //     longitude: 151.213108,
-  //   ),
-  //   const TourismMapModel(
-  //     name: 'Sydney Harbour Bridge',
-  //     description: 'Iconic bridge in Sydney',
-  //     latitude: -33.852306,
-  //     longitude: 151.210787,
-  //   ),
-  //   const TourismMapModel(
-  //     name: 'Bondi Beach',
-  //     description: 'Popular beach in Sydney',
-  //     latitude: -33.890844,
-  //     longitude: 151.274292,
-  //   ),
-  // ];
-
-  LatLng? _selectedPosition;
-
-  List<TouristicPlaceModel> placeList = [];
-
   @override
   void initState() {
     super.initState();
     Future.microtask(() async {
       await ref.read(tourismViewModelProvider.notifier).fetchTouristicPlaces();
-    });
-    _loadMarkers();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadMarkers();
-  }
-
-  void _loadMarkers() {
-    for (final location in placeList) {
-      _markers.add(
-        Marker(
-          markerId: MarkerId(location.documentId),
-          position:
-              LatLng(location.latLong.latitude, location.latLong.longitude),
-          infoWindow: InfoWindow(
-            title: location.title,
-            snippet: location.description,
-            onTap: () {
-              _onMarkerTapped(
-                LatLng(
-                  location.latLong.latitude,
-                  location.latLong.longitude,
-                ),
-              );
-            },
-          ),
-        ),
-      );
-    }
-  }
-
-  void _onMapCreated(GoogleMapController controller) {
-    _mapController = controller;
-  }
-
-  void _onPlaceTapped(LatLng position) {
-    _mapController.animateCamera(
-      CameraUpdate.newLatLng(
-        position,
-      ),
-    );
-    _onMarkerTapped(position);
-  }
-
-  void _onMarkerTapped(LatLng position) {
-    setState(() {
-      if (_selectedPosition == null) {
-        _selectedPosition = position;
-      } else {
-        _createPolyline(_selectedPosition!, position);
-        _selectedPosition = null;
-      }
-    });
-  }
-
-  void _createPolyline(LatLng start, LatLng end) {
-    final polylineId = PolylineId('${start}_$end');
-    final polyline = Polyline(
-      polylineId: polylineId,
-      color: Colors.blue,
-      width: 5,
-      points: [start, end],
-    );
-
-    setState(() {
-      _polylines.add(polyline);
     });
   }
 }
