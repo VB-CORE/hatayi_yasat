@@ -112,6 +112,7 @@
   },
   "search": {
     "latestSearch": "Latest Searches",
+    "place": "Mekan ara",
     "minumumSearch": "Please enter at least 3 characters to search then press search button from the keyboard"
   },
   "placeDetailView": {
@@ -283,7 +284,7 @@
   },
   "chain_stores": {
     "title": "Chain Stores",
-      "showAllSubBranches": "Show all sub-store {}",
+    "showAllSubBranches": "Show all sub-store {}",
     "subBranchesTitle": "{} Store ({})"
   },
   "whatsNew": {

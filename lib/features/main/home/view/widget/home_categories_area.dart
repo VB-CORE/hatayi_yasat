@@ -24,22 +24,20 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
       ..removeWhere((element) => element.value == _otherCategoryValue);
 
     return SizedBox(
-      height: WidgetSizes.spacingXxl9 + WidgetSizes.spacingM,
+      height: WidgetSizes.spacingXxl2,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
+        padding: const PagePadding.onlyBottomLow(),
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const PagePadding.onlyRightVeryLow(),
-            child: _CategoryCard(
-              onTap: () async {
-                await pushToFilter(
-                  context: context,
-                  category: categories[index].documentId,
-                );
-              },
-              name: categories[index].displayName,
-            ),
+          return _CategoryCard(
+            onTap: () async {
+              await pushToFilter(
+                context: context,
+                category: categories[index].documentId,
+              );
+            },
+            name: categories[index].displayName,
           );
         },
       ),
@@ -58,6 +56,25 @@ final class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: const PagePadding.onlyRight(),
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          textStyle: context.general.textTheme.bodySmall?.copyWith(
+            fontWeight: FontWeight.w300,
+          ),
+          side: BorderSide(
+            color: context.general.colorScheme.onPrimaryContainer,
+          ),
+          backgroundColor: context.general.colorScheme.onSecondary,
+          shape: const RoundedRectangleBorder(
+            borderRadius: CustomRadius.extraLarge,
+          ),
+        ),
+        child: Text(name),
+      ),
+    );
     return InkWell(
       onTap: onTap,
       child: SizedBox(

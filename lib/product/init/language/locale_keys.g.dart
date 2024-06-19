@@ -100,6 +100,7 @@ abstract class  LocaleKeys {
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
+  static const search_place = 'search.place';
   static const search_minumumSearch = 'search.minumumSearch';
   static const search = 'search';
   static const placeDetailView_owner = 'placeDetailView.owner';

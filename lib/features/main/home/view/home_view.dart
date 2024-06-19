@@ -9,6 +9,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -47,26 +48,37 @@ class _HomeViewState extends ConsumerState<HomeView>
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
-          _CategoriesTitle(
-            onTap: () => pushToFilter(context: context),
-          ),
-          const _CategoriesItems(),
+          // _CategoriesTitle(
+          //   onTap: () => pushToFilter(context: context),
+          // ),
+          // const _CategoriesItems(),
           SliverAppBar(
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GeneralSubTitle(
-                    value: LocaleKeys.home_places.tr(),
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const _HomeSortGridView(),
-                ],
+              centerTitle: false,
+              title: GeneralBigTitle(
+                LocaleKeys.home_places.tr(),
               ),
             ),
           ),
+
+          SliverList.list(
+            children: const [
+              Padding(
+                padding: PagePadding.vertical12Symmetric(),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _CustomSearchField(),
+                    ),
+                    _Filterbutton(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const _CategoriesItems(),
           const _HomePlacesArea(),
           const EmptyBox.largeXxHeight().ext.sliver,
         ],
@@ -75,10 +87,68 @@ class _HomeViewState extends ConsumerState<HomeView>
   }
 }
 
+final class _Filterbutton extends StatelessWidget {
+  const _Filterbutton();
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        backgroundColor: context.general.colorScheme.onPrimaryFixed,
+        shape: const CircleBorder(),
+      ),
+      child: Padding(
+        padding: const PagePadding.generalAllLow(),
+        child: Icon(
+          AppIcons.filter,
+          color: context.general.colorScheme.onSecondaryFixed,
+        ),
+      ),
+    );
+  }
+}
+
+final class _CustomSearchField extends StatelessWidget {
+  const _CustomSearchField();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: LocaleKeys.search_place.tr(),
+        focusColor: context.general.colorScheme.onPrimaryFixed,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: CustomRadius.large,
+          borderSide: BorderSide(
+            color: context.general.colorScheme.onPrimaryFixed,
+          ),
+        ),
+        hintStyle: context.general.textTheme.titleMedium?.copyWith(
+          color: context.general.colorScheme.onSecondaryFixed,
+          fontWeight: FontWeight.w400,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: CustomRadius.large,
+          borderSide: BorderSide(
+            color: context.general.colorScheme.onPrimaryFixed,
+          ),
+        ),
+        filled: true,
+        fillColor: context.general.colorScheme.onPrimaryFixed,
+        contentPadding: const PagePadding.horizontalSymmetric(),
+        prefixIcon: Icon(
+          AppIcons.search,
+          color: context.general.colorScheme.onSecondaryFixed,
+        ),
+      ),
+    );
+  }
+}
+
 final class _CategoriesItems extends ConsumerWidget {
-  const _CategoriesItems({
-    super.key,
-  });
+  const _CategoriesItems();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -99,7 +169,6 @@ final class _CategoriesItems extends ConsumerWidget {
 final class _CategoriesTitle extends ConsumerWidget {
   const _CategoriesTitle({
     required this.onTap,
-    super.key,
   });
   final VoidCallback onTap;
   @override

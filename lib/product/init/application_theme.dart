@@ -44,10 +44,12 @@ final class ApplicationTheme {
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,
         onPrimaryContainer: ColorsCustom.lightGray,
+        onPrimaryFixed: ColorsCustom.gray,
         error: ColorsCustom.imperilRead,
         primaryContainer: ColorsCustom.braziliante,
         onTertiaryContainer: ColorsCustom.green,
         onSecondaryContainer: ColorsCustom.royalPeacock,
+        onSecondaryFixed: ColorsCustom.warmGray,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(
@@ -66,7 +68,7 @@ final class ApplicationTheme {
         ),
       ),
       scrollbarTheme: ScrollbarThemeData(
-        thickness: MaterialStatePropertyAll(AppConstants.kOne.toDouble()),
+        thickness: WidgetStatePropertyAll(AppConstants.kOne.toDouble()),
       ),
     );
   }

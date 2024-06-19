@@ -95,6 +95,7 @@ dependencies:
       ref: v5.0.0
 
   file_picker: ^5.5.0
+  sliver_tools: ^0.2.12
 
 dependency_overrides:
   kartal: ^4.0.0-dev2

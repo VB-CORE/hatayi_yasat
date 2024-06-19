@@ -111,6 +111,7 @@
   },
   "search": {
     "latestSearch": "Son Aramalar",
+    "place": "Mekan ara",
     "minumumSearch": "'Arama yapabilmek için en az {} karakter girip klavyenizden Ara kısmına basınız."
   },
   "placeDetailView": {
