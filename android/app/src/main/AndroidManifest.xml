@@ -21,7 +21,14 @@
         android:label="Hatay'ı Yaşat"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+              <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <!-- Set custom default icon for notification -->
+        <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCif1JAPAiFSxYUqGjvZ6OEbQi83ZEG-IY"/>
+
         <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_notification" />
         <activity
