@@ -14,7 +14,7 @@ final class _HomeSortGridView extends StatelessWidget {
   }
 }
 
-class _ViewDesignButton extends ConsumerWidget {
+final class _ViewDesignButton extends ConsumerWidget {
   const _ViewDesignButton();
 
   @override
@@ -58,7 +58,10 @@ final class _SortPlaceButton extends ConsumerWidget {
             .read(homeViewModelProvider.notifier)
             .changeSortingType(SortingTypes.values.byName(result.id));
       },
-      icon: const Icon(Icons.sort_by_alpha_outlined),
+      icon: Icon(
+        Icons.sort_by_alpha_outlined,
+        color: context.general.colorScheme.onSecondaryFixed,
+      ),
     );
   }
 }

@@ -32,7 +32,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
       child: BottomAppBar(
         height: WidgetSizes.spacingXxl8,
         padding: EdgeInsets.zero,
-        notchMargin: WidgetSizes.spacingXs,
+        notchMargin: WidgetSizes.spacingXxs / 2,
         shape: const CircularNotchedRectangle(),
         elevation: kZero,
         color: context.general.colorScheme.secondary

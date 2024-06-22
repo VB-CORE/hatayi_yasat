@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 
 final class AnimatedButton extends StatefulWidget {
   const AnimatedButton({
@@ -24,6 +25,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       icon: AnimatedIcon(
         icon: widget.icon,
         progress: animation,
+        color: context.general.colorScheme.onSecondaryFixed,
       ),
       onPressed: () async {
         widget.isAnimated

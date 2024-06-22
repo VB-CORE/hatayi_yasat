@@ -41,9 +41,11 @@ class _HomeViewState extends ConsumerState<HomeView>
         NotificationTypeMixin,
         AppProviderMixin<HomeView>,
         HomeViewMixin,
-        _FilterMixin {
+        _FilterMixin,
+        AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return GeneralScaffold(
       body: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -55,8 +57,14 @@ class _HomeViewState extends ConsumerState<HomeView>
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
               centerTitle: false,
-              title: GeneralBigTitle(
-                LocaleKeys.home_places.tr(),
+              title: Row(
+                children: [
+                  GeneralBigTitle(
+                    LocaleKeys.home_places.tr(),
+                  ),
+                  const Spacer(),
+                  const _HomeSortGridView(),
+                ],
               ),
             ),
           ),
@@ -84,6 +92,9 @@ class _HomeViewState extends ConsumerState<HomeView>
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 final class _Filterbutton extends StatelessWidget {

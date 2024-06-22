@@ -31,8 +31,6 @@ final class GeneralPlaceGridCard extends StatelessWidget {
     return InkWell(
       onTap: onCardTap,
       child: Card(
-        elevation: 2,
-        margin: EdgeInsets.zero,
         child: ClipRRect(
           borderRadius: CustomRadius.medium,
           child: Stack(
