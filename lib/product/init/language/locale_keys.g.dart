@@ -145,10 +145,12 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';
-  static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
-  static const navigationTabs_campaignsTabTitle = 'navigationTabs.campaignsTabTitle';
-  static const navigationTabs_newsTabTitle = 'navigationTabs.newsTabTitle';
-  static const navigationTabs_advertiseTabTitle = 'navigationTabs.advertiseTabTitle';
+  static const navigationTabs_home = 'navigationTabs.home';
+  static const navigationTabs_activities = 'navigationTabs.activities';
+  static const navigationTabs_news = 'navigationTabs.news';
+  static const navigationTabs_settings = 'navigationTabs.settings';
+  static const navigationTabs_request = 'navigationTabs.request';
+  static const navigationTabs_advertise = 'navigationTabs.advertise';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_name = 'projectRequest.name';

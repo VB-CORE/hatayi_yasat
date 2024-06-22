@@ -164,10 +164,12 @@
     "seeProfileButtonText": "See Profile"
   },
   "navigationTabs": {
-    "placesTabTitle": "Places",
-    "campaignsTabTitle": "Projects",
-    "newsTabTitle": "News",
-    "advertiseTabTitle": "Advertises"
+    "home": "Home",
+    "activities": "Activities",
+    "news": "News",
+    "settings": "Settings",
+    "request": "Request",
+    "advertise": "Advertise"
   },
   "projectRequest": {
     "title": "New Project Request",

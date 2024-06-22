@@ -163,10 +163,12 @@
     "seeProfileButtonText": "Profili Görüntüle"
   },
   "navigationTabs": {
-    "placesTabTitle": "Mekanlar",
-    "campaignsTabTitle": "Projeler",
-    "newsTabTitle": "Haberler",
-    "advertiseTabTitle": "İş ilanları"
+    "home": "Anasayfa",
+    "activities": "Etkinlikler",
+    "news": "Haberler",
+    "settings": "Ayarlar",
+    "request": "Talep",
+    "advertise": "İş İlanı"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",

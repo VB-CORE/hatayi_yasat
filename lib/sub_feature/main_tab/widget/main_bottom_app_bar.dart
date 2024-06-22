@@ -27,6 +27,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isScrolledBottom =
         ref.watch(mainTabViewModelProvider).isScrolledBottom;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
       child: BottomAppBar(
@@ -37,18 +38,37 @@ final class _BottomAppBarWidget extends ConsumerWidget {
         elevation: kZero,
         color: context.general.colorScheme.secondary
             .withOpacity(isScrolledBottom ? .7 : 1),
-        child: TabBar(
-          padding: EdgeInsets.zero,
-          dividerColor: ColorsCustom.transparent,
-          labelPadding: EdgeInsets.zero,
-          indicator: const BoxDecoration(),
-          tabs: tabItems
-              .map(
-                (e) => Tab(child: e.icon),
-              )
-              .toList(),
-        ),
+        child: _TabBar(tabItems: tabItems),
       ),
+    );
+  }
+}
+
+class _TabBar extends StatelessWidget {
+  const _TabBar({
+    required this.tabItems,
+  });
+
+  final List<TabModel> tabItems;
+
+  @override
+  Widget build(BuildContext context) {
+    return TabBar(
+      padding: EdgeInsets.zero,
+      dividerColor: ColorsCustom.transparent,
+      labelPadding: EdgeInsets.zero,
+      indicator: const BoxDecoration(),
+      unselectedLabelColor: context.general.colorScheme.primary.withOpacity(.3),
+      labelStyle: context.general.textTheme.bodyMedium,
+      unselectedLabelStyle: context.general.textTheme.bodySmall,
+      tabs: tabItems
+          .map(
+            (e) => Tab(
+              text: e.title.tr(),
+              icon: e.icon,
+            ),
+          )
+          .toList(),
     );
   }
 }

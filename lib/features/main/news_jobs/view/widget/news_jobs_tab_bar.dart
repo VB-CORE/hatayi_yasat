@@ -8,8 +8,8 @@ final class _NewsJobsTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       tabs: [
-        Tab(text: LocaleKeys.navigationTabs_newsTabTitle.tr()),
-        Tab(text: LocaleKeys.navigationTabs_advertiseTabTitle.tr()),
+        Tab(text: LocaleKeys.navigationTabs_news.tr()),
+        Tab(text: LocaleKeys.navigationTabs_advertise.tr()),
       ],
     );
   }
