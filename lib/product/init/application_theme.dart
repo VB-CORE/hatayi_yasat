@@ -49,7 +49,7 @@ final class ApplicationTheme {
         primaryContainer: ColorsCustom.braziliante,
         onTertiaryContainer: ColorsCustom.green,
         onSecondaryContainer: ColorsCustom.royalPeacock,
-        onSecondaryFixed: ColorsCustom.warmGray,
+        onSecondaryFixed: ColorsCustom.warmGrey,
       ),
       listTileTheme: const ListTileThemeData(
         titleTextStyle: TextStyle(

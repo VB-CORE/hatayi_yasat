@@ -5,9 +5,11 @@ import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
+import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -48,10 +50,6 @@ class _HomeViewState extends ConsumerState<HomeView>
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
-          // _CategoriesTitle(
-          //   onTap: () => pushToFilter(context: context),
-          // ),
-          // const _CategoriesItems(),
           SliverAppBar(
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
@@ -62,17 +60,18 @@ class _HomeViewState extends ConsumerState<HomeView>
               ),
             ),
           ),
-
           SliverList.list(
-            children: const [
+            children: [
               Padding(
-                padding: PagePadding.vertical12Symmetric(),
+                padding: const PagePadding.vertical12Symmetric(),
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: _CustomSearchField(),
                     ),
-                    _Filterbutton(),
+                    _Filterbutton(
+                      onTap: () => pushToFilter(context: context),
+                    ),
                   ],
                 ),
               ),
@@ -88,12 +87,12 @@ class _HomeViewState extends ConsumerState<HomeView>
 }
 
 final class _Filterbutton extends StatelessWidget {
-  const _Filterbutton();
-
+  const _Filterbutton({required this.onTap});
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
         backgroundColor: context.general.colorScheme.onPrimaryFixed,
@@ -116,6 +115,12 @@ final class _CustomSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: () async {
+        await showSearch<SearchResponse>(
+          context: context,
+          delegate: PlaceSearchDelegate(),
+        );
+      },
       decoration: InputDecoration(
         hintText: LocaleKeys.search_place.tr(),
         focusColor: context.general.colorScheme.onPrimaryFixed,

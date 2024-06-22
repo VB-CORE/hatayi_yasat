@@ -61,18 +61,22 @@ final class _CategoryCard extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          textStyle: context.general.textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w300,
-          ),
           side: BorderSide(
-            color: context.general.colorScheme.onPrimaryContainer,
+            color: context.general.colorScheme.onSecondaryFixed,
           ),
           backgroundColor: context.general.colorScheme.onSecondary,
           shape: const RoundedRectangleBorder(
             borderRadius: CustomRadius.extraLarge,
           ),
+          padding: const PagePadding.horizontalNormalSymmetric(),
         ),
-        child: Text(name),
+        child: Text(
+          name,
+          style: context.general.textTheme.bodySmall?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: context.general.colorScheme.onSecondaryFixed,
+          ),
+        ),
       ),
     );
     return InkWell(
