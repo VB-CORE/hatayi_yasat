@@ -9,15 +9,20 @@ final class _RatingWidget extends StatelessWidget {
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: Card(
-        elevation: 0,
-        shape: context.border.roundedRectangleAllBorderNormal
-            .copyWith(side: CustomBorderSides.medium),
+        color: context.general.colorScheme.onPrimaryFixed,
+        elevation: kZero,
+        shape: const RoundedRectangleBorder(
+          borderRadius: CustomRadius.large,
+        ),
         child: ListTile(
           title: GeneralBodyTitle(
             LocaleKeys.settings_appReviewTitle.tr(context: context),
-            fontWeight: FontWeight.bold,
+            color: context.general.colorScheme.primary.withOpacity(.5),
           ),
-          trailing: const AppRatingWidget(),
+          trailing: Icon(
+            Icons.stars,
+            color: context.general.colorScheme.primary.withOpacity(.5),
+          ),
           onTap: () => AppReview.instance.openStore(),
         ),
       ),

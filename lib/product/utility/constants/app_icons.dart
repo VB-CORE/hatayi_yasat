@@ -27,7 +27,7 @@ final class AppIcons {
   static const IconData phone = Icons.phone;
   static const IconData share = Icons.share_rounded;
   static const IconData city = Icons.location_city;
-  static const IconData group = Icons.groups_2_outlined;
+  static const IconData group = Icons.group_sharp;
   static const IconData event = Icons.event;
   static const IconData textSnippet = Icons.text_snippet;
 

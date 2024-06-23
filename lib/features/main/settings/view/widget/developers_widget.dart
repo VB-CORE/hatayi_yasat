@@ -7,23 +7,23 @@ final class _DevelopersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.transparent,
-      elevation: 0,
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.medium),
+      color: context.general.colorScheme.onPrimaryFixed,
+      elevation: kZero,
+      shape: const RoundedRectangleBorder(
+        borderRadius: CustomRadius.large,
+      ),
       child: ListTile(
-        title: GeneralContentTitle(
-          value: LocaleKeys.developers_title.tr(context: context),
-          fontWeight: FontWeight.bold,
+        title: Text(
+          LocaleKeys.developers_title.tr(),
+          style: context.general.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
         ),
-        subtitle: GeneralContentSubTitle(
-          value: LocaleKeys.settings_seeDevelopers.tr(context: context),
-        ),
-        leading: const Icon(
+        leading: Icon(
           AppIcons.group,
-          size: WidgetSizes.spacingXxl6,
+          size: WidgetSizes.spacingXxl4,
+          color: context.general.colorScheme.onSecondaryFixed,
         ),
-        trailing: const Icon(AppIcons.rightSelect),
         onTap: () => const DevelopersRoute().push<DevelopersRoute>(context),
       ),
     );
