@@ -100,6 +100,7 @@ abstract class  LocaleKeys {
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
+  static const search_place = 'search.place';
   static const search_minumumSearch = 'search.minumumSearch';
   static const search = 'search';
   static const placeDetailView_owner = 'placeDetailView.owner';
@@ -110,6 +111,10 @@ abstract class  LocaleKeys {
   static const placeDetailView_photos = 'placeDetailView.photos';
   static const placeDetailView_call = 'placeDetailView.call';
   static const placeDetailView_find_the_place = 'placeDetailView.find_the_place';
+  static const placeDetailView_workingHours = 'placeDetailView.workingHours';
+  static const placeDetailView_openCloseHours = 'placeDetailView.openCloseHours';
+  static const placeDetailView_nowOpen = 'placeDetailView.nowOpen';
+  static const placeDetailView_nowClose = 'placeDetailView.nowClose';
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
@@ -144,10 +149,12 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';
-  static const navigationTabs_placesTabTitle = 'navigationTabs.placesTabTitle';
-  static const navigationTabs_campaignsTabTitle = 'navigationTabs.campaignsTabTitle';
-  static const navigationTabs_newsTabTitle = 'navigationTabs.newsTabTitle';
-  static const navigationTabs_advertiseTabTitle = 'navigationTabs.advertiseTabTitle';
+  static const navigationTabs_home = 'navigationTabs.home';
+  static const navigationTabs_activities = 'navigationTabs.activities';
+  static const navigationTabs_news = 'navigationTabs.news';
+  static const navigationTabs_settings = 'navigationTabs.settings';
+  static const navigationTabs_request = 'navigationTabs.request';
+  static const navigationTabs_advertise = 'navigationTabs.advertise';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_name = 'projectRequest.name';
@@ -177,6 +184,8 @@ abstract class  LocaleKeys {
   static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
   static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
+  static const advertise_jobDescription = 'advertise.jobDescription';
+  static const advertise_options = 'advertise.options';
   static const advertise = 'advertise';
   static const notFound_forRefresh = 'notFound.forRefresh';
   static const notFound_notification = 'notFound.notification';

@@ -108,10 +108,13 @@
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
-    "openEventDetailPhone": "Hello, I want to get information about the event named {}"
+    "openEventDetailPhone": "Hello, I want to get information about the event named {}",
+    "jobDescription": "Job Description",
+    "options": "Options"
   },
   "search": {
     "latestSearch": "Latest Searches",
+    "place": "Mekan ara",
     "minumumSearch": "Please enter at least 3 characters to search then press search button from the keyboard"
   },
   "placeDetailView": {
@@ -122,7 +125,11 @@
     "district": "District",
     "photos": "Photos",
     "call": "Call",
-    "find_the_place": "Find the place"
+    "find_the_place": "Find the place",
+    "workingHours": "Working Hours",
+    "openCloseHours": "Opening and Closing Hours",
+    "nowOpen": "Now Open",
+    "nowClose": "Now Close"
   },
   "campaignDetailsView": {
     "publisher": "Publisher (Person or Institution Name)",
@@ -163,10 +170,12 @@
     "seeProfileButtonText": "See Profile"
   },
   "navigationTabs": {
-    "placesTabTitle": "Places",
-    "campaignsTabTitle": "Projects",
-    "newsTabTitle": "News",
-    "advertiseTabTitle": "Advertises"
+    "home": "Home",
+    "activities": "Activities",
+    "news": "News",
+    "settings": "Settings",
+    "request": "Request",
+    "advertise": "Advertise"
   },
   "projectRequest": {
     "title": "New Project Request",

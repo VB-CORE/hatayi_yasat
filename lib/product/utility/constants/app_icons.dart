@@ -20,16 +20,16 @@ final class AppIcons {
   static const IconData timerOn = Icons.timer_outlined;
   static const IconData timerOff = Icons.timer_off;
 
-  static const IconData home = Icons.home_outlined;
+  static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
-  static const IconData settings = Icons.settings_outlined;
+  static const IconData settings = Icons.settings;
   static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
-  static const IconData phone = Icons.phone_outlined;
-  static const IconData share = Icons.ios_share_rounded;
+  static const IconData phone = Icons.phone;
+  static const IconData share = Icons.share_rounded;
   static const IconData city = Icons.location_city;
-  static const IconData group = Icons.groups_2_outlined;
-  static const IconData event = Icons.event_outlined;
-  static const IconData textSnippet = Icons.text_snippet_outlined;
+  static const IconData group = Icons.group_sharp;
+  static const IconData event = Icons.event;
+  static const IconData textSnippet = Icons.text_snippet;
 
   static const IconData favorite = Icons.favorite;
   static const IconData favoriteBorder = Icons.favorite_border_outlined;
@@ -43,4 +43,6 @@ final class AppIcons {
   static const IconData location = Icons.location_on;
   static const IconData check = Icons.check_outlined;
   static const IconData clear = Icons.clear_outlined;
+
+  static const IconData filter = Icons.tune_outlined;
 }

@@ -7,16 +7,17 @@ final class _AppAboutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.transparent,
-      elevation: 0,
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.medium),
+      color: context.general.colorScheme.onPrimaryFixed,
+      elevation: kZero,
+      shape: const RoundedRectangleBorder(
+        borderRadius: CustomRadius.large,
+      ),
       child: ListTile(
         title: GeneralBodyTitle(
           LocaleKeys.settings_aboutTitle.tr(context: context),
           fontWeight: FontWeight.bold,
+          color: context.general.colorScheme.primary.withOpacity(.5),
         ),
-        trailing: const Icon(AppIcons.rightSelect),
         onTap: () {
           showModalBottomSheet<void>(
             context: context,
@@ -25,7 +26,6 @@ final class _AppAboutWidget extends StatelessWidget {
               return const AppAboutView();
             },
           );
-          // navigate to AppAboutView
         },
       ),
     );

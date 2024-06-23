@@ -23,22 +23,22 @@ final class TabModels {
       TabModel(
         page: const HomeView(),
         icon: const Icon(AppIcons.home),
-        title: LocaleKeys.navigationTabs_placesTabTitle,
+        title: LocaleKeys.navigationTabs_home,
       ),
       TabModel(
         page: const EventView(),
         icon: const Icon(AppIcons.event),
-        title: LocaleKeys.navigationTabs_campaignsTabTitle,
+        title: LocaleKeys.navigationTabs_activities,
       ),
       TabModel(
         page: const NewsJobsView(),
         icon: const Icon(AppIcons.textSnippet),
-        title: LocaleKeys.navigationTabs_newsTabTitle,
+        title: LocaleKeys.navigationTabs_news,
       ),
       TabModel(
         page: const SettingsView(),
         icon: const Icon(AppIcons.settings),
-        title: LocaleKeys.navigationTabs_advertiseTabTitle,
+        title: LocaleKeys.navigationTabs_settings,
       ),
     ];
   }

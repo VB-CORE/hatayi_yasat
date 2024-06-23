@@ -111,6 +111,7 @@
   },
   "search": {
     "latestSearch": "Son Aramalar",
+    "place": "Mekan ara",
     "minumumSearch": "'Arama yapabilmek için en az {} karakter girip klavyenizden Ara kısmına basınız."
   },
   "placeDetailView": {
@@ -121,7 +122,11 @@
     "district": "İlçe",
     "photos": "Fotoğraflar",
     "call": "Ara",
-    "find_the_place": "Yol Tarifi Al"
+    "find_the_place": "Yol Tarifi Al",
+    "workingHours": "Çalışma Saatleri",
+    "openCloseHours": "Açılış ve Kapanış Saatleri",
+    "nowOpen": "Şu an açık",
+    "nowClose": "Şu an kapalı"
   },
   "campaignDetailsView": {
     "publisher": "Yayımcı (Kişi veya Kurum Adı)",
@@ -162,10 +167,12 @@
     "seeProfileButtonText": "Profili Görüntüle"
   },
   "navigationTabs": {
-    "placesTabTitle": "Mekanlar",
-    "campaignsTabTitle": "Projeler",
-    "newsTabTitle": "Haberler",
-    "advertiseTabTitle": "İş ilanları"
+    "home": "Anasayfa",
+    "activities": "Etkinlikler",
+    "news": "Haberler",
+    "settings": "Ayarlar",
+    "request": "Talep",
+    "advertise": "İş İlanı"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -198,13 +205,15 @@
     "share": "İlanı paylaş",
     "role": "Pozisyon: ",
     "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:",
-    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' "
+    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' ",
+    "jobDescription": "İş Açıklaması",
+    "options": "Özellikler"
   },
   "notFound": {
     "forRefresh": "Yenilemek için buraya dokunun.",
     "notification": "Bildirim yok",
     "specialAgency": "Özel Kurumlar henüz girilmemiş.",
-    "campaign": "Etkinlikler henüz girilmemiş.",
+    "campaign": "Etkinlik bulunamadı",
     "developers": "Geliştiriciler henüz girilmemiş.",
     "towns": "Mekanlar henüz girilmemiş.",
     "news": "Haberler henüz girilmemiş.",

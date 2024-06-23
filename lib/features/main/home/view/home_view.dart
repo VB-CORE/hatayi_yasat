@@ -6,11 +6,14 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/location_permission_service.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
+import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -21,7 +24,6 @@ import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dar
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
-import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
 
 part 'widget/home_categories_area.dart';
@@ -40,9 +42,11 @@ class _HomeViewState extends ConsumerState<HomeView>
         NotificationTypeMixin,
         AppProviderMixin<HomeView>,
         HomeViewMixin,
-        _FilterMixin {
+        _FilterMixin,
+        AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return GeneralScaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 100),
@@ -66,38 +70,119 @@ class _HomeViewState extends ConsumerState<HomeView>
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
-          _CategoriesTitle(
-            onTap: () => pushToFilter(context: context),
-          ),
-          const _CategoriesItems(),
           SliverAppBar(
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
+              centerTitle: false,
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GeneralSubTitle(
-                    value: LocaleKeys.home_places.tr(),
-                    fontWeight: FontWeight.bold,
+                  GeneralBigTitle(
+                    LocaleKeys.home_places.tr(),
                   ),
+                  const Spacer(),
                   const _HomeSortGridView(),
                 ],
               ),
             ),
           ),
+          SliverList.list(
+            children: [
+              Padding(
+                padding: const PagePadding.vertical12Symmetric(),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: _CustomSearchField(),
+                    ),
+                    _Filterbutton(
+                      onTap: () => pushToFilter(context: context),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const _CategoriesItems(),
           const _HomePlacesArea(),
           const EmptyBox.largeXxHeight().ext.sliver,
         ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+final class _Filterbutton extends StatelessWidget {
+  const _Filterbutton({required this.onTap});
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        backgroundColor: context.general.colorScheme.onPrimaryFixed,
+        shape: const CircleBorder(),
+      ),
+      child: Padding(
+        padding: const PagePadding.generalAllLow(),
+        child: Icon(
+          AppIcons.filter,
+          color: context.general.colorScheme.onSecondaryFixed,
+        ),
+      ),
+    );
+  }
+}
+
+final class _CustomSearchField extends StatelessWidget {
+  const _CustomSearchField();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      onTap: () async {
+        await showSearch<SearchResponse>(
+          context: context,
+          delegate: PlaceSearchDelegate(),
+        );
+      },
+      decoration: InputDecoration(
+        hintText: LocaleKeys.search_place.tr(),
+        focusColor: context.general.colorScheme.onPrimaryFixed,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: CustomRadius.large,
+          borderSide: BorderSide(
+            color: context.general.colorScheme.onPrimaryFixed,
+          ),
+        ),
+        hintStyle: context.general.textTheme.titleMedium?.copyWith(
+          color: context.general.colorScheme.onSecondaryFixed,
+          fontWeight: FontWeight.w400,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: CustomRadius.large,
+          borderSide: BorderSide(
+            color: context.general.colorScheme.onPrimaryFixed,
+          ),
+        ),
+        filled: true,
+        fillColor: context.general.colorScheme.onPrimaryFixed,
+        contentPadding: const PagePadding.horizontalSymmetric(),
+        prefixIcon: Icon(
+          AppIcons.search,
+          color: context.general.colorScheme.onSecondaryFixed,
+        ),
+      ),
+    );
+  }
 }
 
 final class _CategoriesItems extends ConsumerWidget {
-  const _CategoriesItems({
-    super.key,
-  });
+  const _CategoriesItems();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -111,31 +196,6 @@ final class _CategoriesItems extends ConsumerWidget {
     return const SliverPadding(
       padding: PagePadding.vertical6Symmetric(),
       sliver: _HomeCategoryCards(),
-    );
-  }
-}
-
-final class _CategoriesTitle extends ConsumerWidget {
-  const _CategoriesTitle({
-    required this.onTap,
-    super.key,
-  });
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final hasCategories =
-        ref.watch(homeViewModelProvider).categories.isNotEmpty;
-    if (!hasCategories) {
-      return const SliverToBoxAdapter(
-        child: SizedBox.shrink(),
-      );
-    }
-    return SliverPadding(
-      padding: const PagePadding.onlyTopMedium(),
-      sliver: ClickableSubTitleText(
-        title: LocaleKeys.home_categories.tr(),
-        onTap: onTap,
-      ).ext.sliver,
     );
   }
 }

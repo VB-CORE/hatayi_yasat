@@ -9,9 +9,13 @@ final class _AdvertisementItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async => _onPressed(context),
-      child: CustomNetworkImage(
-        imageUrl: item.image,
-        fit: BoxFit.fitHeight,
+      child: ClipRRect(
+        borderRadius: CustomRadius.large,
+        child: FittedBox(
+          child: CustomNetworkImage(
+            imageUrl: item.image,
+          ),
+        ),
       ),
     );
   }

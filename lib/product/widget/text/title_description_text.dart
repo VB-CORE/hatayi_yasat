@@ -18,16 +18,17 @@ final class TitleDescription extends StatelessWidget {
         children: [
           Text(
             title,
-            style: context.general.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
+            style: context.general.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w500,
             ),
           ),
           Padding(
             padding: const PagePadding.onlyTopLow(),
             child: Text(
               description,
-              style: context.general.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
+              style: context.general.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w400,
+                color: context.general.colorScheme.primary.withOpacity(.5),
               ),
             ),
           ),

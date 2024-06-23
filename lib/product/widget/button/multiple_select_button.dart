@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/button/mixin/multiple_select_button_mixin.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
@@ -55,10 +56,11 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
                         addOrRemoveItem(items[index]);
                       },
                       child: Chip(
+                        elevation: kZero,
                         padding: EdgeInsets.zero,
                         backgroundColor: isSelected
                             ? context.general.colorScheme.primary
-                            : Colors.transparent,
+                            : context.general.colorScheme.secondary,
                         label:
                             _Title(item: items[index], isSelected: isSelected),
                       ),
@@ -85,13 +87,24 @@ final class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      item.title,
-      style: context.general.textTheme.titleSmall?.copyWith(
-        color: isSelected
-            ? context.general.colorScheme.secondary
-            : context.general.colorScheme.primary,
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          isSelected ? AppIcons.close : AppIcons.add,
+          color: isSelected
+              ? context.general.colorScheme.secondary
+              : context.general.colorScheme.primary,
+        ),
+        Text(
+          item.title,
+          style: context.general.textTheme.titleSmall?.copyWith(
+            color: isSelected
+                ? context.general.colorScheme.secondary
+                : context.general.colorScheme.primary,
+          ),
+        ),
+      ],
     );
   }
 }

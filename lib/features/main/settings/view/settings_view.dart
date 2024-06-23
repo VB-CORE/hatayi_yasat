@@ -10,14 +10,12 @@ import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
 import 'package:lifeclient/product/package/app_review/app_review.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/constants/string_constants.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/widget/checkbox/notification_permission_checkbox.dart';
 import 'package:lifeclient/product/widget/dropdown/language_dropdown_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
-import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
 
 part 'widget/app_about_widget.dart';
 part 'widget/change_language_widget.dart';
@@ -34,17 +32,20 @@ final class SettingsView extends StatelessWidget {
     return GeneralScaffold(
       body: CustomScrollView(
         slivers: [
-          const EmptyBox.middleHeight().ext.sliver,
-          const _DevelopersWidget().ext.sliver,
-          const _ChangeNotificationWidget().ext.sliver,
-          const _ChangeLanguageWidget().ext.sliver,
-          const _ContactUsWidget().ext.sliver,
-          const Divider().ext.sliver,
-          const _AppAboutWidget().ext.sliver,
-          const _RatingWidget().ext.sliver,
-          const EmptyBox(
-            height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxl2,
-          ).ext.sliver,
+          SliverList.list(
+            children: const [
+              EmptyBox.middleHeight(),
+              _DevelopersWidget(),
+              _ChangeNotificationWidget(),
+              _ChangeLanguageWidget(),
+              _ContactUsWidget(),
+              _AppAboutWidget(),
+              _RatingWidget(),
+              EmptyBox(
+                height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxl2,
+              ),
+            ],
+          ),
         ],
       ),
     );
