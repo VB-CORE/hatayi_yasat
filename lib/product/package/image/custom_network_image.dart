@@ -9,10 +9,17 @@ import 'package:lifeclient/product/widget/icon/icon_with_text.dart';
 import 'package:shimmer/shimmer.dart';
 
 final class CustomNetworkImage extends StatelessWidget {
-  const CustomNetworkImage({super.key, this.imageUrl, this.fit, this.height});
+  const CustomNetworkImage({
+    super.key,
+    this.imageUrl,
+    this.fit,
+    this.height,
+  });
+
   final String? imageUrl;
   final BoxFit? fit;
   final double? height;
+
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {

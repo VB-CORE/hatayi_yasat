@@ -86,13 +86,16 @@ dependencies:
   #Flutter
   video_player: ^2.7.2
 
+  #Location
+  google_maps_flutter: ^2.6.1
+
   # JSON
   json_annotation: ^4.8.0
 
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.0.0
+      ref: v5.1.0
 
   file_picker: ^5.5.0
   sliver_tools: ^0.2.12

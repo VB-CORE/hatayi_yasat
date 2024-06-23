@@ -302,5 +302,8 @@
     "chainView": "🛍 A chain store screen has been added.",
     "notificationViewLink": "🔔 An option to open links from notifications has been added.",
     "bugFixes": "🐞 Bug fixes have been made."
+  },
+  "tourismView": {
+    "onTapMarkerWindow": "Tap to get directions"
   }
 }

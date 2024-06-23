@@ -262,5 +262,7 @@ abstract class  LocaleKeys {
   static const whatsNew_notificationViewLink = 'whatsNew.notificationViewLink';
   static const whatsNew_bugFixes = 'whatsNew.bugFixes';
   static const whatsNew = 'whatsNew';
+  static const tourismView_onTapMarkerWindow = 'tourismView.onTapMarkerWindow';
+  static const tourismView = 'tourismView';
 
 }

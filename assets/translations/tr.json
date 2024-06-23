@@ -302,5 +302,8 @@
     "chainView": "🛍 Zincir mağaza ekranı eklendi.",
     "notificationViewLink": "🔔 Bildirimler üzerinden link açma opsiyonu eklendi.",
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
+  },
+  "tourismView": {
+    "onTapMarkerWindow": "Yol tarifi almak için tıklayın"
   }
 }
