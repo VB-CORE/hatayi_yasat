@@ -6,13 +6,14 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
-import 'package:lifeclient/product/widget/container/circle_image_with_text_container.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/icon/index.dart';
@@ -57,23 +58,23 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         iconTheme: IconThemeData(
           color: context.general.colorScheme.primary,
         ),
-        leading: const CloseButton(),
+        title: Text(model.name),
+        centerTitle: true,
         actions: [
           _ShareAddressButton(model: model),
-          Padding(
-            padding: const PagePadding.onlyRightLow(),
-            child: FavoritePlaceButton(store: model),
-          ),
         ],
       ),
-      bottomNavigationBar: _FindThePlaceButton(action: findThePlaceAction),
+      bottomNavigationBar: _FindThePlaceButton(
+        onCallTapped: () async {},
+        onFindPlaceTapped: () async {},
+      ),
       body: ListView(
         children: [
-          _ImageWithButtonAndNameStack(
-            model: model,
-            image: model.images.first,
-            placeOwnerName: model.owner,
-            backButtonAction: goBackAction,
+          SizedBox(
+            height: context.sized.dynamicHeight(.4),
+            child: _ImageWithButtonAndNameStack(
+              model: model,
+            ),
           ),
           Padding(
             padding: const PagePadding.defaultPadding(),
@@ -86,13 +87,36 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _NameTitleAndCallButton(
-                        placeName: model.updatedName,
-                        callAction: callAction,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GeneralContentTitle(
+                            value: model.updatedName,
+                            fontWeight: FontWeight.bold,
+                            maxLine: 3,
+                          ),
+                          const EmptyBox.largeWidth(),
+                          Flexible(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.person_pin),
+                                Flexible(
+                                  child: GeneralContentSubTitle(
+                                    value: model.owner,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      // _VisitCountRow(model: model),
-                      _TownIcon(townCode: model.townCode),
-
+                      Padding(
+                        padding: const PagePadding.onlyTop(),
+                        child: _TownIcon(townCode: model.townCode),
+                      ),
+                      _OpenCloseTime(model: model),
                       Padding(
                         padding: const PagePadding.verticalSymmetric(),
                         child: TitleDescription(
@@ -100,9 +124,17 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                           description: model.description ?? '-',
                         ),
                       ),
-                      TitleDescription(
-                        title: LocaleKeys.placeDetailView_address.tr(),
-                        description: model.address ?? '-',
+                      const Divider(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TitleDescription(
+                              title: LocaleKeys.placeDetailView_address.tr(),
+                              description: model.address ?? '-',
+                            ),
+                          ),
+                          Assets.images.imgMapTemp.image(),
+                        ],
                       ),
                     ],
                   ),

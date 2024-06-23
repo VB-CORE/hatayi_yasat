@@ -24,8 +24,8 @@ final class AppIcons {
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings;
   static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
-  static const IconData phone = Icons.phone_outlined;
-  static const IconData share = Icons.ios_share_rounded;
+  static const IconData phone = Icons.phone;
+  static const IconData share = Icons.share_rounded;
   static const IconData city = Icons.location_city;
   static const IconData group = Icons.groups_2_outlined;
   static const IconData event = Icons.event;

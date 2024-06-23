@@ -122,7 +122,11 @@
     "district": "İlçe",
     "photos": "Fotoğraflar",
     "call": "Ara",
-    "find_the_place": "Yol Tarifi Al"
+    "find_the_place": "Yol Tarifi Al",
+    "workingHours": "Çalışma Saatleri",
+    "openCloseHours": "Açılış ve Kapanış Saatleri",
+    "nowOpen": "Şu an açık",
+    "nowClose": "Şu an kapalı"
   },
   "campaignDetailsView": {
     "publisher": "Yayımcı (Kişi veya Kurum Adı)",

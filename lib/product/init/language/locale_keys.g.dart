@@ -111,6 +111,10 @@ abstract class  LocaleKeys {
   static const placeDetailView_photos = 'placeDetailView.photos';
   static const placeDetailView_call = 'placeDetailView.call';
   static const placeDetailView_find_the_place = 'placeDetailView.find_the_place';
+  static const placeDetailView_workingHours = 'placeDetailView.workingHours';
+  static const placeDetailView_openCloseHours = 'placeDetailView.openCloseHours';
+  static const placeDetailView_nowOpen = 'placeDetailView.nowOpen';
+  static const placeDetailView_nowClose = 'placeDetailView.nowClose';
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';

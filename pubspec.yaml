@@ -41,7 +41,7 @@ dependencies:
 
   flutter_image_compress: ^2.0.4
   image: ^4.0.17
-  google_fonts: ^6.1.0
+  google_fonts: ^6.2.1
   lottie: ^2.6.0
   flutter_svg: ^2.0.9
 

@@ -123,7 +123,11 @@
     "district": "District",
     "photos": "Photos",
     "call": "Call",
-    "find_the_place": "Find the place"
+    "find_the_place": "Find the place",
+    "workingHours": "Working Hours",
+    "openCloseHours": "Opening and Closing Hours",
+    "nowOpen": "Now Open",
+    "nowClose": "Now Close"
   },
   "campaignDetailsView": {
     "publisher": "Publisher (Person or Institution Name)",

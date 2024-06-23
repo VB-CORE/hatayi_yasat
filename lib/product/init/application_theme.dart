@@ -37,7 +37,7 @@ final class ApplicationTheme {
           color: ColorsCustom.sambacus,
         ),
       ),
-      textTheme: GoogleFonts.montserratTextTheme(textTheme).apply(
+      textTheme: GoogleFonts.robotoTextTheme(textTheme).apply(
         displayColor: ColorsCustom.sambacus,
       ),
       colorScheme: theme.colorScheme.copyWith(
