@@ -22,7 +22,6 @@ import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dar
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
-import 'package:lifeclient/product/widget/text/clickable_title_text.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_slider.dart';
 
 part 'widget/home_categories_area.dart';
@@ -178,30 +177,6 @@ final class _CategoriesItems extends ConsumerWidget {
     return const SliverPadding(
       padding: PagePadding.vertical6Symmetric(),
       sliver: _HomeCategoryCards(),
-    );
-  }
-}
-
-final class _CategoriesTitle extends ConsumerWidget {
-  const _CategoriesTitle({
-    required this.onTap,
-  });
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final hasCategories =
-        ref.watch(homeViewModelProvider).categories.isNotEmpty;
-    if (!hasCategories) {
-      return const SliverToBoxAdapter(
-        child: SizedBox.shrink(),
-      );
-    }
-    return SliverPadding(
-      padding: const PagePadding.onlyTopMedium(),
-      sliver: ClickableSubTitleText(
-        title: LocaleKeys.home_categories.tr(),
-        onTap: onTap,
-      ).ext.sliver,
     );
   }
 }
