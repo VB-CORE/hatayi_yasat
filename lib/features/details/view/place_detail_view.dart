@@ -14,6 +14,7 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:lifeclient/product/widget/button/icon_title_button.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/icon/index.dart';
@@ -65,8 +66,8 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         ],
       ),
       bottomNavigationBar: _FindThePlaceButton(
-        onCallTapped: () async {},
-        onFindPlaceTapped: () async {},
+        onCallTapped: callAction,
+        onFindPlaceTapped: findThePlaceAction,
       ),
       body: ListView(
         children: [

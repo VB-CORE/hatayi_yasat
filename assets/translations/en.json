@@ -108,7 +108,9 @@
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
-    "openEventDetailPhone": "Hello, I want to get information about the event named {}"
+    "openEventDetailPhone": "Hello, I want to get information about the event named {}",
+    "jobDescription": "Job Description",
+    "options": "Options"
   },
   "search": {
     "latestSearch": "Latest Searches",

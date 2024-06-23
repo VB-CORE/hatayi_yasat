@@ -18,7 +18,7 @@ final class CustomCarouselOptions extends CarouselOptions {
           height: height,
           autoPlayCurve: Curves.easeOut,
           autoPlay: true,
-          viewportFraction: .85,
-          padEnds: false,
+          viewportFraction: .8,
+          padEnds: true,
         );
 }

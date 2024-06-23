@@ -22,7 +22,7 @@ final class _FindThePlaceButton extends StatelessWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: _IconButton(
+                child: IconTitleButton(
                   onPressed: onCallTapped.call,
                   icon: AppIcons.location,
                   text: LocaleKeys.placeDetailView_find_the_place.tr(),
@@ -31,7 +31,7 @@ final class _FindThePlaceButton extends StatelessWidget {
               const Spacer(),
               Expanded(
                 flex: 4,
-                child: _IconButton(
+                child: IconTitleButton(
                   onPressed: onFindPlaceTapped.call,
                   icon: AppIcons.phone,
                   text: LocaleKeys.placeDetailView_call.tr(),
@@ -164,48 +164,6 @@ final class _OpenCloseTime extends StatelessWidget {
                 const Spacer(),
                 Text(times.join(' - ')),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-final class _IconButton extends StatelessWidget {
-  const _IconButton({
-    required this.onPressed,
-    required this.icon,
-    required this.text,
-  });
-  final VoidCallback onPressed;
-  final IconData icon;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        padding: const PagePadding.horizontalSymmetric() +
-            const PagePadding.vertical6Symmetric(),
-        backgroundColor: context.general.colorScheme.onPrimaryFixed,
-        shape: const RoundedRectangleBorder(
-          borderRadius: CustomRadius.medium,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: context.general.colorScheme.primary,
-          ),
-          const EmptyBox.smallWidth(),
-          Text(
-            text,
-            style: context.general.textTheme.titleSmall?.copyWith(
-              color: context.general.colorScheme.primary,
             ),
           ),
         ],

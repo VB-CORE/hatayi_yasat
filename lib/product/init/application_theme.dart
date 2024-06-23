@@ -7,9 +7,9 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 final class ApplicationTheme {
   ApplicationTheme.build(BuildContext context) {
-    final textTheme = context.general.textTheme;
+    // final textTheme = context.general.textTheme;
     final theme = ThemeData.light(useMaterial3: true);
-
+    final textTheme = theme.textTheme;
     themeData = theme.copyWith(
       dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
@@ -37,9 +37,7 @@ final class ApplicationTheme {
           color: ColorsCustom.sambacus,
         ),
       ),
-      textTheme: GoogleFonts.robotoTextTheme(textTheme).apply(
-        displayColor: ColorsCustom.sambacus,
-      ),
+      textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(),
       colorScheme: theme.colorScheme.copyWith(
         primary: ColorsCustom.sambacus,
         secondary: ColorsCustom.white,

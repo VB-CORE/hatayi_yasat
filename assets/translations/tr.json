@@ -205,7 +205,9 @@
     "share": "İlanı paylaş",
     "role": "Pozisyon: ",
     "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:",
-    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' "
+    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' ",
+    "jobDescription": "İş Açıklaması",
+    "options": "Özellikler"
   },
   "notFound": {
     "forRefresh": "Yenilemek için buraya dokunun.",

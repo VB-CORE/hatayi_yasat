@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AdvertiseSheet extends StatelessWidget {
   const AdvertiseSheet({required this.item, super.key});
@@ -43,7 +43,7 @@ class AdvertiseSheet extends StatelessWidget {
             Text(
               item.title!,
               style: context.general.textTheme.titleLarge?.copyWith(
-                color: context.general.colorScheme.onBackground,
+                color: context.general.colorScheme.onSurface,
               ),
             ),
           const Divider(),
@@ -89,7 +89,7 @@ class _TextArea extends StatelessWidget {
           header,
           style: context.general.textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            color: context.general.colorScheme.onBackground,
+            color: context.general.colorScheme.onSurface,
           ),
         ),
         const HorizontalSpace.standard(),
@@ -97,7 +97,7 @@ class _TextArea extends StatelessWidget {
           child: Text(
             content!,
             style: context.general.textTheme.bodyLarge?.copyWith(
-              color: context.general.colorScheme.onBackground,
+              color: context.general.colorScheme.onSurface,
             ),
             textAlign: content!.length > 100 ? TextAlign.start : TextAlign.end,
           ),
@@ -162,12 +162,12 @@ class _ElevatedIconButton extends StatelessWidget {
       label: Text(
         title,
         style: TextStyle(
-          color: context.general.colorScheme.onBackground,
+          color: context.general.colorScheme.onSurface,
         ),
       ),
       icon: Icon(
         icon,
-        color: context.general.colorScheme.onBackground,
+        color: context.general.colorScheme.onSurface,
       ),
     );
   }
