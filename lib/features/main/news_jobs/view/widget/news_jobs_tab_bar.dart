@@ -13,7 +13,8 @@ class _NewsJobsTabBarState extends State<_NewsJobsTabBar>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const PagePadding.all(),
+      padding:
+          const PagePadding.horizontalSymmetric() + const PagePadding.onlyTop(),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.general.colorScheme.onPrimaryFixed,
