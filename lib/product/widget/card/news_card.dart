@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
-
-import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
-import 'package:lifeclient/product/widget/special/user_special_card.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/special/special_user.dart';
 
 @immutable
 final class NewsCard extends StatelessWidget {
@@ -71,37 +71,45 @@ class _TransparentBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.transparent,
       shape: const RoundedRectangleBorder(
         borderRadius: CustomRadius.large,
       ),
       margin: EdgeInsets.zero,
-      color: context.general.colorScheme.secondary.withOpacity(0.60),
-      child: _NewsInformationArea(item: item),
-    );
-  }
-}
-
-class _NewsInformationArea extends StatelessWidget {
-  const _NewsInformationArea({
-    required this.item,
-  });
-
-  final NewsModel item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.horizontalLowSymmetric() +
-          const PagePadding.verticalLowSymmetric(),
-      child: Column(
-        children: [
-          GeneralSubTitle(
-            value: item.title ?? '',
-            fontWeight: FontWeight.bold,
-            maxLine: 2,
-          ),
-          const UserSpecialCard(),
-        ],
+      child: Padding(
+        padding: const PagePadding.horizontalLowSymmetric() +
+            const PagePadding.verticalLowSymmetric(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Wrap(
+              children: [
+                CircleAvatar(
+                  radius: WidgetSizes.spacingS,
+                  backgroundImage: NetworkImage(SpecialUser.creator.photoUrl),
+                ),
+                const EmptyBox.smallWidth(),
+                Text(
+                  SpecialUser.creator.name,
+                  style: context.general.textTheme.titleSmall?.copyWith(
+                    color: context.general.colorScheme.secondary,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const PagePadding.onlyTop(),
+              child: Text(
+                item.title ?? '',
+                maxLines: AppConstants.kTwo,
+                style: context.general.textTheme.titleLarge?.copyWith(
+                  color: context.general.colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
