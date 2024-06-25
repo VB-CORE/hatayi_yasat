@@ -34,4 +34,7 @@ abstract final class CustomBorderSides {
 
   /// [superMaxThick] is width: 1.0
   static const BorderSide superMaxThick = BorderSide();
+
+  /// [doubleUltraThin] is width: 2.0
+  static const BorderSide doubleUltraThin = BorderSide(width: 2);
 }

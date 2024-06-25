@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
-
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
@@ -16,7 +15,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
-import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 
 mixin PlaceRequestFormMixin
     on
@@ -36,10 +34,9 @@ mixin PlaceRequestFormMixin
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
-  final ValueNotifier<SelectSheetModel?> _selecteTownNotifier =
-      ValueNotifier(null);
+  final ValueNotifier<TownModel?> _selectTownNotifier = ValueNotifier(null);
 
-  final ValueNotifier<SelectSheetModel?> _selecteCategoryNotifier =
+  final ValueNotifier<CategoryModel?> _selectCategoryNotifier =
       ValueNotifier(null);
 
   final ValueNotifier<bool> isKVKKCheckedNotifier = ValueNotifier(false);
@@ -75,9 +72,9 @@ mixin PlaceRequestFormMixin
     placePhoneNumberController.clear();
     openTimeController.clear();
     closeTimeController.clear();
-    _selecteCategoryNotifier.value = null;
+    _selectCategoryNotifier.value = null;
     _imageFile = null;
-    _selecteCategoryNotifier.value = null;
+    _selectCategoryNotifier.value = null;
   }
 
   @override
@@ -88,20 +85,20 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
-    if (_selecteTownNotifier.value != null) return true;
-    if (_selecteCategoryNotifier.value != null) return true;
+    if (_selectTownNotifier.value != null) return true;
+    if (_selectCategoryNotifier.value != null) return true;
     if (openTimeController.isValid) return true;
     if (closeTimeController.isValid) return true;
     if (_imageFile != null) return true;
     return false;
   }
 
-  void updateTownItem(SelectSheetModel item) {
-    _selecteTownNotifier.value = item;
+  void updateTownItem(TownModel item) {
+    _selectTownNotifier.value = item;
   }
 
-  void updateCategoryItem(SelectSheetModel item) {
-    _selecteCategoryNotifier.value = item;
+  void updateCategoryItem(CategoryModel item) {
+    _selectCategoryNotifier.value = item;
   }
 
   void updateKVKK({required bool value}) {
@@ -114,6 +111,22 @@ mixin PlaceRequestFormMixin
 
   PlaceRequestModel? requestModel() {
     if (!validateAndSave()) return null;
+    final categoryModel = _selectCategoryNotifier.value;
+    final townModel = _selectTownNotifier.value;
+    if (categoryModel == null) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_categoryEmpty.tr(),
+      );
+      return null;
+    }
+
+    if (townModel == null) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_townEmpty.tr(),
+      );
+      return null;
+    }
+
     return PlaceRequestModel(
       placeName: placeNameController.text,
       placeDescription: placeDescriptionController.text,
@@ -124,12 +137,8 @@ mixin PlaceRequestFormMixin
         closeTime: closeTimeController.time,
         openTime: openTimeController.time,
       ),
-      placeCategory: categoryModels.firstWhere(
-        (element) => element.documentId == _selecteCategoryNotifier.value?.id,
-      ),
-      placeDistrict: townModels.firstWhere(
-        (element) => element.documentId == _selecteTownNotifier.value?.id,
-      ),
+      placeCategory: categoryModel,
+      placeDistrict: townModel,
       imageFile: _imageFile ?? File(''),
     );
   }

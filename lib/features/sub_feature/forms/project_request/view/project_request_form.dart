@@ -15,6 +15,7 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/general/dotted/index.dart';
+import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_provider.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/list_view_with_space.dart';
 import 'package:lifeclient/product/widget/text_field/date_time_form_field.dart';
@@ -61,8 +62,9 @@ final class _ProjectRequestFormState
           ),
       body: ListViewWithSpace(
         children: [
-          GeneralDottedPhotoAdd(
+          GeneralDottedPhotoAddProvider(
             onSelected: onImageSelected,
+            child: const GeneralDottedPhotoAdd(),
           ),
           CustomTextFormMultiField(
             hint: LocaleKeys.projectRequest_name.tr(),

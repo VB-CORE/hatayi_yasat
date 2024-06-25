@@ -17,6 +17,7 @@
     "photoRequired": "Please add a photo.",
     "loseAllData": "Your changes will be lost. Do you want to continue?",
     "categoryEmpty": "Please choose a category",
+    "districtEmpty": "Please choose a district",
     "emailFormat": "Please enter your mail correctly",
     "studentEmailFormat": "Please enter your student mail",
     "dateAfterNow": "Please enter a date after today",
@@ -38,15 +39,15 @@
     "cancel": "Cancel",
     "clearAllSelection": "{} clear selections",
     "showResult": "Show result",
-    "sendRequest": "Send Request",
+    "sendRequest": "Create request",
     "call": "Call",
     "share": "Share",
     "error": "Error"
   },
   "component": {
     "picker": {
-      "camera": "Select from Camera",
-      "gallery": "Select from Gallery",
+      "camera": "Camera",
+      "gallery": "Gallery",
       "cropperTitle": "Edit"
     },
     "filter": {
@@ -60,18 +61,19 @@
   },
   "requestCompany": {
     "title": "New Business Request",
-    "name": "Business Name",
-    "description": "Business Description",
-    "address": "Business Address",
-    "phoneNumber": "Phone Number",
-    "ownerName": "Full Name",
+    "name": "Enter the name of your business",
+    "description": "Enter the description of your business",
+    "address": "Enter the address of your business",
+    "phoneNumber": "Enter your phone number",
+    "ownerName": "Enter your name and surname",
     "district": "District",
     "category": "Category",
     "chooseCategory": "Choose Category",
     "chooseDistrict": "Choose District",
-    "workingHours": "Working Hours",
+    "workingHours": "Enter the working hours of your business",
     "start": "Start",
-    "end": "End"
+    "end": "End",
+    "choosePhoto": "Enter photos of your business"
   },
   "general": {
     "kvkk": "KVKK",

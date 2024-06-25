@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_decoration.dart';
 
 final class TimeFormField extends StatefulWidget {
   const TimeFormField({
@@ -33,10 +34,14 @@ class _TimeFormFieldState extends State<TimeFormField>
     return TextFormField(
       readOnly: true,
       controller: _timeController,
-      decoration: InputDecoration(
-        errorMaxLines: AppConstants.kFour,
-        hintText: widget.hintText,
-        prefixIcon: Icon(widget.prefixIcon ?? AppIcons.timerOn),
+      decoration: NewCustomTimeFieldDecoration(
+        context: context,
+        hint: widget.hintText,
+        prefixIcon: widget.prefixIcon,
+      ),
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: context.general.colorScheme.onSecondaryFixed,
+        fontWeight: FontWeight.w400,
       ),
       onTap: () async => _selectTime(),
       validator: widget.validator ??

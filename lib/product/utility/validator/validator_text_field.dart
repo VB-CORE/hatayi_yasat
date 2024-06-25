@@ -1,17 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
-import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 
 abstract class ValidatorField {
-  String? validate(String? value);
+  String? validate(String? value) {
+    throw UnimplementedError();
+  }
+
   String? validateDateTime({
     required DateTime? startDate,
     required DateTime? endDate,
   }) {
+    throw UnimplementedError();
+  }
+
+  String? validateDropDownField(BaseDropDownModel? value) {
     throw UnimplementedError();
   }
 }
@@ -109,5 +116,15 @@ final class ValidateCloseDate extends ValidatorField {
     } else {
       return LocaleKeys.validation_closeTimeMustBeAfterStartTime.tr();
     }
+  }
+}
+
+final class DropdownModelValidate extends ValidatorField {
+  @override
+  String? validateDropDownField(BaseDropDownModel? value) {
+    if (value == null) {
+      return LocaleKeys.validation_requiredField.tr();
+    }
+    return null;
   }
 }
