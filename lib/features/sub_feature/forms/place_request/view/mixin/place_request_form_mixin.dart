@@ -111,21 +111,8 @@ mixin PlaceRequestFormMixin
 
   PlaceRequestModel? requestModel() {
     if (!validateAndSave()) return null;
-    final categoryModel = _selectCategoryNotifier.value;
-    final townModel = _selectTownNotifier.value;
-    if (categoryModel == null) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.validation_categoryEmpty.tr(),
-      );
-      return null;
-    }
-
-    if (townModel == null) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.validation_townEmpty.tr(),
-      );
-      return null;
-    }
+    if (!_validateCategoryModel()) return null;
+    if (!_validateTownModel()) return null;
 
     return PlaceRequestModel(
       placeName: placeNameController.text,
@@ -137,10 +124,32 @@ mixin PlaceRequestFormMixin
         closeTime: closeTimeController.time,
         openTime: openTimeController.time,
       ),
-      placeCategory: categoryModel,
-      placeDistrict: townModel,
+      placeCategory: _selectCategoryNotifier.value!,
+      placeDistrict: _selectTownNotifier.value!,
       imageFile: _imageFile ?? File(''),
     );
+  }
+
+  bool _validateCategoryModel() {
+    final categoryModel = _selectCategoryNotifier.value;
+    if (categoryModel == null) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_categoryEmpty.tr(),
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool _validateTownModel() {
+    final townModel = _selectTownNotifier.value;
+    if (townModel == null) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_townEmpty.tr(),
+      );
+      return false;
+    }
+    return true;
   }
 
   @override
