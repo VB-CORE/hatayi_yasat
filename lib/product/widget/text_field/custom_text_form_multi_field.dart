@@ -45,7 +45,7 @@ final class CustomTextFormMultiField extends StatelessWidget
       validator: validator.validate,
       textInputAction: textInputAction,
       inputFormatters: formatters.value,
-      decoration: NewCustomTextFieldDecoration(context: context),
+      decoration: CustomTextFieldDecoration(context: context),
     );
   }
 }

@@ -5,6 +5,13 @@ import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/general/dropdown/widget/custom_dropdown_decoration.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 
+/// A custom dropdown form field widget that allows selection from a list of items
+/// of type [T], where [T] extends [BaseDropDownModel].
+///
+/// - [items] is a list of items to display in the dropdown.
+/// - [onSelected] is a callback function to handle the selected item.
+/// - [hint] is a placeholder text displayed when no item is selected.
+
 final class CustomDropdownFormField<T extends BaseDropDownModel>
     extends StatefulWidget {
   const CustomDropdownFormField({

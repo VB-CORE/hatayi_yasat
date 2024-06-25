@@ -34,7 +34,7 @@ class _TimeFormFieldState extends State<TimeFormField>
     return TextFormField(
       readOnly: true,
       controller: _timeController,
-      decoration: NewCustomTimeFieldDecoration(
+      decoration: CustomTimeFieldDecoration(
         context: context,
         hint: widget.hintText,
         prefixIcon: widget.prefixIcon,

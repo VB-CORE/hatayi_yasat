@@ -5,20 +5,6 @@ import 'package:lifeclient/product/utility/decorations/product_text_field_decora
 
 final class CustomTextFieldDecoration extends InputDecoration {
   CustomTextFieldDecoration({
-    required String hint,
-    required BuildContext context,
-  }) : super(
-          labelText: hint,
-          focusColor: context.general.colorScheme.onError,
-          focusedBorder: const UnderlineInputBorder(),
-          hintStyle: context.general.textTheme.titleMedium,
-          border: const UnderlineInputBorder(),
-          contentPadding: EdgeInsets.zero,
-        );
-}
-
-final class NewCustomTextFieldDecoration extends InputDecoration {
-  NewCustomTextFieldDecoration({
     required BuildContext context,
     String? hint,
   }) : super(
@@ -36,8 +22,8 @@ final class NewCustomTextFieldDecoration extends InputDecoration {
         );
 }
 
-final class NewCustomTimeFieldDecoration extends InputDecoration {
-  NewCustomTimeFieldDecoration({
+final class CustomTimeFieldDecoration extends InputDecoration {
+  CustomTimeFieldDecoration({
     required BuildContext context,
     String? hint,
     IconData? prefixIcon,

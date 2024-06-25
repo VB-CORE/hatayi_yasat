@@ -5,6 +5,8 @@ import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dar
 import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_context.dart';
 import 'package:lifeclient/product/widget/sheet/general_media_sheet.dart';
 
+/// [GeneralDottedPhotoAddProvider] is a provider that injects the state of
+/// [GeneralDottedPhotoAddProviderState] to its child with [GeneralDottedPhotoAddContext]
 final class GeneralDottedPhotoAddProvider extends StatefulWidget {
   const GeneralDottedPhotoAddProvider({
     required this.child,

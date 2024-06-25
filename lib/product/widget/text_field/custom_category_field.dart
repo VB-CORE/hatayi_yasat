@@ -50,7 +50,7 @@ final class CustomCategorySelectionFormField extends StatelessWidget {
         controller.text = item.title;
         onSelected.call(item);
       },
-      decoration: NewCustomTextFieldDecoration(hint: hint, context: context),
+      decoration: CustomTextFieldDecoration(hint: hint, context: context),
     );
   }
 }
