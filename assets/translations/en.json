@@ -308,6 +308,7 @@
     "bugFixes": "🐞 Bug fixes have been made."
   },
   "tourismView": {
-    "onTapMarkerWindow": "Tap to get directions"
+    "onTapMarkerWindow": "Tap to get directions",
+    "title": "Tourism Places"
   }
 }

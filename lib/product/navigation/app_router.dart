@@ -39,6 +39,7 @@ final class SplashRoute extends GoRouteData {
   path: '/main',
   routes: [
     ChainStoresRoute.route,
+    TurismRoute.route,
     FavoriteRoute.route,
     SpecialAgencyRoute.route,
     PlaceDetailRoute.route,

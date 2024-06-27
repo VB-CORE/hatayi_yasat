@@ -308,6 +308,7 @@
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   },
   "tourismView": {
-    "onTapMarkerWindow": "Yol tarifi almak için tıklayın"
+    "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
+    "title": "Turistik Yerler"
   }
 }

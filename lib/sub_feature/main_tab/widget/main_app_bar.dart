@@ -60,6 +60,12 @@ final class _CustomPopupMenu extends StatelessWidget {
               const ChainStoresRoute().go(context);
             },
           ),
+          _CustomPopupMenuItem<void>(
+            itemLabel: LocaleKeys.tourismView_title,
+            destination: () {
+              const TurismRoute().go(context);
+            },
+          ),
         ];
       },
     );

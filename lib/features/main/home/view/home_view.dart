@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/service/location_permission_service.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
-import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
@@ -48,23 +46,6 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
     return GeneralScaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 100),
-        child: FloatingActionButton(
-          onPressed: () async {
-            final service = LocationPermissionService();
-            final isGranted = await service.ensurePermission();
-            if (mounted && isGranted) {
-              await Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (context) => const TourismMapView(),
-                ),
-              );
-            }
-          },
-        ),
-      ),
       body: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),

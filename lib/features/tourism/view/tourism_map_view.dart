@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,7 +16,7 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
 
-class TourismMapView extends ConsumerStatefulWidget {
+final class TourismMapView extends ConsumerStatefulWidget {
   const TourismMapView({super.key});
 
   @override
