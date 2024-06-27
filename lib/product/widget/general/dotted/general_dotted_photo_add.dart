@@ -19,7 +19,9 @@ part 'extension/general_dotted_photo_add_context_extension.dart';
 
 /// GeneralDottedPhotoAdd is a widget that is used to add photo
 final class GeneralDottedPhotoAdd extends StatefulWidget {
-  const GeneralDottedPhotoAdd({super.key});
+  const GeneralDottedPhotoAdd({required this.title, super.key});
+
+  final String title;
 
   @override
   State<GeneralDottedPhotoAdd> createState() => _GeneralDottedPhotoAddState();
@@ -33,7 +35,7 @@ class _GeneralDottedPhotoAddState extends State<GeneralDottedPhotoAdd> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GeneralBodySmallTitle(
-          LocaleKeys.requestCompany_choosePhoto.tr(),
+          widget.title,
           fontWeight: FontWeight.w500,
           color: context.general.colorScheme.onPrimaryFixedVariant,
         ),

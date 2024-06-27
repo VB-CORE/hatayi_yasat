@@ -25,7 +25,7 @@ final class _ScholarshipRequestSend extends ConsumerWidget {
             GeneralButtonV2.async(
               action: onTapped,
               label: canApply
-                  ? LocaleKeys.button_save.tr()
+                  ? LocaleKeys.button_sendRequest.tr()
                   : LocaleKeys.requestScholarship_disableButtonTitle.tr(),
             ).ext.toDisabled(
                   disable: !canApply,

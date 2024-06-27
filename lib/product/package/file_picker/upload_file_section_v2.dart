@@ -3,11 +3,15 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_v2_mixin.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 
 /// UploadFileSectionV2 is a widget used for
 ///  - uploading a file
@@ -37,31 +41,66 @@ class UploadFileSectionV2State extends State<UploadFileSection>
     with UploadFileMixin {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const EmptyBox.smallWidth(),
-        ValueListenableBuilder<File?>(
-          valueListenable: documentFileNotifier,
-          builder: (BuildContext context, File? file, Widget? _) => Expanded(
-            child: isFilePicked(file)
-                ? _UploadedFileText(
-                    fileName: getNameOfFile(file!)!,
-                    onPressed: () => showPdfFilePreview(file),
-                  )
-                : _HintText(hintText: widget.hintText),
+        const _FileSectionLabel(),
+        const EmptyBox.smallHeight(),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(WidgetSizes.spacingS),
+            border: Border.all(
+              color: ColorsCustom.softGray,
+              width: 2,
+            ),
+          ),
+          child: Padding(
+            padding: const PagePadding.allVeryLow(),
+            child: Row(
+              children: [
+                const EmptyBox.smallWidth(),
+                ValueListenableBuilder<File?>(
+                  valueListenable: documentFileNotifier,
+                  builder: (BuildContext context, File? file, Widget? _) =>
+                      Expanded(
+                    child: isFilePicked(file)
+                        ? _UploadedFileText(
+                            fileName: getNameOfFile(file!)!,
+                            onPressed: () => showPdfFilePreview(file),
+                          )
+                        : _HintText(hintText: widget.hintText),
+                  ),
+                ),
+                const EmptyBox.smallWidth(),
+                ValueListenableBuilder(
+                  valueListenable: documentFileNotifier,
+                  builder: (BuildContext context, File? value, Widget? child) {
+                    return _UploadButton(
+                      isFileNotNull: isFilePicked(value),
+                      uploadPressed: pickFile,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
-        const EmptyBox.smallWidth(),
-        ValueListenableBuilder(
-          valueListenable: documentFileNotifier,
-          builder: (BuildContext context, File? value, Widget? child) {
-            return _UploadButton(
-              isFileNotNull: isFilePicked(value),
-              uploadPressed: pickFile,
-            );
-          },
-        ),
       ],
+    );
+  }
+}
+
+class _FileSectionLabel extends StatelessWidget {
+  const _FileSectionLabel({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GeneralBodySmallTitle(
+      LocaleKeys.requestScholarship_studentDocument.tr(),
+      fontWeight: FontWeight.w500,
+      color: context.general.colorScheme.onPrimaryFixedVariant,
     );
   }
 }
@@ -78,6 +117,7 @@ final class _UploadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralButtonV2.async(
+      isBorderless: true,
       action: uploadPressed,
       label: isFileNotNull
           ? LocaleKeys.fileUpload_update.tr()
@@ -98,7 +138,6 @@ final class _HintText extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralBodyTitle(
       '*${hintText.tr()}',
-      fontWeight: FontWeight.bold,
     );
   }
 }
