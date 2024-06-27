@@ -18,7 +18,7 @@ final class _ProjectRequestSend extends StatelessWidget {
             KvkkCheckBox(onChanged: onKVKKChanged),
             GeneralButtonV2.async(
               action: onTapped,
-              label: LocaleKeys.button_save.tr(),
+              label: LocaleKeys.button_sendRequest.tr(),
             ),
           ],
         ),

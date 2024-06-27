@@ -31,6 +31,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required VoidCallback action,
     required String label,
     bool isEnabled = true,
+    bool isBorderless = false,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -39,6 +40,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isAsync: false,
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
+      isBorderless: isBorderless,
     );
   }
 
@@ -46,6 +48,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required AsyncCallback action,
     required String label,
     bool isEnabled = true,
+    bool isBorderless = false,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -54,6 +57,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isAsync: true,
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
+      isBorderless: isBorderless,
     );
   }
   const GeneralButtonV2._({
@@ -61,6 +65,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required this.action,
     required this.isAsync,
     this.isEnabled = true,
+    this.isBorderless = false,
     this.buttonPadding = const PagePadding.vertical12Symmetric(),
   });
 
@@ -68,6 +73,7 @@ final class GeneralButtonV2 extends StatefulWidget {
   final FutureOr<void> Function() action;
   final bool isAsync;
   final bool isEnabled;
+  final bool isBorderless;
   final EdgeInsets buttonPadding;
   @override
   State<GeneralButtonV2> createState() => _GeneralButtonV2State();
@@ -88,7 +94,9 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
       duration: DurationConstant.durationLow,
       opacity: widget.isEnabled ? 1 : 0.3,
       child: ElevatedButton(
-        style: _GeneralButtonStyle(context),
+        style: widget.isBorderless
+            ? _BorderlessGeneralButtonStyle(context)
+            : _GeneralButtonStyle(context),
         onPressed: !widget.isEnabled
             ? null
             : () async {
@@ -157,10 +165,25 @@ class _LoadingWidget extends StatelessWidget {
   }
 }
 
+final class _BorderlessGeneralButtonStyle extends ButtonStyle {
+  _BorderlessGeneralButtonStyle(BuildContext context)
+      : super(
+          elevation: const WidgetStatePropertyAll(0),
+          backgroundColor: WidgetStateProperty.all<Color>(
+            context.general.colorScheme.secondary,
+          ),
+          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
+            const RoundedRectangleBorder(
+              borderRadius: CustomRadius.medium,
+            ),
+          ),
+        );
+}
+
 final class _GeneralButtonStyle extends ButtonStyle {
   _GeneralButtonStyle(BuildContext context)
       : super(
-          backgroundColor: MaterialStateProperty.all<Color>(
+          backgroundColor: WidgetStateProperty.all<Color>(
             context.general.colorScheme.secondary,
           ),
           shape: ButtonStyleButton.allOrNull<OutlinedBorder>(

@@ -47,6 +47,7 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
         title: GeneralSubTitle(
           value: LocaleKeys.requestCompany_title.tr(),
         ),
+        centerTitle: true,
       ),
       bottomNavigationBar: _PlaceRequestSend(
         onTapped: () async {
@@ -81,7 +82,9 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
           ),
           GeneralDottedPhotoAddProvider(
             onSelected: onImageSelected,
-            child: const GeneralDottedPhotoAdd(),
+            child: GeneralDottedPhotoAdd(
+              title: LocaleKeys.requestCompany_choosePhoto.tr(),
+            ),
           ),
           CustomTextFormFieldWithTitle(
             maxLength: TextFieldMaxLengths.large,

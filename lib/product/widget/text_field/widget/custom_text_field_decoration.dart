@@ -48,3 +48,30 @@ final class CustomTimeFieldDecoration extends InputDecoration {
           ),
         );
 }
+
+final class CustomDateTimeFieldDecoration extends InputDecoration {
+  CustomDateTimeFieldDecoration({
+    required BuildContext context,
+    String? hint,
+    IconData? suffixIcon,
+  }) : super(
+          suffixIcon: Icon(
+            suffixIcon,
+            color: context.general.colorScheme.onSecondaryFixed,
+          ),
+          hintText: hint,
+          contentPadding: const PagePadding.horizontal16Symmetric(),
+          border: ProductTextFieldDecoration.thickerStandardBorder(
+            context,
+          ),
+          enabledBorder: ProductTextFieldDecoration.thickerStandardBorder(
+            context,
+          ),
+          focusedBorder: ProductTextFieldDecoration.thickerStandardBorder(
+            context,
+          ),
+          hintStyle: context.general.textTheme.titleSmall?.copyWith(
+            color: context.general.colorScheme.onPrimaryFixedVariant,
+          ),
+        );
+}

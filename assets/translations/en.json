@@ -109,10 +109,7 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "emptyFavorite": "Your favorites list is empty",
-    "openEventDetailPhone": "Hello, I want to get information about the event named {}",
-    "jobDescription": "Job Description",
-    "options": "Options"
+    "emptyFavorite": "Your favorites list is empty"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -181,10 +178,13 @@
   },
   "projectRequest": {
     "title": "New Project Request",
-    "name": "Project Name",
-    "topic": "Project Topic",
-    "description": "Project Description",
-    "publisher": "Publisher (Person or Institution Name)",
+    "publisher": "Enter Publisher (Person or Institution Name)",
+    "phoneNumber": "Enter Your Phone Number",
+    "projectImage": "Add a Photo About the Project",
+    "name": "Enter the Project Name",
+    "topic": "Enter the Project Subject",
+    "description": "Enter Project Description",
+    "dateInputTitle": "Enter Project Date",
     "expireDate": "Start Date and Time"
   },
   "dialog": {
@@ -209,7 +209,10 @@
     "role": "Role:",
     "callPhone": "Call the employer",
     "share": "Share the job advertise",
-    "message": "Check out the job posting on the Keep Hatay Alive application:"
+    "message": "Check out the job posting on the Keep Hatay Alive application:",
+    "openEventDetailPhone": "Hello, I want to get information about the event named {}",
+    "jobDescription": "Job Description",
+    "options": "Options"
   },
   "notFound": {
     "forRefresh": "Click here to refresh.",
@@ -245,12 +248,11 @@
   },
   "requestScholarship": {
     "title": "New Scholarship Request",
-    "contact": "Contact",
-    "phone": "Phone Number",
-    "story": "Your Story",
-    "studentDocument": "Student Document",
+    "phone": "Enter Your Phone Number",
+    "email": "Enter Your Email Address",
+    "story": "Tell Us About Yourself",
+    "studentDocument": "Upload Your Student Certificate",
     "pdfHint": "name_surname.pdf",
-    "email": "Email Address",
     "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
     "error": {
       "serviceError": "A service error has occurred",

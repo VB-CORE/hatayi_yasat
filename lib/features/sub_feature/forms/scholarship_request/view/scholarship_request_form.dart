@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kartal/kartal.dart' show SizedBoxExtension, WidgetExtension;
+import 'package:kartal/kartal.dart'
+    show ContextExtension, SizedBoxExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/view/mixin/scholarship_request_form_mixin.dart';
@@ -18,7 +20,6 @@ import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/list_view_with_space.dart';
-import 'package:lifeclient/product/widget/text_field/index.dart';
 
 part 'widget/scholarship_request_send.dart';
 part 'widget/upload_size_info.dart';
@@ -39,7 +40,8 @@ final class _ScholarshipRequestFormState
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(onPressed: () => context.pop()),
-        title: Text(LocaleKeys.requestScholarship_title.tr()),
+        title: GeneralSubTitle(value: LocaleKeys.requestScholarship_title.tr()),
+        centerTitle: true,
       ),
       bottomNavigationBar: _ScholarshipRequestSend(
         onTapped: () async {
@@ -68,27 +70,23 @@ final class _ScholarshipRequestFormState
           ),
       body: ListViewWithSpace(
         children: [
-          CustomTextFormField(
+          CustomTextFormFieldWithTitle(
             controller: phoneController,
-            hint: LocaleKeys.requestScholarship_phone.tr(),
+            title: LocaleKeys.requestScholarship_phone.tr(),
             validator: ValidatorPhoneTextField(),
             formatters: TextFieldFormatters.phone,
           ),
-          CustomTextFormField(
+          CustomTextFormFieldWithTitle(
             controller: emailController,
-            hint: LocaleKeys.requestScholarship_email.tr(),
+            title: LocaleKeys.requestScholarship_email.tr(),
             validator: ValidatorEmailTextField(),
             maxLength: TextFieldMaxLengths.large,
           ),
-          CustomTextFormMultiField(
+          CustomTextFormFieldWithTitle.multiLine(
             controller: bioController,
-            hint: LocaleKeys.requestScholarship_story.tr(),
+            title: LocaleKeys.requestScholarship_story.tr(),
             validator: ValidatorNormalTextField(),
             maxLength: TextFieldMaxLengths.veryLarge,
-          ),
-          context.sized.emptySizedHeightBoxLow,
-          GeneralContentTitle(
-            value: LocaleKeys.requestScholarship_studentDocument.tr(),
           ),
           UploadFileSection(
             hintText: LocaleKeys.requestScholarship_pdfHint,

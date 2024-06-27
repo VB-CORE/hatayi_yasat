@@ -17,7 +17,7 @@
     "photoRequired": "Lütfen fotoğraf ekleyiniz",
     "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
     "categoryEmpty": "Kategori seçiniz",
-    "townEmpty": "İlçe seçiniz",
+    "districtEmpty": "İlçe seçiniz",
     "emailFormat": "Lütfen mailinizi doğru giriniz",
     "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
@@ -178,10 +178,13 @@
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
-    "name": "Proje Adı",
-    "topic": "Proje Konusu",
-    "description": "Proje Açıklaması",
-    "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+    "publisher": "Yayımcı (Kişi veya Kurum Adı) Giriniz",
+    "phoneNumber": "Telefon Numaranızı Giriniz",
+    "projectImage": "Proje Hakkında Fotoğraf Ekleyiniz",
+    "name": "Proje Adını Giriniz",
+    "topic": "Proje Konusunu Giriniz",
+    "description": "Proje Açıklamasını Giriniz",
+    "dateInputTitle": "Proje Tarihini Giriniz",
     "expireDate": "Başlangıç Tarihi ve Saati"
   },
   "dialog": {
@@ -245,12 +248,11 @@
   },
   "requestScholarship": {
     "title": "Yeni Burs Talebi",
-    "contact": "İletişim",
-    "phone": "Telefon Numarası",
-    "story": "Kendinizden Bahsedin",
-    "studentDocument": "Öğrenci Belgesi",
+    "phone": "Telefon Numaranızı Giriniz",
+    "email": "E-posta Adresinizi Giriniz",
+    "story": "Kendinizden Bahsediniz",
+    "studentDocument": "Öğrenci Belgenizi Yükleyiniz",
     "pdfHint": "ad_soyad.pdf",
-    "email": "Email Adresi",
     "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
     "error": {
       "serviceError": "Bir servis hatası oluştu",

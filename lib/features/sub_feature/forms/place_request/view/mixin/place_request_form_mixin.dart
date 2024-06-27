@@ -145,7 +145,7 @@ mixin PlaceRequestFormMixin
     final townModel = _selectTownNotifier.value;
     if (townModel == null) {
       appProvider.showSnackbarMessage(
-        LocaleKeys.validation_townEmpty.tr(),
+        LocaleKeys.validation_districtEmpty.tr(),
       );
       return false;
     }

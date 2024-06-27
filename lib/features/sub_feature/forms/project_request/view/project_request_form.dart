@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/project_request/provider/project_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/project_request/view/mixin/project_request_form_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
@@ -19,7 +20,6 @@ import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_ph
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/list_view_with_space.dart';
 import 'package:lifeclient/product/widget/text_field/date_time_form_field.dart';
-import 'package:lifeclient/product/widget/text_field/index.dart';
 
 part 'widget/project_request_send.dart';
 
@@ -39,9 +39,8 @@ final class _ProjectRequestFormState
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(onPressed: () => context.pop()),
-        title: Text(
-          LocaleKeys.projectRequest_title.tr(),
-        ),
+        title: GeneralSubTitle(value: LocaleKeys.projectRequest_title.tr()),
+        centerTitle: true,
       ),
       bottomNavigationBar: _ProjectRequestSend(
         onTapped: () async {
@@ -62,41 +61,44 @@ final class _ProjectRequestFormState
           ),
       body: ListViewWithSpace(
         children: [
-          GeneralDottedPhotoAddProvider(
-            onSelected: onImageSelected,
-            child: const GeneralDottedPhotoAdd(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.projectRequest_name.tr(),
-            controller: projectNameController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.projectRequest_topic.tr(),
-            controller: projectTopicController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.projectRequest_description.tr(),
-            controller: projectDescriptionController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.projectRequest_publisher.tr(),
+          CustomTextFormFieldWithTitle(
+            title: LocaleKeys.projectRequest_publisher.tr(),
             controller: projectPublisherController,
             validator: ValidatorNormalTextField(),
           ),
-          CustomTextFormField(
-            hint: LocaleKeys.requestCompany_phoneNumber.tr(),
+          CustomTextFormFieldWithTitle(
+            title: LocaleKeys.requestCompany_phoneNumber.tr(),
             controller: projectPhoneController,
             textInputType: TextInputType.phone,
             formatters: TextFieldFormatters.phone,
             validator: ValidatorPhoneTextField(),
           ),
-          const EmptyBox.middleHeight(),
+          GeneralDottedPhotoAddProvider(
+            onSelected: onImageSelected,
+            child: GeneralDottedPhotoAdd(
+              title: LocaleKeys.projectRequest_projectImage.tr(),
+            ),
+          ),
+          CustomTextFormFieldWithTitle(
+            title: LocaleKeys.projectRequest_name.tr(),
+            controller: projectNameController,
+            textInputType: TextInputType.name,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormFieldWithTitle.multiLine(
+            title: LocaleKeys.projectRequest_topic.tr(),
+            controller: projectTopicController,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormFieldWithTitle.multiLine(
+            title: LocaleKeys.projectRequest_description.tr(),
+            controller: projectDescriptionController,
+            validator: ValidatorNormalTextField(),
+          ),
           DateTimeFormField(
             onDateSelected: (value) => updateSelectedDateTime(value: value),
           ),
+          const EmptyBox.middleHeight(),
         ],
       ).ext.toDisabled(
             disable:
