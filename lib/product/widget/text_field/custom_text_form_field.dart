@@ -48,7 +48,7 @@ final class CustomTextFormField extends StatelessWidget
       validator: validator.validate,
       autofillHints: autoFills.value,
       decoration: CustomTextFieldDecoration(
-        hint: hint,
+        // hint: hint,
         context: context,
       ),
     );

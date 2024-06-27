@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 
@@ -31,7 +32,7 @@ class ProductCheckbox extends FormField<bool> {
                       builder: (BuildContext context) => Text(
                         state.errorText ?? '',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
+                          color: context.general.colorScheme.onSecondaryFixed,
                         ),
                       ),
                     )

@@ -17,6 +17,7 @@ abstract class  LocaleKeys {
   static const validation_photoRequired = 'validation.photoRequired';
   static const validation_loseAllData = 'validation.loseAllData';
   static const validation_categoryEmpty = 'validation.categoryEmpty';
+  static const validation_townEmpty = 'validation.townEmpty';
   static const validation_emailFormat = 'validation.emailFormat';
   static const validation_studentEmailFormat = 'validation.studentEmailFormat';
   static const validation_dateAfterNow = 'validation.dateAfterNow';
@@ -67,6 +68,7 @@ abstract class  LocaleKeys {
   static const requestCompany_workingHours = 'requestCompany.workingHours';
   static const requestCompany_start = 'requestCompany.start';
   static const requestCompany_end = 'requestCompany.end';
+  static const requestCompany_choosePhoto = 'requestCompany.choosePhoto';
   static const requestCompany = 'requestCompany';
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';

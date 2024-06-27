@@ -8,8 +8,11 @@ final class ColorsCustom {
   static const Color braziliante = Color(0xFF34C759);
   static const Color brandeisBlue = Color(0xFF0D6EFD);
   static const Color lightGray = Color(0xffCED4DA);
+  static const Color softGray = Color.fromRGBO(219, 219, 219, 1);
   static const Color gray = Color.fromRGBO(245, 245, 245, 1);
   static const Color warmGrey = Color.fromRGBO(153, 153, 153, 1);
+  static const Color darkGray = Color.fromRGBO(91, 91, 91, 1);
+  static const Color underlinePurple = Color.fromRGBO(82, 0, 255, 1);
   static const Color white = Color(0xFFFFffff);
   static const Color imperilRead = Color(0xffEF2636);
   static const Color royalPeacock = Color(0xff27AAE5);

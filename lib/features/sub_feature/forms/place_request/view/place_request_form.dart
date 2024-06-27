@@ -13,17 +13,20 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_auto_fills.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/general/dotted/index.dart';
+import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_provider.dart';
+import 'package:lifeclient/product/widget/general/dropdown/custom_dropdown_form_field.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 import 'package:lifeclient/product/widget/list_view/list_view_with_space.dart';
-import 'package:lifeclient/product/widget/text_field/custom_category_field.dart';
-import 'package:lifeclient/product/widget/text_field/custom_district_field.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_field.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
+part 'widget/custom_text_form_field_with_title.dart';
 part 'widget/place_request_send.dart';
 
 final class PlaceRequestForm extends ConsumerStatefulWidget {
@@ -41,7 +44,9 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(onPressed: () => context.pop()),
-        title: Text(LocaleKeys.requestCompany_title.tr()),
+        title: GeneralSubTitle(
+          value: LocaleKeys.requestCompany_title.tr(),
+        ),
       ),
       bottomNavigationBar: _PlaceRequestSend(
         onTapped: () async {
@@ -61,57 +66,55 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
           ),
       body: ListViewWithSpace(
         children: [
-          GeneralDottedPhotoAdd(onSelected: onImageSelected),
-          OpenAndCloseTimePicker(
-            closeTimeController: closeTimeController,
-            openTimeController: openTimeController,
-          ),
-          CustomTextFormField(
-            maxLength: TextFieldMaxLengths.large,
-            hint: LocaleKeys.requestCompany_name.tr(),
-            controller: placeNameController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.requestCompany_description.tr(),
-            controller: placeDescriptionController,
-            textInputType: TextInputType.multiline,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormField(
-            maxLength: TextFieldMaxLengths.small,
-            hint: LocaleKeys.requestCompany_ownerName.tr(),
+          CustomTextFormFieldWithTitle(
+            title: LocaleKeys.requestCompany_ownerName.tr(),
             controller: placeOwnerNameController,
             textInputType: TextInputType.name,
             validator: ValidatorNormalTextField(),
           ),
-          CustomTextFormMultiField(
-            hint: LocaleKeys.requestCompany_address.tr(),
+          CustomTextFormFieldWithTitle(
+            controller: placePhoneNumberController,
+            textInputType: TextInputType.phone,
+            formatters: TextFieldFormatters.phone,
+            validator: ValidatorPhoneTextField(),
+            title: LocaleKeys.requestCompany_phoneNumber.tr(),
+          ),
+          GeneralDottedPhotoAddProvider(
+            onSelected: onImageSelected,
+            child: const GeneralDottedPhotoAdd(),
+          ),
+          CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
+            title: LocaleKeys.requestCompany_name.tr(),
+            controller: placeNameController,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormFieldWithTitle.multiLine(
+            title: LocaleKeys.requestCompany_description.tr(),
+            controller: placeDescriptionController,
+            textInputType: TextInputType.multiline,
+            validator: ValidatorNormalTextField(),
+          ),
+          CustomTextFormFieldWithTitle.multiLine(
+            title: LocaleKeys.requestCompany_address.tr(),
             controller: placeAddressController,
             textInputType: TextInputType.streetAddress,
             autoFills: TextFieldAutoFills.address,
             validator: ValidatorNormalTextField(),
           ),
-          CustomTextFormField(
-            hint: LocaleKeys.requestCompany_phoneNumber.tr(),
-            controller: placePhoneNumberController,
-            textInputType: TextInputType.phone,
-            formatters: TextFieldFormatters.phone,
-            validator: ValidatorPhoneTextField(),
-          ),
-          CustomCategorySelectionFormField(
-            items: categoryModels,
-            hint: LocaleKeys.requestCompany_chooseCategory.tr(),
-            controller: placeCategoryController,
-            onSelected: updateCategoryItem,
-            validator: TextFieldValidatorIsNullEmpty(),
-          ),
-          CustomDistrictSelectionFormField(
+          CustomDropdownFormField<TownModel>(
             hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
-            controller: placeDistrictController,
             onSelected: updateTownItem,
-            validator: TextFieldValidatorIsNullEmpty(),
             items: townModels,
+          ),
+          CustomDropdownFormField<CategoryModel>(
+            hint: LocaleKeys.requestCompany_chooseCategory.tr(),
+            onSelected: updateCategoryItem,
+            items: categoryModels,
+          ),
+          OpenAndCloseTimePicker(
+            closeTimeController: closeTimeController,
+            openTimeController: openTimeController,
           ),
         ],
       ).ext.toDisabled(

@@ -7,6 +7,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 import 'package:lifeclient/product/widget/text_field/time_text_field.dart';
 
 final class OpenAndCloseTimePicker extends StatefulWidget {
@@ -33,6 +34,7 @@ class _OpenAndCloseTimePickerState extends State<OpenAndCloseTimePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const _Label(),
+        const EmptyBox.smallHeight(),
         _TextFields(
           closeTimeController: widget.closeTimeController,
           openTimeController: widget.openTimeController,
@@ -67,6 +69,7 @@ class _TextFieldsState extends State<_TextFields> {
             Expanded(
               child: TimeFormField(
                 controller: widget.openTimeController,
+                prefixIcon: AppIcons.timerOn,
                 hintText: LocaleKeys.requestCompany_start.tr(),
               ),
             ),
@@ -103,9 +106,10 @@ class _Label extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return GeneralBodySmallTitle(
       LocaleKeys.requestCompany_workingHours.tr(),
-      style: context.general.textTheme.titleMedium,
+      fontWeight: FontWeight.w500,
+      color: context.general.colorScheme.onPrimaryFixedVariant,
     );
   }
 }

@@ -11,7 +11,7 @@ final class GeneralDottedRectangle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
-      color: context.general.colorScheme.primary,
+      color: context.general.colorScheme.onPrimaryFixedVariant,
       borderType: BorderType.RRect,
       radius: context.border.normalRadius,
       dashPattern: const [3, 6],

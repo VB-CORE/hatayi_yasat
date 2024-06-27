@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/checkbox/product_checkbox.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class KvkkCheckBox extends StatelessWidget {
   const KvkkCheckBox({required this.onChanged, super.key});
@@ -23,7 +23,8 @@ class KvkkCheckBox extends StatelessWidget {
               text: LocaleKeys.general_kvkk.tr(),
               style: context.general.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: ColorCommon(context).whiteAndBlackForTheme,
+                color: context.general.colorScheme.onTertiaryFixedVariant,
+                decoration: TextDecoration.underline,
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -31,11 +32,10 @@ class KvkkCheckBox extends StatelessWidget {
                 },
             ),
             TextSpan(
-              text: '  ${LocaleKeys.general_kvkkReadApproved.tr()}',
+              text: LocaleKeys.general_kvkkReadApproved.tr(),
               style: context.general.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w600,
-                color:
-                    ColorCommon(context).whiteAndBlackForTheme.withOpacity(0.5),
+                color: context.general.colorScheme.onPrimaryFixedVariant,
               ),
             ),
           ],

@@ -39,14 +39,13 @@ final class CustomTextFormMultiField extends StatelessWidget
     return TextFormField(
       controller: controller,
       autofillHints: autoFills.value,
-      maxLength: TextFieldMaxLengths.veryLarge.value,
-      minLines: TextFieldMaxLengths.minLine,
+      minLines: 3,
       maxLines: TextFieldMaxLengths.maxLine,
       keyboardType: textInputType,
       validator: validator.validate,
       textInputAction: textInputAction,
       inputFormatters: formatters.value,
-      decoration: CustomTextFieldDecoration(hint: hint, context: context),
+      decoration: CustomTextFieldDecoration(context: context),
     );
   }
 }

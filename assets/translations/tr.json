@@ -8,7 +8,7 @@
     "address": "Adres boş bırakılamaz",
     "needs": "Lütfen ihtiyacınızı seçiniz",
     "plate": "Lütfen plaka giriniz",
-    "kvkk": "Lütfen KVKK'yi kabul ediniz",
+    "kvkk": "Lütfen KVKK'yı kabul ediniz.",
     "surname": "Soyadınızı girmelisiniz",
     "confirmationText": "Onay metnini kabul ediniz",
     "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
@@ -17,6 +17,7 @@
     "photoRequired": "Lütfen fotoğraf ekleyiniz",
     "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
     "categoryEmpty": "Kategori seçiniz",
+    "townEmpty": "İlçe seçiniz",
     "emailFormat": "Lütfen mailinizi doğru giriniz",
     "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
@@ -38,15 +39,15 @@
     "cancel": "İptal",
     "clearAllSelection": "{} seçimi temizle",
     "showResult": "Sonucu göster",
-    "sendRequest": "İsteği gönder",
+    "sendRequest": "Talep Oluştur",
     "call": "Ara",
     "share": "Paylaş",
     "error": "Hata"
   },
   "component": {
     "picker": {
-      "camera": "Kamera dan seç",
-      "gallery": "Galeriden seç",
+      "camera": "Kamera",
+      "gallery": "Galeri",
       "cropperTitle": "Düzenle"
     },
     "filter": {
@@ -60,22 +61,23 @@
   },
   "requestCompany": {
     "title": "Yeni İşletme Talebi",
-    "name": "İşletme Adı",
-    "description": "İşletme Açıklaması",
-    "address": "İşletme Adresi",
-    "phoneNumber": "Telefon Numarası",
-    "ownerName": "Ad ve Soyad",
+    "name": "İşletmenizin Adını Giriniz",
+    "description": "İşletmenizin Açıklamasını Giriniz",
+    "address": "İşletmenizin Adresini Giriniz",
+    "phoneNumber": "Telefon Numaranızı Giriniz",
+    "ownerName": "Adınızı ve Soyadınızı Giriniz",
     "district": "İlçe",
     "category": "Kategori",
     "chooseCategory": "Kategori Seçiniz",
     "chooseDistrict": "İlçe Seçiniz",
-    "workingHours": "İşletme Çalışma Saatleri",
+    "workingHours": "İşletmenizin Çalışma Saatlerini Giriniz",
     "start": "Başlangıç",
-    "end": "Bitiş"
+    "end": "Bitiş",
+    "choosePhoto": "İşletmenizin Fotoğraflarını Giriniz"
   },
   "general": {
-    "kvkk": "KVKK'yı",
-    "kvkkReadApproved": " okudum, onaylıyorum.",
+    "kvkk": "KVKK",
+    "kvkkReadApproved": "'yı okudum, onaylıyorum.",
     "confirmationText": "Onay metnini kabul ediniz"
   },
   "settings": {
