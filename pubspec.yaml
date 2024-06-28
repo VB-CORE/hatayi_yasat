@@ -46,15 +46,15 @@ dependencies:
   flutter_svg: ^2.0.9
 
   #firebase
-  firebase_core: ^2.27.0
-  firebase_storage: ^11.2.6
-  firebase_remote_config: ^4.2.5
-  firebase_analytics: ^10.5.0
-  firebase_messaging: ^14.6.7
-  cloud_firestore: ^4.15.8
-  firebase_crashlytics: ^3.3.6
-  firebase_ui_firestore: ^1.6.2
-  cloud_functions: ^4.6.8
+  firebase_core: ^3.1.1
+  firebase_storage: ^12.1.0
+  firebase_remote_config: ^5.0.2
+  firebase_analytics: 10.2.0
+  firebase_messaging: ^15.0.2
+  cloud_firestore: ^5.0.2
+  firebase_crashlytics: ^4.0.2
+  firebase_ui_firestore: ^1.6.4
+  cloud_functions: ^5.0.2
 
   #database
   shared_preferences: ^2.2.1
@@ -107,6 +107,15 @@ dependency_overrides:
   win32: ^5.5.1
   device_info_plus: ^10.1.0
   connectivity_plus: ^6.0.3
+  firebase_core: ^3.1.1
+  firebase_storage: ^12.1.0
+  firebase_remote_config: ^5.0.2
+  firebase_analytics: ^11.1.0
+  firebase_messaging: ^15.0.2
+  cloud_firestore: ^5.0.2
+  firebase_crashlytics: ^4.0.2
+  firebase_ui_firestore: ^1.6.4
+  cloud_functions: ^5.0.2
 
 dev_dependencies:
   build_runner: ^2.3.3
