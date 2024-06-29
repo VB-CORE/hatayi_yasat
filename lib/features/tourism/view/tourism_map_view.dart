@@ -7,6 +7,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/tourism/mixin/geo_point_converter_mixin.dart';
 import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
+import 'package:lifeclient/features/tourism/widgets/toursim_custom_marker.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
@@ -15,6 +16,7 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
+part 'tourism_map_view_mixin.dart';
 
 final class TourismMapView extends ConsumerStatefulWidget {
   const TourismMapView({super.key});
@@ -33,13 +35,16 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
           GoogleMap(
             mapToolbarEnabled: false,
             zoomControlsEnabled: false,
-            onMapCreated: (controller) => ref
-                .read(tourismViewModelProvider.notifier)
-                .onMapCreated(controller),
-            markers: Set.from(ref.watch(tourismViewModelProvider).markerList),
+            myLocationButtonEnabled: false,
+            onMapCreated: onMapCreated,
+            markers: Set.from(
+              ref
+                  .watch(tourismViewModelProvider)
+                  .placeList
+                  .map((e) => ToursimCustomMarker(model: e)),
+            ),
             myLocationEnabled: true,
-            initialCameraPosition:
-                ref.read(tourismViewModelProvider).initialPosition,
+            initialCameraPosition: AppConstants.initialLocation,
           ),
           Positioned(
             left: WidgetSizes.spacingXl,
@@ -50,31 +55,19 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             ),
           ),
           Positioned(
-            bottom: WidgetSizes.spacingL,
+            bottom: WidgetSizes.spacingXsMid,
             left: kZero,
             right: kZero,
-            child: _TourismPlacesSlider(
-              carouselController: ref
-                  .read(tourismViewModelProvider.notifier)
-                  .carouselController,
-              locations: ref.watch(tourismViewModelProvider).placeList,
-              onItemTap: (LatLng latlng) => ref
-                  .read(tourismViewModelProvider.notifier)
-                  .animateToPosition(latlng, zoom: WidgetSizes.spacingS),
+            child: SafeArea(
+              child: _TourismPlacesSlider(
+                carouselController: carouselController,
+                locations: ref.watch(tourismViewModelProvider).placeList,
+                onItemTap: changeSelectedPlace,
+              ),
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() async {
-      await ref.read(tourismViewModelProvider.notifier).fetchTouristicPlaces();
-    });
   }
 }

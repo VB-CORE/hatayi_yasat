@@ -9,7 +9,7 @@ final class _TourismPlacesSlider extends StatelessWidget
   });
 
   final List<TouristicPlaceModel> locations;
-  final void Function(LatLng position) onItemTap;
+  final ValueChanged<TouristicPlaceModel> onItemTap;
   final CarouselController carouselController;
 
   @override
@@ -22,7 +22,7 @@ final class _TourismPlacesSlider extends StatelessWidget
           location: location,
           onItemTap: (LatLng latlng) {
             _animateToCard(index: index);
-            onItemTap(latlng);
+            onItemTap.call(location);
           },
         );
       }).toList(),
@@ -36,11 +36,10 @@ final class _TourismPlacesSlider extends StatelessWidget
     return CarouselOptions(
       height: WidgetSizes.spacingXxlL12,
       enableInfiniteScroll: false,
-      enlargeCenterPage: true,
-      viewportFraction: 0.6,
-      enlargeStrategy: CenterPageEnlargeStrategy.height,
+      padEnds: false,
+      viewportFraction: .6,
       onPageChanged: (index, reason) => onItemTap(
-        geoPointToLatLng(locations[index].latLong),
+        locations[index],
       ),
     );
   }

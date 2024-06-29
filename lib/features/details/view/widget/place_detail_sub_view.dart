@@ -23,7 +23,7 @@ final class _FindThePlaceButton extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: IconTitleButton(
-                  onPressed: onCallTapped.call,
+                  onPressed: onFindPlaceTapped.call,
                   icon: AppIcons.location,
                   text: LocaleKeys.placeDetailView_find_the_place.tr(),
                 ),
@@ -32,7 +32,7 @@ final class _FindThePlaceButton extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: IconTitleButton(
-                  onPressed: onFindPlaceTapped.call,
+                  onPressed: onCallTapped.call,
                   icon: AppIcons.phone,
                   text: LocaleKeys.placeDetailView_call.tr(),
                 ),

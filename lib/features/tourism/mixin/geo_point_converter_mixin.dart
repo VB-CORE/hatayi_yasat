@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 mixin GeoPointConverterMixin {
   /// Converts a [GeoPoint] to a [LatLng].
-  LatLng geoPointToLatLng(GeoPoint geoPoint) {
+  static LatLng geoPointToLatLng(GeoPoint geoPoint) {
     return LatLng(geoPoint.latitude, geoPoint.longitude);
   }
 }

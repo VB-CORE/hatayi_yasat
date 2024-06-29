@@ -91,18 +91,20 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GeneralContentTitle(
-                            value: model.updatedName,
-                            fontWeight: FontWeight.bold,
-                            maxLine: 3,
+                          Expanded(
+                            flex: 7,
+                            child: GeneralContentTitle(
+                              value: model.updatedName,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          const EmptyBox.largeWidth(),
-                          Flexible(
+                          Expanded(
+                            flex: 2,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(Icons.person_pin),
+                                const Icon(AppIcons.personPin),
                                 Flexible(
                                   child: GeneralContentSubTitle(
                                     value: model.owner,

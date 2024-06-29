@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
@@ -43,7 +42,6 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
   Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.pop()),
         title: GeneralSubTitle(
           value: LocaleKeys.requestCompany_title.tr(),
         ),
