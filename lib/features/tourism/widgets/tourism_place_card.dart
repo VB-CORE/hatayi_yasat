@@ -50,7 +50,7 @@ final class _TourismPlaceCard extends StatelessWidget {
                           ToursimPlaceDetailSheet.show(context, location);
                         },
                         child: Text(
-                          'Daha Fazla',
+                          LocaleKeys.button_more.tr(),
                           style: context.general.textTheme.bodySmall?.copyWith(
                             color: context.general.colorScheme.primary,
                             fontWeight: FontWeight.w200,

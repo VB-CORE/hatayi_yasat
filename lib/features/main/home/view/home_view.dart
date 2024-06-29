@@ -60,6 +60,7 @@ class _HomeViewState extends ConsumerState<HomeView>
                 children: [
                   GeneralBigTitle(
                     LocaleKeys.home_places.tr(),
+                    key: ValueKey(context.locale),
                   ),
                   const Spacer(),
                   const _HomeSortGridView(),

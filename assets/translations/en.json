@@ -42,7 +42,8 @@
     "sendRequest": "Create request",
     "call": "Call",
     "share": "Share",
-    "error": "Error"
+    "error": "Error",
+    "more": "More"
   },
   "component": {
     "picker": {
@@ -113,7 +114,7 @@
   },
   "search": {
     "latestSearch": "Latest Searches",
-    "place": "Mekan ara",
+    "place": "Search for a place",
     "minumumSearch": "Please enter at least 3 characters to search then press search button from the keyboard"
   },
   "placeDetailView": {
@@ -301,11 +302,9 @@
   },
   "whatsNew": {
     "title": "What's New v5.0.0 🎉",
-    "advertiseBannerView": "📢 You can now advertise and highlight your business.",
-    "homeView": "🏠 The homepage now offers a dual-view to reach more businesses easily.",
-    "chainView": "🛍 A chain store screen has been added.",
-    "notificationViewLink": "🔔 An option to open links from notifications has been added.",
-    "bugFixes": "🐞 Bug fixes have been made."
+    "tourism": "🏞️ Tourism places added.",
+    "uiImprovements": "🎨 UI improvements.",
+    "bugFixes": "🐞 Bug fixes."
   },
   "tourismView": {
     "onTapMarkerWindow": "Tap to get directions",

@@ -33,7 +33,6 @@ final class ToursimPlaceDetailSheet extends StatelessWidget {
             ),
             child: CustomNetworkImage(
               imageUrl: model.photo,
-              // height: context.sized.dynamicHeight(0.3),
             ),
           ),
           Padding(

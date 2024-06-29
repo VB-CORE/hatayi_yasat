@@ -9,10 +9,8 @@ final class WhatsNewSheet extends StatelessWidget {
   const WhatsNewSheet({super.key});
 
   static const _newVersionChanges = [
-    LocaleKeys.whatsNew_advertiseBannerView,
-    LocaleKeys.whatsNew_homeView,
-    LocaleKeys.whatsNew_chainView,
-    LocaleKeys.whatsNew_notificationViewLink,
+    LocaleKeys.whatsNew_tourism,
+    LocaleKeys.whatsNew_uiImprovements,
     LocaleKeys.whatsNew_bugFixes,
   ];
 
