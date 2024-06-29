@@ -7,7 +7,9 @@ import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_s
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/firebase/filter/general_category_town_filter.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
 final class FilterResultView extends ConsumerStatefulWidget {
@@ -35,28 +37,44 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
         );
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: const Text(LocaleKeys.component_filter_filterResult).tr(),
-      ),
-      body: GeneralFirestoreListView(
-        query: query,
-        emptyBuilder: (context) => GeneralNotFoundWidget(
-          title: LocaleKeys.component_filter_resultEmpty.tr(),
-        ),
-        itemBuilder: (context, model) {
-          return Padding(
-            padding: const PagePadding.vertical6Symmetric(),
-            child: ListTile(
-              onTap: () {
-                PlaceDetailRoute($extra: model, id: model.documentId)
-                    .push<void>(context);
-              },
-              title: Text(model.name),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            centerTitle: false,
+            title: Text(
+              LocaleKeys.component_filter_filterResult.tr(),
             ),
-          );
-        },
-        onRetry: () {},
+          ),
+          SliverPadding(
+            padding: const PagePadding.horizontalSymmetric(),
+            sliver: FirestoreSliverListView(
+              query: query,
+              emptyBuilder: (context) => GeneralNotFoundWidget(
+                title: LocaleKeys.component_filter_resultEmpty.tr(),
+              ),
+              itemBuilder: (context, model) {
+                return const SizedBox.shrink();
+              },
+              isGridDesign: true,
+              onRetry: () {},
+              itemGridBuilder: (BuildContext context, StoreModel model) {
+                return Padding(
+                  padding: const PagePadding.onlyBottom(),
+                  child: GeneralPlaceGridCard(
+                    elevetion: kZero,
+                    isEnabledToFavourite: false,
+                    onCardTap: () {
+                      PlaceDetailRoute($extra: model, id: model.documentId)
+                          .push<void>(this.context);
+                    },
+                    storeModel: model,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

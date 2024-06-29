@@ -21,7 +21,7 @@ final class _FindThePlaceButton extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                flex: 4,
+                flex: 6,
                 child: IconTitleButton(
                   onPressed: onFindPlaceTapped.call,
                   icon: AppIcons.location,
@@ -30,7 +30,7 @@ final class _FindThePlaceButton extends StatelessWidget {
               ),
               const Spacer(),
               Expanded(
-                flex: 4,
+                flex: 6,
                 child: IconTitleButton(
                   onPressed: onCallTapped.call,
                   icon: AppIcons.phone,

@@ -35,6 +35,7 @@ final class GeneralNotFoundWidget extends StatelessWidget {
               padding: const PagePadding.all(),
               child: GeneralContentSubTitle(
                 value: title,
+                textAlign: TextAlign.center,
               ),
             ),
             if (onRefresh != null)

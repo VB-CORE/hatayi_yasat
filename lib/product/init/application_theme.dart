@@ -28,12 +28,16 @@ final class ApplicationTheme {
           borderRadius: CustomRadius.medium,
         ),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         scrolledUnderElevation: 0,
         foregroundColor: ColorsCustom.white,
         backgroundColor: ColorsCustom.white,
-        titleTextStyle: textTheme.titleLarge?.copyWith(),
-        iconTheme: const IconThemeData(
+        titleTextStyle: TextStyle(
+          color: ColorsCustom.sambacus,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        iconTheme: IconThemeData(
           color: ColorsCustom.sambacus,
         ),
       ),
