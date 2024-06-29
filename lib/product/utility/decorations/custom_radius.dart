@@ -18,15 +18,4 @@ final class CustomRadius {
 
   /// value is 32
   static const BorderRadius xxLarge = BorderRadius.all(Radius.circular(32));
-
-  /// value is 16 but only top side
-  static const BorderRadius bottomSheetRadius = BorderRadius.only(
-    topLeft: Radius.circular(16),
-    topRight: Radius.circular(16),
-  );
-
-  static const BorderRadius tourismPlaceCard = BorderRadius.only(
-    topRight: Radius.circular(10),
-    topLeft: Radius.circular(10),
-  );
 }

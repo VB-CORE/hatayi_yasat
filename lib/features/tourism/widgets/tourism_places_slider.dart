@@ -34,7 +34,6 @@ final class _TourismPlacesSlider extends StatelessWidget
 
   CarouselOptions _buildOptions() {
     return CarouselOptions(
-      height: WidgetSizes.spacingXxlL12,
       enableInfiniteScroll: false,
       padEnds: false,
       viewportFraction: .6,

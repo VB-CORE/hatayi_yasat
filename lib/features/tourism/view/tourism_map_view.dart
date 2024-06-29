@@ -8,10 +8,10 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/tourism/mixin/geo_point_converter_mixin.dart';
 import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
 import 'package:lifeclient/features/tourism/widgets/toursim_custom_marker.dart';
+import 'package:lifeclient/features/tourism/widgets/toursim_place_detail_sheet.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 part '../widgets/tourism_place_card.dart';

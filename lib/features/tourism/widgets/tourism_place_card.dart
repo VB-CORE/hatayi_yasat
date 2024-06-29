@@ -22,7 +22,9 @@ final class _TourismPlaceCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: CustomRadius.tourismPlaceCard,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(WidgetSizes.spacingXl),
+              ),
               child: SizedBox.square(
                 dimension: WidgetSizes.spacingXxl12,
                 child: CustomNetworkImage(
@@ -41,6 +43,23 @@ final class _TourismPlaceCard extends StatelessWidget {
                     _buildTitle(context),
                     const EmptyBox.smallHeight(),
                     Expanded(child: _buildDescription(context)),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: InkWell(
+                        onTap: () {
+                          ToursimPlaceDetailSheet.show(context, location);
+                        },
+                        child: Text(
+                          'Daha Fazla',
+                          style: context.general.textTheme.bodySmall?.copyWith(
+                            color: context.general.colorScheme.primary,
+                            fontWeight: FontWeight.w200,
+                            decoration: TextDecoration.underline,
+                            decorationThickness: .5,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

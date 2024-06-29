@@ -7,10 +7,3 @@ class CustomRectangleBorder extends RoundedRectangleBorder {
     super.borderRadius = CustomRadius.medium,
   });
 }
-
-class CustomBottomSheetBorder extends RoundedRectangleBorder {
-  const CustomBottomSheetBorder({
-    super.side = BorderSide.none,
-    super.borderRadius = CustomRadius.bottomSheetRadius,
-  });
-}
