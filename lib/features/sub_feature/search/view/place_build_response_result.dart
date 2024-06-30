@@ -16,18 +16,31 @@ class _PlaceSearchResponseResult extends StatelessWidget {
     if (items.isEmpty) return const _EmptyResponseResult();
 
     return ListView.separated(
+      padding: const PagePadding.horizontalSymmetric(),
       itemCount: items.length,
       separatorBuilder: (context, index) {
         return const Divider();
       },
       itemBuilder: (context, index) {
+        final item = items[index];
+
         return ListTile(
-          leading: FaIcon(
-            FontAwesomeIcons.store,
-            size: context.sized.normalValue,
+          leading: item.image.isEmpty
+              ? null
+              : SizedBox.square(
+                  dimension: WidgetSizes.spacingXxl8,
+                  child: CustomNetworkImage(
+                    imageUrl: item.image,
+                  ),
+                ),
+          title: Text(item.name),
+          subtitle: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GeneralContentSubTitle(value: LocaleKeys.button_more.tr()),
+              const Icon(Icons.chevron_right_outlined),
+            ],
           ),
-          title: Text(items[index].name),
-          trailing: const Icon(Icons.chevron_right_outlined),
           onTap: () {
             onSelected.call(items[index]);
           },
