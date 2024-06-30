@@ -48,15 +48,7 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
         centerTitle: true,
       ),
       bottomNavigationBar: _PlaceRequestSend(
-        onTapped: () async {
-          if (!validateAndSave()) return;
-          final model = requestModel();
-          if (model == null) return;
-          final response = await ref
-              .read(placeRequestProviderProvider.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
-        },
+        onTapped: sendPlaceRequest,
         onKVKKChanged: (val) => updateKVKK(value: val),
       ).ext.toDisabled(
             disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
@@ -107,11 +99,13 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
             onSelected: updateTownItem,
             items: townModels,
+            initialValue: selectedTownModel,
           ),
           CustomDropdownFormField<CategoryModel>(
             hint: LocaleKeys.requestCompany_chooseCategory.tr(),
             onSelected: updateCategoryItem,
             items: categoryModels,
+            initialValue: selectedCategoryModel,
           ),
           OpenAndCloseTimePicker(
             closeTimeController: closeTimeController,

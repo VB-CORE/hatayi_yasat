@@ -11,6 +11,12 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
     final textTheme = theme.textTheme;
     themeData = theme.copyWith(
+      timePickerTheme: const TimePickerThemeData(
+        hourMinuteTextColor: Colors.black,
+        hourMinuteColor: ColorsCustom.softGray,
+        dayPeriodColor: Colors.black,
+        dialHandColor: Colors.black,
+      ),
       dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

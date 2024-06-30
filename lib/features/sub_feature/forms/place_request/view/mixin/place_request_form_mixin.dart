@@ -18,6 +18,7 @@ import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dar
 
 mixin PlaceRequestFormMixin
     on
+        AutomaticKeepAliveClientMixin<PlaceRequestForm>,
         AppProviderMixin<PlaceRequestForm>,
         RequestFormConsumerState<PlaceRequestForm> {
   late final List<TownModel> townModels;
@@ -34,10 +35,11 @@ mixin PlaceRequestFormMixin
       TextEditingController();
   final TextEditingController placeCategoryController = TextEditingController();
   final TextEditingController placeDistrictController = TextEditingController();
-  final ValueNotifier<TownModel?> _selectTownNotifier = ValueNotifier(null);
+  TownModel? _selectedTownModel;
+  CategoryModel? _selectedCategoryModel;
 
-  final ValueNotifier<CategoryModel?> _selectCategoryNotifier =
-      ValueNotifier(null);
+  TownModel? get selectedTownModel => _selectedTownModel;
+  CategoryModel? get selectedCategoryModel => _selectedCategoryModel;
 
   final ValueNotifier<bool> isKVKKCheckedNotifier = ValueNotifier(false);
 
@@ -72,9 +74,9 @@ mixin PlaceRequestFormMixin
     placePhoneNumberController.clear();
     openTimeController.clear();
     closeTimeController.clear();
-    _selectCategoryNotifier.value = null;
+    _selectedCategoryModel = null;
     _imageFile = null;
-    _selectCategoryNotifier.value = null;
+    _selectedTownModel = null;
   }
 
   @override
@@ -85,8 +87,8 @@ mixin PlaceRequestFormMixin
     if (placeAddressController.text.isNotEmpty) return true;
     if (placePhoneNumberController.text.isNotEmpty) return true;
     if (placeCategoryController.text.isNotEmpty) return true;
-    if (_selectTownNotifier.value != null) return true;
-    if (_selectCategoryNotifier.value != null) return true;
+    if (_selectedTownModel != null) return true;
+    if (_selectedTownModel != null) return true;
     if (openTimeController.isValid) return true;
     if (closeTimeController.isValid) return true;
     if (_imageFile != null) return true;
@@ -94,11 +96,11 @@ mixin PlaceRequestFormMixin
   }
 
   void updateTownItem(TownModel item) {
-    _selectTownNotifier.value = item;
+    _selectedTownModel = item;
   }
 
   void updateCategoryItem(CategoryModel item) {
-    _selectCategoryNotifier.value = item;
+    _selectedCategoryModel = item;
   }
 
   void updateKVKK({required bool value}) {
@@ -124,14 +126,14 @@ mixin PlaceRequestFormMixin
         closeTime: closeTimeController.time,
         openTime: openTimeController.time,
       ),
-      placeCategory: _selectCategoryNotifier.value!,
-      placeDistrict: _selectTownNotifier.value!,
-      imageFile: _imageFile ?? File(''),
+      placeCategory: _selectedCategoryModel!,
+      placeDistrict: _selectedTownModel!,
+      imageFile: _imageFile!,
     );
   }
 
   bool _validateCategoryModel() {
-    final categoryModel = _selectCategoryNotifier.value;
+    final categoryModel = _selectedCategoryModel;
     if (categoryModel == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.validation_categoryEmpty.tr(),
@@ -142,7 +144,7 @@ mixin PlaceRequestFormMixin
   }
 
   bool _validateTownModel() {
-    final townModel = _selectTownNotifier.value;
+    final townModel = _selectedTownModel;
     if (townModel == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.validation_districtEmpty.tr(),
@@ -172,5 +174,15 @@ mixin PlaceRequestFormMixin
     );
     if (!mounted) return;
     context.pop();
+  }
+
+  Future<void> sendPlaceRequest() async {
+    if (!validateAndSave()) return;
+    final model = requestModel();
+    if (model == null) return;
+    // final response = await ref
+    //     .read(placeRequestProviderProvider.notifier)
+    //     .addNewDataToService(model);
+    // await dataSendingComplete(isOkay: response);
   }
 }
