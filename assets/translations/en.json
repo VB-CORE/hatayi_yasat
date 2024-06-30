@@ -296,7 +296,7 @@
     "shareAdvertisementSubject": "Visit advertisement owner: {}"
   },
   "chain_stores": {
-    "title": "Chain Stores",
+    "title": "Container Bazaars",
     "showAllSubBranches": "Show all sub-store {}",
     "subBranchesTitle": "{} Store ({})"
   },

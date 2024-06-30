@@ -296,7 +296,7 @@
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
   "chain_stores": {
-    "title": "Zincir Mağazalar",
+    "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
   },
