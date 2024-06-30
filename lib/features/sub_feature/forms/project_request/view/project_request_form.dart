@@ -41,15 +41,7 @@ final class _ProjectRequestFormState
         centerTitle: true,
       ),
       bottomNavigationBar: _ProjectRequestSend(
-        onTapped: () async {
-          if (!validateAndSave()) return;
-          final model = getRequestModel();
-          if (model == null) return;
-          final response = await ref
-              .read(projectRequestProviderProvider.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
-        },
+        onTapped: sendRequest,
         onKVKKChanged: updateKVKK,
       ).ext.toDisabled(
             disable:
@@ -60,11 +52,13 @@ final class _ProjectRequestFormState
       body: ListViewWithSpace(
         children: [
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.projectRequest_publisher.tr(),
             controller: projectPublisherController,
             validator: ValidatorNormalTextField(),
           ),
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.requestCompany_phoneNumber.tr(),
             controller: projectPhoneController,
             textInputType: TextInputType.phone,
@@ -78,6 +72,7 @@ final class _ProjectRequestFormState
             ),
           ),
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.projectRequest_name.tr(),
             controller: projectNameController,
             textInputType: TextInputType.name,
@@ -89,6 +84,7 @@ final class _ProjectRequestFormState
             validator: ValidatorNormalTextField(),
           ),
           CustomTextFormFieldWithTitle.multiLine(
+            maxLength: TextFieldMaxLengths.max,
             title: LocaleKeys.projectRequest_description.tr(),
             controller: projectDescriptionController,
             validator: ValidatorNormalTextField(),

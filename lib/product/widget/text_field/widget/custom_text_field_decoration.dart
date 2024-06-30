@@ -16,6 +16,7 @@ final class CustomTextFieldDecoration extends InputDecoration {
           focusedBorder: ProductTextFieldDecoration.focusedBorderStyle(context),
           fillColor: context.general.colorScheme.onPrimaryFixed,
           filled: true,
+          counter: const SizedBox(),
           hintStyle: context.general.textTheme.titleSmall?.copyWith(
             color: context.general.colorScheme.onPrimaryFixedVariant,
           ),

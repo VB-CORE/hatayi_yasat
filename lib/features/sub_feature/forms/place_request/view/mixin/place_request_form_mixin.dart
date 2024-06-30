@@ -9,6 +9,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -180,9 +181,9 @@ mixin PlaceRequestFormMixin
     if (!validateAndSave()) return;
     final model = requestModel();
     if (model == null) return;
-    // final response = await ref
-    //     .read(placeRequestProviderProvider.notifier)
-    //     .addNewDataToService(model);
-    // await dataSendingComplete(isOkay: response);
+    final response = await ref
+        .read(placeRequestProviderProvider.notifier)
+        .addNewDataToService(model);
+    await dataSendingComplete(isOkay: response);
   }
 }
