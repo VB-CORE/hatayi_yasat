@@ -15,6 +15,7 @@ final class ApplicationTheme {
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: ColorsCustom.sambacus,
+        backgroundColor: ColorsCustom.white,
       ),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(

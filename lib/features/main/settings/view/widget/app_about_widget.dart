@@ -22,6 +22,7 @@ final class _AppAboutWidget extends StatelessWidget {
           showModalBottomSheet<void>(
             context: context,
             enableDrag: false,
+            isScrollControlled: true,
             builder: (context) {
               return const AppAboutView();
             },
