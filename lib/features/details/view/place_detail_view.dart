@@ -98,16 +98,20 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Expanded(
-                            flex: 2,
+                          SizedBox(
+                            width: WidgetSizes.spacingXxl12,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(AppIcons.personPin),
-                                Flexible(
-                                  child: GeneralContentSubTitle(
-                                    value: model.owner,
+                                Expanded(
+                                  child: Tooltip(
+                                    message: model.owner,
+                                    child: GeneralContentSubTitle(
+                                      value: model.owner,
+                                      maxLine: 3,
+                                    ),
                                   ),
                                 ),
                               ],
