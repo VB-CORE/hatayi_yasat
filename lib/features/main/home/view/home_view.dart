@@ -77,8 +77,11 @@ class _HomeViewState extends ConsumerState<HomeView>
                     const Expanded(
                       child: _CustomSearchField(),
                     ),
-                    _Filterbutton(
-                      onTap: () => pushToFilter(context: context),
+                    Padding(
+                      padding: const PagePadding.onlyLeft(),
+                      child: _Filterbutton(
+                        onTap: () => pushToFilter(context: context),
+                      ),
                     ),
                   ],
                 ),
@@ -107,7 +110,12 @@ final class _Filterbutton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
         backgroundColor: context.general.colorScheme.onPrimaryFixed,
-        shape: const CircleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: CustomRadius.large,
+          side: BorderSide(
+            color: context.general.colorScheme.onPrimaryFixed,
+          ),
+        ),
       ),
       child: Padding(
         padding: const PagePadding.generalAllLow(),
