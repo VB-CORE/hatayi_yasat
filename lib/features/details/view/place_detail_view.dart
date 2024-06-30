@@ -99,20 +99,16 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                             ),
                           ),
                           SizedBox(
-                            width: WidgetSizes.spacingXxl12,
+                            width: WidgetSizes.spacingXxlL13 / 2,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(AppIcons.personPin),
+                                const Icon(
+                                  AppIcons.personPin,
+                                ),
                                 Expanded(
-                                  child: Tooltip(
-                                    message: model.owner,
-                                    child: GeneralContentSubTitle(
-                                      value: model.owner,
-                                      maxLine: 3,
-                                    ),
-                                  ),
+                                  child: _OwnerTitle(model: model),
                                 ),
                               ],
                             ),
@@ -120,18 +116,23 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         ],
                       ),
                       Padding(
-                        padding: const PagePadding.onlyTop(),
+                        padding: const PagePadding.onlyTopLow(),
                         child: _TownIcon(townCode: model.townCode),
                       ),
                       _OpenCloseTime(model: model),
                       Padding(
-                        padding: const PagePadding.verticalSymmetric(),
+                        padding: const PagePadding.onlyTop(),
                         child: TitleDescription(
                           title: LocaleKeys.placeDetailView_description.tr(),
                           description: model.description ?? '-',
                         ),
                       ),
-                      const Divider(),
+                      const Padding(
+                        padding: PagePadding.verticalLowSymmetric(),
+                        child: Divider(
+                          height: WidgetSizes.spacingXxs / 2,
+                        ),
+                      ),
                       Row(
                         children: [
                           Expanded(
@@ -150,6 +151,35 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _OwnerTitle extends StatelessWidget {
+  const _OwnerTitle({
+    required this.model,
+    super.key,
+  });
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: model.owner,
+      child: Card(
+        margin: EdgeInsets.zero,
+        elevation: 0,
+        color: context.general.colorScheme.onPrimaryFixed,
+        child: Padding(
+          padding: const PagePadding.horizontalVeryLowSymmetric(),
+          child: GeneralContentSubTitle(
+            value: model.owner,
+            maxLine: 3,
+            textOverflow: TextOverflow.visible,
+          ),
+        ),
       ),
     );
   }

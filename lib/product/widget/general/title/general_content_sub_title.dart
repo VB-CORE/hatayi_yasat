@@ -10,6 +10,7 @@ final class GeneralContentSubTitle extends StatelessWidget {
     super.key,
     this.textAlign,
     this.color,
+    this.textOverflow = TextOverflow.ellipsis,
   });
 
   final String value;
@@ -17,6 +18,7 @@ final class GeneralContentSubTitle extends StatelessWidget {
   final int? maxLine;
   final TextAlign? textAlign;
   final Color? color;
+  final TextOverflow textOverflow;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ final class GeneralContentSubTitle extends StatelessWidget {
       ),
       maxLines: maxLine,
       textAlign: textAlign,
-      overflow: maxLine == null ? null : TextOverflow.ellipsis,
+      overflow: maxLine == null ? null : textOverflow,
     );
   }
 }
