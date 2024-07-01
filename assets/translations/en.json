@@ -271,6 +271,7 @@
     "title": "Favorites",
     "search": "Search for your favorite",
     "clearAllButton": "Clear All",
+    "noBusinessFound": "No business found related to your search.",
     "clearAllDialog": {
       "content": "Are you sure you want to clear all your favorites?"
     },
