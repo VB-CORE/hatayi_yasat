@@ -5,6 +5,16 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   final CarouselController _carouselController = CarouselController();
 
   CarouselController get carouselController => _carouselController;
+  late BitmapDescriptor _markerIcon;
+
+  Set<Marker> get markers {
+    return Set.from(
+      ref
+          .watch(tourismViewModelProvider)
+          .placeList
+          .map((e) => ToursimCustomMarker(model: e, icon: _markerIcon)),
+    );
+  }
 
   @override
   void initState() {
@@ -23,6 +33,15 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
     );
   }
 
+  Future<void> _loadCustomMarker() async {
+    _markerIcon = await BitmapDescriptor.asset(
+      ImageConfiguration.empty,
+      Assets.icons.icAppTransparent.path,
+      height: WidgetSizes.spacingXl,
+      width: WidgetSizes.spacingXl,
+    );
+  }
+
   Future<void> showMarkerInfo(TouristicPlaceModel model) async {
     /// it is necessary to wait for the marker to be created
     await Future.delayed(Durations.short4, () {
@@ -30,9 +49,10 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
     });
   }
 
-  void onMapCreated(GoogleMapController controller) {
+  Future<void> onMapCreated(GoogleMapController controller) async {
     _mapController = controller;
-    ref.read(tourismViewModelProvider.notifier).fetchTouristicPlaces();
+    await _loadCustomMarker();
+    await ref.read(tourismViewModelProvider.notifier).fetchTouristicPlaces();
   }
 
   void changeSelectedPlace(TouristicPlaceModel model) {
