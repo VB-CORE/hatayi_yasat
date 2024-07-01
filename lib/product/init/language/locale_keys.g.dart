@@ -239,6 +239,7 @@ abstract class  LocaleKeys {
   static const favorite_title = 'favorite.title';
   static const favorite_search = 'favorite.search';
   static const favorite_clearAllButton = 'favorite.clearAllButton';
+  static const favorite_noBusinessFound = 'favorite.noBusinessFound';
   static const favorite_clearAllDialog_content = 'favorite.clearAllDialog.content';
   static const favorite_clearAllDialog = 'favorite.clearAllDialog';
   static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';

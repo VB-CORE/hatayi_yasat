@@ -271,6 +271,7 @@
     "title": "Favoriler",
     "search": "Favorinizi arayın",
     "clearAllButton": "Tümünü Temizle",
+    "noBusinessFound": "Aradığınız değere uygun bir işletme bulunamadı.",
     "clearAllDialog": {
       "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?"
     },
