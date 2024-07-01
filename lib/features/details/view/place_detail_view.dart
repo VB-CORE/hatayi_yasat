@@ -6,7 +6,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
-import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -131,18 +130,12 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                         padding: PagePadding.verticalLowSymmetric(),
                         child: Divider(
                           height: WidgetSizes.spacingXxs / 2,
+                          thickness: .3,
                         ),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TitleDescription(
-                              title: LocaleKeys.placeDetailView_address.tr(),
-                              description: model.address ?? '-',
-                            ),
-                          ),
-                          Assets.images.imgMapTemp.image(),
-                        ],
+                      TitleDescription(
+                        title: LocaleKeys.placeDetailView_address.tr(),
+                        description: model.address ?? '-',
                       ),
                     ],
                   ),
