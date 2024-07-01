@@ -10,6 +10,7 @@ import 'package:lifeclient/features/tourism/mixin/geo_point_converter_mixin.dart
 import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
 import 'package:lifeclient/features/tourism/widgets/toursim_custom_marker.dart';
 import 'package:lifeclient/features/tourism/widgets/toursim_place_detail_sheet.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
@@ -39,12 +40,7 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             zoomControlsEnabled: false,
             myLocationButtonEnabled: false,
             onMapCreated: onMapCreated,
-            markers: Set.from(
-              ref
-                  .watch(tourismViewModelProvider)
-                  .placeList
-                  .map((e) => ToursimCustomMarker(model: e)),
-            ),
+            markers: markers,
             myLocationEnabled: true,
             initialCameraPosition: AppConstants.initialLocation,
           ),

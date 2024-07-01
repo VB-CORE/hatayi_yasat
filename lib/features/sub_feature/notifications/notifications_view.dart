@@ -46,35 +46,38 @@ final class _NotificationsViewState extends State<NotificationsView>
           final model = doc.data();
           if (model == null || model.id.isEmpty) return const SizedBox.shrink();
 
-          return Card(
-            elevation: kZero,
-            color: context.general.colorScheme.onPrimaryFixed,
-            child: Padding(
-              padding: const PagePadding.generalAllLow(),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _NotificationTypeLeadingIcon(model: model),
-                  const EmptyBox.middleWidth(),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _NotificationTypeTitle(model: model),
-                        Padding(
-                          padding: const PagePadding.onlyTopLow(),
-                          child: Text(
-                            _title(model) ?? '',
-                            style:
-                                context.general.textTheme.labelSmall?.copyWith(
-                              fontWeight: FontWeight.w500,
+          return InkWell(
+            onTap: () => navigateToDetail(model),
+            child: Card(
+              elevation: kZero,
+              color: context.general.colorScheme.onPrimaryFixed,
+              child: Padding(
+                padding: const PagePadding.generalAllLow(),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _NotificationTypeLeadingIcon(model: model),
+                    const EmptyBox.middleWidth(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _NotificationTypeTitle(model: model),
+                          Padding(
+                            padding: const PagePadding.onlyTopLow(),
+                            child: Text(
+                              _title(model) ?? '',
+                              style: context.general.textTheme.labelSmall
+                                  ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

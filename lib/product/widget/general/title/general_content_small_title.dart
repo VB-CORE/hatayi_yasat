@@ -25,7 +25,7 @@ final class GeneralContentSmallTitle extends StatelessWidget {
       ),
       maxLines: maxLine,
       textAlign: textAlign,
-      overflow: TextOverflow.ellipsis,
+      overflow: maxLine == null ? null : TextOverflow.ellipsis,
     );
   }
 }

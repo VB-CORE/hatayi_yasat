@@ -7,6 +7,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 final class ToursimCustomMarker extends Marker {
   ToursimCustomMarker({
     required TouristicPlaceModel model,
+    required super.icon,
   }) : super(
           markerId: MarkerId(model.documentId),
           position: LatLng(model.latLong.latitude, model.latLong.longitude),
