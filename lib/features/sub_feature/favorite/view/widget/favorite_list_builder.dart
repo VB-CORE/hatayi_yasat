@@ -6,15 +6,21 @@ final class _FavoriteListBuilder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoriteProvider = ref.watch(favoriteViewModelProvider);
+    final isSearchActive = favoriteProvider.searchWord.isNotEmpty;
 
-    final favoritePlaces = favoriteProvider.filteredPlaces.isEmpty
-        ? favoriteProvider.favoritePlaces
-        : favoriteProvider.filteredPlaces;
+    final favoritePlaces = isSearchActive
+        ? favoriteProvider.filteredPlaces
+        : favoriteProvider.favoritePlaces;
 
     if (favoritePlaces.isEmpty) {
       return SliverFillRemaining(
-        child:
-            GeneralNotFoundWidget(title: LocaleKeys.message_emptyFavorite.tr()),
+        child: SingleChildScrollView(
+          child: GeneralNotFoundWidget(
+            title: isSearchActive
+                ? LocaleKeys.favorite_noBusinessFound.tr()
+                : LocaleKeys.message_emptyFavorite.tr(),
+          ),
+        ),
       );
     }
     return SliverList.builder(
