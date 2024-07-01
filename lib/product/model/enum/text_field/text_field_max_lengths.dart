@@ -12,7 +12,10 @@ enum TextFieldMaxLengths {
   large(100),
 
   /// 200
-  veryLarge(200);
+  veryLarge(200),
+
+  /// 500
+  max(500);
 
   const TextFieldMaxLengths(this.value);
 

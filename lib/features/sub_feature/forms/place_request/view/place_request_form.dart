@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
@@ -43,22 +42,13 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
   Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.pop()),
         title: GeneralSubTitle(
           value: LocaleKeys.requestCompany_title.tr(),
         ),
         centerTitle: true,
       ),
       bottomNavigationBar: _PlaceRequestSend(
-        onTapped: () async {
-          if (!validateAndSave()) return;
-          final model = requestModel();
-          if (model == null) return;
-          final response = await ref
-              .read(placeRequestProviderProvider.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
-        },
+        onTapped: sendPlaceRequest,
         onKVKKChanged: (val) => updateKVKK(value: val),
       ).ext.toDisabled(
             disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
@@ -109,11 +99,13 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
             onSelected: updateTownItem,
             items: townModels,
+            initialValue: selectedTownModel,
           ),
           CustomDropdownFormField<CategoryModel>(
             hint: LocaleKeys.requestCompany_chooseCategory.tr(),
             onSelected: updateCategoryItem,
             items: categoryModels,
+            initialValue: selectedCategoryModel,
           ),
           OpenAndCloseTimePicker(
             closeTimeController: closeTimeController,

@@ -26,13 +26,16 @@ exports.search = functions.https.onCall(async (data, _) => {
   const { term } = data;
   const target = 0;
   const page = -1;
+  
   try {
     const mongoResponse = await axios.get(BASE_URL + SEARCH_PATH, {
       params: { term, target, page },
     });
 
     const response = mongoResponse.data.map((item) => {
-      return { name: item.name, id: item.id };
+      const image = item.images && item.images.length > 0 ? item.images[0] : '';
+
+      return { name: item.name, id: item.id, image: image };
     });
 
     return response;

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
@@ -38,20 +37,11 @@ final class _ProjectRequestFormState
   Widget onBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () => context.pop()),
         title: GeneralSubTitle(value: LocaleKeys.projectRequest_title.tr()),
         centerTitle: true,
       ),
       bottomNavigationBar: _ProjectRequestSend(
-        onTapped: () async {
-          if (!validateAndSave()) return;
-          final model = getRequestModel();
-          if (model == null) return;
-          final response = await ref
-              .read(projectRequestProviderProvider.notifier)
-              .addNewDataToService(model);
-          await dataSendingComplete(isOkay: response);
-        },
+        onTapped: sendRequest,
         onKVKKChanged: updateKVKK,
       ).ext.toDisabled(
             disable:
@@ -62,11 +52,13 @@ final class _ProjectRequestFormState
       body: ListViewWithSpace(
         children: [
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.projectRequest_publisher.tr(),
             controller: projectPublisherController,
             validator: ValidatorNormalTextField(),
           ),
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.requestCompany_phoneNumber.tr(),
             controller: projectPhoneController,
             textInputType: TextInputType.phone,
@@ -80,6 +72,7 @@ final class _ProjectRequestFormState
             ),
           ),
           CustomTextFormFieldWithTitle(
+            maxLength: TextFieldMaxLengths.large,
             title: LocaleKeys.projectRequest_name.tr(),
             controller: projectNameController,
             textInputType: TextInputType.name,
@@ -91,6 +84,7 @@ final class _ProjectRequestFormState
             validator: ValidatorNormalTextField(),
           ),
           CustomTextFormFieldWithTitle.multiLine(
+            maxLength: TextFieldMaxLengths.max,
             title: LocaleKeys.projectRequest_description.tr(),
             controller: projectDescriptionController,
             validator: ValidatorNormalTextField(),

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lifeclient/features/sub_feature/forms/project_request/provider/project_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/project_request/view/project_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -27,6 +28,16 @@ mixin ProjectRequestFormMixin
   DateTime? expireDate;
   File? _imageFile;
   bool _isKvkkChecked = false;
+
+  Future<void> sendRequest() async {
+    if (!validateAndSave()) return;
+    final model = getRequestModel();
+    if (model == null) return;
+    final response = await ref
+        .read(projectRequestProviderProvider.notifier)
+        .addNewDataToService(model);
+    await dataSendingComplete(isOkay: response);
+  }
 
   RequestProjectModel? getRequestModel() {
     if (!validateAndSave()) return null;
@@ -55,6 +66,9 @@ mixin ProjectRequestFormMixin
 
   @override
   bool validateAndSave() {
+    if (!_isKvkkChecked) {
+      return false;
+    }
     final formResult = super.validateAndSave();
     if (!formResult) return false;
     if (_imageFile == null) {

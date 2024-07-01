@@ -12,7 +12,7 @@ class BoxDecorations extends BoxDecoration {
 
   BoxDecorations.tourismPlaceCard({
     Color color = Colors.white,
-    double radius = 10,
+    double radius = 24,
   }) : super(
           color: color,
           borderRadius: BorderRadius.circular(radius),

@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const String kWeb = 'kWeb';
 const double kZero = 0;
 const double kErrorNumber = -1;
 
 @immutable
-class AppConstants {
+final class AppConstants {
   const AppConstants._();
   static const int kZero = 0;
   static const int kOne = 1;
@@ -16,9 +17,6 @@ class AppConstants {
   static const int kTen = 10;
   static const int kFourteen = 14;
 
-  /// [progressMaxValue] value is 100
-  static const int progressMaxValue = 100;
-
   /// [defaultMapZoom] value is 14
   static const double defaultMapZoom = 14;
 
@@ -28,4 +26,10 @@ class AppConstants {
   static const String kiloByte = 'kb';
 
   static const String appName = "Hatay'ı Yaşat";
+
+  /// [initialLocation] is the initial position of the map from Hatay
+  static const initialLocation = CameraPosition(
+    target: LatLng(36.845487, 36.221312),
+    zoom: 10,
+  );
 }

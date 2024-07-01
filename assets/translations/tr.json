@@ -42,7 +42,8 @@
     "sendRequest": "Talep Oluştur",
     "call": "Ara",
     "share": "Paylaş",
-    "error": "Hata"
+    "error": "Hata",
+    "more": "Daha fazla"
   },
   "component": {
     "picker": {
@@ -295,19 +296,18 @@
     "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
   },
   "chain_stores": {
-    "title": "Zincir Mağazalar",
+    "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
   },
   "whatsNew": {
-    "title": "Yenilikler v5.0.0 🎉",
-    "advertiseBannerView": "📢 Artık reklam verip firmanızı öne çıkartabilirsiniz.",
-    "homeView": "🏠 Ana sayfa üzerinde ikili görünüm ile daha çok işletmeye ulaşabilirsiniz.",
-    "chainView": "🛍 Zincir mağaza ekranı eklendi.",
-    "notificationViewLink": "🔔 Bildirimler üzerinden link açma opsiyonu eklendi.",
+    "title": "Yenilikler v6.0.0 🎉",
+    "tourism": "🏞️ Turistik yerler eklendi.",
+    "uiImprovements": "🎨 Arayüz iyileştirmeleri yapıldı.",
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   },
   "tourismView": {
-    "onTapMarkerWindow": "Yol tarifi almak için tıklayın"
+    "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
+    "title": "Turistik Yerler"
   }
 }

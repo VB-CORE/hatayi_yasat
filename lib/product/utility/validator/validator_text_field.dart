@@ -4,7 +4,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
-import 'package:lifeclient/product/utility/extension/string_extension.dart';
 
 abstract class ValidatorField {
   String? validate(String? value) {
@@ -108,14 +107,9 @@ final class ValidateCloseDate extends ValidatorField {
     if (value.ext.isNullOrEmpty) {
       return LocaleKeys.validation_pickATime.tr();
     }
-    final closeTime = value!.toTimeOfDay;
     final openTime = controller.time;
     if (openTime == null) return LocaleKeys.validation_pickATime.tr();
-    if (closeTime.isAfter(openTime)) {
-      return null;
-    } else {
-      return LocaleKeys.validation_closeTimeMustBeAfterStartTime.tr();
-    }
+    return null;
   }
 }
 

@@ -1,6 +1,6 @@
 // ignore_for_file: sort_constructors_first
 
-import 'package:kartal/kartal.dart';
+import 'package:collection/collection.dart';
 
 enum PlatformExceptionEnum {
   photoAccessDenied('photo_access_denied'),

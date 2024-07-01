@@ -7,6 +7,7 @@ import 'package:lifeclient/features/sub_feature/favorite/provider/favorite_view_
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
+import 'package:lifeclient/product/utility/mixin/keyboard_utility_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
@@ -27,6 +28,12 @@ final class FavoriteView extends ConsumerStatefulWidget {
 }
 
 class _FavoriteViewState extends ConsumerState<FavoriteView> {
+  @override
+  void dispose() {
+    super.dispose();
+    KeyboardUtilityMixin.closeFromSystem();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(

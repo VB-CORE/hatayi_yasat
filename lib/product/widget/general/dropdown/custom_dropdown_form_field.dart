@@ -18,12 +18,14 @@ final class CustomDropdownFormField<T extends BaseDropDownModel>
     required this.items,
     required this.onSelected,
     required this.hint,
+    this.initialValue,
     super.key,
   });
 
   final List<T> items;
   final ValueChanged<T> onSelected;
   final String hint;
+  final T? initialValue;
 
   @override
   State<CustomDropdownFormField> createState() =>
@@ -31,15 +33,18 @@ final class CustomDropdownFormField<T extends BaseDropDownModel>
 }
 
 final class _CustomDistrictSelectionFormFieldState<T extends BaseDropDownModel>
-    extends State<CustomDropdownFormField<T>> {
+    extends State<CustomDropdownFormField<T>>
+    with AutomaticKeepAliveClientMixin<CustomDropdownFormField<T>> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return DropdownButtonFormField<T>(
       hint: Text(widget.hint),
       validator: DropdownModelValidate().validateDropDownField,
       decoration: CustomDropdownDecoration(context: context),
       dropdownColor: context.general.colorScheme.onPrimaryFixed,
-      elevation: 0,
+      menuMaxHeight: context.sized.dynamicHeight(.6),
+      value: widget.initialValue,
       items: widget.items
           .map(
             (e) => DropdownMenuItem<T>(
@@ -57,4 +62,7 @@ final class _CustomDistrictSelectionFormFieldState<T extends BaseDropDownModel>
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

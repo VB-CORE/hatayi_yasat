@@ -14,6 +14,9 @@ final class SpecialAgencyCard extends StatelessWidget {
     return GeneralExpansionTile(
       pageTitle: model.name ?? '',
       children: [
+        const Divider(
+          height: WidgetSizes.spacingXxs / 2,
+        ),
         _ListTileWidget(
           iconData: Icons.phone_outlined,
           mainTitle: LocaleKeys.specialAgency_agencyNumber,

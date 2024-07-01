@@ -17,6 +17,7 @@ enum PhotoPickType {
   camera,
 }
 
+/// TODO: PhotoPickerManager
 final class PhotoPickerManager {
   PhotoPickerManager({required this.context});
 
@@ -39,17 +40,20 @@ final class PhotoPickerManager {
 
     final croppedFile = await ImageCropper().cropImage(
       sourcePath: mediaFile.path,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.ratio4x3,
-      ],
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: LocaleKeys.component_picker_cropperTitle.tr(),
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: true,
+          aspectRatioPresets: [
+            CropAspectRatioPreset.ratio4x3,
+          ],
         ),
         IOSUiSettings(
           title: LocaleKeys.component_picker_cropperTitle.tr(),
+          aspectRatioPresets: [
+            CropAspectRatioPreset.ratio4x3,
+          ],
         ),
       ],
     );

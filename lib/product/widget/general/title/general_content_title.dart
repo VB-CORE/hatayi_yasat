@@ -25,7 +25,7 @@ final class GeneralContentTitle extends StatelessWidget {
         color: color,
       ),
       maxLines: maxLine,
-      overflow: TextOverflow.ellipsis,
+      overflow: maxLine == null ? null : TextOverflow.ellipsis,
     );
   }
 }

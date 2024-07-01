@@ -13,13 +13,16 @@ final class CustomFunctions {
       'page': 1,
     });
 
-    final results = response.data;
-    if (results.isEmpty) {
+    if (response.data.isEmpty) {
       return [];
     }
+    final results = response.data;
 
     return results.map((e) {
-      return SearchResponse.fromMap(e as Map<dynamic, dynamic>);
+      final resultMap = Map<String, dynamic>.from(e as Map<dynamic, dynamic>);
+
+      /// TODO: Change this to your model
+      return SearchResponse.fromJson(resultMap);
     }).toList();
   }
 }

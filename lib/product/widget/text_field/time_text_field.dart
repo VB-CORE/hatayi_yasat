@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
@@ -31,23 +30,30 @@ class _TimeFormFieldState extends State<TimeFormField>
     with _TimeFormFieldMixin {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      readOnly: true,
-      controller: _timeController,
-      decoration: CustomTimeFieldDecoration(
-        context: context,
-        hint: widget.hintText,
-        prefixIcon: widget.prefixIcon,
+    return Theme(
+      data: context.general.appTheme.copyWith(
+        colorScheme: context.general.colorScheme.copyWith(
+          primaryContainer: Colors.red,
+        ),
       ),
-      style: context.general.textTheme.titleMedium?.copyWith(
-        color: context.general.colorScheme.onSecondaryFixed,
-        fontWeight: FontWeight.w400,
+      child: TextFormField(
+        readOnly: true,
+        controller: _timeController,
+        decoration: CustomTimeFieldDecoration(
+          context: context,
+          hint: widget.hintText,
+          prefixIcon: widget.prefixIcon,
+        ),
+        style: context.general.textTheme.titleMedium?.copyWith(
+          color: context.general.colorScheme.onSecondaryFixed,
+          fontWeight: FontWeight.w400,
+        ),
+        onTap: () async => _selectTime(),
+        validator: widget.validator ??
+            (widget.useDefaultValidator
+                ? (text) => TextFieldValidatorIsNullEmpty().validate(text)
+                : null),
       ),
-      onTap: () async => _selectTime(),
-      validator: widget.validator ??
-          (widget.useDefaultValidator
-              ? (text) => TextFieldValidatorIsNullEmpty().validate(text)
-              : null),
     );
   }
 }
@@ -70,9 +76,28 @@ mixin _TimeFormFieldMixin on State<TimeFormField> {
   }
 
   Future<void> _selectTime() async {
-    final selectedTime = await DateTimePicker.selectTime(context);
+    final selectedTime = await selectTime(context);
     if (selectedTime == null) return;
     _timeController.text = selectedTime.stringValue;
     widget.onTimeSelected?.call(selectedTime);
+  }
+
+  static Future<TimeOfDay?> selectTime(BuildContext context) async {
+    final initialTimeOfDay = TimeOfDay.now();
+    final pickedTime = await showTimePicker(
+      context: context,
+      initialTime: initialTimeOfDay,
+      initialEntryMode: TimePickerEntryMode.inputOnly,
+      builder: (context, child) => Theme(
+        data: context.general.appTheme.copyWith(
+          colorScheme: ColorScheme.light(
+            primary: context.general.colorScheme.primary,
+            onTertiaryContainer: context.general.colorScheme.secondary,
+          ),
+        ),
+        child: child!,
+      ),
+    );
+    return pickedTime;
   }
 }
