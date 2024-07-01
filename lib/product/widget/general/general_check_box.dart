@@ -16,8 +16,12 @@ final class GeneralCheckBox extends StatefulWidget {
   State<GeneralCheckBox> createState() => _GeneralCheckBoxState();
 }
 
-class _GeneralCheckBoxState extends State<GeneralCheckBox> {
+class _GeneralCheckBoxState extends State<GeneralCheckBox>
+    with AutomaticKeepAliveClientMixin {
   bool _value = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void didUpdateWidget(covariant GeneralCheckBox oldWidget) {
