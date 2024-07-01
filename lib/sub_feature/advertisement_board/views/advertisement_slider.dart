@@ -27,7 +27,7 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
   Widget build(BuildContext context) {
     final items = ref.watch(advertisementBoardViewModelProvider).advertisements;
     return SliverPadding(
-      padding: const PagePadding.onlyTopMedium(),
+      padding: const PagePadding.onlyTop(),
       sliver: _buildSlider(context, items).ext.sliver,
     );
   }
@@ -40,19 +40,18 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
       return const SizedBox.shrink();
     }
 
-    return CarouselSlider(
-      options: CustomCarouselOptions.advertisement(
-        height: context.sized.dynamicHeight(.2),
-      ),
-      items: items.map((item) {
-        return _buildItem(context, item);
-      }).toList(),
+    return CarouselSlider.builder(
+      itemBuilder: (context, index, realIndex) {
+        return _buildItem(context, items[index]);
+      },
+      itemCount: items.length,
+      options: CustomCarouselOptions.advertisement(),
     );
   }
 
   Padding _buildItem(BuildContext context, AdBoardModel item) {
     return Padding(
-      padding: const PagePadding.vertical8Symmetric(),
+      padding: const PagePadding.horizontalLowSymmetric(),
       child: _AdvertisementItem(item),
     );
   }

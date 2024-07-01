@@ -6,9 +6,10 @@ final class _ContactUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GeneralExpansionTile(
-      pageTitle: LocaleKeys.settings_contactTitle,
-      children: [
+    return GeneralExpansionTile(
+      key: ValueKey(context.locale),
+      pageTitle: LocaleKeys.settings_contactTitle.tr(),
+      children: const [
         _ContactUsGridView(),
       ],
     );

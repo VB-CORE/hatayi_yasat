@@ -13,3 +13,5 @@ key.properties
 **/*.jks
 
 google_play.json
+
+/app/build

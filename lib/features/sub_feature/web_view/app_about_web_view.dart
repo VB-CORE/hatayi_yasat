@@ -1,8 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:kartal/kartal.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 
 final class AppAboutView extends StatefulWidget {
   const AppAboutView({super.key});
@@ -11,43 +10,50 @@ final class AppAboutView extends StatefulWidget {
 }
 
 class _AppAboutViewState extends State<AppAboutView> {
-  int progress = 0;
+  final ValueNotifier<bool> _isLoadingNotifier = ValueNotifier<bool>(true);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          LocaleKeys.settings_aboutTitle.tr(),
+    return SizedBox(
+      height: context.sized.dynamicHeight(.8),
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(AppIcons.back),
         ),
-      ),
-      body: Stack(
-        children: [
-          _LoadingWidget(progress),
-          InAppWebView(
-            onProgressChanged: (controller, progress) {
-              this.progress = progress;
-            },
-            initialUrlRequest:
-                URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
-          ),
-        ],
+        body: Stack(
+          children: [
+            InAppWebView(
+              onWebViewCreated: (controller) async {
+                await controller.loadUrl(
+                  urlRequest:
+                      URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
+                );
+                _isLoadingNotifier.value = false;
+              },
+            ),
+            ValueListenableBuilder(
+              valueListenable: _isLoadingNotifier,
+              builder: (context, value, child) {
+                if (!value) return const SizedBox();
+                return const _LoadingWidget();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 final class _LoadingWidget extends StatelessWidget {
-  const _LoadingWidget(this.progress);
-
-  final int progress;
+  const _LoadingWidget();
 
   @override
   Widget build(BuildContext context) {
-    return progress != AppConstants.progressMaxValue
-        ? const Align(
-            alignment: Alignment.topCenter,
-            child: CircularProgressIndicator(),
-          )
-        : const SizedBox.shrink();
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

@@ -67,6 +67,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           factory: $ChainStoresRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'turism',
+          name: 'Turism items',
+          factory: $TurismRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'favorite',
           name: 'Favorite',
           factory: $FavoriteRouteExtension._fromState,
@@ -166,6 +171,23 @@ extension $ChainStoresRouteExtension on ChainStoresRoute {
 
   String get location => GoRouteData.$location(
         '/main/chain_stores',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $TurismRouteExtension on TurismRoute {
+  static TurismRoute _fromState(GoRouterState state) => const TurismRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/turism',
       );
 
   void go(BuildContext context) => context.go(location);

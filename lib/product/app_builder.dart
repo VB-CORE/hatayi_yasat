@@ -5,14 +5,17 @@ class AppBuilder {
   AppBuilder._();
 
   static Widget build(BuildContext context, Widget? child) {
-    return ResponsiveBreakpoints.builder(
-      child: child ?? const SizedBox(),
-      breakpoints: [
-        const Breakpoint(start: 0, end: 450, name: MOBILE),
-        const Breakpoint(start: 451, end: 800, name: TABLET),
-        const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-        const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-      ],
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
+      child: ResponsiveBreakpoints.builder(
+        child: child ?? const SizedBox(),
+        breakpoints: [
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          const Breakpoint(start: 451, end: 800, name: TABLET),
+          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+        ],
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dart';
+import 'package:lifeclient/product/utility/mixin/keyboard_utility_mixin.dart';
 import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_context.dart';
 import 'package:lifeclient/product/widget/sheet/general_media_sheet.dart';
 
@@ -31,10 +32,12 @@ final class GeneralDottedPhotoAddProviderState
   void _updatePhoto(File? file) {
     if (file == null) return;
     if (file == _photoFileNotifier.value) return;
+
     _photoFileNotifier.value = file;
     setState(() {});
     Future.microtask(() {
       widget.onSelected(file);
+      KeyboardUtilityMixin.closeFromSystem();
     });
   }
 

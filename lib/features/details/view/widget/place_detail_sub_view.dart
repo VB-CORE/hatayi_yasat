@@ -19,22 +19,23 @@ final class _FindThePlaceButton extends StatelessWidget {
           padding: const PagePadding.horizontalSymmetric() +
               const PagePadding.vertical6Symmetric(),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                flex: 4,
+                flex: 6,
                 child: IconTitleButton(
                   onPressed: onCallTapped.call,
-                  icon: AppIcons.location,
-                  text: LocaleKeys.placeDetailView_find_the_place.tr(),
+                  icon: AppIcons.phone,
+                  text: LocaleKeys.placeDetailView_call.tr(),
                 ),
               ),
               const Spacer(),
               Expanded(
-                flex: 4,
+                flex: 6,
                 child: IconTitleButton(
                   onPressed: onFindPlaceTapped.call,
-                  icon: AppIcons.phone,
-                  text: LocaleKeys.placeDetailView_call.tr(),
+                  icon: AppIcons.location,
+                  text: LocaleKeys.placeDetailView_find_the_place.tr(),
                 ),
               ),
             ],
@@ -61,8 +62,9 @@ final class _TownIcon extends ConsumerWidget with AppProviderStateMixin {
       return const EmptyBox();
     }
     return IconWithText(
-      icon: AppIcons.city,
+      icon: AppIcons.location,
       title: town,
+      textStyle: context.general.textTheme.titleMedium?.copyWith(),
     );
   }
 }

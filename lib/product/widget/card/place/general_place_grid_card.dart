@@ -19,18 +19,23 @@ final class GeneralPlaceGridCard extends StatelessWidget {
     required this.onCardTap,
     required this.storeModel,
     this.onBookmarkIconTap,
+    this.elevetion,
+    this.isEnabledToFavourite = true,
     super.key,
   });
 
   final VoidCallback onCardTap;
   final VoidCallback? onBookmarkIconTap;
   final StoreModel storeModel;
+  final double? elevetion;
+  final bool isEnabledToFavourite;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onCardTap,
       child: Card(
+        elevation: elevetion,
         child: ClipRRect(
           borderRadius: CustomRadius.medium,
           child: Stack(
@@ -47,16 +52,17 @@ final class GeneralPlaceGridCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Positioned(
-                top: WidgetSizes.spacingXSs,
-                right: WidgetSizes.spacingXSs,
-                child: CircleAvatar(
-                  radius: CustomCircleRadius.medium,
-                  backgroundColor:
-                      context.general.colorScheme.secondary.withOpacity(0.9),
-                  child: FavoritePlaceButton(store: storeModel),
+              if (isEnabledToFavourite)
+                Positioned(
+                  top: WidgetSizes.spacingXSs,
+                  right: WidgetSizes.spacingXSs,
+                  child: CircleAvatar(
+                    radius: CustomCircleRadius.medium,
+                    backgroundColor:
+                        context.general.colorScheme.secondary.withOpacity(0.9),
+                    child: FavoritePlaceButton(store: storeModel),
+                  ),
                 ),
-              ),
             ],
           ),
         ),

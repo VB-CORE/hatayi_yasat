@@ -11,10 +11,17 @@ final class ApplicationTheme {
     final theme = ThemeData.light(useMaterial3: true);
     final textTheme = theme.textTheme;
     themeData = theme.copyWith(
+      timePickerTheme: const TimePickerThemeData(
+        hourMinuteTextColor: Colors.black,
+        hourMinuteColor: ColorsCustom.softGray,
+        dayPeriodColor: Colors.black,
+        dialHandColor: Colors.black,
+      ),
       dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: ColorsCustom.sambacus,
+        backgroundColor: ColorsCustom.white,
       ),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
@@ -28,12 +35,16 @@ final class ApplicationTheme {
           borderRadius: CustomRadius.medium,
         ),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         scrolledUnderElevation: 0,
         foregroundColor: ColorsCustom.white,
         backgroundColor: ColorsCustom.white,
-        titleTextStyle: textTheme.titleLarge?.copyWith(),
-        iconTheme: const IconThemeData(
+        titleTextStyle: TextStyle(
+          color: ColorsCustom.sambacus,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        iconTheme: IconThemeData(
           color: ColorsCustom.sambacus,
         ),
       ),

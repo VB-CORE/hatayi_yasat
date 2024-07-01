@@ -32,6 +32,8 @@ mixin MainTabViewMixin
       length: RedirectTabs.values.length,
       vsync: this,
     );
-    WhatsNewSheetManager(context: context).show();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      WhatsNewSheetManager(context: context).show();
+    });
   }
 }

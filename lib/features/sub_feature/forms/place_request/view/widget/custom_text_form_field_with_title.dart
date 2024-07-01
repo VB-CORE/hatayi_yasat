@@ -9,6 +9,7 @@ final class CustomTextFormFieldWithTitle extends StatelessWidget {
     this.maxLength = TextFieldMaxLengths.none,
     this.formatters = TextFieldFormatters.none,
     this.autoFills = TextFieldAutoFills.normal,
+    this.hint = '',
     super.key,
   }) : _isMultiLine = false;
 
@@ -20,6 +21,7 @@ final class CustomTextFormFieldWithTitle extends StatelessWidget {
     this.maxLength = TextFieldMaxLengths.none,
     this.formatters = TextFieldFormatters.none,
     this.autoFills = TextFieldAutoFills.normal,
+    this.hint = '',
     super.key,
   }) : _isMultiLine = true;
 
@@ -31,7 +33,7 @@ final class CustomTextFormFieldWithTitle extends StatelessWidget {
   final ValidatorField validator;
   final TextFieldAutoFills autoFills;
   final bool _isMultiLine;
-
+  final String hint;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +48,7 @@ final class CustomTextFormFieldWithTitle extends StatelessWidget {
         const EmptyBox.smallHeight(),
         if (_isMultiLine)
           CustomTextFormMultiField(
-            hint: '',
+            hint: hint,
             maxLength: maxLength,
             controller: controller,
             textInputType: textInputType,
@@ -56,11 +58,12 @@ final class CustomTextFormFieldWithTitle extends StatelessWidget {
           )
         else
           CustomTextFormField(
-            hint: '',
+            hint: hint,
             controller: controller,
             textInputType: textInputType,
             validator: validator,
             formatters: formatters,
+            maxLength: maxLength,
           ),
       ],
     );

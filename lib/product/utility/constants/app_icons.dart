@@ -18,7 +18,7 @@ final class AppIcons {
   static const IconData calendar = Icons.calendar_today;
   static const IconData calendarFilled = Icons.calendar_month_rounded;
   static const IconData timerOn = Icons.timer_outlined;
-  static const IconData timerOff = Icons.timer_off;
+  static const IconData timerOff = Icons.timer_off_outlined;
 
   static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
@@ -30,6 +30,9 @@ final class AppIcons {
   static const IconData group = Icons.group_sharp;
   static const IconData event = Icons.event;
   static const IconData textSnippet = Icons.text_snippet;
+
+  static const IconData personPin = Icons.person_pin;
+  static const IconData back = Icons.close;
 
   static const IconData favorite = Icons.favorite;
   static const IconData favoriteBorder = Icons.favorite_border_outlined;

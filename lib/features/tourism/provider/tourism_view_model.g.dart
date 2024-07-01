@@ -6,7 +6,7 @@ part of 'tourism_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tourismViewModelHash() => r'793e1574ce556b2d187a675d89a06898f5fc02b0';
+String _$tourismViewModelHash() => r'1a3aa1c912b0648a782d9fd81c718ed8292a09ff';
 
 /// See also [TourismViewModel].
 @ProviderFor(TourismViewModel)

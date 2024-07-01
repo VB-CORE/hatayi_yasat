@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
@@ -23,7 +21,7 @@ final class GeneralExpansionTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: CustomRadius.large,
         side: BorderSide(
-          color: context.general.colorScheme.secondaryFixed.withOpacity(.2),
+          color: context.general.colorScheme.onPrimaryContainer,
         ),
       ),
       elevation: 0,
@@ -34,10 +32,9 @@ final class GeneralExpansionTile extends StatelessWidget {
           color: context.general.colorScheme.onSecondaryFixed,
         ),
         title: GeneralBodyTitle(
-          pageTitle.tr(context: context),
+          pageTitle,
           fontWeight: FontWeight.w600,
         ),
-        childrenPadding: const PagePadding.horizontal16Symmetric(),
         children: children,
       ),
     );

@@ -3,7 +3,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
-import 'package:lifeclient/product/utility/decorations/style/button_rectangle_border.dart';
 import 'package:lifeclient/product/utility/uri/uri_utility.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
@@ -43,7 +42,11 @@ final class LinkDetailView extends StatelessWidget {
       constraints: BoxConstraints(
         maxHeight: context.sized.dynamicHeight(.8),
       ),
-      shape: const CustomBottomSheetBorder(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(WidgetSizes.spacingL),
+        ),
+      ),
       builder: (context) => LinkDetailView(model: model),
     );
   }

@@ -9,10 +9,13 @@ final class OpenAndCloseTimeValidationModel {
   final TimeOfDay? openTime;
   final TimeOfDay? closeTime;
 
-  bool get isValid =>
-      (openTime != null && closeTime != null) &&
-      (openTime!.hour < closeTime!.hour &&
-          openTime!.minute < closeTime!.minute);
+  bool get isValid {
+    if (openTime == null || closeTime == null) return false;
+
+    if (openTime!.hour == closeTime!.hour) return false;
+
+    return true;
+  }
 
   bool get isNotValid => !isValid;
 

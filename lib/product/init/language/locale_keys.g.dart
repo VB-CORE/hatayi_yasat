@@ -42,6 +42,7 @@ abstract class  LocaleKeys {
   static const button_call = 'button.call';
   static const button_share = 'button.share';
   static const button_error = 'button.error';
+  static const button_more = 'button.more';
   static const button = 'button';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
@@ -120,8 +121,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_phone = 'campaignDetailsView.phone';
+  static const campaignDetailsView_description = 'campaignDetailsView.description';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -184,9 +185,9 @@ abstract class  LocaleKeys {
   static const advertise_gender = 'advertise.gender';
   static const advertise_owner = 'advertise.owner';
   static const advertise_phone = 'advertise.phone';
-  static const advertise_role = 'advertise.role';
   static const advertise_callPhone = 'advertise.callPhone';
   static const advertise_share = 'advertise.share';
+  static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
   static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
   static const advertise_jobDescription = 'advertise.jobDescription';
@@ -260,13 +261,12 @@ abstract class  LocaleKeys {
   static const chain_stores_subBranchesTitle = 'chain_stores.subBranchesTitle';
   static const chain_stores = 'chain_stores';
   static const whatsNew_title = 'whatsNew.title';
-  static const whatsNew_advertiseBannerView = 'whatsNew.advertiseBannerView';
-  static const whatsNew_homeView = 'whatsNew.homeView';
-  static const whatsNew_chainView = 'whatsNew.chainView';
-  static const whatsNew_notificationViewLink = 'whatsNew.notificationViewLink';
+  static const whatsNew_tourism = 'whatsNew.tourism';
+  static const whatsNew_uiImprovements = 'whatsNew.uiImprovements';
   static const whatsNew_bugFixes = 'whatsNew.bugFixes';
   static const whatsNew = 'whatsNew';
   static const tourismView_onTapMarkerWindow = 'tourismView.onTapMarkerWindow';
+  static const tourismView_title = 'tourismView.title';
   static const tourismView = 'tourismView';
 
 }
