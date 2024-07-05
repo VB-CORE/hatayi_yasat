@@ -66,11 +66,9 @@ mixin ProjectRequestFormMixin
 
   @override
   bool validateAndSave() {
-    if (!_isKvkkChecked) {
-      return false;
-    }
     final formResult = super.validateAndSave();
     if (!formResult) return false;
+    if (!_isKvkkChecked) return false;
     if (_imageFile == null) {
       appProvider
           .showSnackbarMessage(LocaleKeys.validation_pleaseAddImage.tr());

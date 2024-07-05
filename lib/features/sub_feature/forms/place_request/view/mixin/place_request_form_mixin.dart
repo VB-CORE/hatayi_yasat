@@ -159,6 +159,7 @@ mixin PlaceRequestFormMixin
   bool validateAndSave() {
     final formResult = super.validateAndSave();
     if (!formResult) return false;
+    if (!isKVKKCheckedNotifier.value) return false;
     if (_imageFile == null) {
       appProvider.showSnackbarMessage(LocaleKeys.validation_photoRequired.tr());
       return false;
