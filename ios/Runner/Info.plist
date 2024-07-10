@@ -47,6 +47,8 @@
 	<string>Paylaşabilmek için kamera erişimine ihtiyacımız var.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Paylaşabilmek için fotoğraflar erişimine ihtiyacımız var.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sesli sohbet için mikrofon erişimine ihtiyacımız var.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

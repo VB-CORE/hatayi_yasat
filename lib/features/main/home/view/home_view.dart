@@ -50,6 +50,10 @@ class _HomeViewState extends ConsumerState<HomeView>
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
+          ElevatedButton(
+            onPressed: () async => const AudioCallRoute().push(context),
+            child: const Icon(AppIcons.createAudioChannel),
+          ).ext.sliver,
           const AdvertisementSlider(),
           SliverAppBar(
             pinned: true,

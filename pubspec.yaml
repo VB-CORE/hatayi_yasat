@@ -101,6 +101,7 @@ dependencies:
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
+  agora_rtc_engine: ^6.3.2
 
 dependency_overrides:
   kartal: ^4.0.4

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/audio_call/view/audio_call_view.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
@@ -54,6 +55,8 @@ final class SplashRoute extends GoRouteData {
     PlaceRequestFormRoute.route,
     ProjectRequestFormRoute.route,
     ScholarShipRequestFormRoute.route,
+
+    AudioCallRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData {
@@ -167,4 +170,17 @@ final class NotificationsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NotificationsView();
+}
+
+final class AudioCallRoute extends GoRouteData {
+  const AudioCallRoute();
+
+  static const route = TypedGoRoute<AudioCallRoute>(
+    path: 'audioCall',
+    name: 'Audio Call',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AudioCallView();
 }

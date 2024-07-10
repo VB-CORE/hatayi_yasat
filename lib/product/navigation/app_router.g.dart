@@ -145,6 +145,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'ScholarShip Request Form',
           factory: $ScholarShipRequestFormRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'audioCall',
+          name: 'Audio Call',
+          factory: $AudioCallRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -453,6 +458,24 @@ extension $ScholarShipRequestFormRouteExtension on ScholarShipRequestFormRoute {
 
   String get location => GoRouteData.$location(
         '/main/scholarShipRequestForm',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AudioCallRouteExtension on AudioCallRoute {
+  static AudioCallRoute _fromState(GoRouterState state) =>
+      const AudioCallRoute();
+
+  String get location => GoRouteData.$location(
+        '/main/audioCall',
       );
 
   void go(BuildContext context) => context.go(location);

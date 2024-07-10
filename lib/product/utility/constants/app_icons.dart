@@ -48,4 +48,7 @@ final class AppIcons {
   static const IconData clear = Icons.clear_outlined;
 
   static const IconData filter = Icons.tune_outlined;
+
+  static const IconData createAudioChannel = Icons.phone_in_talk_outlined;
+  static const IconData joinAudioChannel = Icons.phone_outlined;
 }
