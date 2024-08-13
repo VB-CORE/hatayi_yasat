@@ -70,6 +70,7 @@ mixin ScholarshipRequestFormMixin
   bool validateAndSave() {
     final formResult = super.validateAndSave();
     if (!formResult) return false;
+    if (!_isKvkkChecked) return false;
     if (selectedPdfFile == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.requestScholarship_error_noFileError.tr(),
