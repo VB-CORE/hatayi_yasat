@@ -81,5 +81,10 @@ service cloud.firestore {
       allow write: if true;
     }
 
+    match /usefulLinks/{document} {
+      allow read;
+      allow write: if true;
+    }
+
   }
 }

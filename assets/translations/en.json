@@ -226,7 +226,8 @@
     "favoritePlaces": "There is no any favorite places.",
     "advertise": "Job postings has not been entered yet.",
     "image": "Image could not be loaded.",
-    "chainStore": "Chain stores has not been entered yet."
+    "chainStore": "Chain stores has not been entered yet.",
+    "usefulLinks": "Useful links has not been entered yet."
   },
   "months": {
     "jan": "January",
@@ -310,5 +311,8 @@
   "tourismView": {
     "onTapMarkerWindow": "Tap to get directions",
     "title": "Tourism Places"
+  },
+  "usefulLink": {
+    "title": "Useful Links"
   }
 }
