@@ -16,6 +16,7 @@ import 'package:lifeclient/product/navigation/favorite_router/favorite_router.da
 import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:lifeclient/product/navigation/onboard_router/onboard_router.dart';
 import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
+import 'package:lifeclient/product/navigation/useful_links_router/useful_links_router.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
@@ -40,6 +41,7 @@ final class SplashRoute extends GoRouteData {
   routes: [
     ChainStoresRoute.route,
     TurismRoute.route,
+    UsefulLinksRoute.route,
     FavoriteRoute.route,
     SpecialAgencyRoute.route,
     PlaceDetailRoute.route,

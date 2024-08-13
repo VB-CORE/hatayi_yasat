@@ -74,7 +74,7 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   kartal: ^4.0.4
   collection: ^1.18.0
-  
+
   # ui
   dotted_border: ^2.0.0+3
   shimmer: ^3.0.0
