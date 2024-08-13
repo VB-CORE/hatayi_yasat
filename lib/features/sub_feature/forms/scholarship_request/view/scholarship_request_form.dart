@@ -71,6 +71,7 @@ final class _ScholarshipRequestFormState
             controller: phoneController,
             title: LocaleKeys.requestScholarship_phone.tr(),
             validator: ValidatorPhoneTextField(),
+            textInputType: TextInputType.number,
             formatters: TextFieldFormatters.phone,
           ),
           CustomTextFormFieldWithTitle(
