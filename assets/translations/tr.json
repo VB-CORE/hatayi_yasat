@@ -226,8 +226,7 @@
     "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
     "advertise": "İş ilanı henüz girilmemiş.",
     "image": "Resim yüklenemedi.",
-    "chainStore": "Zincir mağaza henüz girilmemiş.",
-    "usefulLinks": "Faydalı linkler henüz girilmemiş."
+    "chainStore": "Zincir mağaza henüz girilmemiş."
   },
   "months": {
     "jan": "Ocak",
@@ -311,8 +310,5 @@
   "tourismView": {
     "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
     "title": "Turistik Yerler"
-  },
-  "usefulLink": {
-    "title": "Faydalı Linkler"
   }
 }

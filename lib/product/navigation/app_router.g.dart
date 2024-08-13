@@ -72,11 +72,6 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           factory: $TurismRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'useful_links',
-          name: 'Useful Links',
-          factory: $UsefulLinksRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: 'favorite',
           name: 'Favorite',
           factory: $FavoriteRouteExtension._fromState,
@@ -193,24 +188,6 @@ extension $TurismRouteExtension on TurismRoute {
 
   String get location => GoRouteData.$location(
         '/main/turism',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $UsefulLinksRouteExtension on UsefulLinksRoute {
-  static UsefulLinksRoute _fromState(GoRouterState state) =>
-      const UsefulLinksRoute();
-
-  String get location => GoRouteData.$location(
-        '/main/useful_links',
       );
 
   void go(BuildContext context) => context.go(location);
