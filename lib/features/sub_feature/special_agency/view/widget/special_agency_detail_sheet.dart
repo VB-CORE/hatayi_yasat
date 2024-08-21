@@ -10,6 +10,7 @@ final class SpecialAgencyDetailSheet extends StatelessWidget {
   const SpecialAgencyDetailSheet({required this.model, super.key});
   final SpecialAgencyModel model;
 
+  /// Show the special agency detail sheet as a modal bottom sheet
   static Future<void> show(
     BuildContext context,
     SpecialAgencyModel specialAgencyModel,

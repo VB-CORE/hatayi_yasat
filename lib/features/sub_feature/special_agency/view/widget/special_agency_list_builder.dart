@@ -45,6 +45,7 @@ final class _SpecialAgencyDetailListTile extends StatelessWidget {
         agency.name ?? '',
         style: context.general.textTheme.titleMedium,
       ),
+      trailing: const Icon(AppIcons.rightArrow, size: AppIconSizes.medium),
       onTap: () async {
         await SpecialAgencyDetailSheet.show(context, agency);
       },
