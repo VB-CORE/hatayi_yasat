@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/provider/special_agency_state.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/provider/special_agency_view_model.dart';
-import 'package:lifeclient/features/sub_feature/special_agency/view/widget/special_agency_detail_sheet.dart';
+import 'package:lifeclient/features/sub_feature/special_agency/view/widget/special_agency_detail_sheet/special_agency_detail_sheet.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';

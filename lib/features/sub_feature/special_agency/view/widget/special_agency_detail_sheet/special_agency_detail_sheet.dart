@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -6,7 +7,10 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 
-final class SpecialAgencyDetailSheet extends StatelessWidget {
+part './special_agency_detail_sheet_mixin.dart';
+
+final class SpecialAgencyDetailSheet extends StatelessWidget
+    with _SpecialAgencyDetailSheetMixin {
   const SpecialAgencyDetailSheet({required this.model, super.key});
   final SpecialAgencyModel model;
 
@@ -17,6 +21,8 @@ final class SpecialAgencyDetailSheet extends StatelessWidget {
   ) async {
     await showModalBottomSheet<void>(
       context: context,
+      backgroundColor: context.general.colorScheme.secondary,
+      elevation: 0,
       builder: (context) => SpecialAgencyDetailSheet(model: specialAgencyModel),
     );
   }
@@ -44,27 +50,13 @@ final class SpecialAgencyDetailSheet extends StatelessWidget {
             iconData: Icons.phone_outlined,
             mainTitle: LocaleKeys.specialAgency_agencyNumber,
             subTitle: model.phone ?? '',
-            onTapEvent: () {
-              final phone = model.phone;
-              if (phone.ext.isNullOrEmpty) return;
-              RedirectionMixin.openToPhone(
-                context: context,
-                phoneNumber: phone ?? '',
-              );
-            },
+            onTapEvent: () async => onPhoneClick(context, model.phone),
           ),
           _ListTileWidget(
             iconData: Icons.location_on_outlined,
             mainTitle: LocaleKeys.specialAgency_agencyAddress,
             subTitle: model.address ?? '',
-            onTapEvent: () async {
-              final latLongString =
-                  '${model.latLong.latitude},${model.latLong.longitude}';
-              await RedirectionMixin.navigateToMapsWithTitle(
-                context: context,
-                placeAddress: latLongString,
-              );
-            },
+            onTapEvent: () async => onLocationClick(context, model.latLong),
           ),
           const EmptyBox.largeHeight(),
         ],

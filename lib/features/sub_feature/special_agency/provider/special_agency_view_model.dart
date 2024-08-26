@@ -15,23 +15,29 @@ final class SpecialAgencyViewModel extends _$SpecialAgencyViewModel
   }
 
   Future<void> fetchAgencyCollectionReference(List<TownModel> townList) async {
-    final townNamesAndAgency = <String, List<SpecialAgencyModel>>{};
     final specialAgencyList = await firebaseService.getList<SpecialAgencyModel>(
       model: SpecialAgencyModel(),
       path: CollectionPaths.specialAgency,
     );
 
-    for (final model in specialAgencyList) {
-      final townModel = townList.firstWhereOrNull(
-        (element) => element.code == model.townCode,
-      );
+    final townNamesAndAgency = _populateTownNamesAndAgency(
+      specialAgencyList,
+      townList,
+    );
 
-      townNamesAndAgency.putIfAbsent(
-        townModel?.name ?? '',
-        () => <SpecialAgencyModel>[],
-      );
-      townNamesAndAgency[townModel?.name ?? '']!.add(model);
-    }
     state = state.copyWith(townNamesAndAgency: townNamesAndAgency);
+  }
+
+  Map<String, List<SpecialAgencyModel>> _populateTownNamesAndAgency(
+    List<SpecialAgencyModel> specialAgencyList,
+    List<TownModel> townList,
+  ) {
+    final townMap = Map.fromEntries(
+      townList.map((town) => MapEntry(town.code, town.name)),
+    );
+
+    return specialAgencyList.groupListsBy(
+      (agency) => townMap[agency.townCode] ?? '',
+    );
   }
 }
