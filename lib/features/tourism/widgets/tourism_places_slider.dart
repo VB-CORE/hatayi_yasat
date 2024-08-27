@@ -10,7 +10,7 @@ final class _TourismPlacesSlider extends StatelessWidget
 
   final List<TouristicPlaceModel> locations;
   final ValueChanged<TouristicPlaceModel> onItemTap;
-  final CarouselController carouselController;
+  final CarouselSliderController carouselController;
 
   @override
   Widget build(BuildContext context) {

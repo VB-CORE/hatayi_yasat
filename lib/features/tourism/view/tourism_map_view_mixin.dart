@@ -2,9 +2,10 @@ part of './tourism_map_view.dart';
 
 mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   late GoogleMapController _mapController;
-  final CarouselController _carouselController = CarouselController();
+  final CarouselSliderController _carouselController =
+      CarouselSliderController();
 
-  CarouselController get carouselController => _carouselController;
+  CarouselSliderController get carouselController => _carouselController;
   late BitmapDescriptor _markerIcon;
 
   Set<Marker> get markers {
