@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/features/sub_feature/whats_new/whats_new_chain.dart';
-import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 
 final class WhatsNewSheetManager {
   WhatsNewSheetManager({required this.context});

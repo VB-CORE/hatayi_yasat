@@ -13,7 +13,7 @@ import 'package:lifeclient/core/dependency/project_dependency.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
 import 'package:lifeclient/firebase_options.dart';
-import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/model/enum/firebase_env.dart';
 
 @immutable
