@@ -33,7 +33,7 @@ class _TimeFormFieldState extends State<TimeFormField>
     return Theme(
       data: context.general.appTheme.copyWith(
         colorScheme: context.general.colorScheme.copyWith(
-          primaryContainer: Colors.red,
+          primaryContainer: context.general.colorScheme.error,
         ),
       ),
       child: TextFormField(

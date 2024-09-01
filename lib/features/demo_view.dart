@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/product/utility/validator/index.dart';
-import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
-import 'package:lifeclient/product/widget/icon/index.dart';
-import 'package:lifeclient/product/widget/text/title_description_text.dart';
-import 'package:lifeclient/product/widget/text_field/index.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 
 class DemoView extends StatefulWidget {
   const DemoView({super.key});
@@ -12,43 +9,26 @@ class DemoView extends StatefulWidget {
 }
 
 class _DemoViewState extends State<DemoView> {
+  LatLng _initialPosition =
+      AppConstants.initialLocation.target; // Başlangıç konumu
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          const TitleDescription(
-            title: 'vb10 birthday',
-            description: 'Happpyyyyy new year to all vb10 lovers 🥳',
+      body: GoogleMap(
+        onTap: (argument) {
+          setState(() {
+            _initialPosition = argument;
+          });
+        },
+        initialCameraPosition: AppConstants.initialLocation,
+        markers: {
+          Marker(
+            markerId: const MarkerId('selected-location'),
+            position: _initialPosition,
           ),
-          const IconWithText(
-            icon: Icons.cake,
-            title: 'text',
-          ),
-          IconWithDateTitle(
-            icon: Icons.cake,
-            title: 'text',
-            dateTime: DateTime.now(),
-          ),
-          CustomSearchField(
-            hint: 'Search',
-            onChange: (value) {},
-          ),
-          MultipleSelectButton(
-            onUpdatedSelectedItems: (value) {},
-            items: List.generate(
-              10,
-              (index) =>
-                  MultipleSelectItem(title: 'title $index', id: '$index'),
-            ),
-          ),
-          CustomTextFormField(
-            hint: 'Test',
-            validator: ValidatorNormalTextField(),
-            controller: TextEditingController(),
-          ),
-        ],
+        },
       ),
     );
   }

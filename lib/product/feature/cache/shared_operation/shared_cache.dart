@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/feature/cache/shared_keys.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/base_shared_operation.dart';
 
 /// Todo: It's need to generic

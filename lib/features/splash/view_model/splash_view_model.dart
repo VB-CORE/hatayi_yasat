@@ -1,5 +1,5 @@
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
-import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/package/checker/network_checker.dart';
 import 'package:lifeclient/product/utility/state/app_provider.dart';
 import 'package:lifeclient/product/utility/state/product_provider.dart';

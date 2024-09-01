@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 final class StoreModelCache with CacheModel, EquatableMixin {
   StoreModelCache({required this.storeModel});

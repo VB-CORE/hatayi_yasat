@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 
@@ -15,6 +16,7 @@ final class PlaceRequestModel extends Equatable {
     required this.placeDistrict,
     required this.imageFile,
     required this.timeValidationModel,
+    required this.selectedLocation,
   });
 
   final String placeName;
@@ -26,6 +28,7 @@ final class PlaceRequestModel extends Equatable {
   final TownModel placeDistrict;
   final File imageFile;
   final OpenAndCloseTimeValidationModel timeValidationModel;
+  final LatLng selectedLocation;
 
   @override
   List<Object?> get props => [
@@ -38,5 +41,6 @@ final class PlaceRequestModel extends Equatable {
         placeCategory,
         imageFile,
         timeValidationModel,
+        selectedLocation,
       ];
 }

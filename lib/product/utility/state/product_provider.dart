@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
-import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.dart';
+import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -15,8 +15,8 @@ final class ProductProvider extends StateNotifier<ProductProviderState> {
 
   final _firebaseService = FirebaseCustomService();
 
-  late HiveOperationManager<StoreModelCache> storeModelCache;
-  late HiveOperationManager<AppCacheModel> appModelCache;
+  late CacheOperation<StoreModelCache> storeModelCache;
+  late CacheOperation<AppCacheModel> appModelCache;
 
   Future<void> initWhenApplicationStart() async {
     final productCache = ProjectDependencyItems.productCache;

@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_state.dart';
-import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -31,6 +31,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
     );
 
     if (uploadImage == null) return false;
+    final deviceId = await ''.ext.deviceId;
     final storage = StoreModel(
       category: placeRequestModel.placeCategory,
       name: placeRequestModel.placeName,
@@ -45,7 +46,12 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       closeTime: placeRequestModel.timeValidationModel.closeTime?.stringValue,
       updatedAt: DateTime.now(),
       isApproved: false,
-      deviceID: '',
+      deviceID: deviceId,
+      latLong: GeoPoint(
+        placeRequestModel.selectedLocation.latitude,
+        placeRequestModel.selectedLocation.longitude,
+      ),
+      // GeoPoint(latitude, longitude)
     );
 
     final response = await FirebaseService().add<StoreModel>(

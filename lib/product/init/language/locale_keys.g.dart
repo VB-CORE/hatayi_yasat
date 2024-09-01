@@ -44,6 +44,10 @@ abstract class  LocaleKeys {
   static const button_error = 'button.error';
   static const button_more = 'button.more';
   static const button = 'button';
+  static const component_mapPicker_title = 'component.mapPicker.title';
+  static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
+  static const component_mapPicker_updateFromMap = 'component.mapPicker.updateFromMap';
+  static const component_mapPicker = 'component.mapPicker';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
   static const component_picker_cropperTitle = 'component.picker.cropperTitle';

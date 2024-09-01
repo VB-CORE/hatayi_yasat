@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 part 'app_cache_model.g.dart';
 

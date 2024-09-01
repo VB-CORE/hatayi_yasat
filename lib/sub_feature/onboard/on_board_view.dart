@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/feature/cache/shared_cache.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';

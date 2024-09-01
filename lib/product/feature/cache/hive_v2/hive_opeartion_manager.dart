@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:lifeclient/product/feature/cache/hive_v2/cache_manager.dart';
+import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 final class HiveOperationManager<T extends CacheModel>
     extends CacheOperation<T> {

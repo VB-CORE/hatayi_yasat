@@ -63,6 +63,7 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
+        // context.route.navigateToPage(const DemoView());
         const MainTabRoute().go(context);
       }
     });
