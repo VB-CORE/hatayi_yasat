@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
@@ -38,13 +39,14 @@ mixin PlaceRequestFormMixin
   final TextEditingController placeDistrictController = TextEditingController();
   TownModel? _selectedTownModel;
   CategoryModel? _selectedCategoryModel;
+  LatLng? _selectedLocation;
+  File? _imageFile;
 
   TownModel? get selectedTownModel => _selectedTownModel;
   CategoryModel? get selectedCategoryModel => _selectedCategoryModel;
+  LatLng? get selectedLocation => _selectedLocation;
 
   final ValueNotifier<bool> isKVKKCheckedNotifier = ValueNotifier(false);
-
-  File? _imageFile;
 
   @override
   void initState() {
@@ -112,10 +114,15 @@ mixin PlaceRequestFormMixin
     _imageFile = value;
   }
 
+  void updateSelectedLocation(LatLng value) {
+    _selectedLocation = value;
+  }
+
   PlaceRequestModel? requestModel() {
     if (!validateAndSave()) return null;
     if (!_validateCategoryModel()) return null;
     if (!_validateTownModel()) return null;
+    if (!_validateSelectedLocation()) return null;
 
     return PlaceRequestModel(
       placeName: placeNameController.text,
@@ -130,6 +137,7 @@ mixin PlaceRequestFormMixin
       placeCategory: _selectedCategoryModel!,
       placeDistrict: _selectedTownModel!,
       imageFile: _imageFile!,
+      selectedLocation: _selectedLocation!,
     );
   }
 
@@ -152,6 +160,18 @@ mixin PlaceRequestFormMixin
       );
       return false;
     }
+    return true;
+  }
+
+  bool _validateSelectedLocation() {
+    final selectedLocation = _selectedLocation;
+    if (selectedLocation == null) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.component_mapPicker_title.tr(),
+      );
+      return false;
+    }
+
     return true;
   }
 

@@ -44,6 +44,10 @@ abstract class  LocaleKeys {
   static const button_error = 'button.error';
   static const button_more = 'button.more';
   static const button = 'button';
+  static const component_mapPicker_title = 'component.mapPicker.title';
+  static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
+  static const component_mapPicker_updateFromMap = 'component.mapPicker.updateFromMap';
+  static const component_mapPicker = 'component.mapPicker';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
   static const component_picker_cropperTitle = 'component.picker.cropperTitle';
@@ -121,8 +125,8 @@ abstract class  LocaleKeys {
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
-  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_description = 'campaignDetailsView.description';
+  static const campaignDetailsView_phone = 'campaignDetailsView.phone';
   static const campaignDetailsView_expireDate = 'campaignDetailsView.expireDate';
   static const campaignDetailsView_photo = 'campaignDetailsView.photo';
   static const campaignDetailsView_publishedBy = 'campaignDetailsView.publishedBy';
@@ -185,9 +189,9 @@ abstract class  LocaleKeys {
   static const advertise_gender = 'advertise.gender';
   static const advertise_owner = 'advertise.owner';
   static const advertise_phone = 'advertise.phone';
+  static const advertise_role = 'advertise.role';
   static const advertise_callPhone = 'advertise.callPhone';
   static const advertise_share = 'advertise.share';
-  static const advertise_role = 'advertise.role';
   static const advertise_message = 'advertise.message';
   static const advertise_openEventDetailPhone = 'advertise.openEventDetailPhone';
   static const advertise_jobDescription = 'advertise.jobDescription';

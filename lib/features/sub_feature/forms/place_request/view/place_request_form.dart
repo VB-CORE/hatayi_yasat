@@ -2,16 +2,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
+import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_auto_fills.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
@@ -26,6 +30,7 @@ import 'package:lifeclient/product/widget/text_field/custom_text_form_field.dart
 import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
 part 'widget/custom_text_form_field_with_title.dart';
+part 'widget/place_location_picker.dart';
 part 'widget/place_request_send.dart';
 
 final class PlaceRequestForm extends ConsumerStatefulWidget {
@@ -106,6 +111,10 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             onSelected: updateCategoryItem,
             items: categoryModels,
             initialValue: selectedCategoryModel,
+          ),
+          _PlacePickerFormField(
+            initialValue: selectedLocation,
+            onChanged: updateSelectedLocation,
           ),
           OpenAndCloseTimePicker(
             closeTimeController: closeTimeController,

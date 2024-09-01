@@ -46,6 +46,11 @@
     "more": "More"
   },
   "component": {
+    "mapPicker": {
+      "title": "Select your location",
+      "selectedLocationSave": "Save for your selection",
+      "updateFromMap": "Update your location"
+    },
     "picker": {
       "camera": "Camera",
       "gallery": "Gallery",

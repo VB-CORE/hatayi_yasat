@@ -46,6 +46,11 @@
     "more": "Daha fazla"
   },
   "component": {
+    "mapPicker": {
+      "title": "Haritadan konum seç",
+      "selectedLocationSave": "Seçtiğin konumu kaydet",
+      "updateFromMap": "Haritadan konum güncelle"
+    },
     "picker": {
       "camera": "Kamera",
       "gallery": "Galeri",
