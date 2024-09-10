@@ -308,9 +308,13 @@
     "subBranchesTitle": "{} Şubeleri ({})"
   },
   "whatsNew": {
-    "title": "Yenilikler v6.0.0 🎉",
-    "tourism": "🏞️ Turistik yerler eklendi.",
-    "uiImprovements": "🎨 Arayüz iyileştirmeleri yapıldı.",
+    "title": "Yenilikler v7.0.0 🎉",
+    "features": {
+      "linkPage": "🤝 Girişimciler için link sayfası eklendi.",
+      "businessHours": "⏰ İşletme saatleri görüntüleme sorunu çözüldü.",
+      "locationPinning": "📍 Yeni İşletmelere Konum Pinleme Özelliği eklendi.",
+      "districtInfo": "🏛️ Resmi kurumlara ilçe bilgisi eklendi."
+    },
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   },
   "tourismView": {

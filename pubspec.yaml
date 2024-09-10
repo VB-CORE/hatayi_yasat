@@ -63,7 +63,7 @@ dependencies:
 
   #package
   image_picker: ^1.0.4
-  image_cropper: ^7.0.5
+  image_cropper: ^8.0.2
   share_plus: ^8.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
