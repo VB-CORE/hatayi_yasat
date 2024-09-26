@@ -308,9 +308,13 @@
     "subBranchesTitle": "{} Store ({})"
   },
   "whatsNew": {
-    "title": "What's New v6.0.0 🎉",
-    "tourism": "🏞️ Tourism places added.",
-    "uiImprovements": "🎨 UI improvements.",
+    "title": "New in v7.0.0 🎉",
+    "features": {
+      "linkPage": "🤝 Added a link page for entrepreneurs.",
+      "businessHours": "⏰ Fixed the issue with displaying business hours.",
+      "locationPinning": "📍 Added Location Pinning Feature for New Businesses.",
+      "districtInfo": "🏛️ Added district information to official institutions."
+    },
     "bugFixes": "🐞 Bug fixes."
   },
   "tourismView": {

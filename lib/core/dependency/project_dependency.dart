@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/hive_cache.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
-import 'package:lifeclient/product/feature/cache/shared_v2/shared_cache_manager.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/utility/state/app_provider.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
@@ -18,7 +17,7 @@ final class ProjectDependency {
     GetIt.I.registerSingleton<ProductProvider>(ProductProvider());
 
     GetIt.I.registerSingleton<ProductCache>(
-      ProductCache(cacheManager: SharedCacheManager()),
+      ProductCache(cacheManager: HiveCacheManager()),
     );
 
     GetIt.I.registerFactory(FirebaseCustomService.new);
