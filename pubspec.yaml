@@ -17,7 +17,7 @@ dependencies:
   equatable: ^2.0.5
 
   #Core
-  get_it: ^7.6.4
+  get_it: ^8.0.0
 
   #state management
   flutter_riverpod: ^2.4.8
@@ -25,7 +25,7 @@ dependencies:
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
-  syncfusion_flutter_pdfviewer: ^24.2.8
+  syncfusion_flutter_pdfviewer: ^27.1.50
   webview_flutter: ^4.0.2
 
   #third-party
@@ -63,8 +63,8 @@ dependencies:
 
   #package
   image_picker: ^1.0.4
-  image_cropper: ^7.0.5
-  share_plus: ^8.0.2
+  image_cropper: ^8.0.2
+  share_plus: ^10.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
   add_2_calendar: 3.0.1
@@ -118,11 +118,12 @@ dependency_overrides:
   firebase_ui_firestore: ^1.6.4
   cloud_functions: ^5.0.2
   webview_flutter_android: 3.16.1
+  url_launcher_ios: ^6.3.1
 
 dev_dependencies:
   build_runner: ^2.3.3
   flutter_gen_runner: ^5.2.0
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.1
   flutter_test:
     sdk: flutter
 
