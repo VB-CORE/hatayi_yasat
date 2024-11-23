@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/city.dart';
 import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/chain_stores_router/chain_stores_router.dart';
@@ -13,10 +16,13 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/dialog/changing_dialog.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
+import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
+import 'package:lifeclient/sub_feature/city/provider/city_view_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
@@ -48,7 +54,21 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         length: _tabItems.length,
         child: Scaffold(
           extendBody: true,
-          appBar: _MainAppBar(context: context),
+          appBar: _MainAppBar(
+            cities: [
+              /// TODO: Firebase'den alınacak.
+              TownModel(
+                code: 31,
+                name: 'Hatay',
+                documentId: '1',
+              ),
+              TownModel(
+                code: 33,
+                name: 'Mersin',
+                documentId: '2',
+              ),
+            ],
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           body: _BodyTabBarViewWidget(tabItems: _tabItems),

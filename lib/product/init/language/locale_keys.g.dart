@@ -78,12 +78,14 @@ abstract class  LocaleKeys {
   static const general_kvkk = 'general.kvkk';
   static const general_kvkkReadApproved = 'general.kvkkReadApproved';
   static const general_confirmationText = 'general.confirmationText';
+  static const general_keepMersinAlive = 'general.keepMersinAlive';
   static const general = 'general';
   static const settings_title = 'settings.title';
   static const settings_languageTitle = 'settings.languageTitle';
   static const settings_currentLanguage = 'settings.currentLanguage';
   static const settings_themeTitle = 'settings.themeTitle';
   static const settings_developersTitle = 'settings.developersTitle';
+  static const settings_locationSelection = 'settings.locationSelection';
   static const settings_seeDevelopers = 'settings.seeDevelopers';
   static const settings_aboutTitle = 'settings.aboutTitle';
   static const settings_contactTitle = 'settings.contactTitle';

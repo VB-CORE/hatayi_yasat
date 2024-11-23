@@ -1,30 +1,69 @@
 part of '../main_tab_view.dart';
 
-final class _MainAppBar extends AppBar {
-  _MainAppBar({
-    required BuildContext context,
-  }) : super(
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          leading: IconButton(
-            onPressed: () {
-              const NotificationsRoute().go(context);
-            },
-            icon: const Icon(AppIcons.notifications),
-          ),
-          automaticallyImplyLeading: false,
-          title: GeneralSubTitle(
-            value: LocaleKeys.project_name.tr(context: context),
-            fontWeight: FontWeight.bold,
-          ),
-          actions: [
-            const _CustomPopupMenu(),
-          ],
-        );
+final class _MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
+  const _MainAppBar({required this.cities});
+
+  final List<TownModel> cities;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedCity = ref.watch(cityViewModelProvider);
+    return AppBar(
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
+        child: Divider(
+          height: AppConstants.kOne.toDouble(),
+        ),
+      ),
+      leading: IconButton(
+        onPressed: () async {
+          /// TODO: Düzenlenmeli
+          final selectedItem = await GeneralSelectSheet.show(
+            context,
+            isDismissible: true,
+            mainAxisSize: MainAxisSize.min,
+            items: cities
+                .map(
+                  (city) => SelectSheetModel(
+                    id: city.documentId,
+                    title: city.displayName,
+                  ),
+                )
+                .toList(),
+          );
+          if (selectedItem != null) {
+            if (context.mounted) unawaited(ChangingDialog.show(context));
+            await Future<void>.delayed(Durations.long2);
+            ref.read(cityViewModelProvider.notifier).city = cities
+                .firstWhere(
+                  (city) => selectedItem.id == city.documentId,
+                )
+                .displayName;
+            if (context.mounted) Navigator.of(context).pop();
+          }
+        },
+        icon: const Icon(AppIcons.location),
+      ),
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      title: GeneralSubTitle(
+        value: City.fromSelectedCity(selectedCity),
+        fontWeight: FontWeight.bold,
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            const NotificationsRoute().go(context);
+          },
+          icon: const Icon(AppIcons.notifications),
+        ),
+        const _CustomPopupMenu(),
+      ],
+    );
+  }
 }
 
 final class _CustomPopupMenu extends StatelessWidget {

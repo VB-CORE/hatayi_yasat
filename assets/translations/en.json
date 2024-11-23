@@ -84,7 +84,8 @@
   "general": {
     "kvkk": "KVKK",
     "kvkkReadApproved": " I have read and approved.",
-    "confirmationText": "Please accept the confirmation text."
+    "confirmationText": "Please accept the confirmation text.",
+    "keepMersinAlive": "Keep Mersin Alive"
   },
   "settings": {
     "title": "Settings",
@@ -92,6 +93,7 @@
     "currentLanguage": "Current language",
     "themeTitle": "{} Theme",
     "developersTitle": "Developers",
+    "locationSelection": "Location Selection",
     "seeDevelopers": "See full team",
     "aboutTitle": "About the app",
     "contactTitle": "Contact us",

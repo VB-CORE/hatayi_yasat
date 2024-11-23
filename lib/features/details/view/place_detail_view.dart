@@ -97,20 +97,40 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            width: WidgetSizes.spacingXxlL13 / 2,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Icon(
-                                  AppIcons.personPin,
+                          Column(
+                            children: [
+                              const SizedBox(
+                                width: WidgetSizes.spacingXxlL13 / 2,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      AppIcons.location,
+                                    ),
+                                    Expanded(
+                                      /// TODO: Düzenlenmeli
+                                      child: _OwnerTitle(value: 'Hatay'),
+                                    ),
+                                  ],
                                 ),
-                                Expanded(
-                                  child: _OwnerTitle(model: model),
+                              ),
+                              SizedBox(
+                                width: WidgetSizes.spacingXxlL13 / 2,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      AppIcons.personPin,
+                                    ),
+                                    Expanded(
+                                      child: _OwnerTitle(value: model.owner),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -151,16 +171,15 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 
 class _OwnerTitle extends StatelessWidget {
   const _OwnerTitle({
-    required this.model,
-    super.key,
+    required this.value,
   });
 
-  final StoreModel model;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: model.owner,
+      message: value,
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
@@ -168,7 +187,7 @@ class _OwnerTitle extends StatelessWidget {
         child: Padding(
           padding: const PagePadding.horizontalVeryLowSymmetric(),
           child: GeneralContentSubTitle(
-            value: model.owner,
+            value: value,
             maxLine: 3,
             textOverflow: TextOverflow.visible,
           ),

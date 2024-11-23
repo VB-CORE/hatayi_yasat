@@ -32,4 +32,7 @@ final class AppConstants {
     target: LatLng(36.845487, 36.221312),
     zoom: 10,
   );
+
+  static const String hatay = 'Hatay';
+  static const String mersin = 'Mersin';
 }

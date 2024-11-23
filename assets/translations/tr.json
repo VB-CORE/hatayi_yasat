@@ -84,7 +84,8 @@
   "general": {
     "kvkk": "KVKK",
     "kvkkReadApproved": "'yı okudum, onaylıyorum.",
-    "confirmationText": "Onay metnini kabul ediniz"
+    "confirmationText": "Onay metnini kabul ediniz",
+    "keepMersinAlive": "Mersin'i Yaşat"
   },
   "settings": {
     "title": "Ayarlar",
@@ -92,6 +93,7 @@
     "currentLanguage": "Mevcut dil",
     "themeTitle": "{} Tema",
     "developersTitle": "Geliştiriciler",
+    "locationSelection": "Lokasyon Seçimi",
     "seeDevelopers": "Tüm takımı gör",
     "aboutTitle": "Uygulama hakkında",
     "contactTitle": "Bize ulaşın",
