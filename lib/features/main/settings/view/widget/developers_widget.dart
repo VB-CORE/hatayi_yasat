@@ -13,6 +13,9 @@ final class _DevelopersWidget extends StatelessWidget {
         borderRadius: CustomRadius.large,
       ),
       child: ListTile(
+        shape: const RoundedRectangleBorder(
+          borderRadius: CustomRadius.large,
+        ),
         title: Text(
           LocaleKeys.developers_title.tr(),
           style: context.general.textTheme.titleMedium?.copyWith(

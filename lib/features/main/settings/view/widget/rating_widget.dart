@@ -15,6 +15,9 @@ final class _RatingWidget extends StatelessWidget {
           borderRadius: CustomRadius.large,
         ),
         child: ListTile(
+          shape: const RoundedRectangleBorder(
+            borderRadius: CustomRadius.large,
+          ),
           title: GeneralBodyTitle(
             LocaleKeys.settings_appReviewTitle.tr(context: context),
             color: context.general.colorScheme.primary.withOpacity(.5),

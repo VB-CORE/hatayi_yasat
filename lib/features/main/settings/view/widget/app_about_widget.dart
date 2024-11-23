@@ -13,6 +13,9 @@ final class _AppAboutWidget extends StatelessWidget {
         borderRadius: CustomRadius.large,
       ),
       child: ListTile(
+        shape: const RoundedRectangleBorder(
+          borderRadius: CustomRadius.large,
+        ),
         title: GeneralBodyTitle(
           LocaleKeys.settings_aboutTitle.tr(context: context),
           fontWeight: FontWeight.bold,
