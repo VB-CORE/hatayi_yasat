@@ -9,9 +9,11 @@ final class TapArea extends StatefulWidget {
     super.key,
     this.padding,
   });
+
   final Widget child;
   final VoidCallback onTap;
   final EdgeInsets? padding;
+
   @override
   State<TapArea> createState() => _TapAreaState();
 }
