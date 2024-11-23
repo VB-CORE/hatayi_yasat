@@ -12,6 +12,7 @@ import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 /// UploadFileSectionV2 is a widget used for
 ///  - uploading a file
@@ -154,7 +155,7 @@ final class _UploadedFileText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onPressed,
       child: GeneralBodyTitle(
         fileName,

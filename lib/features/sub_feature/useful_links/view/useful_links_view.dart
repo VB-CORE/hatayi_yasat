@@ -11,6 +11,7 @@ import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 part 'widget/useful_link_card.dart';
 part 'widget/useful_links_list_builder.dart';

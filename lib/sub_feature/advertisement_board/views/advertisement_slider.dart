@@ -8,6 +8,7 @@ import 'package:lifeclient/product/utility/carousel/custom_carousel_options.dart
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/widget/button/open_url_general_button.dart';
 import 'package:lifeclient/product/widget/button/share_advertisement_general_button.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/provider/advertisement_board_view_model.dart';
 
 part 'advertisement_board_item.dart';

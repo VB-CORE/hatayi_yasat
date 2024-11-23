@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 class SocialMediaCircleAvatar extends StatelessWidget {
   const SocialMediaCircleAvatar({
@@ -15,7 +16,7 @@ class SocialMediaCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: () => webUrl.ext.launchWebsite,
       child: CircleAvatar(
         backgroundColor: context.general.colorScheme.secondary,

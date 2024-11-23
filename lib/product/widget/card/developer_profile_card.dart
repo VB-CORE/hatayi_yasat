@@ -5,6 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/custom_border_side.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 class DeveloperProfileCard extends StatelessWidget {
   const DeveloperProfileCard({
@@ -16,7 +17,7 @@ class DeveloperProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: () {
         model.githubUrl.ext.launchWebsite;
       },

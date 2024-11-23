@@ -10,6 +10,7 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/notifier/loading_notifier.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 final class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -46,7 +47,7 @@ final class _NotificationsViewState extends State<NotificationsView>
           final model = doc.data();
           if (model == null || model.id.isEmpty) return const SizedBox.shrink();
 
-          return InkWell(
+          return TapArea(
             onTap: () => navigateToDetail(model),
             child: Card(
               elevation: kZero,

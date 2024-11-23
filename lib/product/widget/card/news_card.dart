@@ -6,6 +6,7 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/special/special_user.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 @immutable
 final class NewsCard extends StatelessWidget {
@@ -20,7 +21,7 @@ final class NewsCard extends StatelessWidget {
       padding: const PagePadding.generalCardAll(),
       child: SizedBox(
         height: context.sized.dynamicHeight(0.3),
-        child: InkWell(
+        child: TapArea(
           onTap: onTap,
           child: Stack(
             children: [

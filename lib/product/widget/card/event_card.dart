@@ -5,6 +5,7 @@ import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 @immutable
 final class EventCard extends StatelessWidget {
@@ -19,7 +20,7 @@ final class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onTap.call,
       child: Column(
         children: [

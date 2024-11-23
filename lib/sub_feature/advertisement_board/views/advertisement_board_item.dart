@@ -7,7 +7,7 @@ final class _AdvertisementItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: () async => _onPressed(context),
       child: FittedBox(
         child: ClipRRect(

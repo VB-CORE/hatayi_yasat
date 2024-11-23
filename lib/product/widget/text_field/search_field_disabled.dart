@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 class SearchFieldDisabled extends StatelessWidget {
   const SearchFieldDisabled({
@@ -15,7 +16,7 @@ class SearchFieldDisabled extends StatelessWidget {
   final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onTap,
       child: TextField(
         onTap: onTap,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 @immutable
 final class ClickableSubTitleText extends StatelessWidget {
@@ -15,7 +16,7 @@ final class ClickableSubTitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onTap,
       child: Row(
         children: [

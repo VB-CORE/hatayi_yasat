@@ -6,6 +6,7 @@ import 'package:lifeclient/features/main/news_jobs/view/sub_view/tab_jobs_view.d
 import 'package:lifeclient/features/main/news_jobs/view/sub_view/tab_news_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 part 'widget/news_jobs_tab_bar.dart';
 part 'widget/news_jobs_tab_view.dart';

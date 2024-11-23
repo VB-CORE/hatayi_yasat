@@ -103,7 +103,7 @@ final class _CustomTabButton extends StatelessWidget {
               ?.copyWith(color: context.general.colorScheme.onSecondaryFixed);
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onPressed,
       child: SizedBox(
         height: WidgetSizes.spacingXxl7,

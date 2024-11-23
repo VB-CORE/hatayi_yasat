@@ -9,6 +9,7 @@ import 'package:lifeclient/product/widget/divider/sheet_gap_divider.dart';
 import 'package:lifeclient/product/widget/popup/category_popup.dart';
 import 'package:lifeclient/product/widget/popup/town_popup.dart';
 import 'package:lifeclient/product/widget/sheet/operation/town_category_operation.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 class TownCategorySelectSheet extends ConsumerStatefulWidget {
   const TownCategorySelectSheet({
@@ -156,7 +157,7 @@ class _FilterSheetHeader extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: Padding(
         padding: const PagePadding.onlyRight(),
-        child: InkWell(
+        child: TapArea(
           onTap: () {
             context.route.pop();
           },

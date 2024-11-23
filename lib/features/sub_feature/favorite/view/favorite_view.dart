@@ -14,6 +14,7 @@ import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_butto
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_tile/author_listtile_widget.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 import 'package:lifeclient/product/widget/text_field/custom_search_field.dart';
 
 part 'widget/favorite_clear_all_button.dart';

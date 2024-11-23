@@ -11,7 +11,7 @@ final class _TourismPlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: () => onItemTap(
         LatLng(location.latLong.latitude, location.latLong.longitude),
       ),
@@ -45,7 +45,7 @@ final class _TourismPlaceCard extends StatelessWidget {
                     Expanded(child: _buildDescription(context)),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: InkWell(
+                      child: TapArea(
                         onTap: () {
                           ToursimPlaceDetailSheet.show(context, location);
                         },

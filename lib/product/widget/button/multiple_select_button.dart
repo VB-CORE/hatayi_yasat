@@ -5,6 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/button/mixin/multiple_select_button_mixin.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 final class MultipleSelectItem extends Equatable {
   const MultipleSelectItem({required this.title, required this.id});
@@ -51,7 +52,7 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
 
                   return Padding(
                     padding: const PagePadding.onlyRight(),
-                    child: InkWell(
+                    child: TapArea(
                       onTap: () {
                         addOrRemoveItem(items[index]);
                       },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/widget/dialog/photo_view_dialog.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 @immutable
 final class CustomImageWithViewDialog extends StatelessWidget {
@@ -16,7 +17,7 @@ final class CustomImageWithViewDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: () {
         if (image.ext.isNullOrEmpty) return;
         PhotoViewDialog(imageUrl: image!).show(context);

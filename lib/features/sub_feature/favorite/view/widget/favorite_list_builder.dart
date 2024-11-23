@@ -58,7 +58,7 @@ final class _FavoriteAuthorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onCardTapped.call,
       child: Padding(
         padding: const PagePadding.vertical6Symmetric(),

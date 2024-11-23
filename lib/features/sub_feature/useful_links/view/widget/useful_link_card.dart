@@ -13,7 +13,7 @@ final class UsefulLinkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.sized.dynamicHeight(0.3),
-      child: InkWell(
+      child: TapArea(
         onTap: () => model.link.ext.launchWebsite,
         child: Stack(
           children: [

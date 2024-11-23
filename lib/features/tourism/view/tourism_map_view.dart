@@ -16,6 +16,7 @@ import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
