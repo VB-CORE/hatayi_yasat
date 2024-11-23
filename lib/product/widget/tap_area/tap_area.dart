@@ -26,19 +26,17 @@ class _TapAreaState extends State<TapArea> with TapAreaMixin {
         updateClicked(value: false);
         widget.onTap.call();
       },
-      child: Focus(
-        child: ValueListenableBuilder<bool>(
-          valueListenable: _isTappedNotifier,
-          builder: (context, isDown, child) {
-            return Opacity(
-              opacity: isDown ? .7 : 1,
-              child: Padding(
-                padding: widget.padding ?? EdgeInsets.zero,
-                child: widget.child,
-              ),
-            );
-          },
-        ),
+      child: ValueListenableBuilder<bool>(
+        valueListenable: _isTappedNotifier,
+        builder: (context, isDown, child) {
+          return Opacity(
+            opacity: isDown ? .7 : 1,
+            child: Padding(
+              padding: widget.padding ?? EdgeInsets.zero,
+              child: widget.child,
+            ),
+          );
+        },
       ),
     );
   }
