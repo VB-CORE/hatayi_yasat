@@ -4,8 +4,31 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
 
+  // function isAdmin() {
+    //     return request.auth.uid != null
+    //   }
+
+  // function isAdmin() {
+    //   return request.auth != null 
+    //     && request.auth.email != null 
+    //     && get(/databases/$(database)/documents/allowedAdminClaims/NJSU504TyhyMINFUdgwl).data.email == request.auth.email;
+    // }
+
+
     function isAdmin() {
-      return request.auth.uid != null
+      let adminDoc = get(/databases/$(database)/documents/adminList/config);
+      return request.auth.uid != null 
+        && request.auth.email != null;
+    }
+
+    match /adminList/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /approvedStoreCities/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /approvedCampaigns/{document} {
