@@ -12,25 +12,25 @@ class _ChooseLocationWidgetState extends ConsumerState<_ChooseLocationWidget>
     with ChooseLocationMixin<_ChooseLocationWidget> {
   @override
   Widget build(BuildContext context) {
+    if (cityState.cityList == null) return const SizedBox.shrink();
     return GeneralExpansionTile(
       pageTitle: LocaleKeys.settings_locationSelection.tr(),
       children: [
-        if (cityState.cityList != null)
-          ...cityState.cityList!.map(
-            (city) => RadioListTile.adaptive(
-              value: city.name,
-              groupValue: cityState.selectedCity,
-              title: Text(
-                city.name,
-                style: context.general.textTheme.bodyLarge,
-              ),
-              onChanged: (String? newValue) async {
-                if (newValue != null) {
-                  await handleCityChanged(context, newCity: newValue);
-                }
-              },
+        ...cityState.cityList!.map(
+          (city) => RadioListTile.adaptive(
+            value: city.name,
+            groupValue: cityState.selectedCity,
+            title: Text(
+              city.name,
+              style: context.general.textTheme.bodyLarge,
             ),
+            onChanged: (String? newValue) async {
+              if (newValue != null) {
+                await handleCityChanged(context, newCity: newValue);
+              }
+            },
           ),
+        ),
         const EmptyBox.middleHeight(),
       ],
     );
