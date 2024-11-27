@@ -1,16 +1,20 @@
 part of '../main_tab_view.dart';
 
-final class _MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  const _MainAppBar({required this.cities});
-
-  final List<TownModel> cities;
+final class _MainAppBar extends ConsumerStatefulWidget
+    implements PreferredSizeWidget {
+  const _MainAppBar();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedCity = ref.watch(cityViewModelProvider);
+  _MainAppBarState createState() => _MainAppBarState();
+}
+
+final class _MainAppBarState extends ConsumerState<_MainAppBar>
+    with MainAppBarMixin<_MainAppBar> {
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
@@ -19,38 +23,13 @@ final class _MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
         ),
       ),
       leading: IconButton(
-        onPressed: () async {
-          /// TODO: Düzenlenmeli
-          final selectedItem = await GeneralSelectSheet.show(
-            context,
-            isDismissible: true,
-            mainAxisSize: MainAxisSize.min,
-            items: cities
-                .map(
-                  (city) => SelectSheetModel(
-                    id: city.documentId,
-                    title: city.displayName,
-                  ),
-                )
-                .toList(),
-          );
-          if (selectedItem != null) {
-            if (context.mounted) unawaited(ChangingDialog.show(context));
-            await Future<void>.delayed(Durations.long2);
-            ref.read(cityViewModelProvider.notifier).city = cities
-                .firstWhere(
-                  (city) => selectedItem.id == city.documentId,
-                )
-                .displayName;
-            if (context.mounted) Navigator.of(context).pop();
-          }
-        },
+        onPressed: () => handleCitySelection(context),
         icon: const Icon(AppIcons.location),
       ),
       centerTitle: true,
       automaticallyImplyLeading: false,
       title: GeneralSubTitle(
-        value: City.fromSelectedCity(selectedCity),
+        value: City.fromSelectedCity(cityState.selectedCity),
         fontWeight: FontWeight.bold,
       ),
       actions: [

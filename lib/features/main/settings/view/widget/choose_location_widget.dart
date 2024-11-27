@@ -1,44 +1,68 @@
 part of '../settings_view.dart';
 
-final class _ChooseLocationWidget extends ConsumerWidget {
-  const _ChooseLocationWidget({required this.cities});
-
-  final List<TownModel> cities;
+final class _ChooseLocationWidget extends ConsumerStatefulWidget {
+  const _ChooseLocationWidget();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedCity = ref.watch(cityViewModelProvider);
+  ConsumerState<_ChooseLocationWidget> createState() =>
+      _ChooseLocationWidgetState();
+}
+
+class _ChooseLocationWidgetState extends ConsumerState<_ChooseLocationWidget>
+    with ChooseLocationMixin<_ChooseLocationWidget> {
+  @override
+  Widget build(BuildContext context) {
     return GeneralExpansionTile(
       pageTitle: LocaleKeys.settings_locationSelection.tr(),
       children: [
-        ...cities.map(
-          (city) => RadioListTile.adaptive(
-            value: city.displayName,
-            groupValue: selectedCity,
-            title: Text(
-              city.displayName,
-              style: context.general.textTheme.bodyLarge,
+        if (cityState.cityList != null)
+          ...cityState.cityList!.map(
+            (city) => RadioListTile.adaptive(
+              value: city.name,
+              groupValue: cityState.selectedCity,
+              title: Text(
+                city.name,
+                style: context.general.textTheme.bodyLarge,
+              ),
+              onChanged: (String? newValue) async {
+                if (newValue != null) {
+                  await handleCityChanged(context, newCity: newValue);
+                }
+              },
             ),
-            onChanged: (String? newValue) async {
-              if (newValue != null) {
-                await _onCityChanged(context, newCity: newValue, ref: ref);
-              }
-            },
           ),
-        ),
         const EmptyBox.middleHeight(),
       ],
     );
   }
+}
 
-  Future<void> _onCityChanged(
+/// Mixin to handle city selection logic for the [_ChooseLocationWidget].
+mixin ChooseLocationMixin<T extends ConsumerStatefulWidget>
+    on ConsumerState<T> {
+  late final CityViewModel cityViewModel;
+  CityState get cityState => ref.watch(cityViewModelProvider);
+
+  @override
+  void initState() {
+    super.initState();
+    cityViewModel = ref.read(cityViewModelProvider.notifier);
+    Future.microtask(_fetchCities);
+  }
+
+  /// Fetches the list of cities.
+  Future<void> _fetchCities() async {
+    await cityViewModel.fetchCities();
+  }
+
+  /// Handles the logic for city selection and updates the selected city.
+  Future<void> handleCityChanged(
     BuildContext context, {
     required String newCity,
-    required WidgetRef ref,
   }) async {
     unawaited(ChangingDialog.show(context));
     await Future<void>.delayed(Durations.long2);
-    ref.read(cityViewModelProvider.notifier).city = newCity;
+    cityViewModel.setSelectedCity(newCity);
     if (context.mounted) Navigator.of(context).pop();
   }
 }

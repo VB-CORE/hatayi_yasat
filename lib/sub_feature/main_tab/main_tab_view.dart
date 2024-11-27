@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,10 +14,8 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
-import 'package:lifeclient/product/widget/dialog/changing_dialog.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
-import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:lifeclient/sub_feature/city/provider/city_view_model.dart';
@@ -27,6 +23,7 @@ import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/widget/mixin/main_appbar_mixin.dart';
 
 part 'widget/main_app_bar.dart';
 part 'widget/main_bottom_app_bar.dart';
@@ -54,21 +51,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         length: _tabItems.length,
         child: Scaffold(
           extendBody: true,
-          appBar: _MainAppBar(
-            cities: [
-              /// TODO: Firebase'den alınacak.
-              TownModel(
-                code: 31,
-                name: 'Hatay',
-                documentId: '1',
-              ),
-              TownModel(
-                code: 33,
-                name: 'Mersin',
-                documentId: '2',
-              ),
-            ],
-          ),
+          appBar: const _MainAppBar(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           body: _BodyTabBarViewWidget(tabItems: _tabItems),

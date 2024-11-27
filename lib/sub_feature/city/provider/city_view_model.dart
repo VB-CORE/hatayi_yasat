@@ -1,13 +1,43 @@
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/product/model/enum/city.dart';
+import 'package:lifeclient/sub_feature/city/provider/city_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'city_view_model.g.dart';
 
 @riverpod
-final class CityViewModel extends _$CityViewModel {
+final class CityViewModel extends _$CityViewModel with ProjectDependencyMixin {
   @override
-  String build() => City.hatay.city;
+  CityState build() {
+    return CityState(
+      selectedCity: City.hatay.city,
+    );
+  }
 
-  // ignore: avoid_setters_without_getters
-  set city(String newCity) => state = newCity;
+  Future<void> fetchCities() async {
+    // final cities = await firebaseService.getList<StoreCityModel>(
+    //   model: StoreCityModel(),
+    //   path: CollectionPaths.approvedStoreCities,
+    // );
+    final cities = [
+      StoreCityModel(
+        createdAt: DateTime.now(),
+        documentId: '1',
+        name: 'Hatay',
+        updatedAt: DateTime.now(),
+      ),
+      StoreCityModel(
+        createdAt: DateTime.now(),
+        documentId: '2',
+        name: 'Mersin',
+        updatedAt: DateTime.now(),
+      ),
+    ];
+    state = state.copyWith(cityList: cities);
+  }
+
+  void setSelectedCity(String newCity) {
+    state = state.copyWith(selectedCity: newCity);
+  }
 }
