@@ -9,7 +9,7 @@ final class _ChooseLocationWidget extends ConsumerStatefulWidget {
 }
 
 class _ChooseLocationWidgetState extends ConsumerState<_ChooseLocationWidget>
-    with ChooseLocationMixin<_ChooseLocationWidget> {
+    with _ChooseLocationMixin {
   @override
   Widget build(BuildContext context) {
     if (cityState.cityList == null) return const SizedBox.shrink();
@@ -38,8 +38,7 @@ class _ChooseLocationWidgetState extends ConsumerState<_ChooseLocationWidget>
 }
 
 /// Mixin to handle city selection logic for the [_ChooseLocationWidget].
-mixin ChooseLocationMixin<T extends ConsumerStatefulWidget>
-    on ConsumerState<T> {
+mixin _ChooseLocationMixin on ConsumerState<_ChooseLocationWidget> {
   late final CityViewModel cityViewModel;
   CityState get cityState => ref.watch(cityViewModelProvider);
 
