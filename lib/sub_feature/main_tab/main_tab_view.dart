@@ -18,7 +18,6 @@ import 'package:lifeclient/product/widget/general/title/general_content_sub_titl
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
-import 'package:lifeclient/sub_feature/city/provider/city_view_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
