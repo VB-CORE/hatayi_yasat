@@ -29,9 +29,21 @@ final class AppConstants {
 
   /// [initialLocation] is the initial position of the map from Hatay
   static const initialLocation = CameraPosition(
-    target: LatLng(36.845487, 36.221312),
+    target: LatLng(hatayLatitude, hatayLongitude),
     zoom: 10,
   );
+
+  /// Latitude of Hatay.
+  static const double hatayLatitude = 36.845487;
+
+  /// Longitude of Hatay.
+  static const double hatayLongitude = 36.221312;
+
+  /// Latitude of Mersin.
+  static const double mersinLatitude = 36.8;
+
+  /// Longitude of Mersin.
+  static const double mersinLongitude = 34.6333;
 
   static const String hatay = 'Hatay';
   static const String mersin = 'Mersin';
