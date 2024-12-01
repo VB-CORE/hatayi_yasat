@@ -26,7 +26,7 @@ final class GeneralExpansionTile extends StatelessWidget {
       ),
       elevation: 0,
       child: ExpansionTile(
-        shape: LinearBorder.none,
+        shape: const RoundedRectangleBorder(borderRadius: CustomRadius.large),
         trailing: Icon(
           Icons.keyboard_arrow_down,
           color: context.general.colorScheme.onSecondaryFixed,
