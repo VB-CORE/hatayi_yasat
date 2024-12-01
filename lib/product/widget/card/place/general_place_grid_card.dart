@@ -12,6 +12,7 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
+import 'package:lifeclient/product/widget/tap_area/tap_area.dart';
 
 @immutable
 final class GeneralPlaceGridCard extends StatelessWidget {
@@ -32,7 +33,7 @@ final class GeneralPlaceGridCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return TapArea(
       onTap: onCardTap,
       child: Card(
         elevation: elevetion,
