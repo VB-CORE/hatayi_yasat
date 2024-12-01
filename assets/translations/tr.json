@@ -176,6 +176,11 @@
     "title": "Geliştiriciler",
     "seeProfileButtonText": "Profili Görüntüle"
   },
+  "city": {
+    "selectedCitySubtitle": "Şu anda seçili. Uygulama {} için listeleme yapıyor.",
+    "unselectedCitySubtitle": "{} şehrini seçerseniz listeleme bu şehir için yapılacak.",
+    "citySelectionTitle": "Şehir Seçimi"
+  },
   "navigationTabs": {
     "home": "Anasayfa",
     "activities": "Etkinlikler",

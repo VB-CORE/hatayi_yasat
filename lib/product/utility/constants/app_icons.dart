@@ -48,4 +48,6 @@ final class AppIcons {
   static const IconData clear = Icons.clear_outlined;
 
   static const IconData filter = Icons.tune_outlined;
+
+  static const IconData checkCircle = Icons.check_circle;
 }

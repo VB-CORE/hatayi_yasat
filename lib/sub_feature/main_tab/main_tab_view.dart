@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/enum/city.dart';
 import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/chain_stores_router/chain_stores_router.dart';
@@ -13,6 +12,7 @@ import 'package:lifeclient/product/navigation/useful_links_router/useful_links_r
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/mixin/city_selection_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';

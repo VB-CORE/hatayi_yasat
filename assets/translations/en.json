@@ -176,6 +176,11 @@
     "title": "Developers",
     "seeProfileButtonText": "See Profile"
   },
+  "city": {
+    "selectedCitySubtitle": "Currently selected. The application lists for {}.",
+    "unselectedCitySubtitle": "If you choose the {}, the listing will be made for this city.",
+    "citySelectionTitle": "City Selection"
+  },
   "navigationTabs": {
     "home": "Home",
     "activities": "Activities",

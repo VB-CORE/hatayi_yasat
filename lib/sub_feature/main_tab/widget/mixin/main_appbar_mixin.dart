@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/widget/dialog/changing_dialog.dart';
-import 'package:lifeclient/product/widget/sheet/general_select_sheet.dart';
 import 'package:lifeclient/sub_feature/city/provider/city_state.dart';
 import 'package:lifeclient/sub_feature/city/provider/city_view_model.dart';
+import 'package:lifeclient/sub_feature/city/widget/select_city_sheet.dart';
 
 mixin MainAppBarMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   /// Holds the reference to the CityViewModel notifier.
@@ -36,33 +36,17 @@ mixin MainAppBarMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
     final cityList = cityState.cityList;
 
     if (cityList != null) {
-      final selectedItem = await _setSelectedSheetItem(cityList);
+      final selectedItem = await SelectCitySheet.show(
+        context,
+        cities: cityList,
+        selectedCity: cityState.selectedCity,
+      );
       if (selectedItem != null) {
         await _showChangingDialog();
         _changeSelectedCity(cityList, selectedItem);
         if (context.mounted) Navigator.of(context).pop();
       }
     }
-  }
-
-  /// Displays a selection sheet with the list of cities and returns
-  /// the user's selected item.
-  Future<SelectSheetModel?> _setSelectedSheetItem(
-    List<StoreCityModel> cityList,
-  ) async {
-    return GeneralSelectSheet.show(
-      context,
-      isDismissible: true,
-      mainAxisSize: MainAxisSize.min,
-      items: cityList
-          .map(
-            (city) => SelectSheetModel(
-              id: city.documentId,
-              title: city.name,
-            ),
-          )
-          .toList(),
-    );
   }
 
   /// Displays a dialog to inform the user that a change is in progress
@@ -75,10 +59,10 @@ mixin MainAppBarMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   /// Updates the selected city in the view model based on the user's selection.
   void _changeSelectedCity(
     List<StoreCityModel> cityList,
-    SelectSheetModel selectedItem,
+    StoreCityModel selectedCity,
   ) {
-    cityViewModel.setSelectedCity(
-      cityList.firstWhere((city) => city.documentId == selectedItem.id).name,
+    cityViewModel.changeSelectedCity(
+      cityList.firstWhere((city) => city.name == selectedCity.name).name,
     );
   }
 }

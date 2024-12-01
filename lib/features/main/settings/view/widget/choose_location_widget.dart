@@ -61,7 +61,7 @@ mixin _ChooseLocationMixin on ConsumerState<_ChooseLocationWidget> {
   }) async {
     unawaited(ChangingDialog.show(context));
     await Future<void>.delayed(Durations.long2);
-    cityViewModel.setSelectedCity(newCity);
+    cityViewModel.changeSelectedCity(newCity);
     if (context.mounted) Navigator.of(context).pop();
   }
 }

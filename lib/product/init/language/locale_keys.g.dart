@@ -158,6 +158,10 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers = 'developers';
+  static const city_selectedCitySubtitle = 'city.selectedCitySubtitle';
+  static const city_unselectedCitySubtitle = 'city.unselectedCitySubtitle';
+  static const city_citySelectionTitle = 'city.citySelectionTitle';
+  static const city = 'city';
   static const navigationTabs_home = 'navigationTabs.home';
   static const navigationTabs_activities = 'navigationTabs.activities';
   static const navigationTabs_news = 'navigationTabs.news';

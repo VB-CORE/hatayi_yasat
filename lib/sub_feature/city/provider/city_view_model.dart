@@ -16,28 +16,14 @@ final class CityViewModel extends _$CityViewModel with ProjectDependencyMixin {
   }
 
   Future<void> fetchCities() async {
-    // final cities = await firebaseService.getList<StoreCityModel>(
-    //   model: StoreCityModel(),
-    //   path: CollectionPaths.approvedStoreCities,
-    // );
-    final cities = [
-      StoreCityModel(
-        createdAt: DateTime.now(),
-        documentId: '1',
-        name: 'Hatay',
-        updatedAt: DateTime.now(),
-      ),
-      StoreCityModel(
-        createdAt: DateTime.now(),
-        documentId: '2',
-        name: 'Mersin',
-        updatedAt: DateTime.now(),
-      ),
-    ];
+    final cities = await firebaseService.getList<StoreCityModel>(
+      model: StoreCityModel(),
+      path: CollectionPaths.approvedStoreCities,
+    );
     state = state.copyWith(cityList: cities);
   }
 
-  void setSelectedCity(String newCity) {
+  void changeSelectedCity(String newCity) {
     state = state.copyWith(selectedCity: newCity);
   }
 }

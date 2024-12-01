@@ -12,7 +12,7 @@ final class _MainAppBar extends ConsumerStatefulWidget
 }
 
 final class _MainAppBarState extends ConsumerState<_MainAppBar>
-    with MainAppBarMixin<_MainAppBar> {
+    with MainAppBarMixin<_MainAppBar>, CitySelectionMixin {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -29,7 +29,7 @@ final class _MainAppBarState extends ConsumerState<_MainAppBar>
       centerTitle: true,
       automaticallyImplyLeading: false,
       title: GeneralSubTitle(
-        value: City.fromSelectedCity(cityState.selectedCity),
+        value: getAppBarTitle(cityState.selectedCity),
         fontWeight: FontWeight.bold,
       ),
       actions: [

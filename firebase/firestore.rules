@@ -36,6 +36,11 @@ service cloud.firestore {
       allow write;
     }
 
+    match /approvedStoreCities/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
     match /allowedAdminClaims/{document} {
       allow read: if isAdmin();
       allow write: if isAdmin();

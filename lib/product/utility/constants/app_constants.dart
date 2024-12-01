@@ -35,4 +35,7 @@ final class AppConstants {
 
   static const String hatay = 'Hatay';
   static const String mersin = 'Mersin';
+
+  static const String hatayId = '1';
+  static const String mersinId = '2';
 }
