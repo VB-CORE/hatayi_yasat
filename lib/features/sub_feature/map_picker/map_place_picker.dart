@@ -38,6 +38,7 @@ class _MapPlacePickerState extends State<MapPlacePicker>
                 onTap: onTappedFromMap,
                 onMapCreated: onGoogleMapCreated,
                 initialCameraPosition: initialCameraPosition,
+                myLocationButtonEnabled: false,
                 markers: {
                   if (state.selectedLocation != null)
                     Marker(
