@@ -16,9 +16,21 @@ service cloud.firestore {
 
 
     function isAdmin() {
-      let adminDoc = get(/databases/$(database)/documents/adminList/config);
-      return request.auth.uid != null 
-        && request.auth.email != null;
+      return true
+      // let adminDoc = get(/databases/$(database)/documents/adminList/config);
+      // return request.auth.uid != null 
+      //   && request.auth.email != null;
+    }
+
+
+    match /regionalCities/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /regionalTowns/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /adminList/{document} {
@@ -66,7 +78,7 @@ service cloud.firestore {
 
     match /approvedApplications/{document} {
       allow read: if true;
-      allow write;
+      allow write: if isAdmin();
     }
 
     match /unApprovedApplications/{appId} {
