@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
@@ -35,6 +36,10 @@ mixin SplashViewMixin
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+
+    FirebaseMessaging.instance.getToken().then((value) {
+      print('token: $value');
+    });
 
     _homeProvider = StateNotifierProvider(
       (ref) => SplashViewModel(

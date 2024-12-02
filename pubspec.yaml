@@ -31,7 +31,7 @@ dependencies:
   #third-party
   app_settings: ^5.1.1
   permission_handler: ^11.0.0
-  flutter_inappwebview: ^6.0.0
+  flutter_inappwebview: ^6.2.0-beta.2
 
   #core
   cached_network_image: ^3.2.3
@@ -40,7 +40,6 @@ dependencies:
   #util
 
   flutter_image_compress: ^2.0.4
-  image: ^4.0.17
   google_fonts: ^6.2.1
   lottie: ^3.1.2
   flutter_svg: ^2.0.9
@@ -78,7 +77,7 @@ dependencies:
   # ui
   dotted_border: ^2.0.0+3
   shimmer: ^3.0.0
-  sliver_snap: ^1.2.0
+  sliver_snap: ^2.0.0
   font_awesome_flutter: ^10.5.0
 
   carousel_slider: ^5.0.0
@@ -119,6 +118,7 @@ dependency_overrides:
   cloud_functions: ^5.0.2
   webview_flutter_android: 3.16.1
   url_launcher_ios: ^6.3.1
+  archive: ^3.6.1
 
 dev_dependencies:
   build_runner: ^2.3.3
