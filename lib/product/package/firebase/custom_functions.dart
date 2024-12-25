@@ -1,4 +1,5 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:lifeclient/product/model/search/search_request_model.dart';
 import 'package:lifeclient/product/model/search_response_model.dart';
 
 final class CustomFunctions {
@@ -8,20 +9,20 @@ final class CustomFunctions {
   );
 
   Future<List<SearchResponse>> searchPlaces(String key) async {
-    final response = await _searchCallable.call<List<dynamic>>({
-      'term': key,
-      'page': 1,
-    });
+    final response = await _searchCallable.call<List<dynamic>>(
+      SearchRequestModel(term: key).toJson(),
+    );
 
-    if (response.data.isEmpty) {
-      return [];
-    }
-    final results = response.data;
+    final items = response.data;
+    if (items.isEmpty) return [];
 
-    return results.map((e) {
+    return items.map((e) {
+      assert(
+        e is Map<dynamic, dynamic>,
+        '$e is not Map<dynamic, dynamic> $this',
+      );
       final resultMap = Map<String, dynamic>.from(e as Map<dynamic, dynamic>);
 
-      /// TODO: Change this to your model
       return SearchResponse.fromJson(resultMap);
     }).toList();
   }
