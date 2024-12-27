@@ -12,18 +12,14 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
   late CacheOperation<StoreModelCache> storeModelCache;
   late CacheOperation<AppCacheModel> appModelCache;
 
-  List<RegionalCityModel> _regionalCities = [];
-  late RegionalCityModel _selectedCity;
-
-  List<RegionalCityModel> get regionalCities => _regionalCities;
-  RegionalCityModel get selectedCity => _selectedCity;
+  List<RegionalCityModel> get regionalCities => state.regionalCityItems;
+  RegionalCityModel get selectedCity => state.selectedCity;
 
   final _firebaseService = FirebaseCustomService();
 
   /// save selected city
   /// [city] is selected city
   void saveSelectedCity(RegionalCityModel city) {
-    _selectedCity = city;
     state = state.copyWith(selectedCity: city);
   }
 
@@ -82,11 +78,10 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
       model: const RegionalCityModel.empty(),
       path: CollectionPaths.regionalCities,
     );
-    _selectedCity = items.firstWhere((element) => element.initial == true);
-    _regionalCities = items;
+
     state = state.copyWith(
       regionalCityItems: items,
-      selectedCity: _selectedCity,
+      selectedCity: items.firstWhere((element) => element.initial == true),
     );
   }
 }
