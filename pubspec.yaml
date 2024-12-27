@@ -96,10 +96,11 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: 5.4.3
+      ref: 5.4.4
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
+  hugeicons: ^0.0.7
 
 dependency_overrides:
   kartal: ^4.1.0
@@ -130,6 +131,18 @@ flutter_launcher_icons:
   min_sdk_android: 21 # android min sdk min:16, default 21
   remove_alpha_ios: true
 
+scripts:
+  lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
+  dartBuild: flutter pub run build_runner build --delete-conflicting-outputs
+  build: flutter pub run build_runner build
+  buildForce: flutter pub run build_runner build --delete-conflicting-outputs
+  pubGet: sh ./scripts/pub_get.sh
+  watchBuild: flutter pub run build_runner watch --delete-conflicting-outputs
+  general: rps build && rps lang
+  podUpdate: cd ios && pod update && cd ..
+  fios: flutter clean && flutter pub get && cd ios && pod install && cd ..
+  
+  updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true
 

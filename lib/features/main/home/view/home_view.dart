@@ -79,7 +79,7 @@ class _HomeViewState extends ConsumerState<HomeView>
                     ),
                     Padding(
                       padding: const PagePadding.onlyLeft(),
-                      child: _Filterbutton(
+                      child: _FilterButton(
                         onTap: () => pushToFilter(context: context),
                       ),
                     ),
@@ -100,8 +100,8 @@ class _HomeViewState extends ConsumerState<HomeView>
   bool get wantKeepAlive => true;
 }
 
-final class _Filterbutton extends StatelessWidget {
-  const _Filterbutton({required this.onTap});
+final class _FilterButton extends StatelessWidget {
+  const _FilterButton({required this.onTap});
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
