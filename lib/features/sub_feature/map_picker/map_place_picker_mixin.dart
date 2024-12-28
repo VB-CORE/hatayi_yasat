@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker.dart';
-import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 mixin MapPlacePickerMixin on State<MapPlacePicker> {
   late final ValueNotifier<MapPickerState> pickerStateNotifier;
@@ -13,7 +12,7 @@ mixin MapPlacePickerMixin on State<MapPlacePicker> {
   void initState() {
     super.initState();
     initialCameraPosition = CameraPosition(
-      target: widget.initialPosition ?? AppConstants.initialLocation.target,
+      target: widget.initialPosition,
       zoom: 12,
     );
     pickerStateNotifier = ValueNotifier(

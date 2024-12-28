@@ -37,6 +37,7 @@ final class GeneralBodyTitle extends StatelessWidget {
       ),
       maxLines: maxLines,
       overflow: maxLines != null ? TextOverflow.ellipsis : null,
+      textAlign: TextAlign.center,
     );
   }
 }

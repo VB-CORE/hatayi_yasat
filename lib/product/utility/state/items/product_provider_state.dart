@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/regional_city_model.dart';
+import 'package:lifeclient/product/model/regional_town_model.dart';
 
 @immutable
 final class ProductProviderState extends Equatable {
@@ -14,6 +15,7 @@ final class ProductProviderState extends Equatable {
     this.campaignItems = const [],
     this.favoritePlaces = const [],
     this.regionalCityItems = const [],
+    this.regionalTownItems = const [],
     this.selectedCity = const RegionalCityModel(),
   });
 
@@ -25,6 +27,7 @@ final class ProductProviderState extends Equatable {
   final List<CampaignModel> campaignItems;
   final List<StoreModel> favoritePlaces;
   final List<RegionalCityModel> regionalCityItems;
+  final List<RegionalTownModel> regionalTownItems;
   final RegionalCityModel selectedCity;
 
   @override
@@ -37,6 +40,7 @@ final class ProductProviderState extends Equatable {
         campaignItems,
         favoritePlaces,
         regionalCityItems,
+        regionalTownItems,
         selectedCity,
       ];
 
@@ -48,6 +52,7 @@ final class ProductProviderState extends Equatable {
     List<CampaignModel>? campaignItems,
     List<StoreModel>? favoritePlaces,
     List<RegionalCityModel>? regionalCityItems,
+    List<RegionalTownModel>? regionalTownItems,
     RegionalCityModel? selectedCity,
   }) {
     return ProductProviderState(
@@ -58,6 +63,7 @@ final class ProductProviderState extends Equatable {
       campaignItems: campaignItems ?? this.campaignItems,
       favoritePlaces: favoritePlaces ?? this.favoritePlaces,
       regionalCityItems: regionalCityItems ?? this.regionalCityItems,
+      regionalTownItems: regionalTownItems ?? this.regionalTownItems,
       selectedCity: selectedCity ?? this.selectedCity,
     );
   }

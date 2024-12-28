@@ -8,9 +8,9 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 class MapPlacePicker extends StatefulWidget {
-  const MapPlacePicker({super.key, this.initialPosition});
+  const MapPlacePicker({required this.initialPosition, super.key});
 
-  final LatLng? initialPosition;
+  final LatLng initialPosition;
 
   @override
   State<MapPlacePicker> createState() => _MapPlacePickerState();

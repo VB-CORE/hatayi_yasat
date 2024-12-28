@@ -6,6 +6,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.d
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/regional_city_model.dart';
+import 'package:lifeclient/product/model/regional_town_model.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
 mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
@@ -26,10 +27,11 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
   Future<void> initWhenApplicationStart() async {
     final productCache = ProjectDependencyItems.productCache;
     await Future.wait([
-      fetchDistrictAndSaveSession(),
-      fetchDevelopersAndAgency(),
-      fetchCategories(),
-      fetchRegionalCities(),
+      _fetchDistrictAndSaveSession(),
+      _fetchDevelopersAndAgency(),
+      _fetchCategories(),
+      _fetchRegionalCities(),
+      _fetchRegionalTowns(),
       productCache.init(),
     ]);
 
@@ -41,7 +43,7 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
     );
   }
 
-  Future<void> fetchDistrictAndSaveSession() async {
+  Future<void> _fetchDistrictAndSaveSession() async {
     final items = await _firebaseService.getList<TownModel>(
       model: TownModel(),
       path: CollectionPaths.towns,
@@ -49,7 +51,7 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
     state = state.copyWith(townItems: items);
   }
 
-  Future<void> fetchDevelopersAndAgency() async {
+  Future<void> _fetchDevelopersAndAgency() async {
     final devItems = await _firebaseService.getList(
       model: DeveloperModel(),
       path: CollectionPaths.developers,
@@ -64,7 +66,7 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
     );
   }
 
-  Future<void> fetchCategories() async {
+  Future<void> _fetchCategories() async {
     final items = await _firebaseService.getList(
       model: const CategoryModel.empty(),
       path: CollectionPaths.categories,
@@ -73,7 +75,7 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
     state = state.copyWith(categoryItems: items);
   }
 
-  Future<void> fetchRegionalCities() async {
+  Future<void> _fetchRegionalCities() async {
     final items = await _firebaseService.getList(
       model: const RegionalCityModel.empty(),
       path: CollectionPaths.regionalCities,
@@ -82,6 +84,17 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
     state = state.copyWith(
       regionalCityItems: items,
       selectedCity: items.firstWhere((element) => element.initial == true),
+    );
+  }
+
+  Future<void> _fetchRegionalTowns() async {
+    final items = await _firebaseService.getList(
+      model: const RegionalTownModel(),
+      path: CollectionPaths.regionalTowns,
+    );
+
+    state = state.copyWith(
+      regionalTownItems: items,
     );
   }
 }

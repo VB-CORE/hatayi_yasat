@@ -34,7 +34,7 @@ final class ApproveDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: const EdgeInsets.all(20),
+      insetPadding: const PagePadding.all(),
       content: Row(
         children: [
           SizedBox.square(
@@ -51,7 +51,7 @@ final class ApproveDialog extends StatelessWidget {
                 style: context.general.textTheme.labelLarge?.copyWith(
                   color: ColorCommon(context).whiteAndBlackForTheme,
                 ),
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ).tr(),
             ),
           ),

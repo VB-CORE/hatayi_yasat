@@ -17,6 +17,7 @@ final class PlaceRequestModel extends Equatable {
     required this.imageFile,
     required this.timeValidationModel,
     required this.selectedLocation,
+    required this.selectedCityId,
   });
 
   final String placeName;
@@ -29,6 +30,7 @@ final class PlaceRequestModel extends Equatable {
   final File imageFile;
   final OpenAndCloseTimeValidationModel timeValidationModel;
   final LatLng selectedLocation;
+  final String selectedCityId;
 
   @override
   List<Object?> get props => [
@@ -42,5 +44,6 @@ final class PlaceRequestModel extends Equatable {
         imageFile,
         timeValidationModel,
         selectedLocation,
+        selectedCityId,
       ];
 }
