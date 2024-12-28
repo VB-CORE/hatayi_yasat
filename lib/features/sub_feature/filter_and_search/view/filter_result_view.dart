@@ -62,8 +62,8 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
                 return Padding(
                   padding: const PagePadding.onlyBottom(),
                   child: GeneralPlaceGridCard(
-                    elevetion: kZero,
-                    isEnabledToFavourite: false,
+                    elevation: kZero,
+                    isEnabledToFavorite: false,
                     onCardTap: () {
                       PlaceDetailRoute($extra: model, id: model.documentId)
                           .push<void>(this.context);

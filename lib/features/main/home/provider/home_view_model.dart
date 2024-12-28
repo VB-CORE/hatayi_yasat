@@ -29,14 +29,21 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   }
 
   Query<StoreModel?> fetchApprovedCollectionQuery() {
-    return firebaseService.queryWithOrderBy(
-      path: CollectionPaths.approvedApplications,
-      model: StoreModel.empty(),
-      orderBy: MapEntry(
-        FirebaseQueryItems.createdAt.name,
-        state.sortingType == SortingTypes.newest,
-      ),
-    );
+    final selectedCity = ref.watch(productProviderState).selectedCity;
+    final query = firebaseService
+        .collectionReference(
+          CollectionPaths.approvedApplications,
+          StoreModel.empty(),
+        )
+        .where(
+          FirebaseQueryItems.cityId.name,
+          isEqualTo: selectedCity.documentId,
+        )
+        .orderBy(
+          FirebaseQueryItems.createdAt.name,
+          descending: state.sortingType == SortingTypes.newest,
+        );
+    return query;
   }
 
   void changeHomeViewCardType() {

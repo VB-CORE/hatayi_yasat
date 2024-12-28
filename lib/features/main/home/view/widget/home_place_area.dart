@@ -24,7 +24,6 @@ final class _HomePlacesArea extends ConsumerWidget {
                   .push<PlaceDetailRoute>(context);
             },
             storeModel: model,
-            onBookmarkIconTap: () {},
           ),
         );
       },
@@ -37,7 +36,6 @@ final class _HomePlacesArea extends ConsumerWidget {
                   .push<PlaceDetailRoute>(context);
             },
             storeModel: model,
-            onBookmarkIconTap: () {},
           ),
         );
       },

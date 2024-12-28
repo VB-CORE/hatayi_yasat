@@ -323,5 +323,12 @@
   },
   "usefulLink": {
     "title": "Useful Links"
+  },
+  "sheet": {
+    "changeCity": {
+      "title": "Change City",
+      "description": "After your selection, new places will be displayed.",
+      "showResult": "Show results for {}"
+    }
   }
 }

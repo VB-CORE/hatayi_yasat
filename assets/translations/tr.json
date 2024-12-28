@@ -111,6 +111,7 @@
     "search": "Ara",
     "notifications": "Bildirimler"
   },
+
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
@@ -323,5 +324,12 @@
   },
   "usefulLink": {
     "title": "Faydalı Linkler"
+  },
+  "sheet": {
+    "changeCity": {
+      "title": "Şehiri Değiştir",
+      "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
+      "showResult": "{} için sonuçları görüntüle"
+    }
   }
 }

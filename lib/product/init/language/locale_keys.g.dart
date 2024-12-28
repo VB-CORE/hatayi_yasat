@@ -279,5 +279,10 @@ abstract class  LocaleKeys {
   static const tourismView = 'tourismView';
   static const usefulLink_title = 'usefulLink.title';
   static const usefulLink = 'usefulLink';
+  static const sheet_changeCity_title = 'sheet.changeCity.title';
+  static const sheet_changeCity_description = 'sheet.changeCity.description';
+  static const sheet_changeCity_showResult = 'sheet.changeCity.showResult';
+  static const sheet_changeCity = 'sheet.changeCity';
+  static const sheet = 'sheet';
 
 }
