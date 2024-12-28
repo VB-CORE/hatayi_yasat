@@ -49,9 +49,10 @@ final class RegionalTownModel extends BaseFirebaseModel<RegionalTownModel>
 
   @override
   RegionalTownModel fromFirebase(DocumentSnapshot<Map<String, dynamic>> json) {
-    if (json.data() == null) return this;
+    final data = json.data();
+    if (data == null) return const RegionalTownModel.empty();
 
-    return _$RegionalTownModelFromJson(json.data()!).copyWith(
+    return _$RegionalTownModelFromJson(data).copyWith(
       documentId: json.id,
     );
   }

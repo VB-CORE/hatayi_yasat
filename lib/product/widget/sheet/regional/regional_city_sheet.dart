@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -115,9 +116,13 @@ mixin _RegionalCitySheetMixin on State<RegionalCitySheet> {
   }
 
   Future<void> _changeRelationalCity() async {
-    final selectedCity = _cities.firstWhere(
+    final selectedCity = _cities.firstWhereOrNull(
       (element) => element.documentId == _selectedCityId,
     );
+    if (selectedCity == null) {
+      assert(false, 'Selected city is null');
+      return;
+    }
     final city = selectedCity.copyWith(
       documentId: selectedCity.documentId,
     );
