@@ -5,7 +5,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/regional_city_model.dart';
 
 /// City DropDown for regional Hatay,Mersin
 final class RegionalCitySheet extends StatefulWidget {

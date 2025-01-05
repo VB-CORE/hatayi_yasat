@@ -13,8 +13,6 @@ import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/p
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/regional_city_model.dart';
-import 'package:lifeclient/product/model/regional_town_model.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
 

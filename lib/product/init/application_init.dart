@@ -36,7 +36,7 @@ final class ApplicationInit {
     await remoteConfig.fetchAndActivate();
 
     await SharedCache.instance.init();
-    await _injectTestEnvOnDebug();
+    // await _injectTestEnvOnDebug();
     await _crashlyticsInitialize();
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 

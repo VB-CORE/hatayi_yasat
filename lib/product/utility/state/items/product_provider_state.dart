@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/model/regional_city_model.dart';
-import 'package:lifeclient/product/model/regional_town_model.dart';
 
 @immutable
 final class ProductProviderState extends Equatable {

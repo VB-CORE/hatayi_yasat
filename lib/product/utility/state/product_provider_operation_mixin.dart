@@ -5,8 +5,6 @@ import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
-import 'package:lifeclient/product/model/regional_city_model.dart';
-import 'package:lifeclient/product/model/regional_town_model.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
 mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
@@ -81,10 +79,10 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
       path: CollectionPaths.regionalCities,
     );
 
-    state = state.copyWith(
-      regionalCityItems: items,
-      selectedCity: items.firstWhere((element) => element.initial == true),
-    );
+    // state = state.copyWith(
+    //   regionalCityItems: items,
+    //   selectedCity: items.firstWhere((element) => element.initial == true),
+    // );
   }
 
   Future<void> _fetchRegionalTowns() async {

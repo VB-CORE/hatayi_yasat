@@ -26,16 +26,21 @@ exports.search = functions.https.onCall(async (data, _) => {
   const { term } = data;
   const target = 0;
   const page = -1;
-  
+
   try {
     const mongoResponse = await axios.get(BASE_URL + SEARCH_PATH, {
       params: { term, target, page },
     });
 
     const response = mongoResponse.data.map((item) => {
-      const image = item.images && item.images.length > 0 ? item.images[0] : '';
+      const image = item.images && item.images.length > 0 ? item.images[0] : "";
 
-      return { name: item.name, id: item.id, image: image };
+      return {
+        name: item.name,
+        id: item.id,
+        image: image,
+        cityId: item.cityId,
+      };
     });
 
     return response;
@@ -57,11 +62,8 @@ exports.addToIndexMongo = functions.firestore
       params: { target },
     });
 
-
     return mongoResponse != null;
   });
-
-
 
 exports.removeToIndexMongo = functions.firestore
   .document("/approvedApplications/{documentId}")

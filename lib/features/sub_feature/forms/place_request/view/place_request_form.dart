@@ -15,8 +15,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_auto_fills.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
-import 'package:lifeclient/product/model/regional_city_model.dart';
-import 'package:lifeclient/product/model/regional_town_model.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';

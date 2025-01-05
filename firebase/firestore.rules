@@ -4,43 +4,30 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
 
-  // function isAdmin() {
-    //     return request.auth.uid != null
-    //   }
-
-  // function isAdmin() {
-    //   return request.auth != null 
-    //     && request.auth.email != null 
-    //     && get(/databases/$(database)/documents/allowedAdminClaims/NJSU504TyhyMINFUdgwl).data.email == request.auth.email;
-    // }
-
-
-    function isAdmin() {
-      return true
-      // let adminDoc = get(/databases/$(database)/documents/adminList/config);
-      // return request.auth.uid != null 
-      //   && request.auth.email != null;
+    function isAuthenticated(request) {
+      return request.auth != null;
     }
 
+    function isAdmin(request) {
+      let adminDoc = get(/databases/$(database)/documents/adminList/config);
+      let isAdmin = adminDoc.data.emails.hasAny([request.auth.token.email]);
+      return isAuthenticated(request)
+        && isAdmin;
+    }
 
     match /regionalCities/{document} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin(request);
     }
 
     match /regionalTowns/{document} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAuthenticated(request);
     }
 
     match /adminList/{document} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-
-    match /approvedStoreCities/{document} {
-      allow read: if true;
-      allow write: if isAdmin();
+      allow read: if isAuthenticated(request);
+      allow write: if isAdmin(request);
     }
 
     match /approvedCampaigns/{document} {
@@ -56,49 +43,49 @@ service cloud.firestore {
     // Client
     match /specialAgency/{agency} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin(request);
     }
 
     match /news/{document} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin(request);
     }
 
     // Admin
 
     match /towns/{document} {
       allow read: if true;
-      allow write;
+      allow write: if isAdmin(request);
     }
 
     match /allowedAdminClaims/{document} {
-      allow read: if isAdmin();
-      allow write: if isAdmin();
+      allow read: if isAdmin(request);
+      allow write: if isAdmin(request);
     }
 
     match /approvedApplications/{document} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin(request);
     }
 
     match /unApprovedApplications/{appId} {
-      allow read: if isAdmin();
+      allow read: if isAdmin(request);
       allow write: if true;
     }
 
     match /notifications/{document} {
       allow read: if true;
-      allow write;
+      allow write: if isAdmin(request);
     }
 
     match /developers/{document} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin(request);
     }
 
     match /logs/{document} {
-      allow read: if isAdmin();
-      allow write: if isAdmin();
+      allow read: if isAdmin(request);
+      allow write: if isAdmin(request);
     }
 
     match /categories/{document} {
