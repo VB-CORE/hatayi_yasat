@@ -15,6 +15,12 @@ service cloud.firestore {
         && isAdmin;
     }
 
+
+    match /adBoard/{document} {
+      allow read: if true;
+      allow write: if isAdmin(request);
+    }
+
     match /regionalCities/{document} {
       allow read: if true;
       allow write: if isAdmin(request);

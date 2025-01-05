@@ -13,6 +13,9 @@
 migrate_working_dir/
 *.lock
 
+
+emulator-data/
+
 # Ignore
 # firebase_options.dart
 # google-services.json
