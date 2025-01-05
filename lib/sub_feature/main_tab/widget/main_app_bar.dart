@@ -22,8 +22,6 @@ final class _MainAppBar extends AppBar {
               padding: EdgeInsets.zero,
             ),
             onPressed: () async {
-              final currentCity =
-                  ProjectDependencyItems.productProvider.selectedCity;
               final result = await RegionalCitySheet.show(context);
               if (result == null) return;
               ProjectDependencyItems.productProvider.saveSelectedCity(result);

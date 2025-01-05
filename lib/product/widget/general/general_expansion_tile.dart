@@ -31,9 +31,12 @@ final class GeneralExpansionTile extends StatelessWidget {
           Icons.keyboard_arrow_down,
           color: context.general.colorScheme.onSecondaryFixed,
         ),
-        title: GeneralBodyTitle(
-          pageTitle,
-          fontWeight: FontWeight.w600,
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: GeneralBodyTitle(
+            pageTitle,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         children: children,
       ),
