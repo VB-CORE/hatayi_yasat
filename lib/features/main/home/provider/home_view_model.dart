@@ -43,6 +43,7 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
           FirebaseQueryItems.createdAt.name,
           descending: state.sortingType == SortingTypes.newest,
         );
+
     return query;
   }
 

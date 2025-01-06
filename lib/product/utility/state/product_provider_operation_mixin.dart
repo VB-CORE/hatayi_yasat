@@ -79,10 +79,10 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
       path: CollectionPaths.regionalCities,
     );
 
-    // state = state.copyWith(
-    //   regionalCityItems: items,
-    //   selectedCity: items.firstWhere((element) => element.initial == true),
-    // );
+    state = state.copyWith(
+      regionalCityItems: items,
+      selectedCity: items.firstWhere((element) => element.initial),
+    );
   }
 
   Future<void> _fetchRegionalTowns() async {
