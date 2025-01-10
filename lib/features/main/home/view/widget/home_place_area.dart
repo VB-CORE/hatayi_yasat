@@ -12,7 +12,8 @@ final class _HomePlacesArea extends ConsumerWidget {
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
         onRefresh: () async {
-          await query.get();
+          final result = await query.get();
+          print(result.docs.length);
         },
       ),
       query: query,
