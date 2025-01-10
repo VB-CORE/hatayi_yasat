@@ -8,7 +8,7 @@ VERSION_NUMBER = "8.0.0"
 
 platform :android do
   lane :release do |options|
-      versionCode =  google_play_track_version_codes()[0] + 1
+      versionCode =  google_play_track_version_codes()[0] + 2
      flutter_build_appBundle(VERSION_NUMBER,versionCode)
      upload_to_play_store(
       root_url: "https://androidpublisher.googleapis.com/",
