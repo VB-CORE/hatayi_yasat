@@ -268,9 +268,7 @@ abstract class  LocaleKeys {
   static const chain_stores = 'chain_stores';
   static const whatsNew_title = 'whatsNew.title';
   static const whatsNew_features_linkPage = 'whatsNew.features.linkPage';
-  static const whatsNew_features_businessHours = 'whatsNew.features.businessHours';
   static const whatsNew_features_locationPinning = 'whatsNew.features.locationPinning';
-  static const whatsNew_features_districtInfo = 'whatsNew.features.districtInfo';
   static const whatsNew_features = 'whatsNew.features';
   static const whatsNew_bugFixes = 'whatsNew.bugFixes';
   static const whatsNew = 'whatsNew';
