@@ -3,6 +3,7 @@ part of '../place_request_form.dart';
 final class _PlacePickerFormField extends FormField<LatLng?> {
   _PlacePickerFormField({
     required ValueChanged<LatLng> onChanged,
+    required LatLng initialPosition,
     super.key,
     super.initialValue,
   }) : super(
@@ -26,7 +27,7 @@ final class _PlacePickerFormField extends FormField<LatLng?> {
                           final response =
                               await state.context.route.navigateToPage<LatLng>(
                             MapPlacePicker(
-                              initialPosition: state.value,
+                              initialPosition: state.value ?? initialPosition,
                             ),
                           );
 

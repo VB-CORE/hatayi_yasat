@@ -20,4 +20,6 @@ final class ProjectGeneralConstant {
   static const String phoneNumberHint = '+90 5XX XXX XX XX';
 
   static const int maxLatestSearchCount = 5;
+
+  static const String productRootCityName = 'hatay';
 }

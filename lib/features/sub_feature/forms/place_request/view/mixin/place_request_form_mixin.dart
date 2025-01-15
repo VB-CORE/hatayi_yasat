@@ -1,5 +1,3 @@
-// ignore_for_file: use_setters_to_change_properties
-
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -11,10 +9,10 @@ import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_controller_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/place_request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_form_success_dialog.dart';
 
@@ -22,27 +20,23 @@ mixin PlaceRequestFormMixin
     on
         AutomaticKeepAliveClientMixin<PlaceRequestForm>,
         AppProviderMixin<PlaceRequestForm>,
-        RequestFormConsumerState<PlaceRequestForm> {
-  late final List<TownModel> townModels;
+        RequestFormConsumerState<PlaceRequestForm>,
+        PlaceRequestControllerMixin {
   late final List<CategoryModel> categoryModels;
-  final TimePickerController openTimeController = TimePickerController();
-  final TimePickerController closeTimeController = TimePickerController();
-  final TextEditingController placeNameController = TextEditingController();
-  final TextEditingController placeDescriptionController =
-      TextEditingController();
-  final TextEditingController placeOwnerNameController =
-      TextEditingController();
-  final TextEditingController placeAddressController = TextEditingController();
-  final TextEditingController placePhoneNumberController =
-      TextEditingController();
-  final TextEditingController placeCategoryController = TextEditingController();
-  final TextEditingController placeDistrictController = TextEditingController();
-  TownModel? _selectedTownModel;
+  late final List<RegionalCityModel> regionalCityModels;
+  late final List<RegionalTownModel> _regionalTownModels;
+
   CategoryModel? _selectedCategoryModel;
   LatLng? _selectedLocation;
   File? _imageFile;
+  late RegionalCityModel _selectedRegionalCityModel;
+  late RegionalTownModel _selectedRegionalTownModel;
+  late RegionalTownSubItem? _selectedRegionalTownSubItem;
 
-  TownModel? get selectedTownModel => _selectedTownModel;
+  RegionalCityModel get selectedRegionalCityModel => _selectedRegionalCityModel;
+  RegionalTownModel get selectedRegionalTownModel => _selectedRegionalTownModel;
+  RegionalTownSubItem? get selectedRegionalTownSubItem =>
+      _selectedRegionalTownSubItem;
   CategoryModel? get selectedCategoryModel => _selectedCategoryModel;
   LatLng? get selectedLocation => _selectedLocation;
 
@@ -53,53 +47,45 @@ mixin PlaceRequestFormMixin
     super.initState();
     final productProviderState =
         ref.read(ProjectDependencyItems.productProviderState);
-    townModels = productProviderState.townItems;
     categoryModels = productProviderState.categoryItems;
+    regionalCityModels = productProviderState.regionalCityItems;
+    _regionalTownModels = productProviderState.regionalTownItems;
+
+    _selectedRegionalCityModel = productProviderState.selectedCity;
+    _updateRegionalTown();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    placeNameController.dispose();
-    placeDescriptionController.dispose();
-    placeOwnerNameController.dispose();
-    placeAddressController.dispose();
-    placePhoneNumberController.dispose();
-    placeCategoryController.dispose();
-    placeDistrictController.dispose();
+  void _updateRegionalTown() {
+    _selectedRegionalTownModel = _regionalTownModels.firstWhere(
+      (element) => element.cityId == _selectedRegionalCityModel.documentId,
+    );
+    _selectedRegionalTownSubItem = _selectedRegionalTownModel.towns.first;
   }
 
   void clear() {
-    placeNameController.clear();
-    placeDescriptionController.clear();
-    placeOwnerNameController.clear();
-    placeAddressController.clear();
-    placePhoneNumberController.clear();
-    openTimeController.clear();
-    closeTimeController.clear();
+    clearControllers();
     _selectedCategoryModel = null;
     _imageFile = null;
-    _selectedTownModel = null;
   }
 
   @override
   bool get isHasAnyData {
-    if (placeNameController.text.isNotEmpty) return true;
-    if (placeDescriptionController.text.isNotEmpty) return true;
-    if (placeOwnerNameController.text.isNotEmpty) return true;
-    if (placeAddressController.text.isNotEmpty) return true;
-    if (placePhoneNumberController.text.isNotEmpty) return true;
-    if (placeCategoryController.text.isNotEmpty) return true;
-    if (_selectedTownModel != null) return true;
-    if (_selectedTownModel != null) return true;
+    if (isControllerValid()) return true;
+
     if (openTimeController.isValid) return true;
     if (closeTimeController.isValid) return true;
     if (_imageFile != null) return true;
     return false;
   }
 
-  void updateTownItem(TownModel item) {
-    _selectedTownModel = item;
+  void updateRegionalCityItem(RegionalCityModel item) {
+    _selectedRegionalCityModel = item;
+    _updateRegionalTown();
+    setState(() {});
+  }
+
+  void updateRegionalTownItem(RegionalTownSubItem item) {
+    _selectedRegionalTownSubItem = item;
   }
 
   void updateCategoryItem(CategoryModel item) {
@@ -125,6 +111,7 @@ mixin PlaceRequestFormMixin
     if (!_validateSelectedLocation()) return null;
 
     return PlaceRequestModel(
+      selectedCityId: _selectedRegionalCityModel.documentId,
       placeName: placeNameController.text,
       placeDescription: placeDescriptionController.text,
       placeOwnerName: placeOwnerNameController.text,
@@ -135,7 +122,7 @@ mixin PlaceRequestFormMixin
         openTime: openTimeController.time,
       ),
       placeCategory: _selectedCategoryModel!,
-      placeDistrict: _selectedTownModel!,
+      placeDistrict: _selectedRegionalTownSubItem!.toTownModel,
       imageFile: _imageFile!,
       selectedLocation: _selectedLocation!,
     );
@@ -153,7 +140,7 @@ mixin PlaceRequestFormMixin
   }
 
   bool _validateTownModel() {
-    final townModel = _selectedTownModel;
+    final townModel = _selectedRegionalTownSubItem;
     if (townModel == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.validation_districtEmpty.tr(),

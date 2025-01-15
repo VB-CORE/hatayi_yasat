@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  connectivity_plus: ^4.0.2
+  connectivity_plus: 6.1.0
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.1
   equatable: ^2.0.5
@@ -25,7 +25,7 @@ dependencies:
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
-  syncfusion_flutter_pdfviewer: ^27.1.50
+  syncfusion_flutter_pdfviewer: ^28.1.37
   webview_flutter: ^4.0.2
 
   #third-party
@@ -45,12 +45,12 @@ dependencies:
   flutter_svg: ^2.0.9
 
   #firebase
-  firebase_core: ^3.1.1
-  firebase_storage: ^12.1.0
+  firebase_core: ^3.9.0
+  firebase_storage: ^12.3.7
   firebase_remote_config: ^5.0.2
-  firebase_analytics: 10.2.0
+  firebase_analytics: ^11.3.6
   firebase_messaging: ^15.0.2
-  cloud_firestore: ^5.0.2
+  cloud_firestore: ^5.6.0
   firebase_crashlytics: ^4.0.2
   firebase_ui_firestore: ^1.6.4
   cloud_functions: ^5.0.2
@@ -96,29 +96,14 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.4.0
+      ref: 5.4.5
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
+  hugeicons: ^0.0.7
 
 dependency_overrides:
-  kartal: ^4.0.4
-  uuid: ^4.3.3
-  win32: ^5.5.1
-  device_info_plus: ^10.1.0
-  connectivity_plus: ^6.0.3
-  firebase_core: ^3.1.1
-  firebase_storage: ^12.1.0
-  firebase_remote_config: ^5.0.2
-  firebase_analytics: ^11.1.0
-  firebase_messaging: ^15.0.2
-  cloud_firestore: ^5.0.2
-  firebase_crashlytics: ^4.0.2
-  firebase_ui_firestore: ^1.6.4
-  cloud_functions: ^5.0.2
-  webview_flutter_android: 3.16.1
-  url_launcher_ios: ^6.3.1
-  archive: ^3.6.1
+  kartal: ^4.1.0
 
 dev_dependencies:
   build_runner: ^2.3.3
@@ -129,7 +114,7 @@ dev_dependencies:
 
   logger: ^2.0.1
   json_serializable: ^6.6.1
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0
 
   riverpod_generator: ^2.3.8
   go_router_builder: ^2.4.0
@@ -146,6 +131,19 @@ flutter_launcher_icons:
   min_sdk_android: 21 # android min sdk min:16, default 21
   remove_alpha_ios: true
 
+scripts:
+  lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
+  dartBuild: flutter pub run build_runner build --delete-conflicting-outputs
+  build: flutter pub run build_runner build
+  buildForce: flutter pub run build_runner build --delete-conflicting-outputs
+  pubGet: sh ./scripts/pub_get.sh
+  watchBuild: flutter pub run build_runner watch --delete-conflicting-outputs
+  general: rps build && rps lang
+  podUpdate: cd ios && pod update && cd ..
+  fios: flutter clean && flutter pub get && cd ios && pod install && cd ..
+  emulator: firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data
+  
+  updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true
 

@@ -7,20 +7,26 @@
   },
   "emulators": {
     "auth": {
-      "port": 3000
+      "port": 3000,
+      "persist": true
     },
     "functions": {
-      "port": 3001
+      "port": 3001,
+      "persist": true
     },
     "firestore": {
-      "port": 3002
+      "port": 3002,
+      "persist": true
     },
     "storage": {
-      "port": 3003
+      "port": 3003,
+      "persist": true
     },
     "ui": {
       "enabled": true
-    }
+    },
+    "exportOnExit": "./emulator-data",
+    "importOnStart": "./emulator-data"
   },
   "functions": [
     {

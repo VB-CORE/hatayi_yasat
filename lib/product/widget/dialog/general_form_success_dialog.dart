@@ -33,13 +33,8 @@ final class GeneralFormSuccessDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Assets.lottie.success.lottie(),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          GeneralBodyTitle(
-            value.tr(),
-          ),
-        ],
+      content: GeneralBodyTitle(
+        value.tr(),
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [

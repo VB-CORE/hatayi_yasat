@@ -11,7 +11,10 @@ final class _HomePlacesArea extends ConsumerWidget {
     return FirestoreSliverListView(
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        onRefresh: () {},
+        onRefresh: () async {
+          final result = await query.get();
+          print(result.docs.length);
+        },
       ),
       query: query,
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
@@ -24,7 +27,6 @@ final class _HomePlacesArea extends ConsumerWidget {
                   .push<PlaceDetailRoute>(context);
             },
             storeModel: model,
-            onBookmarkIconTap: () {},
           ),
         );
       },
@@ -37,7 +39,6 @@ final class _HomePlacesArea extends ConsumerWidget {
                   .push<PlaceDetailRoute>(context);
             },
             storeModel: model,
-            onBookmarkIconTap: () {},
           ),
         );
       },

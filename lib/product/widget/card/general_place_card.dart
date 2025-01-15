@@ -14,12 +14,10 @@ final class GeneralPlaceCard extends StatelessWidget {
   const GeneralPlaceCard({
     required this.onCardTap,
     required this.storeModel,
-    this.onBookmarkIconTap,
     super.key,
   });
 
   final VoidCallback onCardTap;
-  final VoidCallback? onBookmarkIconTap;
   final StoreModel storeModel;
 
   @override
@@ -35,7 +33,6 @@ final class GeneralPlaceCard extends StatelessWidget {
           const VerticalSpace.xSmall(),
           _TitleRow(
             model: storeModel,
-            onSavePlaceTap: onBookmarkIconTap,
           ),
           _Description(
             description: storeModel.description,
@@ -74,11 +71,9 @@ final class _Image extends StatelessWidget {
 final class _TitleRow extends StatelessWidget {
   const _TitleRow({
     required this.model,
-    this.onSavePlaceTap,
   });
 
   final StoreModel model;
-  final VoidCallback? onSavePlaceTap;
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,4 @@
 enum FirebaseQueryItems {
+  cityId,
   createdAt;
 }

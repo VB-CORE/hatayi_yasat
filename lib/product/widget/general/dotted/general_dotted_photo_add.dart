@@ -9,7 +9,6 @@ import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dar
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/widget/animated/animated_page_change.dart';
 import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_context.dart';
 import 'package:lifeclient/product/widget/general/dotted/state/general_dotted_photo_add_provider.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -71,19 +70,24 @@ final class _BodyImage extends StatelessWidget {
   final File? file;
   @override
   Widget build(BuildContext context) {
-    return AnimatedPageSwitch(
-      crossFadeState:
-          file != null ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-      secondChild: file != null ? Image.file(file!) : const SizedBox.shrink(),
-      firstChild: const Row(
-        children: [
-          Spacer(flex: AppConstants.kTwo),
-          _ImageTypeContainer.camera(),
-          Spacer(),
-          _ImageTypeContainer.gallery(),
-          Spacer(flex: AppConstants.kTwo),
-        ],
-      ),
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeIn,
+      switchOutCurve: Curves.easeOut,
+      child: file == null
+          ? const Row(
+              children: [
+                Spacer(flex: AppConstants.kTwo),
+                _ImageTypeContainer.camera(),
+                Spacer(),
+                _ImageTypeContainer.gallery(),
+                Spacer(flex: AppConstants.kTwo),
+              ],
+            )
+          : Image.file(
+              file!,
+              fit: BoxFit.contain,
+            ),
     );
   }
 }

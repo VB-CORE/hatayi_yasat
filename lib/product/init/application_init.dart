@@ -51,6 +51,7 @@ final class ApplicationInit {
     ProjectDependency.setup();
     ProjectDependencyItems.appProvider
         .changeAppTheme(theme: SharedCache.instance.theme);
+    // await _injectTestEnvOnDebug();
   }
 
   Future<void> _injectTestEnvOnDebug() async {

@@ -17,6 +17,12 @@ final class ApplicationTheme {
         dayPeriodColor: Colors.black,
         dialHandColor: Colors.black,
       ),
+      dialogTheme: const DialogTheme(
+        backgroundColor: ColorsCustom.white,
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: ColorsCustom.white,
+      ),
       dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

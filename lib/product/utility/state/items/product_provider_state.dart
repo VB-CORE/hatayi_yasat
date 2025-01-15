@@ -12,6 +12,9 @@ final class ProductProviderState extends Equatable {
     this.categoryItems = const [],
     this.campaignItems = const [],
     this.favoritePlaces = const [],
+    this.regionalCityItems = const [],
+    this.regionalTownItems = const [],
+    this.selectedCity = const RegionalCityModel(),
   });
 
   final List<TownModel> townItems;
@@ -21,6 +24,9 @@ final class ProductProviderState extends Equatable {
   final List<CategoryModel> categoryItems;
   final List<CampaignModel> campaignItems;
   final List<StoreModel> favoritePlaces;
+  final List<RegionalCityModel> regionalCityItems;
+  final List<RegionalTownModel> regionalTownItems;
+  final RegionalCityModel selectedCity;
 
   @override
   List<Object> get props => [
@@ -31,6 +37,9 @@ final class ProductProviderState extends Equatable {
         categoryItems,
         campaignItems,
         favoritePlaces,
+        regionalCityItems,
+        regionalTownItems,
+        selectedCity,
       ];
 
   ProductProviderState copyWith({
@@ -40,6 +49,9 @@ final class ProductProviderState extends Equatable {
     List<CategoryModel>? categoryItems,
     List<CampaignModel>? campaignItems,
     List<StoreModel>? favoritePlaces,
+    List<RegionalCityModel>? regionalCityItems,
+    List<RegionalTownModel>? regionalTownItems,
+    RegionalCityModel? selectedCity,
   }) {
     return ProductProviderState(
       townItems: townItems ?? this.townItems,
@@ -48,6 +60,9 @@ final class ProductProviderState extends Equatable {
       categoryItems: categoryItems ?? this.categoryItems,
       campaignItems: campaignItems ?? this.campaignItems,
       favoritePlaces: favoritePlaces ?? this.favoritePlaces,
+      regionalCityItems: regionalCityItems ?? this.regionalCityItems,
+      regionalTownItems: regionalTownItems ?? this.regionalTownItems,
+      selectedCity: selectedCity ?? this.selectedCity,
     );
   }
 }

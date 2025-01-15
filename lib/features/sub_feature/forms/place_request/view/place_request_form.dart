@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_provider.dart';
+import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_controller_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/mixin/place_request_form_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
@@ -42,7 +43,7 @@ final class PlaceRequestForm extends ConsumerStatefulWidget {
 }
 
 class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
-    with AppProviderMixin, PlaceRequestFormMixin {
+    with AppProviderMixin, PlaceRequestControllerMixin, PlaceRequestFormMixin {
   @override
   Widget onBuild(BuildContext context) {
     return Scaffold(
@@ -100,11 +101,17 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
             autoFills: TextFieldAutoFills.address,
             validator: ValidatorNormalTextField(),
           ),
-          CustomDropdownFormField<TownModel>(
-            hint: LocaleKeys.requestCompany_chooseDistrict.tr(),
-            onSelected: updateTownItem,
-            items: townModels,
-            initialValue: selectedTownModel,
+          CustomDropdownFormField<RegionalCityModel>(
+            hint: '',
+            onSelected: updateRegionalCityItem,
+            items: regionalCityModels,
+            initialValue: selectedRegionalCityModel,
+          ),
+          CustomDropdownFormField<RegionalTownSubItem>(
+            hint: '',
+            onSelected: updateRegionalTownItem,
+            items: selectedRegionalTownModel.towns,
+            initialValue: selectedRegionalTownModel.towns.first,
           ),
           CustomDropdownFormField<CategoryModel>(
             hint: LocaleKeys.requestCompany_chooseCategory.tr(),
@@ -115,6 +122,10 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
           _PlacePickerFormField(
             initialValue: selectedLocation,
             onChanged: updateSelectedLocation,
+            initialPosition: LatLng(
+              selectedRegionalCityModel.location.latitude,
+              selectedRegionalCityModel.location.longitude,
+            ),
           ),
           OpenAndCloseTimePicker(
             closeTimeController: closeTimeController,

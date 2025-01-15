@@ -111,6 +111,7 @@
     "search": "Ara",
     "notifications": "Bildirimler"
   },
+
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
@@ -308,12 +309,10 @@
     "subBranchesTitle": "{} Şubeleri ({})"
   },
   "whatsNew": {
-    "title": "Yenilikler v7.0.0 🎉",
+    "title": "Yenilikler v8.0.0 🎉",
     "features": {
-      "linkPage": "🤝 Girişimciler için link sayfası eklendi.",
-      "businessHours": "⏰ İşletme saatleri görüntüleme sorunu çözüldü.",
-      "locationPinning": "📍 Yeni İşletmelere Konum Pinleme Özelliği eklendi.",
-      "districtInfo": "🏛️ Resmi kurumlara ilçe bilgisi eklendi."
+      "linkPage": "🤝 Mersin de artık bizimle birlikte.",
+      "locationPinning": "📍 Yeni İşletmelere taleplerinde Mersin de konum pinleme özelliği eklendi."
     },
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   },
@@ -323,5 +322,12 @@
   },
   "usefulLink": {
     "title": "Faydalı Linkler"
+  },
+  "sheet": {
+    "changeCity": {
+      "title": "Şehiri Değiştir",
+      "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
+      "showResult": "{} için sonuçları görüntüle"
+    }
   }
 }

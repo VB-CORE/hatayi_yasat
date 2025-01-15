@@ -17,14 +17,44 @@ final class _MainAppBar extends AppBar {
             icon: const Icon(AppIcons.notifications),
           ),
           automaticallyImplyLeading: false,
-          title: GeneralSubTitle(
-            value: LocaleKeys.project_name.tr(context: context),
-            fontWeight: FontWeight.bold,
+          title: TextButton(
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+            ),
+            onPressed: () async {
+              final result = await RegionalCitySheet.show(context);
+              if (result == null) return;
+              ProjectDependencyItems.productProvider.saveSelectedCity(result);
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const _AppBarTitle(),
+                const SizedBox(width: WidgetSizes.spacingXSs),
+                HugeIcon(
+                  icon: HugeIcons.strokeRoundedArrowDown01,
+                  color: context.general.colorScheme.primary,
+                ),
+              ],
+            ),
           ),
           actions: [
             const _CustomPopupMenu(),
           ],
         );
+}
+
+final class _AppBarTitle extends ConsumerWidget {
+  const _AppBarTitle();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentCity = ref.watch(ProjectDependencyItems.productProviderState);
+    return GeneralSubTitle(
+      value: currentCity.selectedCity.description,
+      fontWeight: FontWeight.bold,
+    );
+  }
 }
 
 final class _CustomPopupMenu extends StatelessWidget {
