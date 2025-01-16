@@ -40,6 +40,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       address: placeRequestModel.placeAddress,
       phone: placeRequestModel.placePhoneNumber.ext.phoneFormatValue,
       images: [uploadImage],
+      cityId: placeRequestModel.selectedCityId,
       townCode: placeRequestModel.placeDistrict.code ?? 0,
       createdAt: DateTime.now(),
       openTime: placeRequestModel.timeValidationModel.openTime?.stringValue,
