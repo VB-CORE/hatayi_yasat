@@ -18,6 +18,7 @@ final class GeneralBodyTitle extends StatelessWidget {
     this.fontWeight,
     this.textDecoration,
     this.color,
+    this.textAlign,
   });
 
   final String value;
@@ -25,6 +26,7 @@ final class GeneralBodyTitle extends StatelessWidget {
   final FontWeight? fontWeight;
   final TextDecoration? textDecoration;
   final Color? color;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ final class GeneralBodyTitle extends StatelessWidget {
       ),
       maxLines: maxLines,
       overflow: maxLines != null ? TextOverflow.ellipsis : null,
-      textAlign: TextAlign.center,
+      textAlign: textAlign ?? TextAlign.center,
     );
   }
 }

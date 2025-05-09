@@ -66,6 +66,7 @@ final class _AuthorText extends StatelessWidget {
       text,
       fontWeight: FontWeight.bold,
       textDecoration: TextDecoration.underline,
+      textAlign: TextAlign.left,
     );
   }
 }
