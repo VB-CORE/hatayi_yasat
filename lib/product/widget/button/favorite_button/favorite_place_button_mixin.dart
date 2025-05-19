@@ -26,7 +26,6 @@ mixin FavoritePlaceButtonMixin
   Future<void> onPressed() async {
     if (isLoading) return;
 
-    final _ =
-        await ref.read(_favoritePlaceProvider.notifier).onSaved(widget.store);
+    await ref.read(_favoritePlaceProvider.notifier).onSaved(widget.store);
   }
 }

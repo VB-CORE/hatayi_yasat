@@ -5,7 +5,6 @@ import 'package:life_shared/life_shared.dart';
 @immutable
 final class ProductProviderState extends Equatable {
   const ProductProviderState({
-    this.townItems = const [],
     this.storeItems = const [],
     this.developerItems = const [],
     this.agencyItems = const [],
@@ -17,7 +16,6 @@ final class ProductProviderState extends Equatable {
     this.selectedCity = const RegionalCityModel(),
   });
 
-  final List<TownModel> townItems;
   final List<StoreModel> storeItems;
   final List<DeveloperModel> developerItems;
   final List<SpecialAgencyModel> agencyItems;
@@ -30,7 +28,6 @@ final class ProductProviderState extends Equatable {
 
   @override
   List<Object> get props => [
-        townItems,
         storeItems,
         developerItems,
         agencyItems,
@@ -43,7 +40,6 @@ final class ProductProviderState extends Equatable {
       ];
 
   ProductProviderState copyWith({
-    List<TownModel>? townItems,
     List<DeveloperModel>? developerItems,
     List<SpecialAgencyModel>? agencyItems,
     List<CategoryModel>? categoryItems,
@@ -54,7 +50,6 @@ final class ProductProviderState extends Equatable {
     RegionalCityModel? selectedCity,
   }) {
     return ProductProviderState(
-      townItems: townItems ?? this.townItems,
       developerItems: developerItems ?? this.developerItems,
       agencyItems: agencyItems ?? this.agencyItems,
       categoryItems: categoryItems ?? this.categoryItems,

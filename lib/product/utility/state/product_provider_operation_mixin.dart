@@ -12,6 +12,13 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
   late CacheOperation<AppCacheModel> appModelCache;
 
   List<RegionalCityModel> get regionalCities => state.regionalCityItems;
+  List<RegionalTownSubItem> get regionalTowns {
+    final selectedCity = state.selectedCity;
+    final selectedCityRegionalTown = state.regionalTownItems
+        .firstWhere((element) => element.cityId == selectedCity.documentId);
+    return selectedCityRegionalTown.towns;
+  }
+
   RegionalCityModel get selectedCity => state.selectedCity;
 
   final _firebaseService = FirebaseCustomService();
@@ -25,7 +32,6 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
   Future<void> initWhenApplicationStart() async {
     final productCache = ProjectDependencyItems.productCache;
     await Future.wait([
-      _fetchDistrictAndSaveSession(),
       _fetchDevelopersAndAgency(),
       _fetchCategories(),
       _fetchRegionalCities(),
@@ -39,14 +45,6 @@ mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
       favoritePlaces:
           storeModelCache.getAll().map((e) => e.storeModel).toList(),
     );
-  }
-
-  Future<void> _fetchDistrictAndSaveSession() async {
-    final items = await _firebaseService.getList<TownModel>(
-      model: TownModel(),
-      path: CollectionPaths.towns,
-    );
-    state = state.copyWith(townItems: items);
   }
 
   Future<void> _fetchDevelopersAndAgency() async {
