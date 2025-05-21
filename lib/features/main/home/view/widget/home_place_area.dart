@@ -8,17 +8,30 @@ class _HomePlaceArea extends ConsumerStatefulWidget {
 }
 
 class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
-  late final Query<StoreModel?> query;
+  late Query<StoreModel?> query;
 
   @override
   void initState() {
     super.initState();
+    _updateFetchQuery();
+    ref.listenManual(homeViewModelProvider, (previous, next) {
+      if (next.isLoading) _updateFetchQuery();
+    });
+  }
+
+  void _updateFetchQuery() {
     query =
         ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(homeViewModelProvider).isLoading;
+    if (isLoading) {
+      return const SliverToBoxAdapter(
+        child: CircularProgressIndicator(),
+      );
+    }
     return FirestoreSliverListView(
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),

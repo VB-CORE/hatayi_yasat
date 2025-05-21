@@ -7,7 +7,7 @@ part of 'special_agency_view_model.dart';
 // **************************************************************************
 
 String _$specialAgencyViewModelHash() =>
-    r'229bb08c7826a036dc690b24227cfd560d20ae06';
+    r'71abdd0c7be2646c260103a85b835a331996e70a';
 
 /// See also [SpecialAgencyViewModel].
 @ProviderFor(SpecialAgencyViewModel)

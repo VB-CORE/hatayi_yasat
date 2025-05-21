@@ -54,7 +54,7 @@ final class _SortPlaceButton extends ConsumerWidget {
           initialItem: SelectSheetModel(title: '', id: currentType.name),
         );
         if (result == null) return;
-        ref
+        await ref
             .read(homeViewModelProvider.notifier)
             .changeSortingType(SortingTypes.values.byName(result.id));
       },
