@@ -17,13 +17,12 @@ final class ApplicationTheme {
         dayPeriodColor: Colors.black,
         dialHandColor: Colors.black,
       ),
-      dialogTheme: const DialogTheme(
+      dialogTheme: const DialogThemeData(
         backgroundColor: ColorsCustom.white,
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: ColorsCustom.white,
       ),
-      dialogBackgroundColor: ColorsCustom.white,
       scaffoldBackgroundColor: ColorsCustom.white,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: ColorsCustom.sambacus,
@@ -34,7 +33,7 @@ final class ApplicationTheme {
           foregroundColor: ColorsCustom.sambacus,
         ),
       ),
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         elevation: 2,
         color: ColorsCustom.white,
         shape: RoundedRectangleBorder(
