@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -89,7 +90,7 @@ class _HomeViewState extends ConsumerState<HomeView>
             ],
           ),
           const _CategoriesItems(),
-          const _HomePlacesArea(),
+          const _HomePlaceArea(),
           const EmptyBox.largeXxHeight().ext.sliver,
         ],
       ),

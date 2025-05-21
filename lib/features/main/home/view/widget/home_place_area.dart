@@ -1,19 +1,29 @@
 part of '../home_view.dart';
 
-final class _HomePlacesArea extends ConsumerWidget {
-  const _HomePlacesArea();
+class _HomePlaceArea extends ConsumerStatefulWidget {
+  const _HomePlaceArea({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final query =
-        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
+  ConsumerState<ConsumerStatefulWidget> createState() => __HomePlaceAreaState();
+}
 
+class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
+  late final Query<StoreModel?> query;
+
+  @override
+  void initState() {
+    super.initState();
+    query =
+        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return FirestoreSliverListView(
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
         onRefresh: () async {
-          final result = await query.get();
-          print(result.docs.length);
+          await query.get();
         },
       ),
       query: query,
