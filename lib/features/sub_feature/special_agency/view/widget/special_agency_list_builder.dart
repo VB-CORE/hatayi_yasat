@@ -64,7 +64,7 @@ mixin _SpecialAgencyListBuilderMixin
   }
 
   Future<void> _init() async {
-    final towns = productState.townItems;
+    final towns = productProvider.regionalTowns;
     await ref
         .read(specialAgencyViewModelProvider.notifier)
         .fetchAgencyCollectionReference(towns);

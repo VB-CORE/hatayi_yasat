@@ -6,7 +6,7 @@ final class _FilterSearchTownsHeader extends ConsumerWidget
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final towns = productState(ref).townItems;
+    final towns = productProvider(ref).regionalTowns;
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: Row(

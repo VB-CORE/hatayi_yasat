@@ -14,7 +14,9 @@ final class SpecialAgencyViewModel extends _$SpecialAgencyViewModel
     return const SpecialAgencyState();
   }
 
-  Future<void> fetchAgencyCollectionReference(List<TownModel> townList) async {
+  Future<void> fetchAgencyCollectionReference(
+    List<RegionalTownSubItem> townList,
+  ) async {
     final specialAgencyList = await firebaseService.getList<SpecialAgencyModel>(
       model: SpecialAgencyModel(),
       path: CollectionPaths.specialAgency,
@@ -30,7 +32,7 @@ final class SpecialAgencyViewModel extends _$SpecialAgencyViewModel
 
   Map<String, List<SpecialAgencyModel>> _populateTownNamesAndAgency(
     List<SpecialAgencyModel> specialAgencyList,
-    List<TownModel> townList,
+    List<RegionalTownSubItem> townList,
   ) {
     final townMap = Map.fromEntries(
       townList.map((town) => MapEntry(town.code, town.name)),
