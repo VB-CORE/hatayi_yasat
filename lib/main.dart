@@ -6,7 +6,6 @@ import 'package:lifeclient/product/init/application_init.dart';
 
 void main() async {
   final initialManager = ApplicationInit();
-
   await initialManager.start();
   runApp(
     EasyLocalization(

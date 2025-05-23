@@ -87,8 +87,8 @@ class _GeneralSelectSheetState extends State<GeneralSelectSheet> {
               itemCount: widget.items.length,
               separatorBuilder: (context, index) {
                 return Divider(
-                  color: context.general.colorScheme.onTertiaryContainer
-                      .withOpacity(0.2),
+                  color: context.general.colorScheme.primary,
+                  thickness: .3,
                 );
               },
               itemBuilder: (BuildContext context, int index) {

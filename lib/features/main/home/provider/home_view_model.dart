@@ -54,7 +54,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
         );
   }
 
-  void changeSortingType(SortingTypes type) {
-    state = state.copyWith(sortingType: type);
+  Future<void> changeSortingType(SortingTypes type) async {
+    state = state.copyWith(sortingType: type, isLoading: true);
+    await Future.delayed(const Duration(milliseconds: 100));
+    state = state.copyWith(isLoading: false);
   }
 }
