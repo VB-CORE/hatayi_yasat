@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/splash/splash_view_mixin.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/init/keys/application_keys.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
@@ -23,14 +24,17 @@ class _SplashViewState extends ConsumerState<SplashView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: K.splashKeys.view,
       body: Padding(
         padding: const PagePadding.horizontal16Symmetric(),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Assets.icons.icApp.image(
+              SizedBox(
+                key: K.splashKeys.logo,
                 height: context.sized.dynamicHeight(.3),
+                child: Assets.icons.icApp.image(),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +52,9 @@ class _SplashViewState extends ConsumerState<SplashView>
                   Padding(
                     padding: const PagePadding.onlyLeft() +
                         const PagePadding.onlyTop(),
-                    child: Assets.lottie.loadingGray.lottie(),
+                    child: Assets.lottie.loadingGray.lottie(
+                      key: K.splashKeys.loadingLottie,
+                    ),
                   ),
                 ],
               ),

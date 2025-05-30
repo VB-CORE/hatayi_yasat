@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/app.dart';
 import 'package:lifeclient/product/init/application_init.dart';
 
-void main() async {
+Future<void> main() async {
   final initialManager = ApplicationInit();
   await initialManager.start();
   runApp(
