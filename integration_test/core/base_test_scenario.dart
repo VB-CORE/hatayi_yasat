@@ -1,11 +1,13 @@
 import 'package:kartal/kartal.dart';
-import 'package:patrol_finders/patrol_finders.dart';
+import 'package:patrol/patrol.dart';
 
 abstract class BaseTestScenario {
   BaseTestScenario(this.$, {required this.next});
+  final BaseTestScenario? next;
+  final PatrolIntegrationTester $;
+
   Future<bool> run();
   Future<bool> waitAndCheckValid();
-
   Future<void> startFlow() async {
     try {
       final isVisible = await waitAndCheckValid();
@@ -20,8 +22,4 @@ abstract class BaseTestScenario {
       }
     }
   }
-
-  final BaseTestScenario? next;
-
-  final PatrolTester $;
 }

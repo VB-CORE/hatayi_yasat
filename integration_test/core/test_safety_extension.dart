@@ -22,4 +22,10 @@ extension TestSafety<T> on Future<T> {
       CustomLogger.showError<T>(e);
     }
   }
+
+  Future<void> safeWithoutError() async {
+    try {
+      await this;
+    } catch (_) {}
+  }
 }

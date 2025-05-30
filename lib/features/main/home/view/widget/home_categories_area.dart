@@ -26,6 +26,7 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
     return SizedBox(
       height: WidgetSizes.spacingXxl2,
       child: ListView.builder(
+        key: K.homeKeys.categoryArea,
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         padding: const PagePadding.onlyBottomLow(),
@@ -38,6 +39,7 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
               );
             },
             name: categories[index].displayName,
+            index: index,
           );
         },
       ),
@@ -49,14 +51,17 @@ final class _CategoryCard extends StatelessWidget {
   const _CategoryCard({
     required this.name,
     required this.onTap,
+    required this.index,
   });
 
   final String name;
+  final int index;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
+      key: K.homeKeys.categoryCard(index),
       padding: const PagePadding.onlyRight(),
       child: ElevatedButton(
         onPressed: onTap,

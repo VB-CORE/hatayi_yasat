@@ -3,7 +3,7 @@ part of '../application_keys.dart';
 final class _OnboardKeys {
   _OnboardKeys._();
 
-  final ValueKey<String> fullImage = const ValueKey('full_image');
-  final ValueKey<String> skipButton = const ValueKey('skip_button');
-  final ValueKey<String> view = const ValueKey('onboard_view');
+  final Key fullImage = const Key('full_image');
+  final Key skipButton = const Key('skip_button');
+  final Key view = const Key('onboard_view');
 }

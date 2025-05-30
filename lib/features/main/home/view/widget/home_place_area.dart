@@ -33,6 +33,7 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
       );
     }
     return FirestoreSliverListView(
+      key: K.homeKeys.placesGridArea,
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
         onRefresh: () async {
@@ -42,9 +43,11 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
       query: query,
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
       itemGridBuilder: (context, model) {
+        print('model: ${model.documentId}');
         return Padding(
           padding: const PagePadding.onlyBottom(),
           child: GeneralPlaceGridCard(
+            key: K.homeKeys.placeCard(model.documentId),
             onCardTap: () {
               PlaceDetailRoute($extra: model, id: model.documentId)
                   .push<PlaceDetailRoute>(context);

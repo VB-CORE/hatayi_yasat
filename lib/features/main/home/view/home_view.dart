@@ -7,6 +7,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
+import 'package:lifeclient/product/init/keys/application_keys.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
@@ -47,7 +48,9 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
     return GeneralScaffold(
+      key: K.homeKeys.homeView,
       body: CustomScrollView(
+        key: K.homeKeys.homeScrollableArea,
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
