@@ -2,6 +2,6 @@ import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.d
 
 final class AppHelper {
   static bool isOnboardCompleted() {
-    return SharedCache.instance.isFirstAppOpen;
+    return !SharedCache.instance.isFirstAppOpen;
   }
 }

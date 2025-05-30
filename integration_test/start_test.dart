@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:patrol/patrol.dart';
 
+import 'core/native_permission.dart';
 import 'core/test_utility.dart';
-import 'scenerios/onboard/onboard_test.dart';
-import 'scenerios/splash/splash_test.dart';
+import 'flows/onboard/onboard_test.dart';
+import 'flows/splash/splash_test.dart';
 
 void main() {
   patrolTest(
@@ -12,15 +11,11 @@ void main() {
     ($) async {
       await TestUtility.init();
 
-      final splashTest = SplashTest($);
-      final onboardTest = OnboardTest($);
-
-      await splashTest.run();
-      await onboardTest.run();
-
-      if (!Platform.isMacOS) {
-        await $.native.pressHome();
-      }
+      final splashTest = SplashTest($, next: null);
+      final onboardTest = OnboardTest($, next: splashTest);
+      await onboardTest.startFlow();
+      final nativePermission = NativePermission(tester: $);
+      await nativePermission.checkAndValidatePermission();
     },
   );
 }

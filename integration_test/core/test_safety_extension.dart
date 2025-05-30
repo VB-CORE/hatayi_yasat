@@ -8,7 +8,7 @@ extension TestSafety<T> on Future<T> {
     try {
       return await this;
     } catch (e) {
-      CustomLogger.showError(e);
+      CustomLogger.showError<T>(e);
       return null;
     }
   }
@@ -19,7 +19,7 @@ extension TestSafety<T> on Future<T> {
     try {
       await this;
     } catch (e) {
-      CustomLogger.showError(e);
+      CustomLogger.showError<T>(e);
     }
   }
 }
