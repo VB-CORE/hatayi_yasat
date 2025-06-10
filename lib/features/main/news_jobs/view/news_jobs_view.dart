@@ -13,8 +13,9 @@ part 'widget/news_jobs_tab_view.dart';
 
 enum NewsEventJobTabs {
   news,
+  event,
   jobs,
-  event;
+  ;
 
   String get title {
     switch (this) {

@@ -4,7 +4,6 @@ import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/features/splash/view_model/splash_view_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/navigation/onboard_router/onboard_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/not_connected_to_internet_dialog.dart';
 import 'package:lottie/lottie.dart';

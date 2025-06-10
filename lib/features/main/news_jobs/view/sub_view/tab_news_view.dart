@@ -6,7 +6,6 @@ import 'package:lifeclient/features/main/news_jobs/provider/news_jobs_provider.d
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:lifeclient/product/widget/card/index.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 

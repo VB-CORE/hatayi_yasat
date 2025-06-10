@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
+import 'package:lifeclient/features/details/view/event_detail_view.dart';
+import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
+import 'package:lifeclient/features/main/event/view/event_view.dart';
+import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
+import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
+import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
+import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
 import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
+import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
+import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
+import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
-import 'package:lifeclient/product/navigation/agency_router/agency_router.dart';
-import 'package:lifeclient/product/navigation/chain_stores_router/chain_stores_router.dart';
-import 'package:lifeclient/product/navigation/event_router/event_router.dart';
-import 'package:lifeclient/product/navigation/favorite_router/favorite_router.dart';
-import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
-import 'package:lifeclient/product/navigation/onboard_router/onboard_router.dart';
-import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
-import 'package:lifeclient/product/navigation/useful_links_router/useful_links_router.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
 
@@ -29,7 +33,7 @@ part 'app_router.g.dart';
     OnboardRoute.route,
   ],
 )
-final class SplashRoute extends GoRouteData {
+final class SplashRoute extends GoRouteData with _$SplashRoute {
   const SplashRoute();
 
   @override
@@ -45,7 +49,6 @@ final class SplashRoute extends GoRouteData {
     FavoriteRoute.route,
     SpecialAgencyRoute.route,
     PlaceDetailRoute.route,
-    DevelopersRoute.route,
     NewsJobsRoute.route,
     FilterRoute.route,
     EventRoute.route,
@@ -56,9 +59,12 @@ final class SplashRoute extends GoRouteData {
     PlaceRequestFormRoute.route,
     ProjectRequestFormRoute.route,
     ScholarShipRequestFormRoute.route,
+
+    // Settings
+    SettingsRoute.route,
   ],
 )
-final class MainTabRoute extends GoRouteData {
+final class MainTabRoute extends GoRouteData with _$MainTabRoute {
   const MainTabRoute();
 
   @override
@@ -67,7 +73,7 @@ final class MainTabRoute extends GoRouteData {
 }
 
 /// You can use this route for home and favorite place cards
-final class PlaceDetailRoute extends GoRouteData {
+final class PlaceDetailRoute extends GoRouteData with _$PlaceDetailRoute {
   PlaceDetailRoute({required this.$extra, required this.id});
 
   static const route = TypedGoRoute<PlaceDetailRoute>(
@@ -85,7 +91,7 @@ final class PlaceDetailRoute extends GoRouteData {
       );
 }
 
-final class FilterRoute extends GoRouteData {
+final class FilterRoute extends GoRouteData with _$FilterRoute {
   const FilterRoute({
     this.$extra,
   });
@@ -103,7 +109,7 @@ final class FilterRoute extends GoRouteData {
       );
 }
 
-final class FilterResultRoute extends GoRouteData {
+final class FilterResultRoute extends GoRouteData with _$FilterResultRoute {
   const FilterResultRoute(this.$extra);
 
   static const route = TypedGoRoute<FilterResultRoute>(
@@ -119,7 +125,8 @@ final class FilterResultRoute extends GoRouteData {
       );
 }
 
-final class PlaceRequestFormRoute extends GoRouteData {
+final class PlaceRequestFormRoute extends GoRouteData
+    with _$PlaceRequestFormRoute {
   const PlaceRequestFormRoute();
 
   static const route = TypedGoRoute<PlaceRequestFormRoute>(
@@ -132,7 +139,8 @@ final class PlaceRequestFormRoute extends GoRouteData {
       const PlaceRequestForm();
 }
 
-final class ProjectRequestFormRoute extends GoRouteData {
+final class ProjectRequestFormRoute extends GoRouteData
+    with _$ProjectRequestFormRoute {
   const ProjectRequestFormRoute();
 
   static const route = TypedGoRoute<ProjectRequestFormRoute>(
@@ -145,7 +153,8 @@ final class ProjectRequestFormRoute extends GoRouteData {
       const ProjectRequestForm();
 }
 
-final class ScholarShipRequestFormRoute extends GoRouteData {
+final class ScholarShipRequestFormRoute extends GoRouteData
+    with _$ScholarShipRequestFormRoute {
   const ScholarShipRequestFormRoute();
 
   static const route = TypedGoRoute<ScholarShipRequestFormRoute>(
@@ -158,7 +167,7 @@ final class ScholarShipRequestFormRoute extends GoRouteData {
       const ScholarshipRequestForm();
 }
 
-final class NotificationsRoute extends GoRouteData {
+final class NotificationsRoute extends GoRouteData with _$NotificationsRoute {
   const NotificationsRoute();
 
   static const route = TypedGoRoute<NotificationsRoute>(
@@ -169,4 +178,186 @@ final class NotificationsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NotificationsView();
+}
+
+final class SpecialAgencyRoute extends GoRouteData with _$SpecialAgencyRoute {
+  const SpecialAgencyRoute();
+
+  static const route = TypedGoRoute<SpecialAgencyRoute>(
+    path: 'specialAgency',
+    name: 'Special Agency',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SpecialAgencyView();
+}
+
+final class ChainStoresRoute extends GoRouteData with _$ChainStoresRoute {
+  const ChainStoresRoute();
+
+  static const route = TypedGoRoute<ChainStoresRoute>(
+    path: 'chain_stores',
+    name: 'Chain Stores',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ChainStoreView();
+}
+
+final class TurismRoute extends GoRouteData with _$TurismRoute {
+  const TurismRoute();
+
+  static const route = TypedGoRoute<TurismRoute>(
+    path: 'turism',
+    name: 'Turism items',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const TourismMapView();
+}
+
+final class EventRoute extends GoRouteData with _$EventRoute {
+  const EventRoute();
+
+  static const route = TypedGoRoute<EventRoute>(
+    path: 'event',
+    name: 'Events',
+    routes: [
+      EventDetailsRoute.route,
+    ],
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const EventView();
+}
+
+final class EventDetailsRoute extends GoRouteData with _$EventDetailsRoute {
+  EventDetailsRoute({required this.$extra});
+
+  static const route = TypedGoRoute<EventDetailsRoute>(
+    path: 'details',
+    name: 'Event Details',
+  );
+
+  final CampaignModel $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      EventDetailView(event: $extra);
+}
+
+final class FavoriteRoute extends GoRouteData with _$FavoriteRoute {
+  const FavoriteRoute();
+
+  static const route = TypedGoRoute<FavoriteRoute>(
+    path: 'favorite',
+    name: 'Favorite',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const FavoriteView();
+}
+
+final class NewsJobsRoute extends GoRouteData with _$NewsJobsRoute {
+  const NewsJobsRoute();
+  static const route = TypedGoRoute<NewsJobsRoute>(
+    path: 'newsJobs',
+    name: 'News and Jobs',
+    routes: [
+      NewsDetailRoute.route,
+    ],
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NewsEventJobsView();
+}
+
+final class NewsDetailRoute extends GoRouteData with _$NewsDetailRoute {
+  NewsDetailRoute({required this.$extra});
+
+  static const route = TypedGoRoute<NewsDetailRoute>(
+    path: 'detail',
+    name: 'News Details',
+  );
+
+  final NewsModelCopy $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      NewsDetailView(news: $extra.toNewsModel());
+}
+
+final class OnboardRoute extends GoRouteData with _$OnboardRoute {
+  const OnboardRoute();
+
+  static const route = TypedGoRoute<OnboardRoute>(
+    path: 'onboard',
+    name: 'Onboard',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const OnBoarView();
+}
+
+final class SettingsRoute extends GoRouteData with _$SettingsRoute {
+  const SettingsRoute();
+
+  static const route = TypedGoRoute<SettingsRoute>(
+    path: 'settings',
+    name: 'Settings',
+    routes: [
+      DevelopersRoute.route,
+      ApplicationInformationRoute.route,
+    ],
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsView();
+}
+
+final class DevelopersRoute extends GoRouteData with _$DevelopersRoute {
+  const DevelopersRoute();
+
+  static const route = TypedGoRoute<DevelopersRoute>(
+    path: 'developers',
+    name: 'Developers',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const DevelopersView();
+}
+
+final class ApplicationInformationRoute extends GoRouteData
+    with _$ApplicationInformationRoute {
+  const ApplicationInformationRoute();
+
+  static const route = TypedGoRoute<ApplicationInformationRoute>(
+    path: 'appInfo',
+    name: 'Application Information',
+  );
+
+  @override
+  // TODO: Bu sayfa yapılacak.
+  Widget build(BuildContext context, GoRouterState state) =>
+      const Text('Bu sayfa yapılacak.');
+}
+
+final class UsefulLinksRoute extends GoRouteData with _$UsefulLinksRoute {
+  const UsefulLinksRoute();
+
+  static const route = TypedGoRoute<UsefulLinksRoute>(
+    path: 'useful_links',
+    name: 'Useful Links',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const UsefulLinksView();
 }

@@ -132,11 +132,11 @@ final class _ShareAddressButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return IconButton(
       onPressed: () {
         '${model.name} ${model.description} ${model.expireDate}'.ext.share();
       },
-      child: Icon(
+      icon: Icon(
         AppIcons.share,
         color: context.general.colorScheme.primary,
       ),

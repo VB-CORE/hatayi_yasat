@@ -22,14 +22,14 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
+            final tabWidth = constraints.maxWidth / 3;
             return Stack(
               children: [
                 AnimatedPositioned(
                   bottom: WidgetSizes.spacingXxs,
                   top: WidgetSizes.spacingXxs,
-                  left: _leftPosition,
-                  right: _rightPosition,
-                  width: constraints.maxWidth / 3,
+                  left: _leftPosition(tabWidth),
+                  width: tabWidth - (WidgetSizes.spacingXxs * 2),
                   duration: Durations.long1,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
@@ -86,12 +86,16 @@ mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
   NewsEventJobTabs _currentTab = NewsEventJobTabs.news;
 
   /// Returns the left position of the selected tab indicator.
-  double? get _leftPosition =>
-      _currentTab == NewsEventJobTabs.jobs ? null : WidgetSizes.spacingXxs;
-
-  /// Returns the right position of the selected tab indicator.
-  double? get _rightPosition =>
-      _currentTab == NewsEventJobTabs.news ? null : WidgetSizes.spacingXxs;
+  double _leftPosition(double tabWidth) {
+    switch (_currentTab) {
+      case NewsEventJobTabs.news:
+        return WidgetSizes.spacingXxs;
+      case NewsEventJobTabs.event:
+        return tabWidth + WidgetSizes.spacingXxs;
+      case NewsEventJobTabs.jobs:
+        return (tabWidth * 2) + WidgetSizes.spacingXxs;
+    }
+  }
 }
 
 final class _CustomTabButton extends StatelessWidget {
@@ -113,6 +117,7 @@ final class _CustomTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
+      borderRadius: CustomRadius.medium,
       child: SizedBox(
         height: WidgetSizes.spacingXxl7,
         child: Center(

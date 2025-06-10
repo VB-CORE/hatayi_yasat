@@ -35,7 +35,7 @@ dependencies:
 
   #core
   cached_network_image: ^3.2.3
-  go_router: ^14.2.0
+  go_router: ^15.1.3
 
   #util
 
@@ -117,7 +117,7 @@ dev_dependencies:
   very_good_analysis: ^7.0.0
 
   riverpod_generator: ^2.3.8
-  go_router_builder: ^2.4.0
+  go_router_builder: ^3.0.0
 flutter_gen:
   output: lib/product/generated/
   integrations:
@@ -142,7 +142,7 @@ scripts:
   podUpdate: cd ios && pod update && cd ..
   fios: flutter clean && flutter pub get && cd ios && pod install && cd ..
   emulator: firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data
-  
+
   updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true

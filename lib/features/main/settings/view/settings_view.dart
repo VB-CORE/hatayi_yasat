@@ -7,7 +7,6 @@ import 'package:lifeclient/features/main/settings/model/contact_model.dart';
 import 'package:lifeclient/features/sub_feature/web_view/app_about_web_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/navigation/settings_router/settings_router.dart';
 import 'package:lifeclient/product/package/app_review/app_review.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
@@ -30,6 +29,12 @@ final class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      appBar: AppBar(
+        title: GeneralSubTitle(
+          value: LocaleKeys.settings_title.tr(context: context),
+        ),
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverList.list(

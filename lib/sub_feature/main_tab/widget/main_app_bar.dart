@@ -17,6 +17,7 @@ final class _MainAppBar extends AppBar {
             icon: const Icon(AppIcons.notifications),
           ),
           automaticallyImplyLeading: false,
+          centerTitle: true,
           title: TextButton(
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
@@ -39,6 +40,12 @@ final class _MainAppBar extends AppBar {
             ),
           ),
           actions: [
+            IconButton(
+              onPressed: () async {
+                await const SettingsRoute().push<void>(context);
+              },
+              icon: const Icon(AppIcons.settings),
+            ),
             const _CustomPopupMenu(),
           ],
         );
