@@ -16,6 +16,8 @@ final class SettingsRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const Text('data');
+
+  void go(BuildContext context) {}
 }
 
 final class DevelopersRoute extends GoRouteData {

@@ -79,12 +79,6 @@ final class _CustomPopupMenu extends StatelessWidget {
             },
           ),
           _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.favorite_title,
-            destination: () {
-              const FavoriteRoute().push<void>(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
             itemLabel: LocaleKeys.chain_stores_title,
             destination: () {
               const ChainStoresRoute().go(context);
