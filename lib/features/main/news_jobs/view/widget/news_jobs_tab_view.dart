@@ -1,14 +1,18 @@
 part of '../news_jobs_view.dart';
 
 @immutable
-final class _NewsJobsTabView extends StatelessWidget {
-  const _NewsJobsTabView();
+final class _NewsEventJobsTabView extends StatelessWidget {
+  const _NewsEventJobsTabView();
 
   @override
   Widget build(BuildContext context) {
     return const TabBarView(
       physics: NeverScrollableScrollPhysics(),
-      children: [TabNewsView(), TabJobsView()],
+      children: [
+        TabNewsView(),
+        TabJobsView(),
+        EventView(),
+      ],
     );
   }
 }

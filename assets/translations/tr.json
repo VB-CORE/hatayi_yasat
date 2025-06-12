@@ -111,7 +111,6 @@
     "search": "Ara",
     "notifications": "Bildirimler"
   },
-
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
@@ -179,7 +178,7 @@
     "home": "Anasayfa",
     "activities": "Etkinlikler",
     "news": "Haberler",
-    "settings": "Ayarlar",
+    "favorite": "Favoriler",
     "request": "Talep",
     "advertise": "İş İlanı"
   },

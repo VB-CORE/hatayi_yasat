@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
-import 'package:lifeclient/features/main/settings/view/settings_view.dart';
+import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
@@ -31,14 +31,14 @@ final class TabModels {
         title: LocaleKeys.navigationTabs_activities,
       ),
       TabModel(
-        page: const NewsJobsView(),
+        page: const NewsEventJobsView(),
         icon: const Icon(AppIcons.textSnippet),
         title: LocaleKeys.navigationTabs_news,
       ),
       TabModel(
-        page: const SettingsView(),
-        icon: const Icon(AppIcons.settings),
-        title: LocaleKeys.navigationTabs_settings,
+        page: const FavoriteView(),
+        icon: const Icon(AppIcons.favorite),
+        title: LocaleKeys.navigationTabs_favorite,
       ),
     ];
   }

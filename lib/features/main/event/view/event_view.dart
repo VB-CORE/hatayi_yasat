@@ -6,7 +6,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/event/provider/event_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/navigation/event_router/event_router.dart';
 import 'package:lifeclient/product/widget/builder/firestore_grid_view.dart';
 import 'package:lifeclient/product/widget/card/event_card.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';

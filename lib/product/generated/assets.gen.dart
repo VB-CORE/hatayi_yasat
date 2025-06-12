@@ -119,7 +119,7 @@ class $AssetsTranslationsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsDocsGen docs = $AssetsDocsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
@@ -162,7 +162,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -322,6 +322,9 @@ class LottieGenImage {
     bool? addRepaintBoundary,
     FilterQuality? filterQuality,
     void Function(String)? onWarning,
+    _lottie.LottieDecoder? decoder,
+    _lottie.RenderCache? renderCache,
+    bool? backgroundLoading,
   }) {
     return _lottie.Lottie.asset(
       _assetName,
@@ -346,6 +349,9 @@ class LottieGenImage {
       addRepaintBoundary: addRepaintBoundary,
       filterQuality: filterQuality,
       onWarning: onWarning,
+      decoder: decoder,
+      renderCache: renderCache,
+      backgroundLoading: backgroundLoading,
     );
   }
 

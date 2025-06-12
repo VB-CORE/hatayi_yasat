@@ -5,8 +5,6 @@ import 'package:lifeclient/features/details/view/link_detail_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
-import 'package:lifeclient/product/navigation/event_router/event_router.dart';
-import 'package:lifeclient/product/navigation/news_jobs_router/news_jobs_router.dart';
 import 'package:lifeclient/product/widget/sheet/advertise_sheet.dart';
 import 'package:lifeclient/product/widget/snackbar/error_snack_bar.dart';
 

@@ -1,15 +1,15 @@
 part of '../news_jobs_view.dart';
 
 @immutable
-final class _NewsJobsTabBar extends StatefulWidget {
-  const _NewsJobsTabBar();
+final class _NewsEventJobsTabBar extends StatefulWidget {
+  const _NewsEventJobsTabBar();
 
   @override
-  State<_NewsJobsTabBar> createState() => _NewsJobsTabBarState();
+  State<_NewsEventJobsTabBar> createState() => _NewsEventJobsTabBarState();
 }
 
-class _NewsJobsTabBarState extends State<_NewsJobsTabBar>
-    with _NewsJobsTabMixin {
+class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
+    with _NewsEventJobsTabMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,14 +22,14 @@ class _NewsJobsTabBarState extends State<_NewsJobsTabBar>
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
+            final tabWidth = constraints.maxWidth / 3;
             return Stack(
               children: [
                 AnimatedPositioned(
                   bottom: WidgetSizes.spacingXxs,
                   top: WidgetSizes.spacingXxs,
-                  left: _leftPosition,
-                  right: _rightPosition,
-                  width: constraints.maxWidth / 2,
+                  left: _leftPosition(tabWidth),
+                  width: tabWidth - (WidgetSizes.spacingXxs * 2),
                   duration: Durations.long1,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
@@ -42,17 +42,25 @@ class _NewsJobsTabBarState extends State<_NewsJobsTabBar>
                   children: [
                     Expanded(
                       child: _CustomTabButton(
-                        tab: NewsJobTabs.news,
+                        tab: NewsEventJobTabs.news,
                         onPressed: () =>
-                            _changeCurrentTabView(NewsJobTabs.news),
+                            _changeCurrentTabView(NewsEventJobTabs.news),
                         selectedTab: _currentTab,
                       ),
                     ),
                     Expanded(
                       child: _CustomTabButton(
-                        tab: NewsJobTabs.jobs,
+                        tab: NewsEventJobTabs.event,
                         onPressed: () =>
-                            _changeCurrentTabView(NewsJobTabs.jobs),
+                            _changeCurrentTabView(NewsEventJobTabs.event),
+                        selectedTab: _currentTab,
+                      ),
+                    ),
+                    Expanded(
+                      child: _CustomTabButton(
+                        tab: NewsEventJobTabs.jobs,
+                        onPressed: () =>
+                            _changeCurrentTabView(NewsEventJobTabs.jobs),
                         selectedTab: _currentTab,
                       ),
                     ),
@@ -67,23 +75,27 @@ class _NewsJobsTabBarState extends State<_NewsJobsTabBar>
   }
 }
 
-mixin _NewsJobsTabMixin on State<_NewsJobsTabBar> {
-  void _changeCurrentTabView(NewsJobTabs tab) {
+mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
+  void _changeCurrentTabView(NewsEventJobTabs tab) {
     DefaultTabController.maybeOf(context)?.animateTo(tab.index);
     setState(() {
       _currentTab = tab;
     });
   }
 
-  NewsJobTabs _currentTab = NewsJobTabs.news;
+  NewsEventJobTabs _currentTab = NewsEventJobTabs.news;
 
   /// Returns the left position of the selected tab indicator.
-  double? get _leftPosition =>
-      _currentTab == NewsJobTabs.jobs ? null : WidgetSizes.spacingXxs;
-
-  /// Returns the right position of the selected tab indicator.
-  double? get _rightPosition =>
-      _currentTab == NewsJobTabs.news ? null : WidgetSizes.spacingXxs;
+  double _leftPosition(double tabWidth) {
+    switch (_currentTab) {
+      case NewsEventJobTabs.news:
+        return WidgetSizes.spacingXxs;
+      case NewsEventJobTabs.event:
+        return tabWidth + WidgetSizes.spacingXxs;
+      case NewsEventJobTabs.jobs:
+        return (tabWidth * 2) + WidgetSizes.spacingXxs;
+    }
+  }
 }
 
 final class _CustomTabButton extends StatelessWidget {
@@ -92,9 +104,9 @@ final class _CustomTabButton extends StatelessWidget {
     required this.onPressed,
     required this.selectedTab,
   });
-  final NewsJobTabs tab;
+  final NewsEventJobTabs tab;
   final VoidCallback onPressed;
-  final NewsJobTabs selectedTab;
+  final NewsEventJobTabs selectedTab;
 
   TextStyle? _currentSelectedTextStyle(BuildContext context) =>
       selectedTab == tab
@@ -105,6 +117,7 @@ final class _CustomTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
+      borderRadius: CustomRadius.medium,
       child: SizedBox(
         height: WidgetSizes.spacingXxl7,
         child: Center(

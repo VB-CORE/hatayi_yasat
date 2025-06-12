@@ -15,7 +15,7 @@ final class _FavoriteSearchField extends ConsumerWidget {
       padding: const PagePadding.verticalVeryLowSymmetric() +
           const PagePadding.onlyTopLow(),
       sliver: CustomSearchField(
-        hint: LocaleKeys.favorite_search.tr(),
+        hint: LocaleKeys.favorite_search.tr(context: context),
         onChange: onChanged,
       ).ext.sliver,
     );

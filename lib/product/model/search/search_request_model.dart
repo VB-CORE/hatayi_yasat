@@ -12,7 +12,7 @@ final class SearchRequestModel {
   factory SearchRequestModel.fromJson(Map<String, dynamic> json) =>
       _$SearchRequestModelFromJson(json);
   final String term;
-  @JsonKey(defaultValue: 1)
+  @JsonKey()
   final int page;
 
   Map<String, dynamic> toJson() => _$SearchRequestModelToJson(this);
