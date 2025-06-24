@@ -7,7 +7,8 @@ final class _HomeKeys {
   final Key homeScrollableArea = const Key('home_scrollable_area');
   final Key categoryArea = const Key('category_area');
   Key categoryCard(int index) => Key('category_card_$index');
-  Key placeCard(String id) => Key('place_card_$id');
+
+  /// define place card
 
   final Key placesGridArea = const Key('places_grid_area');
 }
