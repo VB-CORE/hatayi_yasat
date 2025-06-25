@@ -9,7 +9,7 @@ import '../../core/test_safety_extension.dart';
 final class HomeTest extends BaseTestScenario {
   HomeTest(super.$, {required super.next});
 
-  final String _placeIdFirst = 'nTKEyTtxcxwrSxpS1J8b';
+  final String _placeIdFirst = '2oa8YItW9YLKhXDSolQO';
   @override
   Future<bool> run() async {
     final categoryArea = $(K.homeKeys.categoryArea);
@@ -25,6 +25,22 @@ final class HomeTest extends BaseTestScenario {
     /// 2. press the card
     /// 3. drag to bottom
     /// 4. press home
+    ///
+
+    final placeCard = $(K.homeKeys.placeCard(_placeIdFirst));
+    await placeCard.waitUntilVisible();
+    expect(placeCard.exists, isTrue, reason: 'place card is not visible');
+    await placeCard.tap();
+    await $.pumpAndTrySettle();
+    await $(BackButton).tap();
+    await $.pumpAndTrySettle();
+
+    await $.tester.drag(
+      $(K.homeKeys.homeScrollableArea),
+      const Offset(0, -300),
+    );
+    await $.pumpAndTrySettle();
+    await $.native.pressHome();
 
     return true;
   }

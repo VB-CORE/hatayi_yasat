@@ -44,6 +44,7 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
       itemGridBuilder: (context, model) {
         return Padding(
+          key: K.homeKeys.placeCard(model.documentId),
           padding: const PagePadding.onlyBottom(),
           child: GeneralPlaceGridCard(
             onCardTap: () {

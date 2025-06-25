@@ -11,4 +11,5 @@ final class _HomeKeys {
   /// define place card
 
   final Key placesGridArea = const Key('places_grid_area');
+  Key placeCard(String id) => Key('place_card_$id');
 }
