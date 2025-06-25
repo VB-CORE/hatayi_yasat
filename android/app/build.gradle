@@ -50,7 +50,7 @@ android {
         applicationId 'com.hatayiyasat.app'
         // You can update the following values to match your application needs.
         minSdkVersion 24
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
