@@ -180,7 +180,8 @@
     "news": "News",
     "favorite": "Favorites",
     "request": "Request",
-    "advertise": "Advertise"
+    "advertise": "Advertise",
+    "community": "Community"
   },
   "projectRequest": {
     "title": "New Project Request",

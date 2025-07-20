@@ -10,8 +10,8 @@ final class _NewsEventJobsTabView extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: [
         TabNewsView(),
-        TabJobsView(),
         EventView(),
+        TabJobsView(),
       ],
     );
   }

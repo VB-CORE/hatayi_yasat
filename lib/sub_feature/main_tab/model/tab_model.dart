@@ -26,14 +26,14 @@ final class TabModels {
         title: LocaleKeys.navigationTabs_home,
       ),
       TabModel(
-        page: const EventView(),
-        icon: const Icon(AppIcons.event),
-        title: LocaleKeys.navigationTabs_activities,
+        page: const NewsEventJobsView(),
+        icon: const Icon(AppIcons.community),
+        title: LocaleKeys.navigationTabs_community,
       ),
       TabModel(
-        page: const NewsEventJobsView(),
-        icon: const Icon(AppIcons.textSnippet),
-        title: LocaleKeys.navigationTabs_news,
+        page: const EventView(),
+        icon: const Icon(AppIcons.community),
+        title: LocaleKeys.navigationTabs_activities,
       ),
       TabModel(
         page: const FavoriteView(),
