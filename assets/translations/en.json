@@ -43,7 +43,8 @@
     "call": "Call",
     "share": "Share",
     "error": "Error",
-    "more": "More"
+    "more": "More",
+    "understood": "Understood"
   },
   "component": {
     "mapPicker": {
@@ -233,7 +234,8 @@
     "advertise": "Job postings has not been entered yet.",
     "image": "Image could not be loaded.",
     "chainStore": "Chain stores has not been entered yet.",
-    "usefulLinks": "Useful links has not been entered yet."
+    "usefulLinks": "Useful links has not been entered yet.",
+    "memories": "No memories found yet."
   },
   "months": {
     "jan": "January",
@@ -329,5 +331,18 @@
       "description": "After your selection, new places will be displayed.",
       "showResult": "Show results for {}"
     }
+  },
+  "main": {
+    "home": "Home",
+    "news": "News",
+    "campaign": "Events",
+    "advertisement": "Job Postings",
+    "settings": "Settings",
+    "memories": "Memories"
+  },
+  "historyPage": {
+    "welcomeTitle": "Welcome to Memories Page!",
+    "welcomeDescription": "On this page, you can share your beautiful memories and view other users' memories. It offers an Instagram-like experience.",
+    "addPhotoInfo": "Click the + button in the bottom right to add new memories."
   }
 }

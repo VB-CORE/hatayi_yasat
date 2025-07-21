@@ -43,7 +43,8 @@
     "call": "Ara",
     "share": "Paylaş",
     "error": "Hata",
-    "more": "Daha fazla"
+    "more": "Daha fazla",
+    "understood": "Anladım"
   },
   "component": {
     "mapPicker": {
@@ -233,7 +234,8 @@
     "advertise": "İş ilanı henüz girilmemiş.",
     "image": "Resim yüklenemedi.",
     "chainStore": "Zincir mağaza henüz girilmemiş.",
-    "usefulLinks": "Faydalı linkler henüz girilmemiş."
+    "usefulLinks": "Faydalı linkler henüz girilmemiş.",
+    "memories": "Henüz hatıra bulunamadı."
   },
   "months": {
     "jan": "Ocak",
@@ -329,5 +331,18 @@
       "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
       "showResult": "{} için sonuçları görüntüle"
     }
+  },
+  "main": {
+    "home": "Ana Sayfa",
+    "news": "Haberler",
+    "campaign": "Etkinlikler",
+    "advertisement": "İş İlanları",
+    "settings": "Ayarlar",
+    "memories": "Hatıralar"
+  },
+  "historyPage": {
+    "welcomeTitle": "Hatıralar Sayfasına Hoş Geldiniz!",
+    "welcomeDescription": "Bu sayfada güzel anılarınızı paylaşabilir ve diğer kullanıcıların hatıralarını görüntüleyebilirsiniz. Instagram benzeri bir deneyim sunar.",
+    "addPhotoInfo": "Sağ alttaki + butonuna tıklayarak yeni hatıra ekleyebilirsiniz."
   }
 }
