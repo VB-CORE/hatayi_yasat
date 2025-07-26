@@ -8,16 +8,14 @@ part 'memory_model.g.dart';
 
 @JsonSerializable()
 @immutable
-final class MemoryModel with EquatableMixin {
-  MemoryModel({
+final class MemoryModel
+    with EquatableMixin
+    implements BaseFirebaseConvert<MemoryModel> {
+  const MemoryModel({
     required this.documentId,
     this.title,
     this.description,
     this.imageUrl,
-    this.thumbnailUrl,
-    this.userId,
-    this.isPublic = true,
-    this.tags = const [],
     this.createdAt,
     this.updatedAt,
   });
@@ -25,16 +23,13 @@ final class MemoryModel with EquatableMixin {
   factory MemoryModel.fromJson(Map<String, dynamic> json) =>
       _$MemoryModelFromJson(json);
 
-  factory MemoryModel.empty() => MemoryModel(documentId: '');
+  factory MemoryModel.empty() => const MemoryModel(documentId: '');
 
+  @override
   final String documentId;
   final String? title;
   final String? description;
-  final String? imageUrl;
-  final String? thumbnailUrl;
-  final String? userId;
-  final bool isPublic;
-  final List<String> tags;
+  final List<String>? imageUrl;
 
   @JsonKey(
     toJson: FirebaseTimeParse.dateTimeToTimestamp,
@@ -56,10 +51,6 @@ final class MemoryModel with EquatableMixin {
         title,
         description,
         imageUrl,
-        thumbnailUrl,
-        userId,
-        isPublic,
-        tags,
         createdAt,
         updatedAt,
       ];
@@ -68,11 +59,7 @@ final class MemoryModel with EquatableMixin {
     String? documentId,
     String? title,
     String? description,
-    String? imageUrl,
-    String? thumbnailUrl,
-    String? userId,
-    bool? isPublic,
-    List<String>? tags,
+    List<String>? imageUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -81,12 +68,14 @@ final class MemoryModel with EquatableMixin {
       title: title ?? this.title,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
-      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
-      userId: userId ?? this.userId,
-      isPublic: isPublic ?? this.isPublic,
-      tags: tags ?? this.tags,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
+  }
+
+  @override
+  MemoryModel fromFirebase(DocumentSnapshot<Map<String, dynamic>> json) {
+    return MemoryModel.fromJson(json.data() ?? {})
+      ..copyWith(documentId: json.id);
   }
 }

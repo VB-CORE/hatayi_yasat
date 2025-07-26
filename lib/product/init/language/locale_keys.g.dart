@@ -45,6 +45,7 @@ abstract class  LocaleKeys {
   static const button_share = 'button.share';
   static const button_error = 'button.error';
   static const button_more = 'button.more';
+  static const button_understood = 'button.understood';
   static const button = 'button';
   static const component_mapPicker_title = 'component.mapPicker.title';
   static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
@@ -212,6 +213,7 @@ abstract class  LocaleKeys {
   static const notFound_image = 'notFound.image';
   static const notFound_chainStore = 'notFound.chainStore';
   static const notFound_usefulLinks = 'notFound.usefulLinks';
+  static const notFound_memories = 'notFound.memories';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -285,5 +287,16 @@ abstract class  LocaleKeys {
   static const sheet_changeCity_showResult = 'sheet.changeCity.showResult';
   static const sheet_changeCity = 'sheet.changeCity';
   static const sheet = 'sheet';
+  static const main_home = 'main.home';
+  static const main_news = 'main.news';
+  static const main_campaign = 'main.campaign';
+  static const main_advertisement = 'main.advertisement';
+  static const main_settings = 'main.settings';
+  static const main_memories = 'main.memories';
+  static const main = 'main';
+  static const historyPage_welcomeTitle = 'historyPage.welcomeTitle';
+  static const historyPage_welcomeDescription = 'historyPage.welcomeDescription';
+  static const historyPage_addPhotoInfo = 'historyPage.addPhotoInfo';
+  static const historyPage = 'historyPage';
 
 }

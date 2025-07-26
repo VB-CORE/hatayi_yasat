@@ -15,4 +15,10 @@ final class AppIconSizes {
 
   /// size is [20]
   static const double medium = 20;
+
+  /// size is [28]
+  static const double large = 28;
+
+  /// size is [50]
+  static const double xLarge = 50;
 }

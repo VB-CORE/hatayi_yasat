@@ -17,21 +17,10 @@ final class HistoryViewModel extends _$HistoryViewModel
   }
 
   Query<MemoryModel?> fetchMemoriesQuery() {
-    // TODO: Implement proper Firebase query for memories
-    // For now using a placeholder query structure similar to campaigns
-    return firebaseService
-        .collectionReference(
-          CollectionPaths.approvedCampaigns, // Temporary - should be memories
-          CampaignModel(),
-        )
-        .where(
-          'isApproved',
-          isEqualTo: true,
-        )
-        .orderBy(
-          'createdAt',
-          descending: true,
-        ) as Query<MemoryModel?>;
+    return firebaseService.collectionReference(
+      CollectionPaths.forrest, // Temporary - should be memories
+      MemoryModel.empty(),
+    );
   }
 
   // TEMP: Mock data için geçici method - test amaçlı

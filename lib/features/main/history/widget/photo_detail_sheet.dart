@@ -181,7 +181,7 @@ final class _PhotoDetailItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: memory.imageUrl != null && memory.imageUrl!.isNotEmpty
             ? CustomNetworkImage(
-                imageUrl: memory.imageUrl,
+                imageUrl: memory.imageUrl?.first,
                 fit: BoxFit.contain,
               )
             : Container(

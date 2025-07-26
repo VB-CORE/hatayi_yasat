@@ -8,6 +8,10 @@ import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.d
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/memory_model.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 part 'widget/history_grid_builder.dart';
@@ -33,21 +37,17 @@ class _HistoryViewState extends ConsumerState<HistoryView> {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Hatıralar', // LocaleKeys.main_memories.tr(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: const _HistoryGridBuilder(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _openGoogleForm,
-        child: const Icon(Icons.add_a_photo_outlined),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(
+          bottom: AppIconSizes.xLarge * 2.5,
+        ),
+        child: FloatingActionButton(
+          // backgroundColor: ColorsCustom.brandeisBlue,
+          onPressed: _openGoogleForm,
+          child: const Icon(Icons.add_a_photo_outlined),
+        ),
       ),
     );
   }
