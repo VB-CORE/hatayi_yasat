@@ -35,7 +35,7 @@ final class _DialogTitle extends StatelessWidget {
         const SizedBox(width: AppIconSizes.smallX),
         Expanded(
           child: Text(
-            'Hatıra Ormanı',
+            LocaleKeys.historyPage_welcomeTitle.tr(),
             style: context.general.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),

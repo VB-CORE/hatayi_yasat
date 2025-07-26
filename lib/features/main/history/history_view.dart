@@ -6,7 +6,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/history/provider/history_view_model.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/memory_model.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';

@@ -103,9 +103,9 @@ final class _MemoryGridItem extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(4),
-          child: (model.imageUrl?.firstOrNull ?? '').isNotEmpty
+          child: (model.imageUrls?.firstOrNull ?? '').isNotEmpty
               ? CustomNetworkImage(
-                  imageUrl: model.imageUrl?.firstOrNull,
+                  imageUrl: model.imageUrls?.firstOrNull ?? '',
                   fit: BoxFit.cover,
                 )
               : Container(
