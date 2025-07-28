@@ -1,8 +1,18 @@
-part of '../history_view.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/firebase_remote_enums.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 @immutable
-final class _HistoryInfoDialog extends StatelessWidget {
-  const _HistoryInfoDialog();
+final class HistoryInfoDialog extends StatelessWidget {
+  const HistoryInfoDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,37 +20,9 @@ final class _HistoryInfoDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: CustomRadius.large,
       ),
-      title: _DialogTitle(),
       content: _DialogContent(),
       actions: [
         _DialogAction(),
-      ],
-    );
-  }
-}
-
-/// Dialog title with icon and text
-final class _DialogTitle extends StatelessWidget {
-  const _DialogTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(
-          AppIcons.photoLibrary,
-          color: ColorsCustom.brandeisBlue,
-          size: AppIconSizes.large,
-        ),
-        const SizedBox(width: AppIconSizes.smallX),
-        Expanded(
-          child: Text(
-            LocaleKeys.historyPage_welcomeTitle.tr(),
-            style: context.general.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -52,67 +34,17 @@ final class _DialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _ImagePlaceholder(),
-        SizedBox(height: AppIconSizes.xMedium),
-        _DescriptionText(),
-        SizedBox(height: AppIconSizes.smallX),
-        _InfoBox(),
-      ],
-    );
-  }
-}
-
-/// Dummy image placeholder container
-final class _ImagePlaceholder extends StatelessWidget {
-  const _ImagePlaceholder({super.key});
-
-  static const double _containerHeight = 150;
-  static const double _borderWidth = 2;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: _containerHeight,
-      decoration: const BoxDecoration(
-        color: ColorsCustom.gray,
-        borderRadius: CustomRadius.medium,
-        border: Border.fromBorderSide(
-          BorderSide(
-            color: ColorsCustom.lightGray,
-            width: _borderWidth,
-          ),
+        CustomNetworkImage(
+          imageUrl: FirebaseRemoteEnums.memoryForestImage.valueString,
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(
-            AppIcons.collections,
-            size: AppIconSizes.xLarge,
-            color: ColorsCustom.warmGrey,
-          ),
-          Padding(
-            padding: const PagePadding.onlyTopLow(),
-            child: Text(
-              'Dummy Image',
-              style: context.general.textTheme.bodyMedium?.copyWith(
-                color: ColorsCustom.darkGray,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Text(
-            '(Sonra güncellenecek)',
-            style: context.general.textTheme.bodySmall?.copyWith(
-              color: ColorsCustom.warmGrey,
-            ),
-          ),
-        ],
-      ),
+        const SizedBox(height: AppIconSizes.xMedium),
+        const _DescriptionText(),
+        const SizedBox(height: AppIconSizes.smallX),
+        const _InfoBox(),
+      ],
     );
   }
 }

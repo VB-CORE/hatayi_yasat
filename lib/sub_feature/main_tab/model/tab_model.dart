@@ -32,8 +32,8 @@ final class TabModels {
       ),
       TabModel(
         page: const HistoryView(),
-        icon: const Icon(AppIcons.community),
-        title: LocaleKeys.navigationTabs_activities,
+        icon: const Icon(AppIcons.tree),
+        title: LocaleKeys.navigationTabs_memories,
       ),
       TabModel(
         page: const FavoriteView(),

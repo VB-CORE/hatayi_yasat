@@ -14,11 +14,13 @@ final class CustomNetworkImage extends StatelessWidget {
     this.imageUrl,
     this.fit,
     this.height,
+    this.placeholder,
   });
 
   final String? imageUrl;
   final BoxFit? fit;
   final double? height;
+  final Widget? placeholder;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,9 @@ final class CustomNetworkImage extends StatelessWidget {
       width: context.sized.width,
       height: height,
       placeholder: (context, url) {
+        if (placeholder != null) {
+          return placeholder!;
+        }
         return Shimmer.fromColors(
           baseColor: context.general.colorScheme.onPrimaryContainer,
           highlightColor:

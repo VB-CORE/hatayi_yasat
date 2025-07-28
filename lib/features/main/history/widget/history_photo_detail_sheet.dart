@@ -1,42 +1,44 @@
-part of '../history_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/main/history/provider/history_view_model.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/package/share/custom_share.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 @immutable
-final class _PhotoDetailSheet extends ConsumerStatefulWidget {
-  const _PhotoDetailSheet({
+final class HistoryPhotoDetailSheet extends ConsumerStatefulWidget {
+  const HistoryPhotoDetailSheet({
     required this.memory,
-    required this.allMemories,
-    required this.initialIndex,
     super.key,
   });
 
   final MemoryModel memory;
-  final List<MemoryModel> allMemories;
-  final int initialIndex;
 
   @override
-  ConsumerState<_PhotoDetailSheet> createState() => _PhotoDetailSheetState();
+  ConsumerState<HistoryPhotoDetailSheet> createState() =>
+      _HistoryPhotoDetailSheetState();
 }
 
-class _PhotoDetailSheetState extends ConsumerState<_PhotoDetailSheet> {
-  late PageController _pageController;
-  late int _currentIndex;
-
+class _HistoryPhotoDetailSheetState
+    extends ConsumerState<HistoryPhotoDetailSheet> {
   static const double _heightRatio = 0.9;
+  int _currentIndex = 0;
+  MemoryModel get currentMemory => widget.memory;
 
   @override
   void initState() {
     super.initState();
-    _currentIndex = widget.initialIndex;
-    _pageController = PageController(initialPage: _currentIndex);
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
     super.dispose();
   }
-
-  MemoryModel get currentMemory => widget.allMemories[_currentIndex];
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +54,11 @@ class _PhotoDetailSheetState extends ConsumerState<_PhotoDetailSheet> {
         children: [
           _SheetHeader(
             currentIndex: _currentIndex,
-            totalCount: widget.allMemories.length,
+            totalCount: currentMemory.imageUrls?.length ?? 0,
           ),
           Expanded(
             child: _PhotoPageView(
-              pageController: _pageController,
-              allMemories: widget.allMemories,
+              memory: currentMemory,
               onPageChanged: _onPageChanged,
             ),
           ),
@@ -149,24 +150,39 @@ final class _CloseButton extends StatelessWidget {
 /// Photo page view container
 final class _PhotoPageView extends StatelessWidget {
   const _PhotoPageView({
-    required this.pageController,
-    required this.allMemories,
+    required this.memory,
     required this.onPageChanged,
     super.key,
   });
 
-  final PageController pageController;
-  final List<MemoryModel> allMemories;
+  final MemoryModel memory;
   final ValueChanged<int> onPageChanged;
 
   @override
   Widget build(BuildContext context) {
+    final imageUrls = memory.imageUrls;
+    if (imageUrls == null || imageUrls.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return PageView.builder(
-      controller: pageController,
       onPageChanged: onPageChanged,
-      itemCount: allMemories.length,
+      itemCount: imageUrls.length,
       itemBuilder: (context, index) {
-        return _PhotoDetailItem(memory: allMemories[index]);
+        return InteractiveViewer(
+          child: Column(
+            children: [
+              Expanded(
+                child: CustomNetworkImage(
+                  imageUrl: imageUrls[index],
+                  fit: BoxFit.contain,
+                  placeholder: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
@@ -203,9 +219,16 @@ final class _BottomInfo extends StatelessWidget {
         children: [
           _MemoryTitle(title: memory.title),
           const SizedBox(height: AppIconSizes.small),
-          _MemoryDescription(description: memory.description),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: context.sized.dynamicHeight(0.3),
+            ),
+            child: SingleChildScrollView(
+              child: _MemoryDescription(description: memory.description),
+            ),
+          ),
           const SizedBox(height: AppIconSizes.xMedium),
-          const _ActionButtons(),
+          _ActionButtons(memory: memory),
         ],
       ),
     );
@@ -260,14 +283,19 @@ final class _MemoryDescription extends StatelessWidget {
 
 /// Action buttons row
 final class _ActionButtons extends StatelessWidget {
-  const _ActionButtons({super.key});
+  const _ActionButtons({
+    required this.memory,
+    super.key,
+  });
+
+  final MemoryModel memory;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        _ShareButton(),
-        _FavoriteButton(),
+        _ShareButton(memory: memory),
+        MemoryFavoriteButton(memory: memory),
       ],
     );
   }
@@ -275,14 +303,17 @@ final class _ActionButtons extends StatelessWidget {
 
 /// Share button
 final class _ShareButton extends StatelessWidget {
-  const _ShareButton({super.key});
+  const _ShareButton({
+    required this.memory,
+    super.key,
+  });
+
+  final MemoryModel memory;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        // TODO: Implement share functionality
-      },
+      onPressed: () => CustomShare.shareMemory(memory),
       icon: const Icon(
         AppIcons.share,
         color: ColorsCustom.white,
@@ -292,94 +323,4 @@ final class _ShareButton extends StatelessWidget {
   }
 }
 
-/// Favorite button
-final class _FavoriteButton extends StatelessWidget {
-  const _FavoriteButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        // TODO: Implement favorite functionality
-      },
-      icon: const Icon(
-        AppIcons.favoriteBorder,
-        color: ColorsCustom.white,
-        size: AppIconSizes.medium,
-      ),
-    );
-  }
-}
-
 /// Individual photo item in the page view
-@immutable
-final class _PhotoDetailItem extends StatelessWidget {
-  const _PhotoDetailItem({
-    required this.memory,
-    super.key,
-  });
-
-  final MemoryModel memory;
-
-  static const double _marginHorizontal = 8;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: _marginHorizontal),
-      decoration: const BoxDecoration(
-        borderRadius: CustomRadius.medium,
-      ),
-      child: ClipRRect(
-        borderRadius: CustomRadius.medium,
-        child: _buildImageContent(),
-      ),
-    );
-  }
-
-  Widget _buildImageContent() {
-    final hasImages = memory.imageUrls != null && memory.imageUrls!.isNotEmpty;
-
-    if (hasImages) {
-      return CustomNetworkImage(
-        imageUrl: memory.imageUrls?.first,
-        fit: BoxFit.contain,
-      );
-    }
-
-    return const _PhotoPlaceholder();
-  }
-}
-
-/// Placeholder when photo is not available
-final class _PhotoPlaceholder extends StatelessWidget {
-  const _PhotoPlaceholder({super.key});
-
-  static const String _placeholderText = 'Image not available';
-
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: ColorsCustom.darkGray,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              AppIcons.gallery,
-              color: ColorsCustom.warmGrey,
-              size: AppIconSizes.xLarge,
-            ),
-            const SizedBox(height: AppIconSizes.xMedium),
-            Text(
-              _placeholderText,
-              style: context.general.textTheme.titleMedium?.copyWith(
-                color: ColorsCustom.warmGrey,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

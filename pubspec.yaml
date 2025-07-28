@@ -96,7 +96,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.4.7
+      ref: v5.4.8
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
@@ -133,11 +133,11 @@ flutter_launcher_icons:
 
 scripts:
   lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
-  dartBuild: flutter pub run build_runner build --delete-conflicting-outputs
-  build: flutter pub run build_runner build
-  buildForce: flutter pub run build_runner build --delete-conflicting-outputs
+  dartBuild: dart run build_runner build --delete-conflicting-outputs
+  build: dart run build_runner build
+  buildForce: dart run build_runner build --delete-conflicting-outputs
   pubGet: sh ./scripts/pub_get.sh
-  watchBuild: flutter pub run build_runner watch --delete-conflicting-outputs
+  watchBuild: dart run build_runner watch --delete-conflicting-outputs
   general: rps build && rps lang
   podUpdate: cd ios && pod update && cd ..
   fios: flutter clean && flutter pub get && cd ios && pod install && cd ..

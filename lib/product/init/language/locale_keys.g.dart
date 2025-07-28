@@ -166,6 +166,7 @@ abstract class  LocaleKeys {
   static const navigationTabs_request = 'navigationTabs.request';
   static const navigationTabs_advertise = 'navigationTabs.advertise';
   static const navigationTabs_community = 'navigationTabs.community';
+  static const navigationTabs_memories = 'navigationTabs.memories';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_publisher = 'projectRequest.publisher';
@@ -297,6 +298,13 @@ abstract class  LocaleKeys {
   static const historyPage_welcomeTitle = 'historyPage.welcomeTitle';
   static const historyPage_welcomeDescription = 'historyPage.welcomeDescription';
   static const historyPage_addPhotoInfo = 'historyPage.addPhotoInfo';
+  static const historyPage_favorites_title = 'historyPage.favorites.title';
+  static const historyPage_favorites_emptyTitle = 'historyPage.favorites.emptyTitle';
+  static const historyPage_favorites_emptyDescription = 'historyPage.favorites.emptyDescription';
+  static const historyPage_favorites_untitledMemory = 'historyPage.favorites.untitledMemory';
+  static const historyPage_favorites_noDescription = 'historyPage.favorites.noDescription';
+  static const historyPage_favorites = 'historyPage.favorites';
+  static const historyPage_shareSubject = 'historyPage.shareSubject';
   static const historyPage = 'historyPage';
 
 }

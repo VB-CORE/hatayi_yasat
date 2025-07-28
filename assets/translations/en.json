@@ -182,7 +182,8 @@
     "favorite": "Favorites",
     "request": "Request",
     "advertise": "Advertise",
-    "community": "Community"
+    "community": "Community",
+    "memories": "Memories"
   },
   "projectRequest": {
     "title": "New Project Request",
@@ -341,8 +342,16 @@
     "memories": "Memories"
   },
   "historyPage": {
-    "welcomeTitle": "Welcome to Memories Page!",
-    "welcomeDescription": "On this page, you can share your beautiful memories and view other users' memories. It offers an Instagram-like experience.",
-    "addPhotoInfo": "Click the + button in the bottom right to add new memories."
+    "welcomeTitle": "Our Memories Are Alive with Us",
+    "welcomeDescription": "Let's share our beautiful memories, let's live together.",
+    "addPhotoInfo": "Touch the + button in the bottom right to share your memories.",
+    "favorites": {
+      "title": "My Favorite Memories",
+      "emptyTitle": "You don't have any favorite memories yet",
+      "emptyDescription": "Touch the ❤️ button to add memories to your favorites",
+      "untitledMemory": "Untitled Memory",
+      "noDescription": "No description"
+    },
+    "shareSubject": "Keep 'Hatay Yaşat' with us!"
   }
 }

@@ -182,7 +182,8 @@
     "favorite": "Favoriler",
     "request": "Talep",
     "advertise": "İş İlanı",
-    "community": "Topluluk"
+    "community": "Topluluk",
+    "memories": "Hatıralar"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -341,8 +342,16 @@
     "memories": "Hatıralar"
   },
   "historyPage": {
-    "welcomeTitle": "Hatıralar Sayfasına Hoş Geldiniz!",
-    "welcomeDescription": "Bu sayfada güzel anılarınızı paylaşabilir ve diğer kullanıcıların hatıralarını görüntüleyebilirsiniz. Instagram benzeri bir deneyim sunar.",
-    "addPhotoInfo": "Sağ alttaki + butonuna tıklayarak yeni hatıra ekleyebilirsiniz."
+    "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
+    "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
+    "addPhotoInfo": "Sağ alttaki + butonuna dokunarak sizdeki hatıralarımızı paylaşabilirsiniz.",
+    "favorites": {
+      "title": "Favori Anılarım",
+      "emptyTitle": "Henüz favori anınız yok",
+      "emptyDescription": "Anıları favorilerinize eklemek için ❤️ butonuna dokunun",
+      "untitledMemory": "Başlıksız Anı",
+      "noDescription": "Açıklama yok"
+    },
+    "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
   }
 }
