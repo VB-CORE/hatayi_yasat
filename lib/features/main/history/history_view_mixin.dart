@@ -6,6 +6,7 @@ import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/history/widget/history_info_dialog.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/model/constant/project_general_constant.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 mixin HistoryViewMixin on ConsumerState<HistoryView>, ProjectDependencyMixin {
   @override
@@ -21,7 +22,6 @@ mixin HistoryViewMixin on ConsumerState<HistoryView>, ProjectDependencyMixin {
       await _showInfoDialog();
       await SharedCache.instance.setFirstHistoryPageVisit();
     }
-    await _showInfoDialog();
   }
 
   Future<void> _showInfoDialog() async {
@@ -34,6 +34,8 @@ mixin HistoryViewMixin on ConsumerState<HistoryView>, ProjectDependencyMixin {
 
   Future<void> openGoogleForm() async {
     const googleFormUrl = ProjectGeneralConstant.googleFormMemoryUrl;
-    await googleFormUrl.ext.launchWebsite;
+    await googleFormUrl.ext.launchWebsiteCustom(
+      mode: LaunchMode.externalApplication,
+    );
   }
 }
