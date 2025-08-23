@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/features/main/event/view/event_view.dart';
+import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
@@ -26,14 +26,14 @@ final class TabModels {
         title: LocaleKeys.navigationTabs_home,
       ),
       TabModel(
-        page: const EventView(),
-        icon: const Icon(AppIcons.event),
-        title: LocaleKeys.navigationTabs_activities,
+        page: const NewsEventJobsView(),
+        icon: const Icon(AppIcons.community),
+        title: LocaleKeys.navigationTabs_community,
       ),
       TabModel(
-        page: const NewsEventJobsView(),
-        icon: const Icon(AppIcons.textSnippet),
-        title: LocaleKeys.navigationTabs_news,
+        page: const HistoryView(),
+        icon: const Icon(AppIcons.tree),
+        title: LocaleKeys.navigationTabs_memories,
       ),
       TabModel(
         page: const FavoriteView(),

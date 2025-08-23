@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -25,6 +26,11 @@ final class HiveCacheManager extends CacheManager {
     Hive.registerAdapter<AppCacheModel>(
       '$AppCacheModel',
       (json) => const AppCacheModel().fromDynamicJson(json),
+    );
+
+    Hive.registerAdapter<MemoryCacheModel>(
+      '$MemoryCacheModel',
+      (json) => const MemoryCacheModel.empty().fromDynamicJson(json),
     );
   }
 

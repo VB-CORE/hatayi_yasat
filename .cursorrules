@@ -1,0 +1,211 @@
+# 🎯 Senior Developer Rules for Flutter Project
+# These rules enforce professional code standards across the entire project
+
+## 🏗️ ARCHITECTURE & STRUCTURE
+
+### Widget Design Patterns
+- Always use `final class` for StatelessWidget/StatefulWidget for better performance
+- Separate complex widgets into smaller, focused widget classes
+- Use descriptive class names with underscore prefix for private widgets (e.g., `_DialogTitle`)
+- Each widget should have a single responsibility
+- Add descriptive documentation comments for all widget classes
+
+### File Organization
+- Use `part of` for widget files that belong to a main view
+- Group related widgets in the same file when they're only used together
+- Keep imports organized and remove unused imports
+
+## 🔧 CONST USAGE RULES
+
+### Mandatory Const Usage
+- ALL StatelessWidget constructors MUST be const with `super.key`
+- ALL static widgets MUST use `const` keyword
+- ALL static values (padding, margins, colors, sizes) MUST be const
+- Use `const` for BorderRadius, EdgeInsets, Colors, and other immutable objects
+
+### Examples:
+```dart
+// ✅ CORRECT
+final class _MyWidget extends StatelessWidget {
+  const _MyWidget({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Icon(AppIcons.home, size: AppIconSizes.medium),
+        SizedBox(height: AppIconSizes.small),
+      ],
+    );
+  }
+}
+
+// ❌ WRONG
+class MyWidget extends StatelessWidget {
+  MyWidget();
+  
+  Widget build(context) {
+    return Column(
+      children: [
+        Icon(Icons.home, size: 24),
+        SizedBox(height: 8),
+      ],
+    );
+  }
+}
+```
+
+## 📊 MAGIC NUMBERS ELIMINATION
+
+### No Magic Numbers Policy
+- Replace ALL magic numbers with named constants
+- Use static const variables for any numeric value
+- Group related constants in dedicated classes
+
+### Examples:
+```dart
+// ✅ CORRECT
+final class _MyWidget extends StatelessWidget {
+  const _MyWidget({super.key});
+  
+  static const double _containerHeight = 150;
+  static const double _borderWidth = 2;
+  static const double _opacity = 0.1;
+  
+  // ... use _containerHeight, _borderWidth, _opacity
+}
+
+// ❌ WRONG
+Container(
+  height: 150,
+  decoration: BoxDecoration(
+    border: Border.all(width: 2),
+    color: Colors.blue.withOpacity(0.1),
+  ),
+)
+```
+
+## 🎨 UTILITY CONSTANTS USAGE
+
+### Mandatory Utility Classes
+- **Icons**: ALWAYS use `AppIcons.iconName` instead of `Icons.iconName`
+- **Sizes**: ALWAYS use `AppIconSizes.size` instead of numeric values
+- **Colors**: ALWAYS use `ColorsCustom.colorName` instead of `Colors.colorName`
+- **Padding**: ALWAYS use `PagePadding.paddingType()` instead of `EdgeInsets`
+- **BorderRadius**: ALWAYS use `CustomRadius.size` instead of `BorderRadius.circular()`
+
+### Required Imports:
+```dart
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:life_shared/life_shared.dart'; // for PagePadding
+```
+
+### Examples:
+```dart
+// ✅ CORRECT
+Icon(
+  AppIcons.home,
+  size: AppIconSizes.medium,
+  color: ColorsCustom.brandeisBlue,
+)
+
+Container(
+  padding: const PagePadding.generalAllLow(),
+  decoration: const BoxDecoration(
+    borderRadius: CustomRadius.medium,
+    color: ColorsCustom.gray,
+  ),
+)
+
+// ❌ WRONG
+Icon(
+  Icons.home,
+  size: 24,
+  color: Colors.blue,
+)
+
+Container(
+  padding: EdgeInsets.all(12),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(12),
+    color: Colors.grey[200],
+  ),
+)
+```
+
+## 🌍 LOCALIZATION RULES
+
+### Mandatory LocaleKeys Usage
+- NEVER use hardcoded strings in UI
+- ALWAYS use `LocaleKeys.key.tr()` for all user-facing text
+- Import: `import 'package:lifeclient/product/init/language/locale_keys.g.dart';`
+
+### Examples:
+```dart
+// ✅ CORRECT
+Text(LocaleKeys.button_save.tr())
+AppBar(title: Text(LocaleKeys.settings_title.tr()))
+
+// ❌ WRONG
+Text('Save')
+AppBar(title: Text('Settings'))
+```
+
+## ⚡ PERFORMANCE RULES
+
+### Widget Optimization
+- Use `final class` for all custom widgets
+- Prefer `const` constructors everywhere possible
+- Use `const` for static widget trees
+- Avoid rebuilding widgets unnecessarily
+
+### Memory Management
+- Use proper widget lifecycle methods
+- Dispose controllers and streams properly
+- Avoid memory leaks in StatefulWidgets
+
+## 🎨 STYLING RULES
+
+### Theme Integration
+- Use `context.general.textTheme` for text styles
+- Follow the established design system
+- Maintain consistent spacing and sizing
+
+### Color and Design
+- Use semantic color names from ColorsCustom
+- Follow established padding patterns from PagePadding
+- Use consistent border radius from CustomRadius
+
+## 📝 CODE QUALITY RULES
+
+### Documentation
+- Add clear comments for complex logic
+- Use descriptive variable and method names
+- Document public APIs and widgets
+
+### Error Handling
+- Handle errors gracefully
+- Provide user-friendly error messages
+- Use proper exception handling
+
+## 🚨 ENFORCEMENT
+
+These rules are MANDATORY for all new code and refactoring.
+Any PR that doesn't follow these standards will be rejected.
+
+## 🎯 QUICK CHECKLIST
+
+Before submitting any code, verify:
+- [ ] All widgets use `const` constructors with `super.key`
+- [ ] No magic numbers (all replaced with named constants)
+- [ ] All icons use `AppIcons.*`
+- [ ] All sizes use `AppIconSizes.*`
+- [ ] All colors use `ColorsCustom.*`
+- [ ] All padding uses `PagePadding.*`
+- [ ] All border radius uses `CustomRadius.*`
+- [ ] All text uses `LocaleKeys.*.tr()`
+- [ ] All widgets are properly documented
+- [ ] Code follows widget separation principles 

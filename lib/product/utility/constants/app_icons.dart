@@ -48,4 +48,11 @@ final class AppIcons {
   static const IconData clear = Icons.clear_outlined;
 
   static const IconData filter = Icons.tune_outlined;
+  static const IconData community = Icons.people;
+
+  // History/Memory related icons
+  static const IconData photoLibrary = Icons.photo_library_outlined;
+  static const IconData collections = Icons.collections_outlined;
+
+  static const IconData tree = Icons.forest_outlined;
 }

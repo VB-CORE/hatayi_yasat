@@ -43,7 +43,8 @@
     "call": "Call",
     "share": "Share",
     "error": "Error",
-    "more": "More"
+    "more": "More",
+    "understood": "Understood"
   },
   "component": {
     "mapPicker": {
@@ -180,7 +181,9 @@
     "news": "News",
     "favorite": "Favorites",
     "request": "Request",
-    "advertise": "Advertise"
+    "advertise": "Advertise",
+    "community": "Community",
+    "memories": "Memories"
   },
   "projectRequest": {
     "title": "New Project Request",
@@ -232,7 +235,8 @@
     "advertise": "Job postings has not been entered yet.",
     "image": "Image could not be loaded.",
     "chainStore": "Chain stores has not been entered yet.",
-    "usefulLinks": "Useful links has not been entered yet."
+    "usefulLinks": "Useful links has not been entered yet.",
+    "memories": "No memories found yet."
   },
   "months": {
     "jan": "January",
@@ -328,5 +332,26 @@
       "description": "After your selection, new places will be displayed.",
       "showResult": "Show results for {}"
     }
+  },
+  "main": {
+    "home": "Home",
+    "news": "News",
+    "campaign": "Events",
+    "advertisement": "Job Postings",
+    "settings": "Settings",
+    "memories": "Memories"
+  },
+  "historyPage": {
+    "welcomeTitle": "Our Memories Are Alive with Us",
+    "welcomeDescription": "Let's share our beautiful memories, let's live together.",
+    "addPhotoInfo": "Touch the + button in the bottom right to share your memories.",
+    "favorites": {
+      "title": "My Favorite Memories",
+      "emptyTitle": "You don't have any favorite memories yet",
+      "emptyDescription": "Touch the ❤️ button to add memories to your favorites",
+      "untitledMemory": "Untitled Memory",
+      "noDescription": "No description"
+    },
+    "shareSubject": "Keep 'Hatay Yaşat' with us!"
   }
 }
