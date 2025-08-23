@@ -83,7 +83,6 @@ final class _SheetHeader extends StatelessWidget {
   const _SheetHeader({
     required this.currentIndex,
     required this.totalCount,
-    super.key,
   });
 
   final int currentIndex;
@@ -110,7 +109,6 @@ final class _CounterText extends StatelessWidget {
   const _CounterText({
     required this.currentIndex,
     required this.totalCount,
-    super.key,
   });
 
   final int currentIndex;
@@ -133,7 +131,7 @@ final class _CounterText extends StatelessWidget {
 
 /// Close button for the sheet
 final class _CloseButton extends StatelessWidget {
-  const _CloseButton({super.key});
+  const _CloseButton();
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +151,6 @@ final class _PhotoPageView extends StatelessWidget {
   const _PhotoPageView({
     required this.memory,
     required this.onPageChanged,
-    super.key,
   });
 
   final MemoryModel memory;
@@ -193,7 +190,6 @@ final class _PhotoPageView extends StatelessWidget {
 final class _BottomInfo extends StatelessWidget {
   const _BottomInfo({
     required this.memory,
-    super.key,
   });
 
   final MemoryModel memory;
@@ -210,7 +206,7 @@ final class _BottomInfo extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             ColorsCustom.transparent,
-            ColorsCustom.black.withOpacity(_gradientOpacity),
+            ColorsCustom.black.withValues(alpha: _gradientOpacity),
           ],
         ),
       ),
@@ -239,7 +235,6 @@ final class _BottomInfo extends StatelessWidget {
 final class _MemoryTitle extends StatelessWidget {
   const _MemoryTitle({
     required this.title,
-    super.key,
   });
 
   final String? title;
@@ -262,7 +257,6 @@ final class _MemoryTitle extends StatelessWidget {
 final class _MemoryDescription extends StatelessWidget {
   const _MemoryDescription({
     required this.description,
-    super.key,
   });
 
   final String? description;
@@ -305,7 +299,6 @@ final class _ActionButtons extends StatelessWidget {
 final class _ShareButton extends StatelessWidget {
   const _ShareButton({
     required this.memory,
-    super.key,
   });
 
   final MemoryModel memory;

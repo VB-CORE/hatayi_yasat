@@ -152,7 +152,6 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 class _OwnerTitle extends StatelessWidget {
   const _OwnerTitle({
     required this.model,
-    super.key,
   });
 
   final StoreModel model;

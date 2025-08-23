@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart' hide FileType;
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/package/file_picker/default_file_extension.dart';
 import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 
@@ -24,6 +24,7 @@ final class FilePickerManager {
       if (result.files.single.path.ext.isNullOrEmpty) return null;
       return File(result.files.single.path!);
     } catch (e) {
+      // File picking failed, return null
       return null;
     }
   }

@@ -22,7 +22,7 @@ mixin ScholarshipRequestFormMixin
   late final TextEditingController bioController = TextEditingController();
   File? selectedPdfFile;
 
-  /// TODO: This is a temporary solution. It should be removed after the KVKK checkbox is implemented.
+  // TODO: This is a temporary solution. It should be removed after the KVKK checkbox is implemented.
   bool _isKvkkChecked = false;
 
   @override
@@ -62,7 +62,7 @@ mixin ScholarshipRequestFormMixin
     selectedPdfFile = file;
   }
 
-  void updateKVKK(bool value) {
+  void updateKVKK({required bool value}) {
     _isKvkkChecked = value;
   }
 

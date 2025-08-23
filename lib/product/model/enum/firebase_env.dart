@@ -6,6 +6,7 @@ enum FirebaseEnv {
 
   final int port;
   // ignore: sort_constructors_first
+  // This constructor order is intentional for better readability
   const FirebaseEnv(this.port);
 
   static String localPath = 'localhost';

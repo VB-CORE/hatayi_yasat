@@ -38,7 +38,7 @@ final class HistoryViewModelProvider
   }
 }
 
-String _$historyViewModelHash() => r'07b01679872a358d122419f1995e0f195cdcb49d';
+String _$historyViewModelHash() => r'70a24569cf3c85e08e500b47c73b64bce533013d';
 
 abstract class _$HistoryViewModel extends $Notifier<HistoryState> {
   HistoryState build();

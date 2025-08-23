@@ -54,7 +54,7 @@ final class SharedPrefsOperationManager<T extends CacheModel>
   bool removeAll() {
     final keys = _preferences.getKeys();
 
-    /// TODO: it will update
+    // TODO: it will update
     Future.forEach(keys, (element) async {
       await _preferences.remove(element);
     });

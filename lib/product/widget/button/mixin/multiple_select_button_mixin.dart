@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:lifeclient/product/widget/button/model/multiple_select_item_model.dart';
 import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
 
 mixin MultipleSelectButtonMixin on State<MultipleSelectButton> {

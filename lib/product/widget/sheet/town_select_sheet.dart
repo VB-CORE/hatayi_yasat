@@ -67,7 +67,7 @@ class _TownSelectSheetState extends State<TownSelectSheet> {
                   return Divider(
                     height: 0,
                     color: context.general.colorScheme.onTertiaryContainer
-                        .withOpacity(0.2),
+                        .withValues(alpha: .2),
                   );
                 },
                 itemBuilder: (BuildContext context, int index) {

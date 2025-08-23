@@ -51,8 +51,8 @@ mixin NotificationMixin
     hideLoading();
   }
 
-  /// TODO: This method is not working properly.
-  /// Need to fixed new release
+  // TODO: This method is not working properly.
+  // Need to fixed new release
   // void _saveAndLastTime() {
   //   lastNotificationSeenTime =
   //       SharedCache.instance.getLastNotificationSeenTime();

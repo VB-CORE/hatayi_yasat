@@ -1,5 +1,3 @@
-// ignore_for_file: use_setters_to_change_properties
-
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -85,8 +83,8 @@ mixin ProjectRequestFormMixin
     expireDate = value;
   }
 
-  /// TODO: This method should be updated with the new checkbox widget
-  void updateKVKK(bool value) => _isKvkkChecked = value;
+  // TODO: This method should be updated with the new checkbox widget
+  void updateKVKK({required bool value}) => _isKvkkChecked = value;
 
   void clear() {
     projectNameController.clear();

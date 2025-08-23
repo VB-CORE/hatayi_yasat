@@ -31,7 +31,7 @@ final class HistoryViewModel extends _$HistoryViewModel
     state = state.copyWith(selectedMemoryIndex: index);
   }
 
-  void setLoading(bool isLoading) {
+  void setLoading({required bool isLoading}) {
     state = state.copyWith(isLoading: isLoading);
   }
 }

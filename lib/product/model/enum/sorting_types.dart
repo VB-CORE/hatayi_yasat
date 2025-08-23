@@ -6,6 +6,7 @@ enum SortingTypes {
 
   final String detail;
   // ignore: sort_constructors_first
+  // This constructor order is intentional for better readability
   const SortingTypes(this.detail);
 
   SortingTypes change() {

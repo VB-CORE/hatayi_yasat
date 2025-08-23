@@ -25,8 +25,8 @@ class CustomButtonStyle extends ButtonStyle {
   static ButtonStyle get shrinkWrap {
     return ButtonStyle(
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-      minimumSize: MaterialStateProperty.all(Size.zero),
+      padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+      minimumSize: WidgetStateProperty.all(Size.zero),
     );
   }
 }

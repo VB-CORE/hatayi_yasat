@@ -1,20 +1,10 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/button/mixin/multiple_select_button_mixin.dart';
+import 'package:lifeclient/product/widget/button/model/multiple_select_item_model.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
-
-final class MultipleSelectItem extends Equatable {
-  const MultipleSelectItem({required this.title, required this.id});
-
-  final String title;
-  final String id;
-
-  @override
-  List<Object?> get props => [title, id];
-}
 
 final class MultipleSelectButton extends StatefulWidget {
   const MultipleSelectButton({

@@ -3,7 +3,7 @@ import 'package:life_shared/life_shared.dart';
 final class MemoryEmptyModel {
   const MemoryEmptyModel._();
 
-  static MemoryModel empty = const MemoryModel(documentId: '');
+  static MemoryModel empty = const MemoryModel();
 
   static List<MemoryModel> mockMemories = [
     MemoryModel(

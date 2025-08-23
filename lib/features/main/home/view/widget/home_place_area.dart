@@ -1,7 +1,7 @@
 part of '../home_view.dart';
 
-class _HomePlaceArea extends ConsumerStatefulWidget {
-  const _HomePlaceArea({super.key});
+final class _HomePlaceArea extends ConsumerStatefulWidget {
+  const _HomePlaceArea();
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => __HomePlaceAreaState();

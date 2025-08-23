@@ -17,3 +17,7 @@ targets:
           # providers with parameters ("families").
           # This takes precedence over provider_name_suffix.
           provider_family_name_suffix: "Provider" # (default)
+      hive_ce_generator|hive_ce:
+        generate_for:
+          include:
+            - lib/product/feature/cache/hive_v2/hive_adapters.dart

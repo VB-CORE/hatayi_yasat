@@ -30,7 +30,7 @@ final class HistoryInfoDialog extends StatelessWidget {
 
 /// Dialog content with image placeholder and description
 final class _DialogContent extends StatelessWidget {
-  const _DialogContent({super.key});
+  const _DialogContent();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ final class _DialogContent extends StatelessWidget {
 
 /// Main description text
 final class _DescriptionText extends StatelessWidget {
-  const _DescriptionText({super.key});
+  const _DescriptionText();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ final class _DescriptionText extends StatelessWidget {
 
 /// Info box with add photo information
 final class _InfoBox extends StatelessWidget {
-  const _InfoBox({super.key});
+  const _InfoBox();
 
   static const double _opacity = 0.1;
   static const double _borderOpacity = 0.3;
@@ -75,10 +75,10 @@ final class _InfoBox extends StatelessWidget {
     return Container(
       padding: const PagePadding.generalAllLow(),
       decoration: BoxDecoration(
-        color: ColorsCustom.brandeisBlue.withOpacity(_opacity),
+        color: ColorsCustom.brandeisBlue.withValues(alpha: _opacity),
         borderRadius: CustomRadius.small,
         border: Border.all(
-          color: ColorsCustom.brandeisBlue.withOpacity(_borderOpacity),
+          color: ColorsCustom.brandeisBlue.withValues(alpha: _borderOpacity),
         ),
       ),
       child: Row(
@@ -106,7 +106,7 @@ final class _InfoBox extends StatelessWidget {
 
 /// Dialog action button
 final class _DialogAction extends StatelessWidget {
-  const _DialogAction({super.key});
+  const _DialogAction();
 
   @override
   Widget build(BuildContext context) {

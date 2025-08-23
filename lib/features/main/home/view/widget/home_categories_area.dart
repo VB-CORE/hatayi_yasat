@@ -79,47 +79,5 @@ final class _CategoryCard extends StatelessWidget {
         ),
       ),
     );
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        width: WidgetSizes.spacingXxl9,
-        child: Column(
-          children: [
-            Card(
-              color: context.general.colorScheme.onPrimaryContainer,
-              shape: const RoundedRectangleBorder(
-                borderRadius: CustomRadius.extraLarge,
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const PagePadding.vertical12Symmetric(),
-                  child: GeneralBigTitle(
-                    name[0],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(child: _CategoryCardTitle(name: name)),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-final class _CategoryCardTitle extends StatelessWidget {
-  const _CategoryCardTitle({
-    required this.name,
-  });
-
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return GeneralContentSubTitle(
-      value: name,
-      maxLine: TextFieldMaxLengths.minLine,
-      fontWeight: FontWeight.bold,
-    );
   }
 }
