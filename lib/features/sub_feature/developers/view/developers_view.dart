@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +6,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/firebase_query_items.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/builder/firestore_grid_view.dart';
 import 'package:lifeclient/product/widget/card/developer_profile_card.dart';

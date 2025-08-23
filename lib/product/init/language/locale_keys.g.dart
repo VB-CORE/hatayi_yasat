@@ -87,6 +87,7 @@ abstract class  LocaleKeys {
   static const settings_currentLanguage = 'settings.currentLanguage';
   static const settings_themeTitle = 'settings.themeTitle';
   static const settings_developersTitle = 'settings.developersTitle';
+  static const settings_inactiveDevelopers = 'settings.inactiveDevelopers';
   static const settings_seeDevelopers = 'settings.seeDevelopers';
   static const settings_aboutTitle = 'settings.aboutTitle';
   static const settings_contactTitle = 'settings.contactTitle';
