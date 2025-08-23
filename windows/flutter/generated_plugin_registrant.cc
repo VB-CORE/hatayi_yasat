@@ -12,7 +12,6 @@
 #include <firebase_core/firebase_core_plugin_c_api.h>
 #include <firebase_storage/firebase_storage_plugin_c_api.h>
 #include <flutter_inappwebview_windows/flutter_inappwebview_windows_plugin_c_api.h>
-#include <isar_flutter_libs/isar_flutter_libs_plugin.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>
 #include <share_plus/share_plus_windows_plugin_c_api.h>
 #include <syncfusion_pdfviewer_windows/syncfusion_pdfviewer_windows_plugin.h>
@@ -31,8 +30,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("FirebaseStoragePluginCApi"));
   FlutterInappwebviewWindowsPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("FlutterInappwebviewWindowsPluginCApi"));
-  IsarFlutterLibsPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("IsarFlutterLibsPlugin"));
   PermissionHandlerWindowsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("PermissionHandlerWindowsPlugin"));
   SharePlusWindowsPluginCApiRegisterWithRegistrar(

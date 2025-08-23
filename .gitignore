@@ -12,6 +12,8 @@
 .swiftpm/
 migrate_working_dir/
 *.lock
+package-lock.json
+.metadata
 
 
 emulator-data/
