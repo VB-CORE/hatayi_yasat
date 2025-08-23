@@ -57,9 +57,8 @@ dependencies:
 
   #database
   shared_preferences: ^2.2.1
-  # hive: ^4.0.0-dev.2
+  hive_ce: ^2.11.3
   # isar_flutter_libs: ^4.0.0-dev.13
-
   #package
   image_picker: ^1.0.4
   image_cropper: ^8.0.2
@@ -96,7 +95,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.4.8
+      ref: v5.4.9
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
@@ -107,6 +106,7 @@ dependency_overrides:
 
 dev_dependencies:
   build_runner: ^2.3.3
+  hive_ce_generator: ^1.9.3
   flutter_gen_runner: ^5.2.0
   flutter_launcher_icons: ^0.14.1
   flutter_test:
@@ -135,6 +135,7 @@ scripts:
   lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
   dartBuild: dart run build_runner build --delete-conflicting-outputs
   build: dart run build_runner build
+  watch: dart run build_runner watch --delete-conflicting-outputs
   buildForce: dart run build_runner build --delete-conflicting-outputs
   pubGet: sh ./scripts/pub_get.sh
   watchBuild: dart run build_runner watch --delete-conflicting-outputs

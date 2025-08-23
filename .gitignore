@@ -16,6 +16,7 @@ package-lock.json
 .metadata
 
 firebase-export-*
+*.g.dart
 
 emulator-data/
 

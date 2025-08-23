@@ -17,10 +17,10 @@ final class ProjectDependencyItems {
 
   static final AppProvider appProvider = GetIt.I.get<AppProvider>();
   static final appProviderState =
-      GetIt.I.get<StateNotifierProvider<AppProvider, AppProviderState>>();
+      GetIt.I.get<NotifierProvider<AppProvider, AppProviderState>>();
 
-  static final productProviderState = GetIt.I
-      .get<StateNotifierProvider<ProductProvider, ProductProviderState>>();
+  static final productProviderState =
+      GetIt.I.get<NotifierProvider<ProductProvider, ProductProviderState>>();
 
   static final ProductProvider productProvider = GetIt.I.get<ProductProvider>();
   static final ProductCache productCache = GetIt.I.get<ProductCache>();

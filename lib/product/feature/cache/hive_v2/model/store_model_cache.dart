@@ -20,6 +20,7 @@ final class StoreModelCache with CacheModel, EquatableMixin {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final json = storeModel.toJson()
       ..remove('createdAt')

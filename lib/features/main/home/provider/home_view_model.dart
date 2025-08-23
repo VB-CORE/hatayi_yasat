@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/main/home/provider/home_state.dart';
@@ -56,7 +57,8 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 
   Future<void> changeSortingType(SortingTypes type) async {
     state = state.copyWith(sortingType: type, isLoading: true);
-    await Future.delayed(const Duration(milliseconds: 100));
-    state = state.copyWith(isLoading: false);
+    await Future.delayed(Durations.extralong4, () {
+      state = state.copyWith(isLoading: false);
+    });
   }
 }

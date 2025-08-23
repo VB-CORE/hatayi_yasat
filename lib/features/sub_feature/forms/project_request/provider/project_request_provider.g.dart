@@ -6,22 +6,56 @@ part of 'project_request_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(ProjectRequestProvider)
+const projectRequestProviderProvider = ProjectRequestProviderProvider._();
+
+final class ProjectRequestProviderProvider
+    extends $NotifierProvider<ProjectRequestProvider, ProjectRequestState> {
+  const ProjectRequestProviderProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'projectRequestProviderProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$projectRequestProviderHash();
+
+  @$internal
+  @override
+  ProjectRequestProvider create() => ProjectRequestProvider();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProjectRequestState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProjectRequestState>(value),
+    );
+  }
+}
+
 String _$projectRequestProviderHash() =>
     r'f2b27292a4306f9a51b504e94c4ffd9a5ca89be3';
 
-/// See also [ProjectRequestProvider].
-@ProviderFor(ProjectRequestProvider)
-final projectRequestProviderProvider = AutoDisposeNotifierProvider<
-    ProjectRequestProvider, ProjectRequestState>.internal(
-  ProjectRequestProvider.new,
-  name: r'projectRequestProviderProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$projectRequestProviderHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
+  ProjectRequestState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<ProjectRequestState, ProjectRequestState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<ProjectRequestState, ProjectRequestState>,
+        ProjectRequestState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$ProjectRequestProvider = AutoDisposeNotifier<ProjectRequestState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -13,8 +13,10 @@ import 'package:lifeclient/product/utility/state/product_provider.dart';
 @immutable
 final class ProjectDependency {
   ProjectDependency.setup() {
-    GetIt.I.registerSingleton<AppProvider>(AppProvider());
-    GetIt.I.registerSingleton<ProductProvider>(ProductProvider());
+    final appProvider = AppProvider();
+    final productProvider = ProductProvider();
+    GetIt.I.registerSingleton<AppProvider>(appProvider);
+    GetIt.I.registerSingleton<ProductProvider>(productProvider);
 
     GetIt.I.registerSingleton<ProductCache>(
       ProductCache(cacheManager: HiveCacheManager()),
@@ -23,16 +25,16 @@ final class ProjectDependency {
     GetIt.I.registerFactory(FirebaseCustomService.new);
 
     GetIt.I.registerSingleton<
-        StateNotifierProvider<AppProvider, AppProviderState>>(
-      StateNotifierProvider<AppProvider, AppProviderState>(
-        (ref) => ProjectDependencyItems.appProvider,
+        NotifierProvider<AppProvider, AppProviderState>>(
+      NotifierProvider<AppProvider, AppProviderState>(
+        () => ProjectDependencyItems.appProvider,
       ),
     );
 
     GetIt.I.registerSingleton<
-        StateNotifierProvider<ProductProvider, ProductProviderState>>(
-      StateNotifierProvider<ProductProvider, ProductProviderState>(
-        (ref) => ProjectDependencyItems.productProvider,
+        NotifierProvider<ProductProvider, ProductProviderState>>(
+      NotifierProvider<ProductProvider, ProductProviderState>(
+        () => ProjectDependencyItems.productProvider,
       ),
     );
   }

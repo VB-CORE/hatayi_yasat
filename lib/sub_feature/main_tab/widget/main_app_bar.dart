@@ -10,14 +10,8 @@ final class _MainAppBar extends AppBar {
               height: AppConstants.kOne.toDouble(),
             ),
           ),
-          leading: IconButton(
-            onPressed: () {
-              const NotificationsRoute().go(context);
-            },
-            icon: const Icon(AppIcons.notifications),
-          ),
           automaticallyImplyLeading: false,
-          centerTitle: true,
+          centerTitle: false,
           title: TextButton(
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
@@ -29,17 +23,23 @@ final class _MainAppBar extends AppBar {
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
+              spacing: WidgetSizes.spacingXSs,
               children: [
-                const _AppBarTitle(),
-                const SizedBox(width: WidgetSizes.spacingXSs),
                 HugeIcon(
                   icon: HugeIcons.strokeRoundedArrowDown01,
                   color: context.general.colorScheme.primary,
                 ),
+                const _AppBarTitle(),
               ],
             ),
           ),
           actions: [
+            IconButton(
+              onPressed: () {
+                const NotificationsRoute().go(context);
+              },
+              icon: const Icon(AppIcons.notifications),
+            ),
             IconButton(
               onPressed: () async {
                 await const SettingsRoute().push<void>(context);

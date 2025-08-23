@@ -29,6 +29,7 @@ final class AppCacheModel with CacheModel, EquatableMixin {
     return AppCacheModel.fromJson(json);
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return _$AppCacheModelToJson(this);
   }
