@@ -120,6 +120,7 @@ final class _CounterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (totalCount == 1) return const SizedBox.shrink();
     return Text(
       '${currentIndex + _indexOffset} / $totalCount',
       style: context.general.textTheme.titleMedium?.copyWith(
@@ -285,7 +286,6 @@ final class _MemoryDescription extends StatelessWidget {
 final class _ActionButtons extends StatelessWidget {
   const _ActionButtons({
     required this.memory,
-    super.key,
   });
 
   final MemoryModel memory;

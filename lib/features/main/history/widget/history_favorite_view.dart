@@ -134,7 +134,8 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
   }
 
   /// Builds the memory title widget
-  Widget _buildMemoryTitle(MemoryModel memory) {
+  Widget? _buildMemoryTitle(MemoryModel memory) {
+    if (memory.title == null || memory.title!.isEmpty) return null;
     return Text(
       memory.title ?? LocaleKeys.historyPage_favorites_untitledMemory.tr(),
       style: context.general.textTheme.titleMedium?.copyWith(
