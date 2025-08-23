@@ -42,7 +42,7 @@ final class _ProjectRequestFormState
       ),
       bottomNavigationBar: _ProjectRequestSend(
         onTapped: sendRequest,
-        onKVKKChanged: updateKVKK,
+        onKVKKChanged: (value) => updateKVKK(value: value),
       ).ext.toDisabled(
             disable:
                 ref.watch(projectRequestProviderProvider).isSendingRequest ??

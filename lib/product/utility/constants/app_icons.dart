@@ -22,7 +22,7 @@ final class AppIcons {
 
   static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
-  static const IconData settings = Icons.settings;
+  static const IconData settings = Icons.settings_outlined;
   static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
   static const IconData phone = Icons.phone;
   static const IconData share = Icons.share_rounded;
@@ -48,4 +48,11 @@ final class AppIcons {
   static const IconData clear = Icons.clear_outlined;
 
   static const IconData filter = Icons.tune_outlined;
+  static const IconData community = Icons.people;
+
+  // History/Memory related icons
+  static const IconData photoLibrary = Icons.photo_library_outlined;
+  static const IconData collections = Icons.collections_outlined;
+
+  static const IconData tree = Icons.forest_outlined;
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: sort_constructors_first
+// This file ignores constructor sorting for better readability
 
 import 'package:collection/collection.dart';
 

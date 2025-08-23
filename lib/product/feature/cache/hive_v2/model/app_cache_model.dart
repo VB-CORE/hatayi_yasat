@@ -21,7 +21,7 @@ final class AppCacheModel with CacheModel, EquatableMixin {
   final List<String> lastSearchItems;
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [isHomeViewGrid, lastSearchItems];
 
   @override
   AppCacheModel fromDynamicJson(json) {
@@ -29,6 +29,7 @@ final class AppCacheModel with CacheModel, EquatableMixin {
     return AppCacheModel.fromJson(json);
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return _$AppCacheModelToJson(this);
   }

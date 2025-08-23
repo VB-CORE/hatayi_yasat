@@ -4,7 +4,6 @@ final class _PlacePickerFormField extends FormField<LatLng?> {
   _PlacePickerFormField({
     required ValueChanged<LatLng> onChanged,
     required LatLng initialPosition,
-    super.key,
     super.initialValue,
   }) : super(
           validator: (LatLng? value) => value != null ? null : '',

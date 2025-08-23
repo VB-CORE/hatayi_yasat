@@ -50,7 +50,7 @@ class _SubItemBranch extends StatelessWidget {
       },
       shape: UnderlineInputBorder(
         borderSide: BorderSide(
-          color: context.general.colorScheme.primary.withOpacity(0.4),
+          color: context.general.colorScheme.primary.withValues(alpha: 0.4),
         ),
       ),
       leading: SizedBox.square(

@@ -17,11 +17,11 @@ final class _RatingWidget extends StatelessWidget {
         child: ListTile(
           title: GeneralBodyTitle(
             LocaleKeys.settings_appReviewTitle.tr(context: context),
-            color: context.general.colorScheme.primary.withOpacity(.5),
+            color: context.general.colorScheme.primary.withValues(alpha: 0.5),
           ),
           trailing: Icon(
             Icons.stars,
-            color: context.general.colorScheme.primary.withOpacity(.5),
+            color: context.general.colorScheme.primary.withValues(alpha: 0.5),
           ),
           onTap: () => AppReview.instance.openStore(),
         ),

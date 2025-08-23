@@ -43,7 +43,8 @@
     "call": "Ara",
     "share": "Paylaş",
     "error": "Hata",
-    "more": "Daha fazla"
+    "more": "Daha fazla",
+    "understood": "Anladım"
   },
   "component": {
     "mapPicker": {
@@ -92,6 +93,7 @@
     "currentLanguage": "Mevcut dil",
     "themeTitle": "{} Tema",
     "developersTitle": "Geliştiriciler",
+    "inactiveDevelopers": "Dün bizimle olup destek olan arkadaşlarımıza çok teşekkür ediyoruz ❤️ ",
     "seeDevelopers": "Tüm takımı gör",
     "aboutTitle": "Uygulama hakkında",
     "contactTitle": "Bize ulaşın",
@@ -115,7 +117,8 @@
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "emptyFavorite": "Favori listeniz boş"
+    "emptyFavorite": "Favori listeniz boş",
+    "removedFavorite": "Favorilerden kaldırıldı"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -180,7 +183,9 @@
     "news": "Haberler",
     "favorite": "Favoriler",
     "request": "Talep",
-    "advertise": "İş İlanı"
+    "advertise": "İş İlanı",
+    "community": "Topluluk",
+    "memories": "Hatıralar"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -232,7 +237,8 @@
     "advertise": "İş ilanı henüz girilmemiş.",
     "image": "Resim yüklenemedi.",
     "chainStore": "Zincir mağaza henüz girilmemiş.",
-    "usefulLinks": "Faydalı linkler henüz girilmemiş."
+    "usefulLinks": "Faydalı linkler henüz girilmemiş.",
+    "memories": "Henüz hatıra bulunamadı."
   },
   "months": {
     "jan": "Ocak",
@@ -328,5 +334,26 @@
       "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
       "showResult": "{} için sonuçları görüntüle"
     }
+  },
+  "main": {
+    "home": "Ana Sayfa",
+    "news": "Haberler",
+    "campaign": "Etkinlikler",
+    "advertisement": "İş İlanları",
+    "settings": "Ayarlar",
+    "memories": "Hatıralar"
+  },
+  "historyPage": {
+    "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
+    "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
+    "addPhotoInfo": "Sağ alttaki + butonuna dokunarak sizdeki hatıralarımızı paylaşabilirsiniz.",
+    "favorites": {
+      "title": "Favori Anılarım",
+      "emptyTitle": "Henüz favori anınız yok",
+      "emptyDescription": "Anıları favorilerinize eklemek için ❤️ butonuna dokunun",
+      "untitledMemory": "Başlıksız Anı",
+      "noDescription": "Açıklama yok"
+    },
+    "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
   }
 }

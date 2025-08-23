@@ -12,7 +12,11 @@
 .swiftpm/
 migrate_working_dir/
 *.lock
+package-lock.json
+.metadata
 
+firebase-export-*
+*.g.dart
 
 emulator-data/
 

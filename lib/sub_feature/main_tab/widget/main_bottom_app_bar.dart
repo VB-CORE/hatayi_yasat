@@ -37,7 +37,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
         shape: const CircularNotchedRectangle(),
         elevation: kZero,
         color: context.general.colorScheme.secondary
-            .withOpacity(isScrolledBottom ? .7 : 1),
+            .withValues(alpha: isScrolledBottom ? .7 : 1),
         child: _TabBar(tabItems: tabItems),
       ),
     );
@@ -58,7 +58,8 @@ class _TabBar extends StatelessWidget {
       dividerColor: ColorsCustom.transparent,
       labelPadding: EdgeInsets.zero,
       indicator: const BoxDecoration(),
-      unselectedLabelColor: context.general.colorScheme.primary.withOpacity(.3),
+      unselectedLabelColor:
+          context.general.colorScheme.primary.withValues(alpha: .3),
       labelStyle: context.general.textTheme.bodyMedium,
       unselectedLabelStyle: context.general.textTheme.bodySmall,
       tabs: tabItems

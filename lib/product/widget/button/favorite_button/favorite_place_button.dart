@@ -28,9 +28,7 @@ class _FavoritePlaceButtonState extends ConsumerState<FavoritePlaceButton>
     return InkWell(
       onTap: onPressed,
       child: GeneralFavoriteIcon(
-        isFavorite: productStateWatch.favoritePlaces.any(
-          (element) => element.documentId == widget.store.documentId,
-        ),
+        isFavorite: ref.watch(favoritePlaceProvider).isFavorite,
       ),
     );
   }

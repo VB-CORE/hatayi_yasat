@@ -38,7 +38,9 @@
     "editor.wordBasedSuggestions": "matchingDocuments",
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
-      "source.organizeImports": "always"
+      "source.organizeImports": "explicit",
+      "source.organizeLinkDefinitions": "explicit",
+      "source.sortImports": "explicit"
     }
   },
   "workbench.colorCustomizations": {

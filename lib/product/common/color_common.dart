@@ -19,6 +19,6 @@ final class ColorCommon {
 
   /// means [ThemeData].light == black
   Color get blackAndWhiteForTheme {
-    return context.general.colorScheme.background;
+    return context.general.colorScheme.surface;
   }
 }

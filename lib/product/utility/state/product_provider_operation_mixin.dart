@@ -7,7 +7,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 
-mixin ProductProviderOperationMixin on StateNotifier<ProductProviderState> {
+mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
   late CacheOperation<StoreModelCache> storeModelCache;
   late CacheOperation<AppCacheModel> appModelCache;
 

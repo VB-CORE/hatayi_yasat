@@ -2,13 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
 import 'package:lifeclient/product/utility/state/mixin/app_provider_mixin.dart';
 
-final class AppProvider extends StateNotifier<AppProviderState>
+final class AppProvider extends Notifier<AppProviderState>
     with AppProviderOperationMixin {
-  AppProvider() : super(const AppProviderState());
+  AppProvider();
 
   Future<void> init() async => {
         await _checkDeviceId(),
@@ -30,5 +31,12 @@ final class AppProvider extends StateNotifier<AppProviderState>
   void changeAppTheme({required ThemeMode theme}) {
     if (state.theme == theme) return;
     state = state.copyWith(theme: theme);
+  }
+
+  @override
+  AppProviderState build() {
+    return AppProviderState(
+      theme: SharedCache.instance.theme,
+    );
   }
 }

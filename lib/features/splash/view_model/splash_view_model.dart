@@ -6,9 +6,8 @@ import 'package:lifeclient/product/utility/state/product_provider.dart';
 import 'package:lifeclient/product/utility/validator/version_validator.dart';
 import 'package:riverpod/riverpod.dart';
 
-class SplashViewModel extends StateNotifier<SplashState> {
-  SplashViewModel({required this.productProvider, required this.appProvider})
-      : super(const SplashState(isOperationStaring: true)) {
+class SplashViewModel extends Notifier<SplashState> {
+  SplashViewModel({required this.productProvider, required this.appProvider}) {
     _controlApplication();
   }
   final ProductProvider productProvider;
@@ -46,5 +45,10 @@ class SplashViewModel extends StateNotifier<SplashState> {
   Future<void> refresh() async {
     state = const SplashState(isOperationStaring: true);
     await _controlApplication();
+  }
+
+  @override
+  SplashState build() {
+    return const SplashState(isOperationStaring: true);
   }
 }

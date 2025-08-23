@@ -10,9 +10,7 @@ import 'package:lifeclient/features/chain_store/view_model/chain_store_view_mode
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
-import 'package:lifeclient/product/widget/general/general_expansion_image_tile.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/general_scaffold.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_title.dart';

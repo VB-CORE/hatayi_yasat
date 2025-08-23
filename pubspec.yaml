@@ -20,8 +20,8 @@ dependencies:
   get_it: ^8.0.0
 
   #state management
-  flutter_riverpod: ^2.4.8
-  riverpod_annotation: ^2.3.2
+  flutter_riverpod: ^3.0.0-dev.17
+  riverpod_annotation: ^3.0.0-dev.17
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
@@ -35,7 +35,7 @@ dependencies:
 
   #core
   cached_network_image: ^3.2.3
-  go_router: ^15.1.3
+  go_router: ^16.2.0
 
   #util
 
@@ -57,9 +57,8 @@ dependencies:
 
   #database
   shared_preferences: ^2.2.1
-  hive: ^4.0.0-dev.2
-  isar_flutter_libs: ^4.0.0-dev.13
-
+  hive_ce: ^2.11.3
+  # isar_flutter_libs: ^4.0.0-dev.13
   #package
   image_picker: ^1.0.4
   image_cropper: ^8.0.2
@@ -96,7 +95,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: 5.4.5
+      ref: v5.4.10
 
   file_picker: ^8.0.5
   sliver_tools: ^0.2.12
@@ -107,6 +106,7 @@ dependency_overrides:
 
 dev_dependencies:
   build_runner: ^2.3.3
+  hive_ce_generator: ^1.9.3
   flutter_gen_runner: ^5.2.0
   flutter_launcher_icons: ^0.14.1
   flutter_test:
@@ -116,8 +116,8 @@ dev_dependencies:
   json_serializable: ^6.6.1
   very_good_analysis: ^7.0.0
 
-  riverpod_generator: ^2.3.8
-  go_router_builder: ^3.0.0
+  riverpod_generator: ^3.0.0-dev.17
+  go_router_builder: ^3.3.0
 flutter_gen:
   output: lib/product/generated/
   integrations:
@@ -133,11 +133,12 @@ flutter_launcher_icons:
 
 scripts:
   lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
-  dartBuild: flutter pub run build_runner build --delete-conflicting-outputs
-  build: flutter pub run build_runner build
-  buildForce: flutter pub run build_runner build --delete-conflicting-outputs
+  dartBuild: dart run build_runner build --delete-conflicting-outputs
+  build: dart run build_runner build
+  watch: dart run build_runner watch --delete-conflicting-outputs
+  buildForce: dart run build_runner build --delete-conflicting-outputs
   pubGet: sh ./scripts/pub_get.sh
-  watchBuild: flutter pub run build_runner watch --delete-conflicting-outputs
+  watchBuild: dart run build_runner watch --delete-conflicting-outputs
   general: rps build && rps lang
   podUpdate: cd ios && pod update && cd ..
   fios: flutter clean && flutter pub get && cd ios && pod install && cd ..

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/package/firebase/filter/category_code_filter.dart';
 import 'package:lifeclient/product/package/firebase/filter/town_code_filter.dart';
-import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
+import 'package:lifeclient/product/widget/button/model/multiple_select_item_model.dart';
 
 final class GeneralCategoryTownFilter {
   GeneralCategoryTownFilter({

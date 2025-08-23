@@ -7,7 +7,7 @@ import 'package:lifeclient/product/widget/snackbar/error_snack_bar.dart';
 import 'package:lifeclient/product/widget/snackbar/notification_snack_bar.dart';
 import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
-mixin AppProviderOperationMixin on StateNotifier<AppProviderState> {
+mixin AppProviderOperationMixin on Notifier<AppProviderState> {
   final CustomService customService = FirebaseService();
 
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =

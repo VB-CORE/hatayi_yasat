@@ -50,7 +50,7 @@ class _ProductComboBoxState<T extends ProductDropDownModel>
         child: DropdownButtonHideUnderline(
           child: DropdownButtonFormField<T>(
             decoration: const InputDecoration.collapsed(hintText: ''),
-            value: selectedItem,
+            initialValue: selectedItem,
             hint: Text(widget.hintText),
             isExpanded: true,
             borderRadius: context.border.lowBorderRadius,

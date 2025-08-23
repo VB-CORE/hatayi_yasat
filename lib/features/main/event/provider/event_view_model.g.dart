@@ -6,21 +6,52 @@ part of 'event_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(EventViewModel)
+const eventViewModelProvider = EventViewModelProvider._();
+
+final class EventViewModelProvider
+    extends $NotifierProvider<EventViewModel, EventState> {
+  const EventViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'eventViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$eventViewModelHash();
+
+  @$internal
+  @override
+  EventViewModel create() => EventViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(EventState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<EventState>(value),
+    );
+  }
+}
+
 String _$eventViewModelHash() => r'dfbc07ac4d777a180ad5b44dd1d66875697be576';
 
-/// See also [EventViewModel].
-@ProviderFor(EventViewModel)
-final eventViewModelProvider =
-    AutoDisposeNotifierProvider<EventViewModel, EventState>.internal(
-  EventViewModel.new,
-  name: r'eventViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$eventViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$EventViewModel extends $Notifier<EventState> {
+  EventState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<EventState, EventState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<EventState, EventState>, EventState, Object?, Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$EventViewModel = AutoDisposeNotifier<EventState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

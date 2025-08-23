@@ -16,7 +16,7 @@ final class _AppAboutWidget extends StatelessWidget {
         title: GeneralBodyTitle(
           LocaleKeys.settings_aboutTitle.tr(context: context),
           fontWeight: FontWeight.bold,
-          color: context.general.colorScheme.primary.withOpacity(.5),
+          color: context.general.colorScheme.primary.withValues(alpha: 0.5),
         ),
         onTap: () {
           showModalBottomSheet<void>(

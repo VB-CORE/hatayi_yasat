@@ -6,22 +6,56 @@ part of 'place_detail_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(PlaceDetailViewModel)
+const placeDetailViewModelProvider = PlaceDetailViewModelProvider._();
+
+final class PlaceDetailViewModelProvider
+    extends $NotifierProvider<PlaceDetailViewModel, PlaceDetailState> {
+  const PlaceDetailViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'placeDetailViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$placeDetailViewModelHash();
+
+  @$internal
+  @override
+  PlaceDetailViewModel create() => PlaceDetailViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PlaceDetailState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PlaceDetailState>(value),
+    );
+  }
+}
+
 String _$placeDetailViewModelHash() =>
     r'30ad55921ec9c4ed705765edd673c31b840cc38c';
 
-/// See also [PlaceDetailViewModel].
-@ProviderFor(PlaceDetailViewModel)
-final placeDetailViewModelProvider = AutoDisposeNotifierProvider<
-    PlaceDetailViewModel, PlaceDetailState>.internal(
-  PlaceDetailViewModel.new,
-  name: r'placeDetailViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$placeDetailViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
+  PlaceDetailState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<PlaceDetailState, PlaceDetailState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<PlaceDetailState, PlaceDetailState>,
+        PlaceDetailState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$PlaceDetailViewModel = AutoDisposeNotifier<PlaceDetailState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

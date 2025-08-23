@@ -1,7 +1,7 @@
 part of '../home_view.dart';
 
 final class _HomeSortGridView extends StatelessWidget {
-  const _HomeSortGridView({super.key});
+  const _HomeSortGridView();
 
   @override
   Widget build(BuildContext context) {

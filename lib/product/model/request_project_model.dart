@@ -19,7 +19,7 @@ final class RequestProjectModel extends Equatable {
   final String publisher;
   final String phone;
   final DateTime expireDate;
-  // TODO: replace file to String for iamge url instead of file
+  // TODO: replace file to String for image url instead of file
   final File imageFile;
 
   @override

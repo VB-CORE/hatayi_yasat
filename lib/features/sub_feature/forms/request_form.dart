@@ -13,7 +13,7 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
   /// if user has any data and try to go back it will show dialog
   bool _isLatestDataCompleted = false;
 
-  void _updateLatestDataComplete({required bool isCompleted}) {
+  set latestDataCompleted(bool isCompleted) {
     _isLatestDataCompleted = isCompleted;
   }
 
@@ -50,16 +50,16 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
           autovalidateMode: isFirstValidate
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          onPopInvoked: (didPop) async {
+          onPopInvokedWithResult: (didPop, result) async {
             /// manage to on pop logic
             if (_isLatestDataCompleted) return;
             if (!isHasAnyData) {
-              _updateLatestDataComplete(isCompleted: true);
+              latestDataCompleted = true;
               context.pop();
               return;
             }
             final response = await FormLatestDataDialog.show(context);
-            _updateLatestDataComplete(isCompleted: response);
+            latestDataCompleted = response;
             if (!context.mounted) return;
             if (response) context.pop();
           },

@@ -8,9 +8,9 @@ import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 import 'package:lifeclient/product/utility/state/product_provider_operation_mixin.dart';
 
-final class ProductProvider extends StateNotifier<ProductProviderState>
+final class ProductProvider extends Notifier<ProductProviderState>
     with ProductProviderOperationMixin {
-  ProductProvider() : super(const ProductProviderState());
+  ProductProvider();
 
   bool get isHomeViewGrid =>
       appModelCache.get(AppCacheModel.appModelId)?.isHomeViewGrid ?? true;
@@ -79,5 +79,10 @@ final class ProductProvider extends StateNotifier<ProductProviderState>
     final appCacheModel = appModelCache.get(AppCacheModel.appModelId);
     if (appCacheModel == null) return;
     appModelCache.removeAll();
+  }
+
+  @override
+  ProductProviderState build() {
+    return const ProductProviderState();
   }
 }

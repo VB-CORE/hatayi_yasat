@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:life_shared/src/models/special_agency_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 @immutable
 final class SpecialAgencyState extends Equatable {

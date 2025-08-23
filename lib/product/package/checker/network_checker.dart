@@ -5,6 +5,6 @@ final class NetworkChecker {
 
   static Future<bool> checkConnection() async {
     final connectionResult = await Connectivity().checkConnectivity();
-    return connectionResult != ConnectivityResult.none;
+    return !connectionResult.contains(ConnectivityResult.none);
   }
 }

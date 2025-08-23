@@ -19,7 +19,7 @@ final class _DateIconAndText extends StatelessWidget {
       ).format(
         date!,
       ),
-      color: context.general.colorScheme.primary.withOpacity(0.7),
+      color: context.general.colorScheme.primary.withValues(alpha: 0.7),
     );
   }
 }

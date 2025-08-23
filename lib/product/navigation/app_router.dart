@@ -11,7 +11,7 @@ import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
-import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected.dart';
+import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected_model.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';

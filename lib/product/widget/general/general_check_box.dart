@@ -44,6 +44,7 @@ class _GeneralCheckBoxState extends State<GeneralCheckBox>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ListTile(
       onTap: () {
         _updateCheckBoxValue(!_value);

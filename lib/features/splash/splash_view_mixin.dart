@@ -13,7 +13,7 @@ mixin SplashViewMixin
         AppProviderMixin<SplashView>,
         ConsumerState<SplashView>,
         SingleTickerProviderStateMixin<SplashView> {
-  late final StateNotifierProvider<SplashViewModel, SplashState> _homeProvider;
+  late final NotifierProvider<SplashViewModel, SplashState> _homeProvider;
 
   late final AnimationController _controller;
   AnimationController get lottieController => _controller;
@@ -35,8 +35,8 @@ mixin SplashViewMixin
     super.initState();
     _controller = AnimationController(vsync: this);
 
-    _homeProvider = StateNotifierProvider(
-      (ref) => SplashViewModel(
+    _homeProvider = NotifierProvider(
+      () => SplashViewModel(
         appProvider: appProvider,
         productProvider: productProvider,
       ),

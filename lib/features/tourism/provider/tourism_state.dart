@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:life_shared/src/models/touristic_places_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 final class TourismState extends Equatable {
   const TourismState({

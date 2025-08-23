@@ -55,7 +55,7 @@ final class _ScholarshipRequestFormState
           }
           await showErrorSnackbar(title: response);
         },
-        onKVKKChanged: updateKVKK,
+        onKVKKChanged: (value) => updateKVKK(value: value),
         canApply:
             ref.read(scholarshipRequestProviderProvider).canApply ?? false,
       ).ext.toDisabled(

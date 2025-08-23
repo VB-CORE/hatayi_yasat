@@ -24,11 +24,11 @@ mixin UploadFileMixin on State<UploadFileSection> {
     final result =
         await FilePickerManager.pickFile(allowedExtensions: allowedExtension);
     if (result == null) return;
-    updateFile(result);
+    file = result;
     widget.onFilePicked(result);
   }
 
-  void updateFile(File file) {
+  set file(File file) {
     _documentFileNotifier.value = file;
   }
 

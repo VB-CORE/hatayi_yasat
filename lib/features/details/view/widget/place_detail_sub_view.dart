@@ -160,7 +160,8 @@ final class _OpenCloseTime extends StatelessWidget {
                   LocaleKeys.placeDetailView_openCloseHours.tr(),
                   style: context.general.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w400,
-                    color: context.general.colorScheme.primary.withOpacity(.5),
+                    color: context.general.colorScheme.primary
+                        .withValues(alpha: 0.5),
                   ),
                 ),
                 const Spacer(),

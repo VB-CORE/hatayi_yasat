@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/base_shared_operation.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 
-/// Todo: It's need to generic
+// TODO: It's need to generic
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();
@@ -70,4 +70,11 @@ final class SharedCache {
       DateTime.now().toIso8601String(),
     );
   }
+
+  Future<void> setFirstHistoryPageVisit() async {
+    await _sharedOperation.setValue(SharedKeys.firstHistoryPageVisit, false);
+  }
+
+  bool get isFirstHistoryPageVisit =>
+      _sharedOperation.getValue<bool>(SharedKeys.firstHistoryPageVisit) ?? true;
 }
