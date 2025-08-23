@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
@@ -22,7 +24,22 @@ final class MemoryFavoriteButton extends ConsumerStatefulWidget {
 }
 
 class _MemoryFavoriteButtonState extends ConsumerState<MemoryFavoriteButton>
-    with ProjectDependencyMixin {
+    with ProjectDependencyMixin, _MemoryFavoriteButtonMixin {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: _toggleFavorite,
+      icon: Icon(
+        _isFavorite ? AppIcons.favorite : AppIcons.favoriteBorder,
+        color: _isFavorite ? ColorsCustom.imperilRead : ColorsCustom.white,
+        size: AppIconSizes.medium,
+      ),
+    );
+  }
+}
+
+mixin _MemoryFavoriteButtonMixin
+    on ProjectDependencyMixin, ConsumerState<MemoryFavoriteButton> {
   bool _isFavorite = false;
 
   @override
@@ -40,60 +57,43 @@ class _MemoryFavoriteButtonState extends ConsumerState<MemoryFavoriteButton>
   }
 
   Future<void> _toggleFavorite() async {
-    try {
-      if (_isFavorite) {
-        // Remove from favorites
-        final memoryCacheModel = MemoryCacheModel(memoryModel: widget.memory);
-        productCache.memoryCacheModel.delete(memoryCacheModel);
-        setState(() {
-          _isFavorite = false;
-        });
-
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Favorilerden kaldırıldı'),
-              backgroundColor: ColorsCustom.brandeisBlue,
-            ),
-          );
-        }
-      } else {
-        // Add to favorites
-        final memoryCacheModel = MemoryCacheModel(memoryModel: widget.memory);
-        productCache.memoryCacheModel.add(memoryCacheModel);
-        setState(() {
-          _isFavorite = true;
-        });
-
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Favorilere eklendi'),
-              backgroundColor: ColorsCustom.brandeisBlue,
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Bir hata oluştu'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+    if (_isFavorite) {
+      // Remove from favorites
+      _removeFavorite();
+      return;
     }
+    _addFavorite();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: _toggleFavorite,
-      icon: Icon(
-        _isFavorite ? AppIcons.favorite : AppIcons.favoriteBorder,
-        color: _isFavorite ? Colors.red : ColorsCustom.white,
-        size: AppIconSizes.medium,
+  void _addFavorite() {
+    // Add to favorites
+    final memoryCacheModel = MemoryCacheModel(memoryModel: widget.memory);
+    productCache.memoryCacheModel.add(memoryCacheModel);
+    setState(() {
+      _isFavorite = true;
+    });
+
+    _showMessage(LocaleKeys.message_addedFavorite.tr());
+  }
+
+  void _removeFavorite() {
+    // Remove from favorites
+    final memoryCacheModel = MemoryCacheModel(memoryModel: widget.memory);
+    productCache.memoryCacheModel.delete(memoryCacheModel);
+    setState(() {
+      _isFavorite = false;
+    });
+
+    _showMessage(LocaleKeys.message_removedFavorite.tr());
+  }
+
+  // Fix issue show to top this message
+  void _showMessage(String message) {
+    if (!mounted) return;
+    appProvider.scaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: ColorsCustom.brandeisBlue,
       ),
     );
   }

@@ -109,6 +109,7 @@ abstract class  LocaleKeys {
   static const message_somethingWentWrong = 'message.somethingWentWrong';
   static const message_addedFavorite = 'message.addedFavorite';
   static const message_emptyFavorite = 'message.emptyFavorite';
+  static const message_removedFavorite = 'message.removedFavorite';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
   static const search_place = 'search.place';

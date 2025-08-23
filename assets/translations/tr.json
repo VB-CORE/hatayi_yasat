@@ -117,7 +117,8 @@
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "emptyFavorite": "Favori listeniz boş"
+    "emptyFavorite": "Favori listeniz boş",
+    "removedFavorite": "Favorilerden kaldırıldı"
   },
   "search": {
     "latestSearch": "Son Aramalar",

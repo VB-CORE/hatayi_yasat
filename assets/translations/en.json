@@ -117,7 +117,8 @@
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "emptyFavorite": "Your favorites list is empty"
+    "emptyFavorite": "Your favorites list is empty",
+    "removedFavorite": "Removed from favorites"
   },
   "search": {
     "latestSearch": "Latest Searches",

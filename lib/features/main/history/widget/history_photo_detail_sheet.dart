@@ -214,11 +214,11 @@ final class _BottomInfo extends StatelessWidget {
         ),
       ),
       child: Column(
+        spacing: AppIconSizes.small,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           _MemoryTitle(title: memory.title),
-          const SizedBox(height: AppIconSizes.small),
           ConstrainedBox(
             constraints: BoxConstraints(
               maxHeight: context.sized.dynamicHeight(0.3),
@@ -227,7 +227,6 @@ final class _BottomInfo extends StatelessWidget {
               child: _MemoryDescription(description: memory.description),
             ),
           ),
-          const SizedBox(height: AppIconSizes.xMedium),
           _ActionButtons(memory: memory),
         ],
       ),
@@ -244,12 +243,12 @@ final class _MemoryTitle extends StatelessWidget {
 
   final String? title;
 
-  static const String _defaultTitle = 'Untitled Memory';
 
   @override
   Widget build(BuildContext context) {
+    if (title == null || title!.isEmpty) return const SizedBox.shrink();
     return Text(
-      title ?? _defaultTitle,
+      title!,
       style: context.general.textTheme.headlineSmall?.copyWith(
         color: ColorsCustom.white,
         fontWeight: FontWeight.bold,
@@ -267,15 +266,16 @@ final class _MemoryDescription extends StatelessWidget {
 
   final String? description;
 
-  static const String _defaultDescription = 'No description available';
-  static const double _textOpacity = 0.8;
-
   @override
   Widget build(BuildContext context) {
+    if (description == null || description!.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Text(
-      description ?? _defaultDescription,
+      description!,
       style: context.general.textTheme.bodyMedium?.copyWith(
-        color: ColorsCustom.white.withOpacity(_textOpacity),
+        color: ColorsCustom.white,
+        fontWeight: FontWeight.w800,
       ),
     );
   }
