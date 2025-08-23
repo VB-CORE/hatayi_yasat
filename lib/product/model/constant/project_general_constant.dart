@@ -22,4 +22,7 @@ final class ProjectGeneralConstant {
   static const int maxLatestSearchCount = 5;
 
   static const String productRootCityName = 'hatay';
+
+  static const String googleFormMemoryUrl =
+      'https://forms.gle/9XoYt4LTZgWXaZko6';
 }
