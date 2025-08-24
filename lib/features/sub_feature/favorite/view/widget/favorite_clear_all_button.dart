@@ -7,10 +7,13 @@ final class _FavoriteClearAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => _showApproveDialog(context),
-      child: GeneralContentSubTitle(
-        value: LocaleKeys.favorite_clearAllButton.tr(context: context),
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () => _showApproveDialog(context),
+        child: GeneralContentSubTitle(
+          value: LocaleKeys.favorite_clearAllButton.tr(context: context),
+        ),
       ),
     );
   }

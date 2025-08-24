@@ -8,7 +8,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/utility/mixin/keyboard_utility_mixin.dart';
-import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
@@ -37,20 +36,6 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: PageAppBar(
-        pageTitle: LocaleKeys.favorite_title,
-        actions: [
-          if (ref.watch(favoriteViewModelProvider).favoritePlaces.isNotEmpty)
-            _FavoriteClearAllButton(
-              onPressed: (value) {
-                if (!value) return;
-                ref
-                    .read(favoriteViewModelProvider.notifier)
-                    .removeAllFavoritePlaces();
-              },
-            ),
-        ],
-      ),
       body: CustomScrollView(
         slivers: [
           _FavoriteSearchField(
@@ -59,6 +44,23 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
                   .read(favoriteViewModelProvider.notifier)
                   .searchFavorites(value);
             },
+          ),
+          SliverToBoxAdapter(
+            child: Consumer(
+              builder: (context, ref, child) {
+                final isFavoritePlacesEmpty =
+                    ref.watch(favoriteViewModelProvider).favoritePlaces.isEmpty;
+                if (isFavoritePlacesEmpty) return const SizedBox.shrink();
+                return _FavoriteClearAllButton(
+                  onPressed: (value) {
+                    if (!value) return;
+                    ref
+                        .read(favoriteViewModelProvider.notifier)
+                        .removeAllFavoritePlaces();
+                  },
+                );
+              },
+            ),
           ),
           const _FavoriteListBuilder(),
         ],

@@ -7,29 +7,14 @@ final class _HomePlaceArea extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => __HomePlaceAreaState();
 }
 
-class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
-  late Query<StoreModel?> query;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateFetchQuery();
-    ref.listenManual(homeViewModelProvider, (previous, next) {
-      if (next.isLoading) _updateFetchQuery();
-    });
-  }
-
-  void _updateFetchQuery() {
-    query =
-        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
-  }
-
+class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea>
+    with ProjectDependencyMixin, _HomePlaceAreaMixin {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(homeViewModelProvider).isLoading;
     if (isLoading) {
-      return const SliverToBoxAdapter(
-        child: CircularProgressIndicator(),
+      return SliverToBoxAdapter(
+        child: Assets.lottie.loadingGray.lottie(),
       );
     }
     return FirestoreSliverListView(
@@ -67,5 +52,30 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea> {
       },
       onRetry: () {},
     );
+  }
+}
+
+mixin _HomePlaceAreaMixin
+    on ProjectDependencyMixin, ConsumerState<_HomePlaceArea> {
+  late Query<StoreModel?> query;
+
+  @override
+  void initState() {
+    super.initState();
+    _updateFetchQuery();
+    ref
+      ..listenManual(homeViewModelProvider, (previous, next) {
+        if (next.isLoading) setState(_updateFetchQuery);
+      })
+      ..listenManual(productProviderState, (previous, next) {
+        if (next.selectedCity != previous?.selectedCity) {
+          setState(_updateFetchQuery);
+        }
+      });
+  }
+
+  void _updateFetchQuery() {
+    query =
+        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
   }
 }
