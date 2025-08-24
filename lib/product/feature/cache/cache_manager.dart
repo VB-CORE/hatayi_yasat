@@ -20,5 +20,5 @@ abstract class CacheOperation<T extends CacheModel> {
   void update(T data);
   List<T> getAll();
   T? get(String id);
-  bool removeAll();
+  Future<bool> removeAll();
 }

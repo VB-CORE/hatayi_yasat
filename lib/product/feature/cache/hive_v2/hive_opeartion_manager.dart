@@ -44,8 +44,8 @@ final class HiveOperationManager<T extends CacheModel>
   }
 
   @override
-  bool removeAll() {
-    _box?.clear();
+  Future<bool> removeAll() async {
+    await _box?.clear();
     final itemList = getAll();
     return itemList.isEmpty;
   }
