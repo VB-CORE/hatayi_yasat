@@ -29,7 +29,7 @@ final class FirstTimeWhatsNewChain extends WhatsNewChain {
     if (currentAppVersion == kErrorNumber) return;
 
     /// save first time current version number to cache
-    if (savedAppVersion == kErrorNumber) {
+    if (savedAppVersion == kErrorNumber.toInt()) {
       await saveCurrentVersion(currentAppVersion);
     }
 
@@ -50,7 +50,7 @@ final class ControlVersionWhatsNewChain extends WhatsNewChain {
     required int savedAppVersion,
   }) async {
     if (savedAppVersion == currentAppVersion) return;
-
+    await saveCurrentVersion(currentAppVersion);
     await nextChain?.show(
       currentAppVersion: currentAppVersion,
       savedAppVersion: savedAppVersion,
