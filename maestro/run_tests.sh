@@ -76,7 +76,8 @@ fi
 # Function to run a single flow
 run_flow() {
     local flow_path="$1"
-    local flow_name=$(basename "$flow_path" .yaml)
+    local flow_name
+    flow_name=$(basename "$flow_path" .yaml)
     
     print_info "Running: $flow_name"
     

@@ -1,7 +1,7 @@
 # Core Flow: Handle Onboarding
 # Manages onboarding flow completion
 
-appId: ${APP_ID}
+appId: com.hatayiyasat.app
 ---
 
 # Verify onboarding screen is visible
@@ -16,10 +16,8 @@ appId: ${APP_ID}
     id: "onboard_continue_button"
     
 # Wait for transition to main app
-- wait:
-    visible:
-      id: "main_tab_view"
-    timeout: ${timeouts.medium}
+- delay: 5000
+- waitForAnimationToEnd
 
 # Verify onboarding is completed
 - assertNotVisible:

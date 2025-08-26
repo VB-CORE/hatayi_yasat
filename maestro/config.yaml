@@ -3,7 +3,7 @@
 
 appId: com.hatayiyasat.app
 env:
-  APP_ID: ${APP_ID-com.example.lifeclient}
+  APP_ID: ${APP_ID-com.hatayiyasat.app}
   
 # Global test data
 testData:

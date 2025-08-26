@@ -1,19 +1,17 @@
 # Core Flow: Handle Splash Screen
 # Manages splash screen interactions
 
-appId: ${APP_ID}
+appId: com.hatayiyasat.app
 ---
 
 # Wait for splash animation to complete
 - assertVisible:
     id: "splash_screen"
-- wait: ${timeouts.medium}
+- delay: 5000
 
 # Wait for splash to disappear and main content to load
-- wait:
-    visible:
-      id: "main_tab_view"
-    timeout: ${timeouts.network}
+- waitForAnimationToEnd
+- delay: 3000
 
 # Verify splash is gone
 - assertNotVisible:

@@ -1,0 +1,11 @@
+# Simple Test Flow: Basic App Launch
+# Tests if app can launch successfully
+
+appId: com.hatayiyasat.app
+---
+
+# Launch the app
+- launchApp
+
+# Take a screenshot for verification
+- takeScreenshot: "app_launched"

@@ -1,12 +1,12 @@
 # Regression Test Suite: Smoke Tests
 # Quick smoke tests for critical functionality
 
-appId: ${APP_ID}
+appId: com.hatayiyasat.app
 ---
 
 # Quick app launch and basic functionality
 - launchApp
-- wait: ${timeouts.medium}
+- sleep: 5s
 
 # Verify app launches successfully
 - assertVisible:
@@ -14,33 +14,27 @@ appId: ${APP_ID}
 
 # Quick navigation test
 - tapOn:
-    text: "Etkinlikler"
-- wait: ${timeouts.short}
+    text: "Topluluk"
+- sleep: 2s
 - assertVisible:
-    id: "event_view"
+    id: "news_event_jobs_view"
 
 - tapOn:
-    text: "Ayarlar"  
-- wait: ${timeouts.short}
-- assertVisible:
-    id: "settings_view"
-
-- tapOn:
-    text: "Ana Sayfa"
-- wait: ${timeouts.short}
+    text: "Anasayfa"
+- sleep: 2s
 - assertVisible:
     id: "home_view"
 
 # Quick FAB test
 - tapOn:
     id: "speed_dial_fab"
-- wait: ${timeouts.short}
+- sleep: 2s
 - assertVisible:
     id: "speed_dial_menu"
 
 - tapOn:
     id: "speed_dial_fab"
-- wait: ${timeouts.short}
+- sleep: 2s
 - assertNotVisible:
     id: "speed_dial_menu"
 

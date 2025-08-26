@@ -1,0 +1,35 @@
+# Maestro Commands Reference
+# Correct syntax for common operations
+
+appId: com.hatayiyasat.app
+---
+
+# Sleep/wait operations
+- sleep: 2s           # Sleep for 2 seconds
+- sleep: 5000         # Sleep for 5000 milliseconds
+
+# Waiting for elements
+- waitForAnimationToEnd
+- waitForAnimationToEnd:
+    timeout: 5s
+
+# Conditional operations
+- runFlow:
+    when:
+      visible: "element_id"
+    file: "./other_flow.yaml"
+
+# Assertions
+- assertVisible:
+    id: "element_id"
+- assertVisible:
+    text: "Button Text"
+
+# Actions
+- tapOn:
+    id: "button_id"
+- tapOn:
+    text: "Button Text"
+
+# Screenshots
+- takeScreenshot: "filename"

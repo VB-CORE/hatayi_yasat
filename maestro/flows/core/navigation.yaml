@@ -1,7 +1,7 @@
 # Core Flow: Navigation Tests
 # Tests all main navigation functionalities
 
-appId: ${APP_ID}
+appId: com.hatayiyasat.app
 ---
 
 # Start from main screen
@@ -10,6 +10,7 @@ appId: ${APP_ID}
 # Test Home Tab Navigation
 - tapOn:
     text: "Anasayfa"
+- sleep: 2s
 - assertVisible:
     id: "home_view"
 - takeScreenshot: "navigation_home_tab"
@@ -17,6 +18,7 @@ appId: ${APP_ID}
 # Test Community Tab Navigation (News, Events, Jobs)  
 - tapOn:
     text: "Topluluk"
+- sleep: 2s
 - assertVisible:
     id: "news_event_jobs_view"
 - takeScreenshot: "navigation_community_tab"
@@ -24,6 +26,7 @@ appId: ${APP_ID}
 # Test Memories Tab Navigation
 - tapOn:
     text: "Hatıralar" 
+- sleep: 2s
 - assertVisible:
     id: "history_view"
 - takeScreenshot: "navigation_memories_tab"
@@ -31,6 +34,7 @@ appId: ${APP_ID}
 # Test Favorites Tab Navigation
 - tapOn:
     text: "Favoriler"
+- sleep: 2s
 - assertVisible:
     id: "favorite_view"
 - takeScreenshot: "navigation_favorites_tab"
@@ -38,13 +42,14 @@ appId: ${APP_ID}
 # Test returning to Home
 - tapOn:
     text: "Anasayfa"
+- sleep: 2s
 - assertVisible:
     id: "home_view"
 
 # Test Speed Dial FAB (Floating Action Button)
 - tapOn:
     id: "speed_dial_fab"
-- wait: ${timeouts.short}
+- sleep: 2s
 - assertVisible:
     id: "speed_dial_menu"
 - takeScreenshot: "speed_dial_expanded"
@@ -52,6 +57,6 @@ appId: ${APP_ID}
 # Close speed dial
 - tapOn:
     id: "speed_dial_fab"
-- wait: ${timeouts.short}
+- sleep: 2s
 - assertNotVisible:
     id: "speed_dial_menu"
