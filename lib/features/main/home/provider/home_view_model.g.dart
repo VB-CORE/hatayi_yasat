@@ -12,15 +12,15 @@ const homeViewModelProvider = HomeViewModelProvider._();
 final class HomeViewModelProvider
     extends $NotifierProvider<HomeViewModel, HomeState> {
   const HomeViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'homeViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'homeViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$homeViewModelHash();
@@ -47,8 +47,14 @@ abstract class _$HomeViewModel extends $Notifier<HomeState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<HomeState, HomeState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<HomeState, HomeState>, HomeState, Object?, Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<HomeState, HomeState>,
+              HomeState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

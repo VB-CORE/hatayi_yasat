@@ -12,15 +12,15 @@ const usefulLinksViewModelProvider = UsefulLinksViewModelProvider._();
 final class UsefulLinksViewModelProvider
     extends $NotifierProvider<UsefulLinksViewModel, UsefulLinksState> {
   const UsefulLinksViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'usefulLinksViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'usefulLinksViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$usefulLinksViewModelHash();
@@ -48,11 +48,14 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<UsefulLinksState, UsefulLinksState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<UsefulLinksState, UsefulLinksState>,
-        UsefulLinksState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<UsefulLinksState, UsefulLinksState>,
+              UsefulLinksState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

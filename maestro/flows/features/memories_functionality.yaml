@@ -1,0 +1,155 @@
+# Feature Flow: Memories/History Functionality
+# Tests memories page with photo interactions and favorites
+
+appId: ${APP_ID}
+---
+
+# Navigate to memories tab
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    text: "Hatıralar"
+
+# Verify memories page
+- assertVisible:
+    id: "history_view"
+- wait: ${timeouts.medium}
+
+# Wait for photos to load
+- wait:
+    notVisible:
+      id: "loading_indicator"
+    timeout: ${timeouts.network}
+
+# Take screenshot of loaded memories
+- takeScreenshot: "memories_loaded"
+
+# Test photo grid interaction
+- tapOn:
+    when:
+      visible:
+        id: "history_photo_item"
+    id: "history_photo_item"
+- wait: ${timeouts.medium}
+
+# If photo detail sheet opened
+- assertVisible:
+    when:
+      visible:
+        id: "history_photo_detail_sheet"
+    id: "history_photo_detail_sheet"
+- takeScreenshot: "memory_photo_detail"
+
+# Test photo actions in detail
+- tapOn:
+    when:
+      visible:
+        id: "photo_favorite_button"
+    id: "photo_favorite_button"
+- wait: ${timeouts.short}
+
+# Test photo sharing
+- tapOn:
+    when:
+      visible:
+        id: "photo_share_button"
+    id: "photo_share_button"
+- wait: ${timeouts.short}
+
+# Close photo detail
+- tapOn:
+    when:
+      visible:
+        id: "close_photo_detail"
+    id: "close_photo_detail"
+- wait: ${timeouts.short}
+
+# Test memory favorites FAB
+- tapOn:
+    when:
+      visible:
+        id: "memory_favorite_fab"
+    id: "memory_favorite_fab"
+- wait: ${timeouts.medium}
+
+# If favorite memories sheet opened
+- assertVisible:
+    when:
+      visible:
+        id: "history_favorite_sheet"
+    id: "history_favorite_sheet"
+- takeScreenshot: "memory_favorites"
+
+# Close favorites sheet
+- tapOn:
+    when:
+      visible:
+        id: "close_favorites_sheet"
+    id: "close_favorites_sheet"
+- wait: ${timeouts.short}
+
+# Test add memory FAB
+- tapOn:
+    when:
+      visible:
+        id: "add_memory_fab"
+    id: "add_memory_fab"
+- wait: ${timeouts.medium}
+
+# Handle permission requests for camera/gallery
+- tapOn:
+    when:
+      visible:
+        text: "İzin Ver"
+    text: "İzin Ver"
+
+- tapOn:
+    when:
+      visible:
+        text: "Allow"
+    text: "Allow"
+
+# Test camera option
+- tapOn:
+    when:
+      visible:
+        id: "camera_option"
+    id: "camera_option"
+- wait: ${timeouts.short}
+
+# Cancel camera if opened
+- tapOn:
+    when:
+      visible:
+        id: "camera_cancel"
+    id: "camera_cancel"
+
+# Test gallery option
+- tapOn:
+    when:
+      visible:
+        id: "gallery_option"
+    id: "gallery_option"
+- wait: ${timeouts.short}
+
+# Cancel gallery if opened
+- tapOn:
+    when:
+      visible:
+        id: "gallery_cancel"
+    id: "gallery_cancel"
+
+# Test scroll functionality
+- scrollDown
+- wait: ${timeouts.short}
+- scrollUp
+- wait: ${timeouts.short}
+
+# Test refresh
+- swipeDown
+- wait: ${timeouts.medium}
+
+# Wait for refresh to complete
+- wait:
+    notVisible:
+      id: "loading_indicator"
+    timeout: ${timeouts.network}

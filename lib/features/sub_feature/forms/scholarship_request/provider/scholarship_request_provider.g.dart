@@ -10,18 +10,19 @@ part of 'scholarship_request_provider.dart';
 const scholarshipRequestProviderProvider =
     ScholarshipRequestProviderProvider._();
 
-final class ScholarshipRequestProviderProvider extends $NotifierProvider<
-    ScholarshipRequestProvider, ScholarshipRequestState> {
+final class ScholarshipRequestProviderProvider
+    extends
+        $NotifierProvider<ScholarshipRequestProvider, ScholarshipRequestState> {
   const ScholarshipRequestProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'scholarshipRequestProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'scholarshipRequestProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$scholarshipRequestProviderHash();
@@ -51,11 +52,14 @@ abstract class _$ScholarshipRequestProvider
     final created = build();
     final ref =
         this.ref as $Ref<ScholarshipRequestState, ScholarshipRequestState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<ScholarshipRequestState, ScholarshipRequestState>,
-        ScholarshipRequestState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<ScholarshipRequestState, ScholarshipRequestState>,
+              ScholarshipRequestState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

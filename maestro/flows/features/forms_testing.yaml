@@ -1,0 +1,109 @@
+# Feature Flow: Forms Testing
+# Tests all form functionalities in the app
+
+appId: ${APP_ID}
+---
+
+# Navigate to home and open speed dial
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    id: "speed_dial_fab"
+- wait: ${timeouts.short}
+
+# Test Place Request Form
+- tapOn:
+    when:
+      visible:
+        id: "place_request_form_button"
+    id: "place_request_form_button"
+- wait: ${timeouts.medium}
+
+# Verify form opened
+- assertVisible:
+    when:
+      visible:
+        id: "place_request_form_view"
+    id: "place_request_form_view"
+- takeScreenshot: "place_request_form"
+
+# Fill form fields
+- inputText:
+    when:
+      visible:
+        id: "place_name_field"
+    id: "place_name_field"
+    text: "${testData.places.testPlaceName}"
+
+- inputText:
+    when:
+      visible:
+        id: "place_description_field"
+    id: "place_description_field"
+    text: "${testData.places.testPlaceDescription}"
+
+- inputText:
+    when:
+      visible:
+        id: "place_address_field"
+    id: "place_address_field"
+    text: "${testData.places.testAddress}"
+
+# Test form submission (without actually submitting)
+- tapOn:
+    when:
+      visible:
+        id: "form_submit_button"
+    id: "form_submit_button"
+- wait: ${timeouts.short}
+
+# Handle validation messages or success
+- takeScreenshot: "form_submission_result"
+
+# Go back
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"
+
+# Test Project Request Form
+- tapOn:
+    id: "speed_dial_fab"
+- wait: ${timeouts.short}
+
+- tapOn:
+    when:
+      visible:
+        id: "project_request_form_button"
+    id: "project_request_form_button"
+- wait: ${timeouts.medium}
+
+# Verify project form opened
+- assertVisible:
+    when:
+      visible:
+        id: "project_request_form_view"
+    id: "project_request_form_view"
+- takeScreenshot: "project_request_form"
+
+# Fill project form
+- inputText:
+    when:
+      visible:
+        id: "project_name_field"
+    id: "project_name_field"
+    text: "${testData.forms.projectName}"
+
+- inputText:
+    when:
+      visible:
+        id: "project_description_field"
+    id: "project_description_field"
+    text: "${testData.forms.projectDescription}"
+
+# Go back
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"

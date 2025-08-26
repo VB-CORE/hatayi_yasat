@@ -12,15 +12,15 @@ const newsJobsProviderProvider = NewsJobsProviderProvider._();
 final class NewsJobsProviderProvider
     extends $NotifierProvider<NewsJobsProvider, NewsJobsState> {
   const NewsJobsProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'newsJobsProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'newsJobsProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$newsJobsProviderHash();
@@ -47,11 +47,14 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<NewsJobsState, NewsJobsState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<NewsJobsState, NewsJobsState>,
-        NewsJobsState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<NewsJobsState, NewsJobsState>,
+              NewsJobsState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

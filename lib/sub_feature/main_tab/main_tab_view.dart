@@ -38,22 +38,28 @@ class _MainTabViewState extends ConsumerState<MainTabView>
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<ScrollUpdateNotification>(
-      onNotification: (notification) {
-        listenScrollUpdateNotification(notification);
-        return true;
-      },
-      child: DefaultTabController(
-        length: _tabItems.length,
-        child: Scaffold(
-          extendBody: true,
-          appBar: _MainAppBar(context: context),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          body: _BodyTabBarViewWidget(tabItems: _tabItems),
-          resizeToAvoidBottomInset: false,
-          bottomNavigationBar: _BottomAppBarWidget(tabItems: _tabItems),
-          floatingActionButton: const _SpeedDialFabWidget(),
+    return Semantics(
+      identifier: 'main_tab_view',
+      child: NotificationListener<ScrollUpdateNotification>(
+        onNotification: (notification) {
+          listenScrollUpdateNotification(notification);
+          return true;
+        },
+        child: DefaultTabController(
+          length: _tabItems.length,
+          child: Scaffold(
+            extendBody: true,
+            appBar: _MainAppBar(context: context),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            body: _BodyTabBarViewWidget(tabItems: _tabItems),
+            resizeToAvoidBottomInset: false,
+            bottomNavigationBar: Semantics(
+              identifier: 'bottom_navigation',
+              child: _BottomAppBarWidget(tabItems: _tabItems),
+            ),
+            floatingActionButton: const _SpeedDialFabWidget(),
+          ),
         ),
       ),
     );

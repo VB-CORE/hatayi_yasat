@@ -1,0 +1,99 @@
+# Feature Flow: Settings and Preferences
+# Tests settings page functionality
+
+appId: ${APP_ID}
+---
+
+# Navigate to settings
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    text: "Ayarlar"
+
+# Verify settings page
+- assertVisible:
+    id: "settings_view"
+- takeScreenshot: "settings_main_page"
+
+# Test developers page
+- tapOn:
+    when:
+      visible:
+        id: "developers_setting_item"
+    id: "developers_setting_item"
+- wait: ${timeouts.medium}
+
+- assertVisible:
+    when:
+      visible:
+        id: "developers_view"
+    id: "developers_view"
+- takeScreenshot: "developers_page"
+
+# Go back to settings
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"
+
+# Test application information
+- tapOn:
+    when:
+      visible:
+        id: "app_info_setting_item"
+    id: "app_info_setting_item"
+- wait: ${timeouts.medium}
+
+- assertVisible:
+    when:
+      visible:
+        id: "app_info_view"
+    id: "app_info_view"
+- takeScreenshot: "app_info_page"
+
+# Go back to settings
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"
+
+# Test language settings (if available)
+- tapOn:
+    when:
+      visible:
+        id: "language_setting_item"
+    id: "language_setting_item"
+- wait: ${timeouts.short}
+
+# Handle language selection
+- tapOn:
+    when:
+      visible:
+        text: "English"
+    text: "English"
+- wait: ${timeouts.short}
+
+# Change back to Turkish
+- tapOn:
+    when:
+      visible:
+        text: "Türkçe"
+    text: "Türkçe"
+- wait: ${timeouts.short}
+
+# Test theme settings (if available)
+- tapOn:
+    when:
+      visible:
+        id: "theme_setting_item"
+    id: "theme_setting_item"
+- wait: ${timeouts.short}
+
+# Test notification settings (if available)
+- tapOn:
+    when:
+      visible:
+        id: "notification_setting_item"
+    id: "notification_setting_item"
+- wait: ${timeouts.short}

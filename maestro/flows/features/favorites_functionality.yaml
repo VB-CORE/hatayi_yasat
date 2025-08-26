@@ -1,0 +1,125 @@
+# Feature Flow: Favorites Functionality
+# Tests favorites page with search and management features
+
+appId: ${APP_ID}
+---
+
+# Navigate to favorites tab
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    text: "Favoriler"
+
+# Verify favorites page
+- assertVisible:
+    id: "favorite_view"
+- wait: ${timeouts.medium}
+
+# Wait for favorites to load
+- wait:
+    notVisible:
+      id: "loading_indicator"
+    timeout: ${timeouts.network}
+
+# Take screenshot of favorites
+- takeScreenshot: "favorites_loaded"
+
+# Test search functionality in favorites
+- tapOn:
+    when:
+      visible:
+        id: "favorite_search_field"
+    id: "favorite_search_field"
+- inputText: "restaurant"
+- wait: ${timeouts.short}
+- takeScreenshot: "favorites_search"
+
+# Clear search
+- clearText:
+    when:
+      visible:
+        id: "favorite_search_field"
+    id: "favorite_search_field"
+
+# Test clear all favorites button (if favorites exist)
+- tapOn:
+    when:
+      visible:
+        id: "clear_all_favorites_button"
+    id: "clear_all_favorites_button"
+- wait: ${timeouts.short}
+
+# If confirmation dialog appears
+- assertVisible:
+    when:
+      visible:
+        id: "clear_favorites_dialog"
+    id: "clear_favorites_dialog"
+- takeScreenshot: "clear_favorites_confirmation"
+
+# Cancel clearing favorites
+- tapOn:
+    when:
+      visible:
+        id: "dialog_cancel_button"
+    id: "dialog_cancel_button"
+- wait: ${timeouts.short}
+
+# Test favorite item interaction
+- tapOn:
+    when:
+      visible:
+        id: "favorite_item"
+    id: "favorite_item"
+- wait: ${timeouts.medium}
+
+# If place detail opened from favorite
+- runFlow:
+    when:
+      visible:
+        id: "place_detail_view"
+    file: "./place_detail_interaction.yaml"
+
+# Test remove from favorites (swipe or button)
+- swipeLeft:
+    when:
+      visible:
+        id: "favorite_item"
+    on:
+      id: "favorite_item"
+- wait: ${timeouts.short}
+
+# If delete button appears
+- tapOn:
+    when:
+      visible:
+        id: "remove_favorite_button"
+    id: "remove_favorite_button"
+- wait: ${timeouts.short}
+
+# Test empty state (if no favorites)
+- assertVisible:
+    when:
+      visible:
+        id: "favorites_empty_state"
+    id: "favorites_empty_state"
+- takeScreenshot: "favorites_empty"
+
+# Test navigation from empty state to add favorites
+- tapOn:
+    when:
+      visible:
+        id: "browse_places_button"
+    id: "browse_places_button"
+- wait: ${timeouts.medium}
+
+# Should navigate to home
+- assertVisible:
+    when:
+      visible:
+        id: "home_view"
+    id: "home_view"
+
+# Go back to favorites
+- tapOn:
+    text: "Favoriler"
+- wait: ${timeouts.short}

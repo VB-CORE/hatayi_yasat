@@ -1,0 +1,48 @@
+# Regression Test Suite: Smoke Tests
+# Quick smoke tests for critical functionality
+
+appId: ${APP_ID}
+---
+
+# Quick app launch and basic functionality
+- launchApp
+- wait: ${timeouts.medium}
+
+# Verify app launches successfully
+- assertVisible:
+    id: "main_tab_view"
+
+# Quick navigation test
+- tapOn:
+    text: "Etkinlikler"
+- wait: ${timeouts.short}
+- assertVisible:
+    id: "event_view"
+
+- tapOn:
+    text: "Ayarlar"  
+- wait: ${timeouts.short}
+- assertVisible:
+    id: "settings_view"
+
+- tapOn:
+    text: "Ana Sayfa"
+- wait: ${timeouts.short}
+- assertVisible:
+    id: "home_view"
+
+# Quick FAB test
+- tapOn:
+    id: "speed_dial_fab"
+- wait: ${timeouts.short}
+- assertVisible:
+    id: "speed_dial_menu"
+
+- tapOn:
+    id: "speed_dial_fab"
+- wait: ${timeouts.short}
+- assertNotVisible:
+    id: "speed_dial_menu"
+
+# Final verification
+- takeScreenshot: "smoke_test_completed"

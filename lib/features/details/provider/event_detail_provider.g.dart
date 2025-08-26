@@ -12,15 +12,15 @@ const eventDetailProviderProvider = EventDetailProviderProvider._();
 final class EventDetailProviderProvider
     extends $NotifierProvider<EventDetailProvider, EventDetailState> {
   const EventDetailProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'eventDetailProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'eventDetailProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$eventDetailProviderHash();
@@ -48,11 +48,14 @@ abstract class _$EventDetailProvider extends $Notifier<EventDetailState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<EventDetailState, EventDetailState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<EventDetailState, EventDetailState>,
-        EventDetailState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<EventDetailState, EventDetailState>,
+              EventDetailState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

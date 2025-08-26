@@ -12,15 +12,15 @@ const tourismViewModelProvider = TourismViewModelProvider._();
 final class TourismViewModelProvider
     extends $NotifierProvider<TourismViewModel, TourismState> {
   const TourismViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'tourismViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'tourismViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$tourismViewModelHash();
@@ -47,11 +47,14 @@ abstract class _$TourismViewModel extends $Notifier<TourismState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<TourismState, TourismState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<TourismState, TourismState>,
-        TourismState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<TourismState, TourismState>,
+              TourismState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

@@ -1,0 +1,26 @@
+# Core Flow: Handle Onboarding
+# Manages onboarding flow completion
+
+appId: ${APP_ID}
+---
+
+# Verify onboarding screen is visible
+- assertVisible:
+    id: "onboard_view"
+
+# Take screenshot of onboarding
+- takeScreenshot: "onboarding_screen"
+
+# Complete onboarding by tapping continue/start button
+- tapOn:
+    id: "onboard_continue_button"
+    
+# Wait for transition to main app
+- wait:
+    visible:
+      id: "main_tab_view"
+    timeout: ${timeouts.medium}
+
+# Verify onboarding is completed
+- assertNotVisible:
+    id: "onboard_view"

@@ -12,15 +12,15 @@ const eventViewModelProvider = EventViewModelProvider._();
 final class EventViewModelProvider
     extends $NotifierProvider<EventViewModel, EventState> {
   const EventViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'eventViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'eventViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$eventViewModelHash();
@@ -47,8 +47,14 @@ abstract class _$EventViewModel extends $Notifier<EventState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<EventState, EventState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<EventState, EventState>, EventState, Object?, Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<EventState, EventState>,
+              EventState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

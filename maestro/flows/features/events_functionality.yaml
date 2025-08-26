@@ -1,0 +1,69 @@
+# Feature Flow: Events Functionality
+# Tests events page and event interactions
+
+appId: ${APP_ID}
+---
+
+# Navigate to events tab
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    text: "Etkinlikler"
+
+# Verify events page
+- assertVisible:
+    id: "event_view"
+- takeScreenshot: "events_page"
+
+# Test event card interaction (if available)
+- tapOn:
+    when:
+      visible:
+        id: "event_card"
+    id: "event_card"
+- wait: ${timeouts.medium}
+
+# If event detail opened
+- runFlow:
+    when:
+      visible:
+        id: "event_detail_view"
+    file: "./event_detail_interaction.yaml"
+
+# Test filter button (if available)
+- tapOn:
+    when:
+      visible:
+        id: "events_filter_button"
+    id: "events_filter_button"
+- wait: ${timeouts.short}
+
+# If filter sheet opened
+- tapOn:
+    when:
+      visible:
+        id: "filter_sheet"
+    id: "close_filter_sheet"
+
+# Test search in events (if available)
+- tapOn:
+    when:
+      visible:
+        id: "events_search_button"
+    id: "events_search_button"
+- wait: ${timeouts.short}
+
+# Input search text
+- inputText:
+    when:
+      visible:
+        id: "events_search_field"
+    id: "events_search_field"
+    text: "konser"
+- wait: ${timeouts.short}
+
+# Clear search
+- clearText:
+    when:
+      visible:
+        id: "events_search_field"
+    id: "events_search_field"
