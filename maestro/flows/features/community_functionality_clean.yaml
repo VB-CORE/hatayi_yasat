@@ -1,0 +1,72 @@
+# Feature Flow: Community Tab Functionality
+# Tests news, events, and jobs functionality with tab switching
+
+appId: com.hatayiyasat.app
+---
+
+# Navigate to community tab
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    text: "Topluluk"
+
+# Verify community page
+- assertVisible:
+    id: "news_event_jobs_view"
+- sleep: 3s
+
+# Test News Tab
+- tapOn:
+    text: "Haberler"
+- sleep: 3s
+- takeScreenshot: "community_news_tab"
+
+# Test news card interaction
+- tapOn:
+    when:
+      visible:
+        id: "news_card"
+    id: "news_card"
+- sleep: 3s
+
+# Go back if detail opened
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"
+- sleep: 2s
+
+# Test Events Tab
+- tapOn:
+    text: "Etkinlikler"
+- sleep: 3s
+- takeScreenshot: "community_events_tab"
+
+# Test event card interaction
+- tapOn:
+    when:
+      visible:
+        id: "event_card"
+    id: "event_card"
+- sleep: 3s
+
+# Go back if detail opened
+- tapOn:
+    when:
+      visible:
+        id: "back_button"
+    id: "back_button"
+- sleep: 2s
+
+# Test Jobs Tab
+- tapOn:
+    text: "İş İlanı"
+- sleep: 3s
+- takeScreenshot: "community_jobs_tab"
+
+# Test refresh functionality
+- swipeDown
+- sleep: 3s
+
+# Final screenshot
+- takeScreenshot: "community_functionality_completed"

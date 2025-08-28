@@ -7,11 +7,10 @@ appId: com.hatayiyasat.app
 # Wait for splash animation to complete
 - assertVisible:
     id: "splash_screen"
-- delay: 5000
+- sleep: 5s
 
 # Wait for splash to disappear and main content to load
 - waitForAnimationToEnd
-- delay: 3000
 
 # Verify splash is gone
 - assertNotVisible:

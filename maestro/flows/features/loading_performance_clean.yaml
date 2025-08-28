@@ -1,0 +1,48 @@
+# Features Flow: Loading Performance (Clean)
+# Tests app loading states and performance
+
+appId: com.hatayiyasat.app
+---
+
+# Start fresh
+- runFlow: "../core/app_launch.yaml"
+
+# Test home loading
+- takeScreenshot: "loading_home_start"
+- sleep: 2s
+- assertVisible:
+    id: "home_tab_content"
+- takeScreenshot: "loading_home_complete"
+
+# Test community loading
+- tapOn:
+    id: "topluluk_tab"
+- takeScreenshot: "loading_community_start"
+- sleep: 5s
+- assertVisible:
+    id: "community_tab_content"
+- takeScreenshot: "loading_community_complete"
+
+# Test memories loading
+- tapOn:
+    id: "hatiralar_tab"
+- takeScreenshot: "loading_memories_start"
+- sleep: 5s
+- assertVisible:
+    id: "memories_tab_content"
+- takeScreenshot: "loading_memories_complete"
+
+# Test favorites loading
+- tapOn:
+    id: "favoriler_tab"
+- takeScreenshot: "loading_favorites_start"
+- sleep: 5s
+- assertVisible:
+    id: "favorites_tab_content"
+- takeScreenshot: "loading_favorites_complete"
+
+# Return to home
+- tapOn:
+    id: "anasayfa_tab"
+- sleep: 3s
+- takeScreenshot: "loading_tests_complete"

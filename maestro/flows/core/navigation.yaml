@@ -1,50 +1,57 @@
-# Core Flow: Navigation Tests
-# Tests all main navigation functionalities
+# Core Flow: Navigation Testing
+# Tests main tab navigation functionality
 
 appId: com.hatayiyasat.app
 ---
 
-# Start from main screen
-- runFlow: "./app_launch.yaml"
-
-# Test Home Tab Navigation
-- tapOn:
-    text: "Anasayfa"
-- sleep: 2s
+# Verify main tab view is visible
 - assertVisible:
-    id: "home_view"
-- takeScreenshot: "navigation_home_tab"
+    id: "main_tab_view"
 
-# Test Community Tab Navigation (News, Events, Jobs)  
-- tapOn:
-    text: "Topluluk"
-- sleep: 2s
-- assertVisible:
-    id: "news_event_jobs_view"
-- takeScreenshot: "navigation_community_tab"
+# Take screenshot of initial state
+- takeScreenshot: "navigation_initial"
 
-# Test Memories Tab Navigation
-- tapOn:
-    text: "Hatıralar" 
-- sleep: 2s
+# Test Anasayfa tab (should be already selected)
 - assertVisible:
-    id: "history_view"
-- takeScreenshot: "navigation_memories_tab"
+    id: "anasayfa_tab"
+- assertVisible:
+    id: "home_tab_content"
 
-# Test Favorites Tab Navigation
+# Navigate to Topluluk tab
 - tapOn:
-    text: "Favoriler"
-- sleep: 2s
+    id: "topluluk_tab"
+- sleep: 3s
+- waitForAnimationToEnd
 - assertVisible:
-    id: "favorite_view"
-- takeScreenshot: "navigation_favorites_tab"
+    id: "community_tab_content"
+- takeScreenshot: "navigation_community"
 
-# Test returning to Home
+# Navigate to Hatıralar tab
 - tapOn:
-    text: "Anasayfa"
-- sleep: 2s
+    id: "hatiralar_tab"
+- sleep: 3s
+- waitForAnimationToEnd
 - assertVisible:
-    id: "home_view"
+    id: "memories_tab_content"
+- takeScreenshot: "navigation_memories"
+
+# Navigate to Favoriler tab
+- tapOn:
+    id: "favoriler_tab"
+- sleep: 3s
+- waitForAnimationToEnd
+- assertVisible:
+    id: "favorites_tab_content"
+- takeScreenshot: "navigation_favorites"
+
+# Return to Anasayfa tab
+- tapOn:
+    id: "anasayfa_tab"
+- sleep: 3s
+- waitForAnimationToEnd
+- assertVisible:
+    id: "home_tab_content"
+- takeScreenshot: "navigation_back_home"
 
 # Test Speed Dial FAB (Floating Action Button)
 - tapOn:

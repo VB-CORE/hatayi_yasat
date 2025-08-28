@@ -1,0 +1,56 @@
+# Features Flow: Events Functionality (Clean)
+# Tests events and activities features
+
+appId: com.hatayiyasat.app
+---
+
+# Start from home
+- runFlow: "../core/app_launch.yaml"
+
+# Look for events section on home page
+- assertVisible:
+    when:
+      visible:
+        id: "events_section"
+    id: "events_section"
+- takeScreenshot: "events_section_home"
+
+# Test event item interaction
+- tapOn:
+    when:
+      visible:
+        id: "event_item_0"
+    id: "event_item_0"
+- sleep: 3s
+
+# Verify event detail view
+- assertVisible:
+    when:
+      visible:
+        id: "event_detail_view"
+    id: "event_detail_view"
+- takeScreenshot: "event_detail"
+
+# Test event attendance
+- tapOn:
+    when:
+      visible:
+        id: "event_join_button"
+    id: "event_join_button"
+- sleep: 2s
+
+# Test event sharing
+- tapOn:
+    when:
+      visible:
+        id: "event_share_button"
+    id: "event_share_button"
+- sleep: 2s
+
+# Return to home
+- tapOn:
+    id: "back_button"
+- sleep: 3s
+- assertVisible:
+    id: "home_tab_content"
+- takeScreenshot: "events_tests_complete"

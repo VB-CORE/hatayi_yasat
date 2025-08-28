@@ -16,7 +16,7 @@ appId: com.hatayiyasat.app
     id: "onboard_continue_button"
     
 # Wait for transition to main app
-- delay: 5000
+- sleep: 5s
 - waitForAnimationToEnd
 
 # Verify onboarding is completed

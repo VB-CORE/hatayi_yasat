@@ -1,0 +1,62 @@
+# Features Flow: Favorites Functionality (Clean)
+# Tests favorites tab and bookmark features
+
+appId: com.hatayiyasat.app
+---
+
+# Navigate to favorites tab
+- runFlow: "../core/app_launch.yaml"
+- tapOn:
+    id: "favoriler_tab"
+- sleep: 5s
+
+# Verify favorites tab content
+- assertVisible:
+    id: "favorites_tab_content"
+- takeScreenshot: "favorites_tab_loaded"
+
+# Test favorites list (might be empty)
+- assertVisible:
+    when:
+      visible:
+        id: "favorites_list"
+    id: "favorites_list"
+
+# If favorites exist, test interaction
+- tapOn:
+    when:
+      visible:
+        id: "favorite_item_0"
+    id: "favorite_item_0"
+- sleep: 3s
+
+# Verify favorite place detail
+- assertVisible:
+    when:
+      visible:
+        id: "place_detail_view"
+    id: "place_detail_view"
+- takeScreenshot: "favorite_place_detail"
+
+# Test removing from favorites
+- tapOn:
+    when:
+      visible:
+        id: "remove_favorite_button"
+    id: "remove_favorite_button"
+- sleep: 2s
+
+# Return to favorites tab
+- tapOn:
+    id: "back_button"
+- sleep: 3s
+- assertVisible:
+    id: "favorites_tab_content"
+
+# Test empty state message
+- assertVisible:
+    when:
+      visible:
+        id: "empty_favorites_message"
+    id: "empty_favorites_message"
+- takeScreenshot: "favorites_tests_complete"

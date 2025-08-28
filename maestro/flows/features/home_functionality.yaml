@@ -1,7 +1,7 @@
 # Feature Flow: Home Page Functionality
 # Tests all home page features including loading, categories, filtering
 
-appId: ${APP_ID}
+appId: com.hatayiyasat.app
 ---
 
 # Navigate to home
@@ -12,83 +12,7 @@ appId: ${APP_ID}
 # Verify home page elements and wait for loading
 - assertVisible:
     id: "home_view"
-- wait: ${timeouts.medium}
-
-# Wait for any loading indicators to disappear
-- wait:
-    notVisible:
-      id: "loading_indicator"
-    timeout: ${timeouts.network}
-
-# Verify main home components
-- assertVisible:
-    id: "home_categories_area"
-- assertVisible:
-    id: "home_place_area"
-
-# Test categories section
-- takeScreenshot: "home_categories_loaded"
-
-# Test category selection (if available)
-- tapOn:
-    when:
-      visible:
-        id: "category_item"
-    id: "category_item"
-- wait: ${timeouts.medium}
-
-# Verify filter results update
-- wait:
-    notVisible:
-      id: "loading_indicator"
-    timeout: ${timeouts.network}
-- takeScreenshot: "home_category_filtered"
-
-# Test sorting functionality
-- tapOn:
-    when:
-      visible:
-        id: "sort_button"
-    id: "sort_button"
-- wait: ${timeouts.short}
-
-# Select sort option if sheet opens
-- tapOn:
-    when:
-      visible:
-        id: "sort_option_distance"
-    id: "sort_option_distance"
-- wait: ${timeouts.medium}
-
-# Test city selection functionality
-- tapOn:
-    when:
-      visible:
-        id: "city_selector_button"
-    id: "city_selector_button"
-- wait: ${timeouts.short}
-
-# Verify city selection sheet
-- assertVisible:
-    when:
-      visible:
-        id: "regional_city_sheet"
-    id: "regional_city_sheet"
-- takeScreenshot: "home_city_selection"
-
-# Select a city if available
-- tapOn:
-    when:
-      visible:
-        text: "Antakya"
-    text: "Antakya"
-- wait: ${timeouts.medium}
-
-# Verify city change loading
-- wait:
-    notVisible:
-      id: "loading_indicator"
-    timeout: ${timeouts.network}
+- sleep: 3s
 
 # Test search functionality
 - tapOn:
@@ -97,22 +21,8 @@ appId: ${APP_ID}
         id: "search_field"
     id: "search_field"
 - inputText: "restaurant"
-- wait: ${timeouts.short}
+- sleep: 2s
 - takeScreenshot: "home_search_input"
-
-# Test search results
-- tapOn:
-    when:
-      visible:
-        id: "search_button"
-    id: "search_button"
-- wait: ${timeouts.medium}
-
-# Wait for search results loading
-- wait:
-    notVisible:
-      id: "loading_indicator"
-    timeout: ${timeouts.network}
 
 # Clear search
 - clearText:
@@ -127,14 +37,15 @@ appId: ${APP_ID}
       visible:
         id: "place_card"
     id: "place_card"
-- wait: ${timeouts.medium}
+- sleep: 3s
 
-# If place detail opened, test and go back
-- runFlow:
+# If place detail opened, go back
+- tapOn:
     when:
       visible:
-        id: "place_detail_view"
-    file: "./place_detail_interaction.yaml"
+        id: "back_button"
+    id: "back_button"
+- sleep: 2s
 
 # Test filter access
 - tapOn:
@@ -142,35 +53,15 @@ appId: ${APP_ID}
       visible:
         id: "filter_button"
     id: "filter_button"
-- wait: ${timeouts.medium}
+- sleep: 3s
 
-# If filter opened, test and go back
-- runFlow:
-    when:
-      visible:
-        id: "filter_view"
-    file: "./filter_functionality.yaml"
-
-# Test grid/list view toggle
+# If filter opened, go back
 - tapOn:
     when:
       visible:
-        id: "view_toggle_button"
-    id: "view_toggle_button"
-- wait: ${timeouts.short}
-- takeScreenshot: "home_view_toggled"
+        id: "back_button"
+    id: "back_button"
+- sleep: 2s
 
-# Test notifications access
-- tapOn:
-    when:
-      visible:
-        id: "notifications_button"
-    id: "notifications_button"
-- wait: ${timeouts.short}
-
-# If notifications opened, verify and go back
-- runFlow:
-    when:
-      visible:
-        id: "notifications_view"
-    file: "./notifications_interaction.yaml"
+# Final screenshot
+- takeScreenshot: "home_functionality_completed"

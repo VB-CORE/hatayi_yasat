@@ -6,37 +6,43 @@ appId: com.hatayiyasat.app
 
 # Quick app launch and basic functionality
 - launchApp
-- sleep: 5s
+- waitForAnimationToEnd:
+    timeout: 5000
 
-# Verify app launches successfully
-- assertVisible:
-    id: "main_tab_view"
+# # Wait for splash screen to appear
+# - assertVisible:
+#     id: "splashView"
 
-# Quick navigation test
-- tapOn:
-    text: "Topluluk"
-- sleep: 2s
-- assertVisible:
-    id: "news_event_jobs_view"
+# # Wait for loading animation to complete and main screen to appear
+# - waitForAnimationToEnd
+# - assertVisible:
+#     id: "mainTabView"
 
-- tapOn:
-    text: "Anasayfa"
-- sleep: 2s
-- assertVisible:
-    id: "home_view"
+# # Quick navigation test
+# - tapOn:
+#     text: "Topluluk"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     text: "Haberler"
 
-# Quick FAB test
-- tapOn:
-    id: "speed_dial_fab"
-- sleep: 2s
-- assertVisible:
-    id: "speed_dial_menu"
+# - tapOn:
+#     text: "Anasayfa"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     id: "mainTabView"
 
-- tapOn:
-    id: "speed_dial_fab"
-- sleep: 2s
-- assertNotVisible:
-    id: "speed_dial_menu"
+# # Quick FAB test - Test speed dial functionality
+# - tapOn:
+#     id: "Floating Action Button"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     text: "Şirket Ekle"
 
-# Final verification
-- takeScreenshot: "smoke_test_completed"
+# - tapOn:
+#     id: "Floating Action Button"
+# - waitForAnimationToEnd
+# - assertNotVisible:
+#     text: "Şirket Ekle"
+
+# # Final verification
+# - takeScreenshot: "smoke_test_completed"

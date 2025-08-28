@@ -1,0 +1,44 @@
+# Features Flow: Filter Functionality (Clean)
+# Tests filtering and search capabilities
+
+appId: com.hatayiyasat.app
+---
+
+# Start from home page
+- assertVisible:
+    id: "home_tab_content"
+
+# Test search input
+- tapOn:
+    id: "search_input"
+- inputText: "test mekan"
+- sleep: 3s
+- takeScreenshot: "filter_search_input"
+
+# Clear search
+- clearKeychain
+- sleep: 2s
+
+# Test category filtering
+- assertVisible:
+    id: "categories_section"
+- tapOn:
+    id: "category_restoranlar"
+- sleep: 5s
+- takeScreenshot: "filter_restaurant_category"
+
+# Verify filtered results
+- assertVisible:
+    id: "place_list"
+
+# Test another category
+- tapOn:
+    id: "category_oteller"
+- sleep: 5s
+- takeScreenshot: "filter_hotel_category"
+
+# Test filter reset
+- tapOn:
+    id: "clear_filters_button"
+- sleep: 3s
+- takeScreenshot: "filter_cleared"

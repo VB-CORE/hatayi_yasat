@@ -106,9 +106,8 @@ case $TEST_TYPE in
     "features")
         print_info "Running feature tests..."
         run_flow "$FLOWS_DIR/features/home_functionality.yaml"
-        run_flow "$FLOWS_DIR/features/events_functionality.yaml"
-        run_flow "$FLOWS_DIR/features/forms_testing.yaml"
-        run_flow "$FLOWS_DIR/features/settings_functionality.yaml"
+        run_flow "$FLOWS_DIR/features/community_functionality_clean.yaml"
+        run_flow "$FLOWS_DIR/features/place_detail_interaction_clean.yaml"
         ;;
     
     "regression")

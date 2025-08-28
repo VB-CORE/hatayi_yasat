@@ -11,6 +11,8 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/sheet/regional/regional_city_sheet.dart';
@@ -38,8 +40,8 @@ class _MainTabViewState extends ConsumerState<MainTabView>
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      identifier: 'main_tab_view',
+    return GeneralSemantic(
+      semanticKey: GeneralSemanticKeys.mainTabView,
       child: NotificationListener<ScrollUpdateNotification>(
         onNotification: (notification) {
           listenScrollUpdateNotification(notification);
@@ -54,8 +56,8 @@ class _MainTabViewState extends ConsumerState<MainTabView>
                 FloatingActionButtonLocation.centerDocked,
             body: _BodyTabBarViewWidget(tabItems: _tabItems),
             resizeToAvoidBottomInset: false,
-            bottomNavigationBar: Semantics(
-              identifier: 'bottom_navigation',
+            bottomNavigationBar: GeneralSemantic(
+              semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
               child: _BottomAppBarWidget(tabItems: _tabItems),
             ),
             floatingActionButton: const _SpeedDialFabWidget(),
