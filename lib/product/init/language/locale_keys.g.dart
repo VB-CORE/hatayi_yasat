@@ -275,8 +275,8 @@ abstract class  LocaleKeys {
   static const chain_stores_subBranchesTitle = 'chain_stores.subBranchesTitle';
   static const chain_stores = 'chain_stores';
   static const whatsNew_title = 'whatsNew.title';
-  static const whatsNew_features_linkPage = 'whatsNew.features.linkPage';
-  static const whatsNew_features_locationPinning = 'whatsNew.features.locationPinning';
+  static const whatsNew_features_favoritePlaces = 'whatsNew.features.favoritePlaces';
+  static const whatsNew_features_memories = 'whatsNew.features.memories';
   static const whatsNew_features = 'whatsNew.features';
   static const whatsNew_bugFixes = 'whatsNew.bugFixes';
   static const whatsNew = 'whatsNew';
