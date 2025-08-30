@@ -67,6 +67,15 @@ DEVICE_ID=${2:-""}
 print_info "Test Type: $TEST_TYPE"
 print_info "Timestamp: $TIMESTAMP"
 
+# Install iOS app on simulator before running tests
+print_info "Installing iOS app on simulator..."
+if xcrun simctl install Booted "$PROJECT_DIR/../build/ios/iphonesimulator/Runner.app"; then
+    print_success "iOS app installed successfully"
+else
+    print_error "Failed to install iOS app"
+    exit 1
+fi
+
 # Set device if provided
 if [ ! -z "$DEVICE_ID" ]; then
     print_info "Using device: $DEVICE_ID"
