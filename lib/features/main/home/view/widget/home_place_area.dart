@@ -13,28 +13,32 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea>
   Widget build(BuildContext context) {
     final isLoading = ref.watch(homeViewModelProvider).isLoading;
     if (isLoading) {
-      return SliverToBoxAdapter(
-        child: Assets.lottie.loadingGray.lottie(),
-      );
+      return SliverToBoxAdapter(child: Assets.lottie.loadingGray.lottie());
     }
     return FirestoreSliverListView(
-      emptyBuilder: (context) => GeneralNotFoundWidget(
-        title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        onRefresh: () async {
-          await query.get();
-        },
-      ),
+      emptyBuilder:
+          (context) => GeneralNotFoundWidget(
+            title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+            onRefresh: () async {
+              await query.get();
+            },
+          ),
       query: query,
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
       itemGridBuilder: (context, model) {
-        return Padding(
-          padding: const PagePadding.onlyBottom(),
-          child: GeneralPlaceGridCard(
-            onCardTap: () {
-              PlaceDetailRoute($extra: model, id: model.documentId)
-                  .push<PlaceDetailRoute>(context);
-            },
-            storeModel: model,
+        return Semantics(
+          identifier: 'place_grid_card_${model.name}',
+          child: Padding(
+            padding: const PagePadding.onlyBottom(),
+            child: GeneralPlaceGridCard(
+              onCardTap: () {
+                PlaceDetailRoute(
+                  $extra: model,
+                  id: model.documentId,
+                ).push<PlaceDetailRoute>(context);
+              },
+              storeModel: model,
+            ),
           ),
         );
       },
@@ -43,8 +47,10 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea>
           padding: const PagePadding.onlyBottom(),
           child: GeneralPlaceCard(
             onCardTap: () {
-              PlaceDetailRoute($extra: model, id: model.documentId)
-                  .push<PlaceDetailRoute>(context);
+              PlaceDetailRoute(
+                $extra: model,
+                id: model.documentId,
+              ).push<PlaceDetailRoute>(context);
             },
             storeModel: model,
           ),

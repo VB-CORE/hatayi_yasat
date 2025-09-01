@@ -53,6 +53,9 @@ selectors:
   errorDialog: "error_dialog"
   successSnackbar: "success_snackbar"
   
+  # Product elements
+  productName: "Hermes"
+  
   # Forms
   submitButton: "submit_button"
   cancelButton: "cancel_button"

@@ -1,22 +1,33 @@
 # Regression Test Suite: Smoke Tests
-# Quick smoke tests for critical functionality
+# Quick smoke tests for critical functionality using Page Object Model
 
 appId: com.hatayiyasat.app
 ---
 
+# Load all page object elements
+- runFlow: ../../elements/loadElements.yaml
+
 # Quick app launch and basic functionality
 - launchApp
-- waitForAnimationToEnd:
-    timeout: 5000
 
-# # Wait for splash screen to appear
-# - assertVisible:
-#     id: "splashView"
+# Wait for splash screen to appear
+- assertVisible:
+    id: ${output.home.splashView}
 
-# # Wait for loading animation to complete and main screen to appear
-# - waitForAnimationToEnd
-# - assertVisible:
-#     id: "mainTabView"
+# Wait for loading animation to complete and main screen to appear
+- waitForAnimationToEnd
+- assertVisible:
+    id: ${output.home.mainTabView}
+
+# Test product name tap using page object
+- tapOn:
+    text: '-${output.home.productName}'
+- waitForAnimationToEnd
+
+# Test place card tap using page object
+- tapOn:
+    id: ${output.home.placeCard.hermes}
+- waitForAnimationToEnd
 
 # # Quick navigation test
 # - tapOn:

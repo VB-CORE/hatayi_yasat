@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites>
-  <testsuite name="Test Suite" device="R6CW8023LYV" tests="1" failures="1" time="21.0">
-    <testcase id="smoke_tests" name="smoke_tests" classname="smoke_tests" time="21.0" status="ERROR">
-      <failure>Assertion is false: id: splashView is visible</failure>
-    </testcase>
-  </testsuite>
-</testsuites>
