@@ -48,12 +48,15 @@ class _HomeViewState extends ConsumerState<HomeView>
   Widget build(BuildContext context) {
     super.build(context);
     return GeneralScaffold(
+      key: const Key('homeView'),
       body: CustomScrollView(
+        key: const Key('homeScrollView'),
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
           SliverAppBar(
+            key: const Key('homeSliverAppBar'),
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
@@ -62,7 +65,7 @@ class _HomeViewState extends ConsumerState<HomeView>
                 children: [
                   GeneralBigTitle(
                     LocaleKeys.home_places.tr(),
-                    key: ValueKey(context.locale),
+                    key: ValueKey('homePlacesTitle_${context.locale}'),
                   ),
                   const Spacer(),
                   const _HomeSortGridView(),
@@ -73,12 +76,11 @@ class _HomeViewState extends ConsumerState<HomeView>
           SliverList.list(
             children: [
               Padding(
+                key: const Key('homeSearchFilterRow'),
                 padding: const PagePadding.vertical12Symmetric(),
                 child: Row(
                   children: [
-                    const Expanded(
-                      child: _CustomSearchField(),
-                    ),
+                    const Expanded(child: _CustomSearchField()),
                     Padding(
                       padding: const PagePadding.onlyLeft(),
                       child: _FilterButton(
@@ -108,15 +110,14 @@ final class _FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      key: const Key('homeFilterButton'),
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
         backgroundColor: context.general.colorScheme.onPrimaryFixed,
         shape: RoundedRectangleBorder(
           borderRadius: CustomRadius.large,
-          side: BorderSide(
-            color: context.general.colorScheme.onPrimaryFixed,
-          ),
+          side: BorderSide(color: context.general.colorScheme.onPrimaryFixed),
         ),
       ),
       child: Padding(
@@ -136,6 +137,7 @@ final class _CustomSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      key: const Key('homeSearchField'),
       onTap: () async {
         await showSearch<SearchResponse>(
           context: context,
@@ -181,11 +183,10 @@ final class _CategoriesItems extends ConsumerWidget {
     final hasCategories =
         ref.watch(homeViewModelProvider).categories.isNotEmpty;
     if (!hasCategories) {
-      return const SliverToBoxAdapter(
-        child: SizedBox.shrink(),
-      );
+      return const SliverToBoxAdapter(child: SizedBox.shrink());
     }
     return const SliverPadding(
+      key: ValueKey('homeCategoriesSection'),
       padding: PagePadding.vertical6Symmetric(),
       sliver: _HomeCategoryCards(),
     );

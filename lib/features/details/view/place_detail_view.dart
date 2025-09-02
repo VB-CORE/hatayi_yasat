@@ -16,6 +16,8 @@ import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_
 import 'package:lifeclient/product/widget/button/icon_title_button.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/icon/index.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:lifeclient/product/widget/text/title_description_text.dart';
@@ -48,21 +50,14 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     }
 
     if (model.documentId.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: const PlaceShimmerList(),
-      );
+      return Scaffold(appBar: AppBar(), body: const PlaceShimmerList());
     }
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: context.general.colorScheme.primary,
-        ),
+        iconTheme: IconThemeData(color: context.general.colorScheme.primary),
         title: Text(model.name),
         centerTitle: true,
-        actions: [
-          _ShareAddressButton(model: model),
-        ],
+        actions: [_ShareAddressButton(model: model)],
       ),
       bottomNavigationBar: _FindThePlaceButton(
         onCallTapped: callAction,
@@ -72,9 +67,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
         children: [
           SizedBox(
             height: context.sized.dynamicHeight(.4),
-            child: _ImageWithButtonAndNameStack(
-              model: model,
-            ),
+            child: _ImageWithButtonAndNameStack(model: model),
           ),
           Padding(
             padding: const PagePadding.defaultPadding(),
@@ -103,12 +96,8 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(
-                                  AppIcons.personPin,
-                                ),
-                                Expanded(
-                                  child: _OwnerTitle(model: model),
-                                ),
+                                const Icon(AppIcons.personPin),
+                                Expanded(child: _OwnerTitle(model: model)),
                               ],
                             ),
                           ),
@@ -150,9 +139,7 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 }
 
 class _OwnerTitle extends StatelessWidget {
-  const _OwnerTitle({
-    required this.model,
-  });
+  const _OwnerTitle({required this.model});
 
   final StoreModel model;
 
@@ -178,9 +165,7 @@ class _OwnerTitle extends StatelessWidget {
 }
 
 final class _ShareAddressButton extends StatelessWidget {
-  const _ShareAddressButton({
-    required this.model,
-  });
+  const _ShareAddressButton({required this.model});
 
   final StoreModel model;
 
@@ -190,10 +175,7 @@ final class _ShareAddressButton extends StatelessWidget {
       onPressed: () {
         '${model.updatedName} ${model.address}'.ext.share();
       },
-      child: Icon(
-        AppIcons.share,
-        color: context.general.colorScheme.primary,
-      ),
+      child: Icon(AppIcons.share, color: context.general.colorScheme.primary),
     );
   }
 }

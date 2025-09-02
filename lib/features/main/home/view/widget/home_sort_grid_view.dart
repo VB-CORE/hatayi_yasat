@@ -6,10 +6,8 @@ final class _HomeSortGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Row(
-      children: [
-        _ViewDesignButton(),
-        _SortPlaceButton(),
-      ],
+      key: Key('homeSortGridView'),
+      children: [_ViewDesignButton(), _SortPlaceButton()],
     );
   }
 }

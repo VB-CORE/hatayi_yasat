@@ -3,6 +3,17 @@ output.home = {
   // Main containers
   splashView: "splashView",
   mainTabView: "mainTabView",
+  homeView: "homeView",
+  homeScrollView: "homeScrollView",
+  homeSliverAppBar: "homeSliverAppBar",
+
+  // Search and filter elements
+  homeSearchFilterRow: "homeSearchFilterRow",
+  homeSearchField: "homeSearchField",
+  homeFilterButton: "homeFilterButton",
+
+  // Categories
+  homeCategoriesSection: "homeCategoriesSection",
 
   // Place cards
   placeCard: {
@@ -19,4 +30,9 @@ output.home = {
 
   // Product elements
   productName: ".*Hermes.*",
+
+  button: {
+    phone: "placeDetailCallButton",
+    road: "placeDetailFindThePlaceButton",
+  },
 };

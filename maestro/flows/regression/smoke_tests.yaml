@@ -1,6 +1,8 @@
 # Regression Test Suite: Smoke Tests
 # Quick smoke tests for critical functionality using Page Object Model
 
+
+# maestro test -c flows/regression/smoke_tests.yaml 
 appId: com.hatayiyasat.app
 ---
 
@@ -19,15 +21,44 @@ appId: com.hatayiyasat.app
 - assertVisible:
     id: ${output.home.mainTabView}
 
+# Test home view elements are visible
+- assertVisible:
+    id: ${output.home.homeView}
+- assertVisible:
+    id: ${output.home.homeScrollView}
+- assertVisible:
+    id: ${output.home.homeSliverAppBar}
+
+# Test search and filter functionality
+- assertVisible:
+    id: ${output.home.homeSearchFilterRow}
+- assertVisible:
+    id: ${output.home.homeSearchField}
+- assertVisible:
+    id: ${output.home.homeFilterButton}
+
+# Test search field tap
+- tapOn:
+    id: ${output.home.homeSearchField}
+- waitForAnimationToEnd
+- pressKey: "Back"
+
+# Test filter button tap
+- tapOn:
+    id: ${output.home.homeFilterButton}
+- waitForAnimationToEnd
+- pressKey: "Back"
+
+# Test categories section if visible
+- assertVisible:
+    id: ${output.home.homeCategoriesSection}
+
 # Test product name tap using page object
 - tapOn:
-    text: '-${output.home.productName}'
+    text: '${output.home.productName}'
 - waitForAnimationToEnd
+- scroll
 
-# Test place card tap using page object
-- tapOn:
-    id: ${output.home.placeCard.hermes}
-- waitForAnimationToEnd
 
 # # Quick navigation test
 # - tapOn:

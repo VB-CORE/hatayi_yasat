@@ -16,26 +16,34 @@ final class _FindThePlaceButton extends StatelessWidget {
       constrainedAxis: Axis.horizontal,
       child: SafeArea(
         child: Padding(
-          padding: const PagePadding.horizontalSymmetric() +
+          padding:
+              const PagePadding.horizontalSymmetric() +
               const PagePadding.vertical6Symmetric(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 flex: 6,
-                child: IconTitleButton(
-                  onPressed: onCallTapped.call,
-                  icon: AppIcons.phone,
-                  text: LocaleKeys.placeDetailView_call.tr(),
+                child: GeneralSemantic(
+                  semanticKey: GeneralSemanticKeys.placeDetailCallButton,
+                  child: IconTitleButton(
+                    onPressed: onCallTapped.call,
+                    icon: AppIcons.phone,
+                    text: LocaleKeys.placeDetailView_call.tr(),
+                  ),
                 ),
               ),
               const Spacer(),
               Expanded(
                 flex: 6,
-                child: IconTitleButton(
-                  onPressed: onFindPlaceTapped.call,
-                  icon: AppIcons.location,
-                  text: LocaleKeys.placeDetailView_find_the_place.tr(),
+                child: GeneralSemantic(
+                  semanticKey:
+                      GeneralSemanticKeys.placeDetailFindThePlaceButton,
+                  child: IconTitleButton(
+                    onPressed: onFindPlaceTapped.call,
+                    icon: AppIcons.location,
+                    text: LocaleKeys.placeDetailView_find_the_place.tr(),
+                  ),
                 ),
               ),
             ],
@@ -48,9 +56,7 @@ final class _FindThePlaceButton extends StatelessWidget {
 
 @immutable
 final class _TownIcon extends ConsumerWidget with AppProviderStateMixin {
-  const _TownIcon({
-    required this.townCode,
-  });
+  const _TownIcon({required this.townCode});
 
   final int townCode;
 
@@ -71,9 +77,7 @@ final class _TownIcon extends ConsumerWidget with AppProviderStateMixin {
 
 @immutable
 final class _ImageWithButtonAndNameStack extends StatelessWidget {
-  const _ImageWithButtonAndNameStack({
-    required this.model,
-  });
+  const _ImageWithButtonAndNameStack({required this.model});
 
   final StoreModel model;
   @override
@@ -85,9 +89,7 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
             borderRadius: BorderRadius.vertical(
               top: CustomRadius.large.topLeft,
             ),
-            child: CustomImageWithViewDialog(
-              image: model.images.first,
-            ),
+            child: CustomImageWithViewDialog(image: model.images.first),
           ),
         ),
         Positioned(
@@ -107,9 +109,7 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
 }
 
 final class _OpenCloseTime extends StatelessWidget {
-  const _OpenCloseTime({
-    required this.model,
-  });
+  const _OpenCloseTime({required this.model});
 
   final StoreModel model;
 
@@ -145,9 +145,10 @@ final class _OpenCloseTime extends StatelessWidget {
                     ? LocaleKeys.placeDetailView_nowOpen.tr()
                     : LocaleKeys.placeDetailView_nowClose.tr(),
                 style: context.general.textTheme.titleSmall?.copyWith(
-                  color: isOpenOrClose
-                      ? context.general.colorScheme.primaryContainer
-                      : context.general.colorScheme.error,
+                  color:
+                      isOpenOrClose
+                          ? context.general.colorScheme.primaryContainer
+                          : context.general.colorScheme.error,
                 ),
               ),
             ],
@@ -160,8 +161,9 @@ final class _OpenCloseTime extends StatelessWidget {
                   LocaleKeys.placeDetailView_openCloseHours.tr(),
                   style: context.general.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w400,
-                    color: context.general.colorScheme.primary
-                        .withValues(alpha: 0.5),
+                    color: context.general.colorScheme.primary.withValues(
+                      alpha: 0.5,
+                    ),
                   ),
                 ),
                 const Spacer(),

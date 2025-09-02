@@ -16,21 +16,23 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
   static const _otherCategoryValue = 1000;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories = ref.watch(homeViewModelProvider).categories
-      ..take(_maxCategoryItemLength)
-      ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
-
-      /// remove other category
-      ..removeWhere((element) => element.value == _otherCategoryValue);
+    final categories =
+        ref.watch(homeViewModelProvider).categories
+          ..take(_maxCategoryItemLength)
+          ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
+          /// remove other category
+          ..removeWhere((element) => element.value == _otherCategoryValue);
 
     return SizedBox(
       height: WidgetSizes.spacingXxl2,
       child: ListView.builder(
+        key: const Key('homeCategoriesList'),
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         padding: const PagePadding.onlyBottomLow(),
         itemBuilder: (BuildContext context, int index) {
           return _CategoryCard(
+            key: Key('categoryCard_${categories[index].documentId}'),
             onTap: () async {
               await pushToFilter(
                 context: context,
@@ -46,10 +48,7 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
 }
 
 final class _CategoryCard extends StatelessWidget {
-  const _CategoryCard({
-    required this.name,
-    required this.onTap,
-  });
+  const _CategoryCard({required this.name, required this.onTap, super.key});
 
   final String name;
   final VoidCallback onTap;
@@ -61,9 +60,7 @@ final class _CategoryCard extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          side: BorderSide(
-            color: context.general.colorScheme.onSecondaryFixed,
-          ),
+          side: BorderSide(color: context.general.colorScheme.onSecondaryFixed),
           backgroundColor: context.general.colorScheme.onSecondary,
           shape: const RoundedRectangleBorder(
             borderRadius: CustomRadius.extraLarge,
