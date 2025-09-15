@@ -1,6 +1,6 @@
 default_platform(:ios)
 
-VERSION_NUMBER = "8.1.0"
+VERSION_NUMBER = "8.1.1"
 
 platform :ios do
   before_all do
@@ -23,7 +23,7 @@ platform :ios do
     configuration: "Release",  # Bu satırı ekleyin
     xcargs: "-allowProvisioningUpdates"
   )
-  
+
   upload_to_testflight
   end
 
