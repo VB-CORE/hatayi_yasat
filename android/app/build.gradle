@@ -1,7 +1,7 @@
 plugins {
-    id "com.android.application"
-    id "dev.flutter.flutter-gradle-plugin"
-    id "kotlin-android"
+    id 'com.android.application'
+    id 'dev.flutter.flutter-gradle-plugin'
+    id 'kotlin-android'
 }
 
 def localProperties = new Properties()
@@ -28,10 +28,10 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.hatayiyasat.appp"
-    compileSdkVersion 35
-    ndkVersion "27.0.12077973"
-
+    namespace 'com.hatayiyasat.appp'
+    compileSdkVersion 36
+    buildToolsVersion '36.0.0'
+    ndkVersion '28.0.12433566'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
