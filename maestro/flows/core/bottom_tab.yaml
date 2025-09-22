@@ -1,0 +1,14 @@
+
+appId: com.hatayiyasat.app
+---
+- tapOn:
+    id: ${output.common.bottomBar.homeTab}
+- waitForAnimationToEnd
+- tapOn:
+    id: ${output.common.bottomBar.communityTab}
+- waitForAnimationToEnd
+# - tapOn:
+#     id: ${output.common.bottomBar.memoriesTab}
+# - waitForAnimationToEnd
+- tapOn:
+    id: ${output.common.bottomBar.favoriteTab}

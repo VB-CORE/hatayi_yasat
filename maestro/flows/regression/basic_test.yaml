@@ -1,0 +1,41 @@
+# Regression Test Suite: Basic Test
+# Basic functionality test combining core app flows
+
+appId: com.hatayiyasat.app
+---
+# Load all page object elements
+- runFlow: ../../elements/loadElements.yaml
+
+- clearState
+# Launch app and verify initial state
+- launchApp
+- waitForAnimationToEnd
+
+# Handle potential onboarding
+- runFlow:
+    when:
+        visible: 
+            id: ${output.common.onBoardButton}
+    file: "../core/handle_onboarding.yaml"
+
+# Handle potential splash screen
+- runFlow:
+    when:
+        visible: 
+            id: ${output.common.splashView}
+    file: "../core/handle_splash.yaml"
+
+- runFlow:
+    when:
+        visible: 
+            id: ${output.common.whatsNewSheet}
+    file: "../core/news_bottom_sheet.yaml"
+
+# Verify main content is loaded
+- assertVisible:
+    text: "Mekanlar"
+
+- runFlow: ../core/bottom_tab.yaml
+
+# Final verification screenshot
+- takeScreenshot: "maestro/results/basic_test_completed"

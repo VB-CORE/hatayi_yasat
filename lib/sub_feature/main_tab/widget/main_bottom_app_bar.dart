@@ -1,9 +1,7 @@
 part of '../main_tab_view.dart';
 
 class _BodyTabBarViewWidget extends StatelessWidget {
-  const _BodyTabBarViewWidget({
-    required this.tabItems,
-  });
+  const _BodyTabBarViewWidget({required this.tabItems});
 
   final List<TabModel> tabItems;
 
@@ -17,9 +15,7 @@ class _BodyTabBarViewWidget extends StatelessWidget {
 }
 
 final class _BottomAppBarWidget extends ConsumerWidget {
-  const _BottomAppBarWidget({
-    required this.tabItems,
-  });
+  const _BottomAppBarWidget({required this.tabItems});
 
   final List<TabModel> tabItems;
 
@@ -36,8 +32,9 @@ final class _BottomAppBarWidget extends ConsumerWidget {
         notchMargin: WidgetSizes.spacingXxs / 2,
         shape: const CircularNotchedRectangle(),
         elevation: kZero,
-        color: context.general.colorScheme.secondary
-            .withValues(alpha: isScrolledBottom ? .7 : 1),
+        color: context.general.colorScheme.secondary.withValues(
+          alpha: isScrolledBottom ? .7 : 1,
+        ),
         child: _TabBar(tabItems: tabItems),
       ),
     );
@@ -45,9 +42,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
 }
 
 class _TabBar extends StatelessWidget {
-  const _TabBar({
-    required this.tabItems,
-  });
+  const _TabBar({required this.tabItems});
 
   final List<TabModel> tabItems;
 
@@ -58,18 +53,20 @@ class _TabBar extends StatelessWidget {
       dividerColor: ColorsCustom.transparent,
       labelPadding: EdgeInsets.zero,
       indicator: const BoxDecoration(),
-      unselectedLabelColor:
-          context.general.colorScheme.primary.withValues(alpha: .3),
+      unselectedLabelColor: context.general.colorScheme.primary.withValues(
+        alpha: .3,
+      ),
       labelStyle: context.general.textTheme.bodyMedium,
       unselectedLabelStyle: context.general.textTheme.bodySmall,
-      tabs: tabItems
-          .map(
-            (e) => Tab(
-              text: e.title.tr(),
-              icon: e.icon,
-            ),
-          )
-          .toList(),
+      tabs:
+          tabItems
+              .map(
+                (e) => GeneralSemantic(
+                  semanticKey: e.semanticKey,
+                  child: Tab(text: e.title.tr(), icon: e.icon),
+                ),
+              )
+              .toList(),
     );
   }
 }

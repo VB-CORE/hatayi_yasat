@@ -117,6 +117,7 @@ case $TEST_TYPE in
         run_flow "$FLOWS_DIR/features/home_functionality.yaml"
         run_flow "$FLOWS_DIR/features/community_functionality_clean.yaml"
         run_flow "$FLOWS_DIR/features/place_detail_interaction_clean.yaml"
+        run_flow "$FLOWS_DIR/features/filter_hotels_antakya_arsuz.yaml"
         ;;
     
     "regression")

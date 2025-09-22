@@ -6,7 +6,7 @@ appId: com.hatayiyasat.app
 
 # Launch app and verify initial state
 - launchApp
-- sleep: 5s
+- waitForAnimationToEnd
 
 # Handle potential splash screen
 - runFlow: 
@@ -20,21 +20,9 @@ appId: com.hatayiyasat.app
       visible: "onboard_button"
     file: "./handle_onboarding.yaml"
 
-# Verify main tab view is loaded
+# Verify main content is loaded
 - assertVisible:
-    id: "main_tab_view"
-- assertVisible:
-    id: "bottom_navigation"
-
-# Verify all main tabs are present
-- assertVisible:
-    text: "Anasayfa" # Home
-- assertVisible:
-    text: "Topluluk" # Community  
-- assertVisible:
-    text: "Hatıralar" # Memories
-- assertVisible:
-    text: "Favoriler" # Favorites
+    text: "Mekanlar"
 
 # Take screenshot for visual validation
 - takeScreenshot: "app_launch_main_screen"

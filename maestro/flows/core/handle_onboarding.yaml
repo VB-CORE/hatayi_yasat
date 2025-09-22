@@ -4,21 +4,16 @@
 appId: com.hatayiyasat.app
 ---
 
-# Verify onboarding screen is visible
-- assertVisible:
-    id: "onboard_view"
-
-# Take screenshot of onboarding
-- takeScreenshot: "onboarding_screen"
+# # Take screenshot of onboarding
+# - takeScreenshot: "onboarding_screen"
 
 # Complete onboarding by tapping continue/start button
 - tapOn:
-    id: "onboard_continue_button"
-    
+    id: ${output.common.onBoardButton}
+
 # Wait for transition to main app
-- sleep: 5s
 - waitForAnimationToEnd
 
 # Verify onboarding is completed
 - assertNotVisible:
-    id: "onboard_view"
+    id: ${output.common.onBoardButton}

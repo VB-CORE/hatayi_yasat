@@ -1,0 +1,20 @@
+
+appId: com.hatayiyasat.app
+---
+
+# Wait for splash animation to complete
+- assertVisible:
+    id: "${output.common.whatsNewSheet}"
+- waitForAnimationToEnd
+- assertVisible: ".*Yenilikler.*"
+- swipe:
+    from: 
+      id: "${output.common.whatsNewSheet}"       # This command swipes in the left direction from the middle of the device. 
+    direction: up
+
+- tapOn:
+    point: 10%,10%        # top-left corner
+
+# Verify splash is gone
+- assertNotVisible:
+    id: ${output.common.whatsNewSheet}

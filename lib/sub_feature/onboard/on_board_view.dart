@@ -5,6 +5,8 @@ import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.d
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 
 class OnBoarView extends StatefulWidget {
   const OnBoarView({super.key});
@@ -21,9 +23,7 @@ class _OnBoarViewState extends State<OnBoarView> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Assets.images.imgWelcome.image(
-                fit: BoxFit.fill,
-              ),
+              child: Assets.images.imgWelcome.image(fit: BoxFit.fill),
             ),
             Positioned(
               right: 0,
@@ -51,12 +51,15 @@ class _AppBar extends StatelessWidget {
       child: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
-          TextButton(
-            onPressed: onPressed,
-            child: Icon(
-              Icons.close,
-              weight: ApplicationTheme.maxWeight,
-              color: context.general.colorScheme.onSecondary,
+          GeneralSemantic(
+            semanticKey: GeneralSemanticKeys.onboardButton,
+            child: TextButton(
+              onPressed: onPressed,
+              child: Icon(
+                Icons.close,
+                weight: ApplicationTheme.maxWeight,
+                color: context.general.colorScheme.onSecondary,
+              ),
             ),
           ),
         ],
