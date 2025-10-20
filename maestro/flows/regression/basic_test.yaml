@@ -33,7 +33,7 @@ appId: com.hatayiyasat.app
 
 # Verify main content is loaded
 - assertVisible:
-    text: "Mekanlar"
+    text: "Mekanlar!"
 
 - runFlow: ../core/bottom_tab.yaml
 
