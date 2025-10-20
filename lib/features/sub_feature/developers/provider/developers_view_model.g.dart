@@ -15,15 +15,15 @@ const developersViewModelProvider = DevelopersViewModelProvider._();
 final class DevelopersViewModelProvider
     extends $NotifierProvider<DevelopersViewModel, DevelopersState> {
   const DevelopersViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'developersViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'developersViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$developersViewModelHash();
@@ -51,11 +51,14 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<DevelopersState, DevelopersState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<DevelopersState, DevelopersState>,
-        DevelopersState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<DevelopersState, DevelopersState>,
+              DevelopersState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

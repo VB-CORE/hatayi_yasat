@@ -15,15 +15,15 @@ const historyViewModelProvider = HistoryViewModelProvider._();
 final class HistoryViewModelProvider
     extends $NotifierProvider<HistoryViewModel, HistoryState> {
   const HistoryViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'historyViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'historyViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$historyViewModelHash();
@@ -50,11 +50,14 @@ abstract class _$HistoryViewModel extends $Notifier<HistoryState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<HistoryState, HistoryState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<HistoryState, HistoryState>,
-        HistoryState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<HistoryState, HistoryState>,
+              HistoryState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

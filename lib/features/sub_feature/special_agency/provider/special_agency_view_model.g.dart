@@ -15,15 +15,15 @@ const specialAgencyViewModelProvider = SpecialAgencyViewModelProvider._();
 final class SpecialAgencyViewModelProvider
     extends $NotifierProvider<SpecialAgencyViewModel, SpecialAgencyState> {
   const SpecialAgencyViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'specialAgencyViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'specialAgencyViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$specialAgencyViewModelHash();
@@ -51,11 +51,14 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<SpecialAgencyState, SpecialAgencyState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<SpecialAgencyState, SpecialAgencyState>,
-        SpecialAgencyState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<SpecialAgencyState, SpecialAgencyState>,
+              SpecialAgencyState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

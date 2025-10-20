@@ -1,0 +1,4 @@
+# loadElements.yaml - Load all page object elements
+appId: com.hatayiyasat.app
+---
+- runScript: common.js

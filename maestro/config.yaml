@@ -1,0 +1,63 @@
+# Keep Hatay Alive - Maestro Test Configuration
+# This file contains global configuration for all test flows
+
+appId: com.hatayiyasat.app
+env:
+  APP_ID: ${APP_ID-com.hatayiyasat.app}
+  
+# Global test data
+testData:
+  # Test user data
+  user:
+    testEmail: "test@hataylife.com"
+    testPhoneNumber: "+905551234567"
+    testUserName: "Test User"
+  
+  # Test places data
+  places:
+    testPlaceName: "Test Restaurant"
+    testPlaceDescription: "Test açıklama"
+    testAddress: "Test Adres, Hatay"
+  
+  # Test form data
+  forms:
+    projectName: "Test Proje"
+    projectDescription: "Test proje açıklaması"
+    contactInfo: "test@example.com"
+
+# Global waits and timeouts
+timeouts:
+  short: 2000
+  medium: 5000
+  long: 10000
+  network: 15000
+
+# Screen sizes for responsive testing
+screenSizes:
+  mobile:
+    width: 375
+    height: 812
+  tablet:
+    width: 768
+    height: 1024
+
+# Common selectors
+selectors:
+  # Navigation
+  bottomNavigation: "main_bottom_navigation"
+  tabBar: "main_tab_bar"
+  backButton: "back_button"
+  
+  # Common UI elements
+  loadingIndicator: "loading_indicator"
+  errorDialog: "error_dialog"
+  successSnackbar: "success_snackbar"
+  
+  # Product elements
+  productName: "Hermes"
+  
+  # Forms
+  submitButton: "submit_button"
+  cancelButton: "cancel_button"
+  textField: "text_field"
+  dropdown: "dropdown"

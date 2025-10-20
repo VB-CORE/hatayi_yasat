@@ -15,15 +15,15 @@ const chainStoreProviderProvider = ChainStoreProviderProvider._();
 final class ChainStoreProviderProvider
     extends $NotifierProvider<ChainStoreProvider, ChainStoreState> {
   const ChainStoreProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'chainStoreProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'chainStoreProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$chainStoreProviderHash();
@@ -51,11 +51,14 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<ChainStoreState, ChainStoreState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<ChainStoreState, ChainStoreState>,
-        ChainStoreState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<ChainStoreState, ChainStoreState>,
+              ChainStoreState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

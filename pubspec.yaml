@@ -5,7 +5,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 8.1.0
 
 environment:
-  sdk: ">=3.1.3 <4.0.0"
+  sdk: ^3.7.0
 
 dependencies:
   flutter:
@@ -140,7 +140,7 @@ flutter_launcher_icons:
 scripts:
   lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
   dartBuild: dart run build_runner build --delete-conflicting-outputs
-  build: dart run build_runner build
+  build: flutter pub run build_runner build --delete-conflicting-outputs
   watch: dart run build_runner watch --delete-conflicting-outputs
   buildForce: dart run build_runner build --delete-conflicting-outputs
   pubGet: sh ./scripts/pub_get.sh
@@ -149,7 +149,7 @@ scripts:
   podUpdate: cd ios && pod update && cd ..
   fios: flutter clean && flutter pub get && cd ios && pod install && cd ..
   emulator: firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data
-
+  mt: sh maestro/run_tests.sh
   updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true

@@ -1,0 +1,76 @@
+# Regression Test Suite: Smoke Tests
+# Quick smoke tests for critical functionality using Page Object Model
+
+# maestro test -c flows/regression/smoke_tests.yaml 
+appId: com.hatayiyasat.app
+---
+
+# Load all page object elements
+- runFlow: ../../elements/loadElements.yaml
+
+# Quick app launch and basic functionality
+- launchApp
+
+# Wait for splash screen to appear
+- assertVisible:
+    id: ${output.home.splashView}
+
+# Wait for loading animation to complete and main screen to appear
+- waitForAnimationToEnd
+- assertVisible:
+    id: ${output.home.mainTabView}
+
+- waitUntil:
+    visible:
+      text: "Mekanlar"
+    timeout: ${timeouts.network}
+- assertVisible:
+    text: "Mekanlar"
+- assertVisible:
+    text: "Mekan ara"
+
+# Exercise search field
+- tapOn:
+    text: "Mekan ara"
+- waitForAnimationToEnd
+- pressKey: "Back"
+
+# Check category chips
+- assertVisible:
+    text: "OTEL"
+
+# Test product name tap using page object
+- tapOn:
+    text: '${output.home.productName}'
+- waitForAnimationToEnd
+- scroll
+
+
+# # Quick navigation test
+# - tapOn:
+#     text: "Topluluk"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     text: "Haberler"
+
+# - tapOn:
+#     text: "Anasayfa"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     id: "mainTabView"
+
+# # Quick FAB test - Test speed dial functionality
+# - tapOn:
+#     id: "Floating Action Button"
+# - waitForAnimationToEnd
+# - assertVisible:
+#     text: "Şirket Ekle"
+
+# - tapOn:
+#     id: "Floating Action Button"
+# - waitForAnimationToEnd
+# - assertNotVisible:
+#     text: "Şirket Ekle"
+
+# # Final verification
+# - takeScreenshot: "smoke_test_completed"

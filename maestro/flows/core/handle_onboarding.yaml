@@ -1,0 +1,19 @@
+# Core Flow: Handle Onboarding
+# Manages onboarding flow completion
+
+appId: com.hatayiyasat.app
+---
+
+# # Take screenshot of onboarding
+# - takeScreenshot: "onboarding_screen"
+
+# Complete onboarding by tapping continue/start button
+- tapOn:
+    id: ${output.common.onBoardButton}
+
+# Wait for transition to main app
+- waitForAnimationToEnd
+
+# Verify onboarding is completed
+- assertNotVisible:
+    id: ${output.common.onBoardButton}

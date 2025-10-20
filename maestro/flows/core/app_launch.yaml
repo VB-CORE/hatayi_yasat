@@ -1,0 +1,28 @@
+# Core Flow: App Launch and Initial Setup
+# Tests the basic app launch flow and initial state
+
+appId: com.hatayiyasat.app
+---
+
+# Launch app and verify initial state
+- launchApp
+- waitForAnimationToEnd
+
+# Handle potential splash screen
+- runFlow: 
+    when:
+      visible: "splash_screen"
+    file: "./handle_splash.yaml"
+
+# Handle potential onboarding
+- runFlow:
+    when:
+      visible: "onboard_button"
+    file: "./handle_onboarding.yaml"
+
+# Verify main content is loaded
+- assertVisible:
+    text: "Mekanlar"
+
+# Take screenshot for visual validation
+- takeScreenshot: "app_launch_main_screen"

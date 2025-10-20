@@ -13,7 +13,4 @@ SearchRequestModel _$SearchRequestModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SearchRequestModelToJson(SearchRequestModel instance) =>
-    <String, dynamic>{
-      'term': instance.term,
-      'page': instance.page,
-    };
+    <String, dynamic>{'term': instance.term, 'page': instance.page};

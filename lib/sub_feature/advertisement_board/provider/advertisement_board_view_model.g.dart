@@ -13,18 +13,22 @@ part of 'advertisement_board_view_model.dart';
 const advertisementBoardViewModelProvider =
     AdvertisementBoardViewModelProvider._();
 
-final class AdvertisementBoardViewModelProvider extends $NotifierProvider<
-    AdvertisementBoardViewModel, AdvertisementBoardState> {
+final class AdvertisementBoardViewModelProvider
+    extends
+        $NotifierProvider<
+          AdvertisementBoardViewModel,
+          AdvertisementBoardState
+        > {
   const AdvertisementBoardViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'advertisementBoardViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'advertisementBoardViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$advertisementBoardViewModelHash();
@@ -54,11 +58,14 @@ abstract class _$AdvertisementBoardViewModel
     final created = build();
     final ref =
         this.ref as $Ref<AdvertisementBoardState, AdvertisementBoardState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<AdvertisementBoardState, AdvertisementBoardState>,
-        AdvertisementBoardState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AdvertisementBoardState, AdvertisementBoardState>,
+              AdvertisementBoardState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

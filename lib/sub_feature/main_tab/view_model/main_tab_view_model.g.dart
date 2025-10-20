@@ -15,15 +15,15 @@ const mainTabViewModelProvider = MainTabViewModelProvider._();
 final class MainTabViewModelProvider
     extends $NotifierProvider<MainTabViewModel, MainTabState> {
   const MainTabViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'mainTabViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'mainTabViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$mainTabViewModelHash();
@@ -50,11 +50,14 @@ abstract class _$MainTabViewModel extends $Notifier<MainTabState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<MainTabState, MainTabState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<MainTabState, MainTabState>,
-        MainTabState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<MainTabState, MainTabState>,
+              MainTabState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

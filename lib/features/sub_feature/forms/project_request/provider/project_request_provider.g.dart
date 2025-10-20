@@ -15,15 +15,15 @@ const projectRequestProviderProvider = ProjectRequestProviderProvider._();
 final class ProjectRequestProviderProvider
     extends $NotifierProvider<ProjectRequestProvider, ProjectRequestState> {
   const ProjectRequestProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'projectRequestProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'projectRequestProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$projectRequestProviderHash();
@@ -51,11 +51,14 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<ProjectRequestState, ProjectRequestState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<ProjectRequestState, ProjectRequestState>,
-        ProjectRequestState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<ProjectRequestState, ProjectRequestState>,
+              ProjectRequestState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

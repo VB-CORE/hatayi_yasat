@@ -4,6 +4,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
+import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 
 final class WhatsNewSheet extends StatelessWidget {
   const WhatsNewSheet({super.key});
@@ -16,30 +18,33 @@ final class WhatsNewSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const PagePadding.all(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GeneralBodyTitle(
-              LocaleKeys.whatsNew_title.tr(),
-              fontWeight: FontWeight.w700,
-            ),
-            const Divider(),
-            Expanded(
-              child: ListView.separated(
-                itemCount: _newVersionChanges.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const EmptyBox.smallHeight();
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  return Text(_newVersionChanges[index].tr());
-                },
+    return GeneralSemantic(
+      semanticKey: GeneralSemanticKeys.whatsNewSheet,
+      child: SafeArea(
+        child: Padding(
+          padding: const PagePadding.all(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GeneralBodyTitle(
+                LocaleKeys.whatsNew_title.tr(),
+                fontWeight: FontWeight.w700,
               ),
-            ),
-          ],
+              const Divider(),
+              Expanded(
+                child: ListView.separated(
+                  itemCount: _newVersionChanges.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const EmptyBox.smallHeight();
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text(_newVersionChanges[index].tr());
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

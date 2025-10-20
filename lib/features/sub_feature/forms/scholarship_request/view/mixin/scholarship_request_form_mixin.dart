@@ -1,5 +1,9 @@
 // ignore_for_file: use_setters_to_change_properties, avoid_positional_boolean_parameters
 
+/// Mixin for scholarship request form functionality
+/// Provides form validation, file handling, and KVKK checkbox management
+library;
+
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -22,7 +26,7 @@ mixin ScholarshipRequestFormMixin
   late final TextEditingController bioController = TextEditingController();
   File? selectedPdfFile;
 
-  // TODO: This is a temporary solution. It should be removed after the KVKK checkbox is implemented.
+  // TODO(scholarship): This is a temporary solution. It should be removed after the KVKK checkbox is implemented.
   bool _isKvkkChecked = false;
 
   @override

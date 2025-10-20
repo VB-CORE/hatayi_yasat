@@ -15,15 +15,15 @@ const placeRequestProviderProvider = PlaceRequestProviderProvider._();
 final class PlaceRequestProviderProvider
     extends $NotifierProvider<PlaceRequestProvider, PlaceRequestState> {
   const PlaceRequestProviderProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'placeRequestProviderProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'placeRequestProviderProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$placeRequestProviderHash();
@@ -51,11 +51,14 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<PlaceRequestState, PlaceRequestState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<PlaceRequestState, PlaceRequestState>,
-        PlaceRequestState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<PlaceRequestState, PlaceRequestState>,
+              PlaceRequestState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

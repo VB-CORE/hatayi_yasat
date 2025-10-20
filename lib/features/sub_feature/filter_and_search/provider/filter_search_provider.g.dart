@@ -15,15 +15,15 @@ const filterWithSearchProvider = FilterWithSearchProvider._();
 final class FilterWithSearchProvider
     extends $NotifierProvider<FilterWithSearch, FilterSearchState> {
   const FilterWithSearchProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'filterWithSearchProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filterWithSearchProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$filterWithSearchHash();
@@ -50,11 +50,14 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<FilterSearchState, FilterSearchState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<FilterSearchState, FilterSearchState>,
-        FilterSearchState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<FilterSearchState, FilterSearchState>,
+              FilterSearchState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }

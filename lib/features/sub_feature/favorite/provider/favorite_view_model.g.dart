@@ -15,15 +15,15 @@ const favoriteViewModelProvider = FavoriteViewModelProvider._();
 final class FavoriteViewModelProvider
     extends $NotifierProvider<FavoriteViewModel, FavoriteState> {
   const FavoriteViewModelProvider._()
-      : super(
-          from: null,
-          argument: null,
-          retry: null,
-          name: r'favoriteViewModelProvider',
-          isAutoDispose: true,
-          dependencies: null,
-          $allTransitiveDependencies: null,
-        );
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'favoriteViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$favoriteViewModelHash();
@@ -50,11 +50,14 @@ abstract class _$FavoriteViewModel extends $Notifier<FavoriteState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<FavoriteState, FavoriteState>;
-    final element = ref.element as $ClassProviderElement<
-        AnyNotifier<FavoriteState, FavoriteState>,
-        FavoriteState,
-        Object?,
-        Object?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<FavoriteState, FavoriteState>,
+              FavoriteState,
+              Object?,
+              Object?
+            >;
     element.handleValue(ref, created);
   }
 }
