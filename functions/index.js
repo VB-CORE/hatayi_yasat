@@ -13,11 +13,8 @@ if (process.env.FUNCTIONS_EMULATOR) {
   require("dotenv").config();
 }
 
-const baseUrl = defineString("BASE_URL");
-const secret = defineString("SECRET");
-
-const BASE_URL = baseUrl.value();
-const SECRET = secret.value();
+const BASE_URL = defineString("BASE_URL").value();
+const SECRET = defineString("SECRET").value();
 
 const SEARCH_PATH = "/applications_search";
 const ADD_PATH = "/application_insert";
