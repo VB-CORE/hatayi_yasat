@@ -1,6 +1,6 @@
 const { setGlobalOptions } = require("firebase-functions/v2");
 const axios = require("axios");
-const functions = require("firebase-functions");
+const { defineString } = require("firebase-functions/params");
 const { onCall } = require("firebase-functions/v2/https");
 const {
   onDocumentCreated,
@@ -13,13 +13,11 @@ if (process.env.FUNCTIONS_EMULATOR) {
   require("dotenv").config();
 }
 
-const BASE_URL = process.env.FUNCTIONS_EMULATOR
-  ? process.env.BASE_URL
-  : functions.config().mongo.baseurl;
+const baseUrl = defineString("BASE_URL");
+const secret = defineString("SECRET");
 
-const SECRET = process.env.FUNCTIONS_EMULATOR
-  ? process.env.SECRET
-  : functions.config().mongo.secret;
+const BASE_URL = baseUrl.value();
+const SECRET = secret.value();
 
 const SEARCH_PATH = "/applications_search";
 const ADD_PATH = "/application_insert";
