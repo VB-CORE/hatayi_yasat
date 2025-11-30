@@ -15,11 +15,11 @@
       "persist": true
     },
     "firestore": {
-      "port": 3002,
+      "port": 3004,
       "persist": true
     },
     "storage": {
-      "port": 3003,
+      "port": 3005,
       "persist": true
     },
     "ui": {

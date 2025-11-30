@@ -6,7 +6,8 @@
       "Bash(chmod:*)",
       "Bash(./run_basic.sh)",
       "Read(//Users/vb10/.maestro/tests/2025-09-21_223809/**)",
-      "Read(//Users/vb10/.maestro/tests/2025-09-21_224159/**)"
+      "Read(//Users/vb10/.maestro/tests/2025-09-21_224159/**)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
