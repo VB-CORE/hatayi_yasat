@@ -7,17 +7,21 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "emulator": "firebase emulators:start --import=../emulator-data --export-on-exit=../emulator-data"
+    "emulator": "firebase emulators:start --import=../emulator-data --export-on-exit=../emulator-data",
+    "test": "node local-test.js",
+    "test:search": "node local-test.js search",
+    "test:perf": "node local-test.js perf"
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "main": "index.js",
   "dependencies": {
     "axios": "^1.7.2",
     "dotenv": "^16.3.1",
     "firebase-admin": "^13.0.2",
-    "firebase-functions": "^6.2.0"
+    "firebase-functions": "^6.2.0",
+    "mongodb": "^7.0.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^3.4.0"

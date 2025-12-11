@@ -23,16 +23,16 @@ class _PlaceSearchResponseResult extends StatelessWidget {
       },
       itemBuilder: (context, index) {
         final item = items[index];
-
+        final image = item.image.isEmpty ? item.images.firstOrNull : item.image;
         return ListTile(
-          leading: item.image.isEmpty
-              ? null
-              : SizedBox.square(
-                  dimension: WidgetSizes.spacingXxl8,
-                  child: CustomNetworkImage(
-                    imageUrl: item.image,
+          leading:
+              image == null
+                  ? null
+                  : SizedBox.square(
+                    dimension: WidgetSizes.spacingXxl8,
+                    child: CustomNetworkImage(
+              imageUrl: image),
                   ),
-                ),
           title: Text(item.name),
           subtitle: Row(
             mainAxisSize: MainAxisSize.min,
