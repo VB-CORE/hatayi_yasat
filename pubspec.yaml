@@ -149,6 +149,7 @@ scripts:
   podUpdate: cd ios && pod update && cd ..
   fios: flutter clean && flutter pub get && cd ios && pod install && cd ..
   emulator: firebase emulators:start --import=./emulator-data --export-on-exit=./emulator-data
+  emulatorImport: node scripts/import_example_data.js
   mt: sh maestro/run_tests.sh
   updateIcon: sh ./scripts/update_icon.sh
 flutter:

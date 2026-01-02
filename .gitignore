@@ -32,10 +32,17 @@ emulator-data/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# IDE and Editor specific files
+.vscode/
+.idea/
+.claude/
+.idx/
+.cursor/
+*.code-workspace
+
+# Editor config files (optional - uncomment if you want to ignore)
+# .cursorrules
+# .editorconfig
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -58,3 +65,25 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Secrets and credentials
+android/fastlane/secret/
+android/key.properties
+*.jks
+*.keystore
+*.p12
+*.p8
+*.key
+google_play.json
+
+# Environment files
+.env
+.env.local
+.env.production
+functions/.env
+
+# User-specific files
+.claude/settings.local.json
+*.xcuserdata/
+xcuserdata/
+ios/Pods/Pods.xcodeproj/xcuserdata/

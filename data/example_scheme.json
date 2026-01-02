@@ -1,0 +1,189 @@
+{
+    "approvedAdvertise": {
+        "title": "Hatay Gastronomi Festivali",
+        "description": "Hatay'ın eşsiz lezzetlerini keşfetmek için bu yılki festivale katılın!",
+        "imageUrl": "https://example.com/gastronomy_festival.jpg",
+        "targetUrl": "https://example.com/festival-detaylari",
+        "startDate": "2026-03-01T09:00:00Z",
+        "endDate": "2026-03-07T23:59:59Z",
+        "category": "Etkinlik",
+        "contactEmail": "info@festival.org"
+    },
+    "touristicPlaces": {
+        "name": "Harbiye Şelaleleri",
+        "description": "Antik çağlardan beri popüler bir dinlence yeri olan Harbiye Şelaleleri.",
+        "location": {
+            "latitude": 36.1054,
+            "longitude": 36.1979
+        },
+        "address": "Harbiye, Defne/Hatay",
+        "cityId": "hatay",
+        "imageUrl": "https://example.com/harbiye_selaleleri.jpg",
+        "openingHours": "Her gün 08:00-20:00",
+        "entranceFee": 0
+    },
+    "adBoard": {
+        "title": "Satılık 3+1 Daire",
+        "content": "Antakya merkezde, ulaşım kolaylığı olan ferah daire. Detaylar için arayınız.",
+        "userId": "user_abc123",
+        "contactInfo": "+905XX XXX XX XX",
+        "postedDate": "2026-01-10T14:30:00Z",
+        "category": "Emlak"
+    },
+    "regionalCities": {
+        "name": "Hatay",
+        "plateCode": "31",
+        "population": 1670000,
+        "region": "Akdeniz"
+    },
+    "regionalTowns": {
+        "name": "Samandağ",
+        "cityId": "hatay",
+        "population": 120000,
+        "postCode": "31800"
+    },
+    "adminList": {
+        "configName": "systemAdmins",
+        "emails": [
+            "admin1@example.com",
+            "admin2@example.com"
+        ],
+        "lastUpdated": "2026-01-05T10:00:00Z"
+    },
+    "approvedCampaigns": {
+        "campaignName": "Hatay'a Destek Kampanyası",
+        "description": "Depremzedelere yönelik yardım toplama kampanyası.",
+        "startDate": "2026-01-15T00:00:00Z",
+        "endDate": "2026-03-31T23:59:59Z",
+        "status": "Aktif",
+        "targetAudience": "Genel Kamuoyu"
+    },
+    "unApprovedCampaigns": {
+        "campaignName": "Yerel Üreticiyi Destekle",
+        "description": "Bölgedeki yerel üreticileri tanıtma ve satışlarını artırma projesi.",
+        "submittedBy": "user_xyz789",
+        "submissionDate": "2026-01-08T11:45:00Z",
+        "status": "Onay Bekliyor"
+    },
+    "specialAgency": {
+        "name": "Hatay Kalkınma Ajansı",
+        "description": "Bölgesel kalkınma projeleri ve yatırımlar için destek sağlayan kuruluş.",
+        "contactEmail": "info@hatayka.org.tr",
+        "phoneNumber": "+90326 XXX XX XX",
+        "address": "Atatürk Cad. No:1, Antakya/Hatay"
+    },
+    "news": {
+        "title": "Hatay'da Yeni Eğitim Dönemi Başlıyor",
+        "content": "Bölgedeki okullarda yeni eğitim-öğretim yılı hazırlıkları tamamlandı.",
+        "imageUrl": "https://example.com/education_news.jpg",
+        "publishDate": "2026-01-12T09:00:00Z",
+        "author": "Yerel Haberler",
+        "category": "Eğitim"
+    },
+    "memories": {
+        "title": "1999 Depremi Anıları",
+        "story": "17 Ağustos 1999 depreminde yaşadıklarım ve sonrasındaki zorluklar.",
+        "authorId": "user_memory456",
+        "eventDate": "1999-08-17",
+        "imageUrl": "https://example.com/old_photo.jpg",
+        "location": "Gölcük"
+    },
+    "towns": {
+        "name": "Reyhanlı",
+        "cityId": "hatay",
+        "mayor": "Ahmet Demir",
+        "areaSqKm": 350,
+        "historicalFacts": [
+            "Antik dönemlerden kalma kalıntılar barındırır.",
+            "Suriye sınırında yer almaktadır."
+        ]
+    },
+    "allowedAdminClaims": {
+        "claimName": "manageContent",
+        "description": "Reklamları, haberleri ve turistik yerleri yönetme yetkisi.",
+        "roles": [
+            "editor",
+            "super_admin"
+        ]
+    },
+    "approvedApplications": {
+        "applicantId": "app_user_789",
+        "applicationType": "Yardım Başvurusu",
+        "submissionDate": "2025-11-20T10:30:00Z",
+        "approvalDate": "2025-12-05T15:00:00Z",
+        "approvedBy": "admin_approved_1",
+        "status": "Onaylandı",
+        "category": "Gıda",
+        "townCode": "defne"
+    },
+    "unApprovedApplications": {
+        "applicantId": "app_user_101",
+        "applicationType": "Gönüllü Başvurusu",
+        "submissionDate": "2026-01-07T09:15:00Z",
+        "status": "Beklemede",
+        "reviewerNotes": "Başvuru formu eksik."
+    },
+    "notifications": {
+        "userId": "user_abc123",
+        "title": "Yeni Mesajınız Var",
+        "message": "Bir yöneticiden yeni bir duyuru geldi.",
+        "read": false,
+        "timestamp": "2026-01-12T16:00:00Z",
+        "type": "bilgi"
+    },
+    "developers": {
+        "name": "Can Yılmaz",
+        "email": "can.yilmaz@example.com",
+        "developerId": "dev_456",
+        "registeredDate": "2025-05-01T00:00:00Z",
+        "skills": [
+            "Flutter",
+            "Firebase",
+            "Dart"
+        ]
+    },
+    "logs": {
+        "timestamp": "2026-01-12T16:05:30Z",
+        "level": "INFO",
+        "message": "Kullanıcı 'user_abc123' giriş yaptı.",
+        "userId": "user_abc123",
+        "action": "login",
+        "details": {
+            "ipAddress": "192.168.1.10",
+            "device": "Android"
+        }
+    },
+    "categories": {
+        "name": "Sağlık",
+        "description": "Sağlıkla ilgili makaleler ve duyurular.",
+        "iconUrl": "https://example.com/health_icon.png"
+    },
+    "scholarship": {
+        "title": "Eğitim Destek Bursu",
+        "description": "Hatay'daki öğrencilere yönelik başarı bursu.",
+        "provider": "Hatay Eğitim Vakfı",
+        "applicationDeadline": "2026-02-28T17:00:00Z",
+        "amount": 5000,
+        "eligibility": [
+            "Hatay'da ikamet etmek",
+            "Lisans öğrencisi olmak",
+            "3.0 ve üzeri not ortalaması"
+        ]
+    },
+    "chainStores": {
+        "name": "Migros",
+        "headquarters": "İstanbul",
+        "website": "https://www.migros.com.tr",
+        "numberOfBranches": 1200,
+        "categories": [
+            "süpermarket",
+            "gıda"
+        ]
+    },
+    "usefulLinks": {
+        "title": "Hatay Valiliği Resmi Sitesi",
+        "url": "https://www.hatay.gov.tr",
+        "description": "Hatay Valiliği'nin resmi internet sitesi.",
+        "category": "Resmi Kurumlar"
+    }
+}
