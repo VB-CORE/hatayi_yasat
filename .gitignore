@@ -83,7 +83,6 @@ google_play.json
 functions/.env
 
 # User-specific files
-.claude/settings.local.json
 *.xcuserdata/
 xcuserdata/
 ios/Pods/Pods.xcodeproj/xcuserdata/

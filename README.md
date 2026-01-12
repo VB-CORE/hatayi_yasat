@@ -803,6 +803,15 @@ For more details, please see our [Security Policy](SECURITY.md).
 - **API Keys**: Firebase client-side API keys are safe to be public. Security is enforced through Security Rules
 - **Signing Keys**: Android keystore and Google Play service account keys are never committed
 
+See [SECURITY.md](SECURITY.md) for detailed security information.
+
+### Security Best Practices
+
+- **Firebase Security Rules**: Always configure proper Firestore and Storage rules in Firebase Console
+- **Environment Variables**: Never commit `.env` files. Use `.env.example` as a template
+- **API Keys**: Firebase client-side API keys are safe to be public. Security is enforced through Security Rules
+- **Signing Keys**: Android keystore and Google Play service account keys are never committed
+
 ### Important Security Notes
 
 - Firebase API keys in this repository are **client-side keys** and are intentionally public
@@ -821,6 +830,10 @@ We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for
 - Pull request process
 - Code style guidelines
 
+### Code of Conduct
+
+This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to `grafikhtyapp@gmail.com`.
+
 ---
 
 ## 📄 License
@@ -831,9 +844,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Contributors
 
-This project is maintained by the VB-CORE team.
+We are grateful to all contributors who have helped make this project better!
 
-Special thanks to all contributors who have helped shape this project!
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full list of contributors and acknowledgments.
 
 ---
 
@@ -845,13 +858,11 @@ Special thanks to all contributors who have helped shape this project!
 
 ---
 
+---
+
 ## 🙏 Acknowledgments
 
-- [Flutter](https://flutter.dev) - The amazing framework
-- [Firebase](https://firebase.google.com) - Backend infrastructure
-- [Riverpod](https://riverpod.dev) - State management
-- Material 3 Design - UI/UX guidelines
-- The open-source community
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for acknowledgments and contributor recognition.
 
 ---
 
