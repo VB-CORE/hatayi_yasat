@@ -40,8 +40,8 @@ emulator-data/
 .cursor/
 *.code-workspace
 
-# Editor config files (optional - uncomment if you want to ignore)
-# .cursorrules
+# Editor config files
+.cursorrules
 # .editorconfig
 
 # Flutter/Dart/Pub related

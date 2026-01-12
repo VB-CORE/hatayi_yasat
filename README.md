@@ -840,6 +840,10 @@ This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participatin
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and version history.
+
 ---
 
 ## 👥 Contributors
