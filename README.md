@@ -1,5 +1,8 @@
 # Hatayi Yasat
 
+<img height="500" alt="image" src="https://github.com/user-attachments/assets/385be7e4-789c-452c-8639-01090f78f938" />
+
+
 <div align="center">
 
 **A comprehensive Flutter application for discovering local places, events, news, and community resources in Hatay, Turkey.**
