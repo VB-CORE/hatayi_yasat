@@ -1,4 +1,4 @@
-# Hatay İyasat - Life Client
+# Hatayi Yasat
 
 <div align="center">
 
@@ -10,6 +10,12 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 [Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Architecture](#-architecture) • [Contributing](#-contributing)
+
+### 📱 Download the App
+
+- [![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.hatayiyasat.app&hl=tr)
+- [![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)](https://apps.apple.com/us/app/hatay%C4%B1-ya%C5%9Fat/id6465691080)
+- [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/hatayiyasat/)
 
 </div>
 
@@ -859,6 +865,12 @@ See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full list of contributors and ack
 - **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/life_client/issues)
 - **Email**: grafikhtyapp@gmail.com
 - **Project Link**: [https://github.com/YOUR_USERNAME/life_client](https://github.com/YOUR_USERNAME/life_client)
+
+### 📱 Download & Follow
+
+- **Google Play**: [Download on Google Play](https://play.google.com/store/apps/details?id=com.hatayiyasat.app&hl=tr)
+- **App Store**: [Download on App Store](https://apps.apple.com/us/app/hatay%C4%B1-ya%C5%9Fat/id6465691080)
+- **Instagram**: [@hatayiyasat](https://www.instagram.com/hatayiyasat/)
 
 ---
 
