@@ -10,11 +10,11 @@ part of 'filter_search_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(FilterWithSearch)
-const filterWithSearchProvider = FilterWithSearchProvider._();
+final filterWithSearchProvider = FilterWithSearchProvider._();
 
 final class FilterWithSearchProvider
     extends $NotifierProvider<FilterWithSearch, FilterSearchState> {
-  const FilterWithSearchProvider._()
+  FilterWithSearchProvider._()
     : super(
         from: null,
         argument: null,
@@ -48,7 +48,6 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<FilterSearchState, FilterSearchState>;
     final element =
         ref.element
@@ -58,6 +57,6 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

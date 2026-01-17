@@ -10,11 +10,11 @@ part of 'event_detail_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(EventDetailProvider)
-const eventDetailProviderProvider = EventDetailProviderProvider._();
+final eventDetailProviderProvider = EventDetailProviderProvider._();
 
 final class EventDetailProviderProvider
     extends $NotifierProvider<EventDetailProvider, EventDetailState> {
-  const EventDetailProviderProvider._()
+  EventDetailProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$EventDetailProvider extends $Notifier<EventDetailState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<EventDetailState, EventDetailState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$EventDetailProvider extends $Notifier<EventDetailState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

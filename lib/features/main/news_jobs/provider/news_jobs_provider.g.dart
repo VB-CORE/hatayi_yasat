@@ -10,11 +10,11 @@ part of 'news_jobs_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(NewsJobsProvider)
-const newsJobsProviderProvider = NewsJobsProviderProvider._();
+final newsJobsProviderProvider = NewsJobsProviderProvider._();
 
 final class NewsJobsProviderProvider
     extends $NotifierProvider<NewsJobsProvider, NewsJobsState> {
-  const NewsJobsProviderProvider._()
+  NewsJobsProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -48,7 +48,6 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<NewsJobsState, NewsJobsState>;
     final element =
         ref.element
@@ -58,6 +57,6 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

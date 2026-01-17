@@ -10,11 +10,11 @@ part of 'chain_store_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(ChainStoreProvider)
-const chainStoreProviderProvider = ChainStoreProviderProvider._();
+final chainStoreProviderProvider = ChainStoreProviderProvider._();
 
 final class ChainStoreProviderProvider
     extends $NotifierProvider<ChainStoreProvider, ChainStoreState> {
-  const ChainStoreProviderProvider._()
+  ChainStoreProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<ChainStoreState, ChainStoreState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

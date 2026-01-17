@@ -10,11 +10,11 @@ part of 'place_request_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(PlaceRequestProvider)
-const placeRequestProviderProvider = PlaceRequestProviderProvider._();
+final placeRequestProviderProvider = PlaceRequestProviderProvider._();
 
 final class PlaceRequestProviderProvider
     extends $NotifierProvider<PlaceRequestProvider, PlaceRequestState> {
-  const PlaceRequestProviderProvider._()
+  PlaceRequestProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<PlaceRequestState, PlaceRequestState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

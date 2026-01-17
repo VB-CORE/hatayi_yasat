@@ -11,6 +11,7 @@ SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       id: json['id'] as String,
       image: json['image'] as String? ?? '',
-      images:
-          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      images: (json['images'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );

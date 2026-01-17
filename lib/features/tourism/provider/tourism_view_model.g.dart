@@ -10,11 +10,11 @@ part of 'tourism_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(TourismViewModel)
-const tourismViewModelProvider = TourismViewModelProvider._();
+final tourismViewModelProvider = TourismViewModelProvider._();
 
 final class TourismViewModelProvider
     extends $NotifierProvider<TourismViewModel, TourismState> {
-  const TourismViewModelProvider._()
+  TourismViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -48,7 +48,6 @@ abstract class _$TourismViewModel extends $Notifier<TourismState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<TourismState, TourismState>;
     final element =
         ref.element
@@ -58,6 +57,6 @@ abstract class _$TourismViewModel extends $Notifier<TourismState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

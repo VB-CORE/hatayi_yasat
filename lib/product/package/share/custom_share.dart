@@ -10,9 +10,11 @@ final class CustomShare {
     if (firstImageUrl.isEmpty) {
       return;
     }
-    await Share.share(
-      firstImageUrl,
-      subject: LocaleKeys.historyPage_shareSubject.tr(),
+    await SharePlus.instance.share(
+      ShareParams(
+        text: firstImageUrl,
+        subject: LocaleKeys.historyPage_shareSubject.tr(),
+      ),
     );
   }
 }

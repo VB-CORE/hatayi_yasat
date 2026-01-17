@@ -33,7 +33,7 @@ part 'app_router.g.dart';
     OnboardRoute.route,
   ],
 )
-final class SplashRoute extends GoRouteData with _$SplashRoute {
+final class SplashRoute extends GoRouteData with $SplashRoute {
   const SplashRoute();
 
   @override
@@ -64,7 +64,7 @@ final class SplashRoute extends GoRouteData with _$SplashRoute {
     SettingsRoute.route,
   ],
 )
-final class MainTabRoute extends GoRouteData with _$MainTabRoute {
+final class MainTabRoute extends GoRouteData with $MainTabRoute {
   const MainTabRoute();
 
   @override
@@ -73,7 +73,7 @@ final class MainTabRoute extends GoRouteData with _$MainTabRoute {
 }
 
 /// You can use this route for home and favorite place cards
-final class PlaceDetailRoute extends GoRouteData with _$PlaceDetailRoute {
+final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
   PlaceDetailRoute({required this.$extra, required this.id});
 
   static const route = TypedGoRoute<PlaceDetailRoute>(
@@ -91,7 +91,7 @@ final class PlaceDetailRoute extends GoRouteData with _$PlaceDetailRoute {
       );
 }
 
-final class FilterRoute extends GoRouteData with _$FilterRoute {
+final class FilterRoute extends GoRouteData with $FilterRoute {
   const FilterRoute({
     this.$extra,
   });
@@ -109,7 +109,7 @@ final class FilterRoute extends GoRouteData with _$FilterRoute {
       );
 }
 
-final class FilterResultRoute extends GoRouteData with _$FilterResultRoute {
+final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
   const FilterResultRoute(this.$extra);
 
   static const route = TypedGoRoute<FilterResultRoute>(
@@ -126,7 +126,7 @@ final class FilterResultRoute extends GoRouteData with _$FilterResultRoute {
 }
 
 final class PlaceRequestFormRoute extends GoRouteData
-    with _$PlaceRequestFormRoute {
+    with $PlaceRequestFormRoute {
   const PlaceRequestFormRoute();
 
   static const route = TypedGoRoute<PlaceRequestFormRoute>(
@@ -140,7 +140,7 @@ final class PlaceRequestFormRoute extends GoRouteData
 }
 
 final class ProjectRequestFormRoute extends GoRouteData
-    with _$ProjectRequestFormRoute {
+    with $ProjectRequestFormRoute {
   const ProjectRequestFormRoute();
 
   static const route = TypedGoRoute<ProjectRequestFormRoute>(
@@ -154,7 +154,7 @@ final class ProjectRequestFormRoute extends GoRouteData
 }
 
 final class ScholarShipRequestFormRoute extends GoRouteData
-    with _$ScholarShipRequestFormRoute {
+    with $ScholarShipRequestFormRoute {
   const ScholarShipRequestFormRoute();
 
   static const route = TypedGoRoute<ScholarShipRequestFormRoute>(
@@ -167,7 +167,7 @@ final class ScholarShipRequestFormRoute extends GoRouteData
       const ScholarshipRequestForm();
 }
 
-final class NotificationsRoute extends GoRouteData with _$NotificationsRoute {
+final class NotificationsRoute extends GoRouteData with $NotificationsRoute {
   const NotificationsRoute();
 
   static const route = TypedGoRoute<NotificationsRoute>(
@@ -180,7 +180,7 @@ final class NotificationsRoute extends GoRouteData with _$NotificationsRoute {
       const NotificationsView();
 }
 
-final class SpecialAgencyRoute extends GoRouteData with _$SpecialAgencyRoute {
+final class SpecialAgencyRoute extends GoRouteData with $SpecialAgencyRoute {
   const SpecialAgencyRoute();
 
   static const route = TypedGoRoute<SpecialAgencyRoute>(
@@ -193,7 +193,7 @@ final class SpecialAgencyRoute extends GoRouteData with _$SpecialAgencyRoute {
       const SpecialAgencyView();
 }
 
-final class ChainStoresRoute extends GoRouteData with _$ChainStoresRoute {
+final class ChainStoresRoute extends GoRouteData with $ChainStoresRoute {
   const ChainStoresRoute();
 
   static const route = TypedGoRoute<ChainStoresRoute>(
@@ -206,7 +206,7 @@ final class ChainStoresRoute extends GoRouteData with _$ChainStoresRoute {
       const ChainStoreView();
 }
 
-final class TurismRoute extends GoRouteData with _$TurismRoute {
+final class TurismRoute extends GoRouteData with $TurismRoute {
   const TurismRoute();
 
   static const route = TypedGoRoute<TurismRoute>(
@@ -219,7 +219,7 @@ final class TurismRoute extends GoRouteData with _$TurismRoute {
       const TourismMapView();
 }
 
-final class EventRoute extends GoRouteData with _$EventRoute {
+final class EventRoute extends GoRouteData with $EventRoute {
   const EventRoute();
 
   static const route = TypedGoRoute<EventRoute>(
@@ -234,7 +234,7 @@ final class EventRoute extends GoRouteData with _$EventRoute {
   Widget build(BuildContext context, GoRouterState state) => const EventView();
 }
 
-final class EventDetailsRoute extends GoRouteData with _$EventDetailsRoute {
+final class EventDetailsRoute extends GoRouteData with $EventDetailsRoute {
   EventDetailsRoute({required this.$extra});
 
   static const route = TypedGoRoute<EventDetailsRoute>(
@@ -249,7 +249,7 @@ final class EventDetailsRoute extends GoRouteData with _$EventDetailsRoute {
       EventDetailView(event: $extra);
 }
 
-final class FavoriteRoute extends GoRouteData with _$FavoriteRoute {
+final class FavoriteRoute extends GoRouteData with $FavoriteRoute {
   const FavoriteRoute();
 
   static const route = TypedGoRoute<FavoriteRoute>(
@@ -262,7 +262,7 @@ final class FavoriteRoute extends GoRouteData with _$FavoriteRoute {
       const FavoriteView();
 }
 
-final class NewsJobsRoute extends GoRouteData with _$NewsJobsRoute {
+final class NewsJobsRoute extends GoRouteData with $NewsJobsRoute {
   const NewsJobsRoute();
   static const route = TypedGoRoute<NewsJobsRoute>(
     path: 'newsJobs',
@@ -277,7 +277,7 @@ final class NewsJobsRoute extends GoRouteData with _$NewsJobsRoute {
       const NewsEventJobsView();
 }
 
-final class NewsDetailRoute extends GoRouteData with _$NewsDetailRoute {
+final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
   NewsDetailRoute({required this.$extra});
 
   static const route = TypedGoRoute<NewsDetailRoute>(
@@ -292,7 +292,7 @@ final class NewsDetailRoute extends GoRouteData with _$NewsDetailRoute {
       NewsDetailView(news: $extra.toNewsModel());
 }
 
-final class OnboardRoute extends GoRouteData with _$OnboardRoute {
+final class OnboardRoute extends GoRouteData with $OnboardRoute {
   const OnboardRoute();
 
   static const route = TypedGoRoute<OnboardRoute>(
@@ -304,7 +304,7 @@ final class OnboardRoute extends GoRouteData with _$OnboardRoute {
   Widget build(BuildContext context, GoRouterState state) => const OnBoarView();
 }
 
-final class SettingsRoute extends GoRouteData with _$SettingsRoute {
+final class SettingsRoute extends GoRouteData with $SettingsRoute {
   const SettingsRoute();
 
   static const route = TypedGoRoute<SettingsRoute>(
@@ -321,7 +321,7 @@ final class SettingsRoute extends GoRouteData with _$SettingsRoute {
       const SettingsView();
 }
 
-final class DevelopersRoute extends GoRouteData with _$DevelopersRoute {
+final class DevelopersRoute extends GoRouteData with $DevelopersRoute {
   const DevelopersRoute();
 
   static const route = TypedGoRoute<DevelopersRoute>(
@@ -335,7 +335,7 @@ final class DevelopersRoute extends GoRouteData with _$DevelopersRoute {
 }
 
 final class ApplicationInformationRoute extends GoRouteData
-    with _$ApplicationInformationRoute {
+    with $ApplicationInformationRoute {
   const ApplicationInformationRoute();
 
   static const route = TypedGoRoute<ApplicationInformationRoute>(
@@ -349,7 +349,7 @@ final class ApplicationInformationRoute extends GoRouteData
       const Text('Bu sayfa yapılacak.');
 }
 
-final class UsefulLinksRoute extends GoRouteData with _$UsefulLinksRoute {
+final class UsefulLinksRoute extends GoRouteData with $UsefulLinksRoute {
   const UsefulLinksRoute();
 
   static const route = TypedGoRoute<UsefulLinksRoute>(

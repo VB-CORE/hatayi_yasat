@@ -25,10 +25,12 @@ final class ShareAdvertisementGeneralButton extends StatelessWidget {
   }
 
   Future<void> _onPressed() async {
-    await Share.share(
-      _getText,
-      subject: LocaleKeys.advertisementBoard_shareAdvertisementSubject.tr(
-        args: [owner],
+    await SharePlus.instance.share(
+      ShareParams(
+        text: _getText,
+        subject: LocaleKeys.advertisementBoard_shareAdvertisementSubject.tr(
+          args: [owner],
+        ),
       ),
     );
   }
