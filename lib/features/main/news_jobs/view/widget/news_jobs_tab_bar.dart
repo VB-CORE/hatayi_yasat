@@ -30,7 +30,7 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
                   top: WidgetSizes.spacingXxs,
                   left: _leftPosition(tabWidth),
                   width: tabWidth - (WidgetSizes.spacingXxs * 2),
-                  duration: Durations.long1,
+                  duration: Durations.short4,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: context.general.colorScheme.secondary,

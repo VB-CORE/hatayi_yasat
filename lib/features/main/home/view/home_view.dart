@@ -77,7 +77,9 @@ class _HomeViewState extends ConsumerState<HomeView>
             children: [
               Padding(
                 key: const Key('homeSearchFilterRow'),
-                padding: const PagePadding.vertical12Symmetric(),
+                padding:
+                    const PagePadding.vertical12Symmetric() +
+                    const PagePadding.horizontalVeryLowSymmetric(),
                 child: Row(
                   children: [
                     const Expanded(child: _CustomSearchField()),

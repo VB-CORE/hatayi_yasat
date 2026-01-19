@@ -5,31 +5,29 @@ final class _FilterSearchClearAll extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AnimatedPageSwitch(
-      firstChild: TextButton(
-        onPressed: () {
-          ref.read(filterWithSearchProvider.notifier).clearAllSelection();
-        },
-        child: Row(
-          children: [
-            const Icon(Icons.delete_outline),
-            Text(
-              LocaleKeys.button_clearAllSelection.tr(
-                args: [
-                  ref
-                      .watch(filterWithSearchProvider)
-                      .selectedItemsCount
-                      .toString(),
-                ],
-              ),
+    final isSelected = ref.watch(filterWithSearchProvider).isSelectedItems;
+
+    if (!isSelected) return const SizedBox();
+
+    return TextButton(
+      onPressed: () {
+        ref.read(filterWithSearchProvider.notifier).clearAllSelection();
+      },
+      child: Row(
+        children: [
+          const Icon(Icons.delete_outline),
+          Text(
+            LocaleKeys.button_clearAllSelection.tr(
+              args: [
+                ref
+                    .watch(filterWithSearchProvider)
+                    .selectedItemsCount
+                    .toString(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      secondChild: const SizedBox(),
-      crossFadeState: ref.watch(filterWithSearchProvider).isSelectedItems
-          ? CrossFadeState.showFirst
-          : CrossFadeState.showSecond,
     );
   }
 }
