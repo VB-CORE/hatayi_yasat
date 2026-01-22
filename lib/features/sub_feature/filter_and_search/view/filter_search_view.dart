@@ -10,7 +10,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/widget/animated/animated_page_change.dart';
 import 'package:lifeclient/product/widget/button/model/multiple_select_item_model.dart';
 import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';

@@ -41,19 +41,18 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
 
                   return Padding(
                     padding: const PagePadding.onlyRight(),
-                    child: InkWell(
-                      onTap: () {
+                    child: ActionChip(
+                      onPressed: () {
                         addOrRemoveItem(items[index]);
                       },
-                      child: Chip(
-                        elevation: kZero,
-                        padding: EdgeInsets.zero,
-                        backgroundColor: isSelected
-                            ? context.general.colorScheme.primary
-                            : context.general.colorScheme.secondary,
-                        label:
-                            _Title(item: items[index], isSelected: isSelected),
-                      ),
+                      elevation: kZero,
+                      pressElevation: kZero,
+                      padding: EdgeInsets.zero,
+                      backgroundColor: isSelected
+                          ? context.general.colorScheme.primary
+                          : context.general.colorScheme.secondary,
+                      label:
+                          _Title(item: items[index], isSelected: isSelected),
                     ),
                   );
                 }),
