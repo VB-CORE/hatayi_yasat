@@ -11,11 +11,12 @@ final class GeneralDottedRectangle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
-      color: context.general.colorScheme.onPrimaryFixedVariant,
-      borderType: BorderType.RRect,
-      radius: context.border.normalRadius,
-      dashPattern: const [3, 6],
-      strokeCap: StrokeCap.square,
+      options: RoundedRectDottedBorderOptions(
+        color: context.general.colorScheme.onPrimaryFixedVariant,
+        radius: context.border.normalRadius,
+        dashPattern: const [3, 6],
+        strokeCap: StrokeCap.square,
+      ),
       child: ClipRRect(
         borderRadius: CustomRadius.medium,
         child: child,

@@ -10,17 +10,17 @@ List<RouteBase> get $appRoutes => [$splashRoute, $mainTabRoute];
 
 RouteBase get $splashRoute => GoRouteData.$route(
   path: '/',
-  factory: _$SplashRoute._fromState,
+  factory: $SplashRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'onboard',
       name: 'Onboard',
-      factory: _$OnboardRoute._fromState,
+      factory: $OnboardRoute._fromState,
     ),
   ],
 );
 
-mixin _$SplashRoute on GoRouteData {
+mixin $SplashRoute on GoRouteData {
   static SplashRoute _fromState(GoRouterState state) => const SplashRoute();
 
   @override
@@ -40,7 +40,7 @@ mixin _$SplashRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$OnboardRoute on GoRouteData {
+mixin $OnboardRoute on GoRouteData {
   static OnboardRoute _fromState(GoRouterState state) => const OnboardRoute();
 
   @override
@@ -62,113 +62,113 @@ mixin _$OnboardRoute on GoRouteData {
 
 RouteBase get $mainTabRoute => GoRouteData.$route(
   path: '/main',
-  factory: _$MainTabRoute._fromState,
+  factory: $MainTabRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'chain_stores',
       name: 'Chain Stores',
-      factory: _$ChainStoresRoute._fromState,
+      factory: $ChainStoresRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'turism',
       name: 'Turism items',
-      factory: _$TurismRoute._fromState,
+      factory: $TurismRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'useful_links',
       name: 'Useful Links',
-      factory: _$UsefulLinksRoute._fromState,
+      factory: $UsefulLinksRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'favorite',
       name: 'Favorite',
-      factory: _$FavoriteRoute._fromState,
+      factory: $FavoriteRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'specialAgency',
       name: 'Special Agency',
-      factory: _$SpecialAgencyRoute._fromState,
+      factory: $SpecialAgencyRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'placeDetail/:id',
       name: 'Place Detail',
-      factory: _$PlaceDetailRoute._fromState,
+      factory: $PlaceDetailRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'newsJobs',
       name: 'News and Jobs',
-      factory: _$NewsJobsRoute._fromState,
+      factory: $NewsJobsRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'detail',
           name: 'News Details',
-          factory: _$NewsDetailRoute._fromState,
+          factory: $NewsDetailRoute._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
       path: 'filter',
       name: 'Filter',
-      factory: _$FilterRoute._fromState,
+      factory: $FilterRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'event',
       name: 'Events',
-      factory: _$EventRoute._fromState,
+      factory: $EventRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'details',
           name: 'Event Details',
-          factory: _$EventDetailsRoute._fromState,
+          factory: $EventDetailsRoute._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
       path: 'notifications',
       name: 'Notifications',
-      factory: _$NotificationsRoute._fromState,
+      factory: $NotificationsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'filterResult',
       name: 'Filter Result',
-      factory: _$FilterResultRoute._fromState,
+      factory: $FilterResultRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'placeRequestForm',
       name: 'Place Request Form',
-      factory: _$PlaceRequestFormRoute._fromState,
+      factory: $PlaceRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'projectRequestForm',
       name: 'Project Request Form',
-      factory: _$ProjectRequestFormRoute._fromState,
+      factory: $ProjectRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'scholarShipRequestForm',
       name: 'ScholarShip Request Form',
-      factory: _$ScholarShipRequestFormRoute._fromState,
+      factory: $ScholarShipRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings',
       name: 'Settings',
-      factory: _$SettingsRoute._fromState,
+      factory: $SettingsRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'developers',
           name: 'Developers',
-          factory: _$DevelopersRoute._fromState,
+          factory: $DevelopersRoute._fromState,
         ),
         GoRouteData.$route(
           path: 'appInfo',
           name: 'Application Information',
-          factory: _$ApplicationInformationRoute._fromState,
+          factory: $ApplicationInformationRoute._fromState,
         ),
       ],
     ),
   ],
 );
 
-mixin _$MainTabRoute on GoRouteData {
+mixin $MainTabRoute on GoRouteData {
   static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
 
   @override
@@ -188,7 +188,7 @@ mixin _$MainTabRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ChainStoresRoute on GoRouteData {
+mixin $ChainStoresRoute on GoRouteData {
   static ChainStoresRoute _fromState(GoRouterState state) =>
       const ChainStoresRoute();
 
@@ -209,7 +209,7 @@ mixin _$ChainStoresRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$TurismRoute on GoRouteData {
+mixin $TurismRoute on GoRouteData {
   static TurismRoute _fromState(GoRouterState state) => const TurismRoute();
 
   @override
@@ -229,7 +229,7 @@ mixin _$TurismRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$UsefulLinksRoute on GoRouteData {
+mixin $UsefulLinksRoute on GoRouteData {
   static UsefulLinksRoute _fromState(GoRouterState state) =>
       const UsefulLinksRoute();
 
@@ -250,7 +250,7 @@ mixin _$UsefulLinksRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$FavoriteRoute on GoRouteData {
+mixin $FavoriteRoute on GoRouteData {
   static FavoriteRoute _fromState(GoRouterState state) => const FavoriteRoute();
 
   @override
@@ -270,7 +270,7 @@ mixin _$FavoriteRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$SpecialAgencyRoute on GoRouteData {
+mixin $SpecialAgencyRoute on GoRouteData {
   static SpecialAgencyRoute _fromState(GoRouterState state) =>
       const SpecialAgencyRoute();
 
@@ -291,7 +291,7 @@ mixin _$SpecialAgencyRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$PlaceDetailRoute on GoRouteData {
+mixin $PlaceDetailRoute on GoRouteData {
   static PlaceDetailRoute _fromState(GoRouterState state) => PlaceDetailRoute(
     id: state.pathParameters['id']!,
     $extra: state.extra as StoreModel,
@@ -320,7 +320,7 @@ mixin _$PlaceDetailRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$NewsJobsRoute on GoRouteData {
+mixin $NewsJobsRoute on GoRouteData {
   static NewsJobsRoute _fromState(GoRouterState state) => const NewsJobsRoute();
 
   @override
@@ -340,7 +340,7 @@ mixin _$NewsJobsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$NewsDetailRoute on GoRouteData {
+mixin $NewsDetailRoute on GoRouteData {
   static NewsDetailRoute _fromState(GoRouterState state) =>
       NewsDetailRoute($extra: state.extra as NewsModelCopy);
 
@@ -365,7 +365,7 @@ mixin _$NewsDetailRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$FilterRoute on GoRouteData {
+mixin $FilterRoute on GoRouteData {
   static FilterRoute _fromState(GoRouterState state) =>
       FilterRoute($extra: state.extra as String?);
 
@@ -390,7 +390,7 @@ mixin _$FilterRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$EventRoute on GoRouteData {
+mixin $EventRoute on GoRouteData {
   static EventRoute _fromState(GoRouterState state) => const EventRoute();
 
   @override
@@ -410,7 +410,7 @@ mixin _$EventRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$EventDetailsRoute on GoRouteData {
+mixin $EventDetailsRoute on GoRouteData {
   static EventDetailsRoute _fromState(GoRouterState state) =>
       EventDetailsRoute($extra: state.extra as CampaignModel);
 
@@ -435,7 +435,7 @@ mixin _$EventDetailsRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$NotificationsRoute on GoRouteData {
+mixin $NotificationsRoute on GoRouteData {
   static NotificationsRoute _fromState(GoRouterState state) =>
       const NotificationsRoute();
 
@@ -456,7 +456,7 @@ mixin _$NotificationsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$FilterResultRoute on GoRouteData {
+mixin $FilterResultRoute on GoRouteData {
   static FilterResultRoute _fromState(GoRouterState state) =>
       FilterResultRoute(state.extra as FilterSelected);
 
@@ -481,7 +481,7 @@ mixin _$FilterResultRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$PlaceRequestFormRoute on GoRouteData {
+mixin $PlaceRequestFormRoute on GoRouteData {
   static PlaceRequestFormRoute _fromState(GoRouterState state) =>
       const PlaceRequestFormRoute();
 
@@ -502,7 +502,7 @@ mixin _$PlaceRequestFormRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ProjectRequestFormRoute on GoRouteData {
+mixin $ProjectRequestFormRoute on GoRouteData {
   static ProjectRequestFormRoute _fromState(GoRouterState state) =>
       const ProjectRequestFormRoute();
 
@@ -523,7 +523,7 @@ mixin _$ProjectRequestFormRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ScholarShipRequestFormRoute on GoRouteData {
+mixin $ScholarShipRequestFormRoute on GoRouteData {
   static ScholarShipRequestFormRoute _fromState(GoRouterState state) =>
       const ScholarShipRequestFormRoute();
 
@@ -544,7 +544,7 @@ mixin _$ScholarShipRequestFormRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$SettingsRoute on GoRouteData {
+mixin $SettingsRoute on GoRouteData {
   static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
 
   @override
@@ -564,7 +564,7 @@ mixin _$SettingsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$DevelopersRoute on GoRouteData {
+mixin $DevelopersRoute on GoRouteData {
   static DevelopersRoute _fromState(GoRouterState state) =>
       const DevelopersRoute();
 
@@ -585,7 +585,7 @@ mixin _$DevelopersRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ApplicationInformationRoute on GoRouteData {
+mixin $ApplicationInformationRoute on GoRouteData {
   static ApplicationInformationRoute _fromState(GoRouterState state) =>
       const ApplicationInformationRoute();
 

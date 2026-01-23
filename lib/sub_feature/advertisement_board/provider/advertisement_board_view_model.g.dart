@@ -10,7 +10,7 @@ part of 'advertisement_board_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AdvertisementBoardViewModel)
-const advertisementBoardViewModelProvider =
+final advertisementBoardViewModelProvider =
     AdvertisementBoardViewModelProvider._();
 
 final class AdvertisementBoardViewModelProvider
@@ -19,7 +19,7 @@ final class AdvertisementBoardViewModelProvider
           AdvertisementBoardViewModel,
           AdvertisementBoardState
         > {
-  const AdvertisementBoardViewModelProvider._()
+  AdvertisementBoardViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -55,7 +55,6 @@ abstract class _$AdvertisementBoardViewModel
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref =
         this.ref as $Ref<AdvertisementBoardState, AdvertisementBoardState>;
     final element =
@@ -66,6 +65,6 @@ abstract class _$AdvertisementBoardViewModel
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

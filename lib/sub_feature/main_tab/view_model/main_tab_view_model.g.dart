@@ -10,11 +10,11 @@ part of 'main_tab_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(MainTabViewModel)
-const mainTabViewModelProvider = MainTabViewModelProvider._();
+final mainTabViewModelProvider = MainTabViewModelProvider._();
 
 final class MainTabViewModelProvider
     extends $NotifierProvider<MainTabViewModel, MainTabState> {
-  const MainTabViewModelProvider._()
+  MainTabViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -48,7 +48,6 @@ abstract class _$MainTabViewModel extends $Notifier<MainTabState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<MainTabState, MainTabState>;
     final element =
         ref.element
@@ -58,6 +57,6 @@ abstract class _$MainTabViewModel extends $Notifier<MainTabState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

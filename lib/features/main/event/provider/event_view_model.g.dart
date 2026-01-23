@@ -10,11 +10,11 @@ part of 'event_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(EventViewModel)
-const eventViewModelProvider = EventViewModelProvider._();
+final eventViewModelProvider = EventViewModelProvider._();
 
 final class EventViewModelProvider
     extends $NotifierProvider<EventViewModel, EventState> {
-  const EventViewModelProvider._()
+  EventViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -48,7 +48,6 @@ abstract class _$EventViewModel extends $Notifier<EventState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<EventState, EventState>;
     final element =
         ref.element
@@ -58,6 +57,6 @@ abstract class _$EventViewModel extends $Notifier<EventState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

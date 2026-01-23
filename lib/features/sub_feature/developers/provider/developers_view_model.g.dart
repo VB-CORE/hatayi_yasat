@@ -10,11 +10,11 @@ part of 'developers_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(DevelopersViewModel)
-const developersViewModelProvider = DevelopersViewModelProvider._();
+final developersViewModelProvider = DevelopersViewModelProvider._();
 
 final class DevelopersViewModelProvider
     extends $NotifierProvider<DevelopersViewModel, DevelopersState> {
-  const DevelopersViewModelProvider._()
+  DevelopersViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<DevelopersState, DevelopersState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

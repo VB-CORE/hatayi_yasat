@@ -10,11 +10,12 @@ class DottedBorderCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
-      color: ColorCommon(context).whiteAndBlackForTheme,
-      borderType: BorderType.RRect,
-      radius: context.border.normalRadius,
-      dashPattern: const [3, 6],
-      strokeCap: StrokeCap.square,
+      options: RoundedRectDottedBorderOptions(
+        color: ColorCommon(context).whiteAndBlackForTheme,
+        radius: context.border.normalRadius,
+        dashPattern: const [3, 6],
+        strokeCap: StrokeCap.square,
+      ),
       child: ClipRRect(
         borderRadius: CustomRadius.medium,
         child: child,
