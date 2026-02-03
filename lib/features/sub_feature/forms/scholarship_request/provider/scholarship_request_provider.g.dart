@@ -10,13 +10,13 @@ part of 'scholarship_request_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(ScholarshipRequestProvider)
-const scholarshipRequestProviderProvider =
+final scholarshipRequestProviderProvider =
     ScholarshipRequestProviderProvider._();
 
 final class ScholarshipRequestProviderProvider
     extends
         $NotifierProvider<ScholarshipRequestProvider, ScholarshipRequestState> {
-  const ScholarshipRequestProviderProvider._()
+  ScholarshipRequestProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -52,7 +52,6 @@ abstract class _$ScholarshipRequestProvider
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref =
         this.ref as $Ref<ScholarshipRequestState, ScholarshipRequestState>;
     final element =
@@ -63,6 +62,6 @@ abstract class _$ScholarshipRequestProvider
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

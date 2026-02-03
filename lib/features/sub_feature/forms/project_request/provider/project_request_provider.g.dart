@@ -10,11 +10,11 @@ part of 'project_request_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(ProjectRequestProvider)
-const projectRequestProviderProvider = ProjectRequestProviderProvider._();
+final projectRequestProviderProvider = ProjectRequestProviderProvider._();
 
 final class ProjectRequestProviderProvider
     extends $NotifierProvider<ProjectRequestProvider, ProjectRequestState> {
-  const ProjectRequestProviderProvider._()
+  ProjectRequestProviderProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<ProjectRequestState, ProjectRequestState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

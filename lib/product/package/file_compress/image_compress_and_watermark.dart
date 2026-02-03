@@ -42,9 +42,11 @@ final class ImageCompressAndWaterMark {
 
   Future<void> share() async {
     if (_screenShot == null) return;
-    await Share.shareXFiles(
-      [XFile(_screenShot!.path)],
-      subject: '${storeModel.name}${storeModel.description}',
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [XFile(_screenShot!.path)],
+        subject: '${storeModel.name}${storeModel.description}',
+      ),
     );
   }
 }

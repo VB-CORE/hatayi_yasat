@@ -10,11 +10,11 @@ part of 'useful_links_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(UsefulLinksViewModel)
-const usefulLinksViewModelProvider = UsefulLinksViewModelProvider._();
+final usefulLinksViewModelProvider = UsefulLinksViewModelProvider._();
 
 final class UsefulLinksViewModelProvider
     extends $NotifierProvider<UsefulLinksViewModel, UsefulLinksState> {
-  const UsefulLinksViewModelProvider._()
+  UsefulLinksViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<UsefulLinksState, UsefulLinksState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

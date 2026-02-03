@@ -10,11 +10,11 @@ part of 'special_agency_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(SpecialAgencyViewModel)
-const specialAgencyViewModelProvider = SpecialAgencyViewModelProvider._();
+final specialAgencyViewModelProvider = SpecialAgencyViewModelProvider._();
 
 final class SpecialAgencyViewModelProvider
     extends $NotifierProvider<SpecialAgencyViewModel, SpecialAgencyState> {
-  const SpecialAgencyViewModelProvider._()
+  SpecialAgencyViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<SpecialAgencyState, SpecialAgencyState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

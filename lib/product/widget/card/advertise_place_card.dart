@@ -88,9 +88,11 @@ final class _ActionButtons extends StatelessWidget {
         IconTitleButton(
           onPressed: () async {
             if (item.title.ext.isNullOrEmpty) return;
-            await Share.share(
-              '${LocaleKeys.advertise_message.tr()}'
-              ' ${item.title}',
+            await SharePlus.instance.share(
+              ShareParams(
+                text: '${LocaleKeys.advertise_message.tr()}'
+                    ' ${item.title}',
+              ),
             );
           },
           icon: AppIcons.share,

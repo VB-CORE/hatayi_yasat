@@ -10,11 +10,11 @@ part of 'place_detail_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(PlaceDetailViewModel)
-const placeDetailViewModelProvider = PlaceDetailViewModelProvider._();
+final placeDetailViewModelProvider = PlaceDetailViewModelProvider._();
 
 final class PlaceDetailViewModelProvider
     extends $NotifierProvider<PlaceDetailViewModel, PlaceDetailState> {
-  const PlaceDetailViewModelProvider._()
+  PlaceDetailViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -49,7 +49,6 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<PlaceDetailState, PlaceDetailState>;
     final element =
         ref.element
@@ -59,6 +58,6 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
