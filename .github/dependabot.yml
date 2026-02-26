@@ -1,0 +1,18 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      firebase-dependencies:
+        patterns:
+          - "firebase_*"
+      riverpod-dependencies:
+        patterns:
+          # Riverpod Core and Tools
+          - "*riverpod*" 
+          - "*json_annotation*"
+          - "*build_runner*" # build_runner is the core tool that runs the others
+          - "json_serializable"
