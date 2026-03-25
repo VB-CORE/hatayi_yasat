@@ -17,7 +17,9 @@ final class _TourismPlaceCard extends StatelessWidget {
       ),
       child: Container(
         width: WidgetSizes.spacingXxlL12,
-        decoration: BoxDecorations.tourismPlaceCard(),
+        decoration: BoxDecorations.tourismPlaceCard(
+          color: context.general.colorScheme.secondary,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

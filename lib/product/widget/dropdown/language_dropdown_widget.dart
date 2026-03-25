@@ -13,14 +13,20 @@ final class LanguageDropdownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      key: ValueKey(context.locale.languageCode),
       borderRadius: context.border.normalBorderRadius,
       onChanged: (value) async => _onChanged(context, value),
-      value: context.locale.languageCode,
-      decoration: _decoration,
+      initialValue: context.locale.languageCode,
+      dropdownColor: context.general.colorScheme.secondary,
+      iconEnabledColor: context.general.colorScheme.primary,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: context.general.colorScheme.onSurface,
+      ),
+      decoration: _decoration(context),
       elevation: 2,
       items: AppLocale.values
           .map<DropdownMenuItem<String>>(
-            (AppLocale value) => DropdownMenuItem(
+            (value) => DropdownMenuItem(
               value: value.name,
               child: GeneralBodyTitle(value.name.toUpperCase()),
             ),
@@ -29,20 +35,30 @@ final class LanguageDropdownWidget extends StatelessWidget {
     );
   }
 
-  InputDecoration get _decoration => InputDecoration(
-        contentPadding: const PagePadding.horizontalLowSymmetric(),
-        border: _border,
-        focusedBorder: _border,
-      );
+  InputDecoration _decoration(BuildContext context) => InputDecoration(
+    contentPadding: const PagePadding.horizontalLowSymmetric(),
+    filled: true,
+    fillColor: context.general.colorScheme.onPrimaryFixed,
+    border: _border(
+      color: context.general.colorScheme.onPrimaryContainer,
+    ),
+    enabledBorder: _border(
+      color: context.general.colorScheme.onPrimaryContainer,
+    ),
+    focusedBorder: _border(
+      color: context.general.colorScheme.primary,
+    ),
+  );
 
-  OutlineInputBorder get _border => const OutlineInputBorder(
-        borderSide: CustomBorderSides.ultraThin,
-        borderRadius: CustomRadius.large,
-      );
+  OutlineInputBorder _border({required Color color}) => OutlineInputBorder(
+    borderSide: CustomBorderSides.ultraThin.copyWith(color: color),
+    borderRadius: CustomRadius.large,
+  );
 
   Future<void> _onChanged(BuildContext context, String? value) async {
-    final index = context.supportedLocales.ext
-        .indexOrNull((locale) => locale.languageCode == value);
+    final index = context.supportedLocales.ext.indexOrNull(
+      (locale) => locale.languageCode == value,
+    );
     if (index == null) return;
     final locale = context.supportedLocales[index];
     await context.setLocale(locale);

@@ -12,25 +12,27 @@ final class AppProvider extends Notifier<AppProviderState>
   AppProvider();
 
   Future<void> init() async => {
-        await _checkDeviceId(),
-      };
+    await _checkDeviceId(),
+  };
 
   ThemeMode get currentThemeMode => state.theme;
 
   Future<void> _checkDeviceId() async {
     try {
-      final deviceID =
-          kIsWeb ? kWeb : await DeviceUtility.instance.getUniqueDeviceId();
+      final deviceID = kIsWeb
+          ? kWeb
+          : await DeviceUtility.instance.getUniqueDeviceId();
       state = state.copyWith(deviceID: deviceID);
-    } catch (e) {
+    } on Object {
       state = state.copyWith(deviceID: kWeb);
     }
   }
 
   /// change app theme for light and dark mode
-  void changeAppTheme({required ThemeMode theme}) {
+  Future<void> changeAppTheme({required ThemeMode theme}) async {
     if (state.theme == theme) return;
     state = state.copyWith(theme: theme);
+    await SharedCache.instance.setTheme(theme);
   }
 
   @override

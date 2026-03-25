@@ -60,7 +60,7 @@ class _Label extends StatelessWidget {
       text: TextSpan(
         text: '$labelText ',
         style: context.general.textTheme.labelLarge?.copyWith(
-          color: Colors.black,
+          color: context.general.colorScheme.onSurface,
         ),
         children: [
           TextSpan(

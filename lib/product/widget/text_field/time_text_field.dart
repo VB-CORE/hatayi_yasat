@@ -49,7 +49,8 @@ class _TimeFormFieldState extends State<TimeFormField>
           fontWeight: FontWeight.w400,
         ),
         onTap: () async => _selectTime(),
-        validator: widget.validator ??
+        validator:
+            widget.validator ??
             (widget.useDefaultValidator
                 ? (text) => TextFieldValidatorIsNullEmpty().validate(text)
                 : null),
@@ -90,7 +91,7 @@ mixin _TimeFormFieldMixin on State<TimeFormField> {
       initialEntryMode: TimePickerEntryMode.inputOnly,
       builder: (context, child) => Theme(
         data: context.general.appTheme.copyWith(
-          colorScheme: ColorScheme.light(
+          colorScheme: context.general.colorScheme.copyWith(
             primary: context.general.colorScheme.primary,
             onTertiaryContainer: context.general.colorScheme.secondary,
           ),
