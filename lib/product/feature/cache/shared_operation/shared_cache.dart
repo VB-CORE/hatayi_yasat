@@ -3,7 +3,7 @@ import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/base_shared_operation.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 
-// TODO: It's need to generic
+// TODO(dev): Make this cache wrapper generic.
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();
@@ -20,8 +20,9 @@ final class SharedCache {
   }
 
   DateTime? getLastNotificationSeenTime() {
-    final lastNotificationSeenTime =
-        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    final lastNotificationSeenTime = _sharedOperation.getValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+    );
     if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
     return DateTime.tryParse(lastNotificationSeenTime!);
   }
@@ -51,7 +52,7 @@ final class SharedCache {
 
   ThemeMode get theme =>
       ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ??
-          ThemeMode.light.index];
+          ThemeMode.system.index];
 
   Future<void> setTheme(ThemeMode mode) async {
     await _sharedOperation.setValue<int>(SharedKeys.theme, mode.index);

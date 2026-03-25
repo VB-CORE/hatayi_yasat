@@ -103,7 +103,8 @@
     "appReviewTitle": "Uygulamayı Değerlendirin",
     "themes": {
       "light": "Aydınlık",
-      "dark": "Karanlık"
+      "dark": "Karanlık",
+      "system": "Sistem"
     }
   },
   "home": {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class AppProviderState extends Equatable {
   const AppProviderState({
     this.deviceID = '',
-    this.theme = ThemeMode.light,
+    this.theme = ThemeMode.system,
   });
 
   final String deviceID;
