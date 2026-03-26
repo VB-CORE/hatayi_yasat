@@ -22,6 +22,8 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final applicationTheme = ApplicationTheme.build();
+
     return KeyboardFocusControlWidget(
       child: MaterialApp.router(
         routerConfig: _router,
@@ -31,7 +33,8 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
         locale: context.locale,
         builder: AppBuilder.build,
         themeMode: appStateWatch(ref).theme,
-        theme: ApplicationTheme.build(context).themeData,
+        theme: applicationTheme.lightThemeData,
+        darkTheme: applicationTheme.darkThemeData,
         scaffoldMessengerKey: appProvider(ref).scaffoldMessengerKey,
         // home: NewsDetailView(news: NewsModel.dummyData),
       ),

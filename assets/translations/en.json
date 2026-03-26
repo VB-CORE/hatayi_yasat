@@ -103,7 +103,8 @@
     "appReviewTitle": "Rate the App",
     "themes": {
       "light": "Light",
-      "dark": "Dark"
+      "dark": "Dark",
+      "system": "System"
     }
   },
   "home": {

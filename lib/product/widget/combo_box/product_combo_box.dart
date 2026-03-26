@@ -1,9 +1,6 @@
-// ignore_for_file: avoid_redundant_argument_values
-
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 
 class ProductComboBox<T extends ProductDropDownModel> extends StatefulWidget {
   const ProductComboBox({
@@ -39,24 +36,36 @@ class _ProductComboBoxState<T extends ProductDropDownModel>
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
+        color: context.general.colorScheme.onPrimaryFixed,
         border: Border.all(
-          color: ColorsCustom.lightGray,
+          color: context.general.colorScheme.onPrimaryContainer,
         ),
-        borderRadius:
-            const BorderRadius.all(Radius.circular(WidgetSizes.spacingXxs)),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(WidgetSizes.spacingXxs),
+        ),
       ),
       child: Padding(
         padding: const PagePadding.allVeryLow(),
         child: DropdownButtonHideUnderline(
           child: DropdownButtonFormField<T>(
+            dropdownColor: context.general.colorScheme.secondary,
             decoration: const InputDecoration.collapsed(hintText: ''),
             initialValue: selectedItem,
-            hint: Text(widget.hintText),
+            hint: Text(
+              widget.hintText,
+              style: context.general.textTheme.bodyMedium?.copyWith(
+                color: context.general.colorScheme.onSecondaryFixed,
+              ),
+            ),
+            style: context.general.textTheme.bodyMedium?.copyWith(
+              color: context.general.colorScheme.onSurface,
+            ),
             isExpanded: true,
             borderRadius: context.border.lowBorderRadius,
             validator: widget.validator,
-            items:
-                widget.items.map((e) => _ProductDropdownItem(item: e)).toList(),
+            items: widget.items
+                .map((e) => _ProductDropdownItem(item: e))
+                .toList(),
             onChanged: (value) {
               selectItem(value);
               widget.onChanged(value);
@@ -77,13 +86,13 @@ class _ProductComboBoxState<T extends ProductDropDownModel>
 class _ProductDropdownItem<T extends ProductDropDownModel>
     extends DropdownMenuItem<T> {
   _ProductDropdownItem({required T item})
-      : super(
-          child: Padding(
-            padding: const PagePadding.horizontalVeryLowSymmetric(),
-            child: Text(item.name ?? ''),
-          ),
-          value: item,
-        );
+    : super(
+        child: Padding(
+          padding: const PagePadding.horizontalVeryLowSymmetric(),
+          child: Text(item.name ?? ''),
+        ),
+        value: item,
+      );
 }
 
 mixin ProductDropDownModel {

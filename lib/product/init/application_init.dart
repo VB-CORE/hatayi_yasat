@@ -49,8 +49,6 @@ final class ApplicationInit {
     // await _injectTestEnvOnDebug();
   }
 
-
-
   Future<void> _crashlyticsInitialize() async {
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);

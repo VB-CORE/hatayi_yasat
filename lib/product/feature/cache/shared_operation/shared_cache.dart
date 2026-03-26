@@ -51,7 +51,7 @@ final class SharedCache {
 
   ThemeMode get theme =>
       ThemeMode.values[_sharedOperation.getValue<int>(SharedKeys.theme) ??
-          ThemeMode.light.index];
+          ThemeMode.system.index];
 
   Future<void> setTheme(ThemeMode mode) async {
     await _sharedOperation.setValue<int>(SharedKeys.theme, mode.index);
