@@ -2,9 +2,7 @@
 <!-- Modify this file to customize your launch splash screen -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/app_white" />
-    <item
-        android:drawable="@color/app_white" />
+    <item android:drawable="@color/launch_background" />
     <item
         android:height="250dp"
         android:width="250dp"
