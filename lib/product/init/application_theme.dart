@@ -9,15 +9,19 @@ final class ApplicationTheme {
     : lightThemeData = _buildTheme(Brightness.light),
       darkThemeData = _buildTheme(Brightness.dark);
 
-  static const Color _darkSurface = Color(0xFF0F172A);
-  static const Color _darkSurfaceElevated = Color(0xFF172033);
-  static const Color _darkBorder = Color(0xFF334155);
-  static const Color _darkMuted = Color(0xFF94A3B8);
-  static const Color _darkText = Color(0xFFF8FAFC);
-  static const Color _darkSuccess = Color(0xFF14532D);
-  static const Color _darkSuccessText = Color(0xFF86EFAC);
-  static const Color _darkPrimary = Color(0xFF7DD3FC);
-  static const Color _darkAccent = Color(0xFFC4B5FD);
+  // V2 mozaik dark surfaces — derived from navy primary so the dark mode
+  // reads as the same brand world rather than a generic slate.
+  static const Color _darkSurface = Color(0xFF08182A);
+  static const Color _darkSurfaceElevated = Color(0xFF0B2138);
+  static const Color _darkBorder = Color(0xFF2E4D70);
+  static const Color _darkMuted = Color(0xFF94A4B9);
+  static const Color _darkText = Color(0xFFF7F9FB);
+  static const Color _darkSuccess = Color(0xFF385819);
+  static const Color _darkPrimary = Color(0xFF8FD4DF);
+  static const Color _darkAccent = Color(0xFFEE7263);
+  // Memorial / pending gold tone for V2 mozaik dark mode.
+  static const Color _darkTertiary = Color(0xFFDDB74B);
+  static const Color _darkTertiaryContainer = Color(0xFF3A2E10);
 
   final ThemeData lightThemeData;
   final ThemeData darkThemeData;
@@ -28,10 +32,11 @@ final class ApplicationTheme {
         ? ThemeData.dark(useMaterial3: true)
         : ThemeData.light(useMaterial3: true);
     final colorScheme = _buildColorScheme(theme.colorScheme, isDark: isDark);
-    final textTheme = GoogleFonts.robotoTextTheme(theme.textTheme).apply(
-      bodyColor: colorScheme.onSurface,
-      displayColor: colorScheme.onSurface,
-    );
+    final textTheme = GoogleFonts.plusJakartaSansTextTheme(theme.textTheme)
+        .apply(
+          bodyColor: colorScheme.onSurface,
+          displayColor: colorScheme.onSurface,
+        );
 
     return theme.copyWith(
       colorScheme: colorScheme,
@@ -77,7 +82,8 @@ final class ApplicationTheme {
         titleTextStyle: textTheme.titleMedium?.copyWith(
           color: colorScheme.onSurface,
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.1,
         ),
         iconTheme: IconThemeData(
           color: colorScheme.onSurface,
@@ -131,22 +137,25 @@ final class ApplicationTheme {
     required bool isDark,
   }) {
     return currentScheme.copyWith(
-      primary: isDark ? _darkPrimary : ColorsCustom.sambacus,
+      primary: isDark ? _darkPrimary : ColorsCustom.navy,
       secondary: isDark ? _darkSurfaceElevated : ColorsCustom.white,
       surface: isDark ? _darkSurface : ColorsCustom.white,
-      onSurface: isDark ? _darkText : ColorsCustom.sambacus,
-      onPrimary: isDark ? ColorsCustom.sambacus : ColorsCustom.white,
-      onPrimaryContainer: isDark ? _darkBorder : ColorsCustom.lightGray,
-      onPrimaryFixed: isDark ? _darkSurfaceElevated : ColorsCustom.gray,
-      error: ColorsCustom.imperilRead,
-      primaryContainer: isDark ? _darkSuccess : ColorsCustom.braziliante,
-      onTertiaryContainer: isDark ? _darkSuccessText : ColorsCustom.green,
-      onSecondaryContainer: isDark ? _darkPrimary : ColorsCustom.royalPeacock,
-      onSecondaryFixed: isDark ? _darkMuted : ColorsCustom.warmGrey,
-      onPrimaryFixedVariant: isDark ? _darkText : ColorsCustom.darkGray,
-      onTertiaryFixedVariant: isDark
-          ? _darkAccent
-          : ColorsCustom.underlinePurple,
+      onSurface: isDark ? _darkText : ColorsCustom.ink900,
+      onPrimary: isDark ? ColorsCustom.navy : ColorsCustom.white,
+      onPrimaryContainer: isDark ? _darkBorder : ColorsCustom.ink100,
+      onPrimaryFixed: isDark ? _darkSurfaceElevated : ColorsCustom.bgCool,
+      error: ColorsCustom.coral,
+      primaryContainer: isDark ? _darkSuccess : ColorsCustom.olive,
+      onSecondaryContainer: isDark ? _darkPrimary : ColorsCustom.teal,
+      onSecondaryFixed: isDark ? _darkMuted : ColorsCustom.ink400,
+      onPrimaryFixedVariant: isDark ? _darkText : ColorsCustom.ink600,
+      onTertiaryFixedVariant: isDark ? _darkAccent : ColorsCustom.coral,
+      // Memorial / pending gold role — used by hatıralar surfaces and the
+      // merchant application "in review" state.
+      tertiary: isDark ? _darkTertiary : ColorsCustom.gold,
+      tertiaryContainer: isDark ? _darkTertiaryContainer : ColorsCustom.gold50,
+      onTertiary: isDark ? ColorsCustom.navy : ColorsCustom.white,
+      onTertiaryContainer: isDark ? ColorsCustom.gold200 : ColorsCustom.gold600,
     );
   }
 
@@ -158,4 +167,55 @@ final class ApplicationTheme {
   }
 
   static double maxWeight = 1000;
+}
+
+/// V2 mozaik typography helpers.
+///
+/// Body styles already come from `Theme.of(context).textTheme` (Plus Jakarta
+/// Sans). Use [V2Typography.display] for the editorial DM Serif Display
+/// headlines used on splash, hero sections, and brand surfaces. Use
+/// [V2Typography.eyebrow] for the small uppercase signature label that
+/// precedes display headings throughout V2.
+final class V2Typography {
+  const V2Typography._();
+
+  /// Editorial display style — DM Serif Display. Pair with a tight letter
+  /// spacing and the navy ink. Used for splash, place hero, brand artboards.
+  static TextStyle display({
+    double fontSize = 32,
+    Color? color,
+    FontStyle fontStyle = FontStyle.normal,
+  }) => GoogleFonts.dmSerifDisplay(
+    fontSize: fontSize,
+    height: 1.05,
+    letterSpacing: -0.02 * fontSize,
+    color: color,
+    fontStyle: fontStyle,
+  );
+
+  /// Small uppercase signature label that precedes display headings.
+  /// Default coral mirrors the V2 mozaik accent.
+  static TextStyle eyebrow({
+    double fontSize = 11,
+    Color color = ColorsCustom.coral,
+  }) => GoogleFonts.plusJakartaSans(
+    fontSize: fontSize,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 0.16 * fontSize,
+    color: color,
+  );
+
+  /// Bold meta caption used for status pills, badge text, and dense rows
+  /// (rating count, distance, attendee count). Slightly tighter tracking and
+  /// smaller scale than [eyebrow] without uppercase transformation.
+  static TextStyle label({
+    double fontSize = 12,
+    Color? color,
+    FontWeight fontWeight = FontWeight.w800,
+  }) => GoogleFonts.plusJakartaSans(
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    letterSpacing: 0.04 * fontSize,
+    color: color,
+  );
 }

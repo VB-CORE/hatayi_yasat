@@ -45,8 +45,9 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
     launchUrl(
       WhatsAppUnilink(
         phoneNumber: _phoneNumber,
-        text: LocaleKeys.advertise_openEventDetailPhone
-            .tr(args: [eventModel.name ?? '']),
+        text: LocaleKeys.advertise_openEventDetailPhone.tr(
+          args: [eventModel.name ?? ''],
+        ),
       ).asUri(),
       mode: LaunchMode.externalApplication,
     );

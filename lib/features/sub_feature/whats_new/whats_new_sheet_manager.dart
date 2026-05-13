@@ -14,13 +14,15 @@ final class WhatsNewSheetManager {
   late final ControlVersionWhatsNewChain _controlVersionWhatsNewChain =
       ControlVersionWhatsNewChain(context, _endOfChainWhatsNewChain);
 
-  late final EndWhatsNewChain _endOfChainWhatsNewChain =
-      EndWhatsNewChain(context);
+  late final EndWhatsNewChain _endOfChainWhatsNewChain = EndWhatsNewChain(
+    context,
+  );
 
   Future<void> show() async {
     final getSavedVersion = SharedCache.instance.version;
-    final getApplicationVersionNumber =
-        double.parse(''.ext.version.split('.').join());
+    final getApplicationVersionNumber = double.parse(
+      ''.ext.version.split('.').join(),
+    );
 
     await _firstTimeWhatsNewChain.show(
       currentAppVersion: getApplicationVersionNumber.toInt(),

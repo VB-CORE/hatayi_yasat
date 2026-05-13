@@ -14,6 +14,8 @@ class _BodyTabBarViewWidget extends StatelessWidget {
   }
 }
 
+/// V2 mosaic style bottom navigation. 4 sekme + ortada compose FAB.
+/// İlk iki sekme solda, son iki sekme sağda; çentik FAB için açık kalır.
 final class _BottomAppBarWidget extends ConsumerWidget {
   const _BottomAppBarWidget({required this.tabItems});
 
@@ -21,52 +23,90 @@ final class _BottomAppBarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isScrolledBottom =
-        ref.watch(mainTabViewModelProvider).isScrolledBottom;
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
-      child: BottomAppBar(
-        height: WidgetSizes.spacingXxl8,
+    final colorScheme = context.general.colorScheme;
+    return BottomAppBar(
+      height: 76,
+      padding: EdgeInsets.zero,
+      notchMargin: 8,
+      shape: const CircularNotchedRectangle(),
+      elevation: 0,
+      color: colorScheme.secondary,
+      child: TabBar(
         padding: EdgeInsets.zero,
-        notchMargin: WidgetSizes.spacingXxs / 2,
-        shape: const CircularNotchedRectangle(),
-        elevation: kZero,
-        color: context.general.colorScheme.secondary.withValues(
-          alpha: isScrolledBottom ? .7 : 1,
+        labelPadding: EdgeInsets.zero,
+        dividerColor: Colors.transparent,
+        indicator: const BoxDecoration(),
+        splashBorderRadius: CustomRadius.medium,
+        overlayColor: WidgetStateProperty.all(
+          colorScheme.primary.withValues(alpha: 0.06),
         ),
-        child: _TabBar(tabItems: tabItems),
+        tabs: [
+          for (var i = 0; i < tabItems.length; i++)
+            _BottomNavTab(
+              item: tabItems[i],
+              addTrailingGap: i == 1, // 2. sekmeden sonra FAB boşluğu
+            ),
+        ],
       ),
     );
   }
 }
 
-class _TabBar extends StatelessWidget {
-  const _TabBar({required this.tabItems});
+class _BottomNavTab extends StatelessWidget {
+  const _BottomNavTab({
+    required this.item,
+    this.addTrailingGap = false,
+  });
 
-  final List<TabModel> tabItems;
+  final TabModel item;
+  final bool addTrailingGap;
 
   @override
   Widget build(BuildContext context) {
-    return TabBar(
-      padding: EdgeInsets.zero,
-      dividerColor: ColorsCustom.transparent,
-      labelPadding: EdgeInsets.zero,
-      indicator: const BoxDecoration(),
-      unselectedLabelColor: context.general.colorScheme.primary.withValues(
-        alpha: .3,
+    final colorScheme = context.general.colorScheme;
+    return GeneralSemantic(
+      semanticKey: item.semanticKey,
+      child: Tab(
+        height: 64,
+        iconMargin: const EdgeInsets.only(bottom: 4),
+        child: Padding(
+          padding: EdgeInsets.only(right: addTrailingGap ? 56 : 0),
+          child: AnimatedBuilder(
+            animation: DefaultTabController.of(context),
+            builder: (context, _) {
+              final controller = DefaultTabController.of(context);
+              final tabs = controller.length;
+              final selected =
+                  controller.index == _indexOf(context, item, tabs);
+              final tint = selected
+                  ? colorScheme.primary
+                  : colorScheme.onSecondaryFixed;
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(item.icon, size: 22, color: tint),
+                  const SizedBox(height: 3),
+                  Text(
+                    item.title.tr(),
+                    style: V2Typography.label(
+                      fontSize: 10.5,
+                      color: tint,
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
       ),
-      labelStyle: context.general.textTheme.bodyMedium,
-      unselectedLabelStyle: context.general.textTheme.bodySmall,
-      tabs:
-          tabItems
-              .map(
-                (e) => GeneralSemantic(
-                  semanticKey: e.semanticKey,
-                  child: Tab(text: e.title.tr(), icon: e.icon),
-                ),
-              )
-              .toList(),
     );
+  }
+
+  int _indexOf(BuildContext context, TabModel target, int total) {
+    final state = context.findAncestorStateOfType<_MainTabViewState>();
+    if (state == null) return 0;
+    return state._tabItems.indexOf(target);
   }
 }

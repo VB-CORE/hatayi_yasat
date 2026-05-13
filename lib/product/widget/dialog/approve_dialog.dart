@@ -28,8 +28,7 @@ final class ApproveDialog extends StatelessWidget {
   static Future<bool> showWithKey({
     required BuildContext context,
     required ApproveDialogType type,
-  }) async =>
-      await show(context: context, title: type.key) ?? false;
+  }) async => await show(context: context, title: type.key) ?? false;
 
   @override
   Widget build(BuildContext context) {

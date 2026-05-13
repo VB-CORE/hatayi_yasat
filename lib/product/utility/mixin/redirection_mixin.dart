@@ -23,8 +23,10 @@ mixin RedirectionMixin {
     required BuildContext context,
     required String phoneNumber,
   }) async {
-    var cleanPhoneNumber =
-        phoneNumber.replaceAll(RegexTypes.phoneNumberRegex, '');
+    var cleanPhoneNumber = phoneNumber.replaceAll(
+      RegexTypes.phoneNumberRegex,
+      '',
+    );
 
     if (!cleanPhoneNumber.startsWith('0')) {
       cleanPhoneNumber = '0$cleanPhoneNumber';

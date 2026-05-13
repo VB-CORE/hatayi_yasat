@@ -14,21 +14,21 @@ final class CustomPopupMenuAppbar extends AppBar {
     required BuildContext context,
     super.key,
   }) : super(
-          centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          title: GeneralSubTitle(
-            value: LocaleKeys.project_name.tr(context: context),
-            fontWeight: FontWeight.bold,
-          ),
-          actions: [
-            const _CustomPopupMenu(),
-          ],
-        );
+         centerTitle: true,
+         bottom: PreferredSize(
+           preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
+           child: Divider(
+             height: AppConstants.kOne.toDouble(),
+           ),
+         ),
+         title: GeneralSubTitle(
+           value: LocaleKeys.project_name.tr(context: context),
+           fontWeight: FontWeight.bold,
+         ),
+         actions: [
+           const _CustomPopupMenu(),
+         ],
+       );
 }
 
 final class _CustomPopupMenu extends StatelessWidget {

@@ -12,9 +12,9 @@ final class ChainStoreState extends Equatable {
 
   @override
   List<Object?> get props => [
-        chainStores,
-        isFetching,
-      ];
+    chainStores,
+    isFetching,
+  ];
 
   ChainStoreState copyWith({
     List<ChainStoreModel>? chainStores,

@@ -59,8 +59,9 @@ final class PhotoPickerManager {
     );
     if (croppedFile == null) return null;
     final latestFile = File(croppedFile.path);
-    final latestFileCompress =
-        await FileCompress(await latestFile.readAsBytes()).compressByteFile();
+    final latestFileCompress = await FileCompress(
+      await latestFile.readAsBytes(),
+    ).compressByteFile();
     if (latestFileCompress == null) return null;
     await latestFile.writeAsBytes(latestFileCompress);
     return latestFile;

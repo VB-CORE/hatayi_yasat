@@ -9,16 +9,15 @@ final class ToursimCustomMarker extends Marker {
     required TouristicPlaceModel model,
     required super.icon,
   }) : super(
-          markerId: MarkerId(model.documentId),
-          position: LatLng(model.latLong.latitude, model.latLong.longitude),
-          infoWindow: InfoWindow(
-            title: model.title,
-            snippet: LocaleKeys.tourismView_onTapMarkerWindow.tr(),
-            onTap: () {
-              '${model.latLong.latitude},${model.latLong.longitude}'
-                  .ext
-                  .launchMaps();
-            },
-          ),
-        );
+         markerId: MarkerId(model.documentId),
+         position: LatLng(model.latLong.latitude, model.latLong.longitude),
+         infoWindow: InfoWindow(
+           title: model.title,
+           snippet: LocaleKeys.tourismView_onTapMarkerWindow.tr(),
+           onTap: () {
+             '${model.latLong.latitude},${model.latLong.longitude}'.ext
+                 .launchMaps();
+           },
+         ),
+       );
 }

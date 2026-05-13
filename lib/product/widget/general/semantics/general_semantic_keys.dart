@@ -22,7 +22,8 @@ enum GeneralSemanticKeys {
   homeTab('homeTab'),
   communityTab('communityTab'),
   memoriesTab('memoriesTab'),
-  favoriteTab('favoriteTab');
+  favoriteTab('favoriteTab')
+  ;
 
   final String key;
 

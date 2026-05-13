@@ -120,7 +120,8 @@ final class _LinkAndShare extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       tileColor: context.general.colorScheme.secondary,
-      contentPadding: const PagePadding.horizontalSymmetric() +
+      contentPadding:
+          const PagePadding.horizontalSymmetric() +
           const PagePadding.verticalLowSymmetric() +
           const PagePadding.onlyBottomLow(),
       onTap: () => UriUtility(address: model.id).launch(),

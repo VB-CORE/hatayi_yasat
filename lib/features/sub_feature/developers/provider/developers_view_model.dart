@@ -19,6 +19,5 @@ final class DevelopersViewModel extends _$DevelopersViewModel
       CollectionPaths.developers,
       DeveloperModel(),
     );
-    
   }
 }

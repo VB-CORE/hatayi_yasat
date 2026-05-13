@@ -18,11 +18,11 @@ final class HomeState extends Equatable {
   final bool isLoading;
   @override
   List<Object> get props => [
-        categories,
-        isGridView,
-        sortingType,
-        isLoading,
-      ];
+    categories,
+    isGridView,
+    sortingType,
+    isLoading,
+  ];
 
   HomeState copyWith({
     List<CategoryModel>? categories,

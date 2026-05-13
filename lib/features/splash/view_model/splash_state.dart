@@ -17,11 +17,11 @@ class SplashState extends Equatable {
 
   @override
   List<Object> get props => [
-        isOperationStaring,
-        isNeedToForceUpdate,
-        isConnectedToInternet,
-        isNeedToOnBoard,
-      ];
+    isOperationStaring,
+    isNeedToForceUpdate,
+    isConnectedToInternet,
+    isNeedToOnBoard,
+  ];
 
   SplashState copyWith({
     bool? isOperationStaring,

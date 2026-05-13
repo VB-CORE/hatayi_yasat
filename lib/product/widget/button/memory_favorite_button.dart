@@ -49,8 +49,9 @@ mixin _MemoryFavoriteButtonMixin
   }
 
   void _checkFavoriteStatus() {
-    final favoriteMemory =
-        productCache.memoryCacheModel.get(widget.memory.documentId);
+    final favoriteMemory = productCache.memoryCacheModel.get(
+      widget.memory.documentId,
+    );
     setState(() {
       _isFavorite = favoriteMemory != null;
     });

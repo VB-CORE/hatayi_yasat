@@ -14,6 +14,7 @@ migrate_working_dir/
 *.lock
 package-lock.json
 .metadata
+hatayi-yasat
 
 firebase-export-*
 *.g.dart
@@ -35,10 +36,13 @@ emulator-data/
 # IDE and Editor specific files
 .vscode/
 .idea/
-.claude/
 .idx/
 .cursor/
 *.code-workspace
+
+# Claude Code: keep skills committed, ignore everything else
+.claude/*
+!.claude/skills/
 
 # Editor config files
 .cursorrules

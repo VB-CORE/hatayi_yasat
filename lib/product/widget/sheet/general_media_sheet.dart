@@ -38,8 +38,9 @@ final class GeneralMediaSheet extends StatelessWidget {
               leading: const Icon(AppIcons.camera),
               title: const Text(LocaleKeys.component_picker_camera).tr(),
               onTap: () async {
-                final file = await PhotoPickerManager(context: context)
-                    .pickPhoto(type: PhotoPickType.camera);
+                final file = await PhotoPickerManager(
+                  context: context,
+                ).pickPhoto(type: PhotoPickType.camera);
 
                 if (file == null) return;
                 if (!context.mounted) return;
@@ -50,8 +51,9 @@ final class GeneralMediaSheet extends StatelessWidget {
               leading: const Icon(AppIcons.gallery),
               title: const Text(LocaleKeys.component_picker_gallery).tr(),
               onTap: () async {
-                final file = await PhotoPickerManager(context: context)
-                    .pickPhoto(type: PhotoPickType.gallery);
+                final file = await PhotoPickerManager(
+                  context: context,
+                ).pickPhoto(type: PhotoPickType.gallery);
 
                 if (file == null) return;
                 if (!context.mounted) return;

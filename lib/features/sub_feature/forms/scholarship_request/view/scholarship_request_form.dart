@@ -40,60 +40,64 @@ final class _ScholarshipRequestFormState
         title: GeneralSubTitle(value: LocaleKeys.requestScholarship_title.tr()),
         centerTitle: true,
       ),
-      bottomNavigationBar: _ScholarshipRequestSend(
-        onTapped: () async {
-          if (!validateAndSave()) return;
-          final model = getRequestModel();
-          if (model == null) return;
+      bottomNavigationBar:
+          _ScholarshipRequestSend(
+            onTapped: () async {
+              if (!validateAndSave()) return;
+              final model = getRequestModel();
+              if (model == null) return;
 
-          final response = await ref
-              .read(scholarshipRequestProviderProvider.notifier)
-              .uploadScholarship(model);
-          if (response == null) {
-            await uploadAndShowDialog();
-            return;
-          }
-          await showErrorSnackbar(title: response);
-        },
-        onKVKKChanged: (value) => updateKVKK(value: value),
-        canApply:
-            ref.read(scholarshipRequestProviderProvider).canApply ?? false,
-      ).ext.toDisabled(
-            disable: ref
+              final response = await ref
+                  .read(scholarshipRequestProviderProvider.notifier)
+                  .uploadScholarship(model);
+              if (response == null) {
+                await uploadAndShowDialog();
+                return;
+              }
+              await showErrorSnackbar(title: response);
+            },
+            onKVKKChanged: (value) => updateKVKK(value: value),
+            canApply:
+                ref.read(scholarshipRequestProviderProvider).canApply ?? false,
+          ).ext.toDisabled(
+            disable:
+                ref
                     .watch(scholarshipRequestProviderProvider)
                     .isSendingRequest ??
                 false,
             opacity: 0.5,
           ),
-      body: ListViewWithSpace(
-        children: [
-          CustomTextFormFieldWithTitle(
-            controller: phoneController,
-            title: LocaleKeys.requestScholarship_phone.tr(),
-            validator: ValidatorPhoneTextField(),
-            textInputType: TextInputType.number,
-            formatters: TextFieldFormatters.phone,
-          ),
-          CustomTextFormFieldWithTitle(
-            controller: emailController,
-            title: LocaleKeys.requestScholarship_email.tr(),
-            validator: ValidatorEmailTextField(),
-            maxLength: TextFieldMaxLengths.large,
-          ),
-          CustomTextFormFieldWithTitle.multiLine(
-            controller: bioController,
-            title: LocaleKeys.requestScholarship_story.tr(),
-            validator: ValidatorNormalTextField(),
-            maxLength: TextFieldMaxLengths.veryLarge,
-          ),
-          UploadFileSection(
-            hintText: LocaleKeys.requestScholarship_pdfHint,
-            onFilePicked: updatePdfFile,
-          ),
-          const _UploadSizeInfo(),
-        ],
-      ).ext.toDisabled(
-            disable: ref
+      body:
+          ListViewWithSpace(
+            children: [
+              CustomTextFormFieldWithTitle(
+                controller: phoneController,
+                title: LocaleKeys.requestScholarship_phone.tr(),
+                validator: ValidatorPhoneTextField(),
+                textInputType: TextInputType.number,
+                formatters: TextFieldFormatters.phone,
+              ),
+              CustomTextFormFieldWithTitle(
+                controller: emailController,
+                title: LocaleKeys.requestScholarship_email.tr(),
+                validator: ValidatorEmailTextField(),
+                maxLength: TextFieldMaxLengths.large,
+              ),
+              CustomTextFormFieldWithTitle.multiLine(
+                controller: bioController,
+                title: LocaleKeys.requestScholarship_story.tr(),
+                validator: ValidatorNormalTextField(),
+                maxLength: TextFieldMaxLengths.veryLarge,
+              ),
+              UploadFileSection(
+                hintText: LocaleKeys.requestScholarship_pdfHint,
+                onFilePicked: updatePdfFile,
+              ),
+              const _UploadSizeInfo(),
+            ],
+          ).ext.toDisabled(
+            disable:
+                ref
                     .watch(scholarshipRequestProviderProvider)
                     .isSendingRequest ??
                 false,

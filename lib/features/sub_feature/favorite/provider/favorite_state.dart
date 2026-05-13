@@ -14,10 +14,10 @@ final class FavoriteState extends Equatable {
 
   @override
   List<Object> get props => [
-        favoritePlaces,
-        filteredPlaces,
-        searchWord,
-      ];
+    favoritePlaces,
+    filteredPlaces,
+    searchWord,
+  ];
 
   FavoriteState copyWith({
     List<StoreModel>? favoritePlaces,

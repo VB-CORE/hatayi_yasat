@@ -18,7 +18,6 @@ class FavoritePlaceProvider extends Notifier<FavoritePlaceState>
 
   final CacheOperation<StoreModelCache> cacheService;
 
-
   void initAndCheckFavoritePlace(
     StoreModel favoritePlace,
   ) {

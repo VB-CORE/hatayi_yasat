@@ -69,7 +69,8 @@ class _TransparentBox extends StatelessWidget {
       ),
       margin: EdgeInsets.zero,
       child: Padding(
-        padding: const PagePadding.horizontalLowSymmetric() +
+        padding:
+            const PagePadding.horizontalLowSymmetric() +
             const PagePadding.verticalLowSymmetric(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

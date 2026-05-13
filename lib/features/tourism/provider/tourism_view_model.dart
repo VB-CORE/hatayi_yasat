@@ -12,11 +12,11 @@ final class TourismViewModel extends _$TourismViewModel
   TourismState build() => const TourismState();
 
   Future<void> fetchTouristicPlaces() async {
-    final placeListResponse =
-        await firebaseService.getList<TouristicPlaceModel>(
-      model: TouristicPlaceModel(),
-      path: CollectionPaths.touristicPlaces,
-    );
+    final placeListResponse = await firebaseService
+        .getList<TouristicPlaceModel>(
+          model: TouristicPlaceModel(),
+          path: CollectionPaths.touristicPlaces,
+        );
 
     state = state.copyWith(
       placeList: placeListResponse,

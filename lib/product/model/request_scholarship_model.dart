@@ -19,11 +19,11 @@ final class RequestScholarshipModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        email,
-        phoneNumber,
-        story,
-        studentDocument,
-      ];
+    email,
+    phoneNumber,
+    story,
+    studentDocument,
+  ];
 
   RequestScholarshipModel copyWith({
     String? email,

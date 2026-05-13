@@ -8,12 +8,12 @@ class NotificationSnackBar extends SnackBar {
     required ValueChanged<bool> isOpenListen,
     super.key,
   }) : super(
-          content: Text(message),
-          action: SnackBarAction(
-            label: LocaleKeys.notification_snackbarButtonText.tr(),
-            onPressed: () {
-              isOpenListen.call(true);
-            },
-          ),
-        );
+         content: Text(message),
+         action: SnackBarAction(
+           label: LocaleKeys.notification_snackbarButtonText.tr(),
+           onPressed: () {
+             isOpenListen.call(true);
+           },
+         ),
+       );
 }

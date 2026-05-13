@@ -16,7 +16,8 @@ final class _ScholarshipRequestSend extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Padding(
-        padding: const PagePadding.horizontalSymmetric() +
+        padding:
+            const PagePadding.horizontalSymmetric() +
             const PagePadding.onlyBottom(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -28,9 +29,9 @@ final class _ScholarshipRequestSend extends ConsumerWidget {
                   ? LocaleKeys.button_sendRequest.tr()
                   : LocaleKeys.requestScholarship_disableButtonTitle.tr(),
             ).ext.toDisabled(
-                  disable: !canApply,
-                  opacity: 0.5,
-                ),
+              disable: !canApply,
+              opacity: 0.5,
+            ),
           ],
         ),
       ),

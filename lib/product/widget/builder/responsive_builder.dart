@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 enum WindowsSize {
   mobile,
   tablet,
-  desktop;
+  desktop
+  ;
 
   bool get isMobile => this == WindowsSize.mobile;
   bool get isTablet => this == WindowsSize.tablet;

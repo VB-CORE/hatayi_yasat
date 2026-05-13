@@ -41,7 +41,8 @@ final class CircleImageWithTextContainer extends StatelessWidget {
           children: [
             _ImageCircleAvatar(imageUrl: imageUrl),
             Padding(
-              padding: const PagePadding.onlyLeftLow() +
+              padding:
+                  const PagePadding.onlyLeftLow() +
                   const PagePadding.onlyRightLow(),
               child: _NameTextConstrainedBox(name: name),
             ),

@@ -27,8 +27,9 @@ class _AppAboutViewState extends State<AppAboutView> {
             InAppWebView(
               onWebViewCreated: (controller) async {
                 await controller.loadUrl(
-                  urlRequest:
-                      URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
+                  urlRequest: URLRequest(
+                    url: WebUri(AppConstants.homeWebsiteUrl),
+                  ),
                 );
                 _isLoadingNotifier.value = false;
               },

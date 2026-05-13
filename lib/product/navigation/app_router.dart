@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/login/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
+import 'package:lifeclient/features/compose/view/compose_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
+import 'package:lifeclient/features/memories/view/memories_view.dart';
+import 'package:lifeclient/features/memory_compose/view/memory_compose_view.dart';
+import 'package:lifeclient/features/merchant_onboarding/view/merchant_onboarding_view.dart';
+import 'package:lifeclient/features/notification_permission/view/notification_permission_view.dart';
+import 'package:lifeclient/features/post_detail/view/post_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
@@ -18,8 +25,10 @@ import 'package:lifeclient/features/sub_feature/forms/index.dart';
 import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
+import 'package:lifeclient/features/container_markets/view/container_markets_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
+import 'package:lifeclient/product/model/social/post_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 
@@ -40,10 +49,29 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
   Widget build(BuildContext context, GoRouterState state) => const SplashView();
 }
 
+@TypedGoRoute<LoginRoute>(path: '/login')
+final class LoginRoute extends GoRouteData with $LoginRoute {
+  const LoginRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const LoginView();
+}
+
+@TypedGoRoute<NotificationPermissionRoute>(path: '/notificationPermission')
+final class NotificationPermissionRoute extends GoRouteData
+    with $NotificationPermissionRoute {
+  const NotificationPermissionRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NotificationPermissionView();
+}
+
 @TypedGoRoute<MainTabRoute>(
   path: '/main',
   routes: [
     ChainStoresRoute.route,
+    ContainerMarketsRoute.route,
     TurismRoute.route,
     UsefulLinksRoute.route,
     FavoriteRoute.route,
@@ -62,6 +90,21 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
 
     // Settings
     SettingsRoute.route,
+
+    // Compose
+    ComposeRoute.route,
+
+    // V2 Post Detail
+    PostDetailRoute.route,
+
+    // V2 Merchant Onboarding
+    MerchantOnboardingRoute.route,
+
+    // V2 Memories
+    MemoriesRoute.route,
+
+    // V2 Memory Compose
+    MemoryComposeRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
@@ -86,9 +129,9 @@ final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
-        model: $extra,
-        id: id,
-      );
+    model: $extra,
+    id: id,
+  );
 }
 
 final class FilterRoute extends GoRouteData with $FilterRoute {
@@ -105,8 +148,8 @@ final class FilterRoute extends GoRouteData with $FilterRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterSearchView(
-        selectedCategoryId: $extra,
-      );
+    selectedCategoryId: $extra,
+  );
 }
 
 final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
@@ -121,8 +164,8 @@ final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterResultView(
-        filter: $extra,
-      );
+    filter: $extra,
+  );
 }
 
 final class PlaceRequestFormRoute extends GoRouteData
@@ -360,4 +403,87 @@ final class UsefulLinksRoute extends GoRouteData with $UsefulLinksRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const UsefulLinksView();
+}
+
+final class ContainerMarketsRoute extends GoRouteData
+    with $ContainerMarketsRoute {
+  const ContainerMarketsRoute();
+
+  static const route = TypedGoRoute<ContainerMarketsRoute>(
+    path: 'container_markets',
+    name: 'Container Markets',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ContainerMarketsView();
+}
+
+final class ComposeRoute extends GoRouteData with $ComposeRoute {
+  const ComposeRoute();
+
+  static const route = TypedGoRoute<ComposeRoute>(
+    path: 'compose',
+    name: 'Compose',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ComposeView();
+}
+
+final class PostDetailRoute extends GoRouteData with $PostDetailRoute {
+  PostDetailRoute({required this.id, this.$extra});
+
+  static const route = TypedGoRoute<PostDetailRoute>(
+    path: 'postDetail/:id',
+    name: 'Post Detail',
+  );
+
+  final String id;
+  final PostModel? $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      PostDetailView(id: id, initial: $extra);
+}
+
+final class MerchantOnboardingRoute extends GoRouteData
+    with $MerchantOnboardingRoute {
+  const MerchantOnboardingRoute();
+
+  static const route = TypedGoRoute<MerchantOnboardingRoute>(
+    path: 'merchantOnboarding',
+    name: 'Merchant Onboarding',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MerchantOnboardingView();
+}
+
+final class MemoriesRoute extends GoRouteData with $MemoriesRoute {
+  const MemoriesRoute();
+
+  static const route = TypedGoRoute<MemoriesRoute>(
+    path: 'memories',
+    name: 'Memories',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MemoriesView();
+}
+
+final class MemoryComposeRoute extends GoRouteData with $MemoryComposeRoute {
+  const MemoryComposeRoute();
+
+  static const route = TypedGoRoute<MemoryComposeRoute>(
+    path: 'memoryCompose',
+    name: 'Memory Compose',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MemoryComposeView();
 }

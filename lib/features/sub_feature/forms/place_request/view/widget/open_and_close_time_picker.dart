@@ -78,17 +78,18 @@ class _TextFieldsState extends State<_TextFields> {
               valueListenable: widget.closeTimeController,
               builder: (context, closeTimeValue, _) {
                 return Expanded(
-                  child: TimeFormField(
-                    useDefaultValidator: false,
-                    controller: widget.closeTimeController,
-                    hintText: LocaleKeys.requestCompany_end.tr(),
-                    prefixIcon: AppIcons.timerOff,
-                    validator: openTimeValue.text.ext.isNullOrEmpty
-                        ? null
-                        : (val) => ValidateCloseDate(
-                              controller: widget.openTimeController,
-                            ).validate(val),
-                  ).ext.toDisabled(
+                  child:
+                      TimeFormField(
+                        useDefaultValidator: false,
+                        controller: widget.closeTimeController,
+                        hintText: LocaleKeys.requestCompany_end.tr(),
+                        prefixIcon: AppIcons.timerOff,
+                        validator: openTimeValue.text.ext.isNullOrEmpty
+                            ? null
+                            : (val) => ValidateCloseDate(
+                                controller: widget.openTimeController,
+                              ).validate(val),
+                      ).ext.toDisabled(
                         disable: openTimeValue.text.ext.isNullOrEmpty,
                       ),
                 );

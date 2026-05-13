@@ -23,51 +23,47 @@ final class _FavoriteListBuilder extends ConsumerWidget {
         ),
       );
     }
-    return SliverList.builder(
-      itemCount: favoritePlaces.length,
-      itemBuilder: (context, index) {
-        return _FavoriteAuthorWidget(
-          model: favoritePlaces[index],
-          onCardTapped: () {
-            PlaceDetailRoute(
-              $extra: favoritePlaces[index],
-              id: favoritePlaces[index].documentId,
-            ).push<void>(context);
-          },
-          onDeleteTapped: () {
-            ref
+    final colorScheme = context.general.colorScheme;
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      sliver: SliverList.separated(
+        itemCount: favoritePlaces.length,
+        separatorBuilder: (_, _) => const SizedBox(height: 12),
+        itemBuilder: (context, index) {
+          final store = favoritePlaces[index];
+          return Dismissible(
+            key: ValueKey('favorite_${store.documentId}'),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              decoration: BoxDecoration(
+                color: colorScheme.error.withValues(alpha: 0.1),
+                borderRadius: CustomRadius.large,
+              ),
+              child: Icon(
+                Icons.delete_outline_rounded,
+                color: colorScheme.error,
+              ),
+            ),
+            onDismissed: (_) => ref
                 .read(favoriteViewModelProvider.notifier)
-                .removeFavorite(favoritePlaces[index]);
-          },
-        );
-      },
-    );
-  }
-}
-
-final class _FavoriteAuthorWidget extends StatelessWidget {
-  const _FavoriteAuthorWidget({
-    required this.model,
-    required this.onCardTapped,
-    required this.onDeleteTapped,
-  });
-
-  final StoreModel model;
-  final VoidCallback onCardTapped;
-  final VoidCallback onDeleteTapped;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onCardTapped.call,
-      child: Padding(
-        padding: const PagePadding.vertical6Symmetric(),
-        child: AuthorListTileWidget(
-          image: model.images.first,
-          text: model.owner,
-          description: model.updatedName,
-          onDeleteTapped: onDeleteTapped,
-        ),
+                .removeFavorite(store),
+            child: V2PlaceCard(
+              place: V2Place.fromStore(store),
+              saved: true,
+              onTap: () {
+                PlaceDetailRoute(
+                  $extra: store,
+                  id: store.documentId,
+                ).push<void>(context);
+              },
+              onSavedToggle: () => ref
+                  .read(favoriteViewModelProvider.notifier)
+                  .removeFavorite(store),
+            ),
+          );
+        },
       ),
     );
   }

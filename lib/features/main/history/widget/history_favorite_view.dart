@@ -8,8 +8,8 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 /// History favorites sheet widget that displays user's favorite memories
@@ -61,27 +61,27 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             AppIcons.favoriteBorder,
             size: AppIconSizes.xLarge * 2,
-            color: ColorsCustom.warmGrey,
+            color: context.general.colorScheme.onSecondaryFixed,
           ),
-          const SizedBox(height: AppIconSizes.medium),
+          const EmptyBox(height: AppIconSizes.medium),
           Text(
             LocaleKeys.historyPage_favorites_emptyTitle.tr(),
             style: context.general.textTheme.titleMedium?.copyWith(
               fontSize: AppIconSizes.medium,
-              color: ColorsCustom.warmGrey,
+              color: context.general.colorScheme.onSecondaryFixed,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: AppIconSizes.small),
+          const EmptyBox.smallHeight(),
           Text(
             LocaleKeys.historyPage_favorites_emptyDescription.tr(),
             textAlign: TextAlign.center,
             style: context.general.textTheme.bodyMedium?.copyWith(
               fontSize: AppIconSizes.small,
-              color: ColorsCustom.warmGrey,
+              color: context.general.colorScheme.onSecondaryFixed,
             ),
           ),
         ],
@@ -124,10 +124,10 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
                 imageUrl: memory.imageUrls!.first,
                 fit: BoxFit.cover,
               )
-            : const Icon(
+            : Icon(
                 AppIcons.gallery,
                 size: AppIconSizes.large,
-                color: ColorsCustom.warmGrey,
+                color: context.general.colorScheme.onSecondaryFixed,
               ),
       ),
     );
@@ -153,7 +153,7 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.bodySmall?.copyWith(
-        color: ColorsCustom.warmGrey,
+        color: context.general.colorScheme.onSecondaryFixed,
       ),
     );
   }

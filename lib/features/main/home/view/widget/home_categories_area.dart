@@ -10,39 +10,53 @@ mixin _FilterMixin {
   }
 }
 
+/// Horizontal category strip — V2 mozaik chip style. Tap a chip to jump
+/// straight into the filter result for that category.
 final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
   const _HomeCategoryCards();
   static const _maxCategoryItemLength = 6;
   static const _otherCategoryValue = 1000;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories =
-        ref.watch(homeViewModelProvider).categories
-          ..take(_maxCategoryItemLength)
-          ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
-          /// remove other category
-          ..removeWhere((element) => element.value == _otherCategoryValue);
+    final categories = ref.watch(homeViewModelProvider).categories
+      ..take(_maxCategoryItemLength)
+      ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
+      /// remove other category
+      ..removeWhere((element) => element.value == _otherCategoryValue);
 
-    return SizedBox(
-      height: WidgetSizes.spacingXxl2,
-      child: ListView.builder(
-        key: const Key('homeCategoriesList'),
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        padding: const PagePadding.onlyBottomLow(),
-        itemBuilder: (BuildContext context, int index) {
-          return _CategoryCard(
-            key: Key('categoryCard_${categories[index].documentId}'),
-            onTap: () async {
-              await pushToFilter(
-                context: context,
-                category: categories[index].documentId,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const PagePadding.horizontalLowSymmetric(),
+          child: Eyebrow(
+            LocaleKeys.home_categoriesEyebrow.tr(),
+            color: context.general.colorScheme.onSecondaryContainer,
+          ),
+        ),
+        const EmptyBox.smallHeight(),
+        SizedBox(
+          height: WidgetSizes.spacingXxl2,
+          child: ListView.builder(
+            key: const Key('homeCategoriesList'),
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            itemBuilder: (BuildContext context, int index) {
+              return _CategoryCard(
+                key: Key('categoryCard_${categories[index].documentId}'),
+                onTap: () async {
+                  await pushToFilter(
+                    context: context,
+                    category: categories[index].documentId,
+                  );
+                },
+                name: categories[index].displayName,
               );
             },
-            name: categories[index].displayName,
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     ).ext.sliver;
   }
 }
@@ -55,23 +69,31 @@ final class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.general.colorScheme;
+    final textTheme = context.general.textTheme;
     return Padding(
-      padding: const PagePadding.onlyRight(),
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          side: BorderSide(color: context.general.colorScheme.onSecondaryFixed),
-          backgroundColor: context.general.colorScheme.onSecondary,
-          shape: const RoundedRectangleBorder(
-            borderRadius: CustomRadius.extraLarge,
-          ),
-          padding: const PagePadding.horizontalNormalSymmetric(),
-        ),
-        child: Text(
-          name,
-          style: context.general.textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: context.general.colorScheme.onSecondaryFixed,
+      padding: const EdgeInsets.only(right: 8),
+      child: Material(
+        color: colorScheme.onPrimaryFixed,
+        borderRadius: BorderRadius.circular(999),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(999),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: colorScheme.onPrimaryContainer),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              name,
+              style: textTheme.labelMedium?.copyWith(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
+                color: colorScheme.onSurface,
+              ),
+            ),
           ),
         ),
       ),

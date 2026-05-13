@@ -112,7 +112,8 @@ class _SelectListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const PagePadding.horizontalLowSymmetric() +
+      padding:
+          const PagePadding.horizontalLowSymmetric() +
           const PagePadding.onlyBottom(),
       child: ValueListenableBuilder<bool>(
         valueListenable: _validationNotifier,

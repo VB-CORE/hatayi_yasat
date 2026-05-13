@@ -14,11 +14,12 @@ final class _DateIconAndText extends StatelessWidget {
 
     return IconWithText(
       icon: AppIcons.calendar,
-      title: DateFormat.yMMMEd(
-        context.locale.toLanguageTag(),
-      ).format(
-        date!,
-      ),
+      title:
+          DateFormat.yMMMEd(
+            context.locale.toLanguageTag(),
+          ).format(
+            date!,
+          ),
       color: context.general.colorScheme.primary.withValues(alpha: 0.7),
     );
   }

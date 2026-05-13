@@ -5,23 +5,20 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/sheet/regional/regional_city_sheet.dart';
-import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
-import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
-import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
-import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
 
 part 'widget/main_app_bar.dart';
 part 'widget/main_bottom_app_bar.dart';
@@ -36,10 +33,11 @@ final class MainTabView extends ConsumerStatefulWidget {
 
 class _MainTabViewState extends ConsumerState<MainTabView>
     with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
-  final _tabItems = TabModels.create().tabItems;
+  final List<TabModel> _tabItems = TabModels.create().tabItems;
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.general.colorScheme;
     return GeneralSemantic(
       semanticKey: GeneralSemanticKeys.mainTabView,
       child: NotificationListener<ScrollUpdateNotification>(
@@ -50,6 +48,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         child: DefaultTabController(
           length: _tabItems.length,
           child: Scaffold(
+            backgroundColor: colorScheme.surface,
             extendBody: true,
             appBar: _MainAppBar(context: context),
             floatingActionButtonLocation:
@@ -60,7 +59,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
               semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
               child: _BottomAppBarWidget(tabItems: _tabItems),
             ),
-            floatingActionButton: const _SpeedDialFabWidget(),
+            floatingActionButton: const _ComposeFabButton(),
           ),
         ),
       ),

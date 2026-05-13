@@ -12,9 +12,9 @@ final class PlaceRequestState extends Equatable {
 
   @override
   List<Object?> get props => [
-        placeRequestModel,
-        isSendingRequest,
-      ];
+    placeRequestModel,
+    isSendingRequest,
+  ];
 
   PlaceRequestState copyWith({
     PlaceRequestModel? placeRequestModel,

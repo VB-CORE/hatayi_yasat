@@ -40,64 +40,66 @@ final class _ProjectRequestFormState
         title: GeneralSubTitle(value: LocaleKeys.projectRequest_title.tr()),
         centerTitle: true,
       ),
-      bottomNavigationBar: _ProjectRequestSend(
-        onTapped: sendRequest,
-        onKVKKChanged: (value) => updateKVKK(value: value),
-      ).ext.toDisabled(
+      bottomNavigationBar:
+          _ProjectRequestSend(
+            onTapped: sendRequest,
+            onKVKKChanged: (value) => updateKVKK(value: value),
+          ).ext.toDisabled(
             disable:
                 ref.watch(projectRequestProviderProvider).isSendingRequest ??
-                    false,
+                false,
             opacity: 0.5,
           ),
-      body: ListViewWithSpace(
-        children: [
-          CustomTextFormFieldWithTitle(
-            maxLength: TextFieldMaxLengths.large,
-            title: LocaleKeys.projectRequest_publisher.tr(),
-            controller: projectPublisherController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle(
-            maxLength: TextFieldMaxLengths.large,
-            title: LocaleKeys.requestCompany_phoneNumber.tr(),
-            controller: projectPhoneController,
-            textInputType: TextInputType.phone,
-            formatters: TextFieldFormatters.phone,
-            validator: ValidatorPhoneTextField(),
-          ),
-          GeneralDottedPhotoAddProvider(
-            onSelected: onImageSelected,
-            child: GeneralDottedPhotoAdd(
-              title: LocaleKeys.projectRequest_projectImage.tr(),
-            ),
-          ),
-          CustomTextFormFieldWithTitle(
-            maxLength: TextFieldMaxLengths.large,
-            title: LocaleKeys.projectRequest_name.tr(),
-            controller: projectNameController,
-            textInputType: TextInputType.name,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle.multiLine(
-            title: LocaleKeys.projectRequest_topic.tr(),
-            controller: projectTopicController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle.multiLine(
-            maxLength: TextFieldMaxLengths.max,
-            title: LocaleKeys.projectRequest_description.tr(),
-            controller: projectDescriptionController,
-            validator: ValidatorNormalTextField(),
-          ),
-          DateTimeFormField(
-            onDateSelected: (value) => updateSelectedDateTime(value: value),
-          ),
-          const EmptyBox.middleHeight(),
-        ],
-      ).ext.toDisabled(
+      body:
+          ListViewWithSpace(
+            children: [
+              CustomTextFormFieldWithTitle(
+                maxLength: TextFieldMaxLengths.large,
+                title: LocaleKeys.projectRequest_publisher.tr(),
+                controller: projectPublisherController,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle(
+                maxLength: TextFieldMaxLengths.large,
+                title: LocaleKeys.requestCompany_phoneNumber.tr(),
+                controller: projectPhoneController,
+                textInputType: TextInputType.phone,
+                formatters: TextFieldFormatters.phone,
+                validator: ValidatorPhoneTextField(),
+              ),
+              GeneralDottedPhotoAddProvider(
+                onSelected: onImageSelected,
+                child: GeneralDottedPhotoAdd(
+                  title: LocaleKeys.projectRequest_projectImage.tr(),
+                ),
+              ),
+              CustomTextFormFieldWithTitle(
+                maxLength: TextFieldMaxLengths.large,
+                title: LocaleKeys.projectRequest_name.tr(),
+                controller: projectNameController,
+                textInputType: TextInputType.name,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle.multiLine(
+                title: LocaleKeys.projectRequest_topic.tr(),
+                controller: projectTopicController,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle.multiLine(
+                maxLength: TextFieldMaxLengths.max,
+                title: LocaleKeys.projectRequest_description.tr(),
+                controller: projectDescriptionController,
+                validator: ValidatorNormalTextField(),
+              ),
+              DateTimeFormField(
+                onDateSelected: (value) => updateSelectedDateTime(value: value),
+              ),
+              const EmptyBox.middleHeight(),
+            ],
+          ).ext.toDisabled(
             disable:
                 ref.watch(projectRequestProviderProvider).isSendingRequest ??
-                    false,
+                false,
             opacity: 0.5,
           ),
     );

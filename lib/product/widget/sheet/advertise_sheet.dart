@@ -141,7 +141,8 @@ class _ActionButtons extends StatelessWidget {
     if (item.title.ext.isNullOrEmpty) return;
     await SharePlus.instance.share(
       ShareParams(
-        text: '${LocaleKeys.advertise_message.tr()}'
+        text:
+            '${LocaleKeys.advertise_message.tr()}'
             ' ${item.title}',
       ),
     );

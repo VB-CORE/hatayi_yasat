@@ -18,10 +18,11 @@ import 'package:lifeclient/product/widget/general/title/general_content_small_ti
 
 part 'sub_view/chain_store_sub_view.dart';
 
-typedef AsyncValueGetterWithContext<T> = Future<void> Function(
-  BuildContext context,
-  T model,
-);
+typedef AsyncValueGetterWithContext<T> =
+    Future<void> Function(
+      BuildContext context,
+      T model,
+    );
 
 final class ChainStoreView extends ConsumerStatefulWidget {
   const ChainStoreView({super.key});

@@ -8,19 +8,20 @@ final class CustomTextFieldDecoration extends InputDecoration {
     required BuildContext context,
     String? hint,
   }) : super(
-          hintText: hint,
-          contentPadding: const PagePadding.horizontal16Symmetric() +
-              const PagePadding.vertical8Symmetric(),
-          border: ProductTextFieldDecoration.standardBorder(context),
-          enabledBorder: ProductTextFieldDecoration.standardBorder(context),
-          focusedBorder: ProductTextFieldDecoration.focusedBorderStyle(context),
-          fillColor: context.general.colorScheme.onPrimaryFixed,
-          filled: true,
-          counter: const SizedBox(),
-          hintStyle: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onPrimaryFixedVariant,
-          ),
-        );
+         hintText: hint,
+         contentPadding:
+             const PagePadding.horizontal16Symmetric() +
+             const PagePadding.vertical8Symmetric(),
+         border: ProductTextFieldDecoration.standardBorder(context),
+         enabledBorder: ProductTextFieldDecoration.standardBorder(context),
+         focusedBorder: ProductTextFieldDecoration.focusedBorderStyle(context),
+         fillColor: context.general.colorScheme.onPrimaryFixed,
+         filled: true,
+         counter: const SizedBox(),
+         hintStyle: context.general.textTheme.titleSmall?.copyWith(
+           color: context.general.colorScheme.onPrimaryFixedVariant,
+         ),
+       );
 }
 
 final class CustomTimeFieldDecoration extends InputDecoration {
@@ -29,25 +30,25 @@ final class CustomTimeFieldDecoration extends InputDecoration {
     String? hint,
     IconData? prefixIcon,
   }) : super(
-          prefixIcon: Icon(
-            prefixIcon,
-            color: context.general.colorScheme.onSecondaryFixed,
-          ),
-          hintText: hint,
-          contentPadding: const PagePadding.horizontal16Symmetric(),
-          border: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          enabledBorder: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          focusedBorder: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          hintStyle: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onPrimaryFixedVariant,
-          ),
-        );
+         prefixIcon: Icon(
+           prefixIcon,
+           color: context.general.colorScheme.onSecondaryFixed,
+         ),
+         hintText: hint,
+         contentPadding: const PagePadding.horizontal16Symmetric(),
+         border: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         enabledBorder: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         focusedBorder: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         hintStyle: context.general.textTheme.titleSmall?.copyWith(
+           color: context.general.colorScheme.onPrimaryFixedVariant,
+         ),
+       );
 }
 
 final class CustomDateTimeFieldDecoration extends InputDecoration {
@@ -56,23 +57,23 @@ final class CustomDateTimeFieldDecoration extends InputDecoration {
     String? hint,
     IconData? suffixIcon,
   }) : super(
-          suffixIcon: Icon(
-            suffixIcon,
-            color: context.general.colorScheme.onSecondaryFixed,
-          ),
-          hintText: hint,
-          contentPadding: const PagePadding.horizontal16Symmetric(),
-          border: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          enabledBorder: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          focusedBorder: ProductTextFieldDecoration.thickerStandardBorder(
-            context,
-          ),
-          hintStyle: context.general.textTheme.titleSmall?.copyWith(
-            color: context.general.colorScheme.onPrimaryFixedVariant,
-          ),
-        );
+         suffixIcon: Icon(
+           suffixIcon,
+           color: context.general.colorScheme.onSecondaryFixed,
+         ),
+         hintText: hint,
+         contentPadding: const PagePadding.horizontal16Symmetric(),
+         border: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         enabledBorder: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         focusedBorder: ProductTextFieldDecoration.thickerStandardBorder(
+           context,
+         ),
+         hintStyle: context.general.textTheme.titleSmall?.copyWith(
+           color: context.general.colorScheme.onPrimaryFixedVariant,
+         ),
+       );
 }

@@ -17,7 +17,9 @@ mixin MainTabViewMixin
 
   void listenScrollUpdateNotification(ScrollUpdateNotification notification) {
     if (notification.metrics.axisDirection == AxisDirection.down) {
-      ref.read(mainTabViewModelProvider.notifier).updateBottomBarValue(
+      ref
+          .read(mainTabViewModelProvider.notifier)
+          .updateBottomBarValue(
             isScrolledBottom:
                 notification.metrics.pixels > context.sized.dynamicHeight(.2),
           );

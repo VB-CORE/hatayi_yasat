@@ -57,7 +57,9 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   }
 
   void changeSelectedPlace(TouristicPlaceModel model) {
-    ref.read(tourismViewModelProvider.notifier).changeSelectedPlace(
+    ref
+        .read(tourismViewModelProvider.notifier)
+        .changeSelectedPlace(
           model,
         );
   }

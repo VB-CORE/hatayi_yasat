@@ -51,8 +51,7 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
                       backgroundColor: isSelected
                           ? context.general.colorScheme.primary
                           : context.general.colorScheme.secondary,
-                      label:
-                          _Title(item: items[index], isSelected: isSelected),
+                      label: _Title(item: items[index], isSelected: isSelected),
                     ),
                   );
                 }),

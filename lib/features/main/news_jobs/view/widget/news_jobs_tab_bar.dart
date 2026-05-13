@@ -56,14 +56,6 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
                         selectedTab: _currentTab,
                       ),
                     ),
-                    Expanded(
-                      child: _CustomTabButton(
-                        tab: NewsEventJobTabs.jobs,
-                        onPressed: () =>
-                            _changeCurrentTabView(NewsEventJobTabs.jobs),
-                        selectedTab: _currentTab,
-                      ),
-                    ),
                   ],
                 ),
               ],
@@ -92,8 +84,6 @@ mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
         return WidgetSizes.spacingXxs;
       case NewsEventJobTabs.event:
         return tabWidth + WidgetSizes.spacingXxs;
-      case NewsEventJobTabs.jobs:
-        return (tabWidth * 2) + WidgetSizes.spacingXxs;
     }
   }
 }
@@ -110,9 +100,10 @@ final class _CustomTabButton extends StatelessWidget {
 
   TextStyle? _currentSelectedTextStyle(BuildContext context) =>
       selectedTab == tab
-          ? context.general.textTheme.titleSmall
-          : context.general.textTheme.titleSmall
-              ?.copyWith(color: context.general.colorScheme.onSecondaryFixed);
+      ? context.general.textTheme.titleSmall
+      : context.general.textTheme.titleSmall?.copyWith(
+          color: context.general.colorScheme.onSecondaryFixed,
+        );
   @override
   Widget build(BuildContext context) {
     return InkWell(

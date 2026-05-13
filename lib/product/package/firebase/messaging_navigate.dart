@@ -59,8 +59,10 @@ final class MessagingNavigate {
     required BuildContext context,
     required String id,
   }) async {
-    await PlaceDetailRoute($extra: StoreModel.empty(), id: id)
-        .push<void>(context);
+    await PlaceDetailRoute(
+      $extra: StoreModel.empty(),
+      id: id,
+    ).push<void>(context);
   }
 
   Future<void> detailModelCampaignCheckAndNavigate({
@@ -97,8 +99,9 @@ final class MessagingNavigate {
     );
     if (!context.mounted) return;
     if (result != null) {
-      await NewsDetailRoute($extra: NewsModelCopy.fromNewsModel(result))
-          .push<void>(context);
+      await NewsDetailRoute(
+        $extra: NewsModelCopy.fromNewsModel(result),
+      ).push<void>(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(

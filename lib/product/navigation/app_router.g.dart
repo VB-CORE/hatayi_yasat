@@ -6,7 +6,12 @@ part of 'app_router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$splashRoute, $mainTabRoute];
+List<RouteBase> get $appRoutes => [
+  $splashRoute,
+  $loginRoute,
+  $notificationPermissionRoute,
+  $mainTabRoute,
+];
 
 RouteBase get $splashRoute => GoRouteData.$route(
   path: '/',
@@ -60,6 +65,55 @@ mixin $OnboardRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $loginRoute =>
+    GoRouteData.$route(path: '/login', factory: $LoginRoute._fromState);
+
+mixin $LoginRoute on GoRouteData {
+  static LoginRoute _fromState(GoRouterState state) => const LoginRoute();
+
+  @override
+  String get location => GoRouteData.$location('/login');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $notificationPermissionRoute => GoRouteData.$route(
+  path: '/notificationPermission',
+  factory: $NotificationPermissionRoute._fromState,
+);
+
+mixin $NotificationPermissionRoute on GoRouteData {
+  static NotificationPermissionRoute _fromState(GoRouterState state) =>
+      const NotificationPermissionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/notificationPermission');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $mainTabRoute => GoRouteData.$route(
   path: '/main',
   factory: $MainTabRoute._fromState,
@@ -68,6 +122,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       path: 'chain_stores',
       name: 'Chain Stores',
       factory: $ChainStoresRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'container_markets',
+      name: 'Container Markets',
+      factory: $ContainerMarketsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'turism',
@@ -165,6 +224,31 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
         ),
       ],
     ),
+    GoRouteData.$route(
+      path: 'compose',
+      name: 'Compose',
+      factory: $ComposeRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'postDetail/:id',
+      name: 'Post Detail',
+      factory: $PostDetailRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'merchantOnboarding',
+      name: 'Merchant Onboarding',
+      factory: $MerchantOnboardingRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'memories',
+      name: 'Memories',
+      factory: $MemoriesRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'memoryCompose',
+      name: 'Memory Compose',
+      factory: $MemoryComposeRoute._fromState,
+    ),
   ],
 );
 
@@ -194,6 +278,27 @@ mixin $ChainStoresRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/chain_stores');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ContainerMarketsRoute on GoRouteData {
+  static ContainerMarketsRoute _fromState(GoRouterState state) =>
+      const ContainerMarketsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/container_markets');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -591,6 +696,117 @@ mixin $ApplicationInformationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/settings/appInfo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ComposeRoute on GoRouteData {
+  static ComposeRoute _fromState(GoRouterState state) => const ComposeRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/compose');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $PostDetailRoute on GoRouteData {
+  static PostDetailRoute _fromState(GoRouterState state) => PostDetailRoute(
+    id: state.pathParameters['id']!,
+    $extra: state.extra as PostModel?,
+  );
+
+  PostDetailRoute get _self => this as PostDetailRoute;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/main/postDetail/${Uri.encodeComponent(_self.id)}',
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
+}
+
+mixin $MerchantOnboardingRoute on GoRouteData {
+  static MerchantOnboardingRoute _fromState(GoRouterState state) =>
+      const MerchantOnboardingRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/merchantOnboarding');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MemoriesRoute on GoRouteData {
+  static MemoriesRoute _fromState(GoRouterState state) => const MemoriesRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/memories');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MemoryComposeRoute on GoRouteData {
+  static MemoryComposeRoute _fromState(GoRouterState state) =>
+      const MemoryComposeRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/memoryCompose');
 
   @override
   void go(BuildContext context) => context.go(location);

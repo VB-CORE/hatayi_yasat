@@ -43,9 +43,9 @@ mixin TownCategoryOperation on ConsumerState<TownCategorySelectSheet> {
   }
 
   TownCategoryModel get selectedTownCategory => TownCategoryModel(
-        town: _selectedTown ?? CategoryExtension.emptyAllTown,
-        category: _selectedCategory ?? CategoryExtension.emptyAll,
-      );
+    town: _selectedTown ?? CategoryExtension.emptyAllTown,
+    category: _selectedCategory ?? CategoryExtension.emptyAll,
+  );
 
   final _emptyTownCategory = const TownCategoryModel(
     town: null,

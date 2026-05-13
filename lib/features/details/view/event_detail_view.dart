@@ -63,7 +63,8 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.defaultPadding() +
+                padding:
+                    const PagePadding.defaultPadding() +
                     const PagePadding.onlyTopMedium(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +110,8 @@ class _BottomButton extends StatelessWidget {
       constrainedAxis: Axis.horizontal,
       child: SafeArea(
         child: Padding(
-          padding: const PagePadding.horizontalSymmetric() +
+          padding:
+              const PagePadding.horizontalSymmetric() +
               const PagePadding.vertical6Symmetric(),
           child: GeneralButtonV2.async(
             label: LocaleKeys.campaignDetailsView_addReminderButton.tr(),

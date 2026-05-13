@@ -11,10 +11,10 @@ final class GeneralScaffold extends Scaffold {
     super.floatingActionButtonLocation,
     super.backgroundColor,
   }) : super(
-          extendBody: true,
-          body: Padding(
-            padding: const PagePadding.horizontal16Symmetric(),
-            child: body,
-          ),
-        );
+         extendBody: true,
+         body: Padding(
+           padding: const PagePadding.horizontal16Symmetric(),
+           child: body,
+         ),
+       );
 }

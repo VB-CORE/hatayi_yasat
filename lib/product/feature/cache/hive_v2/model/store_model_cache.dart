@@ -14,7 +14,9 @@ final class StoreModelCache with CacheModel, EquatableMixin {
     final id = json['id'];
     if (id is! String) throw Exception('Invalid id type');
     return StoreModelCache(
-      storeModel: storeModel.fromJson(json).copyWith(
+      storeModel: storeModel
+          .fromJson(json)
+          .copyWith(
             documentId: id,
           ),
     );

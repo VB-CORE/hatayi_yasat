@@ -5,10 +5,10 @@ final class _CustomPopupMenuItem extends PopupMenuItem<dynamic> {
     required String itemLabel,
     required VoidCallback destination,
   }) : super(
-          child: GeneralContentSubTitle(
-            value: itemLabel.tr(),
-            fontWeight: FontWeight.bold,
-          ),
-          onTap: () => destination,
-        );
+         child: GeneralContentSubTitle(
+           value: itemLabel.tr(),
+           fontWeight: FontWeight.bold,
+         ),
+         onTap: () => destination,
+       );
 }

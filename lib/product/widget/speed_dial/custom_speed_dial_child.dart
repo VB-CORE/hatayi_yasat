@@ -9,9 +9,9 @@ final class CustomSpeedDialRouteChild extends SpeedDialChild {
     required String location,
     required String label,
   }) : super(
-          child: GeneralBodyTitle(
-            label,
-          ),
-          onTap: () => context.push(location),
-        );
+         child: GeneralBodyTitle(
+           label,
+         ),
+         onTap: () => context.push(location),
+       );
 }

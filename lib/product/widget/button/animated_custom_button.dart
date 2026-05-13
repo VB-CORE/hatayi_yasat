@@ -29,8 +29,9 @@ final class AnimatedCustomButton extends StatelessWidget {
         icon: Icon(secondIcon),
         onPressed: onPressed,
       ),
-      crossFadeState:
-          isAnimated ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      crossFadeState: isAnimated
+          ? CrossFadeState.showSecond
+          : CrossFadeState.showFirst,
       duration: Durations.long1,
     );
   }

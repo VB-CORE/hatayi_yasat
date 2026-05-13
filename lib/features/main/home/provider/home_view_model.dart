@@ -14,8 +14,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   @override
   HomeState build() {
     final categories = ref.read(productProviderState).categoryItems;
-    final isHomeViewGrid =
-        ref.read(productProviderState.notifier).isHomeViewGrid;
+    final isHomeViewGrid = ref
+        .read(productProviderState.notifier)
+        .isHomeViewGrid;
     return HomeState(
       categories: categories,
       isGridView: isHomeViewGrid,
@@ -50,7 +51,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 
   void changeHomeViewCardType() {
     state = state.copyWith(isGridView: !state.isGridView);
-    ref.read(productProviderState.notifier).saveLatestGridViewType(
+    ref
+        .read(productProviderState.notifier)
+        .saveLatestGridViewType(
           isSelected: state.isGridView,
         );
   }

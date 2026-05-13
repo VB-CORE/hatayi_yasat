@@ -21,8 +21,9 @@ mixin UploadFileMixin on State<UploadFileSection> {
   Future<void> pickFile() async {
     final allowedExtension =
         widget.allowedExtension ?? DefaultFileExtension.documentExtensionList;
-    final result =
-        await FilePickerManager.pickFile(allowedExtensions: allowedExtension);
+    final result = await FilePickerManager.pickFile(
+      allowedExtensions: allowedExtension,
+    );
     if (result == null) return;
     file = result;
     widget.onFilePicked(result);

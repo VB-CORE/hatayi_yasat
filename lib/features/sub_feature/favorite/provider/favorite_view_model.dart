@@ -36,8 +36,8 @@ final class FavoriteViewModel extends _$FavoriteViewModel
 
   /// It removes all favorite places in Favorites view.
   Future<void> removeAllFavoritePlaces() async {
-    final isAllFavoritePlacesRemoved =
-        await productProvider.removeAllFavoritePlaces();
+    final isAllFavoritePlacesRemoved = await productProvider
+        .removeAllFavoritePlaces();
     if (isAllFavoritePlacesRemoved) {
       state = state.copyWith(favoritePlaces: _items);
     }

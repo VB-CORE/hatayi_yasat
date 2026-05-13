@@ -12,16 +12,16 @@ final class PageAppBar extends AppBar {
     super.automaticallyImplyLeading,
     super.key,
   }) : super(
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          centerTitle: false,
-          title: GeneralContentTitle(
-            value: pageTitle.tr(),
-            fontWeight: FontWeight.bold,
-          ),
-        );
+         bottom: PreferredSize(
+           preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
+           child: Divider(
+             height: AppConstants.kOne.toDouble(),
+           ),
+         ),
+         centerTitle: false,
+         title: GeneralContentTitle(
+           value: pageTitle.tr(),
+           fontWeight: FontWeight.bold,
+         ),
+       );
 }

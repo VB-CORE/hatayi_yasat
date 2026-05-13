@@ -11,32 +11,32 @@ class ProductCheckbox extends FormField<bool> {
     super.autovalidateMode,
     bool super.initialValue = false,
   }) : super(
-          builder: (FormFieldState<bool> state) {
-            return ListTile(
-              minLeadingWidth: 0,
-              leading: Checkbox(
-                activeColor: ColorsCustom.sambacus,
-                value: state.value,
-                onChanged: (value) {
-                  state.didChange(value);
-                  onSaved.call(value);
-                },
-              ),
-              dense: true,
-              contentPadding: EdgeInsets.zero,
-              horizontalTitleGap: AppConstants.kZero.toDouble(),
-              title: title,
-              subtitle: state.hasError
-                  ? Builder(
-                      builder: (BuildContext context) => Text(
-                        '**${state.errorText ?? ''}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  : null,
-            );
-          },
-        );
+         builder: (FormFieldState<bool> state) {
+           return ListTile(
+             minLeadingWidth: 0,
+             leading: Checkbox(
+               activeColor: ColorsCustom.sambacus,
+               value: state.value,
+               onChanged: (value) {
+                 state.didChange(value);
+                 onSaved.call(value);
+               },
+             ),
+             dense: true,
+             contentPadding: EdgeInsets.zero,
+             horizontalTitleGap: AppConstants.kZero.toDouble(),
+             title: title,
+             subtitle: state.hasError
+                 ? Builder(
+                     builder: (BuildContext context) => Text(
+                       '**${state.errorText ?? ''}',
+                       style: const TextStyle(
+                         fontWeight: FontWeight.bold,
+                       ),
+                     ),
+                   )
+                 : null,
+           );
+         },
+       );
 }

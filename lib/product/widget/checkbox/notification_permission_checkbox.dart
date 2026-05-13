@@ -16,36 +16,40 @@ final class NotificationPermissionView extends StatefulWidget {
 }
 
 final class _NotificationPermissionViewState
-    extends State<NotificationPermissionView> with _NotificationPermission {
+    extends State<NotificationPermissionView>
+    with _NotificationPermission {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<PermissionStatus>(
       future: Permission.notification.status,
       builder:
           (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
-        final isGranted = snapshot.data == PermissionStatus.granted ||
-            snapshot.data == PermissionStatus.limited;
+            final isGranted =
+                snapshot.data == PermissionStatus.granted ||
+                snapshot.data == PermissionStatus.limited;
 
-        /// When user is enabled to notifications we are ignoring the widget
-        /// if u want to change it can be change manually
-        return IgnorePointer(
-          ignoring: isGranted,
-          child: AnimatedOpacity(
-            duration: Durations.medium2,
-            opacity: isGranted ? 0.3 : 1,
-            child: CheckboxListTile(
-              contentPadding: EdgeInsets.zero,
-              value: isGranted,
-              onChanged: (value) {
-                _controlCheckBox(value: value ?? false);
-              },
-              title: GeneralBodyTitle(
-                LocaleKeys.settings_notificationSetting.tr(context: context),
+            /// When user is enabled to notifications we are ignoring the widget
+            /// if u want to change it can be change manually
+            return IgnorePointer(
+              ignoring: isGranted,
+              child: AnimatedOpacity(
+                duration: Durations.medium2,
+                opacity: isGranted ? 0.3 : 1,
+                child: CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  value: isGranted,
+                  onChanged: (value) {
+                    _controlCheckBox(value: value ?? false);
+                  },
+                  title: GeneralBodyTitle(
+                    LocaleKeys.settings_notificationSetting.tr(
+                      context: context,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
-      },
+            );
+          },
     );
   }
 }

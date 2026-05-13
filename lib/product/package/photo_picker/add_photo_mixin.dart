@@ -11,8 +11,9 @@ mixin AddPhotoMixin on State<DottedAddPhotoButton> {
     final response = await MediaOrPhoto.openSheet(context);
     if (response == null) return null;
     if (!mounted) return null;
-    final file =
-        await PhotoPickerManager(context: context).pickPhoto(type: response);
+    final file = await PhotoPickerManager(
+      context: context,
+    ).pickPhoto(type: response);
     if (file == null) return null;
     return file;
   }

@@ -16,10 +16,10 @@ final class ScholarshipRequestState extends Equatable {
 
   @override
   List<Object?> get props => [
-        scholarshipModel,
-        isSendingRequest,
-        canApply,
-      ];
+    scholarshipModel,
+    isSendingRequest,
+    canApply,
+  ];
 
   ScholarshipRequestState copyWith({
     RequestScholarshipModel? scholarshipModel,

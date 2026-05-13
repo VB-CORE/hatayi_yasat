@@ -60,12 +60,16 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/hy_logo_v2.png
+  AssetGenImage get hyLogoV2 =>
+      const AssetGenImage('assets/images/hy_logo_v2.png');
+
   /// File path: assets/images/img_welcome.png
   AssetGenImage get imgWelcome =>
       const AssetGenImage('assets/images/img_welcome.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [imgWelcome];
+  List<AssetGenImage> get values => [hyLogoV2, imgWelcome];
 }
 
 class $AssetsLottieGen {

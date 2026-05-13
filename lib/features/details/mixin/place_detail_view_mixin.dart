@@ -14,7 +14,9 @@ mixin PlaceDetailViewMixin
     super.initState();
 
     Future.microtask(() {
-      ref.read(placeDetailViewModelProvider.notifier).init(
+      ref
+          .read(placeDetailViewModelProvider.notifier)
+          .init(
             model: widget.model,
             id: widget.id,
           );

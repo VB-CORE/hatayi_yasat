@@ -6,7 +6,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})
-      : _cacheManager = cacheManager;
+    : _cacheManager = cacheManager;
 
   final CacheManager _cacheManager;
 

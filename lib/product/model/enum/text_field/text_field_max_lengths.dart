@@ -15,7 +15,8 @@ enum TextFieldMaxLengths {
   veryLarge(200),
 
   /// 500
-  max(500);
+  max(500)
+  ;
 
   const TextFieldMaxLengths(this.value);
 

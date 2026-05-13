@@ -18,7 +18,8 @@ class SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const PagePadding.horizontal16Symmetric() +
+        padding:
+            const PagePadding.horizontal16Symmetric() +
             const PagePadding.onlyBottomMedium(),
         child: FloatingActionButton(
           onPressed: () {

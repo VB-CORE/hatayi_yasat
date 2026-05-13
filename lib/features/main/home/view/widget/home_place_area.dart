@@ -16,43 +16,42 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea>
       return SliverToBoxAdapter(child: Assets.lottie.loadingGray.lottie());
     }
     return FirestoreSliverListView(
-      emptyBuilder:
-          (context) => GeneralNotFoundWidget(
-            title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-            onRefresh: () async {
-              await query.get();
-            },
-          ),
+      emptyBuilder: (context) => GeneralNotFoundWidget(
+        title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+        onRefresh: () async {
+          await query.get();
+        },
+      ),
       query: query,
       isGridDesign: ref.watch(homeViewModelProvider).isGridView,
       itemGridBuilder: (context, model) {
         return Semantics(
           identifier: 'place_grid_card_${model.name}',
           child: Padding(
-            padding: const PagePadding.onlyBottom(),
-            child: GeneralPlaceGridCard(
-              onCardTap: () {
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+            child: V2PlaceCard(
+              onTap: () {
                 PlaceDetailRoute(
                   $extra: model,
                   id: model.documentId,
                 ).push<PlaceDetailRoute>(context);
               },
-              storeModel: model,
+              place: V2Place.fromStore(model),
             ),
           ),
         );
       },
       itemBuilder: (context, model) {
         return Padding(
-          padding: const PagePadding.onlyBottom(),
-          child: GeneralPlaceCard(
-            onCardTap: () {
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: V2PlaceCard(
+            onTap: () {
               PlaceDetailRoute(
                 $extra: model,
                 id: model.documentId,
               ).push<PlaceDetailRoute>(context);
             },
-            storeModel: model,
+            place: V2Place.fromStore(model),
           ),
         );
       },
@@ -81,7 +80,8 @@ mixin _HomePlaceAreaMixin
   }
 
   void _updateFetchQuery() {
-    query =
-        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
+    query = ref
+        .read(homeViewModelProvider.notifier)
+        .fetchApprovedCollectionQuery();
   }
 }

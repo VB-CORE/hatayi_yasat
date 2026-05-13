@@ -22,8 +22,9 @@ class DeveloperProfileCard extends StatelessWidget {
       },
       child: Card(
         color: Colors.transparent,
-        shape: context.border.roundedRectangleAllBorderNormal
-            .copyWith(side: CustomBorderSides.maxThick),
+        shape: context.border.roundedRectangleAllBorderNormal.copyWith(
+          side: CustomBorderSides.maxThick,
+        ),
         elevation: 0,
         child: Padding(
           padding: context.padding.verticalLow,

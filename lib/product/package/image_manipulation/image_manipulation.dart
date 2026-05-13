@@ -26,8 +26,9 @@ final class ImageManipulation {
   /// We resize our watermark image according to the image size to be merged.
   Future<img.Image?> _getWatermarkImage(img.Image? image) async {
     if (image == null) return null;
-    final vmFile2 = img
-        .decodeImage(await _createFileFromBytes(Assets.icons.icWatermark.path));
+    final vmFile2 = img.decodeImage(
+      await _createFileFromBytes(Assets.icons.icWatermark.path),
+    );
     if (vmFile2 == null) return null;
     final result = img.copyResize(vmFile2, width: image.width);
     return result;

@@ -68,8 +68,9 @@ mixin ProjectRequestFormMixin
     if (!formResult) return false;
     if (!_isKvkkChecked) return false;
     if (_imageFile == null) {
-      appProvider
-          .showSnackbarMessage(LocaleKeys.validation_pleaseAddImage.tr());
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_pleaseAddImage.tr(),
+      );
       return false;
     }
     return true;

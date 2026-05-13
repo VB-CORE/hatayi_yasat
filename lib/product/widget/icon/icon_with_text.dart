@@ -26,7 +26,8 @@ final class IconWithText extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: textStyle ??
+            style:
+                textStyle ??
                 context.general.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: color,

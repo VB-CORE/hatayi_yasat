@@ -5,7 +5,7 @@ final class AdvertisementBoardState extends Equatable {
   const AdvertisementBoardState({required this.advertisements});
 
   const AdvertisementBoardState.empty()
-      : this(advertisements: const <AdBoardModel>[]);
+    : this(advertisements: const <AdBoardModel>[]);
 
   final List<AdBoardModel> advertisements;
   @override

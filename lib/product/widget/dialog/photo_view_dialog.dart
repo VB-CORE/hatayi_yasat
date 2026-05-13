@@ -21,7 +21,8 @@ final class PhotoViewDialog extends StatelessWidget with CustomDialog {
           imageUrl: imageUrl,
         ),
       ),
-      titlePadding: EdgeInsets.zero +
+      titlePadding:
+          EdgeInsets.zero +
           const PagePadding.horizontal16Symmetric() +
           const PagePadding.onlyTopNormalMedium(),
       actionsAlignment: MainAxisAlignment.center,

@@ -81,9 +81,9 @@ class HomeAppBarSliver extends StatelessWidget {
             ? Container(
                 color: isPinned
                     ? null
-                    : ColorCommon(context)
-                        .whiteAndBlackForTheme
-                        .withOpacity(0.5),
+                    : ColorCommon(
+                        context,
+                      ).whiteAndBlackForTheme.withOpacity(0.5),
                 width: context.sized.width,
                 child: Padding(
                   padding: const PagePadding.onlyLeft(),
@@ -123,8 +123,9 @@ class _LeftCloseButton extends StatelessWidget {
       padding: const PagePadding.allVeryLow(),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              context.general.colorScheme.background.withOpacity(0.5),
+          backgroundColor: context.general.colorScheme.background.withOpacity(
+            0.5,
+          ),
           shape: const CircleBorder(),
           padding: EdgeInsets.zero,
         ),

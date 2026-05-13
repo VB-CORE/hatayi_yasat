@@ -8,6 +8,7 @@ import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 @immutable
@@ -44,11 +45,10 @@ class _HistoryPhotoDetailSheetState
   Widget build(BuildContext context) {
     return Container(
       height: context.sized.dynamicHeight(_heightRatio),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
+        // Intentional brand-lock: photo viewer sheet stays pure black across themes.
         color: ColorsCustom.black,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(AppIconSizes.medium),
-        ),
+        borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
       ),
       child: Column(
         children: [
@@ -91,7 +91,8 @@ final class _SheetHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const PagePadding.horizontalSymmetric() +
+      padding:
+          const PagePadding.horizontalSymmetric() +
           const PagePadding.vertical6Symmetric(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,6 +123,7 @@ final class _CounterText extends StatelessWidget {
     return Text(
       '${currentIndex + _indexOffset} / $totalCount',
       style: context.general.textTheme.titleMedium?.copyWith(
+        // Brand-lock white on dark photo-viewer sheet.
         color: ColorsCustom.white,
         fontWeight: FontWeight.w500,
       ),
@@ -139,6 +141,7 @@ final class _CloseButton extends StatelessWidget {
       onPressed: () => Navigator.of(context).pop(),
       icon: const Icon(
         AppIcons.close,
+        // Brand-lock white on dark photo-viewer sheet.
         color: ColorsCustom.white,
         size: AppIconSizes.large,
       ),
@@ -204,6 +207,7 @@ final class _BottomInfo extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
+          // Brand-lock: dark gradient over photo viewer (theme-independent).
           colors: [
             ColorsCustom.transparent,
             ColorsCustom.black.withValues(alpha: _gradientOpacity),
@@ -239,13 +243,13 @@ final class _MemoryTitle extends StatelessWidget {
 
   final String? title;
 
-
   @override
   Widget build(BuildContext context) {
     if (title == null || title!.isEmpty) return const SizedBox.shrink();
     return Text(
       title!,
       style: context.general.textTheme.headlineSmall?.copyWith(
+        // Brand-lock white on dark photo-viewer sheet.
         color: ColorsCustom.white,
         fontWeight: FontWeight.bold,
       ),
@@ -269,6 +273,7 @@ final class _MemoryDescription extends StatelessWidget {
     return Text(
       description!,
       style: context.general.textTheme.bodyMedium?.copyWith(
+        // Brand-lock white on dark photo-viewer sheet.
         color: ColorsCustom.white,
         fontWeight: FontWeight.w800,
       ),
@@ -309,6 +314,7 @@ final class _ShareButton extends StatelessWidget {
       onPressed: () => CustomShare.shareMemory(memory),
       icon: const Icon(
         AppIcons.share,
+        // Brand-lock white on dark photo-viewer sheet.
         color: ColorsCustom.white,
         size: AppIconSizes.medium,
       ),

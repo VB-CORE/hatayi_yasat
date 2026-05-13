@@ -8,35 +8,35 @@ final class HorizontalSpace extends SizedBox {
 
   /// Returns a [SizedBox] with the 2px width.
   const HorizontalSpace.xxxSmall({Key? key})
-      : this(key: key, width: WidgetSizes.spacingXSS);
+    : this(key: key, width: WidgetSizes.spacingXSS);
 
   /// Returns a [SizedBox] with the 8px width.
   const HorizontalSpace.xxSmall({Key? key})
-      : this(key: key, width: WidgetSizes.spacingXs);
+    : this(key: key, width: WidgetSizes.spacingXs);
 
   /// Returns a [SizedBox] with the 12px width.
   const HorizontalSpace.xSmall({Key? key})
-      : this(key: key, width: WidgetSizes.spacingS);
+    : this(key: key, width: WidgetSizes.spacingS);
 
   /// Returns a [SizedBox] with the 16px width.
   const HorizontalSpace.standard({Key? key})
-      : this(key: key, width: WidgetSizes.spacingM);
+    : this(key: key, width: WidgetSizes.spacingM);
 
   /// Returns a [SizedBox] with the 20px width.
   const HorizontalSpace.small({Key? key})
-      : this(key: key, width: WidgetSizes.spacingL);
+    : this(key: key, width: WidgetSizes.spacingL);
 
   /// Returns a [SizedBox] with the 40px width.
   const HorizontalSpace.medium({Key? key})
-      : this(key: key, width: WidgetSizes.spacingXxl4);
+    : this(key: key, width: WidgetSizes.spacingXxl4);
 
   /// Returns a [SizedBox] with the 60px width.
   const HorizontalSpace.large({Key? key})
-      : this(key: key, width: WidgetSizes.spacingXxl8);
+    : this(key: key, width: WidgetSizes.spacingXxl8);
 
   /// Returns a [SizedBox] with the 100px width.
   const HorizontalSpace.xLarge({Key? key})
-      : this(key: key, width: WidgetSizes.spacingXxl12);
+    : this(key: key, width: WidgetSizes.spacingXxl12);
 
   /// Returns a [SizedBox] with the given [width] percentage of the screen width.
   HorizontalSpace.withPercentage({
@@ -44,7 +44,7 @@ final class HorizontalSpace extends SizedBox {
     required BuildContext context,
     Key? key,
   }) : this(
-          key: key,
-          width: (percentage / 100) * context.sized.width,
-        );
+         key: key,
+         width: (percentage / 100) * context.sized.width,
+       );
 }

@@ -65,8 +65,10 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
                     elevation: kZero,
                     isEnabledToFavorite: false,
                     onCardTap: () {
-                      PlaceDetailRoute($extra: model, id: model.documentId)
-                          .push<void>(this.context);
+                      PlaceDetailRoute(
+                        $extra: model,
+                        id: model.documentId,
+                      ).push<void>(this.context);
                     },
                     storeModel: model,
                   ),

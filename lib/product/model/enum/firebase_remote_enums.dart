@@ -3,7 +3,8 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 enum FirebaseRemoteEnums {
   specialDay,
   version,
-  memoryForestImage;
+  memoryForestImage
+  ;
 
   String get valueString => FirebaseRemoteConfig.instance.getString(name);
 

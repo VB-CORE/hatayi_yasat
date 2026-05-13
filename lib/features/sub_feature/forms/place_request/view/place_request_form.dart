@@ -53,87 +53,91 @@ class _PlaceRequestFormState extends RequestFormConsumerState<PlaceRequestForm>
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar: _PlaceRequestSend(
-        onTapped: sendPlaceRequest,
-        onKVKKChanged: (val) => updateKVKK(value: val),
-      ).ext.toDisabled(
-            disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
+      bottomNavigationBar:
+          _PlaceRequestSend(
+            onTapped: sendPlaceRequest,
+            onKVKKChanged: (val) => updateKVKK(value: val),
+          ).ext.toDisabled(
+            disable:
+                ref.watch(placeRequestProviderProvider).isSendingRequest ??
                 false,
             opacity: 0.5,
           ),
-      body: ListViewWithSpace(
-        children: [
-          CustomTextFormFieldWithTitle(
-            title: LocaleKeys.requestCompany_ownerName.tr(),
-            controller: placeOwnerNameController,
-            textInputType: TextInputType.name,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle(
-            controller: placePhoneNumberController,
-            textInputType: TextInputType.phone,
-            formatters: TextFieldFormatters.phone,
-            validator: ValidatorPhoneTextField(),
-            title: LocaleKeys.requestCompany_phoneNumber.tr(),
-          ),
-          GeneralDottedPhotoAddProvider(
-            onSelected: onImageSelected,
-            child: GeneralDottedPhotoAdd(
-              title: LocaleKeys.requestCompany_choosePhoto.tr(),
-            ),
-          ),
-          CustomTextFormFieldWithTitle(
-            maxLength: TextFieldMaxLengths.large,
-            title: LocaleKeys.requestCompany_name.tr(),
-            controller: placeNameController,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle.multiLine(
-            title: LocaleKeys.requestCompany_description.tr(),
-            controller: placeDescriptionController,
-            textInputType: TextInputType.multiline,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomTextFormFieldWithTitle.multiLine(
-            title: LocaleKeys.requestCompany_address.tr(),
-            controller: placeAddressController,
-            textInputType: TextInputType.streetAddress,
-            autoFills: TextFieldAutoFills.address,
-            validator: ValidatorNormalTextField(),
-          ),
-          CustomDropdownFormField<RegionalCityModel>(
-            hint: '',
-            onSelected: updateRegionalCityItem,
-            items: regionalCityModels,
-            initialValue: selectedRegionalCityModel,
-          ),
-          CustomDropdownFormField<RegionalTownSubItem>(
-            hint: '',
-            onSelected: updateRegionalTownItem,
-            items: selectedRegionalTownModel.towns,
-            initialValue: selectedRegionalTownModel.towns.first,
-          ),
-          CustomDropdownFormField<CategoryModel>(
-            hint: LocaleKeys.requestCompany_chooseCategory.tr(),
-            onSelected: updateCategoryItem,
-            items: categoryModels,
-            initialValue: selectedCategoryModel,
-          ),
-          _PlacePickerFormField(
-            initialValue: selectedLocation,
-            onChanged: updateSelectedLocation,
-            initialPosition: LatLng(
-              selectedRegionalCityModel.location.latitude,
-              selectedRegionalCityModel.location.longitude,
-            ),
-          ),
-          OpenAndCloseTimePicker(
-            closeTimeController: closeTimeController,
-            openTimeController: openTimeController,
-          ),
-        ],
-      ).ext.toDisabled(
-            disable: ref.watch(placeRequestProviderProvider).isSendingRequest ??
+      body:
+          ListViewWithSpace(
+            children: [
+              CustomTextFormFieldWithTitle(
+                title: LocaleKeys.requestCompany_ownerName.tr(),
+                controller: placeOwnerNameController,
+                textInputType: TextInputType.name,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle(
+                controller: placePhoneNumberController,
+                textInputType: TextInputType.phone,
+                formatters: TextFieldFormatters.phone,
+                validator: ValidatorPhoneTextField(),
+                title: LocaleKeys.requestCompany_phoneNumber.tr(),
+              ),
+              GeneralDottedPhotoAddProvider(
+                onSelected: onImageSelected,
+                child: GeneralDottedPhotoAdd(
+                  title: LocaleKeys.requestCompany_choosePhoto.tr(),
+                ),
+              ),
+              CustomTextFormFieldWithTitle(
+                maxLength: TextFieldMaxLengths.large,
+                title: LocaleKeys.requestCompany_name.tr(),
+                controller: placeNameController,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle.multiLine(
+                title: LocaleKeys.requestCompany_description.tr(),
+                controller: placeDescriptionController,
+                textInputType: TextInputType.multiline,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomTextFormFieldWithTitle.multiLine(
+                title: LocaleKeys.requestCompany_address.tr(),
+                controller: placeAddressController,
+                textInputType: TextInputType.streetAddress,
+                autoFills: TextFieldAutoFills.address,
+                validator: ValidatorNormalTextField(),
+              ),
+              CustomDropdownFormField<RegionalCityModel>(
+                hint: '',
+                onSelected: updateRegionalCityItem,
+                items: regionalCityModels,
+                initialValue: selectedRegionalCityModel,
+              ),
+              CustomDropdownFormField<RegionalTownSubItem>(
+                hint: '',
+                onSelected: updateRegionalTownItem,
+                items: selectedRegionalTownModel.towns,
+                initialValue: selectedRegionalTownModel.towns.first,
+              ),
+              CustomDropdownFormField<CategoryModel>(
+                hint: LocaleKeys.requestCompany_chooseCategory.tr(),
+                onSelected: updateCategoryItem,
+                items: categoryModels,
+                initialValue: selectedCategoryModel,
+              ),
+              _PlacePickerFormField(
+                initialValue: selectedLocation,
+                onChanged: updateSelectedLocation,
+                initialPosition: LatLng(
+                  selectedRegionalCityModel.location.latitude,
+                  selectedRegionalCityModel.location.longitude,
+                ),
+              ),
+              OpenAndCloseTimePicker(
+                closeTimeController: closeTimeController,
+                openTimeController: openTimeController,
+              ),
+            ],
+          ).ext.toDisabled(
+            disable:
+                ref.watch(placeRequestProviderProvider).isSendingRequest ??
                 false,
             opacity: 0.5,
           ),

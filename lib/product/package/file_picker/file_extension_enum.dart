@@ -1,5 +1,1 @@
-enum FileExtensionEnum {
-  pdf,
-  doc,
-  docx;
-}
+enum FileExtensionEnum { pdf, doc, docx }

@@ -10,8 +10,9 @@ final class _PlaceSearchEmptyResult extends StatefulWidget {
 }
 
 class _PlaceSearchEmptyResultState extends State<_PlaceSearchEmptyResult> {
-  final ValueNotifier<List<String>> _lastSearchItemsNotifier =
-      ValueNotifier(ProjectDependencyItems.productProvider.lastSearchItems);
+  final ValueNotifier<List<String>> _lastSearchItemsNotifier = ValueNotifier(
+    ProjectDependencyItems.productProvider.lastSearchItems,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,8 @@ final class _LastSearchItemBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const PagePadding.horizontal16Symmetric() +
+      padding:
+          const PagePadding.horizontal16Symmetric() +
           const PagePadding.onlyTopLow(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

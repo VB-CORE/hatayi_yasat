@@ -20,8 +20,9 @@ final class SharedCache {
   }
 
   DateTime? getLastNotificationSeenTime() {
-    final lastNotificationSeenTime =
-        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    final lastNotificationSeenTime = _sharedOperation.getValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+    );
     if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
     return DateTime.tryParse(lastNotificationSeenTime!);
   }

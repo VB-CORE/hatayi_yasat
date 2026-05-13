@@ -14,15 +14,16 @@ class ButtonLargeText extends StatelessWidget {
     return Text(
       title,
       textAlign: TextAlign.center,
-      style: getValueForScreenType<TextStyle?>(
-        context: context,
-        mobile: context.general.textTheme.titleLarge,
-        tablet: context.general.textTheme.headlineLarge,
-        desktop: context.general.textTheme.headlineLarge,
-      )?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: ColorsCustom.white,
-      ),
+      style:
+          getValueForScreenType<TextStyle?>(
+            context: context,
+            mobile: context.general.textTheme.titleLarge,
+            tablet: context.general.textTheme.headlineLarge,
+            desktop: context.general.textTheme.headlineLarge,
+          )?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: ColorsCustom.white,
+          ),
     );
   }
 }

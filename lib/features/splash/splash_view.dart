@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/splash/splash_view_mixin.dart';
-import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/brand/eyebrow.dart';
+import 'package:lifeclient/product/widget/brand/hy_logo.dart';
+import 'package:lifeclient/product/widget/brand/mosaic_grid.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 
@@ -27,39 +29,72 @@ class _SplashViewState extends ConsumerState<SplashView>
     return GeneralSemantic(
       semanticKey: GeneralSemanticKeys.splashView,
       child: Scaffold(
-        body: Padding(
-          padding: const PagePadding.horizontal16Symmetric(),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Assets.icons.icApp.image(
-                  height: context.sized.dynamicHeight(.3),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const PagePadding.onlyLeft10(),
-                      child: Text(
-                        LocaleKeys.project_name.tr().toUpperCase(),
-                        style: context.general.textTheme.displaySmall?.copyWith(
-                          fontWeight: FontWeight.w900,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const PagePadding.onlyLeft() +
-                          const PagePadding.onlyTop(),
-                      child: Assets.lottie.loadingGray.lottie(),
-                    ),
+        backgroundColor: ColorsCustom.navy,
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            const Positioned.fill(
+              child: MosaicGrid(tileSize: 18, opacity: 0.18),
+            ),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    ColorsCustom.navy.withValues(alpha: 0),
+                    ColorsCustom.navy.withValues(alpha: 0.7),
+                    ColorsCustom.navy,
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const HyLogo(size: 96),
+                  const SizedBox(height: 22),
+                  Text(
+                    LocaleKeys.project_name.tr(),
+                    style: V2Typography.display(
+                      fontSize: 36,
+                      color: ColorsCustom.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Eyebrow(LocaleKeys.auth_eyebrow.tr()),
+                ],
+              ),
+            ),
+            Positioned(
+              left: 32,
+              right: 32,
+              bottom: 60,
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(99),
+                    child: const LinearProgressIndicator(
+                      minHeight: 3,
+                      backgroundColor: Color(0x33FFFFFF),
+                      valueColor: AlwaysStoppedAnimation(ColorsCustom.coral),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    LocaleKeys.auth_splashLoadingMessage.tr(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.6,
+                      color: ColorsCustom.white.withValues(alpha: 0.7),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

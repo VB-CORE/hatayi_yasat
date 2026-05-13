@@ -4,51 +4,51 @@ final class _MainAppBar extends AppBar {
   _MainAppBar({
     required BuildContext context,
   }) : super(
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          automaticallyImplyLeading: false,
-          centerTitle: false,
-          title: TextButton(
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-            ),
-            onPressed: () async {
-              final result = await RegionalCitySheet.show(context);
-              if (result == null) return;
-              ProjectDependencyItems.productProvider.saveSelectedCity(result);
-            },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: WidgetSizes.spacingXSs,
-              children: [
-                HugeIcon(
-                  icon: HugeIcons.strokeRoundedArrowDown01,
-                  color: context.general.colorScheme.primary,
-                ),
-                const _AppBarTitle(),
-              ],
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                const NotificationsRoute().go(context);
-              },
-              icon: const Icon(AppIcons.notifications),
-            ),
-            IconButton(
-              onPressed: () async {
-                await const SettingsRoute().push<void>(context);
-              },
-              icon: const Icon(AppIcons.settings),
-            ),
-            const _CustomPopupMenu(),
-          ],
-        );
+         bottom: PreferredSize(
+           preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
+           child: Divider(
+             height: AppConstants.kOne.toDouble(),
+           ),
+         ),
+         automaticallyImplyLeading: false,
+         centerTitle: false,
+         title: TextButton(
+           style: TextButton.styleFrom(
+             padding: EdgeInsets.zero,
+           ),
+           onPressed: () async {
+             final result = await RegionalCitySheet.show(context);
+             if (result == null) return;
+             ProjectDependencyItems.productProvider.saveSelectedCity(result);
+           },
+           child: Row(
+             mainAxisSize: MainAxisSize.min,
+             spacing: WidgetSizes.spacingXSs,
+             children: [
+               HugeIcon(
+                 icon: HugeIcons.strokeRoundedArrowDown01,
+                 color: context.general.colorScheme.primary,
+               ),
+               const _AppBarTitle(),
+             ],
+           ),
+         ),
+         actions: [
+           IconButton(
+             onPressed: () {
+               const NotificationsRoute().go(context);
+             },
+             icon: const Icon(AppIcons.notifications),
+           ),
+           IconButton(
+             onPressed: () async {
+               await const SettingsRoute().push<void>(context);
+             },
+             icon: const Icon(AppIcons.settings),
+           ),
+           const _CustomPopupMenu(),
+         ],
+       );
 }
 
 final class _AppBarTitle extends ConsumerWidget {
@@ -114,10 +114,10 @@ final class _CustomPopupMenuItem<T> extends PopupMenuItem<T> {
     required String itemLabel,
     required VoidCallback destination,
   }) : super(
-          child: GeneralContentSubTitle(
-            value: itemLabel.tr(),
-            fontWeight: FontWeight.bold,
-          ),
-          onTap: destination,
-        );
+         child: GeneralContentSubTitle(
+           value: itemLabel.tr(),
+           fontWeight: FontWeight.bold,
+         ),
+         onTap: destination,
+       );
 }

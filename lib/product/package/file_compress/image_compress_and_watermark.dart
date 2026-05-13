@@ -24,13 +24,15 @@ final class ImageCompressAndWaterMark {
     );
     if (file == null) return null;
     final bytes = await file.readAsBytes();
-    final compressFile =
-        await FileCompress(bytes).compressByteFile(quality: FileQualities.low);
+    final compressFile = await FileCompress(
+      bytes,
+    ).compressByteFile(quality: FileQualities.low);
     if (compressFile == null) return null;
     await file.writeAsBytes(compressFile);
 
-    final imageWithWatermark =
-        await ImageManipulation.instance.addWatermark(file: file);
+    final imageWithWatermark = await ImageManipulation.instance.addWatermark(
+      file: file,
+    );
     return imageWithWatermark;
   }
 

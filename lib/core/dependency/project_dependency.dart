@@ -24,15 +24,15 @@ final class ProjectDependency {
 
     GetIt.I.registerFactory(FirebaseCustomService.new);
 
-    GetIt.I.registerSingleton<
-        NotifierProvider<AppProvider, AppProviderState>>(
+    GetIt.I.registerSingleton<NotifierProvider<AppProvider, AppProviderState>>(
       NotifierProvider<AppProvider, AppProviderState>(
         () => ProjectDependencyItems.appProvider,
       ),
     );
 
     GetIt.I.registerSingleton<
-        NotifierProvider<ProductProvider, ProductProviderState>>(
+      NotifierProvider<ProductProvider, ProductProviderState>
+    >(
       NotifierProvider<ProductProvider, ProductProviderState>(
         () => ProjectDependencyItems.productProvider,
       ),

@@ -1,5 +1,1 @@
-enum FirebaseQueryItems {
-  cityId,
-  createdAt,
-  active;
-}
+enum FirebaseQueryItems { cityId, createdAt, active }

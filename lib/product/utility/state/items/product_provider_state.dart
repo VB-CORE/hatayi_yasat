@@ -28,16 +28,16 @@ final class ProductProviderState extends Equatable {
 
   @override
   List<Object> get props => [
-        storeItems,
-        developerItems,
-        agencyItems,
-        categoryItems,
-        campaignItems,
-        favoritePlaces,
-        regionalCityItems,
-        regionalTownItems,
-        selectedCity,
-      ];
+    storeItems,
+    developerItems,
+    agencyItems,
+    categoryItems,
+    campaignItems,
+    favoritePlaces,
+    regionalCityItems,
+    regionalTownItems,
+    selectedCity,
+  ];
 
   ProductProviderState copyWith({
     List<DeveloperModel>? developerItems,

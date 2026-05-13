@@ -3,7 +3,8 @@ import 'package:kartal/kartal.dart';
 
 enum TextFieldFormatters {
   phone,
-  none;
+  none
+  ;
 
   const TextFieldFormatters();
 

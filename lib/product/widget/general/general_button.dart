@@ -167,33 +167,33 @@ class _LoadingWidget extends StatelessWidget {
 
 final class _BorderlessGeneralButtonStyle extends ButtonStyle {
   _BorderlessGeneralButtonStyle(BuildContext context)
-      : super(
-          elevation: const WidgetStatePropertyAll(0),
-          backgroundColor: WidgetStateProperty.all<Color>(
-            context.general.colorScheme.secondary,
+    : super(
+        elevation: const WidgetStatePropertyAll(0),
+        backgroundColor: WidgetStateProperty.all<Color>(
+          context.general.colorScheme.secondary,
+        ),
+        shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
+          const RoundedRectangleBorder(
+            borderRadius: CustomRadius.medium,
           ),
-          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
-            const RoundedRectangleBorder(
-              borderRadius: CustomRadius.medium,
-            ),
-          ),
-        );
+        ),
+      );
 }
 
 final class _GeneralButtonStyle extends ButtonStyle {
   _GeneralButtonStyle(BuildContext context)
-      : super(
-          backgroundColor: WidgetStateProperty.all<Color>(
-            context.general.colorScheme.secondary,
-          ),
-          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
-            RoundedRectangleBorder(
-              borderRadius: CustomRadius.medium,
-              side: BorderSide(
-                color: context.general.colorScheme.primary,
-                width: AppConstants.kTwo.toDouble(),
-              ),
+    : super(
+        backgroundColor: WidgetStateProperty.all<Color>(
+          context.general.colorScheme.secondary,
+        ),
+        shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: CustomRadius.medium,
+            side: BorderSide(
+              color: context.general.colorScheme.primary,
+              width: AppConstants.kTwo.toDouble(),
             ),
           ),
-        );
+        ),
+      );
 }

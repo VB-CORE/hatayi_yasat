@@ -10,9 +10,9 @@ final class FilterSearchState extends Equatable {
 
   @override
   List<Object> get props => [
-        selectedCategories,
-        selectedTowns,
-      ];
+    selectedCategories,
+    selectedTowns,
+  ];
 
   int get selectedItemsCount =>
       selectedCategories.length + selectedTowns.length;

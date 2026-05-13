@@ -24,7 +24,8 @@ final class IconTitleButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: const PagePadding.horizontalSymmetric() +
+        padding:
+            const PagePadding.horizontalSymmetric() +
             const PagePadding.vertical6Symmetric(),
         backgroundColor: context.general.colorScheme.onPrimaryFixed,
         shape: const RoundedRectangleBorder(

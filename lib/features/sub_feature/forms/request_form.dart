@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:lifeclient/product/widget/dialog/form_latest_data_dialog.dart';
 
 abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
-    extends ConsumerState<T> with AutomaticKeepAliveClientMixin<T> {
+    extends ConsumerState<T>
+    with AutomaticKeepAliveClientMixin<T> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final ValueNotifier<bool> _isFirstValidateNotifier = ValueNotifier(false);
 

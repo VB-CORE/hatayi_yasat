@@ -38,10 +38,10 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         if (!context.mounted) return;
         await MessagingNavigate.instance
             .detailModelAdvertiseCheckAndShowBottomSheet(
-          context: context,
-          id: id,
-          customService: _customService,
-        );
+              context: context,
+              id: id,
+              customService: _customService,
+            );
         return;
       case NotificationType.link:
         if (!context.mounted) return;

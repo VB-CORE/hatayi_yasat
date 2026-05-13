@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 @immutable
-
 /// `CustomBorderSides` class defines static constants
 /// for different stroke alignments of `BorderSide`
 abstract final class CustomBorderSides {

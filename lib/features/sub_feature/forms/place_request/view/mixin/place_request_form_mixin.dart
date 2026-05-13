@@ -45,8 +45,9 @@ mixin PlaceRequestFormMixin
   @override
   void initState() {
     super.initState();
-    final productProviderState =
-        ref.read(ProjectDependencyItems.productProviderState);
+    final productProviderState = ref.read(
+      ProjectDependencyItems.productProviderState,
+    );
     categoryModels = productProviderState.categoryItems;
     regionalCityModels = productProviderState.regionalCityItems;
     _regionalTownModels = productProviderState.regionalTownItems;

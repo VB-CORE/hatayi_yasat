@@ -1,22 +1,6 @@
 part of '../settings_view.dart';
 
 @immutable
-final class _ContactUsWidget extends StatelessWidget {
-  const _ContactUsWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return GeneralExpansionTile(
-      key: ValueKey(context.locale),
-      pageTitle: LocaleKeys.settings_contactTitle.tr(),
-      children: const [
-        _ContactUsGridView(),
-      ],
-    );
-  }
-}
-
-@immutable
 final class _ContactUsGridView extends StatelessWidget {
   const _ContactUsGridView();
 
@@ -48,8 +32,9 @@ final class _ContactUsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.transparent,
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.maxThick),
+      shape: context.border.roundedRectangleAllBorderNormal.copyWith(
+        side: CustomBorderSides.maxThick,
+      ),
       elevation: 0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

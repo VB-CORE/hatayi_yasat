@@ -8,8 +8,8 @@ final class SharedPrefsOperationManager<T extends CacheModel>
   SharedPrefsOperationManager({
     required SharedPreferences preferences,
     required T cacheModel,
-  })  : _preferences = preferences,
-        _cacheModel = cacheModel;
+  }) : _preferences = preferences,
+       _cacheModel = cacheModel;
 
   final SharedPreferences _preferences;
   final T _cacheModel;

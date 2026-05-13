@@ -11,8 +11,8 @@ final class SpecialAgencyState extends Equatable {
 
   @override
   List<Object?> get props => [
-        townNamesAndAgency,
-      ];
+    townNamesAndAgency,
+  ];
 
   SpecialAgencyState copyWith({
     required Map<String, List<SpecialAgencyModel>>? townNamesAndAgency,

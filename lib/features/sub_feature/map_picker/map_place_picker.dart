@@ -48,8 +48,8 @@ class _MapPlacePickerState extends State<MapPlacePicker>
                 right: WidgetSizes.spacingMx,
                 left: WidgetSizes.spacingMx,
                 child: GeneralButtonV2.active(
-                  label:
-                      LocaleKeys.component_mapPicker_selectedLocationSave.tr(),
+                  label: LocaleKeys.component_mapPicker_selectedLocationSave
+                      .tr(),
                   action: completeSelection,
                   isEnabled: state.selectedLocation != null,
                 ),

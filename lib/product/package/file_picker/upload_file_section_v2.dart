@@ -63,13 +63,13 @@ class UploadFileSectionV2State extends State<UploadFileSection>
                   valueListenable: documentFileNotifier,
                   builder: (BuildContext context, File? file, Widget? _) =>
                       Expanded(
-                    child: isFilePicked(file)
-                        ? _UploadedFileText(
-                            fileName: getNameOfFile(file!)!,
-                            onPressed: () => showPdfFilePreview(file),
-                          )
-                        : _HintText(hintText: widget.hintText),
-                  ),
+                        child: isFilePicked(file)
+                            ? _UploadedFileText(
+                                fileName: getNameOfFile(file!)!,
+                                onPressed: () => showPdfFilePreview(file),
+                              )
+                            : _HintText(hintText: widget.hintText),
+                      ),
                 ),
                 const EmptyBox.smallWidth(),
                 ValueListenableBuilder(

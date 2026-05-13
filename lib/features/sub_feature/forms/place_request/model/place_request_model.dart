@@ -34,16 +34,16 @@ final class PlaceRequestModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        placeName,
-        placeDescription,
-        placeOwnerName,
-        placeAddress,
-        placePhoneNumber,
-        placeDistrict,
-        placeCategory,
-        imageFile,
-        timeValidationModel,
-        selectedLocation,
-        selectedCityId,
-      ];
+    placeName,
+    placeDescription,
+    placeOwnerName,
+    placeAddress,
+    placePhoneNumber,
+    placeDistrict,
+    placeCategory,
+    imageFile,
+    timeValidationModel,
+    selectedLocation,
+    selectedCityId,
+  ];
 }

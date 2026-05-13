@@ -13,11 +13,11 @@ final class CustomCarouselOptions extends CarouselOptions {
   CustomCarouselOptions.advertisement({
     double height = 150,
   }) : super(
-          autoPlayAnimationDuration: DurationConstant.durationNormal,
-          height: height,
-          autoPlayCurve: Curves.easeOut,
-          autoPlay: true,
-          padEnds: true,
-          pageSnapping: false,
-        );
+         autoPlayAnimationDuration: DurationConstant.durationNormal,
+         height: height,
+         autoPlayCurve: Curves.easeOut,
+         autoPlay: true,
+         padEnds: true,
+         pageSnapping: false,
+       );
 }

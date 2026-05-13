@@ -24,14 +24,14 @@ final class RequestProjectModel extends Equatable {
 
   @override
   List<Object> get props => [
-        projectName,
-        projectTopic,
-        projectDescription,
-        publisher,
-        expireDate,
-        imageFile,
-        phone,
-      ];
+    projectName,
+    projectTopic,
+    projectDescription,
+    publisher,
+    expireDate,
+    imageFile,
+    phone,
+  ];
 
   static RequestProjectModel dummyData = RequestProjectModel(
     projectName: 'Yazılım Kursu',

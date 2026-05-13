@@ -48,8 +48,9 @@ class _DateTimeFormFieldState extends State<DateTimeFormField>
             fontWeight: FontWeight.w400,
           ),
           onTap: () async => _updateSelectedDate(),
-          validator: (_) => TextFieldValidatorIsNullEmpty()
-              .validate(_selectedDate?.toIso8601String()),
+          validator: (_) => TextFieldValidatorIsNullEmpty().validate(
+            _selectedDate?.toIso8601String(),
+          ),
         ),
       ],
     );

@@ -68,8 +68,9 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                     ),
                     Padding(
                       padding: const PagePadding.onlyTopMedium(),
-                      child:
-                          _SelectableContentText(content: news.content ?? ''),
+                      child: _SelectableContentText(
+                        content: news.content ?? '',
+                      ),
                     ),
                   ],
                 ),
