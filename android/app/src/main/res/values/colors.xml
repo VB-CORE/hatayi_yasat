@@ -3,4 +3,5 @@
     <color name="app_blue">#3677d9</color>
     <color name="app_white">#FFFFFF</color>
     <color name="app_green">#00FF1E</color>
+    <color name="launch_background">#FFFFFF</color>
 </resources>
