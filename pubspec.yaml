@@ -82,7 +82,7 @@ dependencies:
   dotted_border: ^3.1.0
   shimmer: ^3.0.0
   sliver_snap: ^2.0.0
-  font_awesome_flutter: ^10.5.0
+  font_awesome_flutter: ^11.0.0
 
   carousel_slider: ^5.0.0
   flutter_speed_dial: ^7.0.0

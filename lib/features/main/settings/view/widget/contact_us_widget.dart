@@ -61,12 +61,12 @@ final class _ContactUsCard extends StatelessWidget {
           const EmptyBox.smallHeight(),
           _ContactTile(
             title: StringConstants.twitter,
-            icon: FontAwesomeIcons.xTwitter,
+            icon: const FaIcon(AppIcons.twitter),
             onTap: () => model.twitterUrl.ext.launchWebsite,
           ),
           _ContactTile(
             title: StringConstants.mail,
-            icon: Icons.mail_outline,
+            icon: const Icon(AppIcons.mail),
             onTap: () => model.mail.ext.launchEmail,
           ),
         ],
@@ -98,14 +98,14 @@ final class _ContactTile extends StatelessWidget {
     required this.onTap,
   });
   final String title;
-  final IconData icon;
+  final Widget icon;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       dense: true,
       title: GeneralBodyTitle(title),
-      trailing: Icon(icon),
+      trailing: icon,
       onTap: onTap,
     );
   }
