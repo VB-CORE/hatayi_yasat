@@ -10,7 +10,7 @@ class SocialMediaCircleAvatar extends StatelessWidget {
     super.key,
   });
 
-  final IconData iconData;
+  final FaIconData iconData;
   final String webUrl;
 
   @override
