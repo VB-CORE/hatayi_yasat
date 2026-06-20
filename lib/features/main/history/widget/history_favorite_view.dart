@@ -8,7 +8,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
@@ -64,14 +64,14 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
           const Icon(
             AppIcons.favoriteBorder,
             size: AppIconSizes.xLarge * 2,
-            color: ColorsCustom.warmGrey,
+            color: AppColors.ink400,
           ),
           const SizedBox(height: AppIconSizes.medium),
           Text(
             LocaleKeys.historyPage_favorites_emptyTitle.tr(),
             style: context.general.textTheme.titleMedium?.copyWith(
               fontSize: AppIconSizes.medium,
-              color: ColorsCustom.warmGrey,
+              color: AppColors.ink400,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -81,7 +81,7 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
             textAlign: TextAlign.center,
             style: context.general.textTheme.bodyMedium?.copyWith(
               fontSize: AppIconSizes.small,
-              color: ColorsCustom.warmGrey,
+              color: AppColors.ink400,
             ),
           ),
         ],
@@ -127,7 +127,7 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
             : const Icon(
                 AppIcons.gallery,
                 size: AppIconSizes.large,
-                color: ColorsCustom.warmGrey,
+                color: AppColors.ink400,
               ),
       ),
     );
@@ -153,7 +153,7 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.bodySmall?.copyWith(
-        color: ColorsCustom.warmGrey,
+        color: AppColors.ink400,
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 
 class ButtonNormalText extends StatelessWidget {
   const ButtonNormalText({
@@ -22,7 +22,7 @@ class ButtonNormalText extends StatelessWidget {
         desktop: context.general.textTheme.titleLarge,
       )?.copyWith(
         fontWeight: FontWeight.bold,
-        color: ColorsCustom.sambacus,
+        color: AppColors.navy,
       ),
     );
   }

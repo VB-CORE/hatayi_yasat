@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ButtonLargeText extends StatelessWidget {
@@ -21,7 +21,7 @@ class ButtonLargeText extends StatelessWidget {
         desktop: context.general.textTheme.headlineLarge,
       )?.copyWith(
         fontWeight: FontWeight.bold,
-        color: ColorsCustom.white,
+        color: AppColors.white,
       ),
     );
   }

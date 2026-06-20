@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 
 /// more detail for look at
 /// https://m3.material.io/styles/color/the-color-system/tokens
@@ -9,8 +9,8 @@ final class ColorCommon {
 
   final BuildContext context;
 
-  static const Color sameWhiteColor = ColorsCustom.white;
-  static const Color linkColor = ColorsCustom.brandeisBlue;
+  static const Color sameWhiteColor = AppColors.white;
+  static const Color linkColor = AppColors.teal;
 
   /// means [ThemeData].light == white
   Color get whiteAndBlackForTheme {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 final class ApplicationTheme {
@@ -105,9 +105,9 @@ final class ApplicationTheme {
         color: colorScheme.primary,
       ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: isDark ? _darkSurfaceElevated : ColorsCustom.sambacus,
+        backgroundColor: isDark ? _darkSurfaceElevated : AppColors.navy,
         contentTextStyle: textTheme.bodyMedium?.copyWith(
-          color: isDark ? _darkText : ColorsCustom.white,
+          color: isDark ? _darkText : AppColors.white,
         ),
         actionTextColor: colorScheme.primary,
       ),
@@ -131,22 +131,20 @@ final class ApplicationTheme {
     required bool isDark,
   }) {
     return currentScheme.copyWith(
-      primary: isDark ? _darkPrimary : ColorsCustom.sambacus,
-      secondary: isDark ? _darkSurfaceElevated : ColorsCustom.white,
-      surface: isDark ? _darkSurface : ColorsCustom.white,
-      onSurface: isDark ? _darkText : ColorsCustom.sambacus,
-      onPrimary: isDark ? ColorsCustom.sambacus : ColorsCustom.white,
-      onPrimaryContainer: isDark ? _darkBorder : ColorsCustom.lightGray,
-      onPrimaryFixed: isDark ? _darkSurfaceElevated : ColorsCustom.gray,
-      error: ColorsCustom.imperilRead,
-      primaryContainer: isDark ? _darkSuccess : ColorsCustom.braziliante,
-      onTertiaryContainer: isDark ? _darkSuccessText : ColorsCustom.green,
-      onSecondaryContainer: isDark ? _darkPrimary : ColorsCustom.royalPeacock,
-      onSecondaryFixed: isDark ? _darkMuted : ColorsCustom.warmGrey,
-      onPrimaryFixedVariant: isDark ? _darkText : ColorsCustom.darkGray,
-      onTertiaryFixedVariant: isDark
-          ? _darkAccent
-          : ColorsCustom.underlinePurple,
+      primary: isDark ? _darkPrimary : AppColors.navy,
+      secondary: isDark ? _darkSurfaceElevated : AppColors.white,
+      surface: isDark ? _darkSurface : AppColors.surface,
+      onSurface: isDark ? _darkText : AppColors.ink900,
+      onPrimary: isDark ? AppColors.navy : AppColors.white,
+      onPrimaryContainer: isDark ? _darkBorder : AppColors.ink200,
+      onPrimaryFixed: isDark ? _darkSurfaceElevated : AppColors.ink25,
+      error: AppColors.coral,
+      primaryContainer: isDark ? _darkSuccess : AppColors.olive,
+      onTertiaryContainer: isDark ? _darkSuccessText : AppColors.olive,
+      onSecondaryContainer: isDark ? _darkPrimary : AppColors.teal,
+      onSecondaryFixed: isDark ? _darkMuted : AppColors.ink400,
+      onPrimaryFixedVariant: isDark ? _darkText : AppColors.ink500,
+      onTertiaryFixedVariant: isDark ? _darkAccent : AppColors.teal,
     );
   }
 

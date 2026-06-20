@@ -7,7 +7,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_mode
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 
 /// Memory favorite button widget for toggling favorite status
 final class MemoryFavoriteButton extends ConsumerStatefulWidget {
@@ -31,7 +31,7 @@ class _MemoryFavoriteButtonState extends ConsumerState<MemoryFavoriteButton>
       onPressed: _toggleFavorite,
       icon: Icon(
         _isFavorite ? AppIcons.favorite : AppIcons.favoriteBorder,
-        color: _isFavorite ? ColorsCustom.imperilRead : ColorsCustom.white,
+        color: _isFavorite ? AppColors.coral : AppColors.white,
         size: AppIconSizes.medium,
       ),
     );
@@ -93,7 +93,7 @@ mixin _MemoryFavoriteButtonMixin
     appProvider.scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: ColorsCustom.brandeisBlue,
+        backgroundColor: AppColors.teal,
       ),
     );
   }

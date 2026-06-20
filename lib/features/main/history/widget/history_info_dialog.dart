@@ -7,7 +7,7 @@ import 'package:lifeclient/product/model/enum/firebase_remote_enums.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 @immutable
@@ -75,17 +75,17 @@ final class _InfoBox extends StatelessWidget {
     return Container(
       padding: const PagePadding.generalAllLow(),
       decoration: BoxDecoration(
-        color: ColorsCustom.brandeisBlue.withValues(alpha: _opacity),
+        color: AppColors.teal.withValues(alpha: _opacity),
         borderRadius: CustomRadius.small,
         border: Border.all(
-          color: ColorsCustom.brandeisBlue.withValues(alpha: _borderOpacity),
+          color: AppColors.teal.withValues(alpha: _borderOpacity),
         ),
       ),
       child: Row(
         children: [
           const Icon(
             AppIcons.addPhoto,
-            color: ColorsCustom.brandeisBlue,
+            color: AppColors.teal,
             size: AppIconSizes.medium,
           ),
           const SizedBox(width: AppIconSizes.small),
@@ -93,7 +93,7 @@ final class _InfoBox extends StatelessWidget {
             child: Text(
               LocaleKeys.historyPage_addPhotoInfo.tr(),
               style: context.general.textTheme.bodySmall?.copyWith(
-                color: ColorsCustom.brandeisBlue,
+                color: AppColors.teal,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -115,7 +115,7 @@ final class _DialogAction extends StatelessWidget {
       child: Text(
         LocaleKeys.button_understood.tr(),
         style: context.general.textTheme.labelLarge?.copyWith(
-          color: ColorsCustom.brandeisBlue,
+          color: AppColors.teal,
           fontWeight: FontWeight.w600,
         ),
       ),

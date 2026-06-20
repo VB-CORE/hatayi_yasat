@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 
+@Deprecated('Use AppColors instead')
 @immutable
 final class ColorsCustom {
   const ColorsCustom._();
-  static const Color sambacus = Color(0xFF101A2A);
-  static const Color endless = Color(0xFFE23E3E);
-  static const Color braziliante = Color(0xFF34C759);
+  static const Color sambacus = AppColors.navy;
+  static const Color endless = AppColors.coral;
+  static const Color braziliante = AppColors.olive;
   static const Color brandeisBlue = Color(0xFF0D6EFD);
-  static const Color lightGray = Color(0xffCED4DA);
-  static const Color softGray = Color.fromRGBO(219, 219, 219, 1);
-  static const Color gray = Color.fromRGBO(245, 245, 245, 1);
-  static const Color warmGrey = Color.fromRGBO(153, 153, 153, 1);
-  static const Color darkGray = Color.fromRGBO(91, 91, 91, 1);
+  static const Color lightGray = AppColors.ink200;
+  static const Color softGray = AppColors.ink100;
+  static const Color gray = AppColors.ink25;
+  static const Color warmGrey = AppColors.ink400;
+  static const Color darkGray = AppColors.ink500;
   static const Color underlinePurple = Color.fromRGBO(82, 0, 255, 1);
-  static const Color white = Color(0xFFFFffff);
-  static const Color imperilRead = Color(0xffEF2636);
-  static const Color royalPeacock = Color(0xff27AAE5);
-  static const Color transparent = Color(0x00000000);
-  static const Color black = Color(0xFF000000);
-  static const Color green = Color(0xFF00FF00);
+  static const Color white = AppColors.white;
+  static const Color imperilRead = AppColors.coral;
+  static const Color royalPeacock = Color(0xFF27AAE5);
+  static const Color transparent = Colors.transparent;
+  static const Color black = AppColors.ink900;
+  static const Color green = AppColors.olive;
 }

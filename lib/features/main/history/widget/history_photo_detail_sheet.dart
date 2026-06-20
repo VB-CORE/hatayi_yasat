@@ -7,7 +7,7 @@ import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 @immutable
@@ -45,7 +45,7 @@ class _HistoryPhotoDetailSheetState
     return Container(
       height: context.sized.dynamicHeight(_heightRatio),
       decoration: const BoxDecoration(
-        color: ColorsCustom.black,
+        color: AppColors.ink900,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(AppIconSizes.medium),
         ),
@@ -122,7 +122,7 @@ final class _CounterText extends StatelessWidget {
     return Text(
       '${currentIndex + _indexOffset} / $totalCount',
       style: context.general.textTheme.titleMedium?.copyWith(
-        color: ColorsCustom.white,
+        color: AppColors.white,
         fontWeight: FontWeight.w500,
       ),
     );
@@ -139,7 +139,7 @@ final class _CloseButton extends StatelessWidget {
       onPressed: () => Navigator.of(context).pop(),
       icon: const Icon(
         AppIcons.close,
-        color: ColorsCustom.white,
+        color: AppColors.white,
         size: AppIconSizes.large,
       ),
     );
@@ -205,8 +205,8 @@ final class _BottomInfo extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            ColorsCustom.transparent,
-            ColorsCustom.black.withValues(alpha: _gradientOpacity),
+            Colors.transparent,
+            AppColors.ink900.withValues(alpha: _gradientOpacity),
           ],
         ),
       ),
@@ -246,7 +246,7 @@ final class _MemoryTitle extends StatelessWidget {
     return Text(
       title!,
       style: context.general.textTheme.headlineSmall?.copyWith(
-        color: ColorsCustom.white,
+        color: AppColors.white,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -269,7 +269,7 @@ final class _MemoryDescription extends StatelessWidget {
     return Text(
       description!,
       style: context.general.textTheme.bodyMedium?.copyWith(
-        color: ColorsCustom.white,
+        color: AppColors.white,
         fontWeight: FontWeight.w800,
       ),
     );
@@ -309,7 +309,7 @@ final class _ShareButton extends StatelessWidget {
       onPressed: () => CustomShare.shareMemory(memory),
       icon: const Icon(
         AppIcons.share,
-        color: ColorsCustom.white,
+        color: AppColors.white,
         size: AppIconSizes.medium,
       ),
     );

@@ -8,7 +8,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_v2_mixin.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
@@ -50,7 +50,7 @@ class UploadFileSectionV2State extends State<UploadFileSection>
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(WidgetSizes.spacingS),
             border: Border.all(
-              color: ColorsCustom.softGray,
+              color: AppColors.ink100,
               width: 2,
             ),
           ),

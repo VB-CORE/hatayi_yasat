@@ -1,3 +1,4 @@
+export 'app_colors.dart';
 export 'box_decorations.dart';
 export 'colors_custom.dart';
 export 'custom_border_side.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/utility/decorations/app_colors.dart';
 
 @immutable
 class CustomButtonStyle extends ButtonStyle {
@@ -10,7 +10,7 @@ class CustomButtonStyle extends ButtonStyle {
     return OutlinedButton.styleFrom(
       padding: const PagePadding.verticalSymmetric(),
       side: const BorderSide(
-        color: ColorsCustom.sambacus,
+        color: AppColors.navy,
         width: 3,
       ),
     );
