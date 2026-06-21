@@ -16,32 +16,30 @@ final class _HomeCategoryCards extends ConsumerWidget with _FilterMixin {
   static const _otherCategoryValue = 1000;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categories =
-        ref.watch(homeViewModelProvider).categories
-          ..take(_maxCategoryItemLength)
-          ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
-          /// remove other category
-          ..removeWhere((element) => element.value == _otherCategoryValue);
+    final categories = ref.watch(homeViewModelProvider).categories
+      ..take(_maxCategoryItemLength)
+      ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length))
+      /// remove other category
+      ..removeWhere((element) => element.value == _otherCategoryValue);
 
-    return SizedBox(
-      height: WidgetSizes.spacingXxl2,
-      child: ListView.builder(
-        key: const Key('homeCategoriesList'),
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        padding: const PagePadding.onlyBottomLow(),
-        itemBuilder: (BuildContext context, int index) {
-          return _CategoryCard(
-            key: Key('categoryCard_${categories[index].documentId}'),
-            onTap: () async {
-              await pushToFilter(
-                context: context,
-                category: categories[index].documentId,
-              );
-            },
-            name: categories[index].displayName,
-          );
-        },
+    return SingleChildScrollView(
+      key: const Key('homeCategoriesList'),
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        spacing: AppSpacing.xs,
+        children: [
+          for (final category in categories)
+            _CategoryCard(
+              key: Key('categoryCard_${category.documentId}'),
+              onTap: () async {
+                await pushToFilter(
+                  context: context,
+                  category: category.documentId,
+                );
+              },
+              name: category.displayName,
+            ),
+        ],
       ),
     ).ext.sliver;
   }
@@ -55,24 +53,18 @@ final class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.onlyRight(),
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          side: BorderSide(color: context.general.colorScheme.onSecondaryFixed),
-          backgroundColor: context.general.colorScheme.onSecondary,
-          shape: const RoundedRectangleBorder(
-            borderRadius: CustomRadius.extraLarge,
-          ),
-          padding: const PagePadding.horizontalNormalSymmetric(),
-        ),
-        child: Text(
-          name,
-          style: context.general.textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: context.general.colorScheme.onSecondaryFixed,
-          ),
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        side: const BorderSide(color: AppColors.surface),
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
+      ),
+      child: Text(
+        name,
+        style: context.general.textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.w600,
+          color: context.general.colorScheme.onSecondaryFixed,
         ),
       ),
     );

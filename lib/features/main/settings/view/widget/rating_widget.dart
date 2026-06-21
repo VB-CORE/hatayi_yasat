@@ -9,7 +9,6 @@ final class _RatingWidget extends StatelessWidget {
     return Padding(
       padding: const PagePadding.onlyTop(),
       child: Card(
-        color: context.general.colorScheme.onPrimaryFixed,
         elevation: kZero,
         shape: const RoundedRectangleBorder(
           borderRadius: CustomRadius.large,
