@@ -57,7 +57,6 @@ class _GeneralCheckBoxState extends State<GeneralCheckBox>
         child: Align(
           alignment: Alignment.centerLeft,
           child: Checkbox(
-            activeColor: context.general.colorScheme.primary,
             value: _value,
             onChanged: (value) {
               if (value == null) return;

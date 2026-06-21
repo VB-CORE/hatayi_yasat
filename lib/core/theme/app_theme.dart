@@ -68,7 +68,6 @@ final class ApplicationTheme {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: AppColors.coral,
         foregroundColor: AppColors.white,
-        shape: CircleBorder(),
       ),
       popupMenuTheme: PopupMenuThemeData(
         color: AppColors.bg,
@@ -84,13 +83,17 @@ final class ApplicationTheme {
           horizontal: AppSpacing.md,
           vertical: AppSpacing.sm,
         ),
-        labelStyle: AppText.body,
+        labelStyle: AppText.body.copyWith(color: AppColors.ink600),
+        hintStyle: AppText.body.copyWith(color: AppColors.ink600),
         enabledBorder: _inputBorder(AppColors.ink100),
         focusedBorder: _inputBorder(AppColors.navy),
         errorBorder: _inputBorder(AppColors.coral),
         focusedErrorBorder: _inputBorder(AppColors.coral600),
         border: _inputBorder(AppColors.ink100),
         disabledBorder: _inputBorder(AppColors.ink50),
+      ),
+      dialogTheme: const DialogThemeData(
+        backgroundColor: AppColors.surface,
       ),
       appBarTheme: AppBarTheme(
         titleTextStyle: AppText.title.copyWith(
@@ -129,6 +132,23 @@ final class ApplicationTheme {
         shape: RoundedRectangleBorder(
           borderRadius: AppRadius.card,
           side: const BorderSide(color: AppColors.ink100),
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.coral;
+          }
+          return Colors.transparent;
+        }),
+        checkColor: WidgetStateProperty.all(AppColors.white),
+        side: const BorderSide(color: AppColors.coral, width: 2),
+      ),
+
+      chipTheme: ChipThemeData(
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: AppRadius.card,
         ),
       ),
     );

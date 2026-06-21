@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/button/mixin/multiple_select_button_mixin.dart';
 import 'package:lifeclient/product/widget/button/model/multiple_select_item_model.dart';
@@ -49,10 +50,9 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
                       pressElevation: kZero,
                       padding: EdgeInsets.zero,
                       backgroundColor: isSelected
-                          ? context.general.colorScheme.primary
-                          : context.general.colorScheme.secondary,
-                      label:
-                          _Title(item: items[index], isSelected: isSelected),
+                          ? AppColors.coral
+                          : AppColors.surface,
+                      label: _Title(item: items[index], isSelected: isSelected),
                     ),
                   );
                 }),
@@ -82,14 +82,14 @@ final class _Title extends StatelessWidget {
         Icon(
           isSelected ? AppIcons.close : AppIcons.add,
           color: isSelected
-              ? context.general.colorScheme.secondary
+              ? AppColors.white
               : context.general.colorScheme.primary,
         ),
         Text(
           item.title,
           style: context.general.textTheme.titleSmall?.copyWith(
             color: isSelected
-                ? context.general.colorScheme.secondary
+                ? AppColors.white
                 : context.general.colorScheme.primary,
           ),
         ),

@@ -31,8 +31,7 @@ final class GeneralBodyTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      value,
-
+      value, 
       style: AppText.bodyLg.copyWith(
         fontWeight: fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
