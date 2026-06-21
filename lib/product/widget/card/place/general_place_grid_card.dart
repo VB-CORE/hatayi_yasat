@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -56,8 +56,7 @@ final class GeneralPlaceGridCard extends StatelessWidget {
                   right: WidgetSizes.spacingXSs,
                   child: CircleAvatar(
                     radius: CustomCircleRadius.medium,
-                    backgroundColor:
-                        context.general.colorScheme.secondary.withOpacity(0.9),
+                    backgroundColor: AppColors.surface.withAlpha(200),
                     child: FavoritePlaceButton(store: storeModel),
                   ),
                 ),
@@ -106,7 +105,6 @@ class _TitleRow extends ConsumerWidget with AppProviderStateMixin {
         children: [
           GeneralBodyTitle(
             model.updatedName,
-            fontWeight: FontWeight.bold,
             maxLines: TextFieldMaxLengths.minLine,
           ),
           Row(

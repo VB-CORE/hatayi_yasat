@@ -50,7 +50,6 @@ final class _NotificationsViewState extends State<NotificationsView>
             onTap: () => navigateToDetail(model),
             child: Card(
               elevation: kZero,
-              color: context.general.colorScheme.onPrimaryFixed,
               child: Padding(
                 padding: const PagePadding.generalAllLow(),
                 child: Row(
@@ -69,8 +68,8 @@ final class _NotificationsViewState extends State<NotificationsView>
                               _title(model) ?? '',
                               style: context.general.textTheme.labelSmall
                                   ?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ),
                         ],
@@ -174,7 +173,7 @@ final class _Loading extends StatelessWidget {
         padding: PagePadding.allLow(),
         child: CircularProgressIndicator(),
       ),
-      builder: (BuildContext context, bool value, Widget? child) {
+      builder: (context, value, child) {
         if (!value) return const SizedBox.shrink();
         return child ?? const SizedBox.shrink();
       },

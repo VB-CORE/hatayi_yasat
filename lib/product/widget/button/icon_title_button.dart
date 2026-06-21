@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 /// Icon and title button for all project
@@ -23,14 +21,7 @@ final class IconTitleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        padding: const PagePadding.horizontalSymmetric() +
-            const PagePadding.vertical6Symmetric(),
-        backgroundColor: context.general.colorScheme.onPrimaryFixed,
-        shape: const RoundedRectangleBorder(
-          borderRadius: CustomRadius.medium,
-        ),
-      ),
+     
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

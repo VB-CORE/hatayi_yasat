@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
-
 class ProductCheckbox extends FormField<bool> {
   ProductCheckbox({
     required Widget title,
@@ -15,7 +13,6 @@ class ProductCheckbox extends FormField<bool> {
             return ListTile(
               minLeadingWidth: 0,
               leading: Checkbox(
-                activeColor: ColorsCustom.sambacus,
                 value: state.value,
                 onChanged: (value) {
                   state.didChange(value);

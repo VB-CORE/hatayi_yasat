@@ -38,7 +38,7 @@ final class LanguageDropdownWidget extends StatelessWidget {
   InputDecoration _decoration(BuildContext context) => InputDecoration(
     contentPadding: const PagePadding.horizontalLowSymmetric(),
     filled: true,
-    fillColor: context.general.colorScheme.onPrimaryFixed,
+    fillColor: context.general.colorScheme.surface,
     border: _border(
       color: context.general.colorScheme.onPrimaryContainer,
     ),
