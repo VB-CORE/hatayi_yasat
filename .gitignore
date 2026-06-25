@@ -35,7 +35,11 @@ emulator-data/
 # IDE and Editor specific files
 .vscode/
 .idea/
-.claude/
+# Claude: share team skills/agents in the repo, ignore only local settings
+.claude/*
+!.claude/skills/
+!.claude/agents/
+.claude/settings.local.json
 .idx/
 .cursor/
 *.code-workspace
