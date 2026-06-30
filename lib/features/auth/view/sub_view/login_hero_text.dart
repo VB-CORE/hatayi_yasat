@@ -6,14 +6,14 @@ final class _LoginHeroText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         Text(
           LocaleKeys.auth_hero_subtitle.tr(),
           style: context.general.textTheme.labelSmall?.copyWith(
             color: ColorsCustom.endless,
             letterSpacing: 1.5,
-            fontWeight: FontWeight.w600,
+            fontWeight: .w600,
           ),
         ),
         const EmptyBox.smallHeight(),
@@ -21,7 +21,7 @@ final class _LoginHeroText extends StatelessWidget {
           text: TextSpan(
             style: context.general.textTheme.displaySmall?.copyWith(
               color: ColorsCustom.sambacus,
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
             ),
             children: [
               TextSpan(text: LocaleKeys.auth_hero_prefix.tr()),
@@ -37,11 +37,9 @@ final class _LoginHeroText extends StatelessWidget {
           ),
         ),
         const EmptyBox.smallHeight(),
-        Text(
-          LocaleKeys.auth_hero_description.tr(),
-          style: context.general.textTheme.bodyMedium?.copyWith(
-            color: context.general.colorScheme.onSurfaceVariant,
-          ),
+        GeneralContentSubTitle(
+          value: LocaleKeys.auth_hero_description.tr(),
+          color: context.general.colorScheme.onSurfaceVariant,
         ),
       ],
     );

@@ -18,32 +18,27 @@ final class _LoginAppHeader extends StatelessWidget {
                 color: context.general.colorScheme.shadow.withValues(
                   alpha: 0.12,
                 ),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
+                blurRadius: WidgetSizes.spacingS,
+                offset: const Offset(kZero, WidgetSizes.spacingXxs),
               ),
             ],
           ),
-          padding: const EdgeInsets.all(8),
+          padding: const PagePadding.allVeryLow(),
           child: Assets.icons.icApp.image(),
         ),
         const EmptyBox.middleWidth(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              LocaleKeys.project_name.tr(),
-              style: context.general.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: ColorsCustom.sambacus,
-              ),
+            GeneralContentTitle(
+              value: LocaleKeys.project_name.tr(),
+              fontWeight: FontWeight.bold,
+              color: ColorsCustom.sambacus,
             ),
-            Text(
-              LocaleKeys.auth_tagline.tr(),
-              style: context.general.textTheme.labelSmall?.copyWith(
-                color: ColorsCustom.royalPeacock,
-                letterSpacing: 2,
-                fontWeight: .w600,
-              ),
+            GeneralContentSmallTitle(
+              value: LocaleKeys.auth_tagline.tr(),
+              fontWeight: .w600,
+              color: ColorsCustom.royalPeacock,
             ),
           ],
         ),

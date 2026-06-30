@@ -1,4 +1,4 @@
-import 'package:lifeclient/features/auth/service/auth_service.dart';
+import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
 
 final class MockAuthService implements AuthService {

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
-import 'package:lifeclient/features/auth/viewmodel/auth_state.dart';
-import 'package:lifeclient/features/auth/viewmodel/auth_view_model.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
 mixin LoginViewMixin on ConsumerState<LoginView> {

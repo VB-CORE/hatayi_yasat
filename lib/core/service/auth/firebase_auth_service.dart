@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:lifeclient/features/auth/service/auth_service.dart';
+import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
 
 final class FirebaseAuthService implements AuthService {
