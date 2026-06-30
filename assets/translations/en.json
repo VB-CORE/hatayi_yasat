@@ -344,6 +344,22 @@
     "settings": "Settings",
     "memories": "Memories"
   },
+  "auth": {
+    "tagline": "COMMUNITY",
+    "hero": {
+      "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
+      "prefix": "Let's live ",
+      "highlight": "Hatay",
+      "suffix": "\ntogether.",
+      "description": "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here."
+    },
+    "signIn": {
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "guest": "Continue as Guest"
+    },
+    "legal": "By continuing, you accept the terms of use and KVKK."
+  },
   "historyPage": {
     "welcomeTitle": "Our Memories Are Alive with Us",
     "welcomeDescription": "Let's share our beautiful memories, let's live together.",

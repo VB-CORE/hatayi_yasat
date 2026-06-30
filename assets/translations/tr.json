@@ -344,6 +344,22 @@
     "settings": "Ayarlar",
     "memories": "Hatıralar"
   },
+  "auth": {
+    "tagline": "TOPLULUK",
+    "hero": {
+      "subtitle": "MAHALLE · MEKAN · HATIRA",
+      "prefix": "Hatay'ı ",
+      "highlight": "birlikte",
+      "suffix": "\nyaşatalım.",
+      "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
+    },
+    "signIn": {
+      "google": "Google ile devam et",
+      "apple": "Apple ile devam et",
+      "guest": "Misafir olarak devam et"
+    },
+    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun."
+  },
   "historyPage": {
     "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
     "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
