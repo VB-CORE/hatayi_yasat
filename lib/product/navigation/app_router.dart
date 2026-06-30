@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
@@ -86,9 +87,9 @@ final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
-        model: $extra,
-        id: id,
-      );
+    model: $extra,
+    id: id,
+  );
 }
 
 final class FilterRoute extends GoRouteData with $FilterRoute {
@@ -105,8 +106,8 @@ final class FilterRoute extends GoRouteData with $FilterRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterSearchView(
-        selectedCategoryId: $extra,
-      );
+    selectedCategoryId: $extra,
+  );
 }
 
 final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
@@ -121,8 +122,8 @@ final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterResultView(
-        filter: $extra,
-      );
+    filter: $extra,
+  );
 }
 
 final class PlaceRequestFormRoute extends GoRouteData
@@ -290,6 +291,14 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       NewsDetailView(news: $extra.toNewsModel());
+}
+
+@TypedGoRoute<LoginRoute>(path: '/login')
+final class LoginRoute extends GoRouteData with $LoginRoute {
+  const LoginRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const LoginView();
 }
 
 final class OnboardRoute extends GoRouteData with $OnboardRoute {

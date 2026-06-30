@@ -31,7 +31,7 @@ class _OnBoarViewState extends State<OnBoarView> {
               child: _AppBar(() async {
                 await SharedCache.instance.setFirstAppOpen();
                 if (!mounted) return;
-                const SplashRoute().pushReplacement(context);
+                const LoginRoute().pushReplacement(context);
               }),
             ),
           ],
