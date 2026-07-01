@@ -1,32 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lifeclient/product/app_builder.dart';
 import 'package:lifeclient/product/init/application_theme.dart';
-import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/router_notifier.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/product/widget/builder/keyboard_focus_control_widget.dart';
 
 final class App extends ConsumerWidget with AppProviderStateMixin {
-  App({super.key});
-
-  final _router = GoRouter(
-    routes: $appRoutes,
-    initialLocation: '/',
-    observers: [
-      FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
-    ],
-  );
+  const App({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final applicationTheme = ApplicationTheme.build();
+    final router = ref.watch(goRouterProvider);
 
     return KeyboardFocusControlWidget(
       child: MaterialApp.router(
-        routerConfig: _router,
+        routerConfig: router,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

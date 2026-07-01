@@ -301,6 +301,19 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
 }
 
+// TODO(auth): Gerçek dashboard ekranları hazır olunca bu route'u kaldır.
+@TypedGoRoute<RoleDashboardRoute>(path: '/roleTest/:role')
+final class RoleDashboardRoute extends GoRouteData with $RoleDashboardRoute {
+  const RoleDashboardRoute({required this.role});
+
+  final String role;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => Scaffold(
+    body: Center(child: Text('$role Dashboard')),
+  );
+}
+
 final class OnboardRoute extends GoRouteData with $OnboardRoute {
   const OnboardRoute();
 
