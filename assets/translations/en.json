@@ -44,7 +44,8 @@
     "share": "Share",
     "error": "Error",
     "more": "More",
-    "understood": "Understood"
+    "understood": "Understood",
+    "send": "Send"
   },
   "component": {
     "mapPicker": {
@@ -120,6 +121,13 @@
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
     "removedFavorite": "Removed from favorites"
+  },
+  "rate": {
+    "trustQuestion": "Do you trust this place?",
+    "singleVoteHint": "You only have one vote.",
+    "rateThankYou": "Your vote has been received, thank you.",
+    "voteRecorded": "Your vote has been recorded.",
+    "evaluatePlace": "Evaluate the place"
   },
   "search": {
     "latestSearch": "Latest Searches",

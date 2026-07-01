@@ -44,7 +44,8 @@
     "share": "Paylaş",
     "error": "Hata",
     "more": "Daha fazla",
-    "understood": "Anladım"
+    "understood": "Anladım",
+    "send": "Gönder"
   },
   "component": {
     "mapPicker": {
@@ -120,6 +121,13 @@
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
     "removedFavorite": "Favorilerden kaldırıldı"
+  },
+  "rate": {
+    "trustQuestion": "Bu mekana güveniyor musun?",
+    "singleVoteHint": "Tek bir oy hakkın var.",
+    "rateThankYou": "Oyunuz alındı, teşekkürler.",
+    "voteRecorded": "Oyunuz kaydedildi.",
+    "evaluatePlace": "Mekanı değerlendir"
   },
   "search": {
     "latestSearch": "Son Aramalar",

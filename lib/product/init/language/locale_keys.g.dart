@@ -46,6 +46,7 @@ abstract class  LocaleKeys {
   static const button_error = 'button.error';
   static const button_more = 'button.more';
   static const button_understood = 'button.understood';
+  static const button_send = 'button.send';
   static const button = 'button';
   static const component_mapPicker_title = 'component.mapPicker.title';
   static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
@@ -112,6 +113,12 @@ abstract class  LocaleKeys {
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message_removedFavorite = 'message.removedFavorite';
   static const message = 'message';
+  static const rate_trustQuestion = 'rate.trustQuestion';
+  static const rate_singleVoteHint = 'rate.singleVoteHint';
+  static const rate_rateThankYou = 'rate.rateThankYou';
+  static const rate_voteRecorded = 'rate.voteRecorded';
+  static const rate_evaluatePlace = 'rate.evaluatePlace';
+  static const rate = 'rate';
   static const search_latestSearch = 'search.latestSearch';
   static const search_place = 'search.place';
   static const search_minumumSearch = 'search.minumumSearch';
