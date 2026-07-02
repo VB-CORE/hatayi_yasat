@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 
 class FormLatestDataDialog extends StatelessWidget {
@@ -29,9 +28,7 @@ class FormLatestDataDialog extends StatelessWidget {
       content: Text(
         LocaleKeys.validation_loseAllData,
         textAlign: TextAlign.center,
-        style: context.general.textTheme.bodyLarge?.copyWith(
-          color: ColorCommon(context).whiteAndBlackForTheme,
-        ),
+        style: context.general.textTheme.bodyLarge?.copyWith(),
       ).tr(),
       actions: [
         TextButton(

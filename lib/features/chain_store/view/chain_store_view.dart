@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/chain_store/provider/chain_store_provider.dart';
 import 'package:lifeclient/features/chain_store/view/sub_view/chain_sub_sheet.dart';
 import 'package:lifeclient/features/chain_store/view_model/chain_store_view_model.dart';
@@ -18,10 +19,11 @@ import 'package:lifeclient/product/widget/general/title/general_content_small_ti
 
 part 'sub_view/chain_store_sub_view.dart';
 
-typedef AsyncValueGetterWithContext<T> = Future<void> Function(
-  BuildContext context,
-  T model,
-);
+typedef AsyncValueGetterWithContext<T> =
+    Future<void> Function(
+      BuildContext context,
+      T model,
+    );
 
 final class ChainStoreView extends ConsumerStatefulWidget {
   const ChainStoreView({super.key});
@@ -37,7 +39,7 @@ final class _ChainStoreViewState extends ConsumerState<ChainStoreView>
     return GeneralScaffold(
       appBar: PageAppBar(pageTitle: LocaleKeys.chain_stores_title),
       body: Padding(
-        padding: const PagePadding.vertical6Symmetric(),
+        padding: AppSpacing.screenV,
         child: _ChainStoreListWidget(
           onLocationTap: launchMapWithLatLong,
           onCallTap: launchPhoneWithPhoneNumber,

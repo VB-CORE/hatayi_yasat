@@ -21,8 +21,9 @@ final class _BottomAppBarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isScrolledBottom =
-        ref.watch(mainTabViewModelProvider).isScrolledBottom;
+    final isScrolledBottom = ref
+        .watch(mainTabViewModelProvider)
+        .isScrolledBottom;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
@@ -32,7 +33,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
         notchMargin: WidgetSizes.spacingXxs / 2,
         shape: const CircularNotchedRectangle(),
         elevation: kZero,
-        color: context.general.colorScheme.secondary.withValues(
+        color: context.general.appTheme.bottomAppBarTheme.color?.withValues(
           alpha: isScrolledBottom ? .7 : 1,
         ),
         child: _TabBar(tabItems: tabItems),
@@ -53,20 +54,18 @@ class _TabBar extends StatelessWidget {
       dividerColor: ColorsCustom.transparent,
       labelPadding: EdgeInsets.zero,
       indicator: const BoxDecoration(),
-      unselectedLabelColor: context.general.colorScheme.primary.withValues(
-        alpha: .3,
-      ),
+      unselectedLabelColor:
+          context.general.appTheme.bottomAppBarTheme.surfaceTintColor,
       labelStyle: context.general.textTheme.bodyMedium,
       unselectedLabelStyle: context.general.textTheme.bodySmall,
-      tabs:
-          tabItems
-              .map(
-                (e) => GeneralSemantic(
-                  semanticKey: e.semanticKey,
-                  child: Tab(text: e.title.tr(), icon: e.icon),
-                ),
-              )
-              .toList(),
+      tabs: tabItems
+          .map(
+            (e) => GeneralSemantic(
+              semanticKey: e.semanticKey,
+              child: Tab(text: e.title.tr(), icon: e.icon),
+            ),
+          )
+          .toList(),
     );
   }
 }

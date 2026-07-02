@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/duration_constant.dart';
@@ -167,33 +168,31 @@ class _LoadingWidget extends StatelessWidget {
 
 final class _BorderlessGeneralButtonStyle extends ButtonStyle {
   _BorderlessGeneralButtonStyle(BuildContext context)
-      : super(
-          elevation: const WidgetStatePropertyAll(0),
-          backgroundColor: WidgetStateProperty.all<Color>(
-            context.general.colorScheme.secondary,
+    : super(
+        elevation: const WidgetStatePropertyAll(0),
+        backgroundColor: WidgetStateProperty.all<Color>(
+          AppColors.coral,
+        ),
+        shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
+          const RoundedRectangleBorder(
+            borderRadius: CustomRadius.medium,
           ),
-          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
-            const RoundedRectangleBorder(
-              borderRadius: CustomRadius.medium,
-            ),
-          ),
-        );
+        ),
+      );
 }
 
 final class _GeneralButtonStyle extends ButtonStyle {
   _GeneralButtonStyle(BuildContext context)
-      : super(
-          backgroundColor: WidgetStateProperty.all<Color>(
-            context.general.colorScheme.secondary,
-          ),
-          shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
-            RoundedRectangleBorder(
-              borderRadius: CustomRadius.medium,
-              side: BorderSide(
-                color: context.general.colorScheme.primary,
-                width: AppConstants.kTwo.toDouble(),
-              ),
+    : super(
+        backgroundColor: WidgetStateProperty.all<Color>(AppColors.coral),
+        shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: CustomRadius.medium,
+            side: BorderSide(
+              color: AppColors.coral,
+              width: AppConstants.kTwo.toDouble(),
             ),
           ),
-        );
+        ),
+      );
 }

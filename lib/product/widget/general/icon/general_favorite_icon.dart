@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 
 final class GeneralFavoriteIcon extends StatelessWidget {
   const GeneralFavoriteIcon({
@@ -13,9 +13,7 @@ final class GeneralFavoriteIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       isFavorite ? Icons.favorite : Icons.favorite_border_outlined,
-      color: isFavorite
-          ? context.general.colorScheme.error
-          : context.general.colorScheme.primary,
+      color: isFavorite ? AppColors.coral : AppColors.ink700,
     );
   }
 }

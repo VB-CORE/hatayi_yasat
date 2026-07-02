@@ -42,11 +42,12 @@ class _GeneralDottedPhotoAddState extends State<GeneralDottedPhotoAdd> {
         ValueListenableBuilder<File?>(
           valueListenable:
               context.generalDottedPhotoAddContext.photoFileNotifier,
-          builder: (BuildContext context, File? file, Widget? _) => InkWell(
+          builder: (context, file, _) => InkWell(
             splashFactory: NoSplash.splashFactory,
             onTap: file != null
-                ? context.generalDottedPhotoAddContext
-                    .selectAndUpdatePhotoFromMediaSheet
+                ? context
+                      .generalDottedPhotoAddContext
+                      .selectAndUpdatePhotoFromMediaSheet
                 : null,
             child: GeneralDottedRectangle(
               child: SizedBox(
@@ -94,13 +95,13 @@ final class _BodyImage extends StatelessWidget {
 
 final class _ImageTypeContainer extends StatelessWidget {
   const _ImageTypeContainer.camera()
-      : _text = LocaleKeys.component_picker_camera,
-        _icon = Icons.camera_alt_rounded,
-        _photoPickType = PhotoPickType.camera;
+    : _text = LocaleKeys.component_picker_camera,
+      _icon = Icons.camera_alt_rounded,
+      _photoPickType = PhotoPickType.camera;
   const _ImageTypeContainer.gallery()
-      : _text = LocaleKeys.component_picker_gallery,
-        _icon = Icons.photo_library_rounded,
-        _photoPickType = PhotoPickType.gallery;
+    : _text = LocaleKeys.component_picker_gallery,
+      _icon = Icons.photo_library_rounded,
+      _photoPickType = PhotoPickType.gallery;
 
   final String _text;
   final IconData _icon;
@@ -116,8 +117,7 @@ final class _ImageTypeContainer extends StatelessWidget {
       },
       child: Container(
         width: context.sized.dynamicWidth(.25),
-        decoration: BoxDecoration(
-          color: context.general.colorScheme.onPrimaryFixed,
+        decoration: const BoxDecoration(
           borderRadius: CustomRadius.large,
         ),
         child: Padding(
@@ -133,8 +133,8 @@ final class _ImageTypeIconAndText extends StatelessWidget {
   const _ImageTypeIconAndText({
     required IconData icon,
     required String text,
-  })  : _icon = icon,
-        _text = text;
+  }) : _icon = icon,
+       _text = text;
 
   final IconData _icon;
   final String _text;
