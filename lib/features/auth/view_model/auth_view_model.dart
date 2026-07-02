@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/auth/mock_auth_service.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
@@ -41,16 +42,10 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   }
 
   // TODO(auth): Gerçek backend rol desteği gelince bu metodu kaldır.
-  void debugSignInAs(UserRole role) {
+  Future<void> debugSignInAs(UserRole role) async {
     if (!kDebugMode) return;
     _logger.d('debugSignInAs called with role: ${role.name}');
-    state = Authenticated(
-      AppUser(
-        uid: 'debug-${role.name}',
-        email: '${role.name}@debug.com',
-        displayName: 'Debug ${role.name}',
-        role: role,
-      ),
-    );
+    final user = await MockAuthService().signInAsRole(role);
+    state = Authenticated(user);
   }
 }

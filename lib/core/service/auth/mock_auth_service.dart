@@ -1,5 +1,6 @@
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/model/auth/user_role.dart';
 
 final class MockAuthService implements AuthService {
   static const _mockUser = AppUser(
@@ -13,4 +14,11 @@ final class MockAuthService implements AuthService {
 
   @override
   Future<AppUser?> signInWithGoogle() async => _mockUser;
+
+  Future<AppUser> signInAsRole(UserRole role) async => AppUser(
+    uid: 'mock-${role.name}',
+    email: '${role.name}@mock.com',
+    displayName: 'Mock ${role.name}',
+    role: role,
+  );
 }
