@@ -10,7 +10,7 @@ mixin RateCommentControllerMixin on ConsumerState<RateCard> {
 
   @override
   void dispose() {
-    commentController.dispose(); // önce kendi kaynağını temizle
+    commentController.dispose();
     super.dispose();
   }
 
