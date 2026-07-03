@@ -36,6 +36,12 @@ final class _MainAppBar extends AppBar {
          actions: [
            IconButton(
              onPressed: () {
+               const MonetizationRoute().go(context);
+             },
+             icon: const Icon(AppIcons.city),
+           ),
+           IconButton(
+             onPressed: () {
                const NotificationsRoute().go(context);
              },
              icon: const Icon(AppIcons.notifications),

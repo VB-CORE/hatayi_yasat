@@ -29,7 +29,7 @@ final class ApplicationTheme {
       errorContainer: AppColors.surface,
       onErrorContainer: AppColors.coral,
       surface: AppColors.bg,
-      onSurface: AppColors.surface,
+      onSurface: AppColors.navy,
       onSurfaceVariant: AppColors.ink400,
       surfaceContainerHighest: AppColors.bgDeep,
       outline: AppColors.ink100,
@@ -115,7 +115,7 @@ final class ApplicationTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.surface,
+          backgroundColor: AppColors.coral,
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
         ),
       ),

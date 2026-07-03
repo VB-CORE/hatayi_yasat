@@ -15,6 +15,9 @@ class LabeledProductTextField extends StatelessWidget {
     this.hintText,
     this.keyboardType,
     this.controller,
+    this.readOnly = false,
+    this.onTap,
+    this.suffixIcon,
   });
   final String labelText;
   final bool isRequired;
@@ -24,6 +27,9 @@ class LabeledProductTextField extends StatelessWidget {
   final String? hintText;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final IconData? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +45,9 @@ class LabeledProductTextField extends StatelessWidget {
           validator: validator,
           keyboardType: keyboardType ?? TextInputType.text,
           controller: controller,
+          readOnly: readOnly,
+          onTap: onTap,
+          suffixIcon: suffixIcon,
         ),
       ],
     );

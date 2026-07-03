@@ -15,7 +15,6 @@ import 'package:lifeclient/product/widget/general/general_button.dart';
 import 'package:lifeclient/product/widget/general/general_check_box.dart';
 import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/text_field/labeled_product_textfield.dart';
-import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_decoration.dart';
 
 @immutable
 final class MonetizationCouponFormSheet extends StatefulWidget {
@@ -134,11 +133,14 @@ class _MonetizationCouponFormSheetState
                   validator: _validateDiscountRate,
                 ),
                 const EmptyBox.smallHeight(),
-                _ExpiryDateField(
+                LabeledProductTextField(
                   controller: _expiresAtController,
-                  onDateSelected: (date) {
-                    _expiresAt = date;
-                  },
+                  labelText: LocaleKeys.monetization_expiryDateLabel.tr(),
+                  hintText: LocaleKeys.monetization_expiryDateLabel.tr(),
+                  readOnly: true,
+                  suffixIcon: AppIcons.calendar,
+                  onTap: _pickExpiryDate,
+                  validator: TextFieldValidatorIsNullEmpty().validate,
                 ),
                 GeneralCheckBox(
                   value: _isActive,
@@ -160,6 +162,16 @@ class _MonetizationCouponFormSheetState
         ],
       ),
     );
+  }
+
+  Future<void> _pickExpiryDate() async {
+    final dateTimeModel = await DateTimePicker.selectedDateTime(context);
+    if (dateTimeModel == null) return;
+
+    setState(() {
+      _expiresAt = dateTimeModel.dateTime;
+      _expiresAtController.text = dateTimeModel.formattedText;
+    });
   }
 
   String? _validateDiscountRate(String? value) {
@@ -192,60 +204,5 @@ class _MonetizationCouponFormSheetState
     );
 
     unawaited(context.route.pop(coupon));
-  }
-}
-
-@immutable
-final class _ExpiryDateField extends StatefulWidget {
-  const _ExpiryDateField({
-    required this.controller,
-    required this.onDateSelected,
-  });
-
-  final TextEditingController controller;
-  final ValueChanged<DateTime> onDateSelected;
-
-  @override
-  State<_ExpiryDateField> createState() => _ExpiryDateFieldState();
-}
-
-class _ExpiryDateFieldState extends State<_ExpiryDateField> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          LocaleKeys.monetization_expiryDateLabel.tr(),
-          style: context.general.textTheme.labelLarge,
-        ),
-        const EmptyBox.smallHeight(),
-        TextFormField(
-          readOnly: true,
-          controller: widget.controller,
-          decoration: CustomDateTimeFieldDecoration(
-            context: context,
-            suffixIcon: AppIcons.calendar,
-            hint: LocaleKeys.monetization_expiryDateLabel.tr(),
-          ),
-          style: context.general.textTheme.titleMedium?.copyWith(
-            color: context.general.colorScheme.onSecondaryFixed,
-            fontWeight: FontWeight.w400,
-          ),
-          onTap: _pickDate,
-          validator: (_) =>
-              TextFieldValidatorIsNullEmpty().validate(widget.controller.text),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _pickDate() async {
-    final dateTimeModel = await DateTimePicker.selectedDateTime(context);
-    if (dateTimeModel == null) return;
-
-    widget.onDateSelected(dateTimeModel.dateTime);
-    widget.controller.text = dateTimeModel.formattedText;
-    setState(() {});
   }
 }
