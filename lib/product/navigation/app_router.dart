@@ -8,6 +8,7 @@ import 'package:lifeclient/features/details/view/place_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
+import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
@@ -44,6 +45,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
   path: '/main',
   routes: [
     ChainStoresRoute.route,
+    MonetizationRoute.route,
     TurismRoute.route,
     UsefulLinksRoute.route,
     FavoriteRoute.route,
@@ -204,6 +206,19 @@ final class ChainStoresRoute extends GoRouteData with $ChainStoresRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ChainStoreView();
+}
+
+final class MonetizationRoute extends GoRouteData with $MonetizationRoute {
+  const MonetizationRoute();
+
+  static const route = TypedGoRoute<MonetizationRoute>(
+    path: 'monetization',
+    name: 'Monetization',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MonetizationView();
 }
 
 final class TurismRoute extends GoRouteData with $TurismRoute {

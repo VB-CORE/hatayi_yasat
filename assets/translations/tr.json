@@ -314,6 +314,23 @@
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
   },
+  "monetization": {
+    "title": "İndirim Kuponları",
+    "loadError": "Kuponlar yüklenirken bir hata oluştu.",
+    "discountCodeLabel": "İndirim Oranı",
+    "expiryDateLabel": "Son Kullanım Tarihi",
+    "inactive": "Süresi doldu",
+    "addCoupon": "Kupon Ekle",
+    "editCoupon": "Kupon Düzenle",
+    "deleteCoupon": "Kupon Sil",
+    "deleteCouponConfirm": "Bu kuponu silmek istediğinize emin misiniz?",
+    "couponCode": "Kupon Kodu",
+    "couponName": "Kupon Adı",
+    "discountRate": "İndirim Oranı (%)",
+    "isActive": "Aktif",
+    "invalidDiscountRate": "Geçerli bir indirim oranı giriniz (1-100)",
+    "emptyCoupons": "Henüz kupon bulunmuyor"
+  },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
     "features": {

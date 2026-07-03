@@ -314,6 +314,23 @@
     "showAllSubBranches": "Show all sub-store {}",
     "subBranchesTitle": "{} Store ({})"
   },
+  "monetization": {
+    "title": "Discount Coupons",
+    "loadError": "An error occurred while loading coupons.",
+    "discountCodeLabel": "Discount Rate",
+    "expiryDateLabel": "Expiry Date",
+    "inactive": "Inactive",
+    "addCoupon": "Add Coupon",
+    "editCoupon": "Edit Coupon",
+    "deleteCoupon": "Delete Coupon",
+    "deleteCouponConfirm": "Are you sure you want to delete this coupon?",
+    "couponCode": "Coupon Code",
+    "couponName": "Coupon Name",
+    "discountRate": "Discount Rate (%)",
+    "isActive": "Active",
+    "invalidDiscountRate": "Enter a valid discount rate (1-100)",
+    "emptyCoupons": "No coupons yet"
+  },
   "whatsNew": {
     "title": "New in v8.1.0 🎉",
     "features": {
