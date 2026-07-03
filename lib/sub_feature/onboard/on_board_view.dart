@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
-import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
@@ -57,7 +56,6 @@ class _AppBar extends StatelessWidget {
               onPressed: onPressed,
               child: Icon(
                 Icons.close,
-                weight: ApplicationTheme.maxWeight,
                 color: context.general.colorScheme.onSecondary,
               ),
             ),

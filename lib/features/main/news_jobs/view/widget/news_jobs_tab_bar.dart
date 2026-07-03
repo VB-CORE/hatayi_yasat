@@ -16,8 +16,8 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
       padding:
           const PagePadding.horizontalSymmetric() + const PagePadding.onlyTop(),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.general.colorScheme.onPrimaryFixed,
+        decoration: const BoxDecoration(
+          color: AppColors.surface,
           borderRadius: CustomRadius.medium,
         ),
         child: LayoutBuilder(
@@ -31,9 +31,9 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
                   left: _leftPosition(tabWidth),
                   width: tabWidth - (WidgetSizes.spacingXxs * 2),
                   duration: Durations.short4,
-                  child: DecoratedBox(
+                  child: const DecoratedBox(
                     decoration: BoxDecoration(
-                      color: context.general.colorScheme.secondary,
+                      color: AppColors.coral,
                       borderRadius: CustomRadius.medium,
                     ),
                   ),
@@ -110,9 +110,13 @@ final class _CustomTabButton extends StatelessWidget {
 
   TextStyle? _currentSelectedTextStyle(BuildContext context) =>
       selectedTab == tab
-          ? context.general.textTheme.titleSmall
-          : context.general.textTheme.titleSmall
-              ?.copyWith(color: context.general.colorScheme.onSecondaryFixed);
+      ? context.general.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.surface,
+        )
+      : context.general.textTheme.titleSmall?.copyWith(
+          color: AppColors.ink700,
+        );
   @override
   Widget build(BuildContext context) {
     return InkWell(

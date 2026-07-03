@@ -3,8 +3,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lifeclient/core/theme/app_theme.dart';
 import 'package:lifeclient/product/app_builder.dart';
-import 'package:lifeclient/product/init/application_theme.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/product/widget/builder/keyboard_focus_control_widget.dart';
@@ -33,8 +33,7 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
         locale: context.locale,
         builder: AppBuilder.build,
         themeMode: appStateWatch(ref).theme,
-        theme: applicationTheme.lightThemeData,
-        darkTheme: applicationTheme.darkThemeData,
+        theme: applicationTheme.themeData,
         scaffoldMessengerKey: appProvider(ref).scaffoldMessengerKey,
         // home: NewsDetailView(news: NewsModel.dummyData),
       ),

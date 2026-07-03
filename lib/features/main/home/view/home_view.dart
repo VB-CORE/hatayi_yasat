@@ -5,6 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart' show ContextExtension, WidgetExtension;
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/features/main/home/view/mixin/home_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/search/place_search_delegate.dart';
@@ -14,7 +17,6 @@ import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/model/search_response_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
@@ -61,6 +63,7 @@ class _HomeViewState extends ConsumerState<HomeView>
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
               centerTitle: false,
+              background: Container(color: AppColors.surface),
               title: Row(
                 children: [
                   GeneralBigTitle(
@@ -75,19 +78,13 @@ class _HomeViewState extends ConsumerState<HomeView>
           ),
           SliverList.list(
             children: [
-              Padding(
-                key: const Key('homeSearchFilterRow'),
-                padding:
-                    const PagePadding.vertical12Symmetric() +
-                    const PagePadding.horizontalVeryLowSymmetric(),
+              IntrinsicHeight(
                 child: Row(
+                  spacing: AppSpacing.md,
                   children: [
                     const Expanded(child: _CustomSearchField()),
-                    Padding(
-                      padding: const PagePadding.onlyLeft(),
-                      child: _FilterButton(
-                        onTap: () => pushToFilter(context: context),
-                      ),
+                    _FilterButton(
+                      onTap: () => pushToFilter(context: context),
                     ),
                   ],
                 ),
@@ -115,19 +112,12 @@ final class _FilterButton extends StatelessWidget {
       key: const Key('homeFilterButton'),
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.zero,
-        backgroundColor: context.general.colorScheme.onPrimaryFixed,
-        shape: RoundedRectangleBorder(
-          borderRadius: CustomRadius.large,
-          side: BorderSide(color: context.general.colorScheme.onPrimaryFixed),
-        ),
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
       ),
-      child: Padding(
-        padding: const PagePadding.generalAllLow(),
-        child: Icon(
-          AppIcons.filter,
-          color: context.general.colorScheme.onSecondaryFixed,
-        ),
+      child: Icon(
+        AppIcons.filter,
+        color: context.general.colorScheme.onSecondaryFixed,
       ),
     );
   }
@@ -148,26 +138,6 @@ final class _CustomSearchField extends StatelessWidget {
       },
       decoration: InputDecoration(
         hintText: LocaleKeys.search_place.tr(),
-        focusColor: context.general.colorScheme.onPrimaryFixed,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: CustomRadius.large,
-          borderSide: BorderSide(
-            color: context.general.colorScheme.onPrimaryFixed,
-          ),
-        ),
-        hintStyle: context.general.textTheme.titleMedium?.copyWith(
-          color: context.general.colorScheme.onSecondaryFixed,
-          fontWeight: FontWeight.w400,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: CustomRadius.large,
-          borderSide: BorderSide(
-            color: context.general.colorScheme.onPrimaryFixed,
-          ),
-        ),
-        filled: true,
-        fillColor: context.general.colorScheme.onPrimaryFixed,
-        contentPadding: const PagePadding.horizontalSymmetric(),
         prefixIcon: Icon(
           AppIcons.search,
           color: context.general.colorScheme.onSecondaryFixed,
@@ -182,8 +152,10 @@ final class _CategoriesItems extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final hasCategories =
-        ref.watch(homeViewModelProvider).categories.isNotEmpty;
+    final hasCategories = ref
+        .watch(homeViewModelProvider)
+        .categories
+        .isNotEmpty;
     if (!hasCategories) {
       return const SliverToBoxAdapter(child: SizedBox.shrink());
     }
