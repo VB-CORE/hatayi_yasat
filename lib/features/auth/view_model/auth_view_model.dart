@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/service/auth/mock_auth_service.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:logger/logger.dart';
@@ -29,7 +30,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
       (user) {
         state = user == null ? const Unauthenticated() : Authenticated(user);
       },
-      onError: (_) => state = const AuthError('auth_error'),
+      onError: (_) => state = const AuthError(LocaleKeys.auth_error_generic),
     );
   }
 
@@ -37,7 +38,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     state = const AuthLoading();
     final user = await authService.signInWithGoogle();
     state = user == null
-        ? const AuthError('google_sign_in_failed')
+        ? const AuthError(LocaleKeys.auth_error_googleSignInFailed)
         : Authenticated(user);
   }
 

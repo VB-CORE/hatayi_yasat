@@ -13,6 +13,9 @@ final class FirebaseAuthService implements AuthService {
   final GoogleSignIn _googleSignIn;
   final Logger _logger = Logger();
 
+  // TODO(auth): Firestore users/{uid} koleksiyonu hazır olunca burada
+  // gerçek AppUser (role dahil) dönülecek. Şu an bilinçli olarak her zaman
+  // null dönüyoruz — session persistence mock akışla test ediliyor.
   @override
   Stream<AppUser?> get userStream => _auth.authStateChanges().map(
     (user) => null,

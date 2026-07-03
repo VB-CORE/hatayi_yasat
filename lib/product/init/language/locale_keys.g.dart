@@ -310,6 +310,9 @@ abstract class  LocaleKeys {
   static const auth_signIn_guest = 'auth.signIn.guest';
   static const auth_signIn = 'auth.signIn';
   static const auth_legal = 'auth.legal';
+  static const auth_error_generic = 'auth.error.generic';
+  static const auth_error_googleSignInFailed = 'auth.error.googleSignInFailed';
+  static const auth_error = 'auth.error';
   static const auth = 'auth';
   static const historyPage_welcomeTitle = 'historyPage.welcomeTitle';
   static const historyPage_welcomeDescription = 'historyPage.welcomeDescription';

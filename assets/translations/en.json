@@ -358,7 +358,11 @@
       "apple": "Continue with Apple",
       "guest": "Continue as Guest"
     },
-    "legal": "By continuing, you accept the terms of use and KVKK."
+    "legal": "By continuing, you accept the terms of use and KVKK.",
+    "error": {
+      "generic": "Something went wrong while signing in, please try again.",
+      "googleSignInFailed": "Google sign-in failed, please try again."
+    }
   },
   "historyPage": {
     "welcomeTitle": "Our Memories Are Alive with Us",

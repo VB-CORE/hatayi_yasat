@@ -51,6 +51,7 @@ final class _LoginViewState extends ConsumerState<LoginView>
               isLoading: isLoading,
             ),
             const EmptyBox.middleHeight(),
+            // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
             AppleSignInButton(
               text: LocaleKeys.auth_signIn_apple.tr(),
               onTap: () {},
