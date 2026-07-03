@@ -8,9 +8,9 @@ import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
-// GoRouter's refreshListenable requires a ChangeNotifier; ChangeNotifierProvider
-// was removed in flutter_riverpod v3, so this is exposed via a plain Provider
-// instead of following the Equatable+copyWith state pattern.
+// GoRouter'ın refreshListenable'ı ChangeNotifier gerektiriyor; ChangeNotifierProvider
+// flutter_riverpod v3'te kaldırıldığı için bu, Equatable+copyWith state pattern'i
+// yerine düz bir Provider üzerinden dışa açılıyor.
 final class RouterNotifier extends ChangeNotifier {
   RouterNotifier(this._ref) {
     _ref.listen<AuthState>(authViewModelProvider, (_, _) => notifyListeners());

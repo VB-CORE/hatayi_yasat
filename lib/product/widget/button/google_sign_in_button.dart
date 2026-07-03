@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/button/social_sign_in_button.dart';
 
 final class GoogleSignInButton extends StatelessWidget {
   const GoogleSignInButton({
@@ -17,38 +17,14 @@ final class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    return SizedBox(
-      width: double.infinity,
-      height: 51,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: context.general.colorScheme.surface,
-          foregroundColor: context.general.colorScheme.onSurface,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-            side: BorderSide(color: context.general.colorScheme.outlineVariant),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.svg.svgGoogleIcon.svg(width: 20, height: 20),
-            const EmptyBox.smallWidth(),
-            Text(
-              text,
-              style: context.general.textTheme.titleMedium?.copyWith(
-                color: context.general.colorScheme.onSurface,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
+    return SocialSignInButton(
+      text: text,
+      onTap: onTap,
+      isLoading: isLoading,
+      backgroundColor: context.general.colorScheme.surface,
+      foregroundColor: context.general.colorScheme.onSurface,
+      border: BorderSide(color: context.general.colorScheme.outlineVariant),
+      icon: Assets.svg.svgGoogleIcon.svg(width: 20, height: 20),
     );
   }
 }

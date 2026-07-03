@@ -43,7 +43,6 @@ dependencies:
   google_fonts: ^7.0.2
   lottie: ^3.1.2
   flutter_svg: ^2.0.9
-  sign_in_button: ^5.0.0
 
   #firebase
   firebase_core: ^3.9.0

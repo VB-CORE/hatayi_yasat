@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:logger/logger.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService()
@@ -10,6 +11,7 @@ final class FirebaseAuthService implements AuthService {
 
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final Logger _logger = Logger();
 
   @override
   Stream<AppUser?> get userStream => _auth.authStateChanges().map(
@@ -36,7 +38,8 @@ final class FirebaseAuthService implements AuthService {
         displayName: user.displayName ?? user.email ?? '',
         photoUrl: user.photoURL,
       );
-    } on Exception {
+    } on Exception catch (e, stackTrace) {
+      _logger.e('signInWithGoogle failed', error: e, stackTrace: stackTrace);
       return null;
     }
   }

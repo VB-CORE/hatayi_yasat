@@ -7,4 +7,5 @@ export 'google_sign_in_button.dart';
 export 'multiple_select_button.dart';
 export 'save_fab_button.dart';
 export 'social_media_button.dart';
+export 'social_sign_in_button.dart';
 export 'upload_shelter_button.dart';
