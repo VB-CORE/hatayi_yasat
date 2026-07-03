@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -77,7 +78,8 @@ class _TransparentBox extends StatelessWidget {
       ),
       margin: EdgeInsets.zero,
       child: Padding(
-        padding: const PagePadding.horizontalLowSymmetric() +
+        padding:
+            const PagePadding.horizontalLowSymmetric() +
             const PagePadding.verticalLowSymmetric(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +94,8 @@ class _TransparentBox extends StatelessWidget {
                 Text(
                   SpecialUser.creator.name,
                   style: context.general.textTheme.titleSmall?.copyWith(
-                    color: context.general.colorScheme.secondary,
+                    color: AppColors.surface,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -103,7 +106,7 @@ class _TransparentBox extends StatelessWidget {
                 item.title ?? '',
                 maxLines: AppConstants.kTwo,
                 style: context.general.textTheme.titleLarge?.copyWith(
-                  color: context.general.colorScheme.secondary,
+                  color: AppColors.surface,
                   fontWeight: FontWeight.bold,
                 ),
               ),

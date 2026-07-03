@@ -98,7 +98,6 @@ final class _ImageWithButtonAndNameStack extends StatelessWidget {
           child: Padding(
             padding: const PagePadding.onlyRightLow(),
             child: CircleAvatar(
-              backgroundColor: context.general.colorScheme.secondary,
               child: FavoritePlaceButton(store: model),
             ),
           ),
@@ -145,10 +144,9 @@ final class _OpenCloseTime extends StatelessWidget {
                     ? LocaleKeys.placeDetailView_nowOpen.tr()
                     : LocaleKeys.placeDetailView_nowClose.tr(),
                 style: context.general.textTheme.titleSmall?.copyWith(
-                  color:
-                      isOpenOrClose
-                          ? context.general.colorScheme.primaryContainer
-                          : context.general.colorScheme.error,
+                  color: isOpenOrClose
+                      ? context.general.colorScheme.primaryContainer
+                      : context.general.colorScheme.error,
                 ),
               ),
             ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -25,112 +26,142 @@ import 'package:lifeclient/product/widget/text/title_description_text.dart';
 part 'widget/place_detail_sub_view.dart';
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
-  const PlaceDetailView({required this.model, required this.id, super.key});
+  const PlaceDetailView({
+    required this.model,
+    required this.id,
+    super.key,
+  });
+
   final StoreModel model;
   final String id;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _PlaceDetailViewState();
+  ConsumerState<PlaceDetailView> createState() => _PlaceDetailViewState();
 }
 
-class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
+final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     with AppProviderMixin<PlaceDetailView>, PlaceDetailViewMixin {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(placeDetailViewModelProvider);
 
-    if (state.isError) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: GeneralNotFoundWidget(
-          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        ),
-      );
-    }
+    if (state.isError) return const _PlaceDetailErrorView();
 
-    if (model.documentId.isEmpty) {
-      return Scaffold(appBar: AppBar(), body: const PlaceShimmerList());
-    }
+    if (model.documentId.isEmpty) return const _PlaceDetailLoadingView();
+
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: context.general.colorScheme.primary),
-        title: Text(model.name),
-        centerTitle: true,
-        actions: [_ShareAddressButton(model: model)],
-      ),
+      appBar: _PlaceDetailAppBar(model: model),
       bottomNavigationBar: _FindThePlaceButton(
         onCallTapped: callAction,
         onFindPlaceTapped: findThePlaceAction,
       ),
-      body: ListView(
+      body: _PlaceDetailBody(model: model),
+    );
+  }
+}
+
+final class _PlaceDetailErrorView extends StatelessWidget {
+  const _PlaceDetailErrorView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: GeneralNotFoundWidget(
+        title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+      ),
+    );
+  }
+}
+
+final class _PlaceDetailLoadingView extends StatelessWidget {
+  const _PlaceDetailLoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: const PlaceShimmerList(),
+    );
+  }
+}
+
+final class _PlaceDetailAppBar extends AppBar {
+  _PlaceDetailAppBar({
+    required StoreModel model,
+  }) : super(
+         centerTitle: true,
+         title: Text(model.name),
+         actions: [_ShareAddressButton(model: model)],
+       );
+}
+
+final class _PlaceDetailBody extends StatelessWidget {
+  const _PlaceDetailBody({required this.model});
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        _PlaceDetailHeader(model: model),
+        _PlaceDetailContent(model: model),
+      ],
+    );
+  }
+}
+
+final class _PlaceDetailHeader extends StatelessWidget {
+  const _PlaceDetailHeader({required this.model});
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.sized.dynamicHeight(.4),
+      child: _ImageWithButtonAndNameStack(model: model),
+    );
+  }
+}
+
+final class _PlaceDetailContent extends StatelessWidget {
+  const _PlaceDetailContent({required this.model});
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const PagePadding.defaultPadding(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: context.sized.dynamicHeight(.4),
-            child: _ImageWithButtonAndNameStack(model: model),
-          ),
+          const EmptyBox.largeHeight(),
+          _PlaceTitleAndOwner(model: model),
           Padding(
-            padding: const PagePadding.defaultPadding(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const EmptyBox.largeHeight(),
-                Padding(
-                  padding: EdgeInsets.zero,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 7,
-                            child: GeneralContentTitle(
-                              value: model.updatedName,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            width: WidgetSizes.spacingXxlL13 / 2,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Icon(AppIcons.personPin),
-                                Expanded(child: _OwnerTitle(model: model)),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const PagePadding.onlyTopLow(),
-                        child: _TownIcon(townCode: model.townCode),
-                      ),
-                      _OpenCloseTime(model: model),
-                      Padding(
-                        padding: const PagePadding.onlyTop(),
-                        child: TitleDescription(
-                          title: LocaleKeys.placeDetailView_description.tr(),
-                          description: model.description ?? '-',
-                        ),
-                      ),
-                      const Padding(
-                        padding: PagePadding.verticalLowSymmetric(),
-                        child: Divider(
-                          height: WidgetSizes.spacingXxs / 2,
-                          thickness: .3,
-                        ),
-                      ),
-                      TitleDescription(
-                        title: LocaleKeys.placeDetailView_address.tr(),
-                        description: model.address ?? '-',
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            padding: const PagePadding.onlyTopLow(),
+            child: _TownIcon(townCode: model.townCode),
+          ),
+          _OpenCloseTime(model: model),
+          Padding(
+            padding: const PagePadding.onlyTop(),
+            child: TitleDescription(
+              title: LocaleKeys.placeDetailView_description.tr(),
+              description: model.description ?? '-',
             ),
+          ),
+          const Padding(
+            padding: PagePadding.verticalLowSymmetric(),
+            child: Divider(
+              height: WidgetSizes.spacingXxs / 2,
+              thickness: .3,
+            ),
+          ),
+          TitleDescription(
+            title: LocaleKeys.placeDetailView_address.tr(),
+            description: model.address ?? '-',
           ),
         ],
       ),
@@ -138,7 +169,39 @@ class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   }
 }
 
-class _OwnerTitle extends StatelessWidget {
+final class _PlaceTitleAndOwner extends StatelessWidget {
+  const _PlaceTitleAndOwner({required this.model});
+
+  final StoreModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 7,
+          child: GeneralContentTitle(
+            value: model.updatedName,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          width: WidgetSizes.spacingXxlL13 / 2,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(AppIcons.personPin),
+              Expanded(child: _OwnerTitle(model: model)),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+final class _OwnerTitle extends StatelessWidget {
   const _OwnerTitle({required this.model});
 
   final StoreModel model;
@@ -150,9 +213,8 @@ class _OwnerTitle extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
-        color: context.general.colorScheme.onPrimaryFixed,
         child: Padding(
-          padding: const PagePadding.horizontalVeryLowSymmetric(),
+          padding: const .symmetric(horizontal: AppSpacing.xs),
           child: GeneralContentSubTitle(
             value: model.owner,
             maxLine: 3,
@@ -171,11 +233,13 @@ final class _ShareAddressButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        '${model.updatedName} ${model.address}'.ext.share();
-      },
-      child: Icon(AppIcons.share, color: context.general.colorScheme.primary),
+    return IconButton(
+      onPressed: _shareAddress,
+      icon: const Icon(AppIcons.share),
     );
+  }
+
+  void _shareAddress() {
+    '${model.updatedName} ${model.address ?? ''}'.ext.share();
   }
 }

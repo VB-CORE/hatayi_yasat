@@ -6,8 +6,7 @@ final class _AppAboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: context.general.colorScheme.onPrimaryFixed,
+    return Card( 
       elevation: kZero,
       shape: const RoundedRectangleBorder(
         borderRadius: CustomRadius.large,
