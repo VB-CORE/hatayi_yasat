@@ -1,14 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/mixin/login_view_mixin.dart';
-import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -45,6 +42,7 @@ final class _LoginViewState extends ConsumerState<LoginView>
             const Spacer(),
             const _LoginHeroText(),
             const EmptyBox.largeHeight(),
+
             GoogleSignInButton(
               text: LocaleKeys.auth_signIn_google.tr(),
               onTap: onGoogleSignIn,
@@ -58,22 +56,6 @@ final class _LoginViewState extends ConsumerState<LoginView>
             ),
             const EmptyBox.middleHeight(),
             _LoginGuestButton(onTap: onGuestTap),
-            if (kDebugMode) ...[
-              const EmptyBox.middleHeight(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: UserRole.values
-                    .map(
-                      (role) => TextButton(
-                        onPressed: () => ref
-                            .read(authViewModelProvider.notifier)
-                            .debugSignInAs(role),
-                        child: Text('Test: ${role.name}'),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ],
             const EmptyBox.middleHeight(),
             const _LoginLegalText(),
             const EmptyBox.largeHeight(),

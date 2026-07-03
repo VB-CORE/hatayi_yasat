@@ -19,10 +19,11 @@ final class GoogleSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SocialSignInButton(
       text: text,
+      elevation: 1,
       onTap: onTap,
       isLoading: isLoading,
       backgroundColor: context.general.colorScheme.surface,
-      foregroundColor: context.general.colorScheme.onSurface,
+      foregroundColor: context.general.colorScheme.primary,
       border: BorderSide(color: context.general.colorScheme.outlineVariant),
       icon: Assets.svg.svgGoogleIcon.svg(width: 20, height: 20),
     );

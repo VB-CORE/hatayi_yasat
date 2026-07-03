@@ -19,9 +19,9 @@ final class _LoginHeroText extends StatelessWidget {
         const EmptyBox.smallHeight(),
         RichText(
           text: TextSpan(
-            style: context.general.textTheme.displaySmall?.copyWith(
+            style: context.general.textTheme.displayLarge?.copyWith(
               color: ColorsCustom.sambacus,
-              fontWeight: .bold,
+              fontWeight: .w600,
             ),
             children: [
               TextSpan(text: LocaleKeys.auth_hero_prefix.tr()),

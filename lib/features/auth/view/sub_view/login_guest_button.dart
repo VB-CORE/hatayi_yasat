@@ -14,7 +14,7 @@ final class _LoginGuestButton extends StatelessWidget {
           LocaleKeys.auth_signIn_guest.tr(),
           style: context.general.textTheme.titleSmall?.copyWith(
             decoration: TextDecoration.underline,
-            color: context.general.colorScheme.onSurface,
+            color: context.general.colorScheme.primary,
             fontWeight: FontWeight.w600,
           ),
         ),

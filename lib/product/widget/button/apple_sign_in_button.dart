@@ -22,12 +22,12 @@ final class AppleSignInButton extends StatelessWidget {
       text: text,
       onTap: onTap,
       isLoading: isLoading,
-      backgroundColor: context.general.colorScheme.onSurface,
-      foregroundColor: context.general.colorScheme.surface,
+      backgroundColor: context.general.colorScheme.primary,
+      foregroundColor: context.general.colorScheme.onPrimary,
       elevation: 1,
       icon: FaIcon(
         AppIcons.apple,
-        color: context.general.colorScheme.surface,
+        color: context.general.colorScheme.onPrimary,
       ),
     );
   }
