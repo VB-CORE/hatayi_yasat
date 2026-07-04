@@ -46,4 +46,13 @@ final class FirebaseAuthService implements AuthService {
       return null;
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
+    } on Exception catch (e, stackTrace) {
+      _logger.e('signOut failed', error: e, stackTrace: stackTrace);
+    }
+  }
 }

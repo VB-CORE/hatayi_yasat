@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/mixin/login_view_mixin.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -16,6 +19,7 @@ import 'package:lifeclient/product/widget/button/google_sign_in_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 part 'sub_view/login_app_header.dart';
+part 'sub_view/login_google_sign_in_button.dart';
 part 'sub_view/login_guest_button.dart';
 part 'sub_view/login_hero_text.dart';
 part 'sub_view/login_legal_text.dart';
@@ -43,15 +47,13 @@ final class _LoginViewState extends ConsumerState<LoginView>
             const _LoginHeroText(),
             const EmptyBox.largeHeight(),
 
-            GoogleSignInButton(
-              text: LocaleKeys.auth_signIn_google.tr(),
-              onTap: onGoogleSignIn,
-              isLoading: isLoading,
-            ),
+            _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
             const EmptyBox.middleHeight(),
             // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
             AppleSignInButton(
-              text: LocaleKeys.auth_signIn_apple.tr(),
+              text: LocaleKeys.auth_signIn_continueWith.tr(
+                namedArgs: {'provider': AuthProvider.apple.displayName},
+              ),
               onTap: () {},
             ),
             const EmptyBox.middleHeight(),

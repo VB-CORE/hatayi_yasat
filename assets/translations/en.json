@@ -350,18 +350,17 @@
       "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
       "prefix": "Let's live ",
       "highlight": "Hatay",
-      "suffix": "\ntogether.",
+      "suffix": "together.",
       "description": "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here."
     },
     "signIn": {
-      "google": "Continue with Google",
-      "apple": "Continue with Apple",
+      "continueWith": "Continue with {provider}",
       "guest": "Continue as Guest"
     },
     "legal": "By continuing, you accept the terms of use and KVKK.",
     "error": {
       "generic": "Something went wrong while signing in, please try again.",
-      "googleSignInFailed": "Google sign-in failed, please try again."
+      "failed": "{provider} sign-in failed, please try again."
     }
   },
   "historyPage": {

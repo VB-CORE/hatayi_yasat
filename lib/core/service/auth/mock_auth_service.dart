@@ -15,6 +15,9 @@ final class MockAuthService implements AuthService {
   @override
   Future<AppUser?> signInWithGoogle() async => _mockUser;
 
+  @override
+  Future<void> signOut() async {}
+
   Future<AppUser> signInAsRole(UserRole role) async => AppUser(
     uid: 'mock-${role.name}',
     email: '${role.name}@mock.com',

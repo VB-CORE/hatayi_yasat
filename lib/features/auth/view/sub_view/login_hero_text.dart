@@ -32,6 +32,7 @@ final class _LoginHeroText extends StatelessWidget {
                   color: ColorsCustom.endless,
                 ),
               ),
+              const TextSpan(text: '\n'),
               TextSpan(text: LocaleKeys.auth_hero_suffix.tr()),
             ],
           ),

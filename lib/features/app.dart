@@ -13,7 +13,7 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final applicationTheme = ApplicationTheme.build();
-    final router = ref.watch(goRouterProvider);
+    final router = ref.read(goRouterProvider);
 
     return KeyboardFocusControlWidget(
       child: MaterialApp.router(

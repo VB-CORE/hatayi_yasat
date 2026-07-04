@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
@@ -32,7 +33,7 @@ final class SocialSignInButton extends StatelessWidget {
     }
     return SizedBox(
       width: double.infinity,
-      height: 51,
+      height: WidgetSizes.spacingXxl7,
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(

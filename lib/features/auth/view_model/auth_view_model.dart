@@ -6,6 +6,7 @@ import 'package:lifeclient/core/service/auth/mock_auth_service.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -38,8 +39,16 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     state = const AuthLoading();
     final user = await authService.signInWithGoogle();
     state = user == null
-        ? const AuthError(LocaleKeys.auth_error_googleSignInFailed)
+        ? const AuthError(
+            LocaleKeys.auth_error_failed,
+            provider: AuthProvider.google,
+          )
         : Authenticated(user);
+  }
+
+  Future<void> signOut() async {
+    await authService.signOut();
+    state = const Unauthenticated();
   }
 
   // TODO(auth): Gerçek backend rol desteği gelince bu metodu kaldır.

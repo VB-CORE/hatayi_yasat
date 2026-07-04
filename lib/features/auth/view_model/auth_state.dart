@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/model/auth/auth_provider.dart';
 
 sealed class AuthState extends Equatable {
   const AuthState();
@@ -31,8 +32,9 @@ final class Authenticated extends AuthState {
 }
 
 final class AuthError extends AuthState {
-  const AuthError(this.message);
+  const AuthError(this.message, {this.provider});
   final String message;
+  final AuthProvider? provider;
   @override
-  List<Object> get props => [message];
+  List<Object?> get props => [message, provider];
 }

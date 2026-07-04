@@ -350,18 +350,17 @@
       "subtitle": "MAHALLE · MEKAN · HATIRA",
       "prefix": "Hatay'ı ",
       "highlight": "birlikte",
-      "suffix": "\nyaşatalım.",
+      "suffix": "yaşatalım.",
       "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
     },
     "signIn": {
-      "google": "Google ile devam et",
-      "apple": "Apple ile devam et",
+      "continueWith": "{provider} ile devam et",
       "guest": "Misafir olarak devam et"
     },
     "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
     "error": {
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
-      "googleSignInFailed": "Google ile giriş yapılamadı, lütfen tekrar deneyin."
+      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
     }
   },
   "historyPage": {
