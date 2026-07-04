@@ -2,7 +2,7 @@ import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/service/rate_community_service.dart';
 
 final class RateCommunityMockService implements RateCommunityService {
-  static final Map<String, Map<String, RateModel>> _votesByEsnaf = {
+  static final Map<String, Map<String, RateModel>> votesByEsnaf = {
     'place_1': {
       'mock_user_1': RateModel(
         esnafId: 'place_1',
@@ -28,23 +28,23 @@ final class RateCommunityMockService implements RateCommunityService {
   @override
   Future<List<RateModel>> fetchRates(String esnafId) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final votes = _votesByEsnaf[esnafId] ?? const <String, RateModel>{};
+    final votes = votesByEsnaf[esnafId] ?? const <String, RateModel>{};
     return votes.values.toList();
   }
 
   @override
   Future<void> rate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final votes = _votesByEsnaf.putIfAbsent(rate.esnafId, () => {});
+    final votes = votesByEsnaf.putIfAbsent(rate.esnafId, () => {});
     votes[rate.userId] = rate;
   }
 
   @override
   Future<void> changeComment(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final existing = _votesByEsnaf[rate.esnafId]?[rate.userId];
+    final existing = votesByEsnaf[rate.esnafId]?[rate.userId];
     if (existing == null) return;
-    _votesByEsnaf[rate.esnafId]![rate.userId] = existing.copyWith(
+    votesByEsnaf[rate.esnafId]![rate.userId] = existing.copyWith(
       comment: rate.comment,
     );
   }
@@ -52,6 +52,6 @@ final class RateCommunityMockService implements RateCommunityService {
   @override
   Future<void> deleteRate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    _votesByEsnaf[rate.esnafId]?.remove(rate.userId);
+    votesByEsnaf[rate.esnafId]?.remove(rate.userId);
   }
 }

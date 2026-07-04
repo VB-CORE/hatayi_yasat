@@ -8,6 +8,7 @@ import 'package:lifeclient/features/community/rate/view/mixin/rate_community_mix
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/general/general_button.dart';
 import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
@@ -82,7 +83,7 @@ class _RateCardHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.verified_user, size: 24, color: accent),
-            const SizedBox(width: 4),
+            const EmptyBox.smallWidth(),
             Text(
               LocaleKeys.rate_trustQuestion.tr(),
               style: context.general.textTheme.titleMedium?.copyWith(
@@ -125,13 +126,13 @@ class _RateCommentSection extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 4),
+        const EmptyBox.smallHeight(),
         CustomTextFormMultiField(
           hint: '2 kişi oyladı - ort:4.5',
           controller: controller,
           validator: ValidatorNormalTextField(),
         ),
-        const SizedBox(height: 12),
+        const EmptyBox.middleHeight(),
         GeneralButtonV2.active(
           label: LocaleKeys.button_send.tr(),
           isEnabled: canSubmit,
