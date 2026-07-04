@@ -305,13 +305,12 @@ abstract class  LocaleKeys {
   static const auth_hero_suffix = 'auth.hero.suffix';
   static const auth_hero_description = 'auth.hero.description';
   static const auth_hero = 'auth.hero';
-  static const auth_signIn_google = 'auth.signIn.google';
-  static const auth_signIn_apple = 'auth.signIn.apple';
+  static const auth_signIn_continueWith = 'auth.signIn.continueWith';
   static const auth_signIn_guest = 'auth.signIn.guest';
   static const auth_signIn = 'auth.signIn';
   static const auth_legal = 'auth.legal';
   static const auth_error_generic = 'auth.error.generic';
-  static const auth_error_googleSignInFailed = 'auth.error.googleSignInFailed';
+  static const auth_error_failed = 'auth.error.failed';
   static const auth_error = 'auth.error';
   static const auth = 'auth';
   static const historyPage_welcomeTitle = 'historyPage.welcomeTitle';
