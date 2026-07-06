@@ -5,81 +5,58 @@ final class DiscountCouponMock {
 
   static final DateTime _now = DateTime.now();
 
-  static final List<DiscountCouponModel> _items = [
+  static final List<DiscountCouponModel> mockDiscountCoupons = [
     DiscountCouponModel(
       documentId: 'coupon_1',
-      code: 'HATAY20',
-      name: 'Yaz indirimi',
-      discountRate: 20,
       storeId: 'store_1',
+      desc: 'Yaz indirimi',
+      discountRate: 20,
       storeName: 'Defne Kahve',
       createdBy: 'user_1',
-      isActive: true,
       expiresAt: _now.add(const Duration(days: 30)),
+      usageCount: 25,
+      usageLimit: 10000,
+      createdAt: _now,
+      updatedAt: _now,
+    ),
+    DiscountCouponModel(
+      documentId: 'coupon_1',
+      storeId: 'store_1',
+      desc: 'İndirim kuponu',
+      discountRate: 20,
+      storeName: 'Defne Kahve',
+      createdBy: 'user_1',
+      expiresAt: _now.add(const Duration(days: 30)),
+      usageCount: 25,
+
       createdAt: _now,
       updatedAt: _now,
     ),
     DiscountCouponModel(
       documentId: 'coupon_2',
-      code: 'KAHVE15',
-      name: 'Kahve molası',
-      discountRate: 15,
       storeId: 'store_2',
+      desc: 'Kahve molası',
+      discountRate: 15,
       storeName: 'Antakya Coffee',
       createdBy: 'user_2',
-      isActive: true,
-      expiresAt: _now.add(const Duration(days: 45)),
+      expiresAt: _now.subtract(const Duration(days: 45)),
+      usageCount: 10,
+      usageLimit: 50,
       createdAt: _now,
       updatedAt: _now,
     ),
     DiscountCouponModel(
       documentId: 'coupon_3',
-      code: 'TATLI10',
-      name: 'Tatlı indirimi',
-      discountRate: 10,
       storeId: 'store_3',
+      desc: 'Tatlı indirimi',
+      discountRate: 10,
       storeName: 'Mozaik Tatlı',
       createdBy: 'user_3',
-      isActive: false,
       expiresAt: _now.add(const Duration(days: 60)),
+      usageCount: 25,
+      usageLimit: 25,
       createdAt: _now,
       updatedAt: _now,
     ),
   ];
-
-  static List<DiscountCouponModel> get mockDiscountCoupons =>
-      List.unmodifiable(_items);
-
-  static DiscountCouponModel add(DiscountCouponModel coupon) {
-    final now = DateTime.now();
-
-    final item = coupon.copyWith(
-      documentId: coupon.documentId.isEmpty
-          ? 'coupon_${now.microsecondsSinceEpoch}'
-          : coupon.documentId,
-      createdAt: coupon.createdAt ?? now,
-      updatedAt: now,
-    );
-
-    _items.add(item);
-    return item;
-  }
-
-  static DiscountCouponModel? update(DiscountCouponModel coupon) {
-    final index = _items.indexWhere(
-      (item) => item.documentId == coupon.documentId,
-    );
-    if (index == -1) return null;
-
-    final item = coupon.copyWith(updatedAt: DateTime.now());
-    _items[index] = item;
-    return item;
-  }
-
-  static bool delete(String documentId) {
-    final index = _items.indexWhere((item) => item.documentId == documentId);
-    if (index == -1) return false;
-    _items.removeAt(index);
-    return true;
-  }
 }

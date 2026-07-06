@@ -105,7 +105,6 @@ dependencies:
   file_picker: ^10.3.8
   sliver_tools: ^0.2.12
   hugeicons: ^1.1.5
-  ticketcher: ^2.2.0
   material_symbols_icons: ^4.2951.0
 
 dependency_overrides:

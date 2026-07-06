@@ -8,6 +8,7 @@ import 'package:lifeclient/features/details/view/place_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
+import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
@@ -88,9 +89,9 @@ final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
-        model: $extra,
-        id: id,
-      );
+    model: $extra,
+    id: id,
+  );
 }
 
 final class FilterRoute extends GoRouteData with $FilterRoute {
@@ -107,8 +108,8 @@ final class FilterRoute extends GoRouteData with $FilterRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterSearchView(
-        selectedCategoryId: $extra,
-      );
+    selectedCategoryId: $extra,
+  );
 }
 
 final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
@@ -123,8 +124,8 @@ final class FilterResultRoute extends GoRouteData with $FilterResultRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => FilterResultView(
-        filter: $extra,
-      );
+    filter: $extra,
+  );
 }
 
 final class PlaceRequestFormRoute extends GoRouteData
@@ -214,11 +215,37 @@ final class MonetizationRoute extends GoRouteData with $MonetizationRoute {
   static const route = TypedGoRoute<MonetizationRoute>(
     path: 'monetization',
     name: 'Monetization',
+    routes: [
+      MonetizationCouponFormRoute.route,
+    ],
   );
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const MonetizationView();
+}
+
+final class MonetizationCouponFormRoute extends GoRouteData
+    with $MonetizationCouponFormRoute {
+  const MonetizationCouponFormRoute();
+
+  static const route = TypedGoRoute<MonetizationCouponFormRoute>(
+    path: 'couponForm',
+    name: 'Monetization Coupon Form',
+  );
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage<void>(
+      key: state.pageKey,
+      fullscreenDialog: true,
+      child: build(context, state),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MonetizationCouponFormView();
 }
 
 final class TurismRoute extends GoRouteData with $TurismRoute {

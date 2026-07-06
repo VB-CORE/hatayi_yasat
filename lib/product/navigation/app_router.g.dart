@@ -73,6 +73,13 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       path: 'monetization',
       name: 'Monetization',
       factory: $MonetizationRoute._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'couponForm',
+          name: 'Monetization Coupon Form',
+          factory: $MonetizationCouponFormRoute._fromState,
+        ),
+      ],
     ),
     GoRouteData.$route(
       path: 'turism',
@@ -220,6 +227,27 @@ mixin $MonetizationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/monetization');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MonetizationCouponFormRoute on GoRouteData {
+  static MonetizationCouponFormRoute _fromState(GoRouterState state) =>
+      const MonetizationCouponFormRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/monetization/couponForm');
 
   @override
   void go(BuildContext context) => context.go(location);

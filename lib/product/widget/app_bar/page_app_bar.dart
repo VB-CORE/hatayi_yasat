@@ -10,18 +10,19 @@ final class PageAppBar extends AppBar {
     required String pageTitle,
     super.actions,
     super.automaticallyImplyLeading,
+    super.actionsPadding,
     super.key,
   }) : super(
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          centerTitle: false,
-          title: GeneralContentTitle(
-            value: pageTitle.tr(),
-            fontWeight: FontWeight.bold,
-          ),
-        );
+         bottom: PreferredSize(
+           preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
+           child: Divider(
+             height: AppConstants.kOne.toDouble(),
+           ),
+         ),
+         centerTitle: false,
+         title: GeneralContentTitle(
+           value: pageTitle.tr(),
+           fontWeight: FontWeight.bold,
+         ),
+       );
 }

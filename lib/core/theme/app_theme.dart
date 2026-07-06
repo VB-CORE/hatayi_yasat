@@ -84,7 +84,7 @@ final class ApplicationTheme {
           vertical: AppSpacing.sm,
         ),
         labelStyle: AppText.body.copyWith(color: AppColors.ink600),
-        hintStyle: AppText.body.copyWith(color: AppColors.ink600),
+        hintStyle: AppText.body.copyWith(color: AppColors.ink500),
         enabledBorder: _inputBorder(AppColors.ink100),
         focusedBorder: _inputBorder(AppColors.navy),
         errorBorder: _inputBorder(AppColors.coral),

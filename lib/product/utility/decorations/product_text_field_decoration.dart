@@ -11,9 +11,6 @@ class ProductTextFieldDecoration extends InputDecoration {
         focusedBorder: focusedBorderStyle(context),
         border: standardBorder(context),
         hintText: hintText,
-        hintStyle: context.general.textTheme.titleSmall?.copyWith(
-          color: context.general.colorScheme.onSecondaryFixed,
-        ),
       );
 
   static OutlineInputBorder focusedBorderStyle(BuildContext context) {
