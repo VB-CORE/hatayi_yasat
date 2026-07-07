@@ -38,6 +38,8 @@ final class AppIcons {
   static const IconData favoriteBorder = Icons.favorite_border_outlined;
 
   static const FaIconData sendMessage = FontAwesomeIcons.whatsapp;
+  static const FaIconData apple = FontAwesomeIcons.apple;
+
   static const FaIconData twitter = FontAwesomeIcons.xTwitter;
   static const IconData mail = Icons.mail_outline;
   static const IconData notifications = Icons.notifications_outlined;

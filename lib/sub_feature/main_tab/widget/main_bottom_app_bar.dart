@@ -51,7 +51,7 @@ class _TabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       padding: EdgeInsets.zero,
-      dividerColor: ColorsCustom.transparent,
+      dividerColor: Colors.transparent,
       labelPadding: EdgeInsets.zero,
       indicator: const BoxDecoration(),
       unselectedLabelColor:
