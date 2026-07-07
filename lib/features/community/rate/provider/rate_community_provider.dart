@@ -42,7 +42,7 @@ final class RateCommunityProvider extends _$RateCommunityProvider
 
   Future<void> submit({String? comment}) async {
     if (state.isReadOnly) return;
-    state = state.copyWith(isSubmitting: true);
+    state = state.copyWith(isSubmitting: true, isActionError: false);
     final vote = RateModel(
       esnafId: esnafId,
       userId: _currentUserId,
@@ -51,38 +51,50 @@ final class RateCommunityProvider extends _$RateCommunityProvider
       counted: false,
       comment: comment,
     );
-    await ref.read(rateCommunityServiceProvider).rate(vote);
-    state = state.copyWith(
-      vote: vote,
-      comments: [vote, ...state.comments],
-      isSubmitting: false,
-    );
+    try {
+      await ref.read(rateCommunityServiceProvider).rate(vote);
+      state = state.copyWith(
+        vote: vote,
+        comments: [vote, ...state.comments],
+        isSubmitting: false,
+      );
+    } on Exception {
+      state = state.copyWith(isSubmitting: false, isActionError: true);
+    }
   }
 
   Future<void> editComment(String? newComment) async {
     final currentVote = state.vote;
     if (currentVote == null) return;
     final updated = currentVote.copyWith(comment: newComment);
-    await ref.read(rateCommunityServiceProvider).changeComment(updated);
-    state = state.copyWith(
-      vote: updated,
-      comments: [
-        for (final comment in state.comments)
-          if (comment.userId == updated.userId) updated else comment,
-      ],
-    );
+    try {
+      await ref.read(rateCommunityServiceProvider).changeComment(updated);
+      state = state.copyWith(
+        vote: updated,
+        comments: [
+          for (final comment in state.comments)
+            if (comment.userId == updated.userId) updated else comment,
+        ],
+      );
+    } on Exception {
+      state = state.copyWith(isActionError: true);
+    }
   }
 
   Future<void> deleteVote() async {
     final currentVote = state.vote;
     if (currentVote == null) return;
-    await ref.read(rateCommunityServiceProvider).deleteRate(currentVote);
-    state = state.copyWith(
-      clearVote: true,
-      draftRate: 0,
-      comments: state.comments
-          .where((c) => c.userId != currentVote.userId)
-          .toList(),
-    );
+    try {
+      await ref.read(rateCommunityServiceProvider).deleteRate(currentVote);
+      state = state.copyWith(
+        clearVote: true,
+        draftRate: 0,
+        comments: state.comments
+            .where((c) => c.userId != currentVote.userId)
+            .toList(),
+      );
+    } on Exception {
+      state = state.copyWith(isActionError: true);
+    }
   }
 }

@@ -42,9 +42,7 @@ final class GeneralTextDialog extends StatelessWidget {
   }
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: backgroundColor ?? context.general.colorScheme.secondary,
       title: GeneralSubTitle(value: title),

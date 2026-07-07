@@ -15,7 +15,7 @@ import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-final class CommunityList extends ConsumerStatefulWidget {
+final class CommunityList extends ConsumerWidget {
   const CommunityList({
     required this.model,
     super.key,
@@ -24,37 +24,33 @@ final class CommunityList extends ConsumerStatefulWidget {
   final MockCommunityModel model;
 
   @override
-  ConsumerState<CommunityList> createState() => _CommunityListState();
-}
-
-final class _CommunityListState extends ConsumerState<CommunityList> {
-  @override
-  Widget build(BuildContext context) {
-    final state = ref.watch(
-      rateCommunityProviderProvider(widget.model.esnafId),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isReadOnly = ref.watch(
+      rateCommunityProviderProvider(
+        model.esnafId,
+      ).select((state) => state.isReadOnly),
     );
 
     return Column(
       children: [
-        if (widget.model.isComment)
+        if (model.isComment)
           _CommentListBody(
-            state: state,
-            esnafId: widget.model.esnafId,
+            esnafId: model.esnafId,
           ),
 
         Padding(
           padding: const PagePadding.vertical12Symmetric(),
           child: GeneralButtonV2.active(
-            label: _buttonLabel(state),
-            isBorderless: widget.model.isComment,
-            isEnabled: widget.model.isComment && !state.isReadOnly,
+            label: _buttonLabel(isReadOnly),
+            isBorderless: model.isComment,
+            isEnabled: model.isComment && !isReadOnly,
             action: () async {
-              if (!widget.model.isComment || state.isReadOnly) return;
+              if (!model.isComment || isReadOnly) return;
               if (!MockAuth.isAuthenticated) {
                 await _showLoginRequiredDialog(context);
                 return;
               }
-              await RateCard.show(context, esnafId: widget.model.esnafId);
+              await RateCard.show(context, esnafId: model.esnafId);
             },
           ),
         ),
@@ -62,9 +58,9 @@ final class _CommunityListState extends ConsumerState<CommunityList> {
     );
   }
 
-  String _buttonLabel(RateCommunityState state) {
-    if (!widget.model.isComment) return LocaleKeys.rate_commentingDisabled.tr();
-    if (state.isReadOnly) return LocaleKeys.rate_commentAdded.tr();
+  String _buttonLabel(bool isReadOnly) {
+    if (!model.isComment) return LocaleKeys.rate_commentingDisabled.tr();
+    if (isReadOnly) return LocaleKeys.rate_commentAdded.tr();
     return LocaleKeys.rate_addComment.tr();
   }
 
@@ -92,41 +88,60 @@ final class _CommunityListState extends ConsumerState<CommunityList> {
 }
 
 final class _CommentListBody extends ConsumerWidget {
-  const _CommentListBody({required this.esnafId, required this.state});
+  const _CommentListBody({required this.esnafId});
   final String esnafId;
-  final RateCommunityState state;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (state.isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    if (state.isError) {
-      return GeneralContentSubTitle(
-        value: LocaleKeys.message_somethingWentWrong.tr(),
-        textAlign: TextAlign.center,
-      );
-    }
-    if (state.comments.isEmpty) {
-      return GeneralContentSubTitle(
-        value: LocaleKeys.rate_noCommentsYet.tr(),
-        textAlign: TextAlign.center,
-      );
-    }
-    final notifier = ref.read(rateCommunityProviderProvider(esnafId).notifier);
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: state.comments.length,
-      itemBuilder: (context, index) {
-        final comment = state.comments[index];
-        final isOwn = state.vote?.userId == comment.userId;
-        return CommentCard(
-          rateModel: comment,
-          onEdit: isOwn ? () => RateCard.show(context, esnafId: esnafId) : null,
-          onDelete: isOwn ? notifier.deleteVote : null,
+    final state = ref.watch(rateCommunityProviderProvider(esnafId));
+    switch (state.listStatus) {
+      case _CommunityListStatus.loading:
+        return const Center(
+          child: CircularProgressIndicator(),
         );
-      },
-    );
+
+      case _CommunityListStatus.error:
+        return GeneralContentSubTitle(
+          value: LocaleKeys.message_somethingWentWrong.tr(),
+          textAlign: TextAlign.center,
+        );
+
+      case _CommunityListStatus.empty:
+        return GeneralContentSubTitle(
+          value: LocaleKeys.rate_noCommentsYet.tr(),
+          textAlign: TextAlign.center,
+        );
+      case _CommunityListStatus.loaded:
+        final notifier = ref.read(
+          rateCommunityProviderProvider(esnafId).notifier,
+        );
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: state.comments.length,
+          itemBuilder: (context, index) {
+            final comment = state.comments[index];
+            final isOwn = state.vote?.userId == comment.userId;
+            return CommentCard(
+              rateModel: comment,
+              onEdit: isOwn
+                  ? () => RateCard.show(context, esnafId: esnafId)
+                  : null,
+              onDelete: isOwn ? notifier.deleteVote : null,
+            );
+          },
+        );
+    }
+  }
+}
+
+enum _CommunityListStatus { loading, error, empty, loaded }
+
+extension on RateCommunityState {
+  _CommunityListStatus get listStatus {
+    if (isLoading) return _CommunityListStatus.loading;
+    if (isError) return _CommunityListStatus.error;
+    if (comments.isEmpty) return _CommunityListStatus.empty;
+    return _CommunityListStatus.loaded;
   }
 }

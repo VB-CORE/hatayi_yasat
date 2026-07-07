@@ -80,7 +80,6 @@ class CommentCard extends ConsumerWidget {
                       itemSize: AppIconSizes.smallX,
                       value: rateModel.rate,
                       isReadOnly: true,
-                      onRatingUpdate: (value) {},
                     ),
                     GeneralContentSmallTitle(
                       value: ' - ${rateModel.createdAt.timeAgo}',
@@ -105,10 +104,11 @@ class CommentCard extends ConsumerWidget {
   Future<void> _showCommentOptions(BuildContext context) async {
     final result = await CommentOptionsSheet.show(context);
     if (result == null) return;
-    if (result == CommentOptionAction.delete) {
-      onDelete?.call();
-    } else {
-      onEdit?.call();
+    switch (result) {
+      case CommentOptionAction.delete:
+        onDelete?.call();
+      case CommentOptionAction.edit:
+        onEdit?.call();
     }
   }
 }

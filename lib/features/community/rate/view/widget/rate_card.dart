@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_provider.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_community_mixin.dart';
@@ -30,7 +31,7 @@ class RateCard extends ConsumerStatefulWidget {
       ),
       builder: (sheetContext) => Padding(
         padding: EdgeInsets.only(
-          bottom: MediaQuery.viewInsetsOf(sheetContext).bottom,
+          bottom: sheetContext.general.keyboardPadding,
         ),
         child: RateCard(
           esnafId: esnafId,
