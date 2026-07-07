@@ -4,28 +4,46 @@ import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 final class RateCommunityState extends Equatable {
   const RateCommunityState({
     this.vote,
+    this.comments = const [],
     this.isLoading = false,
     this.isSubmitting = false,
+    this.isError = false,
     this.draftRate = 0,
   });
   final RateModel? vote;
+  final List<RateModel> comments;
   final bool isLoading;
   final bool isSubmitting;
   final double draftRate;
+  final bool isError;
   bool get isReadOnly => vote != null;
-  double get value => vote?.rate ?? 0;
+  double get value => isReadOnly ? vote!.rate : draftRate;
   bool get canSubmit => vote == null && draftRate > 0 && !isSubmitting;
   @override
-  List<Object?> get props => [vote, isLoading, isSubmitting, draftRate];
+  List<Object?> get props => [
+    vote,
+    comments,
+    draftRate,
+    isLoading,
+    isSubmitting,
+    isError,
+  ];
+
   RateCommunityState copyWith({
     RateModel? vote,
+    List<RateModel>? comments,
+    double? draftRate,
     bool? isLoading,
     bool? isSubmitting,
-    double? draftRate,
+    bool? isError,
+    bool clearVote = false,
   }) => RateCommunityState(
-    vote: vote ?? this.vote,
+    vote: clearVote ? null : (vote ?? this.vote),
+
+    comments: comments ?? this.comments,
+    draftRate: draftRate ?? this.draftRate,
     isLoading: isLoading ?? this.isLoading,
     isSubmitting: isSubmitting ?? this.isSubmitting,
-    draftRate: draftRate ?? this.draftRate,
+    isError: isError ?? this.isError,
   );
 }

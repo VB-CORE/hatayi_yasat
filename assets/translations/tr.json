@@ -45,7 +45,8 @@
     "error": "Hata",
     "more": "Daha fazla",
     "understood": "Anladım",
-    "send": "Gönder"
+    "send": "Gönder",
+    "login": "Giriş Yap"
   },
   "component": {
     "mapPicker": {
@@ -127,7 +128,24 @@
     "singleVoteHint": "Tek bir oy hakkın var.",
     "rateThankYou": "Oyunuz alındı, teşekkürler.",
     "voteRecorded": "Oyunuz kaydedildi.",
-    "evaluatePlace": "Mekanı değerlendir"
+    "evaluatePlace": "Mekanı değerlendir",
+    "addComment": "Yorum Ekle",
+    "noCommentsYet": "Henüz yorum yok",
+    "commentHint": "Deneyimini paylaş...",
+    "commentingDisabled": "Yorum yapma özelliği kapatıldı",
+    "editComment": "Yorumunu düzenle",
+    "commentAdded": "Yorum eklendi",
+    "deleteComment": "Yorumunu sil",
+    "loginRequiredTitle": "Giriş yapmadınız",
+    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor."
+  },
+  "date": {
+    "justNow": "Az önce",
+    "minutesAgo": "{} dakika önce",
+    "hoursAgo": "{} saat önce",
+    "daysAgo": "{} gün önce",
+    "monthsAgo": "{} ay önce",
+    "yearsAgo": "{} yıl önce"
   },
   "search": {
     "latestSearch": "Son Aramalar",

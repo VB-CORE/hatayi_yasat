@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 /// This class is for app icons.
 final class AppIcons {
   AppIcons._();
-
+  static const IconData star = Icons.star;
+  static const IconData verifiedUser = Icons.verified_user;
   static const IconData close = Icons.close_outlined;
   static const IconData info = Icons.info_outlined;
   static const IconData add = Icons.add_outlined;
@@ -57,4 +58,5 @@ final class AppIcons {
   static const IconData collections = Icons.collections_outlined;
 
   static const IconData tree = Icons.forest_outlined;
+  static const IconData edit = Icons.edit;
 }

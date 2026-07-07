@@ -19,6 +19,9 @@ final class AppIconSizes {
   /// size is [28]
   static const double large = 28;
 
+  /// size is [40]
+  static const double largeX = 40;
+
   /// size is [50]
   static const double xLarge = 50;
 }

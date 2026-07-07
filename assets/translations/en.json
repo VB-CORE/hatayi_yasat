@@ -45,7 +45,8 @@
     "error": "Error",
     "more": "More",
     "understood": "Understood",
-    "send": "Send"
+    "send": "Send",
+    "login": "Login"
   },
   "component": {
     "mapPicker": {
@@ -127,7 +128,24 @@
     "singleVoteHint": "You only have one vote.",
     "rateThankYou": "Your vote has been received, thank you.",
     "voteRecorded": "Your vote has been recorded.",
-    "evaluatePlace": "Evaluate the place"
+    "evaluatePlace": "Evaluate the place",
+    "addComment": "Add Comment",
+    "noCommentsYet": "No comments yet",
+    "commentHint": "Share your experience...",
+    "commentingDisabled": "Commenting has been disabled",
+    "editComment": "Edit your comment",
+    "commentAdded": "Comment added",
+    "deleteComment": "Delete your comment",
+    "loginRequiredTitle": "You're not logged in",
+    "loginRequiredContent": "You need to log in to add a comment."
+  },
+  "date": {
+    "justNow": "Just now",
+    "minutesAgo": "{} minutes ago",
+    "hoursAgo": "{} hours ago",
+    "daysAgo": "{} days ago",
+    "monthsAgo": "{} months ago",
+    "yearsAgo": "{} years ago"
   },
   "search": {
     "latestSearch": "Latest Searches",

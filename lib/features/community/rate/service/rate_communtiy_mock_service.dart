@@ -12,6 +12,26 @@ final class RateCommunityMockService implements RateCommunityService {
         createdAt: DateTime(2026, 6, 28),
         comment: 'Çok temiz ve ilgili bir esnaf, tavsiye ederim.',
       ),
+      'mock_user_2': RateModel(
+        esnafId: 'place_1',
+        userId: 'mock_user_2',
+        rate: 2,
+        counted: true,
+        createdAt: DateTime(2026, 6, 29),
+        comment: 'Fiyatlar biraz yüksek, ortalama bir deneyimdi.',
+      ),
+      'mock_user_3': RateModel(
+        esnafId: 'place_1',
+        userId: 'mock_user_3',
+        rate: 1,
+        counted: true,
+        createdAt: DateTime(2026, 6, 29),
+        comment:
+            'Maalesef beklentimin çok altında bir deneyim yaşadım. Personel '
+            'ilgisizdi, siparişim geç geldi ve ürün kalitesi hiç tatmin edici '
+            'değildi. Bu fiyata çok daha iyi bir hizmet bekliyordum, bir daha '
+            'tercih etmeyi düşünmüyorum.',
+      ),
     },
     'place_2': {
       'mock_user_2': RateModel(

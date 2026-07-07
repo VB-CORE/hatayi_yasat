@@ -19,4 +19,5 @@ final class ColorsCustom {
   static const Color transparent = Color(0x00000000);
   static const Color black = Color(0xFF000000);
   static const Color green = Color(0xFF00FF00);
+  static const Color gold = Color(0xFFFFC107);
 }

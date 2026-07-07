@@ -11,7 +11,7 @@ part 'rate_community_provider.g.dart';
 @riverpod
 final class RateCommunityProvider extends _$RateCommunityProvider
     with ProjectDependencyMixin {
-  static const String _currentUserId = 'mock_user_3';
+  static const String _currentUserId = 'mock_user_4';
 
   @override
   RateCommunityState build(String esnafId) {
@@ -20,13 +20,22 @@ final class RateCommunityProvider extends _$RateCommunityProvider
   }
 
   Future<void> _loadVotes() async {
-    final votes = await ref
-        .read(rateCommunityServiceProvider)
-        .fetchRates(esnafId);
-    final myVote = votes.firstWhereOrNull(
-      (vote) => vote.userId == _currentUserId,
-    );
-    state = state.copyWith(vote: myVote, isLoading: false);
+    try {
+      final comments = await ref
+          .read(rateCommunityServiceProvider)
+          .fetchRates(esnafId);
+      comments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      final myVote = comments.firstWhereOrNull(
+        (vote) => vote.userId == _currentUserId,
+      );
+      state = state.copyWith(
+        vote: myVote,
+        comments: comments,
+        isLoading: false,
+      );
+    } on Exception {
+      state = state.copyWith(isLoading: false, isError: true);
+    }
   }
 
   void selectRating(double value) => state = state.copyWith(draftRate: value);
@@ -43,7 +52,11 @@ final class RateCommunityProvider extends _$RateCommunityProvider
       comment: comment,
     );
     await ref.read(rateCommunityServiceProvider).rate(vote);
-    state = state.copyWith(vote: vote, isSubmitting: false);
+    state = state.copyWith(
+      vote: vote,
+      comments: [vote, ...state.comments],
+      isSubmitting: false,
+    );
   }
 
   Future<void> editComment(String? newComment) async {
@@ -51,13 +64,25 @@ final class RateCommunityProvider extends _$RateCommunityProvider
     if (currentVote == null) return;
     final updated = currentVote.copyWith(comment: newComment);
     await ref.read(rateCommunityServiceProvider).changeComment(updated);
-    state = state.copyWith(vote: updated);
+    state = state.copyWith(
+      vote: updated,
+      comments: [
+        for (final comment in state.comments)
+          if (comment.userId == updated.userId) updated else comment,
+      ],
+    );
   }
 
   Future<void> deleteVote() async {
     final currentVote = state.vote;
     if (currentVote == null) return;
     await ref.read(rateCommunityServiceProvider).deleteRate(currentVote);
-    state = const RateCommunityState();
+    state = state.copyWith(
+      clearVote: true,
+      draftRate: 0,
+      comments: state.comments
+          .where((c) => c.userId != currentVote.userId)
+          .toList(),
+    );
   }
 }

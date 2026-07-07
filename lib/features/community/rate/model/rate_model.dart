@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-final class RateModel with EquatableMixin {
-  RateModel({
+final class RateModel extends Equatable {
+  const RateModel({
     required this.userId,
     required this.esnafId,
     required this.counted,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/index.dart';
 
 class AppRatingWidget extends StatelessWidget {
   const AppRatingWidget({
@@ -20,15 +22,13 @@ class AppRatingWidget extends StatelessWidget {
     return RatingBar.builder(
       itemSize: itemSize,
       initialRating: value ?? 0,
-      minRating: 0.5,
       glow: false,
       ignoreGestures: isReadOnly,
-      unratedColor: const Color(0xFFE1E7EE),
+      unratedColor: ColorsCustom.lightGray,
       itemPadding: const PagePadding.generalIconLowAll(),
       itemBuilder: (context, _) => const Icon(
-        Icons.star,
-
-        color: Colors.amber,
+        AppIcons.star,
+        color: ColorsCustom.gold,
       ),
       onRatingUpdate: (value) => onRatingUpdate?.call(value),
     );
