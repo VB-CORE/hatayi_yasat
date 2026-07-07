@@ -8,20 +8,23 @@ import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
-  Future<void> onGoogleSignIn() async {
-    await ref.read(authViewModelProvider.notifier).signInWithGoogle();
-    if (!mounted) return;
-    final state = ref.read(authViewModelProvider);
-    if (state is AuthError) {
-      final provider = state.provider;
+  @override
+  void initState() {
+    super.initState();
+    ref.listenManual<AuthState>(authViewModelProvider, (previous, next) {
+      if (next is! AuthError) return;
+      final provider = next.provider;
       final message = provider == null
-          ? state.message.tr()
-          : state.message.tr(
+          ? next.message.tr()
+          : next.message.tr(
               namedArgs: {AuthProvider.argKey: provider.displayName},
             );
       appProvider.showSnackbarMessage(message);
-    }
+    });
   }
+
+  Future<void> onGoogleSignIn() =>
+      ref.read(authViewModelProvider.notifier).signInWithGoogle();
 
   void onGuestTap() => const MainTabRoute().go(context);
 }

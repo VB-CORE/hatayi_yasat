@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
@@ -41,11 +41,8 @@ final class FirebaseAuthService implements AuthService {
         photoUrl: user.photoURL,
       );
     } on Exception catch (e, stackTrace) {
-      await FirebaseCrashlytics.instance.recordError(
-        e,
-        stackTrace,
-        reason: 'signInWithGoogle failed',
-      );
+      // TODO(auth): Merkezi bir logging servisi eklenince (ayrı PR) buraya bağlanacak.
+      debugPrint('signInWithGoogle failed: $e\n$stackTrace');
       return null;
     }
   }
@@ -55,11 +52,8 @@ final class FirebaseAuthService implements AuthService {
     try {
       await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
     } on Exception catch (e, stackTrace) {
-      await FirebaseCrashlytics.instance.recordError(
-        e,
-        stackTrace,
-        reason: 'signOut failed',
-      );
+      // TODO(auth): Merkezi bir logging servisi eklenince (ayrı PR) buraya bağlanacak.
+      debugPrint('signOut failed: $e\n$stackTrace');
     }
   }
 }

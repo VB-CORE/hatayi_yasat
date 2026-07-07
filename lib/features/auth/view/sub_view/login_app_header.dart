@@ -7,24 +7,27 @@ final class _LoginAppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            color: context.general.colorScheme.surface,
-            borderRadius: CustomRadius.large,
-            boxShadow: [
-              BoxShadow(
-                color: context.general.colorScheme.shadow.withValues(
-                  alpha: 0.12,
+        SizedBox.square(
+          dimension: WidgetSizes.spacingXxl9,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.general.colorScheme.surface,
+              borderRadius: CustomRadius.large,
+              boxShadow: [
+                BoxShadow(
+                  color: context.general.colorScheme.shadow.withValues(
+                    alpha: 0.12,
+                  ),
+                  blurRadius: WidgetSizes.spacingS,
+                  offset: const Offset(kZero, WidgetSizes.spacingXxs),
                 ),
-                blurRadius: WidgetSizes.spacingS,
-                offset: const Offset(kZero, WidgetSizes.spacingXxs),
-              ),
-            ],
+              ],
+            ),
+            child: Padding(
+              padding: const PagePadding.allVeryLow(),
+              child: Assets.icons.icApp.image(),
+            ),
           ),
-          padding: const PagePadding.allVeryLow(),
-          child: Assets.icons.icApp.image(),
         ),
         const EmptyBox.middleWidth(),
         Column(
@@ -32,7 +35,7 @@ final class _LoginAppHeader extends StatelessWidget {
           children: [
             GeneralContentTitle(
               value: LocaleKeys.project_name.tr(),
-              fontWeight: FontWeight.bold,
+
               color: ColorsCustom.sambacus,
             ),
             GeneralContentSmallTitle(
