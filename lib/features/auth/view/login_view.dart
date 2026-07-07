@@ -36,7 +36,6 @@ final class _LoginViewState extends ConsumerState<LoginView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      backgroundColor: context.general.colorScheme.surface,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,14 +44,15 @@ final class _LoginViewState extends ConsumerState<LoginView>
             const _LoginAppHeader(),
             const Spacer(),
             const _LoginHeroText(),
-            const EmptyBox.largeHeight(),
-
+            const EmptyBox(height: WidgetSizes.spacingXxl3),
             _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
             const EmptyBox.middleHeight(),
             // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
             AppleSignInButton(
               text: LocaleKeys.auth_signIn_continueWith.tr(
-                namedArgs: {'provider': AuthProvider.apple.displayName},
+                namedArgs: {
+                  AuthProvider.argKey: AuthProvider.apple.displayName,
+                },
               ),
               onTap: () {},
             ),

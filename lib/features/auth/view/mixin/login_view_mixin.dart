@@ -13,10 +13,11 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
     if (!mounted) return;
     final state = ref.read(authViewModelProvider);
     if (state is AuthError) {
-      final message = state.provider == null
+      final provider = state.provider;
+      final message = provider == null
           ? state.message.tr()
           : state.message.tr(
-              namedArgs: {'provider': state.provider!.displayName},
+              namedArgs: {AuthProvider.argKey: provider.displayName},
             );
       appProvider.showSnackbarMessage(message);
     }

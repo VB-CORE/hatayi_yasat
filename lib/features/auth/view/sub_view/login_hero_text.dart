@@ -11,25 +11,23 @@ final class _LoginHeroText extends StatelessWidget {
         Text(
           LocaleKeys.auth_hero_subtitle.tr(),
           style: context.general.textTheme.labelSmall?.copyWith(
-            color: ColorsCustom.endless,
-            letterSpacing: 1.5,
-            fontWeight: .w600,
+            color: context.general.colorScheme.tertiary,
+            letterSpacing: WidgetSizes.spacingXSSs,
           ),
         ),
         const EmptyBox.smallHeight(),
         RichText(
           text: TextSpan(
             style: context.general.textTheme.displayLarge?.copyWith(
-              color: ColorsCustom.sambacus,
-              fontWeight: .w600,
+              color: context.general.colorScheme.primary,
             ),
             children: [
               TextSpan(text: LocaleKeys.auth_hero_prefix.tr()),
               TextSpan(
                 text: LocaleKeys.auth_hero_highlight.tr(),
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: ColorsCustom.endless,
+                style: TextStyle(
+                  fontStyle: .italic,
+                  color: context.general.colorScheme.tertiary,
                 ),
               ),
               const TextSpan(text: '\n'),
@@ -37,7 +35,7 @@ final class _LoginHeroText extends StatelessWidget {
             ],
           ),
         ),
-        const EmptyBox.smallHeight(),
+        const EmptyBox.middleHeight(),
         GeneralContentSubTitle(
           value: LocaleKeys.auth_hero_description.tr(),
           color: context.general.colorScheme.onSurfaceVariant,

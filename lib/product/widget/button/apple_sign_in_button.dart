@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/button/social_sign_in_button.dart';
 
@@ -22,9 +23,9 @@ final class AppleSignInButton extends StatelessWidget {
       text: text,
       onTap: onTap,
       isLoading: isLoading,
-      backgroundColor: context.general.colorScheme.primary,
+      backgroundColor: AppColors.navy900,
       foregroundColor: context.general.colorScheme.onPrimary,
-      elevation: 1,
+
       icon: FaIcon(
         AppIcons.apple,
         color: context.general.colorScheme.onPrimary,

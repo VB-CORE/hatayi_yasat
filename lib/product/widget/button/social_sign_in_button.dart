@@ -28,14 +28,11 @@ final class SocialSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
     return SizedBox(
       width: double.infinity,
       height: WidgetSizes.spacingXxl7,
       child: ElevatedButton(
-        onPressed: onTap,
+        onPressed: isLoading ? null : onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
@@ -45,20 +42,29 @@ final class SocialSignInButton extends StatelessWidget {
             side: border ?? BorderSide.none,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon,
-            const EmptyBox.smallWidth(),
-            Text(
-              text,
-              style: context.general.textTheme.titleMedium?.copyWith(
-                color: foregroundColor,
-                fontWeight: FontWeight.w700,
+        child: isLoading
+            ? SizedBox(
+                width: WidgetSizes.spacingL,
+                height: WidgetSizes.spacingL,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: foregroundColor,
+                ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon,
+                  const EmptyBox.smallWidth(),
+                  Text(
+                    text,
+                    style: context.general.textTheme.bodyLarge?.copyWith(
+                      color: foregroundColor,
+                      fontWeight: .w700,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

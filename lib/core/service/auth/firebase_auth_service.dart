@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
-import 'package:logger/logger.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService()
@@ -11,7 +11,6 @@ final class FirebaseAuthService implements AuthService {
 
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
-  final Logger _logger = Logger();
 
   // TODO(auth): Firestore users/{uid} koleksiyonu hazır olunca burada
   // gerçek AppUser (role dahil) dönülecek. Şu an bilinçli olarak her zaman
@@ -42,7 +41,11 @@ final class FirebaseAuthService implements AuthService {
         photoUrl: user.photoURL,
       );
     } on Exception catch (e, stackTrace) {
-      _logger.e('signInWithGoogle failed', error: e, stackTrace: stackTrace);
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        stackTrace,
+        reason: 'signInWithGoogle failed',
+      );
       return null;
     }
   }
@@ -52,7 +55,11 @@ final class FirebaseAuthService implements AuthService {
     try {
       await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
     } on Exception catch (e, stackTrace) {
-      _logger.e('signOut failed', error: e, stackTrace: stackTrace);
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        stackTrace,
+        reason: 'signOut failed',
+      );
     }
   }
 }

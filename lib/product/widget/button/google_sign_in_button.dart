@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/widget/button/social_sign_in_button.dart';
 
@@ -22,10 +24,13 @@ final class GoogleSignInButton extends StatelessWidget {
       elevation: 1,
       onTap: onTap,
       isLoading: isLoading,
-      backgroundColor: context.general.colorScheme.surface,
+      backgroundColor: AppColors.white,
       foregroundColor: context.general.colorScheme.primary,
       border: BorderSide(color: context.general.colorScheme.outlineVariant),
-      icon: Assets.svg.svgGoogleIcon.svg(width: 20, height: 20),
+      icon: Assets.svg.svgGoogleIcon.svg(
+        width: WidgetSizes.spacingL,
+        height: WidgetSizes.spacingL,
+      ),
     );
   }
 }

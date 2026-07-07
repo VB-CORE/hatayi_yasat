@@ -13,7 +13,7 @@ final class _GoogleSignInButtonConsumer extends ConsumerWidget {
 
     return GoogleSignInButton(
       text: LocaleKeys.auth_signIn_continueWith.tr(
-        namedArgs: {'provider': AuthProvider.google.displayName},
+        namedArgs: {AuthProvider.argKey: AuthProvider.google.displayName},
       ),
       onTap: onTap,
       isLoading: isLoading,
