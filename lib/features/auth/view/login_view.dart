@@ -8,7 +8,6 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -48,14 +47,7 @@ final class _LoginViewState extends ConsumerState<LoginView>
             _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
             const EmptyBox.middleHeight(),
             // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
-            AppleSignInButton(
-              text: LocaleKeys.auth_signIn_continueWith.tr(
-                namedArgs: {
-                  AuthProvider.argKey: AuthProvider.apple.displayName,
-                },
-              ),
-              onTap: () {},
-            ),
+            AppleSignInButton(onTap: () {}),
             const EmptyBox.middleHeight(),
             _LoginGuestButton(onTap: onGuestTap),
             const EmptyBox.middleHeight(),

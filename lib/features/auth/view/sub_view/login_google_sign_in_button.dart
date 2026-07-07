@@ -11,12 +11,6 @@ final class _GoogleSignInButtonConsumer extends ConsumerWidget {
       authViewModelProvider.select((state) => state is AuthLoading),
     );
 
-    return GoogleSignInButton(
-      text: LocaleKeys.auth_signIn_continueWith.tr(
-        namedArgs: {AuthProvider.argKey: AuthProvider.google.displayName},
-      ),
-      onTap: onTap,
-      isLoading: isLoading,
-    );
+    return GoogleSignInButton(onTap: onTap, isLoading: isLoading);
   }
 }

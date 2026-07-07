@@ -35,7 +35,6 @@ final class _LoginAppHeader extends StatelessWidget {
           children: [
             GeneralContentTitle(
               value: LocaleKeys.project_name.tr(),
-
               color: ColorsCustom.sambacus,
             ),
             GeneralContentSmallTitle(

@@ -7,7 +7,6 @@ import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
 import 'package:lifeclient/core/service/auth/mock_auth_service.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/auth/app_user.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,23 +17,11 @@ part 'auth_view_model.g.dart';
 final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   final AuthService authService = FirebaseAuthService();
 
-  StreamSubscription<AppUser?>? _authSubscription;
-
+  // TODO(auth): Firestore users/{uid} hazır olup userStream gerçek AppUser
+  // dönmeye başlayınca stream burada dinlenip tek doğruluk kaynağı yapılacak;
+  // o zaman metodlardaki manuel state atamaları kaldırılacak.
   @override
-  AuthState build() {
-    ref.onDispose(() => _authSubscription?.cancel());
-    _listenAuth();
-    return const AuthInitial();
-  }
-
-  void _listenAuth() {
-    _authSubscription = authService.userStream.listen(
-      (user) {
-        state = user == null ? const Unauthenticated() : Authenticated(user);
-      },
-      onError: (_) => state = const AuthError(LocaleKeys.auth_error_generic),
-    );
-  }
+  AuthState build() => const AuthInitial();
 
   Future<void> signInWithGoogle() async {
     state = const AuthLoading();
