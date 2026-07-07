@@ -186,7 +186,11 @@
     "request": "Request",
     "advertise": "Advertise",
     "community": "Community",
-    "memories": "Memories"
+    "memories": "Memories",
+    "places": "Places",
+    "feed": "Feed",
+    "explore": "Explore",
+    "profile": "Profile"
   },
   "projectRequest": {
     "title": "New Project Request",

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 
 final class TabModel extends Equatable {
@@ -30,26 +30,26 @@ final class TabModels {
     _tabItems = [
       const TabModel(
         page: HomeView(),
-        icon: Icon(AppIcons.home),
-        title: LocaleKeys.navigationTabs_home,
+        icon: HugeIcon(icon: HugeIcons.strokeRoundedStore01),
+        title: LocaleKeys.navigationTabs_places,
         semanticKey: GeneralSemanticKeys.homeTab,
       ),
       const TabModel(
         page: NewsEventJobsView(),
-        icon: Icon(AppIcons.community),
-        title: LocaleKeys.navigationTabs_community,
+        icon: HugeIcon(icon: HugeIcons.strokeRoundedHome01),
+        title: LocaleKeys.navigationTabs_feed,
         semanticKey: GeneralSemanticKeys.communityTab,
       ),
       const TabModel(
         page: HistoryView(),
-        icon: Icon(AppIcons.tree),
-        title: LocaleKeys.navigationTabs_memories,
+        icon: HugeIcon(icon: HugeIcons.strokeRoundedCompass01),
+        title: LocaleKeys.navigationTabs_explore,
         semanticKey: GeneralSemanticKeys.memoriesTab,
       ),
       const TabModel(
         page: FavoriteView(),
-        icon: Icon(AppIcons.favorite),
-        title: LocaleKeys.navigationTabs_favorite,
+        icon: HugeIcon(icon: HugeIcons.strokeRoundedUser),
+        title: LocaleKeys.navigationTabs_profile,
         semanticKey: GeneralSemanticKeys.favoriteTab,
       ),
     ];

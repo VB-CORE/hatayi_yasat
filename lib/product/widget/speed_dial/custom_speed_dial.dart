@@ -15,11 +15,17 @@ class CustomSpeedDial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SpeedDial(
+      buttonSize: const Size.square(
+        WidgetSizes.spacingXxl6,
+      ),
       childrenButtonSize: Size(
         context.sized.dynamicWidth(0.6),
         context.sized.dynamicHeight(0.1),
       ),
       backgroundColor: context.general.colorScheme.tertiary,
+      foregroundColor: context.general.colorScheme.onTertiary,
+      elevation: WidgetSizes.spacingXs,
+      iconTheme: const IconThemeData(size: WidgetSizes.spacingXl),
       icon: AppIcons.add,
       activeIcon: AppIcons.close,
       overlayColor: context.general.colorScheme.surface,

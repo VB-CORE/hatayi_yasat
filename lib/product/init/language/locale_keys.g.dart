@@ -170,6 +170,10 @@ abstract class  LocaleKeys {
   static const navigationTabs_advertise = 'navigationTabs.advertise';
   static const navigationTabs_community = 'navigationTabs.community';
   static const navigationTabs_memories = 'navigationTabs.memories';
+  static const navigationTabs_places = 'navigationTabs.places';
+  static const navigationTabs_feed = 'navigationTabs.feed';
+  static const navigationTabs_explore = 'navigationTabs.explore';
+  static const navigationTabs_profile = 'navigationTabs.profile';
   static const navigationTabs = 'navigationTabs';
   static const projectRequest_title = 'projectRequest.title';
   static const projectRequest_publisher = 'projectRequest.publisher';
