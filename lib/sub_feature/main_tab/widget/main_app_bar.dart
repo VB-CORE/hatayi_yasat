@@ -1,35 +1,35 @@
 part of '../main_tab_view.dart';
 
 final class _MainAppBar extends AppBar {
-  _MainAppBar() : super(
-         bottom: PreferredSize(
-           preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
-           child: Divider(
-             height: AppConstants.kOne.toDouble(),
-           ),
-         ),
-         automaticallyImplyLeading: false,
-         centerTitle: false,
-         titleSpacing: AppSpacing.lg,
-         title: Row(
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Assets.icons.icAppTransparent.image(
-               height: WidgetSizes.spacingXxl,
-               width: WidgetSizes.spacingXxl,
-             ),
-             const SizedBox(width: AppSpacing.sm),
-             const _CityPill(),
-           ],
-         ),
-         actions: const [
-           _UserQrButton(),
-           _NotificationButton(),
-           _SettingsButton(),
-           _CustomPopupMenu(),
-           SizedBox(width: AppSpacing.xxs),
-         ],
-       );
+  _MainAppBar()
+    : super(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
+          child: Divider(
+            height: AppConstants.kOne.toDouble(),
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        centerTitle: false,
+        titleSpacing: AppSpacing.lg,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Assets.icons.icAppTransparent.image(
+              height: WidgetSizes.spacingXxl,
+              width: WidgetSizes.spacingXxl,
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            const _CityPill(),
+          ],
+        ),
+        actions: const [
+          _NotificationButton(),
+          _SettingsButton(),
+          _CustomPopupMenu(),
+          SizedBox(width: AppSpacing.xxs),
+        ],
+      );
 }
 
 final class _CityPill extends ConsumerWidget {
@@ -75,20 +75,6 @@ final class _CityPill extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-final class _UserQrButton extends StatelessWidget {
-  const _UserQrButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        ProjectNavigation(context).pushToWidget(const UserQrView());
-      },
-      icon: const Icon(AppIcons.qrCode),
     );
   }
 }
