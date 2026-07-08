@@ -17,34 +17,29 @@ final class GeneralNotFoundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sized.height,
+      height: context.sized.height - context.sized.dynamicHeight(.2),
       width: context.sized.width,
-      child: Padding(
-        padding: EdgeInsets.only(
-          bottom: context.sized.dynamicHeight(.2),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.svg.svgNotFound.svg(
-              height: context.sized.dynamicHeight(.16),
-              width: context.sized.dynamicWidth(.16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.svg.svgNotFound.svg(
+            height: context.sized.dynamicHeight(.16),
+            width: context.sized.dynamicWidth(.16),
+          ),
+          const SizedBox(height: WidgetSizes.spacingL),
+          Padding(
+            padding: const PagePadding.all(),
+            child: GeneralContentSubTitle(
+              value: title,
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: WidgetSizes.spacingL),
-            Padding(
-              padding: const PagePadding.all(),
-              child: GeneralContentSubTitle(
-                value: title,
-                textAlign: TextAlign.center,
-              ),
+          ),
+          if (onRefresh != null)
+            TextButton(
+              onPressed: onRefresh,
+              child: Text(LocaleKeys.notFound_forRefresh.tr()),
             ),
-            if (onRefresh != null)
-              TextButton(
-                onPressed: onRefresh,
-                child: Text(LocaleKeys.notFound_forRefresh.tr()),
-              ),
-          ],
-        ),
+        ],
       ),
     );
   }

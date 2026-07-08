@@ -21,6 +21,8 @@ class SplashViewModel extends Notifier<SplashState> {
       return;
     }
 
+    await productProvider.initWhenApplicationStart();
+
     if (_isFirstTimeCheck()) {
       await SharedCache.instance.setFirstAppOpen();
       state = state.copyWith(isNeedToOnBoard: true);
@@ -30,8 +32,6 @@ class SplashViewModel extends Notifier<SplashState> {
       state = state.copyWith(isNeedToForceUpdate: true);
       return;
     }
-
-    await productProvider.initWhenApplicationStart();
 
     state = state.copyWith(isOperationStaring: false);
   }
