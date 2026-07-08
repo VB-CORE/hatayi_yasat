@@ -116,7 +116,9 @@
     "categories": "Kategoriler",
     "places": "Mekanlar",
     "search": "Ara",
-    "notifications": "Bildirimler"
+    "notifications": "Bildirimler",
+    "allCategory": "Tümü",
+    "placesUpper": "MEKAN"
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
@@ -190,7 +192,11 @@
     "request": "Talep",
     "advertise": "İş İlanı",
     "community": "Topluluk",
-    "memories": "Hatıralar"
+    "memories": "Hatıralar",
+    "places": "Mekanlar",
+    "feed": "Akış",
+    "explore": "Keşfet",
+    "profile": "Profil"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -303,6 +309,12 @@
     "time": {
       "newest": "Yeniden eskiye",
       "oldest": "Eskiden yeniye"
+    },
+    "title": "Sırala",
+    "applied": "Sıralama güncellendi",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -311,7 +323,10 @@
   "advertisementBoard": {
     "openUrl": "Linki Aç",
     "launchUrlError": "Link açılırken bir hata meydana geldi",
-    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
+    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
+    "houseAdTitle": "BU ALANA REKLAM VEREBİLİRSİNİZ",
+    "houseAdSubtitle": "Esnafına ulaş · İletişim: medya@hatayiyasat.app",
+    "contactUs": "İletişime geç"
   },
   "chain_stores": {
     "title": "Konteyner Çarşılar",
@@ -371,6 +386,25 @@
     "settings": "Ayarlar",
     "memories": "Hatıralar"
   },
+  "auth": {
+    "tagline": "TOPLULUK",
+    "hero": {
+      "subtitle": "MAHALLE · MEKAN · HATIRA",
+      "prefix": "Hatay'ı ",
+      "highlight": "birlikte",
+      "suffix": "yaşatalım.",
+      "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
+    },
+    "signIn": {
+      "continueWith": "{provider} ile devam et",
+      "guest": "Misafir olarak devam et"
+    },
+    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
+    "error": {
+      "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
+      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
+    }
+  },
   "historyPage": {
     "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
     "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
@@ -383,5 +417,23 @@
       "noDescription": "Açıklama yok"
     },
     "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
+  },
+  "filter": {
+    "title": "Filtre",
+    "clear": "Temizle",
+    "categories": "Kategoriler",
+    "others": "Diğer",
+    "openNow": "Şu an açık olanlar",
+    "favoritesOnly": "Favorilerimde olanlar",
+    "districts": "İlçeler",
+    "nearYou": "Sana yakın",
+    "searchDistrict": "İlçe ara",
+    "selectedCount": "{}/{} seçili",
+    "showResults": "{} sonucu göster",
+    "noResults": "Sonuç yok, filtreyi gevşet",
+    "categoryCountLabel": "{} kategori",
+    "districtCountLabel": "{} ilçe",
+    "openShort": "açık",
+    "favoritesShort": "favori"
   }
 }

@@ -116,7 +116,9 @@
     "categories": "Categories",
     "places": "Places",
     "search": "Search",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "allCategory": "All",
+    "placesUpper": "PLACES"
   },
   "message": {
     "emptySearch": "No Results Found",
@@ -190,7 +192,11 @@
     "request": "Request",
     "advertise": "Advertise",
     "community": "Community",
-    "memories": "Memories"
+    "memories": "Memories",
+    "places": "Places",
+    "feed": "Feed",
+    "explore": "Explore",
+    "profile": "Profile"
   },
   "projectRequest": {
     "title": "New Project Request",
@@ -303,6 +309,12 @@
     "time": {
       "newest": "Newest to oldest",
       "oldest": "Oldest to newest"
+    },
+    "title": "Sort",
+    "applied": "Sorting updated",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -311,7 +323,10 @@
   "advertisementBoard": {
     "openUrl": "Open Url",
     "launchUrlError": "An error occurred when launch url",
-    "shareAdvertisementSubject": "Visit advertisement owner: {}"
+    "shareAdvertisementSubject": "Visit advertisement owner: {}",
+    "houseAdTitle": "YOU CAN ADVERTISE HERE",
+    "houseAdSubtitle": "Reach local businesses · Contact: medya@hatayiyasat.app",
+    "contactUs": "Get in touch"
   },
   "chain_stores": {
     "title": "Container Bazaars",
@@ -371,6 +386,25 @@
     "settings": "Settings",
     "memories": "Memories"
   },
+  "auth": {
+    "tagline": "COMMUNITY",
+    "hero": {
+      "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
+      "prefix": "Let's live ",
+      "highlight": "Hatay",
+      "suffix": "together.",
+      "description": "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here."
+    },
+    "signIn": {
+      "continueWith": "Continue with {provider}",
+      "guest": "Continue as Guest"
+    },
+    "legal": "By continuing, you accept the terms of use and KVKK.",
+    "error": {
+      "generic": "Something went wrong while signing in, please try again.",
+      "failed": "{provider} sign-in failed, please try again."
+    }
+  },
   "historyPage": {
     "welcomeTitle": "Our Memories Are Alive with Us",
     "welcomeDescription": "Let's share our beautiful memories, let's live together.",
@@ -383,5 +417,23 @@
       "noDescription": "No description"
     },
     "shareSubject": "Keep 'Hatay Yaşat' with us!"
+  },
+  "filter": {
+    "title": "Filter",
+    "clear": "Clear",
+    "categories": "Categories",
+    "others": "Other",
+    "openNow": "Open now",
+    "favoritesOnly": "In my favorites",
+    "districts": "Districts",
+    "nearYou": "Near you",
+    "searchDistrict": "Search district",
+    "selectedCount": "{}/{} selected",
+    "showResults": "Show {} results",
+    "noResults": "No results, loosen filters",
+    "categoryCountLabel": "{} categories",
+    "districtCountLabel": "{} districts",
+    "openShort": "open",
+    "favoritesShort": "favorites"
   }
 }

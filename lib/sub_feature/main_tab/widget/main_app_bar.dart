@@ -1,9 +1,7 @@
 part of '../main_tab_view.dart';
 
 final class _MainAppBar extends AppBar {
-  _MainAppBar({
-    required BuildContext context,
-  }) : super(
+  _MainAppBar() : super(
          bottom: PreferredSize(
            preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
            child: Divider(
@@ -12,60 +10,116 @@ final class _MainAppBar extends AppBar {
          ),
          automaticallyImplyLeading: false,
          centerTitle: false,
-         title: TextButton(
-           style: TextButton.styleFrom(
-             padding: EdgeInsets.zero,
-           ),
-           onPressed: () async {
-             final result = await RegionalCitySheet.show(context);
-             if (result == null) return;
-             ProjectDependencyItems.productProvider.saveSelectedCity(result);
-           },
-           child: Row(
-             mainAxisSize: MainAxisSize.min,
-             spacing: WidgetSizes.spacingXSs,
-             children: [
-               HugeIcon(
-                 icon: HugeIcons.strokeRoundedArrowDown01,
-                 color: context.general.colorScheme.primary,
-               ),
-               const _AppBarTitle(),
-             ],
-           ),
+         titleSpacing: AppSpacing.lg,
+         title: Row(
+           mainAxisSize: MainAxisSize.min,
+           children: [
+             Assets.icons.icAppTransparent.image(
+               height: WidgetSizes.spacingXxl,
+               width: WidgetSizes.spacingXxl,
+             ),
+             const SizedBox(width: AppSpacing.sm),
+             const _CityPill(),
+           ],
          ),
-         actions: [
-           IconButton(
-             onPressed: () {
-               const MonetizationRoute().go(context);
-             },
-             icon: const Icon(AppIcons.city),
-           ),
-           IconButton(
-             onPressed: () {
-               const NotificationsRoute().go(context);
-             },
-             icon: const Icon(AppIcons.notifications),
-           ),
-           IconButton(
-             onPressed: () async {
-               await const SettingsRoute().push<void>(context);
-             },
-             icon: const Icon(AppIcons.settings),
-           ),
-           const _CustomPopupMenu(),
+         actions: const [
+           _NotificationButton(),
+           _SettingsButton(),
+           _CustomPopupMenu(),
+           SizedBox(width: AppSpacing.xxs),
          ],
        );
 }
 
-final class _AppBarTitle extends ConsumerWidget {
-  const _AppBarTitle();
+final class _CityPill extends ConsumerWidget {
+  const _CityPill();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentCity = ref.watch(ProjectDependencyItems.productProviderState);
-    return GeneralSubTitle(
-      value: currentCity.selectedCity.description,
-      fontWeight: FontWeight.bold,
+    return Material(
+      color: AppColors.coral50,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        onTap: () async {
+          final result = await RegionalCitySheet.show(context);
+          if (result == null) return;
+          ProjectDependencyItems.productProvider.saveSelectedCity(result);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.sm,
+            vertical: AppSpacing.xs,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                AppIcons.location,
+                size: WidgetSizes.spacingMx,
+                color: AppColors.coral,
+              ),
+              const SizedBox(width: AppSpacing.xxs),
+              Text(
+                currentCity.selectedCity.description,
+                style: AppText.label.copyWith(color: AppColors.coral700),
+              ),
+              const Icon(
+                Icons.keyboard_arrow_down_rounded,
+                size: WidgetSizes.spacingL,
+                color: AppColors.coral,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+final class _NotificationButton extends StatelessWidget {
+  const _NotificationButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        IconButton(
+          onPressed: () {
+            const NotificationsRoute().go(context);
+          },
+          icon: const Icon(AppIcons.notifications),
+        ),
+        Positioned(
+          top: WidgetSizes.spacingS,
+          right: WidgetSizes.spacingS,
+          child: Container(
+            width: WidgetSizes.spacingXs,
+            height: WidgetSizes.spacingXs,
+            decoration: BoxDecoration(
+              color: AppColors.coral,
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColors.surface, width: 1.5),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+final class _SettingsButton extends StatelessWidget {
+  const _SettingsButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        await const SettingsRoute().push<void>(context);
+      },
+      icon: const Icon(AppIcons.settings),
     );
   }
 }

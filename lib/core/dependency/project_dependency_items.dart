@@ -12,15 +12,15 @@ import 'package:lifeclient/product/utility/state/product_provider.dart';
 final class ProjectDependencyItems {
   const ProjectDependencyItems._();
 
-  static final FirebaseCustomService firebaseService =
-      GetIt.I.get<FirebaseCustomService>();
+  static final FirebaseCustomService firebaseService = GetIt.I
+      .get<FirebaseCustomService>();
 
   static final AppProvider appProvider = GetIt.I.get<AppProvider>();
-  static final appProviderState =
-      GetIt.I.get<NotifierProvider<AppProvider, AppProviderState>>();
+  static final appProviderState = GetIt.I
+      .get<NotifierProvider<AppProvider, AppProviderState>>();
 
-  static final productProviderState =
-      GetIt.I.get<NotifierProvider<ProductProvider, ProductProviderState>>();
+  static final productProviderState = GetIt.I
+      .get<NotifierProvider<ProductProvider, ProductProviderState>>();
 
   static final ProductProvider productProvider = GetIt.I.get<ProductProvider>();
   static final ProductCache productCache = GetIt.I.get<ProductCache>();

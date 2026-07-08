@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
@@ -332,6 +333,27 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       NewsDetailView(news: $extra.toNewsModel());
+}
+
+@TypedGoRoute<LoginRoute>(path: '/login')
+final class LoginRoute extends GoRouteData with $LoginRoute {
+  const LoginRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const LoginView();
+}
+
+// TODO(auth): Gerçek dashboard ekranları hazır olunca bu route'u kaldır.
+@TypedGoRoute<RoleDashboardRoute>(path: '/roleTest/:role')
+final class RoleDashboardRoute extends GoRouteData with $RoleDashboardRoute {
+  const RoleDashboardRoute({required this.role});
+
+  final String role;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => Scaffold(
+    body: Center(child: Text('$role Dashboard')),
+  );
 }
 
 final class OnboardRoute extends GoRouteData with $OnboardRoute {
