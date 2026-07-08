@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_mixin.dart';
-import 'package:lifeclient/features/monetization/form/widget/monetization_discount_rate_slider.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -12,6 +14,8 @@ import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/text_field/labeled_product_textfield.dart';
+
+part 'widget/monetization_discount_rate_slider.dart';
 
 @immutable
 final class MonetizationCouponFormView extends StatefulWidget {

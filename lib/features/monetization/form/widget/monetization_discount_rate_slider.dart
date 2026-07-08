@@ -1,13 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/constants/string_constants.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+part of '../monetization_coupon_form_view.dart';
 
 final class MonetizationDiscountRateSlider extends StatelessWidget {
   const MonetizationDiscountRateSlider({

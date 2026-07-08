@@ -1,16 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/extension/number_extension.dart';
+part of '../monetization_view.dart';
 
-final class MonetizationCard extends StatelessWidget {
-  const MonetizationCard({required this.coupon, super.key});
+final class _MonetizationCard extends StatelessWidget {
+  const _MonetizationCard({required this.coupon});
 
   final DiscountCouponModel coupon;
 

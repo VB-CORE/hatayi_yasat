@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
-import 'package:lifeclient/features/monetization/form/widget/monetization_discount_rate_slider.dart';
 
 mixin MonetizationCouponFormMixin on State<MonetizationCouponFormView> {
   final formKey = GlobalKey<FormState>();

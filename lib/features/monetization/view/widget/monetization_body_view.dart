@@ -1,14 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
-import 'package:lifeclient/features/monetization/view/widget/monetization_card.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
+part of '../monetization_view.dart';
 
-final class MonetizationBodyView extends StatelessWidget {
-  const MonetizationBodyView({required this.coupons, super.key});
+final class _MonetizationBodyView extends StatelessWidget {
+  const _MonetizationBodyView({required this.coupons});
 
   final List<DiscountCouponModel> coupons;
 
@@ -24,7 +17,7 @@ final class MonetizationBodyView extends StatelessWidget {
       padding: const PagePadding.onlyTop(),
       separatorBuilder: (context, index) => const EmptyBox.smallHeight(),
       itemCount: coupons.length,
-      itemBuilder: (_, index) => MonetizationCard(coupon: coupons[index]),
+      itemBuilder: (_, index) => _MonetizationCard(coupon: coupons[index]),
     );
   }
 }
