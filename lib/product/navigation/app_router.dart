@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
+import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
@@ -23,6 +27,7 @@ import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
+import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
 
@@ -312,6 +317,37 @@ final class RoleDashboardRoute extends GoRouteData with $RoleDashboardRoute {
   Widget build(BuildContext context, GoRouterState state) => Scaffold(
     body: Center(child: Text('$role Dashboard')),
   );
+}
+
+@TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')
+final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
+  const UnauthorizedRoute({this.attemptedPath});
+
+  final String? attemptedPath;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      UnauthorizedView(attemptedPath: attemptedPath);
+}
+
+@TypedGoRoute<CreateGroupRoute>(path: '/create-group')
+final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
+  const CreateGroupRoute();
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) {
+    final authState = ProviderScope.containerOf(
+      context,
+    ).read(authViewModelProvider);
+    final canCreateGroup =
+        authState is Authenticated && authState.user.canCreateGroup;
+    if (canCreateGroup) return null;
+    return UnauthorizedRoute(attemptedPath: state.uri.toString()).location;
+  }
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const CreateGroupView();
 }
 
 final class OnboardRoute extends GoRouteData with $OnboardRoute {

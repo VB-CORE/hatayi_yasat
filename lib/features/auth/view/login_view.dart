@@ -6,6 +6,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/mixin/login_view_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
+import 'package:lifeclient/features/community/groups/view/groups_view.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -47,7 +48,15 @@ final class _LoginViewState extends ConsumerState<LoginView>
             _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
             const EmptyBox.middleHeight(),
             // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
-            AppleSignInButton(onTap: () {}),
+            AppleSignInButton(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => GroupsView(),
+                  ),
+                );
+              },
+            ),
             const EmptyBox.middleHeight(),
             _LoginGuestButton(onTap: onGuestTap),
             const EmptyBox.middleHeight(),

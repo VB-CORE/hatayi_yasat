@@ -46,6 +46,12 @@ final class TextFieldValidatorIsNullEmpty extends ValidatorField {
   }
 }
 
+/// It is used for optional text fields where no validation is required
+final class ValidatorOptionalTextField extends ValidatorField {
+  @override
+  String? validate(String? value) => null;
+}
+
 /// It is used for date time validation
 final class DateTimeValidator extends ValidatorField {
   @override
