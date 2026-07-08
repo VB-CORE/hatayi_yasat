@@ -112,7 +112,9 @@
     "categories": "Categories",
     "places": "Places",
     "search": "Search",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "allCategory": "All",
+    "placesUpper": "PLACES"
   },
   "message": {
     "emptySearch": "No Results Found",
@@ -303,6 +305,12 @@
     "time": {
       "newest": "Newest to oldest",
       "oldest": "Oldest to newest"
+    },
+    "title": "Sort",
+    "applied": "Sorting updated",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -311,7 +319,10 @@
   "advertisementBoard": {
     "openUrl": "Open Url",
     "launchUrlError": "An error occurred when launch url",
-    "shareAdvertisementSubject": "Visit advertisement owner: {}"
+    "shareAdvertisementSubject": "Visit advertisement owner: {}",
+    "houseAdTitle": "YOU CAN ADVERTISE HERE",
+    "houseAdSubtitle": "Reach local businesses · Contact: medya@hatayiyasat.app",
+    "contactUs": "Get in touch"
   },
   "chain_stores": {
     "title": "Container Bazaars",
@@ -379,5 +390,23 @@
       "noDescription": "No description"
     },
     "shareSubject": "Keep 'Hatay Yaşat' with us!"
+  },
+  "filter": {
+    "title": "Filter",
+    "clear": "Clear",
+    "categories": "Categories",
+    "others": "Other",
+    "openNow": "Open now",
+    "favoritesOnly": "In my favorites",
+    "districts": "Districts",
+    "nearYou": "Near you",
+    "searchDistrict": "Search district",
+    "selectedCount": "{}/{} selected",
+    "showResults": "Show {} results",
+    "noResults": "No results, loosen filters",
+    "categoryCountLabel": "{} categories",
+    "districtCountLabel": "{} districts",
+    "openShort": "open",
+    "favoritesShort": "favorites"
   }
 }
