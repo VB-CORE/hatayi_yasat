@@ -29,7 +29,7 @@ final class ApplicationTheme {
       errorContainer: AppColors.surface,
       onErrorContainer: AppColors.coral,
       surface: AppColors.bg,
-      onSurface: AppColors.surface,
+      onSurface: AppColors.navy,
       onSurfaceVariant: AppColors.ink400,
       surfaceContainerHighest: AppColors.bgDeep,
       outline: AppColors.ink100,
@@ -84,7 +84,7 @@ final class ApplicationTheme {
           vertical: AppSpacing.sm,
         ),
         labelStyle: AppText.body.copyWith(color: AppColors.ink600),
-        hintStyle: AppText.body.copyWith(color: AppColors.ink600),
+        hintStyle: AppText.body.copyWith(color: AppColors.ink500),
         enabledBorder: _inputBorder(AppColors.ink100),
         focusedBorder: _inputBorder(AppColors.navy),
         errorBorder: _inputBorder(AppColors.coral),
@@ -115,7 +115,7 @@ final class ApplicationTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.surface,
+          backgroundColor: AppColors.coral,
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
         ),
       ),

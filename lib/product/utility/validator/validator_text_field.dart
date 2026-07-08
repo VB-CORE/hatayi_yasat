@@ -69,6 +69,52 @@ final class DateTimeValidator extends ValidatorField {
   }
 }
 
+/// Optional/required numeric field validation with configurable min/max bounds.
+final class ValidatorNumericRangeTextField extends ValidatorField {
+  ValidatorNumericRangeTextField({
+    this.min,
+    this.max,
+    this.isOptional = false,
+  });
+
+  final int? min;
+  final int? max;
+  final bool isOptional;
+
+  @override
+  String? validate(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return isOptional ? null : LocaleKeys.validation_requiredField.tr();
+    }
+
+    final number = int.tryParse(value.trim());
+    if (number == null) return LocaleKeys.validation_numericInvalid.tr();
+
+    if (min != null && number < min!) {
+      return _rangeMessage();
+    }
+
+    if (max != null && number > max!) {
+      return _rangeMessage();
+    }
+
+    return null;
+  }
+
+  String _rangeMessage() {
+    if (min != null && max != null) {
+      return LocaleKeys.validation_numericRange.tr(args: ['$min', '$max']);
+    }
+    if (min != null) {
+      return LocaleKeys.validation_numericMin.tr(args: ['$min']);
+    }
+    if (max != null) {
+      return LocaleKeys.validation_numericMax.tr(args: ['$max']);
+    }
+    return LocaleKeys.validation_numericInvalid.tr();
+  }
+}
+
 /// It is used for email validation
 final class ValidatorEmailTextField extends ValidatorField {
   @override

@@ -8,6 +8,7 @@ final class AppIcons {
   static const IconData close = Icons.close_outlined;
   static const IconData info = Icons.info_outlined;
   static const IconData add = Icons.add_outlined;
+  static const IconData edit = Icons.edit_outlined;
   static const IconData moreDots = Icons.more_vert_outlined;
   static const IconData delete = Icons.delete_outlined;
   static const IconData rightSelect = Icons.chevron_right_outlined;

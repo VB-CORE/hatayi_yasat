@@ -23,7 +23,11 @@
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
     "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
     "pickATime": "Lütfen bir saat seçiniz.",
-    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır."
+    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır.",
+    "numericInvalid": "Lütfen geçerli bir sayı giriniz",
+    "numericMin": "Lütfen en az {} giriniz",
+    "numericMax": "Lütfen en fazla {} giriniz",
+    "numericRange": "Lütfen {} ile {} arasında bir sayı giriniz"
   },
   "button": {
     "save": "Kaydet",
@@ -328,6 +332,29 @@
     "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
+  },
+  "monetization": {
+    "title": "İndirim Kuponları",
+    "addCouponAction": "Yeni",
+    "addCoupon": "Kupon Ekle",
+    "discountCodeLabel": "İndirim",
+    "expiresAtSummary": "Son {}",
+    "expiryDateLabel": "Son Kullanım Tarihi",
+    "active": "Aktif",
+    "activeTab": "Aktif ({})",
+    "inactive": "Süresi doldu",
+    "inactiveTab": "Pasif ({})",
+    "usageLimitReached": "Limit doldu",
+    "couponDesc": "Açıklama",
+    "couponDescHint": "Örn: Festival İndirimi",
+    "usageLimit": "Kullanım Limiti",
+    "usageLimitHint": "Boş bırakılırsa kullanım limiti olmayacaktır",
+    "unlimited": "Limitsiz",
+    "usageCountSummary": "{} Kullanıldı",
+    "discountRate": "İndirim Oranı",
+    "discountRateValue": "%{}",
+    "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
+    "emptyCoupons": "Henüz kupon bulunmuyor"
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
