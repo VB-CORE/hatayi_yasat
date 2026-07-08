@@ -42,6 +42,7 @@
     "sendRequest": "Create request",
     "call": "Call",
     "share": "Share",
+    "copy": "Copy",
     "error": "Error",
     "more": "More",
     "understood": "Understood"
@@ -121,7 +122,8 @@
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
-    "removedFavorite": "Removed from favorites"
+    "removedFavorite": "Removed from favorites",
+    "copiedToClipboard": "Copied to clipboard"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -377,6 +379,14 @@
       "generic": "Something went wrong while signing in, please try again.",
       "failed": "{provider} sign-in failed, please try again."
     }
+  },
+  "userQr": {
+    "title": "My QR Code",
+    "personalTitle": "Personal QR",
+    "personalDescription": "A sharing code unique to you.",
+    "campaignTitle": "Join Campaigns",
+    "campaignDescription": "You can join campaigns with your QR code.",
+    "shareSubject": "My QR Code"
   },
   "historyPage": {
     "welcomeTitle": "Our Memories Are Alive with Us",

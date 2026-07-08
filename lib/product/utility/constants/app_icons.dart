@@ -19,7 +19,10 @@ final class AppIcons {
   static const IconData calendarFilled = Icons.calendar_month_rounded;
   static const IconData timerOn = Icons.timer_outlined;
   static const IconData timerOff = Icons.timer_off_outlined;
-
+  static const IconData qrCode = Icons.qr_code_2_outlined;
+  static const IconData copy = Icons.copy_rounded;
+  static const IconData verifiedUser = Icons.verified_user_rounded;
+  static const IconData discount = Icons.discount_rounded;
   static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings_outlined;

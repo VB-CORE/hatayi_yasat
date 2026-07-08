@@ -23,6 +23,7 @@ final class _MainAppBar extends AppBar {
            ],
          ),
          actions: const [
+           _UserQrButton(),
            _NotificationButton(),
            _SettingsButton(),
            _CustomPopupMenu(),
@@ -74,6 +75,20 @@ final class _CityPill extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+final class _UserQrButton extends StatelessWidget {
+  const _UserQrButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        ProjectNavigation(context).pushToWidget(const UserQrView());
+      },
+      icon: const Icon(AppIcons.qrCode),
     );
   }
 }
