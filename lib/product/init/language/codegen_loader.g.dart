@@ -109,6 +109,7 @@ class CodegenLoader extends AssetLoader{
     "currentLanguage": "Mevcut dil",
     "themeTitle": "{} Tema",
     "developersTitle": "Geliştiriciler",
+    "inactiveDevelopers": "Dün bizimle olup destek olan arkadaşlarımıza çok teşekkür ediyoruz ❤️ ",
     "seeDevelopers": "Tüm takımı gör",
     "aboutTitle": "Uygulama hakkında",
     "contactTitle": "Bize ulaşın",
@@ -118,7 +119,8 @@ class CodegenLoader extends AssetLoader{
     "appReviewTitle": "Uygulamayı Değerlendirin",
     "themes": {
       "light": "Aydınlık",
-      "dark": "Karanlık"
+      "dark": "Karanlık",
+      "system": "Sistem"
     }
   },
   "home": {
@@ -132,7 +134,8 @@ class CodegenLoader extends AssetLoader{
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
-    "emptyFavorite": "Favori listeniz boş"
+    "emptyFavorite": "Favori listeniz boş",
+    "removedFavorite": "Favorilerden kaldırıldı"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -198,7 +201,12 @@ class CodegenLoader extends AssetLoader{
     "favorite": "Favoriler",
     "request": "Talep",
     "advertise": "İş İlanı",
-    "community": "Topluluk"
+    "community": "Topluluk",
+    "memories": "Hatıralar",
+    "places": "Mekanlar",
+    "feed": "Akış",
+    "explore": "Keşfet",
+    "profile": "Profil"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -327,10 +335,10 @@ class CodegenLoader extends AssetLoader{
     "subBranchesTitle": "{} Şubeleri ({})"
   },
   "whatsNew": {
-    "title": "Yenilikler v8.0.0 🎉",
+    "title": "Yenilikler v8.1.0 🎉",
     "features": {
-      "linkPage": "🤝 Mersin de artık bizimle birlikte.",
-      "locationPinning": "📍 Yeni İşletmelere taleplerinde Mersin de konum pinleme özelliği eklendi."
+      "favoritePlaces": "Favori mekanlarınızı daha kolay bulabilirsiniz.",
+      "memories": "Hatıralarınız sizinle yaşıyor."
     },
     "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
   },
@@ -356,10 +364,73 @@ class CodegenLoader extends AssetLoader{
     "settings": "Ayarlar",
     "memories": "Hatıralar"
   },
+  "auth": {
+    "tagline": "TOPLULUK",
+    "hero": {
+      "subtitle": "MAHALLE · MEKAN · HATIRA",
+      "prefix": "Hatay'ı ",
+      "highlight": "birlikte",
+      "suffix": "yaşatalım.",
+      "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
+    },
+    "signIn": {
+      "continueWith": "{provider} ile devam et",
+      "guest": "Misafir olarak devam et"
+    },
+    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
+    "error": {
+      "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
+      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
+    }
+  },
   "historyPage": {
-    "welcomeTitle": "Hatıralar Sayfasına Hoş Geldiniz!",
-    "welcomeDescription": "Bu sayfada güzel anılarınızı paylaşabilir ve diğer kullanıcıların hatıralarını görüntüleyebilirsiniz. Instagram benzeri bir deneyim sunar.",
-    "addPhotoInfo": "Sağ alttaki + butonuna tıklayarak yeni hatıra ekleyebilirsiniz."
+    "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
+    "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
+    "addPhotoInfo": "Sağ alttaki + butonuna dokunarak sizdeki hatıralarımızı paylaşabilirsiniz.",
+    "favorites": {
+      "title": "Favori Anılarım",
+      "emptyTitle": "Henüz favori anınız yok",
+      "emptyDescription": "Anıları favorilerinize eklemek için ❤️ butonuna dokunun",
+      "untitledMemory": "Başlıksız Anı",
+      "noDescription": "Açıklama yok"
+    },
+    "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
+  },
+  "community": {
+    "tagline": "TOPLULUK",
+    "groups": {
+      "title": "Gruplar",
+      "groupCount": "{count} grup",
+      "openGroup": "AÇIK GRUP",
+      "closedGroup": "KAPALI GRUP",
+      "adminBadge": "Yönetici",
+      "noPermissionInfo": "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
+      "createGroup": "Grup Oluştur",
+      "empty": "Henüz grup yok."
+    },
+    "createGroup": {
+      "title": "Grup Oluştur",
+      "openBadge": "AÇIK",
+      "coverImageLabel": "Kapak Görseli",
+      "selectImage": "Görsel seç",
+      "nameLabel": "Grup Adı",
+      "nameHint": "Örn: Antakya Mahalle Dayanışması",
+      "nameHelper": "Üyeler bu adı görür",
+      "categoryLabel": "Kategori",
+      "categoryValidationError": "Lütfen bir kategori seçin.",
+      "descriptionLabel": "Açıklama",
+      "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
+      "submitButton": "Grubu Oluştur",
+      "success": "Grup başarıyla oluşturuldu."
+    }
+  },
+  "unauthorized": {
+    "errorCode": "403 · ERİŞİM ENGELLENDİ",
+    "title": "Yetkisiz Erişim",
+    "description": "Bu sayfaya erişim yetkin yok. Grup oluşturma yalnızca yetkili topluluk üyelerine açıktır.",
+    "backToGroups": "Gruplar'a dön",
+    "requestAccess": "Yetki talebinde bulun",
+    "requestAccessComingSoon": "Bu özellik yakında eklenecek."
   }
 };
 static const Map<String,dynamic> _en = {
@@ -457,6 +528,7 @@ static const Map<String,dynamic> _en = {
     "currentLanguage": "Current language",
     "themeTitle": "{} Theme",
     "developersTitle": "Developers",
+    "inactiveDevelopers": "We would like to thank our friends who supported us yesterday ❤️ ",
     "seeDevelopers": "See full team",
     "aboutTitle": "About the app",
     "contactTitle": "Contact us",
@@ -466,7 +538,8 @@ static const Map<String,dynamic> _en = {
     "appReviewTitle": "Rate the App",
     "themes": {
       "light": "Light",
-      "dark": "Dark"
+      "dark": "Dark",
+      "system": "System"
     }
   },
   "home": {
@@ -480,7 +553,8 @@ static const Map<String,dynamic> _en = {
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
-    "emptyFavorite": "Your favorites list is empty"
+    "emptyFavorite": "Your favorites list is empty",
+    "removedFavorite": "Removed from favorites"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -546,7 +620,12 @@ static const Map<String,dynamic> _en = {
     "favorite": "Favorites",
     "request": "Request",
     "advertise": "Advertise",
-    "community": "Community"
+    "community": "Community",
+    "memories": "Memories",
+    "places": "Places",
+    "feed": "Feed",
+    "explore": "Explore",
+    "profile": "Profile"
   },
   "projectRequest": {
     "title": "New Project Request",
@@ -675,10 +754,10 @@ static const Map<String,dynamic> _en = {
     "subBranchesTitle": "{} Store ({})"
   },
   "whatsNew": {
-    "title": "New in v8.0.0 🎉",
+    "title": "New in v8.1.0 🎉",
     "features": {
-      "linkPage": "🤝 Mersin with us.",
-      "locationPinning": "📍 Location pinning feature added for new businesses in Mersin."
+      "favoritePlaces": "You can easily find your favorite places.",
+      "memories": "Your memories are alive with you."
     },
     "bugFixes": "🐞 Bug fixes."
   },
@@ -704,10 +783,73 @@ static const Map<String,dynamic> _en = {
     "settings": "Settings",
     "memories": "Memories"
   },
+  "auth": {
+    "tagline": "COMMUNITY",
+    "hero": {
+      "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
+      "prefix": "Let's live ",
+      "highlight": "Hatay",
+      "suffix": "together.",
+      "description": "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here."
+    },
+    "signIn": {
+      "continueWith": "Continue with {provider}",
+      "guest": "Continue as Guest"
+    },
+    "legal": "By continuing, you accept the terms of use and KVKK.",
+    "error": {
+      "generic": "Something went wrong while signing in, please try again.",
+      "failed": "{provider} sign-in failed, please try again."
+    }
+  },
   "historyPage": {
-    "welcomeTitle": "Welcome to Memories Page!",
-    "welcomeDescription": "On this page, you can share your beautiful memories and view other users' memories. It offers an Instagram-like experience.",
-    "addPhotoInfo": "Click the + button in the bottom right to add new memories."
+    "welcomeTitle": "Our Memories Are Alive with Us",
+    "welcomeDescription": "Let's share our beautiful memories, let's live together.",
+    "addPhotoInfo": "Touch the + button in the bottom right to share your memories.",
+    "favorites": {
+      "title": "My Favorite Memories",
+      "emptyTitle": "You don't have any favorite memories yet",
+      "emptyDescription": "Touch the ❤️ button to add memories to your favorites",
+      "untitledMemory": "Untitled Memory",
+      "noDescription": "No description"
+    },
+    "shareSubject": "Keep 'Hatay Yaşat' with us!"
+  },
+  "community": {
+    "tagline": "COMMUNITY",
+    "groups": {
+      "title": "Groups",
+      "groupCount": "{count} groups",
+      "openGroup": "OPEN GROUP",
+      "closedGroup": "CLOSED GROUP",
+      "adminBadge": "Admin",
+      "noPermissionInfo": "You don't have permission to create a group. Authorized community members can create new groups.",
+      "createGroup": "Create Group",
+      "empty": "No groups yet."
+    },
+    "createGroup": {
+      "title": "Create Group",
+      "openBadge": "OPEN",
+      "coverImageLabel": "Cover Image",
+      "selectImage": "Select image",
+      "nameLabel": "Group Name",
+      "nameHint": "E.g: Antakya Neighborhood Solidarity",
+      "nameHelper": "Members will see this name",
+      "categoryLabel": "Category",
+      "categoryValidationError": "Please select a category.",
+      "descriptionLabel": "Description",
+      "descriptionHint": "What is this group about? Who should join?",
+      "submitButton": "Create Group",
+      "success": "Group created successfully."
+    }
+  },
+  "unauthorized": {
+    "errorCode": "403 · ACCESS DENIED",
+    "title": "Unauthorized Access",
+    "description": "You don't have permission to access this page. Group creation is only available to authorized community members.",
+    "backToGroups": "Back to Groups",
+    "requestAccess": "Request access",
+    "requestAccessComingSoon": "This feature is coming soon."
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": _tr, "en": _en};

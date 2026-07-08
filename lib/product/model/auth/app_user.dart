@@ -22,14 +22,14 @@ final class AppUser extends Equatable {
 
   @override
   List<Object?> get props => [
-        uid,
-        email,
-        displayName,
-        role,
-        photoUrl,
-        canCreateGroup,
-        canCreateIssue,
-      ];
+    uid,
+    email,
+    displayName,
+    role,
+    photoUrl,
+    canCreateGroup,
+    canCreateIssue,
+  ];
 
   AppUser copyWith({
     String? uid,

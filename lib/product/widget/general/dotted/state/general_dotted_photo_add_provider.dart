@@ -44,8 +44,9 @@ final class GeneralDottedPhotoAddProviderState
   Future<void> selectAndUpdatePhotoByPhotoPickType(
     PhotoPickType photoPickType,
   ) async {
-    final file = await PhotoPickerManager(context: context)
-        .pickPhoto(type: photoPickType);
+    final file = await PhotoPickerManager(
+      context: context,
+    ).pickPhoto(type: photoPickType);
     _updatePhoto(file);
   }
 

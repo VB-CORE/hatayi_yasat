@@ -24,8 +24,9 @@ final class GeneralExpansionImageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.medium),
+      shape: context.border.roundedRectangleAllBorderNormal.copyWith(
+        side: CustomBorderSides.medium,
+      ),
       elevation: 0,
       child: ExpansionTile(
         shape: LinearBorder.none,

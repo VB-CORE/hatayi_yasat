@@ -328,5 +328,37 @@ abstract class  LocaleKeys {
   static const historyPage_favorites = 'historyPage.favorites';
   static const historyPage_shareSubject = 'historyPage.shareSubject';
   static const historyPage = 'historyPage';
+  static const community_tagline = 'community.tagline';
+  static const community_groups_title = 'community.groups.title';
+  static const community_groups_groupCount = 'community.groups.groupCount';
+  static const community_groups_openGroup = 'community.groups.openGroup';
+  static const community_groups_closedGroup = 'community.groups.closedGroup';
+  static const community_groups_adminBadge = 'community.groups.adminBadge';
+  static const community_groups_noPermissionInfo = 'community.groups.noPermissionInfo';
+  static const community_groups_createGroup = 'community.groups.createGroup';
+  static const community_groups_empty = 'community.groups.empty';
+  static const community_groups = 'community.groups';
+  static const community_createGroup_title = 'community.createGroup.title';
+  static const community_createGroup_openBadge = 'community.createGroup.openBadge';
+  static const community_createGroup_coverImageLabel = 'community.createGroup.coverImageLabel';
+  static const community_createGroup_selectImage = 'community.createGroup.selectImage';
+  static const community_createGroup_nameLabel = 'community.createGroup.nameLabel';
+  static const community_createGroup_nameHint = 'community.createGroup.nameHint';
+  static const community_createGroup_nameHelper = 'community.createGroup.nameHelper';
+  static const community_createGroup_categoryLabel = 'community.createGroup.categoryLabel';
+  static const community_createGroup_categoryValidationError = 'community.createGroup.categoryValidationError';
+  static const community_createGroup_descriptionLabel = 'community.createGroup.descriptionLabel';
+  static const community_createGroup_descriptionHint = 'community.createGroup.descriptionHint';
+  static const community_createGroup_submitButton = 'community.createGroup.submitButton';
+  static const community_createGroup_success = 'community.createGroup.success';
+  static const community_createGroup = 'community.createGroup';
+  static const community = 'community';
+  static const unauthorized_errorCode = 'unauthorized.errorCode';
+  static const unauthorized_title = 'unauthorized.title';
+  static const unauthorized_description = 'unauthorized.description';
+  static const unauthorized_backToGroups = 'unauthorized.backToGroups';
+  static const unauthorized_requestAccess = 'unauthorized.requestAccess';
+  static const unauthorized_requestAccessComingSoon = 'unauthorized.requestAccessComingSoon';
+  static const unauthorized = 'unauthorized';
 
 }

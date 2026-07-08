@@ -54,7 +54,7 @@ abstract class _$AdvertisementBoardViewModel
   AdvertisementBoardState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<AdvertisementBoardState, AdvertisementBoardState>;
     final element =
@@ -65,6 +65,6 @@ abstract class _$AdvertisementBoardViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
