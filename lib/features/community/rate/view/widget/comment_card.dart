@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
-import 'package:lifeclient/features/community/rate/provider/mock_user_provider.dart';
 import 'package:lifeclient/features/community/rate/view/widget/comment_option_sheet.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -27,7 +26,6 @@ class CommentCard extends ConsumerWidget {
   bool get _isOwnComment => onEdit != null || onDelete != null;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(mockUserProvider(rateModel.userId));
     return Container(
       padding: const PagePadding.generalCardAll(),
       margin: const PagePadding.verticalLowSymmetric(),
@@ -39,16 +37,16 @@ class CommentCard extends ConsumerWidget {
         children: [
           CircleAvatar(
             backgroundColor: ColorsCustom.endless,
-            backgroundImage: user.photoUrl != null
-                ? NetworkImage(user.photoUrl!)
+            backgroundImage: (rateModel.photoUrl?.isNotEmpty ?? false)
+                ? NetworkImage(rateModel.photoUrl ?? '')
                 : null,
-            child: user.photoUrl == null
-                ? GeneralContentSmallTitle(
-                    value: user.initials,
+            child: (rateModel.photoUrl?.isNotEmpty ?? false)
+                ? null
+                : GeneralContentSmallTitle(
+                    value: rateModel.initials,
                     color: ColorsCustom.white,
                     fontWeight: FontWeight.w600,
-                  )
-                : null,
+                  ),
           ),
           const EmptyBox.middleWidth(),
           Expanded(
@@ -59,8 +57,7 @@ class CommentCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GeneralBodyTitle(user.name),
-
+                    GeneralBodyTitle(rateModel.userName),
                     if (_isOwnComment)
                       GestureDetector(
                         onTap: () => _showCommentOptions(context),

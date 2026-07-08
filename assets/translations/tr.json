@@ -137,7 +137,13 @@
     "commentAdded": "Yorum eklendi",
     "deleteComment": "Yorumunu sil",
     "loginRequiredTitle": "Giriş yapmadınız",
-    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor."
+    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor.",
+    "actionFailedTitle": "İşlemde bir sorun oluştu",
+    "submitFailedContent": "Oyun gönderilemedi. Lütfen tekrar dene.",
+    "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
+    "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
+    "deleteSuccessMessage": "Yorumun silindi.",
+    "editCommentSuccessMessage": "Yorumun güncellendi."
   },
   "date": {
     "justNow": "Az önce",

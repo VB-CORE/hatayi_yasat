@@ -18,10 +18,21 @@ import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
 class RateCard extends ConsumerStatefulWidget {
-  const RateCard({required this.esnafId, super.key, this.onSubmitted});
+  const RateCard({
+    required this.esnafId,
+    super.key,
+    this.onSubmitted,
+    this.initialComment,
+  });
   final String esnafId;
   final VoidCallback? onSubmitted;
-  static Future<void> show(BuildContext context, {required String esnafId}) {
+  final String? initialComment;
+
+  static Future<void> show(
+    BuildContext context, {
+    required String esnafId,
+    String? initialComment,
+  }) {
     return showModalBottomSheet<void>(
       context: context,
       useSafeArea: true,
@@ -35,6 +46,7 @@ class RateCard extends ConsumerStatefulWidget {
         ),
         child: RateCard(
           esnafId: esnafId,
+          initialComment: initialComment,
           onSubmitted: () => Navigator.of(sheetContext).pop(),
         ),
       ),
@@ -49,51 +61,57 @@ class _RateCardState extends ConsumerState<RateCard>
     with AppProviderMixin<RateCard>, RateCommentControllerMixin {
   @override
   Widget build(BuildContext context) {
-    ref.listen(rateCommunityProviderProvider(widget.esnafId), onVoteChanged);
+    ref.listen(
+      rateCommunityProviderProvider(widget.esnafId),
+      onRateStateChanged,
+    );
 
     final state = ref.watch(rateCommunityProviderProvider(widget.esnafId));
     final notifier = ref.read(
       rateCommunityProviderProvider(widget.esnafId).notifier,
     );
 
-    return Container(
-      margin: const PagePadding.all(),
-      padding: const PagePadding.all(),
-      decoration: _cardDecoration(state.isReadOnly),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _RateCardHeader(isReadOnly: state.isReadOnly),
-          Padding(
-            padding: const PagePadding.onlyTopMedium(),
-            child: AppRatingWidget(
-              itemSize: AppIconSizes.largeX,
-              value: state.value,
-              isReadOnly: state.isReadOnly,
-              onRatingUpdate: notifier.selectRating,
+    return PopScope(
+      canPop: !state.isBusy,
+      child: Container(
+        margin: const PagePadding.all(),
+        padding: const PagePadding.all(),
+        decoration: _cardDecoration(state.isReadOnly),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _RateCardHeader(isReadOnly: state.isReadOnly),
+            Padding(
+              padding: const PagePadding.onlyTopMedium(),
+              child: AppRatingWidget(
+                itemSize: AppIconSizes.largeX,
+                value: state.value,
+                isReadOnly: state.isReadOnly || state.isBusy,
+                onRatingUpdate: notifier.selectRating,
+              ),
             ),
-          ),
-          const EmptyBox.middleHeight(),
-          if (state.isReadOnly)
-            _RateCommentSection(
-              title: LocaleKeys.rate_editComment.tr(),
-              buttonLabel: LocaleKeys.button_save.tr(),
-              controller: commentController,
-              canSubmit: !state.isSubmitting,
-              onSubmit: () async {
-                await notifier.editComment(commentController.text);
-                widget.onSubmitted?.call();
-              },
-            )
-          else
-            _RateCommentSection(
-              title: LocaleKeys.rate_evaluatePlace.tr(),
-              buttonLabel: LocaleKeys.button_send.tr(),
-              controller: commentController,
-              canSubmit: state.canSubmit,
-              onSubmit: () => notifier.submit(comment: commentController.text),
-            ),
-        ],
+            const EmptyBox.middleHeight(),
+            if (state.isReadOnly)
+              _RateCommentSection(
+                title: LocaleKeys.rate_editComment.tr(),
+                buttonLabel: LocaleKeys.button_save.tr(),
+                controller: commentController,
+                canSubmit: state.canSubmit,
+                isBusy: state.isBusy,
+                onSubmit: () => notifier.editComment(commentController.text),
+              )
+            else
+              _RateCommentSection(
+                title: LocaleKeys.rate_evaluatePlace.tr(),
+                buttonLabel: LocaleKeys.button_send.tr(),
+                controller: commentController,
+                canSubmit: state.canSubmit,
+                isBusy: state.isBusy,
+                onSubmit: () =>
+                    notifier.submit(comment: commentController.text),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -150,12 +168,14 @@ class _RateCommentSection extends StatelessWidget {
     required this.controller,
     required this.canSubmit,
     required this.onSubmit,
+    required this.isBusy,
   });
   final String title;
   final String buttonLabel;
   final TextEditingController controller;
   final bool canSubmit;
   final VoidCallback onSubmit;
+  final bool isBusy;
 
   @override
   Widget build(BuildContext context) {
@@ -168,6 +188,7 @@ class _RateCommentSection extends StatelessWidget {
           hint: LocaleKeys.rate_commentHint.tr(),
           controller: controller,
           validator: ValidatorNormalTextField(),
+          enabled: !isBusy,
         ),
         const EmptyBox.middleHeight(),
         GeneralButtonV2.active(

@@ -137,7 +137,13 @@
     "commentAdded": "Comment added",
     "deleteComment": "Delete your comment",
     "loginRequiredTitle": "You're not logged in",
-    "loginRequiredContent": "You need to log in to add a comment."
+    "loginRequiredContent": "You need to log in to add a comment.",
+    "actionFailedTitle": "Something went wrong",
+    "submitFailedContent": "Your rating couldn't be submitted. Please try again.",
+    "editCommentFailedContent": "Your comment couldn't be updated. Please try again.",
+    "deleteFailedContent": "Your comment couldn't be deleted. Please try again.",
+    "deleteSuccessMessage": "Your comment was deleted.",
+    "editCommentSuccessMessage": "Your comment has been updated."
   },
   "date": {
     "justNow": "Just now",

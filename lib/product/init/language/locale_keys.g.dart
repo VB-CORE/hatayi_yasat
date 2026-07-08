@@ -128,6 +128,12 @@ abstract class  LocaleKeys {
   static const rate_deleteComment = 'rate.deleteComment';
   static const rate_loginRequiredTitle = 'rate.loginRequiredTitle';
   static const rate_loginRequiredContent = 'rate.loginRequiredContent';
+  static const rate_actionFailedTitle = 'rate.actionFailedTitle';
+  static const rate_submitFailedContent = 'rate.submitFailedContent';
+  static const rate_editCommentFailedContent = 'rate.editCommentFailedContent';
+  static const rate_deleteFailedContent = 'rate.deleteFailedContent';
+  static const rate_deleteSuccessMessage = 'rate.deleteSuccessMessage';
+  static const rate_editCommentSuccessMessage = 'rate.editCommentSuccessMessage';
   static const rate = 'rate';
   static const date_justNow = 'date.justNow';
   static const date_minutesAgo = 'date.minutesAgo';

@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/features/community/rate/provider/mock_community_provider.dart';
 import 'package:lifeclient/features/community/rate/view/community_list.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
@@ -132,11 +131,10 @@ final class _PlaceDetailContent extends ConsumerWidget {
   const _PlaceDetailContent({required this.model});
 
   final StoreModel model;
+  static bool isComment = true;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final communityModel = ref.watch(mockCommunityProvider(model.documentId));
-
     return Padding(
       padding: const PagePadding.defaultPadding(),
       child: Column(
@@ -174,7 +172,10 @@ final class _PlaceDetailContent extends ConsumerWidget {
               thickness: .3,
             ),
           ),
-          CommunityList(model: communityModel),
+          CommunityList(
+            isComment: isComment,
+            esnafId: model.documentId,
+          ),
         ],
       ),
     );

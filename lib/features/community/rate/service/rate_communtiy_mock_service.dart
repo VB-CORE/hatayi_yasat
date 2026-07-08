@@ -11,6 +11,8 @@ final class RateCommunityMockService implements RateCommunityService {
         counted: true,
         createdAt: DateTime(2026, 6, 28),
         comment: 'Çok temiz ve ilgili bir esnaf, tavsiye ederim.',
+        userName: 'Mehmet Kaya',
+        photoUrl: '',
       ),
       'mock_user_2': RateModel(
         esnafId: 'place_1',
@@ -19,6 +21,8 @@ final class RateCommunityMockService implements RateCommunityService {
         counted: true,
         createdAt: DateTime(2026, 6, 29),
         comment: 'Fiyatlar biraz yüksek, ortalama bir deneyimdi.',
+        userName: 'Zeynep Demir',
+        photoUrl: '',
       ),
       'mock_user_3': RateModel(
         esnafId: 'place_1',
@@ -31,6 +35,8 @@ final class RateCommunityMockService implements RateCommunityService {
             'ilgisizdi, siparişim geç geldi ve ürün kalitesi hiç tatmin edici '
             'değildi. Bu fiyata çok daha iyi bir hizmet bekliyordum, bir daha '
             'tercih etmeyi düşünmüyorum.',
+        userName: 'Ayşe yılmaz',
+        photoUrl: '',
       ),
     },
     'place_2': {
@@ -41,6 +47,8 @@ final class RateCommunityMockService implements RateCommunityService {
         counted: true,
         createdAt: DateTime(2026, 6, 29),
         comment: 'Fiyatlar uygun, hizmet güzeldi.',
+        userName: 'Zeynep Demir',
+        photoUrl: '',
       ),
     },
   };
@@ -53,25 +61,28 @@ final class RateCommunityMockService implements RateCommunityService {
   }
 
   @override
-  Future<void> rate(RateModel rate) async {
+  Future<bool> rate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
     final votes = votesByEsnaf.putIfAbsent(rate.esnafId, () => {});
     votes[rate.userId] = rate;
+    return true;
   }
 
   @override
-  Future<void> changeComment(RateModel rate) async {
+  Future<bool> changeComment(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
     final existing = votesByEsnaf[rate.esnafId]?[rate.userId];
-    if (existing == null) return;
+    if (existing == null) return false;
     votesByEsnaf[rate.esnafId]![rate.userId] = existing.copyWith(
       comment: rate.comment,
     );
+    return true;
   }
 
   @override
-  Future<void> deleteRate(RateModel rate) async {
+  Future<bool> deleteRate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
     votesByEsnaf[rate.esnafId]?.remove(rate.userId);
+    return true;
   }
 }

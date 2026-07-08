@@ -12,6 +12,7 @@ part 'rate_community_provider.g.dart';
 final class RateCommunityProvider extends _$RateCommunityProvider
     with ProjectDependencyMixin {
   static const String _currentUserId = 'mock_user_4';
+  static const String _currentUserName = 'Veli Bacik';
 
   @override
   RateCommunityState build(String esnafId) {
@@ -20,6 +21,7 @@ final class RateCommunityProvider extends _$RateCommunityProvider
   }
 
   Future<void> _loadVotes() async {
+    await Future<void>.delayed(const Duration(seconds: 2));
     try {
       final comments = await ref
           .read(rateCommunityServiceProvider)
@@ -34,15 +36,24 @@ final class RateCommunityProvider extends _$RateCommunityProvider
         isLoading: false,
       );
     } on Exception {
-      state = state.copyWith(isLoading: false, isError: true);
+      state = state.copyWith(
+        isLoading: false,
+        isError: true,
+      );
     }
   }
 
-  void selectRating(double value) => state = state.copyWith(draftRate: value);
+  void selectRating(double value) =>
+      state = state.copyWith(draftRate: value, status: const ActionIdle());
 
-  Future<void> submit({String? comment}) async {
-    if (state.isReadOnly) return;
-    state = state.copyWith(isSubmitting: true, isActionError: false);
+  void resetStatus() => state = state.copyWith(status: const ActionIdle());
+
+  Future<void> submit({
+    String? comment,
+  }) async {
+    if (state.isReadOnly || state.isProcessing) return;
+    state = state.copyWith(status: const ActionProcessing(RateAction.create));
+    await Future<void>.delayed(const Duration(seconds: 2));
     final vote = RateModel(
       esnafId: esnafId,
       userId: _currentUserId,
@@ -50,51 +61,63 @@ final class RateCommunityProvider extends _$RateCommunityProvider
       createdAt: DateTime.now(),
       counted: false,
       comment: comment,
+      userName: _currentUserName,
+      photoUrl: '',
     );
-    try {
-      await ref.read(rateCommunityServiceProvider).rate(vote);
+    final success = await ref.read(rateCommunityServiceProvider).rate(vote);
+    if (success) {
       state = state.copyWith(
         vote: vote,
         comments: [vote, ...state.comments],
-        isSubmitting: false,
+        status: const ActionSucceeded(RateAction.create),
       );
-    } on Exception {
-      state = state.copyWith(isSubmitting: false, isActionError: true);
+    } else {
+      state = state.copyWith(status: const ActionFailed(RateAction.create));
     }
   }
 
   Future<void> editComment(String? newComment) async {
     final currentVote = state.vote;
-    if (currentVote == null) return;
+    if (currentVote == null || state.isProcessing) return;
+    state = state.copyWith(status: const ActionProcessing(RateAction.update));
+    await Future<void>.delayed(const Duration(seconds: 2));
     final updated = currentVote.copyWith(comment: newComment);
-    try {
-      await ref.read(rateCommunityServiceProvider).changeComment(updated);
+    final success = await ref
+        .read(rateCommunityServiceProvider)
+        .changeComment(updated);
+    if (success) {
       state = state.copyWith(
+        status: const ActionSucceeded(RateAction.update),
         vote: updated,
         comments: [
           for (final comment in state.comments)
             if (comment.userId == updated.userId) updated else comment,
         ],
       );
-    } on Exception {
-      state = state.copyWith(isActionError: true);
+    } else {
+      state = state.copyWith(status: const ActionFailed(RateAction.update));
     }
   }
 
   Future<void> deleteVote() async {
     final currentVote = state.vote;
-    if (currentVote == null) return;
-    try {
-      await ref.read(rateCommunityServiceProvider).deleteRate(currentVote);
+    if (currentVote == null || state.isProcessing) return;
+    state = state.copyWith(status: const ActionProcessing(RateAction.delete));
+    await Future<void>.delayed(const Duration(seconds: 2));
+    final success = await ref
+        .read(rateCommunityServiceProvider)
+        .deleteRate(currentVote);
+    if (success) {
       state = state.copyWith(
         clearVote: true,
+        status: const ActionSucceeded(RateAction.delete),
         draftRate: 0,
         comments: state.comments
             .where((c) => c.userId != currentVote.userId)
             .toList(),
       );
-    } on Exception {
-      state = state.copyWith(isActionError: true);
+    } else {
+      state = state.copyWith(status: const ActionFailed(RateAction.delete));
     }
   }
 }
