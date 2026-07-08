@@ -108,6 +108,7 @@ dependencies:
   sliver_tools: ^0.2.12
   hugeicons: ^1.1.5
   material_symbols_icons: ^4.2951.0
+  qr_flutter: ^4.1.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0

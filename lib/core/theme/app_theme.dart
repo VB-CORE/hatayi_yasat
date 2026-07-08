@@ -119,6 +119,11 @@ final class ApplicationTheme {
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
+        ),
+      ),
 
       expansionTileTheme: const ExpansionTileThemeData(
         iconColor: AppColors.navy,

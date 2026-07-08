@@ -46,6 +46,7 @@
     "sendRequest": "Talep Oluştur",
     "call": "Ara",
     "share": "Paylaş",
+    "copy": "Kopyala",
     "error": "Hata",
     "more": "Daha fazla",
     "understood": "Anladım"
@@ -125,7 +126,8 @@
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
-    "removedFavorite": "Favorilerden kaldırıldı"
+    "removedFavorite": "Favorilerden kaldırıldı",
+    "copiedToClipboard": "Panoya kopyalandı"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -404,6 +406,14 @@
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
       "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
     }
+  },
+  "userQr": {
+    "title": "QR Kodum",
+    "personalTitle": "Kişisel QR",
+    "personalDescription": "Sadece sana özel paylaşım kodu.",
+    "campaignTitle": "Kampanyalara Katıl",
+    "campaignDescription": "Qr kodunla kampanyalara katılabilirsin.",
+    "shareSubject": "QR Kodum"
   },
   "historyPage": {
     "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",

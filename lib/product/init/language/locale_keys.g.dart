@@ -47,6 +47,7 @@ abstract class  LocaleKeys {
   static const button_sendRequest = 'button.sendRequest';
   static const button_call = 'button.call';
   static const button_share = 'button.share';
+  static const button_copy = 'button.copy';
   static const button_error = 'button.error';
   static const button_more = 'button.more';
   static const button_understood = 'button.understood';
@@ -117,6 +118,7 @@ abstract class  LocaleKeys {
   static const message_addedFavorite = 'message.addedFavorite';
   static const message_emptyFavorite = 'message.emptyFavorite';
   static const message_removedFavorite = 'message.removedFavorite';
+  static const message_copiedToClipboard = 'message.copiedToClipboard';
   static const message = 'message';
   static const search_latestSearch = 'search.latestSearch';
   static const search_place = 'search.place';
@@ -353,6 +355,13 @@ abstract class  LocaleKeys {
   static const auth_error_failed = 'auth.error.failed';
   static const auth_error = 'auth.error';
   static const auth = 'auth';
+  static const userQr_title = 'userQr.title';
+  static const userQr_personalTitle = 'userQr.personalTitle';
+  static const userQr_personalDescription = 'userQr.personalDescription';
+  static const userQr_campaignTitle = 'userQr.campaignTitle';
+  static const userQr_campaignDescription = 'userQr.campaignDescription';
+  static const userQr_shareSubject = 'userQr.shareSubject';
+  static const userQr = 'userQr';
   static const historyPage_welcomeTitle = 'historyPage.welcomeTitle';
   static const historyPage_welcomeDescription = 'historyPage.welcomeDescription';
   static const historyPage_addPhotoInfo = 'historyPage.addPhotoInfo';
