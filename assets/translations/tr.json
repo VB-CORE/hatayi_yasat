@@ -186,7 +186,11 @@
     "request": "Talep",
     "advertise": "İş İlanı",
     "community": "Topluluk",
-    "memories": "Hatıralar"
+    "memories": "Hatıralar",
+    "places": "Mekanlar",
+    "feed": "Akış",
+    "explore": "Keşfet",
+    "profile": "Profil"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",

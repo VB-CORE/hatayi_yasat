@@ -27,6 +27,14 @@ abstract final class AppShadows {
     ),
   ];
 
+  static List<BoxShadow> bottomBar = [
+    BoxShadow(
+      color: _navy.withValues(alpha: 0.08),
+      blurRadius: 24,
+      offset: const Offset(0, -6),
+    ),
+  ];
+
   static List<BoxShadow> popover = [
     BoxShadow(
       color: _navy.withValues(alpha: 0.18),

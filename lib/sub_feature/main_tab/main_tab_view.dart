@@ -5,6 +5,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
