@@ -105,6 +105,8 @@ abstract class  LocaleKeys {
   static const home_places = 'home.places';
   static const home_search = 'home.search';
   static const home_notifications = 'home.notifications';
+  static const home_allCategory = 'home.allCategory';
+  static const home_placesUpper = 'home.placesUpper';
   static const home = 'home';
   static const message_emptySearch = 'message.emptySearch';
   static const message_somethingWentWrong = 'message.somethingWentWrong';
@@ -268,12 +270,20 @@ abstract class  LocaleKeys {
   static const sorting_time_newest = 'sorting.time.newest';
   static const sorting_time_oldest = 'sorting.time.oldest';
   static const sorting_time = 'sorting.time';
+  static const sorting_title = 'sorting.title';
+  static const sorting_applied = 'sorting.applied';
+  static const sorting_alpha_aToZ = 'sorting.alpha.aToZ';
+  static const sorting_alpha_zToA = 'sorting.alpha.zToA';
+  static const sorting_alpha = 'sorting.alpha';
   static const sorting = 'sorting';
   static const utils_options = 'utils.options';
   static const utils = 'utils';
   static const advertisementBoard_openUrl = 'advertisementBoard.openUrl';
   static const advertisementBoard_launchUrlError = 'advertisementBoard.launchUrlError';
   static const advertisementBoard_shareAdvertisementSubject = 'advertisementBoard.shareAdvertisementSubject';
+  static const advertisementBoard_houseAdTitle = 'advertisementBoard.houseAdTitle';
+  static const advertisementBoard_houseAdSubtitle = 'advertisementBoard.houseAdSubtitle';
+  static const advertisementBoard_contactUs = 'advertisementBoard.contactUs';
   static const advertisementBoard = 'advertisementBoard';
   static const chain_stores_title = 'chain_stores.title';
   static const chain_stores_showAllSubBranches = 'chain_stores.showAllSubBranches';
@@ -328,5 +338,22 @@ abstract class  LocaleKeys {
   static const historyPage_favorites = 'historyPage.favorites';
   static const historyPage_shareSubject = 'historyPage.shareSubject';
   static const historyPage = 'historyPage';
+  static const filter_title = 'filter.title';
+  static const filter_clear = 'filter.clear';
+  static const filter_categories = 'filter.categories';
+  static const filter_others = 'filter.others';
+  static const filter_openNow = 'filter.openNow';
+  static const filter_favoritesOnly = 'filter.favoritesOnly';
+  static const filter_districts = 'filter.districts';
+  static const filter_nearYou = 'filter.nearYou';
+  static const filter_searchDistrict = 'filter.searchDistrict';
+  static const filter_selectedCount = 'filter.selectedCount';
+  static const filter_showResults = 'filter.showResults';
+  static const filter_noResults = 'filter.noResults';
+  static const filter_categoryCountLabel = 'filter.categoryCountLabel';
+  static const filter_districtCountLabel = 'filter.districtCountLabel';
+  static const filter_openShort = 'filter.openShort';
+  static const filter_favoritesShort = 'filter.favoritesShort';
+  static const filter = 'filter';
 
 }
