@@ -11,6 +11,7 @@ import 'package:lifeclient/features/community/groups/provider/groups_view_model.
 import 'package:lifeclient/features/community/groups/view/mixin/groups_view_mixin.dart';
 import 'package:lifeclient/features/community/groups/view/widget/group_card.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -24,7 +25,7 @@ final class GroupsView extends ConsumerStatefulWidget {
   const GroupsView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _GroupsViewState();
+  ConsumerState<GroupsView> createState() => _GroupsViewState();
 }
 
 final class _GroupsViewState extends ConsumerState<GroupsView>

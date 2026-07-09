@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
+import 'package:lifeclient/product/model/auth/app_user.dart';
 
 final class GroupMemberModel extends Equatable {
   const GroupMemberModel({
@@ -10,11 +11,35 @@ final class GroupMemberModel extends Equatable {
     this.role = GroupMemberRole.member,
   });
 
+  // TODO(community): Firestore üyelik dokümanı bağlanınca mevcut üye oradan
+  // gelecek, bu eşleme kaldırılacak.
+  factory GroupMemberModel.fromAppUser(AppUser user) {
+    return GroupMemberModel(
+      id: user.uid,
+      displayName: user.displayName,
+      username: user.email.split('@').first,
+      avatarUrl: user.photoUrl,
+    );
+  }
+
   final String id;
   final String displayName;
   final String username;
   final String? avatarUrl;
   final GroupMemberRole role;
+
+  /// Tartışmalar sekmesi için isim maskesi — "Saim Yıldırım" → "S••• Y•••••".
+  String get maskedDisplayName {
+    return displayName
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .map(
+          (word) =>
+              word.length <= 1 ? word : '${word[0]}${'•' * (word.length - 1)}',
+        )
+        .join(' ');
+  }
 
   @override
   List<Object?> get props => [id, displayName, username, avatarUrl, role];

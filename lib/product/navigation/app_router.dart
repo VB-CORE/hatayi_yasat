@@ -7,6 +7,10 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
+import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
+import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
+import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
+import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/details/view/place_detail_view.dart';
@@ -328,6 +332,29 @@ final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       UnauthorizedView(attemptedPath: attemptedPath);
+}
+
+@TypedGoRoute<GroupDetailRoute>(path: '/group-detail')
+final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
+  GroupDetailRoute({required this.$extra});
+
+  final GroupModel $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      GroupDetailView(model: $extra);
+}
+
+@TypedGoRoute<DiscussionDetailRoute>(path: '/discussion-detail')
+final class DiscussionDetailRoute extends GoRouteData
+    with $DiscussionDetailRoute {
+  DiscussionDetailRoute({required this.$extra});
+
+  final DiscussionDetailArgs $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      DiscussionDetailView(args: $extra);
 }
 
 @TypedGoRoute<CreateGroupRoute>(path: '/create-group')

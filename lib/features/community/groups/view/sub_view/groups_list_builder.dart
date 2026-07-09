@@ -30,8 +30,8 @@ final class _GroupsListBuilder extends ConsumerWidget {
             padding: const PagePadding.vertical6Symmetric(),
             child: GroupCard(
               model: groups[index],
-              // TODO(community): Grup detay ekranı hazır olunca bağlanacak.
-              onTap: () {},
+              onTap: () =>
+                  GroupDetailRoute($extra: groups[index]).push<void>(context),
             ),
           );
         },

@@ -1,6 +1,6 @@
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_state.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
+import 'package:lifeclient/features/community/mock/community_mock_data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'groups_view_model.g.dart';
@@ -15,6 +15,9 @@ final class GroupsViewModel extends _$GroupsViewModel
   // firebaseService üzerinden gerçek sorguya bağlanacak.
   Future<void> fetchGroups() async {
     state = state.copyWith(isFetching: true, isError: false);
-    state = state.copyWith(groups: GroupModel.mockItems, isFetching: false);
+    state = state.copyWith(
+      groups: CommunityMockData.groups,
+      isFetching: false,
+    );
   }
 }

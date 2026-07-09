@@ -9,6 +9,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
@@ -22,12 +23,14 @@ final class CoverImagePicker extends StatelessWidget {
   final File? imageFile;
   final VoidCallback onTap;
 
+  static const double _coverHeightFactor = 0.22;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: CustomRadius.large,
       child: SizedBox(
-        height: context.sized.dynamicHeight(.22),
+        height: context.sized.dynamicHeight(_coverHeightFactor),
         width: context.sized.width,
         child: Stack(
           fit: StackFit.expand,
@@ -85,7 +88,7 @@ final class _SelectImageButton extends StatelessWidget {
                 size: AppIconSizes.medium,
                 color: AppColors.coral,
               ),
-              const SizedBox(width: AppIconSizes.small),
+              const EmptyBox.smallWidth(),
               GeneralContentSubTitle(
                 value: LocaleKeys.community_createGroup_selectImage.tr(),
                 fontWeight: FontWeight.w700,

@@ -322,7 +322,11 @@ class CodegenLoader extends AssetLoader{
     }
   },
   "utils": {
-    "options": "{} seçenek"
+    "options": "{} seçenek",
+    "justNow": "az önce",
+    "minutesAgo": "{} dk önce",
+    "hoursAgo": "{} saat önce",
+    "daysAgo": "{} gün önce"
   },
   "advertisementBoard": {
     "openUrl": "Linki Aç",
@@ -405,8 +409,56 @@ class CodegenLoader extends AssetLoader{
       "closedGroup": "KAPALI GRUP",
       "adminBadge": "Yönetici",
       "noPermissionInfo": "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
-      "createGroup": "Grup Oluştur",
       "empty": "Henüz grup yok."
+    },
+    "groupDetail": {
+      "tabWall": "Duvar",
+      "tabDiscussions": "Tartışmalar",
+      "tabDetails": "Detaylar",
+      "openGroup": "Açık grup",
+      "closedGroup": "Kapalı grup",
+      "memberCount": "{count} üye",
+      "adminBadge": "YÖNETİCİ",
+      "wall": {
+        "composerHint": "Grupta bir şeyler paylaş...",
+        "commentCount": "{count} yorum",
+        "empty": "Henüz gönderi yok."
+      },
+      "discussions": {
+        "startTitle": "Tartışma aç",
+        "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
+        "meta": "{name} açtı · {time} · {count} gönderi",
+        "empty": "Henüz tartışma yok.",
+        "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
+        "titleFieldLabel": "Başlık",
+        "titleFieldHint": "Örn: Cumartesi pazarı yeni yer düzeni",
+        "messageFieldLabel": "İlk mesaj",
+        "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
+        "startButton": "Tartışmayı başlat",
+        "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
+        "openedByGroup": "{name} açtı · {group}",
+        "replyComposerHint": "Bu konuya gönderi ekle..."
+      },
+      "details": {
+        "aboutTitle": "HAKKINDA",
+        "infoTitle": "BİLGİLER",
+        "groupTypeLabel": "Grup türü",
+        "groupTypeOpen": "Açık grup · herkes katılabilir",
+        "groupTypeClosed": "Kapalı grup · davetle katılınır",
+        "memberCountLabel": "Üye sayısı",
+        "createdAtLabel": "Oluşturulma",
+        "adminsTitle": "YÖNETİCİLER",
+        "leaveGroup": "Gruptan ayrıl",
+        "leaveConfirmTitle": "Gruptan ayrıl",
+        "leaveConfirmMessage": "Bu gruptan ayrılmak istediğine emin misin?",
+        "leaveConfirmCancel": "Vazgeç",
+        "leaveConfirmApprove": "Ayrıl",
+        "closeGroup": "Grubu kapat",
+        "closeGroupConfirmTitle": "Grubu kapat",
+        "closeGroupConfirmMessage": "Bu grubu kapatmak istediğine emin misin? Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
+        "closeGroupConfirmCancel": "Vazgeç",
+        "closeGroupConfirmApprove": "Kapat"
+      }
     },
     "createGroup": {
       "title": "Grup Oluştur",
@@ -741,7 +793,11 @@ static const Map<String,dynamic> _en = {
     }
   },
   "utils": {
-    "options": "{} option"
+    "options": "{} option",
+    "justNow": "just now",
+    "minutesAgo": "{} min ago",
+    "hoursAgo": "{} hours ago",
+    "daysAgo": "{} days ago"
   },
   "advertisementBoard": {
     "openUrl": "Open Url",
@@ -824,8 +880,56 @@ static const Map<String,dynamic> _en = {
       "closedGroup": "CLOSED GROUP",
       "adminBadge": "Admin",
       "noPermissionInfo": "You don't have permission to create a group. Authorized community members can create new groups.",
-      "createGroup": "Create Group",
       "empty": "No groups yet."
+    },
+    "groupDetail": {
+      "tabWall": "Wall",
+      "tabDiscussions": "Discussions",
+      "tabDetails": "Details",
+      "openGroup": "Open group",
+      "closedGroup": "Closed group",
+      "memberCount": "{count} members",
+      "adminBadge": "ADMIN",
+      "wall": {
+        "composerHint": "Share something with the group...",
+        "commentCount": "{count} comments",
+        "empty": "No posts yet."
+      },
+      "discussions": {
+        "startTitle": "Start a discussion",
+        "startSubtitle": "Start a new topic (admins only)",
+        "meta": "{name} started · {time} · {count} entries",
+        "empty": "No discussions yet.",
+        "sheetSubtitle": "Start a topic, say the first word",
+        "titleFieldLabel": "Title",
+        "titleFieldHint": "E.g: New market layout for Saturday",
+        "messageFieldLabel": "First message",
+        "messageFieldHint": "Why did you open this? What should be discussed?",
+        "startButton": "Start discussion",
+        "anonymityBanner": "Names hidden · text posts only · no live chat",
+        "openedByGroup": "{name} started · {group}",
+        "replyComposerHint": "Add an entry to this topic..."
+      },
+      "details": {
+        "aboutTitle": "ABOUT",
+        "infoTitle": "INFO",
+        "groupTypeLabel": "Group type",
+        "groupTypeOpen": "Open group · anyone can join",
+        "groupTypeClosed": "Closed group · join by invite",
+        "memberCountLabel": "Member count",
+        "createdAtLabel": "Created",
+        "adminsTitle": "ADMINS",
+        "leaveGroup": "Leave group",
+        "leaveConfirmTitle": "Leave group",
+        "leaveConfirmMessage": "Are you sure you want to leave this group?",
+        "leaveConfirmCancel": "Cancel",
+        "leaveConfirmApprove": "Leave",
+        "closeGroup": "Close group",
+        "closeGroupConfirmTitle": "Close group",
+        "closeGroupConfirmMessage": "Are you sure you want to close this group? This removes it for all members and cannot be undone.",
+        "closeGroupConfirmCancel": "Cancel",
+        "closeGroupConfirmApprove": "Close"
+      }
     },
     "createGroup": {
       "title": "Create Group",

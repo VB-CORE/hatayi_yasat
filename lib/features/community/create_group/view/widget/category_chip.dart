@@ -3,6 +3,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
@@ -43,7 +44,7 @@ final class CategoryChip extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: AppIconSizes.medium, color: color),
-                const SizedBox(width: AppIconSizes.small),
+                const EmptyBox.smallWidth(),
               ],
               GeneralContentSubTitle(
                 value: label,

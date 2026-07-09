@@ -1,33 +1,38 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
+/// Community form ekranlarının tam genişlik coral submit butonu.
+///
+/// Etiket bilinçli olarak sistem fontunda (`inherit: false` Roboto temasını
+/// bypass eder); boyut/ağırlık temadan okunur.
 @immutable
-final class CreateGroupSubmitButton extends StatefulWidget {
-  const CreateGroupSubmitButton({
+final class CommunitySubmitButton extends StatefulWidget {
+  const CommunitySubmitButton({
     required this.label,
-    required this.icon,
     required this.isEnabled,
     required this.onPressed,
+    this.icon,
     super.key,
   });
 
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final bool isEnabled;
   final AsyncCallback onPressed;
 
   @override
-  State<CreateGroupSubmitButton> createState() =>
-      _CreateGroupSubmitButtonState();
+  State<CommunitySubmitButton> createState() => _CommunitySubmitButtonState();
 }
 
-final class _CreateGroupSubmitButtonState
-    extends State<CreateGroupSubmitButton> {
+final class _CommunitySubmitButtonState extends State<CommunitySubmitButton> {
   bool _isLoading = false;
+
+  static const double _spinnerStrokeWidth = 2;
 
   Future<void> _handleTap() async {
     if (_isLoading) return;
@@ -40,6 +45,7 @@ final class _CreateGroupSubmitButtonState
   @override
   Widget build(BuildContext context) {
     final contentColor = widget.isEnabled ? AppColors.white : AppColors.ink400;
+    final themeLabelStyle = context.general.textTheme.titleMedium;
     return SizedBox(
       width: double.infinity,
       height: WidgetSizes.spacingXxl7,
@@ -59,20 +65,22 @@ final class _CreateGroupSubmitButtonState
                 width: WidgetSizes.spacingL,
                 height: WidgetSizes.spacingL,
                 child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                  strokeWidth: _spinnerStrokeWidth,
                   color: contentColor,
                 ),
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(widget.icon, color: contentColor),
-                  const SizedBox(width: AppIconSizes.small),
+                  if (widget.icon != null) ...[
+                    Icon(widget.icon, color: contentColor),
+                    const EmptyBox.smallWidth(),
+                  ],
                   Text(
                     widget.label,
                     style: TextStyle(
                       inherit: false,
-                      fontSize: WidgetSizes.spacingM,
+                      fontSize: themeLabelStyle?.fontSize,
                       fontWeight: FontWeight.w800,
                       color: contentColor,
                     ),

@@ -10,9 +10,9 @@ import 'package:lifeclient/features/community/create_group/provider/create_group
 import 'package:lifeclient/features/community/create_group/view/mixin/create_group_view_mixin.dart';
 import 'package:lifeclient/features/community/create_group/view/widget/category_chip.dart';
 import 'package:lifeclient/features/community/create_group/view/widget/cover_image_picker.dart';
-import 'package:lifeclient/features/community/create_group/view/widget/create_group_submit_button.dart';
-import 'package:lifeclient/features/community/create_group/view/widget/required_label.dart';
 import 'package:lifeclient/features/community/model/group_category_model.dart';
+import 'package:lifeclient/features/community/widget/community_submit_button.dart';
+import 'package:lifeclient/features/community/widget/required_label.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/index.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -87,7 +87,7 @@ final class _CreateGroupViewState extends ConsumerState<CreateGroupView>
                 ],
               ),
             ),
-            CreateGroupSubmitButton(
+            CommunitySubmitButton(
               onPressed: submit,
               label: LocaleKeys.community_createGroup_submitButton.tr(),
               icon: AppIcons.personAdd,
