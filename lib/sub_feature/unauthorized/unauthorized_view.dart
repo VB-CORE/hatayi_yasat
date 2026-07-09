@@ -12,6 +12,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 final class UnauthorizedView extends ConsumerStatefulWidget {
@@ -25,6 +26,8 @@ final class UnauthorizedView extends ConsumerStatefulWidget {
 
 final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
     with AppProviderMixin<UnauthorizedView> {
+  static const double _descriptionOpacity = 0.7;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +59,10 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
                   ),
                 ),
                 const EmptyBox.middleHeight(),
-                Text(
-                  LocaleKeys.unauthorized_description.tr(),
+                GeneralContentSubTitle(
+                  value: LocaleKeys.unauthorized_description.tr(),
                   textAlign: TextAlign.center,
-                  style: context.general.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.white.withValues(alpha: .7),
-                  ),
+                  color: AppColors.white.withValues(alpha: _descriptionOpacity),
                 ),
                 if (widget.attemptedPath case final path?) ...[
                   const EmptyBox.middleHeight(),
@@ -147,13 +148,11 @@ final class _AttemptedPathChip extends StatelessWidget {
               size: AppIconSizes.xMedium,
               color: AppColors.navy300,
             ),
-            const SizedBox(width: AppIconSizes.small),
-            Text(
-              path,
-              style: context.general.textTheme.labelMedium?.copyWith(
-                color: AppColors.navy100,
-                fontWeight: FontWeight.w600,
-              ),
+            const EmptyBox.smallWidth(),
+            GeneralContentSmallTitle(
+              value: path,
+              color: AppColors.navy100,
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),
@@ -199,6 +198,8 @@ final class _RequestAccessButton extends StatelessWidget {
 
   final VoidCallback onPressed;
 
+  static const double _borderOpacity = 0.3;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -206,7 +207,9 @@ final class _RequestAccessButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: AppColors.white.withValues(alpha: .3)),
+          side: BorderSide(
+            color: AppColors.white.withValues(alpha: _borderOpacity),
+          ),
           padding: const PagePadding.vertical12Symmetric(),
           shape: const RoundedRectangleBorder(
             borderRadius: CustomRadius.medium,

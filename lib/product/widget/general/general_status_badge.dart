@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_small_title.dart';
 
 @immutable
@@ -33,7 +34,7 @@ final class GeneralStatusBadge extends StatelessWidget {
           children: [
             if (icon != null) ...[
               Icon(icon, size: AppIconSizes.smallX, color: color),
-              const SizedBox(width: AppIconSizes.xSmall),
+              const EmptyBox(width: WidgetSizes.spacingXxs),
             ],
             GeneralContentSmallTitle(
               value: label,
