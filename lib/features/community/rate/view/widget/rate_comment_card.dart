@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
-import 'package:lifeclient/features/community/rate/view/widget/comment_option_sheet.dart';
+import 'package:lifeclient/features/community/rate/model/rate_model_extension.dart';
+import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';
+import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
+import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/custom_circle_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
 
-class CommentCard extends ConsumerWidget {
-  const CommentCard({
+final class RateCommentCard extends StatelessWidget {
+  const RateCommentCard({
     required this.rateModel,
     super.key,
     this.onEdit,
@@ -25,29 +27,31 @@ class CommentCard extends ConsumerWidget {
 
   bool get _isOwnComment => onEdit != null || onDelete != null;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       padding: const PagePadding.generalCardAll(),
       margin: const PagePadding.verticalLowSymmetric(),
       decoration: const BoxDecoration(
-        color: ColorsCustom.white,
+        color: AppColors.surface,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundColor: ColorsCustom.endless,
-            backgroundImage: (rateModel.photoUrl?.isNotEmpty ?? false)
-                ? NetworkImage(rateModel.photoUrl ?? '')
-                : null,
-            child: (rateModel.photoUrl?.isNotEmpty ?? false)
-                ? null
-                : GeneralContentSmallTitle(
-                    value: rateModel.initials,
-                    color: ColorsCustom.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-          ),
+          if (rateModel.photoUrl?.isNotEmpty ?? false)
+            CustomCircleNetworkImage(
+              imageUrl: rateModel.photoUrl,
+              radius: CustomCircleRadius.medium,
+            )
+          else
+            CircleAvatar(
+              radius: CustomCircleRadius.medium,
+              backgroundColor: AppColors.coral,
+              child: GeneralContentSmallTitle(
+                value: rateModel.initials,
+                color: AppColors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           const EmptyBox.middleWidth(),
           Expanded(
             child: Column(
@@ -61,9 +65,9 @@ class CommentCard extends ConsumerWidget {
                     if (_isOwnComment)
                       GestureDetector(
                         onTap: () => _showCommentOptions(context),
-                        child: Icon(
+                        child: const Icon(
                           AppIcons.moreDots,
-                          color: context.general.colorScheme.primary,
+                          color: AppColors.navy,
                           size: AppIconSizes.medium,
                         ),
                       ),
@@ -99,12 +103,12 @@ class CommentCard extends ConsumerWidget {
   }
 
   Future<void> _showCommentOptions(BuildContext context) async {
-    final result = await CommentOptionsSheet.show(context);
+    final result = await RateSheetFactory.showCommentOptions(context);
     if (result == null) return;
     switch (result) {
-      case CommentOptionAction.delete:
+      case RateCommentOptionAction.delete:
         onDelete?.call();
-      case CommentOptionAction.edit:
+      case RateCommentOptionAction.edit:
         onEdit?.call();
     }
   }

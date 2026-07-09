@@ -2,10 +2,10 @@ import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/service/rate_community_service.dart';
 
 final class RateCommunityMockService implements RateCommunityService {
-  static final Map<String, Map<String, RateModel>> votesByEsnaf = {
+  static final Map<String, Map<String, RateModel>> votesByPlace = {
     'place_1': {
       'mock_user_1': RateModel(
-        esnafId: 'place_1',
+        placeId: 'place_1',
         userId: 'mock_user_1',
         rate: 4,
         counted: true,
@@ -15,7 +15,7 @@ final class RateCommunityMockService implements RateCommunityService {
         photoUrl: '',
       ),
       'mock_user_2': RateModel(
-        esnafId: 'place_1',
+        placeId: 'place_1',
         userId: 'mock_user_2',
         rate: 2,
         counted: true,
@@ -25,7 +25,7 @@ final class RateCommunityMockService implements RateCommunityService {
         photoUrl: '',
       ),
       'mock_user_3': RateModel(
-        esnafId: 'place_1',
+        placeId: 'place_1',
         userId: 'mock_user_3',
         rate: 1,
         counted: true,
@@ -41,7 +41,7 @@ final class RateCommunityMockService implements RateCommunityService {
     },
     'place_2': {
       'mock_user_2': RateModel(
-        esnafId: 'place_2',
+        placeId: 'place_2',
         userId: 'mock_user_2',
         rate: 5,
         counted: true,
@@ -54,16 +54,16 @@ final class RateCommunityMockService implements RateCommunityService {
   };
 
   @override
-  Future<List<RateModel>> fetchRates(String esnafId) async {
+  Future<List<RateModel>> fetchRates(String placeId) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final votes = votesByEsnaf[esnafId] ?? const <String, RateModel>{};
+    final votes = votesByPlace[placeId] ?? const <String, RateModel>{};
     return votes.values.toList();
   }
 
   @override
   Future<bool> rate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final votes = votesByEsnaf.putIfAbsent(rate.esnafId, () => {});
+    final votes = votesByPlace.putIfAbsent(rate.placeId, () => {});
     votes[rate.userId] = rate;
     return true;
   }
@@ -71,9 +71,9 @@ final class RateCommunityMockService implements RateCommunityService {
   @override
   Future<bool> changeComment(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    final existing = votesByEsnaf[rate.esnafId]?[rate.userId];
+    final existing = votesByPlace[rate.placeId]?[rate.userId];
     if (existing == null) return false;
-    votesByEsnaf[rate.esnafId]![rate.userId] = existing.copyWith(
+    votesByPlace[rate.placeId]![rate.userId] = existing.copyWith(
       comment: rate.comment,
     );
     return true;
@@ -82,7 +82,7 @@ final class RateCommunityMockService implements RateCommunityService {
   @override
   Future<bool> deleteRate(RateModel rate) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    votesByEsnaf[rate.esnafId]?.remove(rate.userId);
+    votesByPlace[rate.placeId]?.remove(rate.userId);
     return true;
   }
 }

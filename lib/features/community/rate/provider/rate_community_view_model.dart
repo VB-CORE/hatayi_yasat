@@ -6,41 +6,33 @@ import 'package:lifeclient/features/community/rate/provider/rate_community_servi
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'rate_community_provider.g.dart';
+part 'rate_community_view_model.g.dart';
 
 @riverpod
-final class RateCommunityProvider extends _$RateCommunityProvider
+final class RateCommunityViewModel extends _$RateCommunityViewModel
     with ProjectDependencyMixin {
   static const String _currentUserId = 'mock_user_4';
   static const String _currentUserName = 'Veli Bacik';
 
   @override
-  RateCommunityState build(String esnafId) {
+  RateCommunityState build(String placeId) {
     unawaited(_loadVotes());
     return const RateCommunityState(isLoading: true);
   }
 
   Future<void> _loadVotes() async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    try {
-      final comments = await ref
-          .read(rateCommunityServiceProvider)
-          .fetchRates(esnafId);
-      comments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-      final myVote = comments.firstWhereOrNull(
-        (vote) => vote.userId == _currentUserId,
-      );
-      state = state.copyWith(
-        vote: myVote,
-        comments: comments,
-        isLoading: false,
-      );
-    } on Exception {
-      state = state.copyWith(
-        isLoading: false,
-        isError: true,
-      );
-    }
+    final comments = await ref
+        .read(rateCommunityServiceProvider)
+        .fetchRates(placeId);
+    comments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    final myVote = comments.firstWhereOrNull(
+      (vote) => vote.userId == _currentUserId,
+    );
+    state = state.copyWith(
+      vote: myVote,
+      comments: comments,
+      isLoading: false,
+    );
   }
 
   void selectRating(double value) =>
@@ -51,11 +43,10 @@ final class RateCommunityProvider extends _$RateCommunityProvider
   Future<void> submit({
     String? comment,
   }) async {
-    if (state.isReadOnly || state.isProcessing) return;
+    if (state.hasVoted || state.isProcessing) return;
     state = state.copyWith(status: const ActionProcessing(RateAction.create));
-    await Future<void>.delayed(const Duration(seconds: 2));
     final vote = RateModel(
-      esnafId: esnafId,
+      placeId: placeId,
       userId: _currentUserId,
       rate: state.draftRate,
       createdAt: DateTime.now(),
@@ -80,7 +71,6 @@ final class RateCommunityProvider extends _$RateCommunityProvider
     final currentVote = state.vote;
     if (currentVote == null || state.isProcessing) return;
     state = state.copyWith(status: const ActionProcessing(RateAction.update));
-    await Future<void>.delayed(const Duration(seconds: 2));
     final updated = currentVote.copyWith(comment: newComment);
     final success = await ref
         .read(rateCommunityServiceProvider)
@@ -89,10 +79,11 @@ final class RateCommunityProvider extends _$RateCommunityProvider
       state = state.copyWith(
         status: const ActionSucceeded(RateAction.update),
         vote: updated,
-        comments: [
-          for (final comment in state.comments)
-            if (comment.userId == updated.userId) updated else comment,
-        ],
+        comments: state.comments
+            .map(
+              (comment) => comment.userId == updated.userId ? updated : comment,
+            )
+            .toList(),
       );
     } else {
       state = state.copyWith(status: const ActionFailed(RateAction.update));
@@ -103,7 +94,6 @@ final class RateCommunityProvider extends _$RateCommunityProvider
     final currentVote = state.vote;
     if (currentVote == null || state.isProcessing) return;
     state = state.copyWith(status: const ActionProcessing(RateAction.delete));
-    await Future<void>.delayed(const Duration(seconds: 2));
     final success = await ref
         .read(rateCommunityServiceProvider)
         .deleteRate(currentVote);

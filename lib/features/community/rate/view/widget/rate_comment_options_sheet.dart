@@ -1,26 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-enum CommentOptionAction { edit, delete }
+enum RateCommentOptionAction { edit, delete }
 
-final class CommentOptionsSheet extends StatelessWidget {
-  const CommentOptionsSheet({super.key});
-
-  static Future<CommentOptionAction?> show(BuildContext context) {
-    return showModalBottomSheet<CommentOptionAction>(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
-      ),
-      builder: (context) => const CommentOptionsSheet(),
-    );
-  }
+final class RateCommentOptionsSheet extends StatelessWidget {
+  const RateCommentOptionsSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +18,19 @@ final class CommentOptionsSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const EmptyBox.smallHeight(),
-          _OptionTile(
+          _RateOptionTile(
             icon: AppIcons.edit,
             label: LocaleKeys.rate_editComment.tr(),
-            onTap: () => Navigator.of(context).pop(CommentOptionAction.edit),
+            onTap: () =>
+                Navigator.of(context).pop(RateCommentOptionAction.edit),
           ),
-          const Divider(
-            color: ColorsCustom.warmGrey,
-          ),
-          _OptionTile(
+          const Divider(),
+          _RateOptionTile(
             icon: AppIcons.delete,
             label: LocaleKeys.rate_deleteComment.tr(),
-            color: ColorsCustom.imperilRead,
-            onTap: () => Navigator.of(context).pop(CommentOptionAction.delete),
+            color: AppColors.coral,
+            onTap: () =>
+                Navigator.of(context).pop(RateCommentOptionAction.delete),
           ),
           const EmptyBox.smallHeight(),
         ],
@@ -50,8 +39,8 @@ final class CommentOptionsSheet extends StatelessWidget {
   }
 }
 
-final class _OptionTile extends StatelessWidget {
-  const _OptionTile({
+final class _RateOptionTile extends StatelessWidget {
+  const _RateOptionTile({
     required this.icon,
     required this.label,
     required this.onTap,

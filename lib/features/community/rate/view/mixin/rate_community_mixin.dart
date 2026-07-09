@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lifeclient/features/community/rate/provider/rate_community_provider.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
+import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_action_failed_dialog.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_card.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
@@ -15,6 +14,10 @@ mixin RateCommentControllerMixin
   void initState() {
     super.initState();
     commentController.text = widget.initialComment ?? '';
+    ref.listenManual(
+      rateCommunityViewModelProvider(widget.placeId),
+      onRateStateChanged,
+    );
   }
 
   @override
@@ -25,7 +28,7 @@ mixin RateCommentControllerMixin
 
   void onRateStateChanged(RateCommunityState? prev, RateCommunityState next) {
     final notifier = ref.read(
-      rateCommunityProviderProvider(widget.esnafId).notifier,
+      rateCommunityViewModelProvider(widget.placeId).notifier,
     );
     switch (next.status) {
       case ActionIdle():

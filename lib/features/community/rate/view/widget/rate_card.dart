@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/community/rate/provider/rate_community_provider.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_community_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
@@ -17,58 +16,28 @@ import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
-class RateCard extends ConsumerStatefulWidget {
+final class RateCard extends ConsumerStatefulWidget {
   const RateCard({
-    required this.esnafId,
+    required this.placeId,
     super.key,
     this.onSubmitted,
     this.initialComment,
   });
-  final String esnafId;
+  final String placeId;
   final VoidCallback? onSubmitted;
   final String? initialComment;
-
-  static Future<void> show(
-    BuildContext context, {
-    required String esnafId,
-    String? initialComment,
-  }) {
-    return showModalBottomSheet<void>(
-      context: context,
-      useSafeArea: true,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
-      ),
-      builder: (sheetContext) => Padding(
-        padding: EdgeInsets.only(
-          bottom: sheetContext.general.keyboardPadding,
-        ),
-        child: RateCard(
-          esnafId: esnafId,
-          initialComment: initialComment,
-          onSubmitted: () => Navigator.of(sheetContext).pop(),
-        ),
-      ),
-    );
-  }
 
   @override
   ConsumerState<RateCard> createState() => _RateCardState();
 }
 
-class _RateCardState extends ConsumerState<RateCard>
+final class _RateCardState extends ConsumerState<RateCard>
     with AppProviderMixin<RateCard>, RateCommentControllerMixin {
   @override
   Widget build(BuildContext context) {
-    ref.listen(
-      rateCommunityProviderProvider(widget.esnafId),
-      onRateStateChanged,
-    );
-
-    final state = ref.watch(rateCommunityProviderProvider(widget.esnafId));
+    final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
     final notifier = ref.read(
-      rateCommunityProviderProvider(widget.esnafId).notifier,
+      rateCommunityViewModelProvider(widget.placeId).notifier,
     );
 
     return PopScope(
@@ -76,22 +45,22 @@ class _RateCardState extends ConsumerState<RateCard>
       child: Container(
         margin: const PagePadding.all(),
         padding: const PagePadding.all(),
-        decoration: _cardDecoration(state.isReadOnly),
+        decoration: _cardDecoration(state.hasVoted),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _RateCardHeader(isReadOnly: state.isReadOnly),
+            _RateCardHeader(hasVoted: state.hasVoted),
             Padding(
               padding: const PagePadding.onlyTopMedium(),
               child: AppRatingWidget(
                 itemSize: AppIconSizes.largeX,
                 value: state.value,
-                isReadOnly: state.isReadOnly || state.isBusy,
+                isReadOnly: state.hasVoted || state.isBusy,
                 onRatingUpdate: notifier.selectRating,
               ),
             ),
             const EmptyBox.middleHeight(),
-            if (state.isReadOnly)
+            if (state.hasVoted)
               _RateCommentSection(
                 title: LocaleKeys.rate_editComment.tr(),
                 buttonLabel: LocaleKeys.button_save.tr(),
@@ -116,22 +85,22 @@ class _RateCardState extends ConsumerState<RateCard>
     );
   }
 
-  BoxDecoration _cardDecoration(bool isReadOnly) => BoxDecoration(
-    color: ColorsCustom.white,
-    borderRadius: CustomRadius.medium,
+  BoxDecoration _cardDecoration(bool hasVoted) => BoxDecoration(
+    color: AppColors.surface,
+    borderRadius: AppRadius.card,
     border: Border.all(
-      color: isReadOnly ? ColorsCustom.green : ColorsCustom.softGray,
+      color: hasVoted ? AppColors.olive : AppColors.ink100,
     ),
   );
 }
 
-class _RateCardHeader extends StatelessWidget {
-  const _RateCardHeader({required this.isReadOnly});
-  final bool isReadOnly;
+final class _RateCardHeader extends StatelessWidget {
+  const _RateCardHeader({required this.hasVoted});
+  final bool hasVoted;
 
   @override
   Widget build(BuildContext context) {
-    final accent = isReadOnly ? ColorsCustom.green : ColorsCustom.imperilRead;
+    final accent = hasVoted ? AppColors.olive : AppColors.coral;
     return Column(
       children: [
         Row(
@@ -151,17 +120,17 @@ class _RateCardHeader extends StatelessWidget {
         ),
         const EmptyBox.smallHeight(),
         GeneralContentSmallTitle(
-          value: isReadOnly
+          value: hasVoted
               ? LocaleKeys.rate_voteRecorded.tr()
               : LocaleKeys.rate_singleVoteHint.tr(),
-          color: ColorsCustom.darkGray,
+          color: AppColors.ink400,
         ),
       ],
     );
   }
 }
 
-class _RateCommentSection extends StatelessWidget {
+final class _RateCommentSection extends StatelessWidget {
   const _RateCommentSection({
     required this.title,
     required this.buttonLabel,

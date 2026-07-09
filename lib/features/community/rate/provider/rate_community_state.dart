@@ -15,7 +15,7 @@ enum RateAction {
   };
 
   String get succeededMessage => switch (this) {
-    RateAction.create => LocaleKeys.rate_rateThankYou.tr(),
+    RateAction.create => LocaleKeys.rate_commentAdded.tr(),
     RateAction.update => LocaleKeys.rate_editCommentSuccessMessage.tr(),
     RateAction.delete => LocaleKeys.rate_deleteSuccessMessage.tr(),
   };
@@ -57,7 +57,6 @@ final class RateCommunityState extends Equatable {
     this.vote,
     this.comments = const [],
     this.isLoading = false,
-    this.isError = false,
     this.draftRate = 0,
     this.status = const ActionIdle(),
   });
@@ -65,14 +64,13 @@ final class RateCommunityState extends Equatable {
   final RateModel? vote;
   final List<RateModel> comments;
   final bool isLoading;
-  final bool isError;
   final double draftRate;
   final RateActionStatus status;
 
-  bool get isReadOnly => vote != null;
-  double get value => isReadOnly ? vote!.rate : draftRate;
-  bool get isProcessing => status is ActionProcessing;
+  bool get hasVoted => vote != null;
   bool get isBusy => isLoading || isProcessing;
+  double get value => hasVoted ? vote!.rate : draftRate;
+  bool get isProcessing => status is ActionProcessing;
   bool get canSubmit =>
       ((vote?.rate ?? 0) > 0 || draftRate > 0) && !isProcessing;
 
@@ -81,7 +79,6 @@ final class RateCommunityState extends Equatable {
     List<RateModel>? comments,
     double? draftRate,
     bool? isLoading,
-    bool? isError,
     bool clearVote = false,
     RateActionStatus? status,
   }) => RateCommunityState(
@@ -89,7 +86,6 @@ final class RateCommunityState extends Equatable {
     comments: comments ?? this.comments,
     draftRate: draftRate ?? this.draftRate,
     isLoading: isLoading ?? this.isLoading,
-    isError: isError ?? this.isError,
     status: status ?? this.status,
   );
 
@@ -99,7 +95,6 @@ final class RateCommunityState extends Equatable {
     comments,
     draftRate,
     isLoading,
-    isError,
     status,
   ];
 }
