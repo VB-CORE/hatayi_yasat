@@ -1,20 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_shadows.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/utility/navigation/project_navigation.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
-import 'package:lifeclient/product/widget/general/title/general_sub_title.dart';
 import 'package:lifeclient/product/widget/sheet/regional/regional_city_sheet.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
@@ -36,7 +41,7 @@ final class MainTabView extends ConsumerStatefulWidget {
 
 class _MainTabViewState extends ConsumerState<MainTabView>
     with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
-  final _tabItems = TabModels.create().tabItems;
+  final List<TabModel> _tabItems = TabModels.create().tabItems;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
           length: _tabItems.length,
           child: Scaffold(
             extendBody: true,
-            appBar: _MainAppBar(context: context),
+            appBar: _MainAppBar(),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             body: _BodyTabBarViewWidget(tabItems: _tabItems),

@@ -6,7 +6,12 @@ part of 'app_router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$splashRoute, $mainTabRoute];
+List<RouteBase> get $appRoutes => [
+  $splashRoute,
+  $mainTabRoute,
+  $loginRoute,
+  $roleDashboardRoute,
+];
 
 RouteBase get $splashRoute => GoRouteData.$route(
   path: '/',
@@ -68,6 +73,18 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       path: 'chain_stores',
       name: 'Chain Stores',
       factory: $ChainStoresRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'monetization',
+      name: 'Monetization',
+      factory: $MonetizationRoute._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'couponForm',
+          name: 'Monetization Coupon Form',
+          factory: $MonetizationCouponFormRoute._fromState,
+        ),
+      ],
     ),
     GoRouteData.$route(
       path: 'turism',
@@ -194,6 +211,48 @@ mixin $ChainStoresRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/chain_stores');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MonetizationRoute on GoRouteData {
+  static MonetizationRoute _fromState(GoRouterState state) =>
+      const MonetizationRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/monetization');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MonetizationCouponFormRoute on GoRouteData {
+  static MonetizationCouponFormRoute _fromState(GoRouterState state) =>
+      const MonetizationCouponFormRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/monetization/couponForm');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -591,6 +650,58 @@ mixin $ApplicationInformationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/settings/appInfo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $loginRoute =>
+    GoRouteData.$route(path: '/login', factory: $LoginRoute._fromState);
+
+mixin $LoginRoute on GoRouteData {
+  static LoginRoute _fromState(GoRouterState state) => const LoginRoute();
+
+  @override
+  String get location => GoRouteData.$location('/login');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $roleDashboardRoute => GoRouteData.$route(
+  path: '/roleTest/:role',
+  factory: $RoleDashboardRoute._fromState,
+);
+
+mixin $RoleDashboardRoute on GoRouteData {
+  static RoleDashboardRoute _fromState(GoRouterState state) =>
+      RoleDashboardRoute(role: state.pathParameters['role']!);
+
+  RoleDashboardRoute get _self => this as RoleDashboardRoute;
+
+  @override
+  String get location =>
+      GoRouteData.$location('/roleTest/${Uri.encodeComponent(_self.role)}');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -23,7 +23,11 @@
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
     "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
     "pickATime": "Lütfen bir saat seçiniz.",
-    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır."
+    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır.",
+    "numericInvalid": "Lütfen geçerli bir sayı giriniz",
+    "numericMin": "Lütfen en az {} giriniz",
+    "numericMax": "Lütfen en fazla {} giriniz",
+    "numericRange": "Lütfen {} ile {} arasında bir sayı giriniz"
   },
   "button": {
     "save": "Kaydet",
@@ -42,6 +46,7 @@
     "sendRequest": "Talep Oluştur",
     "call": "Ara",
     "share": "Paylaş",
+    "copy": "Kopyala",
     "error": "Hata",
     "more": "Daha fazla",
     "understood": "Anladım",
@@ -114,14 +119,17 @@
     "categories": "Kategoriler",
     "places": "Mekanlar",
     "search": "Ara",
-    "notifications": "Bildirimler"
+    "notifications": "Bildirimler",
+    "allCategory": "Tümü",
+    "placesUpper": "MEKAN"
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
-    "removedFavorite": "Favorilerden kaldırıldı"
+    "removedFavorite": "Favorilerden kaldırıldı",
+    "copiedToClipboard": "Panoya kopyalandı"
   },
   "rate": {
     "trustQuestion": "Bu mekana güveniyor musun?",
@@ -218,7 +226,11 @@
     "request": "Talep",
     "advertise": "İş İlanı",
     "community": "Topluluk",
-    "memories": "Hatıralar"
+    "memories": "Hatıralar",
+    "places": "Mekanlar",
+    "feed": "Akış",
+    "explore": "Keşfet",
+    "profile": "Profil"
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -331,6 +343,12 @@
     "time": {
       "newest": "Yeniden eskiye",
       "oldest": "Eskiden yeniye"
+    },
+    "title": "Sırala",
+    "applied": "Sıralama güncellendi",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -339,12 +357,38 @@
   "advertisementBoard": {
     "openUrl": "Linki Aç",
     "launchUrlError": "Link açılırken bir hata meydana geldi",
-    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
+    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
+    "houseAdTitle": "BU ALANA REKLAM VEREBİLİRSİNİZ",
+    "houseAdSubtitle": "Esnafına ulaş · İletişim: medya@hatayiyasat.app",
+    "contactUs": "İletişime geç"
   },
   "chain_stores": {
     "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
+  },
+  "monetization": {
+    "title": "İndirim Kuponları",
+    "addCouponAction": "Yeni",
+    "addCoupon": "Kupon Ekle",
+    "discountCodeLabel": "İndirim",
+    "expiresAtSummary": "Son {}",
+    "expiryDateLabel": "Son Kullanım Tarihi",
+    "active": "Aktif",
+    "activeTab": "Aktif ({})",
+    "inactive": "Süresi doldu",
+    "inactiveTab": "Pasif ({})",
+    "usageLimitReached": "Limit doldu",
+    "couponDesc": "Açıklama",
+    "couponDescHint": "Örn: Festival İndirimi",
+    "usageLimit": "Kullanım Limiti",
+    "usageLimitHint": "Boş bırakılırsa kullanım limiti olmayacaktır",
+    "unlimited": "Limitsiz",
+    "usageCountSummary": "{} Kullanıldı",
+    "discountRate": "İndirim Oranı",
+    "discountRateValue": "%{}",
+    "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
+    "emptyCoupons": "Henüz kupon bulunmuyor"
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
@@ -376,6 +420,33 @@
     "settings": "Ayarlar",
     "memories": "Hatıralar"
   },
+  "auth": {
+    "tagline": "TOPLULUK",
+    "hero": {
+      "subtitle": "MAHALLE · MEKAN · HATIRA",
+      "prefix": "Hatay'ı ",
+      "highlight": "birlikte",
+      "suffix": "yaşatalım.",
+      "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
+    },
+    "signIn": {
+      "continueWith": "{provider} ile devam et",
+      "guest": "Misafir olarak devam et"
+    },
+    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
+    "error": {
+      "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
+      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
+    }
+  },
+  "userQr": {
+    "title": "QR Kodum",
+    "personalTitle": "Kişisel QR",
+    "personalDescription": "Sadece sana özel paylaşım kodu.",
+    "campaignTitle": "Kampanyalara Katıl",
+    "campaignDescription": "Qr kodunla kampanyalara katılabilirsin.",
+    "shareSubject": "QR Kodum"
+  },
   "historyPage": {
     "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
     "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
@@ -388,5 +459,23 @@
       "noDescription": "Açıklama yok"
     },
     "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
+  },
+  "filter": {
+    "title": "Filtre",
+    "clear": "Temizle",
+    "categories": "Kategoriler",
+    "others": "Diğer",
+    "openNow": "Şu an açık olanlar",
+    "favoritesOnly": "Favorilerimde olanlar",
+    "districts": "İlçeler",
+    "nearYou": "Sana yakın",
+    "searchDistrict": "İlçe ara",
+    "selectedCount": "{}/{} seçili",
+    "showResults": "{} sonucu göster",
+    "noResults": "Sonuç yok, filtreyi gevşet",
+    "categoryCountLabel": "{} kategori",
+    "districtCountLabel": "{} ilçe",
+    "openShort": "açık",
+    "favoritesShort": "favori"
   }
 }
