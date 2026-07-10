@@ -32,10 +32,12 @@ mixin RateCommentListMixin
     );
     switch (next.status) {
       case RateActionSucceeded(:final action) when action == RateAction.delete:
-        appProvider.showSnackbarMessage(action.succeededMessage);
+        appProvider.showSnackbarMessage(action.succeededMessageKey.tr());
         notifier.resetStatus();
       case RateActionFailed(:final action) when action == RateAction.delete:
-        unawaited(RateActionFailedDialog.show(context, action.failedMessage));
+        unawaited(
+          RateActionFailedDialog.show(context, action.failedMessageKey.tr()),
+        );
         notifier.resetStatus();
       case _:
         break;

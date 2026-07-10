@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -8,16 +7,16 @@ enum RateAction {
   update,
   delete;
 
-  String get failedMessage => switch (this) {
-    RateAction.create => LocaleKeys.rate_submitFailedContent.tr(),
-    RateAction.update => LocaleKeys.rate_editCommentFailedContent.tr(),
-    RateAction.delete => LocaleKeys.rate_deleteFailedContent.tr(),
+  String get failedMessageKey => switch (this) {
+    RateAction.create => LocaleKeys.rate_submitFailedContent,
+    RateAction.update => LocaleKeys.rate_editCommentFailedContent,
+    RateAction.delete => LocaleKeys.rate_deleteFailedContent,
   };
 
-  String get succeededMessage => switch (this) {
-    RateAction.create => LocaleKeys.rate_commentAdded.tr(),
-    RateAction.update => LocaleKeys.rate_editCommentSuccessMessage.tr(),
-    RateAction.delete => LocaleKeys.rate_deleteSuccessMessage.tr(),
+  String get succeededMessageKey => switch (this) {
+    RateAction.create => LocaleKeys.rate_commentAdded,
+    RateAction.update => LocaleKeys.rate_editCommentSuccessMessage,
+    RateAction.delete => LocaleKeys.rate_deleteSuccessMessage,
   };
 }
 

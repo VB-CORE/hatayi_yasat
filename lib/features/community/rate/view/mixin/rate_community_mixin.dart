@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
@@ -32,10 +33,12 @@ mixin RateCommentControllerMixin
     );
     switch (next.status) {
       case RateActionFailed(:final action) when action != RateAction.delete:
-        unawaited(RateActionFailedDialog.show(context, action.failedMessage));
+        unawaited(
+          RateActionFailedDialog.show(context, action.failedMessageKey.tr()),
+        );
         notifier.resetStatus();
       case RateActionSucceeded(:final action) when action != RateAction.delete:
-        appProvider.showSnackbarMessage(action.succeededMessage);
+        appProvider.showSnackbarMessage(action.succeededMessageKey.tr());
         widget.onSubmitted?.call();
         notifier.resetStatus();
       case _:
