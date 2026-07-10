@@ -17,6 +17,9 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
+part 'sub_view/discussion_entries_list.dart';
+part 'sub_view/discussion_header_title.dart';
+
 final class DiscussionDetailView extends ConsumerStatefulWidget {
   const DiscussionDetailView({required this.args, super.key});
 
@@ -82,63 +85,5 @@ final class _DiscussionDetailViewState
         ),
       ),
     );
-  }
-}
-
-final class _DiscussionHeaderTitle extends StatelessWidget {
-  const _DiscussionHeaderTitle({required this.args});
-
-  final DiscussionDetailArgs args;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GeneralContentTitle(
-          value: args.discussion.title,
-          fontWeight: FontWeight.w700,
-          maxLine: AppConstants.kTwo,
-        ),
-        GeneralContentSmallTitle(
-          value: LocaleKeys.community_groupDetail_discussions_openedByGroup.tr(
-            namedArgs: {
-              'name': args.discussion.author.maskedDisplayName,
-              'group': args.group.name,
-            },
-          ),
-          color: AppColors.navy300,
-          maxLine: AppConstants.kOne,
-        ),
-      ],
-    );
-  }
-}
-
-final class _EntriesList extends StatelessWidget {
-  const _EntriesList({required this.state, required this.scrollController});
-
-  final DiscussionDetailState state;
-  final ScrollController scrollController;
-
-  @override
-  Widget build(BuildContext context) {
-    return switch (state) {
-      DiscussionDetailState(isFetching: true) => const SizedBox.shrink(),
-      DiscussionDetailState(isError: true) => SingleChildScrollView(
-        child: GeneralNotFoundWidget(
-          title: LocaleKeys.message_somethingWentWrong.tr(),
-        ),
-      ),
-      DiscussionDetailState(:final entries) => ListView.separated(
-        controller: scrollController,
-        padding: const PagePadding.horizontal16Symmetric(),
-        itemCount: entries.length,
-        separatorBuilder: (context, index) => const EmptyBox.smallHeight(),
-        itemBuilder: (context, index) =>
-            DiscussionEntryTile(model: entries[index]),
-      ),
-    };
   }
 }
