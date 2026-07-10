@@ -433,15 +433,12 @@
         "createdAtLabel": "Created",
         "adminsTitle": "ADMINS",
         "leaveGroup": "Leave group",
-        "leaveConfirmTitle": "Leave group",
-        "leaveConfirmMessage": "Are you sure you want to leave this group?",
-        "leaveConfirmCancel": "Cancel",
-        "leaveConfirmApprove": "Leave",
+        "leaveSuccess": "You left the group.",
         "closeGroup": "Close group",
         "closeGroupConfirmTitle": "Close group",
-        "closeGroupConfirmMessage": "Are you sure you want to close this group? This removes it for all members and cannot be undone.",
+        "closeGroupConfirmMessage": "This removes the group for all members and cannot be undone.",
         "closeGroupConfirmCancel": "Cancel",
-        "closeGroupConfirmApprove": "Close"
+        "closeGroupSuccess": "Group closed."
       }
     },
     "createGroup": {

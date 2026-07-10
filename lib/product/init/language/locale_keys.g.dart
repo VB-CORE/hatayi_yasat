@@ -375,15 +375,12 @@ abstract class  LocaleKeys {
   static const community_groupDetail_details_createdAtLabel = 'community.groupDetail.details.createdAtLabel';
   static const community_groupDetail_details_adminsTitle = 'community.groupDetail.details.adminsTitle';
   static const community_groupDetail_details_leaveGroup = 'community.groupDetail.details.leaveGroup';
-  static const community_groupDetail_details_leaveConfirmTitle = 'community.groupDetail.details.leaveConfirmTitle';
-  static const community_groupDetail_details_leaveConfirmMessage = 'community.groupDetail.details.leaveConfirmMessage';
-  static const community_groupDetail_details_leaveConfirmCancel = 'community.groupDetail.details.leaveConfirmCancel';
-  static const community_groupDetail_details_leaveConfirmApprove = 'community.groupDetail.details.leaveConfirmApprove';
+  static const community_groupDetail_details_leaveSuccess = 'community.groupDetail.details.leaveSuccess';
   static const community_groupDetail_details_closeGroup = 'community.groupDetail.details.closeGroup';
   static const community_groupDetail_details_closeGroupConfirmTitle = 'community.groupDetail.details.closeGroupConfirmTitle';
   static const community_groupDetail_details_closeGroupConfirmMessage = 'community.groupDetail.details.closeGroupConfirmMessage';
   static const community_groupDetail_details_closeGroupConfirmCancel = 'community.groupDetail.details.closeGroupConfirmCancel';
-  static const community_groupDetail_details_closeGroupConfirmApprove = 'community.groupDetail.details.closeGroupConfirmApprove';
+  static const community_groupDetail_details_closeGroupSuccess = 'community.groupDetail.details.closeGroupSuccess';
   static const community_groupDetail_details = 'community.groupDetail.details';
   static const community_groupDetail = 'community.groupDetail';
   static const community_createGroup_title = 'community.createGroup.title';

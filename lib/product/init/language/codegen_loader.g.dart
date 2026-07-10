@@ -449,15 +449,12 @@ class CodegenLoader extends AssetLoader{
         "createdAtLabel": "Oluşturulma",
         "adminsTitle": "YÖNETİCİLER",
         "leaveGroup": "Gruptan ayrıl",
-        "leaveConfirmTitle": "Gruptan ayrıl",
-        "leaveConfirmMessage": "Bu gruptan ayrılmak istediğine emin misin?",
-        "leaveConfirmCancel": "Vazgeç",
-        "leaveConfirmApprove": "Ayrıl",
+        "leaveSuccess": "Gruptan ayrıldın.",
         "closeGroup": "Grubu kapat",
         "closeGroupConfirmTitle": "Grubu kapat",
-        "closeGroupConfirmMessage": "Bu grubu kapatmak istediğine emin misin? Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
+        "closeGroupConfirmMessage": "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
         "closeGroupConfirmCancel": "Vazgeç",
-        "closeGroupConfirmApprove": "Kapat"
+        "closeGroupSuccess": "Grup kapatıldı."
       }
     },
     "createGroup": {
@@ -920,15 +917,12 @@ static const Map<String,dynamic> _en = {
         "createdAtLabel": "Created",
         "adminsTitle": "ADMINS",
         "leaveGroup": "Leave group",
-        "leaveConfirmTitle": "Leave group",
-        "leaveConfirmMessage": "Are you sure you want to leave this group?",
-        "leaveConfirmCancel": "Cancel",
-        "leaveConfirmApprove": "Leave",
+        "leaveSuccess": "You left the group.",
         "closeGroup": "Close group",
         "closeGroupConfirmTitle": "Close group",
-        "closeGroupConfirmMessage": "Are you sure you want to close this group? This removes it for all members and cannot be undone.",
+        "closeGroupConfirmMessage": "This removes the group for all members and cannot be undone.",
         "closeGroupConfirmCancel": "Cancel",
-        "closeGroupConfirmApprove": "Close"
+        "closeGroupSuccess": "Group closed."
       }
     },
     "createGroup": {
