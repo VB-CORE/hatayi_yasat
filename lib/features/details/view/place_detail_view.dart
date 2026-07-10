@@ -127,14 +127,14 @@ final class _PlaceDetailHeader extends StatelessWidget {
   }
 }
 
-final class _PlaceDetailContent extends ConsumerWidget {
+final class _PlaceDetailContent extends StatelessWidget {
   const _PlaceDetailContent({required this.model});
 
   final StoreModel model;
-  static bool isComment = true;
+  static const bool isComment = true;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.defaultPadding(),
       child: Column(

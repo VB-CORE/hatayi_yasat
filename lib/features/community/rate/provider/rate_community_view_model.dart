@@ -36,15 +36,15 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   void selectRating(double value) =>
-      state = state.copyWith(draftRate: value, status: const ActionIdle());
+      state = state.copyWith(draftRate: value, status: const RateActionIdle());
 
-  void resetStatus() => state = state.copyWith(status: const ActionIdle());
+  void resetStatus() => state = state.copyWith(status: const RateActionIdle());
 
-  Future<void> submit({
-    String? comment,
-  }) async {
+  Future<void> submit({String? comment}) async {
     if (state.hasVoted || state.isProcessing) return;
-    state = state.copyWith(status: const ActionProcessing(RateAction.create));
+    state = state.copyWith(
+      status: const RateActionProcessing(RateAction.create),
+    );
     final vote = RateModel(
       placeId: placeId,
       userId: _currentUserId,
@@ -53,31 +53,32 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       counted: false,
       comment: comment,
       userName: _currentUserName,
-      photoUrl: '',
     );
     final success = await ref.read(rateCommunityServiceProvider).rate(vote);
     if (success) {
       state = state.copyWith(
         vote: vote,
         comments: [vote, ...state.comments],
-        status: const ActionSucceeded(RateAction.create),
+        status: const RateActionSucceeded(RateAction.create),
       );
     } else {
-      state = state.copyWith(status: const ActionFailed(RateAction.create));
+      state = state.copyWith(status: const RateActionFailed(RateAction.create));
     }
   }
 
   Future<void> editComment(String? newComment) async {
     final currentVote = state.vote;
     if (currentVote == null || state.isProcessing) return;
-    state = state.copyWith(status: const ActionProcessing(RateAction.update));
+    state = state.copyWith(
+      status: const RateActionProcessing(RateAction.update),
+    );
     final updated = currentVote.copyWith(comment: newComment);
     final success = await ref
         .read(rateCommunityServiceProvider)
         .changeComment(updated);
     if (success) {
       state = state.copyWith(
-        status: const ActionSucceeded(RateAction.update),
+        status: const RateActionSucceeded(RateAction.update),
         vote: updated,
         comments: state.comments
             .map(
@@ -86,28 +87,30 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
             .toList(),
       );
     } else {
-      state = state.copyWith(status: const ActionFailed(RateAction.update));
+      state = state.copyWith(status: const RateActionFailed(RateAction.update));
     }
   }
 
   Future<void> deleteVote() async {
     final currentVote = state.vote;
     if (currentVote == null || state.isProcessing) return;
-    state = state.copyWith(status: const ActionProcessing(RateAction.delete));
+    state = state.copyWith(
+      status: const RateActionProcessing(RateAction.delete),
+    );
     final success = await ref
         .read(rateCommunityServiceProvider)
         .deleteRate(currentVote);
     if (success) {
       state = state.copyWith(
         clearVote: true,
-        status: const ActionSucceeded(RateAction.delete),
+        status: const RateActionSucceeded(RateAction.delete),
         draftRate: 0,
         comments: state.comments
             .where((c) => c.userId != currentVote.userId)
             .toList(),
       );
     } else {
-      state = state.copyWith(status: const ActionFailed(RateAction.delete));
+      state = state.copyWith(status: const RateActionFailed(RateAction.delete));
     }
   }
 }

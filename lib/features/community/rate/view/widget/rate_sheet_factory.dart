@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/features/community/rate/view/widget/rate_card.dart';
+import 'package:lifeclient/features/community/rate/view/widget/rate_card_sheet.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';
 
 final class RateSheetFactory {
@@ -34,7 +34,7 @@ final class RateSheetFactory {
         padding: EdgeInsets.only(
           bottom: sheetContext.general.keyboardPadding,
         ),
-        child: RateCard(
+        child: RateCardSheet(
           placeId: placeId,
           initialComment: initialComment,
           onSubmitted: () => Navigator.of(sheetContext).pop(),

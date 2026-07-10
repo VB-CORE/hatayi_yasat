@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model_extension.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
@@ -61,7 +60,12 @@ final class RateCommentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GeneralBodyTitle(rateModel.userName),
+                    Expanded(
+                      child: GeneralBodyTitle(
+                        rateModel.userName,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
                     if (_isOwnComment)
                       GestureDetector(
                         onTap: () => _showCommentOptions(context),
@@ -82,8 +86,10 @@ final class RateCommentCard extends StatelessWidget {
                       value: rateModel.rate,
                       isReadOnly: true,
                     ),
-                    GeneralContentSmallTitle(
-                      value: ' - ${rateModel.createdAt.timeAgo}',
+                    Flexible(
+                      child: GeneralContentSmallTitle(
+                        value: ' - ${rateModel.createdAt.timeAgo}',
+                      ),
                     ),
                   ],
                 ),
@@ -108,8 +114,10 @@ final class RateCommentCard extends StatelessWidget {
     switch (result) {
       case RateCommentOptionAction.delete:
         onDelete?.call();
+        return;
       case RateCommentOptionAction.edit:
         onEdit?.call();
+        return;
     }
   }
 }

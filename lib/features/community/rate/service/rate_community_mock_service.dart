@@ -12,7 +12,6 @@ final class RateCommunityMockService implements RateCommunityService {
         createdAt: DateTime(2026, 6, 28),
         comment: 'Çok temiz ve ilgili bir esnaf, tavsiye ederim.',
         userName: 'Mehmet Kaya',
-        photoUrl: '',
       ),
       'mock_user_2': RateModel(
         placeId: 'place_1',
@@ -22,7 +21,6 @@ final class RateCommunityMockService implements RateCommunityService {
         createdAt: DateTime(2026, 6, 29),
         comment: 'Fiyatlar biraz yüksek, ortalama bir deneyimdi.',
         userName: 'Zeynep Demir',
-        photoUrl: '',
       ),
       'mock_user_3': RateModel(
         placeId: 'place_1',
@@ -36,7 +34,6 @@ final class RateCommunityMockService implements RateCommunityService {
             'değildi. Bu fiyata çok daha iyi bir hizmet bekliyordum, bir daha '
             'tercih etmeyi düşünmüyorum.',
         userName: 'Ayşe yılmaz',
-        photoUrl: '',
       ),
     },
     'place_2': {
@@ -48,7 +45,6 @@ final class RateCommunityMockService implements RateCommunityService {
         createdAt: DateTime(2026, 6, 29),
         comment: 'Fiyatlar uygun, hizmet güzeldi.',
         userName: 'Zeynep Demir',
-        photoUrl: '',
       ),
     },
   };

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 final class RateModel extends Equatable {
   const RateModel({
@@ -19,6 +20,18 @@ final class RateModel extends Equatable {
   final double rate;
   final String? comment;
   final String? photoUrl;
+
+  /// Avatar fallback for users without a photo: the first letters of up to
+  /// two words in [userName], upper-cased (e.g. 'Veli Bacik' -> 'VB').
+  /// Returns '?' when [userName] is blank.
+  String get initials {
+    final parts = userName
+        .trim()
+        .split(RegexTypes.whitespace)
+        .where((p) => p.isNotEmpty);
+    if (parts.isEmpty) return '?';
+    return parts.map((p) => p[0].toUpperCase()).take(2).join();
+  }
 
   @override
   List<Object?> get props => [

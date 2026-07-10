@@ -72,36 +72,36 @@ final class _CommentListBody extends ConsumerWidget {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    } else if (state.comments.isEmpty) {
+    }
+    if (state.comments.isEmpty) {
       return GeneralContentSubTitle(
         value: LocaleKeys.rate_noCommentsYet.tr(),
         textAlign: TextAlign.center,
       );
-    } else {
-      final notifier = ref.read(
-        rateCommunityViewModelProvider(placeId).notifier,
-      );
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: state.comments.length,
-        itemBuilder: (context, index) {
-          final rate = state.comments[index];
-          final isOwn = state.vote?.userId == rate.userId;
-          final isWork = isOwn && !state.isProcessing;
-          return RateCommentCard(
-            rateModel: rate,
-            onEdit: isWork
-                ? () => RateSheetFactory.showRateCard(
-                    context,
-                    placeId: placeId,
-                    initialComment: rate.comment,
-                  )
-                : null,
-            onDelete: isWork ? notifier.deleteVote : null,
-          );
-        },
-      );
     }
+    final notifier = ref.read(
+      rateCommunityViewModelProvider(placeId).notifier,
+    );
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: state.comments.length,
+      itemBuilder: (context, index) {
+        final rate = state.comments[index];
+        final isOwn = state.vote?.userId == rate.userId;
+        final isWork = isOwn && !state.isProcessing;
+        return RateCommentCard(
+          rateModel: rate,
+          onEdit: isWork
+              ? () => RateSheetFactory.showRateCard(
+                  context,
+                  placeId: placeId,
+                  initialComment: rate.comment,
+                )
+              : null,
+          onDelete: isWork ? notifier.deleteVote : null,
+        );
+      },
+    );
   }
 }

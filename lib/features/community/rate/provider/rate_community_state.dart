@@ -25,28 +25,28 @@ sealed class RateActionStatus extends Equatable {
   const RateActionStatus();
 }
 
-final class ActionIdle extends RateActionStatus {
-  const ActionIdle();
+final class RateActionIdle extends RateActionStatus {
+  const RateActionIdle();
   @override
   List<Object?> get props => [];
 }
 
-final class ActionSucceeded extends RateActionStatus {
-  const ActionSucceeded(this.action);
+final class RateActionSucceeded extends RateActionStatus {
+  const RateActionSucceeded(this.action);
   final RateAction action;
   @override
   List<Object?> get props => [action];
 }
 
-final class ActionProcessing extends RateActionStatus {
-  const ActionProcessing(this.action);
+final class RateActionProcessing extends RateActionStatus {
+  const RateActionProcessing(this.action);
   final RateAction action;
   @override
   List<Object?> get props => [action];
 }
 
-final class ActionFailed extends RateActionStatus {
-  const ActionFailed(this.action);
+final class RateActionFailed extends RateActionStatus {
+  const RateActionFailed(this.action);
   final RateAction action;
   @override
   List<Object?> get props => [action];
@@ -58,7 +58,7 @@ final class RateCommunityState extends Equatable {
     this.comments = const [],
     this.isLoading = false,
     this.draftRate = 0,
-    this.status = const ActionIdle(),
+    this.status = const RateActionIdle(),
   });
 
   final RateModel? vote;
@@ -70,7 +70,7 @@ final class RateCommunityState extends Equatable {
   bool get hasVoted => vote != null;
   bool get isBusy => isLoading || isProcessing;
   double get value => hasVoted ? vote!.rate : draftRate;
-  bool get isProcessing => status is ActionProcessing;
+  bool get isProcessing => status is RateActionProcessing;
   bool get canSubmit =>
       ((vote?.rate ?? 0) > 0 || draftRate > 0) && !isProcessing;
 

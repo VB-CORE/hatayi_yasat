@@ -31,19 +31,14 @@ mixin RateCommentListMixin
       rateCommunityViewModelProvider(widget.placeId).notifier,
     );
     switch (next.status) {
-      case ActionSucceeded(:final action) when action == RateAction.delete:
+      case RateActionSucceeded(:final action) when action == RateAction.delete:
         appProvider.showSnackbarMessage(action.succeededMessage);
         notifier.resetStatus();
-        return;
-      case ActionFailed(:final action) when action == RateAction.delete:
+      case RateActionFailed(:final action) when action == RateAction.delete:
         unawaited(RateActionFailedDialog.show(context, action.failedMessage));
         notifier.resetStatus();
-        return;
-      case ActionIdle():
-      case ActionProcessing():
-      case ActionSucceeded():
-      case ActionFailed():
-        return;
+      case _:
+        break;
     }
   }
 
@@ -56,24 +51,25 @@ mixin RateCommentListMixin
     await RateSheetFactory.showRateCard(context, placeId: widget.placeId);
   }
 
-  Future<void> showLoginRequiredDialog(BuildContext context) =>
-      GeneralTextDialog.show(
-        context,
-        LocaleKeys.rate_loginRequiredTitle.tr(),
-        LocaleKeys.rate_loginRequiredContent.tr(),
-        [
-          GeneralDialogButton(
-            title: LocaleKeys.button_cancel,
-            onPressed: () => Navigator.pop(context),
-          ),
-          GeneralDialogButton(
-            title: LocaleKeys.button_login,
-            onPressed: () {
-              Navigator.pop(context);
-              const MainTabRoute().go(context);
-            },
-          ),
-        ],
-        backgroundColor: AppColors.bg,
-      );
+  Future<void> showLoginRequiredDialog(BuildContext context) async {
+    final goLogin = await GeneralTextDialog.show<bool>(
+      context,
+      LocaleKeys.rate_loginRequiredTitle.tr(),
+      LocaleKeys.rate_loginRequiredContent.tr(),
+      [
+        GeneralDialogButton(
+          title: LocaleKeys.button_cancel,
+          onPressed: () => Navigator.pop(context, false),
+        ),
+        GeneralDialogButton(
+          title: LocaleKeys.button_login,
+          onPressed: () => Navigator.pop(context, true),
+        ),
+      ],
+      backgroundColor: AppColors.bg,
+    );
+    if ((goLogin ?? false) && context.mounted) {
+      const MainTabRoute().go(context);
+    }
+  }
 }

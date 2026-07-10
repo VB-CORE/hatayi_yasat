@@ -20,15 +20,16 @@ final class GeneralTextDialog extends StatelessWidget {
   final List<Widget> actions;
   final Color? backgroundColor;
 
-  /// Display the dialog on the screen.
-  static Future<void> show(
+  /// Display the dialog on the screen. Returns the value passed to
+  /// `Navigator.pop(context, result)` by one of the [actions], if any.
+  static Future<T?> show<T>(
     BuildContext context,
     String title,
     String content,
     List<Widget> actions, {
     Color? backgroundColor,
-  }) async {
-    await showDialog<void>(
+  }) {
+    return showDialog<T>(
       context: context,
       builder: (context) {
         return GeneralTextDialog(

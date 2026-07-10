@@ -16,8 +16,8 @@ import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
 
-final class RateCard extends ConsumerStatefulWidget {
-  const RateCard({
+final class RateCardSheet extends ConsumerStatefulWidget {
+  const RateCardSheet({
     required this.placeId,
     super.key,
     this.onSubmitted,
@@ -28,11 +28,11 @@ final class RateCard extends ConsumerStatefulWidget {
   final String? initialComment;
 
   @override
-  ConsumerState<RateCard> createState() => _RateCardState();
+  ConsumerState<RateCardSheet> createState() => _RateCardSheetState();
 }
 
-final class _RateCardState extends ConsumerState<RateCard>
-    with AppProviderMixin<RateCard>, RateCommentControllerMixin {
+final class _RateCardSheetState extends ConsumerState<RateCardSheet>
+    with AppProviderMixin<RateCardSheet>, RateCommentControllerMixin {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
