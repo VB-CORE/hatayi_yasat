@@ -65,7 +65,7 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 title: LocaleKeys.rate_editComment.tr(),
                 buttonLabel: LocaleKeys.button_save.tr(),
                 controller: commentController,
-                canSubmit: state.canSubmit,
+                canSubmit: state.canEditVote,
                 isBusy: state.isBusy,
                 onSubmit: () => notifier.editComment(commentController.text),
               )
@@ -74,7 +74,7 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 title: LocaleKeys.rate_evaluatePlace.tr(),
                 buttonLabel: LocaleKeys.button_send.tr(),
                 controller: commentController,
-                canSubmit: state.canSubmit,
+                canSubmit: state.canCreateVote,
                 isBusy: state.isBusy,
                 onSubmit: () =>
                     notifier.submit(comment: commentController.text),

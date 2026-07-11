@@ -24,9 +24,10 @@ final class RateCommentCard extends StatelessWidget {
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
-  bool get _isOwnComment => onEdit != null || onDelete != null;
+  bool get _hasActions => onEdit != null || onDelete != null;
   @override
   Widget build(BuildContext context) {
+    final comment = rateModel.comment;
     return Container(
       padding: const PagePadding.generalCardAll(),
       margin: const PagePadding.verticalLowSymmetric(),
@@ -66,13 +67,17 @@ final class RateCommentCard extends StatelessWidget {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    if (_isOwnComment)
+                    if (_hasActions)
                       GestureDetector(
                         onTap: () => _showCommentOptions(context),
-                        child: const Icon(
-                          AppIcons.moreDots,
-                          color: AppColors.navy,
-                          size: AppIconSizes.medium,
+                        behavior: HitTestBehavior.opaque,
+                        child: const Padding(
+                          padding: PagePadding.generalIconLowAll(),
+                          child: Icon(
+                            AppIcons.moreDots,
+                            color: AppColors.navy,
+                            size: AppIconSizes.medium,
+                          ),
                         ),
                       ),
                   ],
@@ -93,13 +98,14 @@ final class RateCommentCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const PagePadding.verticalVeryLowSymmetric(),
-                  child: GeneralContentSubTitle(
-                    value: rateModel.comment ?? '',
-                    maxLine: 5,
+                if (comment != null && comment.isNotEmpty)
+                  Padding(
+                    padding: const PagePadding.verticalVeryLowSymmetric(),
+                    child: GeneralContentSubTitle(
+                      value: comment,
+                      maxLine: 5,
+                    ),
                   ),
-                ),
               ],
             ),
           ),

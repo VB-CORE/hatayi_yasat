@@ -54,6 +54,7 @@ final class RateModel extends Equatable {
     String? comment,
     String? userName,
     String? photoUrl,
+    bool clearComment = false,
   }) => RateModel(
     userId: userId ?? this.userId,
     placeId: placeId ?? this.placeId,
@@ -61,7 +62,7 @@ final class RateModel extends Equatable {
     counted: counted ?? this.counted,
     createdAt: createdAt ?? this.createdAt,
     rate: rate ?? this.rate,
-    comment: comment ?? this.comment,
+    comment: clearComment ? null : (comment ?? this.comment),
     photoUrl: photoUrl ?? this.photoUrl,
   );
 }

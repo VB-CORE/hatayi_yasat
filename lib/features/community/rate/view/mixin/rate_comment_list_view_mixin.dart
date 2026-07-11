@@ -6,7 +6,7 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/community/rate/model/mock_auth.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
-import 'package:lifeclient/features/community/rate/view/rate_comment_list.dart';
+import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_action_failed_dialog.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -15,8 +15,10 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
-mixin RateCommentListMixin
-    on ConsumerState<RateCommentList>, AppProviderMixin<RateCommentList> {
+mixin RateCommentListViewMixin
+    on
+        ConsumerState<RateCommentListView>,
+        AppProviderMixin<RateCommentListView> {
   @override
   void initState() {
     super.initState();

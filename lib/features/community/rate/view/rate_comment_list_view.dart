@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
-import 'package:lifeclient/features/community/rate/view/mixin/rate_comment_list_mixin.dart';
+import 'package:lifeclient/features/community/rate/view/mixin/rate_comment_list_view_mixin.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_comment_card.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-final class RateCommentList extends ConsumerStatefulWidget {
-  const RateCommentList({
+final class RateCommentListView extends ConsumerStatefulWidget {
+  const RateCommentListView({
     required this.isCommentEnabled,
     required this.placeId,
     super.key,
@@ -20,11 +20,12 @@ final class RateCommentList extends ConsumerStatefulWidget {
   final String placeId;
 
   @override
-  ConsumerState<RateCommentList> createState() => _RateCommentListState();
+  ConsumerState<RateCommentListView> createState() =>
+      _RateCommentListViewState();
 }
 
-final class _RateCommentListState extends ConsumerState<RateCommentList>
-    with AppProviderMixin<RateCommentList>, RateCommentListMixin {
+final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
+    with AppProviderMixin<RateCommentListView>, RateCommentListViewMixin {
   @override
   Widget build(BuildContext context) {
     final hasVoted = ref.watch(
@@ -89,17 +90,17 @@ final class _CommentListBody extends ConsumerWidget {
       itemBuilder: (context, index) {
         final rate = state.comments[index];
         final isOwn = state.vote?.userId == rate.userId;
-        final isWork = isOwn && !state.isProcessing;
+        final canModify = isOwn && !state.isProcessing;
         return RateCommentCard(
           rateModel: rate,
-          onEdit: isWork
+          onEdit: canModify
               ? () => RateSheetFactory.showRateCard(
                   context,
                   placeId: placeId,
                   initialComment: rate.comment,
                 )
               : null,
-          onDelete: isWork ? notifier.deleteVote : null,
+          onDelete: canModify ? notifier.deleteVote : null,
         );
       },
     );

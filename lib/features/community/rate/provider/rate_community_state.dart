@@ -70,8 +70,8 @@ final class RateCommunityState extends Equatable {
   bool get isBusy => isLoading || isProcessing;
   double get value => hasVoted ? vote!.rate : draftRate;
   bool get isProcessing => status is RateActionProcessing;
-  bool get canSubmit =>
-      ((vote?.rate ?? 0) > 0 || draftRate > 0) && !isProcessing;
+  bool get canCreateVote => !hasVoted && draftRate > 0 && !isBusy;
+  bool get canEditVote => hasVoted && !isBusy;
 
   RateCommunityState copyWith({
     RateModel? vote,

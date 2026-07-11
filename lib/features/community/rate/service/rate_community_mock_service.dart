@@ -69,9 +69,7 @@ final class RateCommunityMockService implements RateCommunityService {
     await Future<void>.delayed(const Duration(milliseconds: 400));
     final existing = votesByPlace[rate.placeId]?[rate.userId];
     if (existing == null) return false;
-    votesByPlace[rate.placeId]![rate.userId] = existing.copyWith(
-      comment: rate.comment,
-    );
+    votesByPlace[rate.placeId]![rate.userId] = rate;
     return true;
   }
 
