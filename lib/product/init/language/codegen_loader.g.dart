@@ -39,7 +39,11 @@ class CodegenLoader extends AssetLoader{
     "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
     "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
     "pickATime": "Lütfen bir saat seçiniz.",
-    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır."
+    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır.",
+    "numericInvalid": "Lütfen geçerli bir sayı giriniz",
+    "numericMin": "Lütfen en az {} giriniz",
+    "numericMax": "Lütfen en fazla {} giriniz",
+    "numericRange": "Lütfen {} ile {} arasında bir sayı giriniz"
   },
   "button": {
     "save": "Kaydet",
@@ -58,6 +62,7 @@ class CodegenLoader extends AssetLoader{
     "sendRequest": "Talep Oluştur",
     "call": "Ara",
     "share": "Paylaş",
+    "copy": "Kopyala",
     "error": "Hata",
     "more": "Daha fazla",
     "understood": "Anladım"
@@ -128,14 +133,17 @@ class CodegenLoader extends AssetLoader{
     "categories": "Kategoriler",
     "places": "Mekanlar",
     "search": "Ara",
-    "notifications": "Bildirimler"
+    "notifications": "Bildirimler",
+    "allCategory": "Tümü",
+    "placesUpper": "MEKAN"
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
-    "removedFavorite": "Favorilerden kaldırıldı"
+    "removedFavorite": "Favorilerden kaldırıldı",
+    "copiedToClipboard": "Panoya kopyalandı"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -319,6 +327,12 @@ class CodegenLoader extends AssetLoader{
     "time": {
       "newest": "Yeniden eskiye",
       "oldest": "Eskiden yeniye"
+    },
+    "title": "Sırala",
+    "applied": "Sıralama güncellendi",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -331,12 +345,38 @@ class CodegenLoader extends AssetLoader{
   "advertisementBoard": {
     "openUrl": "Linki Aç",
     "launchUrlError": "Link açılırken bir hata meydana geldi",
-    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}"
+    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
+    "houseAdTitle": "BU ALANA REKLAM VEREBİLİRSİNİZ",
+    "houseAdSubtitle": "Esnafına ulaş · İletişim: medya@hatayiyasat.app",
+    "contactUs": "İletişime geç"
   },
   "chain_stores": {
     "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
     "subBranchesTitle": "{} Şubeleri ({})"
+  },
+  "monetization": {
+    "title": "İndirim Kuponları",
+    "addCouponAction": "Yeni",
+    "addCoupon": "Kupon Ekle",
+    "discountCodeLabel": "İndirim",
+    "expiresAtSummary": "Son {}",
+    "expiryDateLabel": "Son Kullanım Tarihi",
+    "active": "Aktif",
+    "activeTab": "Aktif ({})",
+    "inactive": "Süresi doldu",
+    "inactiveTab": "Pasif ({})",
+    "usageLimitReached": "Limit doldu",
+    "couponDesc": "Açıklama",
+    "couponDescHint": "Örn: Festival İndirimi",
+    "usageLimit": "Kullanım Limiti",
+    "usageLimitHint": "Boş bırakılırsa kullanım limiti olmayacaktır",
+    "unlimited": "Limitsiz",
+    "usageCountSummary": "{} Kullanıldı",
+    "discountRate": "İndirim Oranı",
+    "discountRateValue": "%{}",
+    "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
+    "emptyCoupons": "Henüz kupon bulunmuyor"
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
@@ -386,6 +426,14 @@ class CodegenLoader extends AssetLoader{
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
       "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
     }
+  },
+  "userQr": {
+    "title": "QR Kodum",
+    "personalTitle": "Kişisel QR",
+    "personalDescription": "Sadece sana özel paylaşım kodu.",
+    "campaignTitle": "Kampanyalara Katıl",
+    "campaignDescription": "Qr kodunla kampanyalara katılabilirsin.",
+    "shareSubject": "QR Kodum"
   },
   "historyPage": {
     "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
@@ -480,6 +528,24 @@ class CodegenLoader extends AssetLoader{
     "backToGroups": "Gruplar'a dön",
     "requestAccess": "Yetki talebinde bulun",
     "requestAccessComingSoon": "Bu özellik yakında eklenecek."
+  },
+  "filter": {
+    "title": "Filtre",
+    "clear": "Temizle",
+    "categories": "Kategoriler",
+    "others": "Diğer",
+    "openNow": "Şu an açık olanlar",
+    "favoritesOnly": "Favorilerimde olanlar",
+    "districts": "İlçeler",
+    "nearYou": "Sana yakın",
+    "searchDistrict": "İlçe ara",
+    "selectedCount": "{}/{} seçili",
+    "showResults": "{} sonucu göster",
+    "noResults": "Sonuç yok, filtreyi gevşet",
+    "categoryCountLabel": "{} kategori",
+    "districtCountLabel": "{} ilçe",
+    "openShort": "açık",
+    "favoritesShort": "favori"
   }
 };
 static const Map<String,dynamic> _en = {
@@ -507,7 +573,11 @@ static const Map<String,dynamic> _en = {
     "dateAfterNow": "Please enter a date after today",
     "pleaseAddImage": "Please add an image",
     "pickATime": "Please pick a time.",
-    "closeTimeMustBeAfterStartTime": "Close time must be after start time."
+    "closeTimeMustBeAfterStartTime": "Close time must be after start time.",
+    "numericInvalid": "Please enter a valid number",
+    "numericMin": "Please enter at least {}",
+    "numericMax": "Please enter at most {}",
+    "numericRange": "Please enter a number between {} and {}"
   },
   "button": {
     "save": "Save",
@@ -526,6 +596,7 @@ static const Map<String,dynamic> _en = {
     "sendRequest": "Create request",
     "call": "Call",
     "share": "Share",
+    "copy": "Copy",
     "error": "Error",
     "more": "More",
     "understood": "Understood"
@@ -596,14 +667,17 @@ static const Map<String,dynamic> _en = {
     "categories": "Categories",
     "places": "Places",
     "search": "Search",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "allCategory": "All",
+    "placesUpper": "PLACES"
   },
   "message": {
     "emptySearch": "No Results Found",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
-    "removedFavorite": "Removed from favorites"
+    "removedFavorite": "Removed from favorites",
+    "copiedToClipboard": "Copied to clipboard"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -787,6 +861,12 @@ static const Map<String,dynamic> _en = {
     "time": {
       "newest": "Newest to oldest",
       "oldest": "Oldest to newest"
+    },
+    "title": "Sort",
+    "applied": "Sorting updated",
+    "alpha": {
+      "aToZ": "A → Z",
+      "zToA": "Z → A"
     }
   },
   "utils": {
@@ -799,12 +879,38 @@ static const Map<String,dynamic> _en = {
   "advertisementBoard": {
     "openUrl": "Open Url",
     "launchUrlError": "An error occurred when launch url",
-    "shareAdvertisementSubject": "Visit advertisement owner: {}"
+    "shareAdvertisementSubject": "Visit advertisement owner: {}",
+    "houseAdTitle": "YOU CAN ADVERTISE HERE",
+    "houseAdSubtitle": "Reach local businesses · Contact: medya@hatayiyasat.app",
+    "contactUs": "Get in touch"
   },
   "chain_stores": {
     "title": "Container Bazaars",
     "showAllSubBranches": "Show all sub-store {}",
     "subBranchesTitle": "{} Store ({})"
+  },
+  "monetization": {
+    "title": "Discount Coupons",
+    "addCouponAction": "New",
+    "addCoupon": "Add Coupon",
+    "discountCodeLabel": "Discount Rate",
+    "expiresAtSummary": "Until {}",
+    "expiryDateLabel": "Expiry Date",
+    "active": "Active",
+    "activeTab": "Active ({})",
+    "inactive": "Expired",
+    "inactiveTab": "Inactive ({})",
+    "usageLimitReached": "Limit reached",
+    "couponDesc": "Description",
+    "couponDescHint": "E.g. Festival Discount",
+    "usageLimit": "Usage Limit",
+    "usageLimitHint": "Leave empty for unlimited",
+    "unlimited": "Unlimited",
+    "usageCountSummary": "{} Used",
+    "discountRate": "Discount Rate",
+    "discountRateValue": "%{}",
+    "invalidUsageLimit": "Enter a valid usage limit (1+)",
+    "emptyCoupons": "No coupons yet"
   },
   "whatsNew": {
     "title": "New in v8.1.0 🎉",
@@ -854,6 +960,14 @@ static const Map<String,dynamic> _en = {
       "generic": "Something went wrong while signing in, please try again.",
       "failed": "{provider} sign-in failed, please try again."
     }
+  },
+  "userQr": {
+    "title": "My QR Code",
+    "personalTitle": "Personal QR",
+    "personalDescription": "A sharing code unique to you.",
+    "campaignTitle": "Join Campaigns",
+    "campaignDescription": "You can join campaigns with your QR code.",
+    "shareSubject": "My QR Code"
   },
   "historyPage": {
     "welcomeTitle": "Our Memories Are Alive with Us",
@@ -948,6 +1062,24 @@ static const Map<String,dynamic> _en = {
     "backToGroups": "Back to Groups",
     "requestAccess": "Request access",
     "requestAccessComingSoon": "This feature is coming soon."
+  },
+  "filter": {
+    "title": "Filter",
+    "clear": "Clear",
+    "categories": "Categories",
+    "others": "Other",
+    "openNow": "Open now",
+    "favoritesOnly": "In my favorites",
+    "districts": "Districts",
+    "nearYou": "Near you",
+    "searchDistrict": "Search district",
+    "selectedCount": "{}/{} selected",
+    "showResults": "Show {} results",
+    "noResults": "No results, loosen filters",
+    "categoryCountLabel": "{} categories",
+    "districtCountLabel": "{} districts",
+    "openShort": "open",
+    "favoritesShort": "favorites"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": _tr, "en": _en};

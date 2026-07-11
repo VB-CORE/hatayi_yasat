@@ -43,7 +43,7 @@ final class DiscussionDetailViewModelProvider
 }
 
 String _$discussionDetailViewModelHash() =>
-    r'1100c4e7905d6b355b2c52033d4ffd4ccc331dd5';
+    r'f9e7c6a7fa8766f6db4517c7d4ac7ebc148852aa';
 
 abstract class _$DiscussionDetailViewModel
     extends $Notifier<DiscussionDetailState> {

@@ -7,14 +7,10 @@ class ProductTextFieldDecoration extends InputDecoration {
     : super(
         contentPadding: context.padding.low,
         filled: true,
-        fillColor: context.general.colorScheme.onPrimaryFixed,
         enabledBorder: focusedBorderStyle(context),
         focusedBorder: focusedBorderStyle(context),
         border: standardBorder(context),
         hintText: hintText,
-        hintStyle: context.general.textTheme.titleSmall?.copyWith(
-          color: context.general.colorScheme.onSecondaryFixed,
-        ),
       );
 
   static OutlineInputBorder focusedBorderStyle(BuildContext context) {
@@ -40,7 +36,6 @@ class ProductTextFieldDecoration extends InputDecoration {
     borderRadius: mediumBorderRadius,
     borderSide: BorderSide(
       color: context.general.colorScheme.onPrimaryContainer,
-      width: 2,
     ),
   );
 

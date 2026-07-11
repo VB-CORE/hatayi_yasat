@@ -12,6 +12,7 @@ final class CustomCarouselOptions extends CarouselOptions {
   /// * autoPlay: true
   CustomCarouselOptions.advertisement({
     double height = 150,
+    super.onPageChanged,
   }) : super(
           autoPlayAnimationDuration: DurationConstant.durationNormal,
           height: height,

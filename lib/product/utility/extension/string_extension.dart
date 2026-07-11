@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 
 extension StringExtension on String {
@@ -12,5 +13,9 @@ extension StringExtension on String {
     } else {
       return 'https://$this';
     }
+  }
+
+  Future<void> copyToClipboard() async {
+    await Clipboard.setData(ClipboardData(text: this));
   }
 }

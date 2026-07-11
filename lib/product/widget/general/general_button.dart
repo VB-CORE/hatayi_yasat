@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -143,7 +142,7 @@ class _Child extends StatelessWidget {
       child: Text(
         label,
         style: context.general.textTheme.titleMedium?.copyWith(
-          color: ColorCommon(context).whiteAndBlackForTheme,
+          color: context.general.colorScheme.surface,
           fontWeight: FontWeight.w900,
         ),
       ),

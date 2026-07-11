@@ -7,9 +7,7 @@ final class ProjectNavigation {
   final BuildContext context;
   void replaceToWidget(Widget child) {
     context.route.navigation.pushReplacement(
-      MaterialPageRoute<void>(
-        builder: (context) => child,
-      ),
+      MaterialPage<void>(child: child).createRoute(context),
     );
   }
 

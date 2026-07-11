@@ -41,7 +41,7 @@ final class GroupsViewModelProvider
   }
 }
 
-String _$groupsViewModelHash() => r'110e4bd0adeca4dd0b0b834fc199b487e17e9d1b';
+String _$groupsViewModelHash() => r'f81e14be28ca47a5278083a1d4ffb147c2970be2';
 
 abstract class _$GroupsViewModel extends $Notifier<GroupsState> {
   GroupsState build();
