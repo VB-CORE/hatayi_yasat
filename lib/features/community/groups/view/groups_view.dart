@@ -21,6 +21,11 @@ import 'package:lifeclient/product/widget/general/index.dart';
 part 'sub_view/groups_header.dart';
 part 'sub_view/groups_list_builder.dart';
 
+// TODO(community): Firestore groups koleksiyonu bağlanmadan bu ekranın
+// gerçek bir giriş noktası (GroupsRoute) olmayacak — henüz app_router.dart'a
+// eklenmedi, bilerek bekletiliyor. Şu an uygulama içinde hiçbir yerden
+// ulaşılamıyor; test etmek için geçici olarak başka bir route'un build()
+// metoduna `const GroupsView()` yazıp geri almak gerekiyor.
 final class GroupsView extends ConsumerStatefulWidget {
   const GroupsView({super.key});
 
@@ -35,8 +40,11 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
     final state = ref.watch(groupsViewModelProvider);
     return GeneralScaffold(
       floatingActionButton: FloatingActionButton(
-        // TODO(community): Geçici test navigasyonu — route guard bypass
-        // edildi, CreateGroupView'u görmek için düz push kullanılıyor.
+        // TODO(community): Bilerek geçici — GroupsRoute henüz router'a
+        // eklenmediği için (yukarıdaki not) CreateGroupRoute'un `redirect()`
+        // yetki guard'ı bu ekrandan hiç test edilemiyor. Gerçek satır aşağıda
+        // yorumda duruyor; GroupsRoute eklenince bu Navigator.push kaldırılıp
+        // o satır geri açılacak.
         // onPressed: () => const CreateGroupRoute().push<void>(context),
         onPressed: () {
           Navigator.of(context).push(
@@ -60,7 +68,14 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
               ),
               const EmptyBox.middleHeight(),
             ],
-            const Expanded(child: _GroupsListBuilder()),
+            Expanded(
+              child: _GroupsListBuilder(
+                state: state,
+                onRetry: () => unawaited(
+                  ref.read(groupsViewModelProvider.notifier).fetchGroups(),
+                ),
+              ),
+            ),
           ],
         ),
       ),

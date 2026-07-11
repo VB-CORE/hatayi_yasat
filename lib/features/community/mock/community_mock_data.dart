@@ -9,8 +9,12 @@ import 'package:lifeclient/features/community/model/group_type.dart';
 
 /// Community feature'ının TÜM mock verisi — akış testi için tek kaynak.
 ///
-/// Firestore koleksiyonları (groups, group_posts, group_discussions,
-/// groups_categories, üyelikler) bağlanınca bu dosya komple silinecek.
+/// Bütün `GroupsViewModel`/`GroupWallViewModel`/`GroupDiscussionsViewModel`/
+/// `DiscussionDetailViewModel`/`CreateGroupViewModel` bu class'tan okuyor.
+// TODO(community): Firestore koleksiyonları (groups, group_posts,
+// group_discussions, groups_categories, üyelikler) bağlanınca bu dosya
+// komple silinecek; her `static` alan kendi ViewModel'indeki gerçek
+// sorguyla değişecek.
 final class CommunityMockData {
   const CommunityMockData._();
 
