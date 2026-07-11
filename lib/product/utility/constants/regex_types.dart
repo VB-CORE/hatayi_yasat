@@ -12,4 +12,10 @@ class RegexTypes {
   );
 
   static final RegExp whitespace = RegExp(r'\s+');
+
+  static final RegExp multipleSpaces = RegExp(r'[ \t]+');
+
+  static final RegExp aroundLineBreaks = RegExp(r'[ \t]*\n[ \t]*');
+
+  static final RegExp excessiveLineBreaks = RegExp(r'\n{3,}');
 }

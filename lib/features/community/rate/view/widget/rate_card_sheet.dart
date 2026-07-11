@@ -7,9 +7,11 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_community_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -67,7 +69,8 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 controller: commentController,
                 canSubmit: state.canEditVote,
                 isBusy: state.isBusy,
-                onSubmit: () => notifier.editComment(commentController.text),
+                onSubmit: () =>
+                    notifier.editComment(commentController.text.normalize),
               )
             else
               _RateCommentSection(
@@ -77,7 +80,7 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 canSubmit: state.canCreateVote,
                 isBusy: state.isBusy,
                 onSubmit: () =>
-                    notifier.submit(comment: commentController.text),
+                    notifier.submit(comment: commentController.text.normalize),
               ),
           ],
         ),
@@ -158,6 +161,7 @@ final class _RateCommentSection extends StatelessWidget {
           controller: controller,
           validator: ValidatorNormalTextField(),
           enabled: !isBusy,
+          maxLength: TextFieldMaxLengths.max,
         ),
         const EmptyBox.middleHeight(),
         GeneralButtonV2.active(

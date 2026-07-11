@@ -40,11 +40,6 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
 
   void resetStatus() => state = state.copyWith(status: const RateActionIdle());
 
-  String? _normalizeComment(String? comment) {
-    final trimmed = comment?.trim();
-    return (trimmed == null || trimmed.isEmpty) ? null : trimmed;
-  }
-
   Future<void> submit({String? comment}) async {
     if (state.hasVoted || state.isProcessing) return;
     state = state.copyWith(
@@ -56,7 +51,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       rate: state.draftRate,
       createdAt: DateTime.now(),
       counted: false,
-      comment: _normalizeComment(comment),
+      comment: comment?.trim(),
       userName: _currentUserName,
     );
     final success = await ref.read(rateCommunityServiceProvider).rate(vote);
@@ -77,10 +72,9 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.update),
     );
-    final normalized = _normalizeComment(newComment);
+
     final updated = currentVote.copyWith(
-      comment: normalized,
-      clearComment: normalized == null,
+      comment: newComment?.trim(),
     );
     final success = await ref
         .read(rateCommunityServiceProvider)

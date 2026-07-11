@@ -1,22 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
-import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';
-import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
-import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
-import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/custom_circle_radius.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
-import 'package:lifeclient/product/widget/general/index.dart';
-import 'package:lifeclient/product/widget/rating/app_rating_widget.dart';
+part of '../rate_comment_list_view.dart';
 
-final class RateCommentCard extends StatelessWidget {
-  const RateCommentCard({
+final class _RateCommentCard extends StatelessWidget {
+  const _RateCommentCard({
     required this.rateModel,
-    super.key,
     this.onEdit,
     this.onDelete,
   });
@@ -47,7 +33,7 @@ final class RateCommentCard extends StatelessWidget {
               radius: CustomCircleRadius.medium,
               backgroundColor: AppColors.coral,
               child: GeneralContentSmallTitle(
-                value: rateModel.initials,
+                value: rateModel.userName.initials,
                 color: AppColors.white,
                 fontWeight: FontWeight.w600,
               ),
