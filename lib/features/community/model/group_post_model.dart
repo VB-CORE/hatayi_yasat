@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
 
 final class GroupPostModel extends Equatable {
   const GroupPostModel({

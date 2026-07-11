@@ -1,21 +1,19 @@
 part of '../groups_view.dart';
 
-final class _GroupsListBuilder extends ConsumerWidget {
-  const _GroupsListBuilder();
+final class _GroupsListBuilder extends StatelessWidget {
+  const _GroupsListBuilder({required this.state, required this.onRetry});
+
+  final GroupsState state;
+  final VoidCallback onRetry;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(groupsViewModelProvider);
+  Widget build(BuildContext context) {
     return switch (state) {
       GroupsState(isFetching: true) => const SizedBox.shrink(),
       GroupsState(isError: true) => SingleChildScrollView(
         child: GeneralNotFoundWidget(
           title: LocaleKeys.message_somethingWentWrong.tr(),
-          onRefresh: () {
-            unawaited(
-              ref.read(groupsViewModelProvider.notifier).fetchGroups(),
-            );
-          },
+          onRefresh: onRetry,
         ),
       ),
       GroupsState(groups: []) => SingleChildScrollView(

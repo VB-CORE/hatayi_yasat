@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 
 final class GroupModel extends Equatable {
