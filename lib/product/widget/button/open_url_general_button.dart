@@ -36,7 +36,7 @@ final class OpenUrlGeneralButton extends StatelessWidget {
   }
 
   Future<void> _showErrorDialog(BuildContext context) async {
-    await GeneralTextDialog.show(
+    await GeneralTextDialog.show<void>(
       context,
       LocaleKeys.button_error.tr(),
       LocaleKeys.advertisementBoard_launchUrlError.tr(),

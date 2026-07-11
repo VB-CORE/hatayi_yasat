@@ -17,6 +17,7 @@ final class CustomTextFormField extends StatelessWidget
     this.formatters = TextFieldFormatters.none,
     this.autoFills = TextFieldAutoFills.normal,
     this.textInputAction = TextInputAction.next,
+    this.enabled = true,
     super.key,
   });
 
@@ -36,7 +37,8 @@ final class CustomTextFormField extends StatelessWidget
   final TextFieldAutoFills autoFills;
   @override
   final TextInputAction textInputAction;
-
+  @override
+  final bool enabled;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -47,6 +49,7 @@ final class CustomTextFormField extends StatelessWidget
       textInputAction: textInputAction,
       validator: validator.validate,
       autofillHints: autoFills.value,
+      enabled: enabled,
       decoration: CustomTextFieldDecoration(
         context: context,
       ),

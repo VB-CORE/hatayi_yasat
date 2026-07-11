@@ -49,7 +49,9 @@
     "copy": "Copy",
     "error": "Error",
     "more": "More",
-    "understood": "Understood"
+    "understood": "Understood",
+    "send": "Send",
+    "login": "Login"
   },
   "component": {
     "mapPicker": {
@@ -128,6 +130,36 @@
     "emptyFavorite": "Your favorites list is empty",
     "removedFavorite": "Removed from favorites",
     "copiedToClipboard": "Copied to clipboard"
+  },
+  "rate": {
+    "trustQuestion": "Do you trust this place?",
+    "singleVoteHint": "You only have one vote.",
+    "rateThankYou": "Your vote has been received, thank you.",
+    "voteRecorded": "Your vote has been recorded.",
+    "evaluatePlace": "Evaluate the place",
+    "addComment": "Add Comment",
+    "noCommentsYet": "No comments yet",
+    "commentHint": "Share your experience...",
+    "commentingDisabled": "Commenting has been disabled",
+    "editComment": "Edit your comment",
+    "commentAdded": "Comment added",
+    "deleteComment": "Delete your comment",
+    "loginRequiredTitle": "You're not logged in",
+    "loginRequiredContent": "You need to log in to add a comment.",
+    "actionFailedTitle": "Something went wrong",
+    "submitFailedContent": "Your rating couldn't be submitted. Please try again.",
+    "editCommentFailedContent": "Your comment couldn't be updated. Please try again.",
+    "deleteFailedContent": "Your comment couldn't be deleted. Please try again.",
+    "deleteSuccessMessage": "Your comment was deleted.",
+    "editCommentSuccessMessage": "Your comment has been updated."
+  },
+  "date": {
+    "justNow": "Just now",
+    "minutesAgo": "{} minutes ago",
+    "hoursAgo": "{} hours ago",
+    "daysAgo": "{} days ago",
+    "monthsAgo": "{} months ago",
+    "yearsAgo": "{} years ago"
   },
   "search": {
     "latestSearch": "Latest Searches",

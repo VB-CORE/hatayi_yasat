@@ -15,6 +15,7 @@ final class CustomTextFormMultiField extends StatelessWidget
     this.autoFills = TextFieldAutoFills.normal,
     this.formatters = TextFieldFormatters.none,
     this.textInputAction = TextInputAction.next,
+    this.enabled = true,
     super.key,
   });
   @override
@@ -33,6 +34,8 @@ final class CustomTextFormMultiField extends StatelessWidget
   final TextFieldFormatters formatters;
   @override
   final TextInputAction textInputAction;
+  @override
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ final class CustomTextFormMultiField extends StatelessWidget
       validator: validator.validate,
       textInputAction: textInputAction,
       inputFormatters: formatters.value,
+      enabled: enabled,
       decoration: CustomTextFieldDecoration(context: context),
     );
   }

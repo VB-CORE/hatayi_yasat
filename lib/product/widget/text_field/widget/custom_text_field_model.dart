@@ -11,4 +11,5 @@ mixin CustomTextFieldModel {
   ValidatorField get validator;
   TextFieldAutoFills get autoFills;
   TextInputAction get textInputAction;
+  bool get enabled;
 }
