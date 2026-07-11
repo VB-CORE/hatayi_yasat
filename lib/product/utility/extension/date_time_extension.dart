@@ -15,9 +15,13 @@ extension DateTimeExtensions on DateTime {
   }
 
   /// Relative time label like 'az önce', '5 dk önce', '2 saat önce'.
+  ///
+  /// Gelecek tarihli değerler de 'az önce' kabul edilir.
   String get timeAgo {
     final difference = DateTime.now().difference(this);
-    if (difference.inMinutes < 1) return LocaleKeys.utils_justNow.tr();
+    if (difference.isNegative || difference.inMinutes < 1) {
+      return LocaleKeys.utils_justNow.tr();
+    }
     if (difference.inHours < 1) {
       return LocaleKeys.utils_minutesAgo.tr(
         args: [difference.inMinutes.toString()],

@@ -15,6 +15,13 @@ final class GroupCoverImage extends StatelessWidget {
   final String groupId;
   final String? imageUrl;
 
+  /// `hashCode` çalıştırmalar arası kararlı olmadığı için karakter
+  /// kodlarından türetilen deterministik indeks — aynı grup her oturumda
+  /// aynı gradient'i alır.
+  int get _gradientIndex =>
+      groupId.codeUnits.fold<int>(0, (sum, unit) => sum + unit) %
+      _fallbackGradients.length;
+
   // TODO(community): Gerçek kapak görselleri backend'den gelince gradient
   // fallback yalnızca görselsiz gruplarda görünecek.
   static const List<List<Color>> _fallbackGradients = [
@@ -33,9 +40,7 @@ final class GroupCoverImage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors:
-                _fallbackGradients[groupId.hashCode.abs() %
-                    _fallbackGradients.length],
+            colors: _fallbackGradients[_gradientIndex],
           ),
         ),
       );
