@@ -6,7 +6,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader{
+class CodegenLoader extends AssetLoader {
   const CodegenLoader();
 
   @override
@@ -14,1129 +14,1129 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> _tr = {
-  "project": {
-    "name": "Hatay'ı Yaşat"
-  },
-  "validation": {
-    "fullName": "Ad ve soyad boş bırakılamaz.",
-    "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
-    "address": "Adres boş bırakılamaz",
-    "needs": "Lütfen ihtiyacınızı seçiniz",
-    "plate": "Lütfen plaka giriniz",
-    "kvkk": "Lütfen KVKK'yı kabul ediniz.",
-    "surname": "Soyadınızı girmelisiniz",
-    "confirmationText": "Onay metnini kabul ediniz",
-    "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
-    "requiredField": "Bu alan boş bırakılamaz",
-    "formRequired": "Lütfen formu doldurunuz",
-    "photoRequired": "Lütfen fotoğraf ekleyiniz",
-    "loseAllData": "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
-    "categoryEmpty": "Kategori seçiniz",
-    "districtEmpty": "İlçe seçiniz",
-    "emailFormat": "Lütfen mailinizi doğru giriniz",
-    "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
-    "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
-    "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
-    "pickATime": "Lütfen bir saat seçiniz.",
-    "closeTimeMustBeAfterStartTime": "Kapanış saati açılış saatinden sonra olmalıdır.",
-    "numericInvalid": "Lütfen geçerli bir sayı giriniz",
-    "numericMin": "Lütfen en az {} giriniz",
-    "numericMax": "Lütfen en fazla {} giriniz",
-    "numericRange": "Lütfen {} ile {} arasında bir sayı giriniz"
-  },
-  "button": {
-    "save": "Kaydet",
-    "addPhoto": "Fotoğraf Ekle",
-    "ok": "Tamam",
-    "close": "Kapat",
-    "allFilter": "Tümü",
-    "clean": "Temizle",
-    "selectedList": "Listele",
-    "filter": "Filtrele",
-    "withoutFilter": "Filtreleme yapmadan devam et",
-    "iAmSure": "Evet, eminim",
-    "cancel": "İptal",
-    "clearAllSelection": "{} seçimi temizle",
-    "showResult": "Sonucu göster",
-    "sendRequest": "Talep Oluştur",
-    "call": "Ara",
-    "share": "Paylaş",
-    "copy": "Kopyala",
-    "error": "Hata",
-    "more": "Daha fazla",
-    "understood": "Anladım",
-    "send": "Gönder",
-    "login": "Giriş Yap"
-  },
-  "component": {
-    "mapPicker": {
-      "title": "Haritadan konum seç",
-      "selectedLocationSave": "Seçtiğin konumu kaydet",
-      "updateFromMap": "Haritadan konum güncelle"
+  static const Map<String, dynamic> _tr = {
+    "project": {"name": "Hatay'ı Yaşat"},
+    "validation": {
+      "fullName": "Ad ve soyad boş bırakılamaz.",
+      "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
+      "address": "Adres boş bırakılamaz",
+      "needs": "Lütfen ihtiyacınızı seçiniz",
+      "plate": "Lütfen plaka giriniz",
+      "kvkk": "Lütfen KVKK'yı kabul ediniz.",
+      "surname": "Soyadınızı girmelisiniz",
+      "confirmationText": "Onay metnini kabul ediniz",
+      "generalText": "Boş geçilemez veya 3 karakterden az olamaz",
+      "requiredField": "Bu alan boş bırakılamaz",
+      "formRequired": "Lütfen formu doldurunuz",
+      "photoRequired": "Lütfen fotoğraf ekleyiniz",
+      "loseAllData":
+          "Yaptığınız değişiklikler kaybolacak. Devam etmek istiyor musunuz?",
+      "categoryEmpty": "Kategori seçiniz",
+      "districtEmpty": "İlçe seçiniz",
+      "emailFormat": "Lütfen mailinizi doğru giriniz",
+      "studentEmailFormat": "Lütfen öğrenci mailinizi giriniz",
+      "dateAfterNow": "Lütfen bugünden sonraki bir tarih giriniz",
+      "pleaseAddImage": "Lütfen fotoğraf ekleyiniz",
+      "pickATime": "Lütfen bir saat seçiniz.",
+      "closeTimeMustBeAfterStartTime":
+          "Kapanış saati açılış saatinden sonra olmalıdır.",
+      "numericInvalid": "Lütfen geçerli bir sayı giriniz",
+      "numericMin": "Lütfen en az {} giriniz",
+      "numericMax": "Lütfen en fazla {} giriniz",
+      "numericRange": "Lütfen {} ile {} arasında bir sayı giriniz",
     },
-    "picker": {
-      "camera": "Kamera",
-      "gallery": "Galeri",
-      "cropperTitle": "Düzenle"
+    "button": {
+      "save": "Kaydet",
+      "addPhoto": "Fotoğraf Ekle",
+      "ok": "Tamam",
+      "close": "Kapat",
+      "allFilter": "Tümü",
+      "clean": "Temizle",
+      "selectedList": "Listele",
+      "filter": "Filtrele",
+      "withoutFilter": "Filtreleme yapmadan devam et",
+      "iAmSure": "Evet, eminim",
+      "cancel": "İptal",
+      "clearAllSelection": "{} seçimi temizle",
+      "showResult": "Sonucu göster",
+      "sendRequest": "Talep Oluştur",
+      "call": "Ara",
+      "share": "Paylaş",
+      "copy": "Kopyala",
+      "error": "Hata",
+      "more": "Daha fazla",
+      "understood": "Anladım",
+      "send": "Gönder",
+      "login": "Giriş Yap",
     },
-    "filter": {
-      "districts": "İlçeler",
-      "districtDescription": "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
+    "component": {
+      "mapPicker": {
+        "title": "Haritadan konum seç",
+        "selectedLocationSave": "Seçtiğin konumu kaydet",
+        "updateFromMap": "Haritadan konum güncelle",
+      },
+      "picker": {
+        "camera": "Kamera",
+        "gallery": "Galeri",
+        "cropperTitle": "Düzenle",
+      },
+      "filter": {
+        "districts": "İlçeler",
+        "districtDescription":
+            "Buradan ilçeleri seçip filtreleme yapabilirsiniz",
+        "categories": "Kategoriler",
+        "categoryDescription":
+            "Buradan kategorileri seçip filtreleme yapabilirsiniz",
+        "filterResult": "Filtreleme sonucu",
+        "resultEmpty":
+            "Seçtiğiniz filtreleme kriterlerine uygun sonuç bulunamadı.",
+      },
+    },
+    "requestCompany": {
+      "title": "Yeni İşletme Talebi",
+      "name": "İşletmenizin Adını Giriniz",
+      "description": "İşletmenizin Açıklamasını Giriniz",
+      "address": "İşletmenizin Adresini Giriniz",
+      "phoneNumber": "Telefon Numaranızı Giriniz",
+      "ownerName": "Adınızı ve Soyadınızı Giriniz",
+      "district": "İlçe",
+      "category": "Kategori",
+      "chooseCategory": "Kategori Seçiniz",
+      "chooseDistrict": "İlçe Seçiniz",
+      "workingHours": "İşletmenizin Çalışma Saatlerini Giriniz",
+      "start": "Başlangıç",
+      "end": "Bitiş",
+      "choosePhoto": "İşletmenizin Fotoğraflarını Giriniz",
+    },
+    "general": {
+      "kvkk": "KVKK",
+      "kvkkReadApproved": "'yı okudum, onaylıyorum.",
+      "confirmationText": "Onay metnini kabul ediniz",
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "languageTitle": "Dil",
+      "currentLanguage": "Mevcut dil",
+      "themeTitle": "{} Tema",
+      "developersTitle": "Geliştiriciler",
+      "inactiveDevelopers":
+          "Dün bizimle olup destek olan arkadaşlarımıza çok teşekkür ediyoruz ❤️ ",
+      "seeDevelopers": "Tüm takımı gör",
+      "aboutTitle": "Uygulama hakkında",
+      "contactTitle": "Bize ulaşın",
+      "versionNumberTitle": "Versiyon Numarası",
+      "notificationTitle": "Bildirim",
+      "notificationSetting": "Bildirim izni",
+      "appReviewTitle": "Uygulamayı Değerlendirin",
+      "themes": {"light": "Aydınlık", "dark": "Karanlık", "system": "Sistem"},
+    },
+    "home": {
+      "specialAgency": "Özel Kurumlar",
       "categories": "Kategoriler",
-      "categoryDescription": "Buradan kategorileri seçip filtreleme yapabilirsiniz",
-      "filterResult": "Filtreleme sonucu",
-      "resultEmpty": "Seçtiğiniz filtreleme kriterlerine uygun sonuç bulunamadı."
-    }
-  },
-  "requestCompany": {
-    "title": "Yeni İşletme Talebi",
-    "name": "İşletmenizin Adını Giriniz",
-    "description": "İşletmenizin Açıklamasını Giriniz",
-    "address": "İşletmenizin Adresini Giriniz",
-    "phoneNumber": "Telefon Numaranızı Giriniz",
-    "ownerName": "Adınızı ve Soyadınızı Giriniz",
-    "district": "İlçe",
-    "category": "Kategori",
-    "chooseCategory": "Kategori Seçiniz",
-    "chooseDistrict": "İlçe Seçiniz",
-    "workingHours": "İşletmenizin Çalışma Saatlerini Giriniz",
-    "start": "Başlangıç",
-    "end": "Bitiş",
-    "choosePhoto": "İşletmenizin Fotoğraflarını Giriniz"
-  },
-  "general": {
-    "kvkk": "KVKK",
-    "kvkkReadApproved": "'yı okudum, onaylıyorum.",
-    "confirmationText": "Onay metnini kabul ediniz"
-  },
-  "settings": {
-    "title": "Ayarlar",
-    "languageTitle": "Dil",
-    "currentLanguage": "Mevcut dil",
-    "themeTitle": "{} Tema",
-    "developersTitle": "Geliştiriciler",
-    "inactiveDevelopers": "Dün bizimle olup destek olan arkadaşlarımıza çok teşekkür ediyoruz ❤️ ",
-    "seeDevelopers": "Tüm takımı gör",
-    "aboutTitle": "Uygulama hakkında",
-    "contactTitle": "Bize ulaşın",
-    "versionNumberTitle": "Versiyon Numarası",
-    "notificationTitle": "Bildirim",
-    "notificationSetting": "Bildirim izni",
-    "appReviewTitle": "Uygulamayı Değerlendirin",
-    "themes": {
-      "light": "Aydınlık",
-      "dark": "Karanlık",
-      "system": "Sistem"
-    }
-  },
-  "home": {
-    "specialAgency": "Özel Kurumlar",
-    "categories": "Kategoriler",
-    "places": "Mekanlar",
-    "search": "Ara",
-    "notifications": "Bildirimler",
-    "allCategory": "Tümü",
-    "placesUpper": "MEKAN"
-  },
-  "message": {
-    "emptySearch": "Sonuç Bulunamadı",
-    "somethingWentWrong": "Bir şeyler yanlış gitti",
-    "addedFavorite": "Favorilere eklendi",
-    "emptyFavorite": "Favori listeniz boş",
-    "removedFavorite": "Favorilerden kaldırıldı",
-    "copiedToClipboard": "Panoya kopyalandı"
-  },
-  "rate": {
-    "trustQuestion": "Bu mekana güveniyor musun?",
-    "singleVoteHint": "Tek bir oy hakkın var.",
-    "rateThankYou": "Oyunuz alındı, teşekkürler.",
-    "voteRecorded": "Oyunuz kaydedildi.",
-    "evaluatePlace": "Mekanı değerlendir",
-    "addComment": "Yorum Ekle",
-    "noCommentsYet": "Henüz yorum yok",
-    "commentHint": "Deneyimini paylaş...",
-    "commentingDisabled": "Yorum yapma özelliği kapatıldı",
-    "editComment": "Yorumunu düzenle",
-    "commentAdded": "Yorum eklendi",
-    "deleteComment": "Yorumunu sil",
-    "loginRequiredTitle": "Giriş yapmadınız",
-    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor.",
-    "actionFailedTitle": "İşlemde bir sorun oluştu",
-    "submitFailedContent": "Oyun gönderilemedi. Lütfen tekrar dene.",
-    "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
-    "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
-    "deleteSuccessMessage": "Yorumun silindi.",
-    "editCommentSuccessMessage": "Yorumun güncellendi."
-  },
-  "date": {
-    "justNow": "Az önce",
-    "minutesAgo": "{} dakika önce",
-    "hoursAgo": "{} saat önce",
-    "daysAgo": "{} gün önce",
-    "monthsAgo": "{} ay önce",
-    "yearsAgo": "{} yıl önce"
-  },
-  "search": {
-    "latestSearch": "Son Aramalar",
-    "place": "Mekan ara",
-    "minumumSearch": "'Arama yapabilmek için en az {} karakter girip klavyenizden Ara kısmına basınız."
-  },
-  "placeDetailView": {
-    "owner": "İşletme Sahibi",
-    "description": "İşletme Açıklaması",
-    "address": "Adres Bilgisi",
-    "phoneNumber": "Telefon Numarası",
-    "district": "İlçe",
-    "photos": "Fotoğraflar",
-    "call": "Ara",
-    "find_the_place": "Yol Tarifi Al",
-    "workingHours": "Çalışma Saatleri",
-    "openCloseHours": "Açılış ve Kapanış Saatleri",
-    "nowOpen": "Şu an açık",
-    "nowClose": "Şu an kapalı"
-  },
-  "campaignDetailsView": {
-    "publisher": "Yayımcı (Kişi veya Kurum Adı)",
-    "topic": "Proje Konusu",
-    "phone": "Telefon Numarası",
-    "description": "Proje Açıklaması",
-    "expireDate": "Başlangıç Tarihi ve Saati",
-    "photo": "Fotoğraflar",
-    "publishedBy": "{} tarafından yayınlandı",
-    "startDate": "Başlangıç Tarihi: {}",
-    "time": "Saat: {}",
-    "optionsDialogTitle": "Seçenekler",
-    "optionsDialogContent": "Lütfen seçeneklerden yapmak istediğinizi seçiniz.",
-    "seeOptionsButton": "Seçenekleri Görüntüle",
-    "addReminderButton": "Takvime Hatırlatıcı Ekle",
-    "redirectWhatsappButton": "Whatsapp'tan Mesaj Gönder"
-  },
-  "forceUpdate": {
-    "title": "Bir Güncelleme Var",
-    "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
-    "updateButton": "Güncelle"
-  },
-  "networkCheck": {
-    "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
-    "button": "Yeniden Dene"
-  },
-  "notification": {
-    "snackbarButtonText": "Aç",
-    "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
-    "businessNotFoundErrorMessage": "İşletme bulunamadı",
-    "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
-    "newsNotFoundErrorMessage": "Haber bulunamadı",
-    "placeNotFoundErrorMessage": "Mekan bulunamadı",
-    "advertiseNotFoundErrorMessage": "İlan bulunamadı"
-  },
-  "developers": {
-    "title": "Geliştiriciler",
-    "seeProfileButtonText": "Profili Görüntüle"
-  },
-  "navigationTabs": {
-    "home": "Anasayfa",
-    "activities": "Etkinlikler",
-    "news": "Haberler",
-    "favorite": "Favoriler",
-    "request": "Talep",
-    "advertise": "İş İlanı",
-    "community": "Topluluk",
-    "memories": "Hatıralar",
-    "places": "Mekanlar",
-    "feed": "Akış",
-    "explore": "Keşfet",
-    "profile": "Profil"
-  },
-  "projectRequest": {
-    "title": "Yeni Proje Talebi",
-    "publisher": "Yayımcı (Kişi veya Kurum Adı) Giriniz",
-    "phoneNumber": "Telefon Numaranızı Giriniz",
-    "projectImage": "Proje Hakkında Fotoğraf Ekleyiniz",
-    "name": "Proje Adını Giriniz",
-    "topic": "Proje Konusunu Giriniz",
-    "description": "Proje Açıklamasını Giriniz",
-    "dateInputTitle": "Proje Tarihini Giriniz",
-    "expireDate": "Başlangıç Tarihi ve Saati"
-  },
-  "dialog": {
-    "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
-    "addressTitle": "Adresi haritada açmak ister misiniz?",
-    "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
-    "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
-    "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
-    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
-  },
-  "specialAgency": {
-    "title": "Özel Kurumlar",
-    "agencyNumber": "Kurum Numarası",
-    "agencyAddress": "Kurum Adresi"
-  },
-  "advertise": {
-    "title": "İş adı:",
-    "description": "İş açıklaması:",
-    "gender": "Cinsiyet:",
-    "owner": "İşveren:",
-    "phone": "İletişim:",
-    "callPhone": "İşvereni ara",
-    "share": "İlanı paylaş",
-    "role": "Pozisyon: ",
-    "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:",
-    "openEventDetailPhone": "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' ",
-    "jobDescription": "İş Açıklaması",
-    "options": "Özellikler"
-  },
-  "notFound": {
-    "forRefresh": "Yenilemek için buraya dokunun.",
-    "notification": "Bildirim yok",
-    "specialAgency": "Özel Kurumlar henüz girilmemiş.",
-    "campaign": "Etkinlik bulunamadı",
-    "developers": "Geliştiriciler henüz girilmemiş.",
-    "towns": "Mekanlar henüz girilmemiş.",
-    "news": "Haberler henüz girilmemiş.",
-    "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
-    "advertise": "İş ilanı henüz girilmemiş.",
-    "image": "Resim yüklenemedi.",
-    "chainStore": "Zincir mağaza henüz girilmemiş.",
-    "usefulLinks": "Faydalı linkler henüz girilmemiş.",
-    "memories": "Henüz hatıra bulunamadı."
-  },
-  "months": {
-    "jan": "Ocak",
-    "feb": "Şubat",
-    "mar": "Mart",
-    "apr": "Nisan",
-    "may": "Mayıs",
-    "jun": "Haziran",
-    "jul": "Temmuz",
-    "aug": "Ağustos",
-    "sep": "Eylül",
-    "oct": "Ekim",
-    "nov": "Kasım",
-    "dec": "Aralık"
-  },
-  "genders": {
-    "male": "Erkek",
-    "female": "Kadın",
-    "other": "Diğer"
-  },
-  "requestScholarship": {
-    "title": "Yeni Burs Talebi",
-    "phone": "Telefon Numaranızı Giriniz",
-    "email": "E-posta Adresinizi Giriniz",
-    "story": "Kendinizden Bahsediniz",
-    "studentDocument": "Öğrenci Belgenizi Yükleyiniz",
-    "pdfHint": "ad_soyad.pdf",
-    "disableButtonTitle": "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
-    "error": {
-      "serviceError": "Bir servis hatası oluştu",
-      "undefinedError": "Belirlenemeyen bir hata oluştu",
-      "fileSizeInfo": "Dosya boyutu en fazla {} olabilir",
-      "fileSizeError": "Girilen dosya boyutunu kontrol edin",
-      "noFileError": "Lütfen öğrenci belgenizi yükleyiniz"
-    }
-  },
-  "fileUpload": {
-    "upload": "Yükle",
-    "update": "Güncelle"
-  },
-  "favorite": {
-    "title": "Favoriler",
-    "search": "Favorinizi arayın",
-    "clearAllButton": "Tümünü Temizle",
-    "noBusinessFound": "Aradığınız değere uygun bir işletme bulunamadı.",
-    "clearAllDialog": {
-      "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?"
+      "places": "Mekanlar",
+      "search": "Ara",
+      "notifications": "Bildirimler",
+      "allCategory": "Tümü",
+      "placesUpper": "MEKAN",
     },
-    "deleteDialog": {
-      "content": "Favoriden kaldırılacaktır. Devam etmek istediğinize emin misiniz?"
-    }
-  },
-  "uploadShelter": {
-    "title": "Barınak Ayrıntılarını Yükle"
-  },
-  "sorting": {
-    "time": {
-      "newest": "Yeniden eskiye",
-      "oldest": "Eskiden yeniye"
+    "message": {
+      "emptySearch": "Sonuç Bulunamadı",
+      "somethingWentWrong": "Bir şeyler yanlış gitti",
+      "addedFavorite": "Favorilere eklendi",
+      "emptyFavorite": "Favori listeniz boş",
+      "removedFavorite": "Favorilerden kaldırıldı",
+      "copiedToClipboard": "Panoya kopyalandı",
     },
-    "title": "Sırala",
-    "applied": "Sıralama güncellendi",
-    "alpha": {
-      "aToZ": "A → Z",
-      "zToA": "Z → A"
-    }
-  },
-  "utils": {
-    "options": "{} seçenek"
-  },
-  "advertisementBoard": {
-    "openUrl": "Linki Aç",
-    "launchUrlError": "Link açılırken bir hata meydana geldi",
-    "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
-    "houseAdTitle": "BU ALANA REKLAM VEREBİLİRSİNİZ",
-    "houseAdSubtitle": "Esnafına ulaş · İletişim: medya@hatayiyasat.app",
-    "contactUs": "İletişime geç"
-  },
-  "chain_stores": {
-    "title": "Konteyner Çarşılar",
-    "showAllSubBranches": "Tüm şubeleri göster {}",
-    "subBranchesTitle": "{} Şubeleri ({})"
-  },
-  "monetization": {
-    "title": "İndirim Kuponları",
-    "addCouponAction": "Yeni",
-    "addCoupon": "Kupon Ekle",
-    "discountCodeLabel": "İndirim",
-    "expiresAtSummary": "Son {}",
-    "expiryDateLabel": "Son Kullanım Tarihi",
-    "active": "Aktif",
-    "activeTab": "Aktif ({})",
-    "inactive": "Süresi doldu",
-    "inactiveTab": "Pasif ({})",
-    "usageLimitReached": "Limit doldu",
-    "couponDesc": "Açıklama",
-    "couponDescHint": "Örn: Festival İndirimi",
-    "usageLimit": "Kullanım Limiti",
-    "usageLimitHint": "Boş bırakılırsa kullanım limiti olmayacaktır",
-    "unlimited": "Limitsiz",
-    "usageCountSummary": "{} Kullanıldı",
-    "discountRate": "İndirim Oranı",
-    "discountRateValue": "%{}",
-    "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
-    "emptyCoupons": "Henüz kupon bulunmuyor"
-  },
-  "whatsNew": {
-    "title": "Yenilikler v8.1.0 🎉",
-    "features": {
-      "favoritePlaces": "Favori mekanlarınızı daha kolay bulabilirsiniz.",
-      "memories": "Hatıralarınız sizinle yaşıyor."
+    "rate": {
+      "trustQuestion": "Bu mekana güveniyor musun?",
+      "singleVoteHint": "Tek bir oy hakkın var.",
+      "rateThankYou": "Oyunuz alındı, teşekkürler.",
+      "voteRecorded": "Oyunuz kaydedildi.",
+      "evaluatePlace": "Mekanı değerlendir",
+      "addComment": "Yorum Ekle",
+      "noCommentsYet": "Henüz yorum yok",
+      "commentHint": "Deneyimini paylaş...",
+      "commentingDisabled": "Yorum yapma özelliği kapatıldı",
+      "editComment": "Yorumunu düzenle",
+      "commentAdded": "Yorum eklendi",
+      "deleteComment": "Yorumunu sil",
+      "loginRequiredTitle": "Giriş yapmadınız",
+      "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor.",
+      "actionFailedTitle": "İşlemde bir sorun oluştu",
+      "submitFailedContent": "Oyun gönderilemedi. Lütfen tekrar dene.",
+      "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
+      "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
+      "deleteSuccessMessage": "Yorumun silindi.",
+      "editCommentSuccessMessage": "Yorumun güncellendi.",
     },
-    "bugFixes": "🐞 Hata düzeltmeleri yapıldı."
-  },
-  "tourismView": {
-    "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
-    "title": "Turistik Yerler"
-  },
-  "usefulLink": {
-    "title": "Faydalı Linkler"
-  },
-  "sheet": {
-    "changeCity": {
-      "title": "Şehiri Değiştir",
-      "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
-      "showResult": "{} için sonuçları görüntüle"
-    }
-  },
-  "main": {
-    "home": "Ana Sayfa",
-    "news": "Haberler",
-    "campaign": "Etkinlikler",
-    "advertisement": "İş İlanları",
-    "settings": "Ayarlar",
-    "memories": "Hatıralar"
-  },
-  "auth": {
-    "tagline": "TOPLULUK",
-    "hero": {
-      "subtitle": "MAHALLE · MEKAN · HATIRA",
-      "prefix": "Hatay'ı ",
-      "highlight": "birlikte",
-      "suffix": "yaşatalım.",
-      "description": "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada."
+    "date": {
+      "justNow": "Az önce",
+      "minutesAgo": "{} dakika önce",
+      "hoursAgo": "{} saat önce",
+      "daysAgo": "{} gün önce",
+      "monthsAgo": "{} ay önce",
+      "yearsAgo": "{} yıl önce",
     },
-    "signIn": {
-      "continueWith": "{provider} ile devam et",
-      "guest": "Misafir olarak devam et"
+    "search": {
+      "latestSearch": "Son Aramalar",
+      "place": "Mekan ara",
+      "minumumSearch":
+          "'Arama yapabilmek için en az {} karakter girip klavyenizden Ara kısmına basınız.",
     },
-    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
-    "error": {
-      "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
-      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
-    }
-  },
-  "userQr": {
-    "title": "QR Kodum",
-    "personalTitle": "Kişisel QR",
-    "personalDescription": "Sadece sana özel paylaşım kodu.",
-    "campaignTitle": "Kampanyalara Katıl",
-    "campaignDescription": "Qr kodunla kampanyalara katılabilirsin.",
-    "shareSubject": "QR Kodum"
-  },
-  "historyPage": {
-    "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
-    "welcomeDescription": "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
-    "addPhotoInfo": "Sağ alttaki + butonuna dokunarak sizdeki hatıralarımızı paylaşabilirsiniz.",
-    "favorites": {
-      "title": "Favori Anılarım",
-      "emptyTitle": "Henüz favori anınız yok",
-      "emptyDescription": "Anıları favorilerinize eklemek için ❤️ butonuna dokunun",
-      "untitledMemory": "Başlıksız Anı",
-      "noDescription": "Açıklama yok"
+    "placeDetailView": {
+      "owner": "İşletme Sahibi",
+      "description": "İşletme Açıklaması",
+      "address": "Adres Bilgisi",
+      "phoneNumber": "Telefon Numarası",
+      "district": "İlçe",
+      "photos": "Fotoğraflar",
+      "call": "Ara",
+      "find_the_place": "Yol Tarifi Al",
+      "workingHours": "Çalışma Saatleri",
+      "openCloseHours": "Açılış ve Kapanış Saatleri",
+      "nowOpen": "Şu an açık",
+      "nowClose": "Şu an kapalı",
     },
-    "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!"
-  },
-  "community": {
-    "tagline": "TOPLULUK",
-    "groups": {
-      "title": "Gruplar",
-      "groupCount": "{count} grup",
-      "openGroup": "AÇIK GRUP",
-      "closedGroup": "KAPALI GRUP",
-      "adminBadge": "Yönetici",
-      "noPermissionInfo": "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
-      "empty": "Henüz grup yok."
+    "campaignDetailsView": {
+      "publisher": "Yayımcı (Kişi veya Kurum Adı)",
+      "topic": "Proje Konusu",
+      "phone": "Telefon Numarası",
+      "description": "Proje Açıklaması",
+      "expireDate": "Başlangıç Tarihi ve Saati",
+      "photo": "Fotoğraflar",
+      "publishedBy": "{} tarafından yayınlandı",
+      "startDate": "Başlangıç Tarihi: {}",
+      "time": "Saat: {}",
+      "optionsDialogTitle": "Seçenekler",
+      "optionsDialogContent":
+          "Lütfen seçeneklerden yapmak istediğinizi seçiniz.",
+      "seeOptionsButton": "Seçenekleri Görüntüle",
+      "addReminderButton": "Takvime Hatırlatıcı Ekle",
+      "redirectWhatsappButton": "Whatsapp'tan Mesaj Gönder",
     },
-    "groupDetail": {
-      "tabWall": "Duvar",
-      "tabDiscussions": "Tartışmalar",
-      "tabDetails": "Detaylar",
-      "openGroup": "Açık grup",
-      "closedGroup": "Kapalı grup",
-      "memberCount": "{count} üye",
-      "adminBadge": "YÖNETİCİ",
-      "wall": {
-        "composerHint": "Grupta bir şeyler paylaş...",
-        "commentCount": "{count} yorum",
-        "empty": "Henüz gönderi yok."
+    "forceUpdate": {
+      "title": "Bir Güncelleme Var",
+      "message": "Yeni bir sürüm mevcut, güncellemeniz gerekiyor.",
+      "updateButton": "Güncelle",
+    },
+    "networkCheck": {
+      "message": "İnternet bağlantınızı kontrol edip yeniden deneyiniz.",
+      "button": "Yeniden Dene",
+    },
+    "notification": {
+      "snackbarButtonText": "Aç",
+      "defaultMessage": "Bir işletme yeniden faaliyetlerine başladı.",
+      "businessNotFoundErrorMessage": "İşletme bulunamadı",
+      "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
+      "newsNotFoundErrorMessage": "Haber bulunamadı",
+      "placeNotFoundErrorMessage": "Mekan bulunamadı",
+      "advertiseNotFoundErrorMessage": "İlan bulunamadı",
+    },
+    "developers": {
+      "title": "Geliştiriciler",
+      "seeProfileButtonText": "Profili Görüntüle",
+    },
+    "navigationTabs": {
+      "home": "Anasayfa",
+      "activities": "Etkinlikler",
+      "news": "Haberler",
+      "favorite": "Favoriler",
+      "request": "Talep",
+      "advertise": "İş İlanı",
+      "community": "Topluluk",
+      "memories": "Hatıralar",
+      "places": "Mekanlar",
+      "feed": "Akış",
+      "explore": "Keşfet",
+      "profile": "Profil",
+    },
+    "projectRequest": {
+      "title": "Yeni Proje Talebi",
+      "publisher": "Yayımcı (Kişi veya Kurum Adı) Giriniz",
+      "phoneNumber": "Telefon Numaranızı Giriniz",
+      "projectImage": "Proje Hakkında Fotoğraf Ekleyiniz",
+      "name": "Proje Adını Giriniz",
+      "topic": "Proje Konusunu Giriniz",
+      "description": "Proje Açıklamasını Giriniz",
+      "dateInputTitle": "Proje Tarihini Giriniz",
+      "expireDate": "Başlangıç Tarihi ve Saati",
+    },
+    "dialog": {
+      "phoneTitle": "Telefon ile arama yapmak ister misiniz?",
+      "addressTitle": "Adresi haritada açmak ister misiniz?",
+      "completeRequest":
+          "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
+      "completeScholarshipRequest":
+          "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
+      "permissionCameraLibrary":
+          "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+      "permissionNotification":
+          "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+    },
+    "specialAgency": {
+      "title": "Özel Kurumlar",
+      "agencyNumber": "Kurum Numarası",
+      "agencyAddress": "Kurum Adresi",
+    },
+    "advertise": {
+      "title": "İş adı:",
+      "description": "İş açıklaması:",
+      "gender": "Cinsiyet:",
+      "owner": "İşveren:",
+      "phone": "İletişim:",
+      "callPhone": "İşvereni ara",
+      "share": "İlanı paylaş",
+      "role": "Pozisyon: ",
+      "message": "Hatay'ı Yaşat uygulamasındaki iş ilanına göz at:",
+      "openEventDetailPhone":
+          "Merhaba {} etkinliğiniz hakkında bilgi almak istiyorum.' ",
+      "jobDescription": "İş Açıklaması",
+      "options": "Özellikler",
+    },
+    "notFound": {
+      "forRefresh": "Yenilemek için buraya dokunun.",
+      "notification": "Bildirim yok",
+      "specialAgency": "Özel Kurumlar henüz girilmemiş.",
+      "campaign": "Etkinlik bulunamadı",
+      "developers": "Geliştiriciler henüz girilmemiş.",
+      "towns": "Mekanlar henüz girilmemiş.",
+      "news": "Haberler henüz girilmemiş.",
+      "favoritePlaces": "Herhangi bir favori mekan bulunmamaktadır.",
+      "advertise": "İş ilanı henüz girilmemiş.",
+      "image": "Resim yüklenemedi.",
+      "chainStore": "Zincir mağaza henüz girilmemiş.",
+      "usefulLinks": "Faydalı linkler henüz girilmemiş.",
+      "memories": "Henüz hatıra bulunamadı.",
+    },
+    "months": {
+      "jan": "Ocak",
+      "feb": "Şubat",
+      "mar": "Mart",
+      "apr": "Nisan",
+      "may": "Mayıs",
+      "jun": "Haziran",
+      "jul": "Temmuz",
+      "aug": "Ağustos",
+      "sep": "Eylül",
+      "oct": "Ekim",
+      "nov": "Kasım",
+      "dec": "Aralık",
+    },
+    "genders": {"male": "Erkek", "female": "Kadın", "other": "Diğer"},
+    "requestScholarship": {
+      "title": "Yeni Burs Talebi",
+      "phone": "Telefon Numaranızı Giriniz",
+      "email": "E-posta Adresinizi Giriniz",
+      "story": "Kendinizden Bahsediniz",
+      "studentDocument": "Öğrenci Belgenizi Yükleyiniz",
+      "pdfHint": "ad_soyad.pdf",
+      "disableButtonTitle":
+          "Yeni burs başvurusu yapmak için 1 gün beklemelisiniz",
+      "error": {
+        "serviceError": "Bir servis hatası oluştu",
+        "undefinedError": "Belirlenemeyen bir hata oluştu",
+        "fileSizeInfo": "Dosya boyutu en fazla {} olabilir",
+        "fileSizeError": "Girilen dosya boyutunu kontrol edin",
+        "noFileError": "Lütfen öğrenci belgenizi yükleyiniz",
       },
-      "discussions": {
-        "startTitle": "Tartışma aç",
-        "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
-        "meta": "{name} açtı · {time} · {count} gönderi",
-        "empty": "Henüz tartışma yok.",
-        "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
-        "titleFieldLabel": "Başlık",
-        "titleFieldHint": "Örn: Cumartesi pazarı yeni yer düzeni",
-        "messageFieldLabel": "İlk mesaj",
-        "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
-        "startButton": "Tartışmayı başlat",
-        "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
-        "openedByGroup": "{name} açtı · {group}",
-        "replyComposerHint": "Bu konuya gönderi ekle..."
+    },
+    "fileUpload": {"upload": "Yükle", "update": "Güncelle"},
+    "favorite": {
+      "title": "Favoriler",
+      "search": "Favorinizi arayın",
+      "clearAllButton": "Tümünü Temizle",
+      "noBusinessFound": "Aradığınız değere uygun bir işletme bulunamadı.",
+      "clearAllDialog": {
+        "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?",
       },
-      "details": {
-        "aboutTitle": "HAKKINDA",
-        "infoTitle": "BİLGİLER",
-        "groupTypeLabel": "Grup türü",
-        "groupTypeOpen": "Açık grup · herkes katılabilir",
-        "groupTypeClosed": "Kapalı grup · davetle katılınır",
-        "memberCountLabel": "Üye sayısı",
-        "createdAtLabel": "Oluşturulma",
-        "adminsTitle": "YÖNETİCİLER",
-        "leaveGroup": "Gruptan ayrıl",
-        "leaveSuccess": "Gruptan ayrıldın.",
-        "closeGroup": "Grubu kapat",
-        "closeGroupConfirmTitle": "Grubu kapat",
-        "closeGroupConfirmMessage": "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
-        "closeGroupConfirmCancel": "Vazgeç",
-        "closeGroupSuccess": "Grup kapatıldı."
-      }
+      "deleteDialog": {
+        "content":
+            "Favoriden kaldırılacaktır. Devam etmek istediğinize emin misiniz?",
+      },
     },
-    "createGroup": {
-      "title": "Grup Oluştur",
-      "openBadge": "AÇIK",
-      "coverImageLabel": "Kapak Görseli",
-      "selectImage": "Görsel seç",
-      "nameLabel": "Grup Adı",
-      "nameHint": "Örn: Antakya Mahalle Dayanışması",
-      "nameHelper": "Üyeler bu adı görür",
-      "categoryLabel": "Kategori",
-      "categoryValidationError": "Lütfen bir kategori seçin.",
-      "descriptionLabel": "Açıklama",
-      "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
-      "submitButton": "Grubu Oluştur",
-      "success": "Grup başarıyla oluşturuldu."
-    }
-  },
-  "unauthorized": {
-    "errorCode": "403 · ERİŞİM ENGELLENDİ",
-    "title": "Yetkisiz Erişim",
-    "description": "Bu sayfaya erişim yetkin yok. Grup oluşturma yalnızca yetkili topluluk üyelerine açıktır.",
-    "backToGroups": "Gruplar'a dön",
-    "requestAccess": "Yetki talebinde bulun",
-    "requestAccessComingSoon": "Bu özellik yakında eklenecek."
-  },
-  "filter": {
-    "title": "Filtre",
-    "clear": "Temizle",
-    "categories": "Kategoriler",
-    "others": "Diğer",
-    "openNow": "Şu an açık olanlar",
-    "favoritesOnly": "Favorilerimde olanlar",
-    "districts": "İlçeler",
-    "nearYou": "Sana yakın",
-    "searchDistrict": "İlçe ara",
-    "selectedCount": "{}/{} seçili",
-    "showResults": "{} sonucu göster",
-    "noResults": "Sonuç yok, filtreyi gevşet",
-    "categoryCountLabel": "{} kategori",
-    "districtCountLabel": "{} ilçe",
-    "openShort": "açık",
-    "favoritesShort": "favori"
-  }
-};
-static const Map<String,dynamic> _en = {
-  "project": {
-    "name": "Keep Hatay Alive"
-  },
-  "validation": {
-    "fullName": "Name and surname cannot be empty.",
-    "phoneNumber": "Please enter a valid phone number.",
-    "address": "Address cannot be empty.",
-    "needs": "Please select your needs.",
-    "plate": "Please enter a license plate number.",
-    "kvkk": "Please accept KVKK.",
-    "surname": "Please enter your last name.",
-    "confirmationText": "Please accept the confirmation text.",
-    "generalText": "Cannot be empty or less than 3 characters.",
-    "requiredField": "This field cannot be empty.",
-    "formRequired": "Please fill out the form.",
-    "photoRequired": "Please add a photo.",
-    "loseAllData": "Your changes will be lost. Do you want to continue?",
-    "categoryEmpty": "Please choose a category",
-    "districtEmpty": "Please choose a district",
-    "emailFormat": "Please enter your mail correctly",
-    "studentEmailFormat": "Please enter your student mail",
-    "dateAfterNow": "Please enter a date after today",
-    "pleaseAddImage": "Please add an image",
-    "pickATime": "Please pick a time.",
-    "closeTimeMustBeAfterStartTime": "Close time must be after start time.",
-    "numericInvalid": "Please enter a valid number",
-    "numericMin": "Please enter at least {}",
-    "numericMax": "Please enter at most {}",
-    "numericRange": "Please enter a number between {} and {}"
-  },
-  "button": {
-    "save": "Save",
-    "addPhoto": "Add Photo",
-    "ok": "OK",
-    "close": "Close",
-    "allFilter": "All",
-    "clean": "Clean",
-    "selectedList": "List",
-    "filter": "Filters",
-    "withoutFilter": "Continue without filtering",
-    "iAmSure": "Yes, I am sure",
-    "cancel": "Cancel",
-    "clearAllSelection": "{} clear selections",
-    "showResult": "Show result",
-    "sendRequest": "Create request",
-    "call": "Call",
-    "share": "Share",
-    "copy": "Copy",
-    "error": "Error",
-    "more": "More",
-    "understood": "Understood",
-    "send": "Send",
-    "login": "Login"
-  },
-  "component": {
-    "mapPicker": {
-      "title": "Select your location",
-      "selectedLocationSave": "Save for your selection",
-      "updateFromMap": "Update your location"
+    "uploadShelter": {"title": "Barınak Ayrıntılarını Yükle"},
+    "sorting": {
+      "time": {"newest": "Yeniden eskiye", "oldest": "Eskiden yeniye"},
+      "title": "Sırala",
+      "applied": "Sıralama güncellendi",
+      "alpha": {"aToZ": "A → Z", "zToA": "Z → A"},
     },
-    "picker": {
-      "camera": "Camera",
-      "gallery": "Gallery",
-      "cropperTitle": "Edit"
+    "utils": {"options": "{} seçenek"},
+    "advertisementBoard": {
+      "openUrl": "Linki Aç",
+      "launchUrlError": "Link açılırken bir hata meydana geldi",
+      "shareAdvertisementSubject": "Bu reklam vereni ziyaret et: {}",
+      "houseAdTitle": "BU ALANA REKLAM VEREBİLİRSİNİZ",
+      "houseAdSubtitle": "Esnafına ulaş · İletişim: medya@hatayiyasat.app",
+      "contactUs": "İletişime geç",
+    },
+    "chain_stores": {
+      "title": "Konteyner Çarşılar",
+      "showAllSubBranches": "Tüm şubeleri göster {}",
+      "subBranchesTitle": "{} Şubeleri ({})",
+    },
+    "monetization": {
+      "title": "İndirim Kuponları",
+      "addCouponAction": "Yeni",
+      "addCoupon": "Kupon Ekle",
+      "discountCodeLabel": "İndirim",
+      "expiresAtSummary": "Son {}",
+      "expiryDateLabel": "Son Kullanım Tarihi",
+      "active": "Aktif",
+      "activeTab": "Aktif ({})",
+      "inactive": "Süresi doldu",
+      "inactiveTab": "Pasif ({})",
+      "usageLimitReached": "Limit doldu",
+      "couponDesc": "Açıklama",
+      "couponDescHint": "Örn: Festival İndirimi",
+      "usageLimit": "Kullanım Limiti",
+      "usageLimitHint": "Boş bırakılırsa kullanım limiti olmayacaktır",
+      "unlimited": "Limitsiz",
+      "usageCountSummary": "{} Kullanıldı",
+      "discountRate": "İndirim Oranı",
+      "discountRateValue": "%{}",
+      "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
+      "emptyCoupons": "Henüz kupon bulunmuyor",
+    },
+    "whatsNew": {
+      "title": "Yenilikler v8.1.0 🎉",
+      "features": {
+        "favoritePlaces": "Favori mekanlarınızı daha kolay bulabilirsiniz.",
+        "memories": "Hatıralarınız sizinle yaşıyor.",
+      },
+      "bugFixes": "🐞 Hata düzeltmeleri yapıldı.",
+    },
+    "tourismView": {
+      "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
+      "title": "Turistik Yerler",
+    },
+    "usefulLink": {"title": "Faydalı Linkler"},
+    "sheet": {
+      "changeCity": {
+        "title": "Şehiri Değiştir",
+        "description": "Seçiminiz sonrasında yeni mekanlar görüntülenecektir.",
+        "showResult": "{} için sonuçları görüntüle",
+      },
+    },
+    "main": {
+      "home": "Ana Sayfa",
+      "news": "Haberler",
+      "campaign": "Etkinlikler",
+      "advertisement": "İş İlanları",
+      "settings": "Ayarlar",
+      "memories": "Hatıralar",
+    },
+    "auth": {
+      "tagline": "TOPLULUK",
+      "hero": {
+        "subtitle": "MAHALLE · MEKAN · HATIRA",
+        "prefix": "Hatay'ı ",
+        "highlight": "birlikte",
+        "suffix": "yaşatalım.",
+        "description":
+            "Esnafı destekle, hatıralarını paylaş, mahalleni keşfet — şehri yaşatan herkes burada.",
+      },
+      "signIn": {
+        "continueWith": "{provider} ile devam et",
+        "guest": "Misafir olarak devam et",
+      },
+      "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
+      "error": {
+        "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
+        "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin.",
+      },
+    },
+    "userQr": {
+      "title": "QR Kodum",
+      "personalTitle": "Kişisel QR",
+      "personalDescription": "Sadece sana özel paylaşım kodu.",
+      "campaignTitle": "Kampanyalara Katıl",
+      "campaignDescription": "Qr kodunla kampanyalara katılabilirsin.",
+      "shareSubject": "QR Kodum",
+    },
+    "historyPage": {
+      "welcomeTitle": "Hatıralarımız Bizimle Yaşıyor",
+      "welcomeDescription":
+          "O güzel günlerimizin hatıralarını paylaşalım, birlikte yaşalım.",
+      "addPhotoInfo":
+          "Sağ alttaki + butonuna dokunarak sizdeki hatıralarımızı paylaşabilirsiniz.",
+      "favorites": {
+        "title": "Favori Anılarım",
+        "emptyTitle": "Henüz favori anınız yok",
+        "emptyDescription":
+            "Anıları favorilerinize eklemek için ❤️ butonuna dokunun",
+        "untitledMemory": "Başlıksız Anı",
+        "noDescription": "Açıklama yok",
+      },
+      "shareSubject": "Hatıralar Hatay'ı Yaşat ile Yaşıyor!",
+    },
+    "community": {
+      "tagline": "TOPLULUK",
+      "groups": {
+        "title": "Gruplar",
+        "groupCount": "{count} grup",
+        "openGroup": "AÇIK GRUP",
+        "closedGroup": "KAPALI GRUP",
+        "adminBadge": "Yönetici",
+        "noPermissionInfo":
+            "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
+        "empty": "Henüz grup yok.",
+      },
+      "groupDetail": {
+        "tabWall": "Duvar",
+        "tabDiscussions": "Tartışmalar",
+        "tabDetails": "Detaylar",
+        "openGroup": "Açık grup",
+        "closedGroup": "Kapalı grup",
+        "memberCount": "{count} üye",
+        "adminBadge": "YÖNETİCİ",
+        "wall": {
+          "composerHint": "Grupta bir şeyler paylaş...",
+          "commentCount": "{count} yorum",
+          "empty": "Henüz gönderi yok.",
+        },
+        "discussions": {
+          "startTitle": "Tartışma aç",
+          "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
+          "meta": "{name} açtı · {time} · {count} gönderi",
+          "empty": "Henüz tartışma yok.",
+          "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
+          "titleFieldLabel": "Başlık",
+          "titleFieldHint": "Örn: Cumartesi pazarı yeni yer düzeni",
+          "messageFieldLabel": "İlk mesaj",
+          "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
+          "startButton": "Tartışmayı başlat",
+          "anonymityBanner":
+              "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
+          "openedByGroup": "{name} açtı · {group}",
+          "replyComposerHint": "Bu konuya gönderi ekle...",
+        },
+        "details": {
+          "aboutTitle": "HAKKINDA",
+          "infoTitle": "BİLGİLER",
+          "groupTypeLabel": "Grup türü",
+          "groupTypeOpen": "Açık grup · herkes katılabilir",
+          "groupTypeClosed": "Kapalı grup · davetle katılınır",
+          "memberCountLabel": "Üye sayısı",
+          "createdAtLabel": "Oluşturulma",
+          "adminsTitle": "YÖNETİCİLER",
+          "leaveGroup": "Gruptan ayrıl",
+          "leaveSuccess": "Gruptan ayrıldın.",
+          "closeGroup": "Grubu kapat",
+          "closeGroupConfirmTitle": "Grubu kapat",
+          "closeGroupConfirmMessage":
+              "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
+          "closeGroupConfirmCancel": "Vazgeç",
+          "closeGroupSuccess": "Grup kapatıldı.",
+        },
+      },
+      "createGroup": {
+        "title": "Grup Oluştur",
+        "openBadge": "AÇIK",
+        "coverImageLabel": "Kapak Görseli",
+        "selectImage": "Görsel seç",
+        "nameLabel": "Grup Adı",
+        "nameHint": "Örn: Antakya Mahalle Dayanışması",
+        "nameHelper": "Üyeler bu adı görür",
+        "categoryLabel": "Kategori",
+        "categoryValidationError": "Lütfen bir kategori seçin.",
+        "descriptionLabel": "Açıklama",
+        "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
+        "submitButton": "Grubu Oluştur",
+        "success": "Grup başarıyla oluşturuldu.",
+      },
+    },
+    "unauthorized": {
+      "errorCode": "403 · ERİŞİM ENGELLENDİ",
+      "title": "Yetkisiz Erişim",
+      "description":
+          "Bu sayfaya erişim yetkin yok. Grup oluşturma yalnızca yetkili topluluk üyelerine açıktır.",
+      "backToGroups": "Gruplar'a dön",
+      "requestAccess": "Yetki talebinde bulun",
+      "requestAccessComingSoon": "Bu özellik yakında eklenecek.",
     },
     "filter": {
+      "title": "Filtre",
+      "clear": "Temizle",
+      "categories": "Kategoriler",
+      "others": "Diğer",
+      "openNow": "Şu an açık olanlar",
+      "favoritesOnly": "Favorilerimde olanlar",
+      "districts": "İlçeler",
+      "nearYou": "Sana yakın",
+      "searchDistrict": "İlçe ara",
+      "selectedCount": "{}/{} seçili",
+      "showResults": "{} sonucu göster",
+      "noResults": "Sonuç yok, filtreyi gevşet",
+      "categoryCountLabel": "{} kategori",
+      "districtCountLabel": "{} ilçe",
+      "openShort": "açık",
+      "favoritesShort": "favori",
+    },
+  };
+  static const Map<String, dynamic> _en = {
+    "project": {"name": "Keep Hatay Alive"},
+    "validation": {
+      "fullName": "Name and surname cannot be empty.",
+      "phoneNumber": "Please enter a valid phone number.",
+      "address": "Address cannot be empty.",
+      "needs": "Please select your needs.",
+      "plate": "Please enter a license plate number.",
+      "kvkk": "Please accept KVKK.",
+      "surname": "Please enter your last name.",
+      "confirmationText": "Please accept the confirmation text.",
+      "generalText": "Cannot be empty or less than 3 characters.",
+      "requiredField": "This field cannot be empty.",
+      "formRequired": "Please fill out the form.",
+      "photoRequired": "Please add a photo.",
+      "loseAllData": "Your changes will be lost. Do you want to continue?",
+      "categoryEmpty": "Please choose a category",
+      "districtEmpty": "Please choose a district",
+      "emailFormat": "Please enter your mail correctly",
+      "studentEmailFormat": "Please enter your student mail",
+      "dateAfterNow": "Please enter a date after today",
+      "pleaseAddImage": "Please add an image",
+      "pickATime": "Please pick a time.",
+      "closeTimeMustBeAfterStartTime": "Close time must be after start time.",
+      "numericInvalid": "Please enter a valid number",
+      "numericMin": "Please enter at least {}",
+      "numericMax": "Please enter at most {}",
+      "numericRange": "Please enter a number between {} and {}",
+    },
+    "button": {
+      "save": "Save",
+      "addPhoto": "Add Photo",
+      "ok": "OK",
+      "close": "Close",
+      "allFilter": "All",
+      "clean": "Clean",
+      "selectedList": "List",
+      "filter": "Filters",
+      "withoutFilter": "Continue without filtering",
+      "iAmSure": "Yes, I am sure",
+      "cancel": "Cancel",
+      "clearAllSelection": "{} clear selections",
+      "showResult": "Show result",
+      "sendRequest": "Create request",
+      "call": "Call",
+      "share": "Share",
+      "copy": "Copy",
+      "error": "Error",
+      "more": "More",
+      "understood": "Understood",
+      "send": "Send",
+      "login": "Login",
+    },
+    "component": {
+      "mapPicker": {
+        "title": "Select your location",
+        "selectedLocationSave": "Save for your selection",
+        "updateFromMap": "Update your location",
+      },
+      "picker": {
+        "camera": "Camera",
+        "gallery": "Gallery",
+        "cropperTitle": "Edit",
+      },
+      "filter": {
+        "districts": "Districts",
+        "districtDescription": "You can select and filter the districts here",
+        "categories": "categories",
+        "categoryDescription": "You can select and filter categories here",
+        "filterResult": "Filter Result",
+        "resultEmpty":
+            "No results found with the filtering criteria you chose.",
+      },
+    },
+    "requestCompany": {
+      "title": "New Business Request",
+      "name": "Enter the name of your business",
+      "description": "Enter the description of your business",
+      "address": "Enter the address of your business",
+      "phoneNumber": "Enter your phone number",
+      "ownerName": "Enter your name and surname",
+      "district": "District",
+      "category": "Category",
+      "chooseCategory": "Choose Category",
+      "chooseDistrict": "Choose District",
+      "workingHours": "Enter the working hours of your business",
+      "start": "Start",
+      "end": "End",
+      "choosePhoto": "Enter photos of your business",
+    },
+    "general": {
+      "kvkk": "KVKK",
+      "kvkkReadApproved": " I have read and approved.",
+      "confirmationText": "Please accept the confirmation text.",
+    },
+    "settings": {
+      "title": "Settings",
+      "languageTitle": "Language",
+      "currentLanguage": "Current language",
+      "themeTitle": "{} Theme",
+      "developersTitle": "Developers",
+      "inactiveDevelopers":
+          "We would like to thank our friends who supported us yesterday ❤️ ",
+      "seeDevelopers": "See full team",
+      "aboutTitle": "About the app",
+      "contactTitle": "Contact us",
+      "versionNumberTitle": "Version Number",
+      "notificationTitle": "Notification permission",
+      "notificationSetting": "Notification Settings",
+      "appReviewTitle": "Rate the App",
+      "themes": {"light": "Light", "dark": "Dark", "system": "System"},
+    },
+    "home": {
+      "specialAgency": "Special Places",
+      "categories": "Categories",
+      "places": "Places",
+      "search": "Search",
+      "notifications": "Notifications",
+      "allCategory": "All",
+      "placesUpper": "PLACES",
+    },
+    "message": {
+      "emptySearch": "No Results Found",
+      "somethingWentWrong": "Something went wrong",
+      "addedFavorite": "Added to favorites",
+      "emptyFavorite": "Your favorites list is empty",
+      "removedFavorite": "Removed from favorites",
+      "copiedToClipboard": "Copied to clipboard",
+    },
+    "rate": {
+      "trustQuestion": "Do you trust this place?",
+      "singleVoteHint": "You only have one vote.",
+      "rateThankYou": "Your vote has been received, thank you.",
+      "voteRecorded": "Your vote has been recorded.",
+      "evaluatePlace": "Evaluate the place",
+      "addComment": "Add Comment",
+      "noCommentsYet": "No comments yet",
+      "commentHint": "Share your experience...",
+      "commentingDisabled": "Commenting has been disabled",
+      "editComment": "Edit your comment",
+      "commentAdded": "Comment added",
+      "deleteComment": "Delete your comment",
+      "loginRequiredTitle": "You're not logged in",
+      "loginRequiredContent": "You need to log in to add a comment.",
+      "actionFailedTitle": "Something went wrong",
+      "submitFailedContent":
+          "Your rating couldn't be submitted. Please try again.",
+      "editCommentFailedContent":
+          "Your comment couldn't be updated. Please try again.",
+      "deleteFailedContent":
+          "Your comment couldn't be deleted. Please try again.",
+      "deleteSuccessMessage": "Your comment was deleted.",
+      "editCommentSuccessMessage": "Your comment has been updated.",
+    },
+    "date": {
+      "justNow": "Just now",
+      "minutesAgo": "{} minutes ago",
+      "hoursAgo": "{} hours ago",
+      "daysAgo": "{} days ago",
+      "monthsAgo": "{} months ago",
+      "yearsAgo": "{} years ago",
+    },
+    "search": {
+      "latestSearch": "Latest Searches",
+      "place": "Search for a place",
+      "minumumSearch":
+          "Please enter at least 3 characters to search then press search button from the keyboard",
+    },
+    "placeDetailView": {
+      "owner": "Business Owner",
+      "description": "Business Description",
+      "address": "Address Description",
+      "phoneNumber": "Phone Number",
+      "district": "District",
+      "photos": "Photos",
+      "call": "Call",
+      "find_the_place": "Find the place",
+      "workingHours": "Working Hours",
+      "openCloseHours": "Opening and Closing Hours",
+      "nowOpen": "Now Open",
+      "nowClose": "Now Close",
+    },
+    "campaignDetailsView": {
+      "publisher": "Publisher (Person or Institution Name)",
+      "topic": "Project Topic",
+      "description": "Project Description",
+      "phone": "Phone Number",
+      "expireDate": "Start Date and Time",
+      "photo": "Photos",
+      "publishedBy": "published by {}",
+      "startDate": "Start Date: {}",
+      "time": "Time: {}",
+      "optionsDialogTitle": "Options",
+      "optionsDialogContent":
+          "Please select what you want to do from the options.",
+      "seeOptionsButton": "See Options",
+      "addReminderButton": "Add Reminder to Calendar",
+      "redirectWhatsappButton": "Send Message on Whatsapp",
+    },
+    "forceUpdate": {
+      "title": "An Update is Available",
+      "message": "A new version is available, you need to update.",
+      "updateButton": "Update",
+    },
+    "networkCheck": {
+      "message": "Please check your internet connection and try again.",
+      "button": "Try Again",
+    },
+    "notification": {
+      "snackbarButtonText": "Open",
+      "defaultMessage": "A business has resumed operations.",
+      "businessNotFoundErrorMessage": "Business not found",
+      "campaignNotFoundErrorMessage": "Event not found",
+      "newsNotFoundErrorMessage": "No news found",
+      "placeNotFoundErrorMessage": "Place not found",
+      "advertiseNotFoundErrorMessage": "Advertise not found",
+    },
+    "developers": {
+      "title": "Developers",
+      "seeProfileButtonText": "See Profile",
+    },
+    "navigationTabs": {
+      "home": "Home",
+      "activities": "Activities",
+      "news": "News",
+      "favorite": "Favorites",
+      "request": "Request",
+      "advertise": "Advertise",
+      "community": "Community",
+      "memories": "Memories",
+      "places": "Places",
+      "feed": "Feed",
+      "explore": "Explore",
+      "profile": "Profile",
+    },
+    "projectRequest": {
+      "title": "New Project Request",
+      "publisher": "Enter Publisher (Person or Institution Name)",
+      "phoneNumber": "Enter Your Phone Number",
+      "projectImage": "Add a Photo About the Project",
+      "name": "Enter the Project Name",
+      "topic": "Enter the Project Subject",
+      "description": "Enter Project Description",
+      "dateInputTitle": "Enter Project Date",
+      "expireDate": "Start Date and Time",
+    },
+    "dialog": {
+      "phoneTitle": "Would you like to call by phone?",
+      "addressTitle": "Would you like to open the address on the map?",
+      "completeRequest":
+          "Your application has been received. Once approved by the system, you will be able to view it in the list.",
+      "completeScholarshipRequest":
+          "Your request has been received. After your application is evaluated, you will get contacted.",
+      "permissionCameraLibrary":
+          "We need permission for photos and camera.Please go to the settings and let me",
+      "permissionNotification":
+          "We need a trail for notification.Please go to the settings and let me",
+    },
+    "specialAgency": {
+      "title": "Special Agency",
+      "agencyNumber": "Agency Number",
+      "agencyAddress": "Agency Address",
+    },
+    "advertise": {
+      "title": "Job name:",
+      "description": "Job description:",
+      "gender": "Gender:",
+      "owner": "Employer:",
+      "phone": "Contact:",
+      "role": "Role:",
+      "callPhone": "Call the employer",
+      "share": "Share the job advertise",
+      "message":
+          "Check out the job posting on the Keep Hatay Alive application:",
+      "openEventDetailPhone":
+          "Hello, I want to get information about the event named {}",
+      "jobDescription": "Job Description",
+      "options": "Options",
+    },
+    "notFound": {
+      "forRefresh": "Click here to refresh.",
+      "notification": "No notifications",
+      "specialAgency": "Special Agencies has not been entered yet.",
+      "campaign": "Events has not been entered yet.",
+      "developers": "Developers has not been entered yet.",
+      "towns": "Towns has not been entered yet.",
+      "news": "News has not been entered yet.",
+      "favoritePlaces": "There is no any favorite places.",
+      "advertise": "Job postings has not been entered yet.",
+      "image": "Image could not be loaded.",
+      "chainStore": "Chain stores has not been entered yet.",
+      "usefulLinks": "Useful links has not been entered yet.",
+      "memories": "No memories found yet.",
+    },
+    "months": {
+      "jan": "January",
+      "feb": "February",
+      "mar": "March",
+      "apr": "April",
+      "may": "May",
+      "jun": "June",
+      "jul": "July",
+      "aug": "August",
+      "sep": "September",
+      "oct": "October",
+      "nov": "November",
+      "dec": "December",
+    },
+    "genders": {"male": "Male", "female": "Female", "other": "Other"},
+    "requestScholarship": {
+      "title": "New Scholarship Request",
+      "phone": "Enter Your Phone Number",
+      "email": "Enter Your Email Address",
+      "story": "Tell Us About Yourself",
+      "studentDocument": "Upload Your Student Certificate",
+      "pdfHint": "name_surname.pdf",
+      "disableButtonTitle":
+          "You should wait 1 day to apply for a new scholarship",
+      "error": {
+        "serviceError": "A service error has occurred",
+        "undefinedError": "An unidentified error occurred",
+        "fileSizeInfo": "File size can be up to {}",
+        "fileSizeError": "Check the entered file size",
+        "noFileError": "Please upload your student document",
+      },
+    },
+    "fileUpload": {"upload": "Upload", "update": "Update"},
+    "favorite": {
+      "title": "Favorites",
+      "search": "Search for your favorite",
+      "clearAllButton": "Clear All",
+      "noBusinessFound": "No business found related to your search.",
+      "clearAllDialog": {
+        "content": "Are you sure you want to clear all your favorites?",
+      },
+      "deleteDialog": {
+        "content":
+            "It will be removed from the favorite. Are you sure you want to proceed?",
+      },
+    },
+    "uploadShelter": {"title": "Upload Shelter Details"},
+    "sorting": {
+      "time": {"newest": "Newest to oldest", "oldest": "Oldest to newest"},
+      "title": "Sort",
+      "applied": "Sorting updated",
+      "alpha": {"aToZ": "A → Z", "zToA": "Z → A"},
+    },
+    "utils": {"options": "{} option"},
+    "advertisementBoard": {
+      "openUrl": "Open Url",
+      "launchUrlError": "An error occurred when launch url",
+      "shareAdvertisementSubject": "Visit advertisement owner: {}",
+      "houseAdTitle": "YOU CAN ADVERTISE HERE",
+      "houseAdSubtitle":
+          "Reach local businesses · Contact: medya@hatayiyasat.app",
+      "contactUs": "Get in touch",
+    },
+    "chain_stores": {
+      "title": "Container Bazaars",
+      "showAllSubBranches": "Show all sub-store {}",
+      "subBranchesTitle": "{} Store ({})",
+    },
+    "monetization": {
+      "title": "Discount Coupons",
+      "addCouponAction": "New",
+      "addCoupon": "Add Coupon",
+      "discountCodeLabel": "Discount Rate",
+      "expiresAtSummary": "Until {}",
+      "expiryDateLabel": "Expiry Date",
+      "active": "Active",
+      "activeTab": "Active ({})",
+      "inactive": "Expired",
+      "inactiveTab": "Inactive ({})",
+      "usageLimitReached": "Limit reached",
+      "couponDesc": "Description",
+      "couponDescHint": "E.g. Festival Discount",
+      "usageLimit": "Usage Limit",
+      "usageLimitHint": "Leave empty for unlimited",
+      "unlimited": "Unlimited",
+      "usageCountSummary": "{} Used",
+      "discountRate": "Discount Rate",
+      "discountRateValue": "%{}",
+      "invalidUsageLimit": "Enter a valid usage limit (1+)",
+      "emptyCoupons": "No coupons yet",
+    },
+    "whatsNew": {
+      "title": "New in v8.1.0 🎉",
+      "features": {
+        "favoritePlaces": "You can easily find your favorite places.",
+        "memories": "Your memories are alive with you.",
+      },
+      "bugFixes": "🐞 Bug fixes.",
+    },
+    "tourismView": {
+      "onTapMarkerWindow": "Tap to get directions",
+      "title": "Tourism Places",
+    },
+    "usefulLink": {"title": "Useful Links"},
+    "sheet": {
+      "changeCity": {
+        "title": "Change City",
+        "description": "After your selection, new places will be displayed.",
+        "showResult": "Show results for {}",
+      },
+    },
+    "main": {
+      "home": "Home",
+      "news": "News",
+      "campaign": "Events",
+      "advertisement": "Job Postings",
+      "settings": "Settings",
+      "memories": "Memories",
+    },
+    "auth": {
+      "tagline": "COMMUNITY",
+      "hero": {
+        "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
+        "prefix": "Let's live ",
+        "highlight": "Hatay",
+        "suffix": "together.",
+        "description":
+            "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here.",
+      },
+      "signIn": {
+        "continueWith": "Continue with {provider}",
+        "guest": "Continue as Guest",
+      },
+      "legal": "By continuing, you accept the terms of use and KVKK.",
+      "error": {
+        "generic": "Something went wrong while signing in, please try again.",
+        "failed": "{provider} sign-in failed, please try again.",
+      },
+    },
+    "userQr": {
+      "title": "My QR Code",
+      "personalTitle": "Personal QR",
+      "personalDescription": "A sharing code unique to you.",
+      "campaignTitle": "Join Campaigns",
+      "campaignDescription": "You can join campaigns with your QR code.",
+      "shareSubject": "My QR Code",
+    },
+    "historyPage": {
+      "welcomeTitle": "Our Memories Are Alive with Us",
+      "welcomeDescription":
+          "Let's share our beautiful memories, let's live together.",
+      "addPhotoInfo":
+          "Touch the + button in the bottom right to share your memories.",
+      "favorites": {
+        "title": "My Favorite Memories",
+        "emptyTitle": "You don't have any favorite memories yet",
+        "emptyDescription":
+            "Touch the ❤️ button to add memories to your favorites",
+        "untitledMemory": "Untitled Memory",
+        "noDescription": "No description",
+      },
+      "shareSubject": "Keep 'Hatay Yaşat' with us!",
+    },
+    "community": {
+      "tagline": "COMMUNITY",
+      "groups": {
+        "title": "Groups",
+        "groupCount": "{count} groups",
+        "openGroup": "OPEN GROUP",
+        "closedGroup": "CLOSED GROUP",
+        "adminBadge": "Admin",
+        "noPermissionInfo":
+            "You don't have permission to create a group. Authorized community members can create new groups.",
+        "empty": "No groups yet.",
+      },
+      "groupDetail": {
+        "tabWall": "Wall",
+        "tabDiscussions": "Discussions",
+        "tabDetails": "Details",
+        "openGroup": "Open group",
+        "closedGroup": "Closed group",
+        "memberCount": "{count} members",
+        "adminBadge": "ADMIN",
+        "wall": {
+          "composerHint": "Share something with the group...",
+          "commentCount": "{count} comments",
+          "empty": "No posts yet.",
+        },
+        "discussions": {
+          "startTitle": "Start a discussion",
+          "startSubtitle": "Start a new topic (admins only)",
+          "meta": "{name} started · {time} · {count} entries",
+          "empty": "No discussions yet.",
+          "sheetSubtitle": "Start a topic, say the first word",
+          "titleFieldLabel": "Title",
+          "titleFieldHint": "E.g: New market layout for Saturday",
+          "messageFieldLabel": "First message",
+          "messageFieldHint":
+              "Why did you open this? What should be discussed?",
+          "startButton": "Start discussion",
+          "anonymityBanner": "Names hidden · text posts only · no live chat",
+          "openedByGroup": "{name} started · {group}",
+          "replyComposerHint": "Add an entry to this topic...",
+        },
+        "details": {
+          "aboutTitle": "ABOUT",
+          "infoTitle": "INFO",
+          "groupTypeLabel": "Group type",
+          "groupTypeOpen": "Open group · anyone can join",
+          "groupTypeClosed": "Closed group · join by invite",
+          "memberCountLabel": "Member count",
+          "createdAtLabel": "Created",
+          "adminsTitle": "ADMINS",
+          "leaveGroup": "Leave group",
+          "leaveSuccess": "You left the group.",
+          "closeGroup": "Close group",
+          "closeGroupConfirmTitle": "Close group",
+          "closeGroupConfirmMessage":
+              "This removes the group for all members and cannot be undone.",
+          "closeGroupConfirmCancel": "Cancel",
+          "closeGroupSuccess": "Group closed.",
+        },
+      },
+      "createGroup": {
+        "title": "Create Group",
+        "openBadge": "OPEN",
+        "coverImageLabel": "Cover Image",
+        "selectImage": "Select image",
+        "nameLabel": "Group Name",
+        "nameHint": "E.g: Antakya Neighborhood Solidarity",
+        "nameHelper": "Members will see this name",
+        "categoryLabel": "Category",
+        "categoryValidationError": "Please select a category.",
+        "descriptionLabel": "Description",
+        "descriptionHint": "What is this group about? Who should join?",
+        "submitButton": "Create Group",
+        "success": "Group created successfully.",
+      },
+    },
+    "unauthorized": {
+      "errorCode": "403 · ACCESS DENIED",
+      "title": "Unauthorized Access",
+      "description":
+          "You don't have permission to access this page. Group creation is only available to authorized community members.",
+      "backToGroups": "Back to Groups",
+      "requestAccess": "Request access",
+      "requestAccessComingSoon": "This feature is coming soon.",
+    },
+    "filter": {
+      "title": "Filter",
+      "clear": "Clear",
+      "categories": "Categories",
+      "others": "Other",
+      "openNow": "Open now",
+      "favoritesOnly": "In my favorites",
       "districts": "Districts",
-      "districtDescription": "You can select and filter the districts here",
-      "categories": "categories",
-      "categoryDescription": "You can select and filter categories here",
-      "filterResult": "Filter Result",
-      "resultEmpty": "No results found with the filtering criteria you chose."
-    }
-  },
-  "requestCompany": {
-    "title": "New Business Request",
-    "name": "Enter the name of your business",
-    "description": "Enter the description of your business",
-    "address": "Enter the address of your business",
-    "phoneNumber": "Enter your phone number",
-    "ownerName": "Enter your name and surname",
-    "district": "District",
-    "category": "Category",
-    "chooseCategory": "Choose Category",
-    "chooseDistrict": "Choose District",
-    "workingHours": "Enter the working hours of your business",
-    "start": "Start",
-    "end": "End",
-    "choosePhoto": "Enter photos of your business"
-  },
-  "general": {
-    "kvkk": "KVKK",
-    "kvkkReadApproved": " I have read and approved.",
-    "confirmationText": "Please accept the confirmation text."
-  },
-  "settings": {
-    "title": "Settings",
-    "languageTitle": "Language",
-    "currentLanguage": "Current language",
-    "themeTitle": "{} Theme",
-    "developersTitle": "Developers",
-    "inactiveDevelopers": "We would like to thank our friends who supported us yesterday ❤️ ",
-    "seeDevelopers": "See full team",
-    "aboutTitle": "About the app",
-    "contactTitle": "Contact us",
-    "versionNumberTitle": "Version Number",
-    "notificationTitle": "Notification permission",
-    "notificationSetting": "Notification Settings",
-    "appReviewTitle": "Rate the App",
-    "themes": {
-      "light": "Light",
-      "dark": "Dark",
-      "system": "System"
-    }
-  },
-  "home": {
-    "specialAgency": "Special Places",
-    "categories": "Categories",
-    "places": "Places",
-    "search": "Search",
-    "notifications": "Notifications",
-    "allCategory": "All",
-    "placesUpper": "PLACES"
-  },
-  "message": {
-    "emptySearch": "No Results Found",
-    "somethingWentWrong": "Something went wrong",
-    "addedFavorite": "Added to favorites",
-    "emptyFavorite": "Your favorites list is empty",
-    "removedFavorite": "Removed from favorites",
-    "copiedToClipboard": "Copied to clipboard"
-  },
-  "rate": {
-    "trustQuestion": "Do you trust this place?",
-    "singleVoteHint": "You only have one vote.",
-    "rateThankYou": "Your vote has been received, thank you.",
-    "voteRecorded": "Your vote has been recorded.",
-    "evaluatePlace": "Evaluate the place",
-    "addComment": "Add Comment",
-    "noCommentsYet": "No comments yet",
-    "commentHint": "Share your experience...",
-    "commentingDisabled": "Commenting has been disabled",
-    "editComment": "Edit your comment",
-    "commentAdded": "Comment added",
-    "deleteComment": "Delete your comment",
-    "loginRequiredTitle": "You're not logged in",
-    "loginRequiredContent": "You need to log in to add a comment.",
-    "actionFailedTitle": "Something went wrong",
-    "submitFailedContent": "Your rating couldn't be submitted. Please try again.",
-    "editCommentFailedContent": "Your comment couldn't be updated. Please try again.",
-    "deleteFailedContent": "Your comment couldn't be deleted. Please try again.",
-    "deleteSuccessMessage": "Your comment was deleted.",
-    "editCommentSuccessMessage": "Your comment has been updated."
-  },
-  "date": {
-    "justNow": "Just now",
-    "minutesAgo": "{} minutes ago",
-    "hoursAgo": "{} hours ago",
-    "daysAgo": "{} days ago",
-    "monthsAgo": "{} months ago",
-    "yearsAgo": "{} years ago"
-  },
-  "search": {
-    "latestSearch": "Latest Searches",
-    "place": "Search for a place",
-    "minumumSearch": "Please enter at least 3 characters to search then press search button from the keyboard"
-  },
-  "placeDetailView": {
-    "owner": "Business Owner",
-    "description": "Business Description",
-    "address": "Address Description",
-    "phoneNumber": "Phone Number",
-    "district": "District",
-    "photos": "Photos",
-    "call": "Call",
-    "find_the_place": "Find the place",
-    "workingHours": "Working Hours",
-    "openCloseHours": "Opening and Closing Hours",
-    "nowOpen": "Now Open",
-    "nowClose": "Now Close"
-  },
-  "campaignDetailsView": {
-    "publisher": "Publisher (Person or Institution Name)",
-    "topic": "Project Topic",
-    "description": "Project Description",
-    "phone": "Phone Number",
-    "expireDate": "Start Date and Time",
-    "photo": "Photos",
-    "publishedBy": "published by {}",
-    "startDate": "Start Date: {}",
-    "time": "Time: {}",
-    "optionsDialogTitle": "Options",
-    "optionsDialogContent": "Please select what you want to do from the options.",
-    "seeOptionsButton": "See Options",
-    "addReminderButton": "Add Reminder to Calendar",
-    "redirectWhatsappButton": "Send Message on Whatsapp"
-  },
-  "forceUpdate": {
-    "title": "An Update is Available",
-    "message": "A new version is available, you need to update.",
-    "updateButton": "Update"
-  },
-  "networkCheck": {
-    "message": "Please check your internet connection and try again.",
-    "button": "Try Again"
-  },
-  "notification": {
-    "snackbarButtonText": "Open",
-    "defaultMessage": "A business has resumed operations.",
-    "businessNotFoundErrorMessage": "Business not found",
-    "campaignNotFoundErrorMessage": "Event not found",
-    "newsNotFoundErrorMessage": "No news found",
-    "placeNotFoundErrorMessage": "Place not found",
-    "advertiseNotFoundErrorMessage": "Advertise not found"
-  },
-  "developers": {
-    "title": "Developers",
-    "seeProfileButtonText": "See Profile"
-  },
-  "navigationTabs": {
-    "home": "Home",
-    "activities": "Activities",
-    "news": "News",
-    "favorite": "Favorites",
-    "request": "Request",
-    "advertise": "Advertise",
-    "community": "Community",
-    "memories": "Memories",
-    "places": "Places",
-    "feed": "Feed",
-    "explore": "Explore",
-    "profile": "Profile"
-  },
-  "projectRequest": {
-    "title": "New Project Request",
-    "publisher": "Enter Publisher (Person or Institution Name)",
-    "phoneNumber": "Enter Your Phone Number",
-    "projectImage": "Add a Photo About the Project",
-    "name": "Enter the Project Name",
-    "topic": "Enter the Project Subject",
-    "description": "Enter Project Description",
-    "dateInputTitle": "Enter Project Date",
-    "expireDate": "Start Date and Time"
-  },
-  "dialog": {
-    "phoneTitle": "Would you like to call by phone?",
-    "addressTitle": "Would you like to open the address on the map?",
-    "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
-    "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
-    "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
-    "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
-  },
-  "specialAgency": {
-    "title": "Special Agency",
-    "agencyNumber": "Agency Number",
-    "agencyAddress": "Agency Address"
-  },
-  "advertise": {
-    "title": "Job name:",
-    "description": "Job description:",
-    "gender": "Gender:",
-    "owner": "Employer:",
-    "phone": "Contact:",
-    "role": "Role:",
-    "callPhone": "Call the employer",
-    "share": "Share the job advertise",
-    "message": "Check out the job posting on the Keep Hatay Alive application:",
-    "openEventDetailPhone": "Hello, I want to get information about the event named {}",
-    "jobDescription": "Job Description",
-    "options": "Options"
-  },
-  "notFound": {
-    "forRefresh": "Click here to refresh.",
-    "notification": "No notifications",
-    "specialAgency": "Special Agencies has not been entered yet.",
-    "campaign": "Events has not been entered yet.",
-    "developers": "Developers has not been entered yet.",
-    "towns": "Towns has not been entered yet.",
-    "news": "News has not been entered yet.",
-    "favoritePlaces": "There is no any favorite places.",
-    "advertise": "Job postings has not been entered yet.",
-    "image": "Image could not be loaded.",
-    "chainStore": "Chain stores has not been entered yet.",
-    "usefulLinks": "Useful links has not been entered yet.",
-    "memories": "No memories found yet."
-  },
-  "months": {
-    "jan": "January",
-    "feb": "February",
-    "mar": "March",
-    "apr": "April",
-    "may": "May",
-    "jun": "June",
-    "jul": "July",
-    "aug": "August",
-    "sep": "September",
-    "oct": "October",
-    "nov": "November",
-    "dec": "December"
-  },
-  "genders": {
-    "male": "Male",
-    "female": "Female",
-    "other": "Other"
-  },
-  "requestScholarship": {
-    "title": "New Scholarship Request",
-    "phone": "Enter Your Phone Number",
-    "email": "Enter Your Email Address",
-    "story": "Tell Us About Yourself",
-    "studentDocument": "Upload Your Student Certificate",
-    "pdfHint": "name_surname.pdf",
-    "disableButtonTitle": "You should wait 1 day to apply for a new scholarship",
-    "error": {
-      "serviceError": "A service error has occurred",
-      "undefinedError": "An unidentified error occurred",
-      "fileSizeInfo": "File size can be up to {}",
-      "fileSizeError": "Check the entered file size",
-      "noFileError": "Please upload your student document"
-    }
-  },
-  "fileUpload": {
-    "upload": "Upload",
-    "update": "Update"
-  },
-  "favorite": {
-    "title": "Favorites",
-    "search": "Search for your favorite",
-    "clearAllButton": "Clear All",
-    "noBusinessFound": "No business found related to your search.",
-    "clearAllDialog": {
-      "content": "Are you sure you want to clear all your favorites?"
+      "nearYou": "Near you",
+      "searchDistrict": "Search district",
+      "selectedCount": "{}/{} selected",
+      "showResults": "Show {} results",
+      "noResults": "No results, loosen filters",
+      "categoryCountLabel": "{} categories",
+      "districtCountLabel": "{} districts",
+      "openShort": "open",
+      "favoritesShort": "favorites",
     },
-    "deleteDialog": {
-      "content": "It will be removed from the favorite. Are you sure you want to proceed?"
-    }
-  },
-  "uploadShelter": {
-    "title": "Upload Shelter Details"
-  },
-  "sorting": {
-    "time": {
-      "newest": "Newest to oldest",
-      "oldest": "Oldest to newest"
-    },
-    "title": "Sort",
-    "applied": "Sorting updated",
-    "alpha": {
-      "aToZ": "A → Z",
-      "zToA": "Z → A"
-    }
-  },
-  "utils": {
-    "options": "{} option"
-  },
-  "advertisementBoard": {
-    "openUrl": "Open Url",
-    "launchUrlError": "An error occurred when launch url",
-    "shareAdvertisementSubject": "Visit advertisement owner: {}",
-    "houseAdTitle": "YOU CAN ADVERTISE HERE",
-    "houseAdSubtitle": "Reach local businesses · Contact: medya@hatayiyasat.app",
-    "contactUs": "Get in touch"
-  },
-  "chain_stores": {
-    "title": "Container Bazaars",
-    "showAllSubBranches": "Show all sub-store {}",
-    "subBranchesTitle": "{} Store ({})"
-  },
-  "monetization": {
-    "title": "Discount Coupons",
-    "addCouponAction": "New",
-    "addCoupon": "Add Coupon",
-    "discountCodeLabel": "Discount Rate",
-    "expiresAtSummary": "Until {}",
-    "expiryDateLabel": "Expiry Date",
-    "active": "Active",
-    "activeTab": "Active ({})",
-    "inactive": "Expired",
-    "inactiveTab": "Inactive ({})",
-    "usageLimitReached": "Limit reached",
-    "couponDesc": "Description",
-    "couponDescHint": "E.g. Festival Discount",
-    "usageLimit": "Usage Limit",
-    "usageLimitHint": "Leave empty for unlimited",
-    "unlimited": "Unlimited",
-    "usageCountSummary": "{} Used",
-    "discountRate": "Discount Rate",
-    "discountRateValue": "%{}",
-    "invalidUsageLimit": "Enter a valid usage limit (1+)",
-    "emptyCoupons": "No coupons yet"
-  },
-  "whatsNew": {
-    "title": "New in v8.1.0 🎉",
-    "features": {
-      "favoritePlaces": "You can easily find your favorite places.",
-      "memories": "Your memories are alive with you."
-    },
-    "bugFixes": "🐞 Bug fixes."
-  },
-  "tourismView": {
-    "onTapMarkerWindow": "Tap to get directions",
-    "title": "Tourism Places"
-  },
-  "usefulLink": {
-    "title": "Useful Links"
-  },
-  "sheet": {
-    "changeCity": {
-      "title": "Change City",
-      "description": "After your selection, new places will be displayed.",
-      "showResult": "Show results for {}"
-    }
-  },
-  "main": {
-    "home": "Home",
-    "news": "News",
-    "campaign": "Events",
-    "advertisement": "Job Postings",
-    "settings": "Settings",
-    "memories": "Memories"
-  },
-  "auth": {
-    "tagline": "COMMUNITY",
-    "hero": {
-      "subtitle": "NEIGHBORHOOD · PLACE · MEMORY",
-      "prefix": "Let's live ",
-      "highlight": "Hatay",
-      "suffix": "together.",
-      "description": "Support local businesses, share memories, discover your neighborhood — everyone who keeps the city alive is here."
-    },
-    "signIn": {
-      "continueWith": "Continue with {provider}",
-      "guest": "Continue as Guest"
-    },
-    "legal": "By continuing, you accept the terms of use and KVKK.",
-    "error": {
-      "generic": "Something went wrong while signing in, please try again.",
-      "failed": "{provider} sign-in failed, please try again."
-    }
-  },
-  "userQr": {
-    "title": "My QR Code",
-    "personalTitle": "Personal QR",
-    "personalDescription": "A sharing code unique to you.",
-    "campaignTitle": "Join Campaigns",
-    "campaignDescription": "You can join campaigns with your QR code.",
-    "shareSubject": "My QR Code"
-  },
-  "historyPage": {
-    "welcomeTitle": "Our Memories Are Alive with Us",
-    "welcomeDescription": "Let's share our beautiful memories, let's live together.",
-    "addPhotoInfo": "Touch the + button in the bottom right to share your memories.",
-    "favorites": {
-      "title": "My Favorite Memories",
-      "emptyTitle": "You don't have any favorite memories yet",
-      "emptyDescription": "Touch the ❤️ button to add memories to your favorites",
-      "untitledMemory": "Untitled Memory",
-      "noDescription": "No description"
-    },
-    "shareSubject": "Keep 'Hatay Yaşat' with us!"
-  },
-  "community": {
-    "tagline": "COMMUNITY",
-    "groups": {
-      "title": "Groups",
-      "groupCount": "{count} groups",
-      "openGroup": "OPEN GROUP",
-      "closedGroup": "CLOSED GROUP",
-      "adminBadge": "Admin",
-      "noPermissionInfo": "You don't have permission to create a group. Authorized community members can create new groups.",
-      "empty": "No groups yet."
-    },
-    "groupDetail": {
-      "tabWall": "Wall",
-      "tabDiscussions": "Discussions",
-      "tabDetails": "Details",
-      "openGroup": "Open group",
-      "closedGroup": "Closed group",
-      "memberCount": "{count} members",
-      "adminBadge": "ADMIN",
-      "wall": {
-        "composerHint": "Share something with the group...",
-        "commentCount": "{count} comments",
-        "empty": "No posts yet."
-      },
-      "discussions": {
-        "startTitle": "Start a discussion",
-        "startSubtitle": "Start a new topic (admins only)",
-        "meta": "{name} started · {time} · {count} entries",
-        "empty": "No discussions yet.",
-        "sheetSubtitle": "Start a topic, say the first word",
-        "titleFieldLabel": "Title",
-        "titleFieldHint": "E.g: New market layout for Saturday",
-        "messageFieldLabel": "First message",
-        "messageFieldHint": "Why did you open this? What should be discussed?",
-        "startButton": "Start discussion",
-        "anonymityBanner": "Names hidden · text posts only · no live chat",
-        "openedByGroup": "{name} started · {group}",
-        "replyComposerHint": "Add an entry to this topic..."
-      },
-      "details": {
-        "aboutTitle": "ABOUT",
-        "infoTitle": "INFO",
-        "groupTypeLabel": "Group type",
-        "groupTypeOpen": "Open group · anyone can join",
-        "groupTypeClosed": "Closed group · join by invite",
-        "memberCountLabel": "Member count",
-        "createdAtLabel": "Created",
-        "adminsTitle": "ADMINS",
-        "leaveGroup": "Leave group",
-        "leaveSuccess": "You left the group.",
-        "closeGroup": "Close group",
-        "closeGroupConfirmTitle": "Close group",
-        "closeGroupConfirmMessage": "This removes the group for all members and cannot be undone.",
-        "closeGroupConfirmCancel": "Cancel",
-        "closeGroupSuccess": "Group closed."
-      }
-    },
-    "createGroup": {
-      "title": "Create Group",
-      "openBadge": "OPEN",
-      "coverImageLabel": "Cover Image",
-      "selectImage": "Select image",
-      "nameLabel": "Group Name",
-      "nameHint": "E.g: Antakya Neighborhood Solidarity",
-      "nameHelper": "Members will see this name",
-      "categoryLabel": "Category",
-      "categoryValidationError": "Please select a category.",
-      "descriptionLabel": "Description",
-      "descriptionHint": "What is this group about? Who should join?",
-      "submitButton": "Create Group",
-      "success": "Group created successfully."
-    }
-  },
-  "unauthorized": {
-    "errorCode": "403 · ACCESS DENIED",
-    "title": "Unauthorized Access",
-    "description": "You don't have permission to access this page. Group creation is only available to authorized community members.",
-    "backToGroups": "Back to Groups",
-    "requestAccess": "Request access",
-    "requestAccessComingSoon": "This feature is coming soon."
-  },
-  "filter": {
-    "title": "Filter",
-    "clear": "Clear",
-    "categories": "Categories",
-    "others": "Other",
-    "openNow": "Open now",
-    "favoritesOnly": "In my favorites",
-    "districts": "Districts",
-    "nearYou": "Near you",
-    "searchDistrict": "Search district",
-    "selectedCount": "{}/{} selected",
-    "showResults": "Show {} results",
-    "noResults": "No results, loosen filters",
-    "categoryCountLabel": "{} categories",
-    "districtCountLabel": "{} districts",
-    "openShort": "open",
-    "favoritesShort": "favorites"
-  }
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"tr": _tr, "en": _en};
+  };
+  static const Map<String, Map<String, dynamic>> mapLocales = {
+    "tr": _tr,
+    "en": _en,
+  };
 }
