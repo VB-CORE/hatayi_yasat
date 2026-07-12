@@ -11,27 +11,32 @@ final class GeneralTextDialog extends StatelessWidget {
     required this.title,
     required this.content,
     required this.actions,
+    this.backgroundColor,
     super.key,
   });
 
   final String title;
   final String content;
   final List<Widget> actions;
+  final Color? backgroundColor;
 
-  /// Display the dialog on the screen.
-  static Future<void> show(
+  /// Display the dialog on the screen. Returns the value passed to
+  /// `Navigator.pop(context, result)` by one of the [actions], if any.
+  static Future<T?> show<T>(
     BuildContext context,
     String title,
     String content,
-    List<Widget> actions,
-  ) async {
-    await showDialog<void>(
+    List<Widget> actions, {
+    Color? backgroundColor,
+  }) {
+    return showDialog<T>(
       context: context,
       builder: (context) {
         return GeneralTextDialog(
           title: title,
           content: content,
           actions: actions,
+          backgroundColor: backgroundColor,
         );
       },
     );
@@ -40,7 +45,7 @@ final class GeneralTextDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: context.general.colorScheme.secondary,
+      backgroundColor: backgroundColor ?? context.general.colorScheme.secondary,
       title: GeneralSubTitle(value: title),
       content: GeneralContentSubTitle(
         value: content,

@@ -65,7 +65,9 @@ class CodegenLoader extends AssetLoader{
     "copy": "Kopyala",
     "error": "Hata",
     "more": "Daha fazla",
-    "understood": "Anladım"
+    "understood": "Anladım",
+    "send": "Gönder",
+    "login": "Giriş Yap"
   },
   "component": {
     "mapPicker": {
@@ -144,6 +146,36 @@ class CodegenLoader extends AssetLoader{
     "emptyFavorite": "Favori listeniz boş",
     "removedFavorite": "Favorilerden kaldırıldı",
     "copiedToClipboard": "Panoya kopyalandı"
+  },
+  "rate": {
+    "trustQuestion": "Bu mekana güveniyor musun?",
+    "singleVoteHint": "Tek bir oy hakkın var.",
+    "rateThankYou": "Oyunuz alındı, teşekkürler.",
+    "voteRecorded": "Oyunuz kaydedildi.",
+    "evaluatePlace": "Mekanı değerlendir",
+    "addComment": "Yorum Ekle",
+    "noCommentsYet": "Henüz yorum yok",
+    "commentHint": "Deneyimini paylaş...",
+    "commentingDisabled": "Yorum yapma özelliği kapatıldı",
+    "editComment": "Yorumunu düzenle",
+    "commentAdded": "Yorum eklendi",
+    "deleteComment": "Yorumunu sil",
+    "loginRequiredTitle": "Giriş yapmadınız",
+    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor.",
+    "actionFailedTitle": "İşlemde bir sorun oluştu",
+    "submitFailedContent": "Oyun gönderilemedi. Lütfen tekrar dene.",
+    "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
+    "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
+    "deleteSuccessMessage": "Yorumun silindi.",
+    "editCommentSuccessMessage": "Yorumun güncellendi."
+  },
+  "date": {
+    "justNow": "Az önce",
+    "minutesAgo": "{} dakika önce",
+    "hoursAgo": "{} saat önce",
+    "daysAgo": "{} gün önce",
+    "monthsAgo": "{} ay önce",
+    "yearsAgo": "{} yıl önce"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -336,11 +368,7 @@ class CodegenLoader extends AssetLoader{
     }
   },
   "utils": {
-    "options": "{} seçenek",
-    "justNow": "az önce",
-    "minutesAgo": "{} dk önce",
-    "hoursAgo": "{} saat önce",
-    "daysAgo": "{} gün önce"
+    "options": "{} seçenek"
   },
   "advertisementBoard": {
     "openUrl": "Linki Aç",
@@ -599,7 +627,9 @@ static const Map<String,dynamic> _en = {
     "copy": "Copy",
     "error": "Error",
     "more": "More",
-    "understood": "Understood"
+    "understood": "Understood",
+    "send": "Send",
+    "login": "Login"
   },
   "component": {
     "mapPicker": {
@@ -678,6 +708,36 @@ static const Map<String,dynamic> _en = {
     "emptyFavorite": "Your favorites list is empty",
     "removedFavorite": "Removed from favorites",
     "copiedToClipboard": "Copied to clipboard"
+  },
+  "rate": {
+    "trustQuestion": "Do you trust this place?",
+    "singleVoteHint": "You only have one vote.",
+    "rateThankYou": "Your vote has been received, thank you.",
+    "voteRecorded": "Your vote has been recorded.",
+    "evaluatePlace": "Evaluate the place",
+    "addComment": "Add Comment",
+    "noCommentsYet": "No comments yet",
+    "commentHint": "Share your experience...",
+    "commentingDisabled": "Commenting has been disabled",
+    "editComment": "Edit your comment",
+    "commentAdded": "Comment added",
+    "deleteComment": "Delete your comment",
+    "loginRequiredTitle": "You're not logged in",
+    "loginRequiredContent": "You need to log in to add a comment.",
+    "actionFailedTitle": "Something went wrong",
+    "submitFailedContent": "Your rating couldn't be submitted. Please try again.",
+    "editCommentFailedContent": "Your comment couldn't be updated. Please try again.",
+    "deleteFailedContent": "Your comment couldn't be deleted. Please try again.",
+    "deleteSuccessMessage": "Your comment was deleted.",
+    "editCommentSuccessMessage": "Your comment has been updated."
+  },
+  "date": {
+    "justNow": "Just now",
+    "minutesAgo": "{} minutes ago",
+    "hoursAgo": "{} hours ago",
+    "daysAgo": "{} days ago",
+    "monthsAgo": "{} months ago",
+    "yearsAgo": "{} years ago"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -870,11 +930,7 @@ static const Map<String,dynamic> _en = {
     }
   },
   "utils": {
-    "options": "{} option",
-    "justNow": "just now",
-    "minutesAgo": "{} min ago",
-    "hoursAgo": "{} hours ago",
-    "daysAgo": "{} days ago"
+    "options": "{} option"
   },
   "advertisementBoard": {
     "openUrl": "Open Url",

@@ -49,7 +49,9 @@
     "copy": "Kopyala",
     "error": "Hata",
     "more": "Daha fazla",
-    "understood": "Anladım"
+    "understood": "Anladım",
+    "send": "Gönder",
+    "login": "Giriş Yap"
   },
   "component": {
     "mapPicker": {
@@ -128,6 +130,36 @@
     "emptyFavorite": "Favori listeniz boş",
     "removedFavorite": "Favorilerden kaldırıldı",
     "copiedToClipboard": "Panoya kopyalandı"
+  },
+  "rate": {
+    "trustQuestion": "Bu mekana güveniyor musun?",
+    "singleVoteHint": "Tek bir oy hakkın var.",
+    "rateThankYou": "Oyunuz alındı, teşekkürler.",
+    "voteRecorded": "Oyunuz kaydedildi.",
+    "evaluatePlace": "Mekanı değerlendir",
+    "addComment": "Yorum Ekle",
+    "noCommentsYet": "Henüz yorum yok",
+    "commentHint": "Deneyimini paylaş...",
+    "commentingDisabled": "Yorum yapma özelliği kapatıldı",
+    "editComment": "Yorumunu düzenle",
+    "commentAdded": "Yorum eklendi",
+    "deleteComment": "Yorumunu sil",
+    "loginRequiredTitle": "Giriş yapmadınız",
+    "loginRequiredContent": "Yorum yapabilmek için giriş yapmanız gerekiyor.",
+    "actionFailedTitle": "İşlemde bir sorun oluştu",
+    "submitFailedContent": "Oyun gönderilemedi. Lütfen tekrar dene.",
+    "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
+    "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
+    "deleteSuccessMessage": "Yorumun silindi.",
+    "editCommentSuccessMessage": "Yorumun güncellendi."
+  },
+  "date": {
+    "justNow": "Az önce",
+    "minutesAgo": "{} dakika önce",
+    "hoursAgo": "{} saat önce",
+    "daysAgo": "{} gün önce",
+    "monthsAgo": "{} ay önce",
+    "yearsAgo": "{} yıl önce"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -320,11 +352,7 @@
     }
   },
   "utils": {
-    "options": "{} seçenek",
-    "justNow": "az önce",
-    "minutesAgo": "{} dk önce",
-    "hoursAgo": "{} saat önce",
-    "daysAgo": "{} gün önce"
+    "options": "{} seçenek"
   },
   "advertisementBoard": {
     "openUrl": "Linki Aç",

@@ -16,23 +16,32 @@ extension DateTimeExtensions on DateTime {
 
   /// Relative time label like 'az önce', '5 dk önce', '2 saat önce'.
   ///
-  /// Gelecek tarihli değerler de 'az önce' kabul edilir.
+  /// Gelecek tarihli (negatif fark) değerler eşik kontrollerinin hepsinden
+  /// geçemediği için otomatik olarak 'az önce' döner.
   String get timeAgo {
     final difference = DateTime.now().difference(this);
-    if (difference.isNegative || difference.inMinutes < 1) {
-      return LocaleKeys.utils_justNow.tr();
+    if (difference.inDays >= 365) {
+      return LocaleKeys.date_yearsAgo.tr(
+        args: [(difference.inDays / 365).floor().toString()],
+      );
     }
-    if (difference.inHours < 1) {
-      return LocaleKeys.utils_minutesAgo.tr(
+    if (difference.inDays >= 30) {
+      return LocaleKeys.date_monthsAgo.tr(
+        args: [(difference.inDays / 30).floor().toString()],
+      );
+    }
+    if (difference.inDays >= 1) {
+      return LocaleKeys.date_daysAgo.tr(args: [difference.inDays.toString()]);
+    }
+    if (difference.inHours >= 1) {
+      return LocaleKeys.date_hoursAgo.tr(args: [difference.inHours.toString()]);
+    }
+    if (difference.inMinutes >= 1) {
+      return LocaleKeys.date_minutesAgo.tr(
         args: [difference.inMinutes.toString()],
       );
     }
-    if (difference.inDays < 1) {
-      return LocaleKeys.utils_hoursAgo.tr(
-        args: [difference.inHours.toString()],
-      );
-    }
-    return LocaleKeys.utils_daysAgo.tr(args: [difference.inDays.toString()]);
+    return LocaleKeys.date_justNow.tr();
   }
 }
 

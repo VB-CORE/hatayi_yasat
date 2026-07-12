@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
 import 'package:lifeclient/features/details/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/details/view_model/place_detail_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -130,6 +131,7 @@ final class _PlaceDetailContent extends StatelessWidget {
   const _PlaceDetailContent({required this.model});
 
   final StoreModel model;
+  static const bool isComment = true;
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +164,17 @@ final class _PlaceDetailContent extends StatelessWidget {
           TitleDescription(
             title: LocaleKeys.placeDetailView_address.tr(),
             description: model.address ?? '-',
+          ),
+          const Padding(
+            padding: PagePadding.verticalLowSymmetric(),
+            child: Divider(
+              height: WidgetSizes.spacingXxs / 2,
+              thickness: .3,
+            ),
+          ),
+          RateCommentListView(
+            isCommentEnabled: isComment,
+            placeId: model.documentId,
           ),
         ],
       ),
