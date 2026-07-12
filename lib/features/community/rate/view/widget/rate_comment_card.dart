@@ -33,7 +33,7 @@ final class _RateCommentCard extends StatelessWidget {
               radius: CustomCircleRadius.medium,
               backgroundColor: AppColors.coral,
               child: GeneralContentSmallTitle(
-                value: rateModel.userName.initials,
+                value: rateModel.userName.initials(),
                 color: AppColors.white,
                 fontWeight: FontWeight.w600,
               ),

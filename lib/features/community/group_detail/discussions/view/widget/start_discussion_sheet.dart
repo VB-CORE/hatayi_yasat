@@ -15,8 +15,7 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
-import 'package:lifeclient/product/widget/text_field/custom_text_form_field.dart';
-import 'package:lifeclient/product/widget/text_field/custom_text_form_multi_field.dart';
+import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
 
 final class StartDiscussionSheet extends ConsumerStatefulWidget {
   const StartDiscussionSheet({super.key});
@@ -65,13 +64,13 @@ final class _StartDiscussionSheetState
                       .tr(),
                 ),
                 const EmptyBox.smallHeight(),
-                CustomTextFormField(
-                  hint: LocaleKeys
+                ProductTextField(
+                  hintText: LocaleKeys
                       .community_groupDetail_discussions_titleFieldHint
                       .tr(),
                   controller: titleController,
                   maxLength: TextFieldMaxLengths.large,
-                  validator: ValidatorNormalTextField(),
+                  validator: ValidatorNormalTextField().validate,
                 ),
                 const EmptyBox.middleHeight(),
                 RequiredLabel(
@@ -79,13 +78,14 @@ final class _StartDiscussionSheetState
                       .tr(),
                 ),
                 const EmptyBox.smallHeight(),
-                CustomTextFormMultiField(
-                  hint: LocaleKeys
+                ProductTextField(
+                  hintText: LocaleKeys
                       .community_groupDetail_discussions_messageFieldHint
                       .tr(),
                   controller: messageController,
                   maxLength: TextFieldMaxLengths.veryLarge,
-                  validator: ValidatorNormalTextField(),
+                  isMultiline: true,
+                  validator: ValidatorNormalTextField().validate,
                 ),
                 const EmptyBox.largeHeight(),
                 CommunitySubmitButton(

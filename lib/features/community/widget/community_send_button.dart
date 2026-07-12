@@ -5,23 +5,22 @@ import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
 /// Composer'larda kullanılan dairesel coral gönder butonu.
+///
+/// Etkin/pasif görünüm [onTap] `null` olup olmamasına göre belirlenir —
+/// pasif göstermek için `onTap: null` geçilir.
 @immutable
 final class CommunitySendButton extends StatelessWidget {
-  const CommunitySendButton({
-    required this.onTap,
-    this.isEnabled = true,
-    super.key,
-  });
+  const CommunitySendButton({required this.onTap, super.key});
 
   final VoidCallback? onTap;
-  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
+    final isEnabled = onTap != null;
     return Padding(
       padding: const PagePadding.onlyLeft(),
       child: InkWell(
-        onTap: isEnabled ? onTap : null,
+        onTap: onTap,
         customBorder: const CircleBorder(),
         child: CircleAvatar(
           radius: AppIconSizes.medium,

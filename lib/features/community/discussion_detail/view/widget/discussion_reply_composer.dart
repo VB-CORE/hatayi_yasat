@@ -51,8 +51,7 @@ final class DiscussionReplyComposer extends StatelessWidget {
               builder: (context, value, _) {
                 final canSubmit = value.text.trim().isNotEmpty;
                 return CommunitySendButton(
-                  isEnabled: canSubmit,
-                  onTap: onSubmit,
+                  onTap: canSubmit ? onSubmit : null,
                 );
               },
             ),
