@@ -11,6 +11,7 @@ import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
+import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
 
@@ -40,7 +41,7 @@ final class GeneralPlaceGridCard extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: InkWell(
+        child: CustomBounceable(
           onTap: onCardTap,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

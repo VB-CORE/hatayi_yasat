@@ -170,7 +170,9 @@
     "owner": "İşletme Sahibi",
     "description": "İşletme Açıklaması",
     "address": "Adres Bilgisi",
+    "addressLabel": "Adres",
     "phoneNumber": "Telefon Numarası",
+    "phoneLabel": "Telefon",
     "district": "İlçe",
     "photos": "Fotoğraflar",
     "call": "Ara",
@@ -178,7 +180,14 @@
     "workingHours": "Çalışma Saatleri",
     "openCloseHours": "Açılış ve Kapanış Saatleri",
     "nowOpen": "Şu an açık",
-    "nowClose": "Şu an kapalı"
+    "nowClose": "Şu an kapalı",
+    "tabAbout": "Hakkında",
+    "tabComments": "Yorumlar ({})",
+    "aboutTitle": "Mekan Hakkında",
+    "contactTitle": "İletişim Bilgileri",
+    "makeComment": "Yorum Yap",
+    "noDescription": "Mekan hakkında bilgi bulunamadı",
+    "reviewCount": "{} değerlendirme"
   },
   "campaignDetailsView": {
     "publisher": "Yayımcı (Kişi veya Kurum Adı)",

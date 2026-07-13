@@ -104,12 +104,16 @@ class $AssetsLottieGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/svg_google_icon.svg
+  SvgGenImage get svgGoogleIcon =>
+      const SvgGenImage('assets/svg/svg_google_icon.svg');
+
   /// File path: assets/svg/svg_not_found.svg
   SvgGenImage get svgNotFound =>
       const SvgGenImage('assets/svg/svg_not_found.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [svgNotFound];
+  List<SvgGenImage> get values => [svgGoogleIcon, svgNotFound];
 }
 
 class $AssetsTranslationsGen {

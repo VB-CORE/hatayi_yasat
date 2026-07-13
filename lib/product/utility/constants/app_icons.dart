@@ -36,6 +36,7 @@ final class AppIcons {
   static const IconData textSnippet = Icons.text_snippet;
 
   static const IconData personPin = Icons.person_pin;
+  static const IconData person = Icons.person;
   static const IconData back = Icons.close;
 
   static const IconData favorite = Icons.favorite;
@@ -63,4 +64,8 @@ final class AppIcons {
   static const IconData collections = Icons.collections_outlined;
 
   static const IconData tree = Icons.forest_outlined;
+
+  static const IconData comment = Icons.comment_outlined;
+  static const IconData arrowBack = Icons.arrow_back_rounded;
+  static const IconData openInNew = Icons.open_in_new_rounded;
 }

@@ -16,7 +16,6 @@ final class _RateCommentCard extends StatelessWidget {
     final comment = rateModel.comment;
     return Container(
       padding: const PagePadding.generalCardAll(),
-      margin: const PagePadding.verticalLowSymmetric(),
       decoration: const BoxDecoration(
         color: AppColors.surface,
       ),
