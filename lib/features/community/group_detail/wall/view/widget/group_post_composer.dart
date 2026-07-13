@@ -134,9 +134,6 @@ final class _ImagePreview extends StatelessWidget {
   final File imageFile;
   final VoidCallback onRemove;
 
-  static const double _heightFactor = 0.14;
-  static const double _removeButtonOpacity = 0.6;
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -145,7 +142,7 @@ final class _ImagePreview extends StatelessWidget {
         children: [
           Image.file(
             imageFile,
-            height: context.sized.dynamicHeight(_heightFactor),
+            height: context.sized.dynamicHeight(0.14),
             width: double.infinity,
             fit: BoxFit.cover,
           ),
@@ -157,9 +154,7 @@ final class _ImagePreview extends StatelessWidget {
               customBorder: const CircleBorder(),
               child: CircleAvatar(
                 radius: AppIconSizes.smallX,
-                backgroundColor: AppColors.navy900.withValues(
-                  alpha: _removeButtonOpacity,
-                ),
+                backgroundColor: AppColors.navy900.withValues(alpha: 0.6),
                 child: const Icon(
                   AppIcons.close,
                   size: AppIconSizes.xMedium,

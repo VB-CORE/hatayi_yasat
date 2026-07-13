@@ -27,7 +27,7 @@ final class _GroupsHeader extends StatelessWidget {
             if (hasGroups)
               GeneralContentSmallTitle(
                 value: LocaleKeys.community_groups_groupCount.tr(
-                  namedArgs: {'count': state.groups.length.toString()},
+                  args: [state.groups.length.toString()],
                 ),
                 color: AppColors.navy300,
               ),

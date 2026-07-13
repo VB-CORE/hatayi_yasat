@@ -14,6 +14,7 @@ List<RouteBase> get $appRoutes => [
   $unauthorizedRoute,
   $groupDetailRoute,
   $discussionDetailRoute,
+  $groupsRoute,
   $createGroupRoute,
 ];
 
@@ -813,6 +814,29 @@ mixin $DiscussionDetailRoute on GoRouteData {
   @override
   void replace(BuildContext context) =>
       context.replace(location, extra: _self.$extra);
+}
+
+RouteBase get $groupsRoute =>
+    GoRouteData.$route(path: '/groups', factory: $GroupsRoute._fromState);
+
+mixin $GroupsRoute on GoRouteData {
+  static GroupsRoute _fromState(GoRouterState state) => const GroupsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/groups');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
 RouteBase get $createGroupRoute => GoRouteData.$route(

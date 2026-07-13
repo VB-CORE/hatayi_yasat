@@ -17,8 +17,6 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
   GroupDiscussionsState build() =>
       const GroupDiscussionsState(discussions: [], isFetching: true);
 
-  // TODO(community): Firestore group_discussions koleksiyonu hazır olunca
-  // firebaseService üzerinden gerçek sorguya bağlanacak.
   Future<void> fetchDiscussions(String groupId) async {
     state = state.copyWith(isFetching: true, isError: false);
     state = state.copyWith(
@@ -27,8 +25,6 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
     );
   }
 
-  // TODO(community): Firestore'a gerçek tartışma oluşturma isteği
-  // bağlanacak.
   GroupDiscussionModel addDiscussion(String title, String message) {
     final currentMember = _currentMember;
     final discussion = GroupDiscussionModel(
@@ -49,8 +45,6 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
     return discussion;
   }
 
-  // TODO(community): Gerçek grup üyeliği verisi bağlanınca mock fallback
-  // kaldırılacak.
   GroupMemberModel get _currentMember {
     final authState = ref.read(authViewModelProvider);
     return authState is Authenticated

@@ -8,7 +8,6 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin GroupDetailsViewMixin
     on ConsumerState<GroupDetailsView>, AppProviderMixin<GroupDetailsView> {
-  // TODO(community): Firestore gruptan ayrılma isteği bağlanacak.
   void leaveGroup() {
     appProvider.showSnackbarMessage(
       LocaleKeys.community_groupDetail_details_leaveSuccess.tr(),
@@ -16,7 +15,6 @@ mixin GroupDetailsViewMixin
     context.pop();
   }
 
-  // TODO(community): Firestore'da grubun kapatılması isteği bağlanacak.
   Future<void> closeGroup() async {
     final isApproved = await CloseGroupConfirmSheet.show(context);
     if (isApproved == null || !mounted) return;

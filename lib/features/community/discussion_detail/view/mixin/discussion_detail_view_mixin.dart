@@ -36,8 +36,8 @@ mixin DiscussionDetailViewMixin
     _scrollToLatestEntry();
   }
 
-  /// Yeni gönderi listeye eklendikten (frame çizildikten) sonra en alta
-  /// kaydırır.
+  // Yeni gönderi listeye eklendikten (frame çizildikten) sonra en alta
+  // kaydırır.
   void _scrollToLatestEntry() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!entriesScrollController.hasClients) return;

@@ -20,8 +20,7 @@ import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
 final class StartDiscussionSheet extends ConsumerStatefulWidget {
   const StartDiscussionSheet({super.key});
 
-  /// Kullanıcı tartışmayı başlatırsa oluşturulan [GroupDiscussionModel]'i,
-  /// sheet kapatılırsa `null` döner. Navigasyon kararı çağıran view'a ait.
+  /// Kapatılırsa `null`, başlatılırsa oluşturulan model döner.
   static Future<GroupDiscussionModel?> show(BuildContext context) {
     return showModalBottomSheet<GroupDiscussionModel>(
       context: context,

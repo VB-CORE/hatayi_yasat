@@ -21,8 +21,6 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     isFetching: true,
   );
 
-  // TODO(community): Firestore group_posts koleksiyonu hazır olunca
-  // firebaseService üzerinden gerçek sorguya bağlanacak.
   Future<void> fetchPosts(String groupId) async {
     state = state.copyWith(isFetching: true, isError: false);
     state = state.copyWith(
@@ -43,8 +41,6 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     state = state.copyWith(posts: posts);
   }
 
-  // TODO(community): Firestore'a gerçek gönderi yazımı + Storage görsel
-  // yüklemesi bağlanacak.
   void addPost(String content, {File? imageFile}) {
     final post = GroupPostModel(
       id: 'local-${DateTime.now().microsecondsSinceEpoch}',
@@ -56,8 +52,6 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     state = state.copyWith(posts: [post, ...state.posts]);
   }
 
-  // TODO(community): Gerçek grup üyeliği verisi bağlanınca mock fallback
-  // kaldırılacak.
   GroupMemberModel get _currentMember {
     final authState = ref.read(authViewModelProvider);
     return authState is Authenticated

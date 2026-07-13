@@ -24,7 +24,6 @@ final class GroupModel extends Equatable {
   final DateTime? createdAt;
   final List<GroupMemberModel> admins;
 
-  // TODO(community): Gerçek backend'de üyelik verisinden türeyecek.
   final bool isCurrentUserAdmin;
 
   @override

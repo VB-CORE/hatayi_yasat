@@ -35,17 +35,13 @@ final class _HeaderToolbar extends StatelessWidget {
 final class _BackButton extends StatelessWidget {
   const _BackButton();
 
-  static const double _backgroundOpacity = 0.4;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.allVeryLow(),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.navy900.withValues(
-            alpha: _backgroundOpacity,
-          ),
+          backgroundColor: AppColors.navy900.withValues(alpha: 0.4),
           shape: const CircleBorder(),
           padding: EdgeInsets.zero,
         ),

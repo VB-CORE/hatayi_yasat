@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_state.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/mixin/groups_view_mixin.dart';
@@ -21,11 +20,8 @@ import 'package:lifeclient/product/widget/general/index.dart';
 part 'sub_view/groups_header.dart';
 part 'sub_view/groups_list_builder.dart';
 
-// TODO(community): Firestore groups koleksiyonu bağlanmadan bu ekranın
-// gerçek bir giriş noktası (GroupsRoute) olmayacak — henüz app_router.dart'a
-// eklenmedi, bilerek bekletiliyor. Şu an uygulama içinde hiçbir yerden
-// ulaşılamıyor; test etmek için geçici olarak başka bir route'un build()
-// metoduna `const GroupsView()` yazıp geri almak gerekiyor.
+// TODO(community): Gruplar için ana navigasyon girişi yok, tasarım kararı
+// bekliyor.
 final class GroupsView extends ConsumerStatefulWidget {
   const GroupsView({super.key});
 
@@ -40,19 +36,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
     final state = ref.watch(groupsViewModelProvider);
     return GeneralScaffold(
       floatingActionButton: FloatingActionButton(
-        // TODO(community): Bilerek geçici — GroupsRoute henüz router'a
-        // eklenmediği için (yukarıdaki not) CreateGroupRoute'un `redirect()`
-        // yetki guard'ı bu ekrandan hiç test edilemiyor. Gerçek satır aşağıda
-        // yorumda duruyor; GroupsRoute eklenince bu Navigator.push kaldırılıp
-        // o satır geri açılacak.
-        // onPressed: () => const CreateGroupRoute().push<void>(context),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (context) => const CreateGroupView(),
-            ),
-          );
-        },
+        onPressed: () => const CreateGroupRoute().push<void>(context),
         child: const Icon(AppIcons.add),
       ),
       body: SafeArea(

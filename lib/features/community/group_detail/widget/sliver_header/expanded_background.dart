@@ -5,8 +5,6 @@ final class _ExpandedBackground extends StatelessWidget {
 
   final GroupModel model;
 
-  static const double _scrimOpacity = 0.75;
-
   @override
   Widget build(BuildContext context) {
     return FlexibleSpaceBar(
@@ -22,7 +20,7 @@ final class _ExpandedBackground extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  AppColors.navy900.withValues(alpha: _scrimOpacity),
+                  AppColors.navy900.withValues(alpha: 0.75),
                 ],
               ),
             ),
@@ -80,7 +78,7 @@ final class _GroupTitleArea extends StatelessWidget {
             const EmptyBox(width: WidgetSizes.spacingXxs),
             GeneralContentSmallTitle(
               value: LocaleKeys.community_groupDetail_memberCount.tr(
-                namedArgs: {'count': model.memberCount.toString()},
+                args: [model.memberCount.toString()],
               ),
               color: AppColors.white,
             ),

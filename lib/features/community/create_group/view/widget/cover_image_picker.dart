@@ -23,14 +23,12 @@ final class CoverImagePicker extends StatelessWidget {
   final File? imageFile;
   final VoidCallback onTap;
 
-  static const double _coverHeightFactor = 0.22;
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: CustomRadius.large,
       child: SizedBox(
-        height: context.sized.dynamicHeight(_coverHeightFactor),
+        height: context.sized.dynamicHeight(0.22),
         width: context.sized.width,
         child: Stack(
           fit: StackFit.expand,
@@ -65,13 +63,11 @@ final class _SelectImageButton extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  static const double _elevation = 3;
-
   @override
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.white,
-      elevation: _elevation,
+      elevation: WidgetSizes.spacingXSS,
       borderRadius: CustomRadius.xxLarge,
       child: InkWell(
         onTap: onTap,

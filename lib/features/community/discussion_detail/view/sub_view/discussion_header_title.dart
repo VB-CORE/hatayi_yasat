@@ -18,10 +18,7 @@ final class _DiscussionHeaderTitle extends StatelessWidget {
         ),
         GeneralContentSmallTitle(
           value: LocaleKeys.community_groupDetail_discussions_openedByGroup.tr(
-            namedArgs: {
-              'name': args.discussion.author.maskedDisplayName,
-              'group': args.group.name,
-            },
+            args: [args.discussion.author.maskedDisplayName, args.group.name],
           ),
           color: AppColors.navy300,
           maxLine: AppConstants.kOne,

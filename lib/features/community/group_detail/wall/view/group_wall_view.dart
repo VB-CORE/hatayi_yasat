@@ -75,11 +75,7 @@ final class _GroupWallViewState extends ConsumerState<GroupWallView>
                       .read(groupWallViewModelProvider.notifier)
                       .toggleLike(post.id),
                   // TODO(community): Yorumlar ekranı tasarımı gelince
-                  // bağlanacak — akış, tartışma detayındaki
-                  // DiscussionDetailView'a çok benzeyecek (liste + text-only
-                  // composer), o ekrandaki widget'lar (DiscussionEntryTile,
-                  // DiscussionReplyComposer) buraya da uyarlanabilir; ayrı
-                  // baştan yazmaya gerek olmayabilir.
+                  // bağlanacak.
                   onCommentTap: () {},
                 ),
               ),

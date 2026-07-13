@@ -24,7 +24,7 @@ final class _InfoRows extends StatelessWidget {
           icon: AppIcons.group,
           label: LocaleKeys.community_groupDetail_details_memberCountLabel.tr(),
           value: LocaleKeys.community_groupDetail_memberCount.tr(
-            namedArgs: {'count': model.memberCount.toString()},
+            args: [model.memberCount.toString()],
           ),
         ),
         if (createdAt != null) ...[

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
-/// Soluk renkli zemin üzerinde ikon gösteren yumuşak kutu.
 @immutable
 final class SoftIconBox extends StatelessWidget {
   const SoftIconBox({
@@ -16,7 +15,6 @@ final class SoftIconBox extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
 
-  /// Verilmezse [iconColor] zemin tonu olarak kullanılır.
   final Color? backgroundColor;
   final double backgroundOpacity;
 

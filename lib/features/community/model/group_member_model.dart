@@ -11,8 +11,6 @@ final class GroupMemberModel extends Equatable {
     this.role = GroupMemberRole.member,
   });
 
-  // TODO(community): Firestore üyelik dokümanı bağlanınca mevcut üye oradan
-  // gelecek, bu eşleme kaldırılacak.
   factory GroupMemberModel.fromAppUser(AppUser user) {
     return GroupMemberModel(
       id: user.uid,

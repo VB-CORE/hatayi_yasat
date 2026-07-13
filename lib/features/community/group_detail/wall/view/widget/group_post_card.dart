@@ -65,8 +65,6 @@ final class _PostImage extends StatelessWidget {
 
   final GroupPostModel model;
 
-  static const double _imageHeightFactor = 0.18;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -82,7 +80,7 @@ final class _PostImage extends StatelessWidget {
         child: ClipRRect(
           borderRadius: CustomRadius.medium,
           child: SizedBox(
-            height: context.sized.dynamicHeight(_imageHeightFactor),
+            height: context.sized.dynamicHeight(0.18),
             width: double.infinity,
             child: model.imageFile != null
                 ? Image.file(model.imageFile!, fit: BoxFit.cover)
@@ -175,7 +173,7 @@ final class _PostFooterRow extends StatelessWidget {
               const EmptyBox(width: WidgetSizes.spacingXxs),
               GeneralContentSmallTitle(
                 value: LocaleKeys.community_groupDetail_wall_commentCount.tr(
-                  namedArgs: {'count': model.commentCount.toString()},
+                  args: [model.commentCount.toString()],
                 ),
                 color: AppColors.navy400,
               ),

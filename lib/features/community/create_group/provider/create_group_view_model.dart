@@ -14,8 +14,6 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
   CreateGroupState build() =>
       const CreateGroupState(categories: [], isFetchingCategories: true);
 
-  // TODO(community): Firestore groups_categories koleksiyonu hazır olunca
-  // gerçek sorguya bağlanacak.
   Future<void> fetchCategories() async {
     state = state.copyWith(isFetchingCategories: true);
     state = state.copyWith(
@@ -24,9 +22,6 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
     );
   }
 
-  // TODO(community): Firestore'a gerçek grup oluşturma isteği hazır olunca
-  // bağlanacak — gecikme gerçek network çağrısıyla doğal olarak oluşacak,
-  // bu satır o zaman kaldırılacak.
   Future<bool> createGroup(CreateGroupModel model) async {
     state = state.copyWith(isSubmitting: true);
     await Future<void>.delayed(Durations.medium2);

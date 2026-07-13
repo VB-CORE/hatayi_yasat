@@ -6,10 +6,6 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
-/// Community form ekranlarının tam genişlik coral submit butonu.
-///
-/// Etiket bilinçli olarak sistem fontunda (`inherit: false` Roboto temasını
-/// bypass eder); boyut/ağırlık temadan okunur.
 @immutable
 final class CommunitySubmitButton extends StatefulWidget {
   const CommunitySubmitButton({
@@ -31,8 +27,6 @@ final class CommunitySubmitButton extends StatefulWidget {
 
 final class _CommunitySubmitButtonState extends State<CommunitySubmitButton> {
   bool _isLoading = false;
-
-  static const double _spinnerStrokeWidth = 2;
 
   Future<void> _handleTap() async {
     if (_isLoading) return;
@@ -65,7 +59,7 @@ final class _CommunitySubmitButtonState extends State<CommunitySubmitButton> {
                 width: WidgetSizes.spacingL,
                 height: WidgetSizes.spacingL,
                 child: CircularProgressIndicator(
-                  strokeWidth: _spinnerStrokeWidth,
+                  strokeWidth: WidgetSizes.spacingXSS,
                   color: contentColor,
                 ),
               )

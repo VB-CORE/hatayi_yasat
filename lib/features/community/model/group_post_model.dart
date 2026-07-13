@@ -22,9 +22,6 @@ final class GroupPostModel extends Equatable {
   final DateTime createdAt;
   final String? imageUrl;
 
-  /// Yerel gönderiler için — Firestore Storage entegrasyonuna kadar,
-  /// `GroupWallViewModel.addPost` ile eklenen gönderilerde ağ URL'i yerine
-  /// bu kullanılır.
   final File? imageFile;
   final int likeCount;
   final int commentCount;

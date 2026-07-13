@@ -464,7 +464,7 @@
     "tagline": "COMMUNITY",
     "groups": {
       "title": "Groups",
-      "groupCount": "{count} groups",
+      "groupCount": "{} groups",
       "openGroup": "OPEN GROUP",
       "closedGroup": "CLOSED GROUP",
       "adminBadge": "Admin",
@@ -477,17 +477,17 @@
       "tabDetails": "Details",
       "openGroup": "Open group",
       "closedGroup": "Closed group",
-      "memberCount": "{count} members",
+      "memberCount": "{} members",
       "adminBadge": "ADMIN",
       "wall": {
         "composerHint": "Share something with the group...",
-        "commentCount": "{count} comments",
+        "commentCount": "{} comments",
         "empty": "No posts yet."
       },
       "discussions": {
         "startTitle": "Start a discussion",
         "startSubtitle": "Start a new topic (admins only)",
-        "meta": "{name} started · {time} · {count} entries",
+        "meta": "{} started · {} · {} entries",
         "empty": "No discussions yet.",
         "sheetSubtitle": "Start a topic, say the first word",
         "titleFieldLabel": "Title",
@@ -496,7 +496,7 @@
         "messageFieldHint": "Why did you open this? What should be discussed?",
         "startButton": "Start discussion",
         "anonymityBanner": "Names hidden · text posts only · no live chat",
-        "openedByGroup": "{name} started · {group}",
+        "openedByGroup": "{} started · {}",
         "replyComposerHint": "Add an entry to this topic..."
       },
       "details": {

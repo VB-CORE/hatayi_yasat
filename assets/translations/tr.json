@@ -464,7 +464,7 @@
     "tagline": "TOPLULUK",
     "groups": {
       "title": "Gruplar",
-      "groupCount": "{count} grup",
+      "groupCount": "{} grup",
       "openGroup": "AÇIK GRUP",
       "closedGroup": "KAPALI GRUP",
       "adminBadge": "Yönetici",
@@ -477,17 +477,17 @@
       "tabDetails": "Detaylar",
       "openGroup": "Açık grup",
       "closedGroup": "Kapalı grup",
-      "memberCount": "{count} üye",
+      "memberCount": "{} üye",
       "adminBadge": "YÖNETİCİ",
       "wall": {
         "composerHint": "Grupta bir şeyler paylaş...",
-        "commentCount": "{count} yorum",
+        "commentCount": "{} yorum",
         "empty": "Henüz gönderi yok."
       },
       "discussions": {
         "startTitle": "Tartışma aç",
         "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
-        "meta": "{name} açtı · {time} · {count} gönderi",
+        "meta": "{} açtı · {} · {} gönderi",
         "empty": "Henüz tartışma yok.",
         "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
         "titleFieldLabel": "Başlık",
@@ -496,7 +496,7 @@
         "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
         "startButton": "Tartışmayı başlat",
         "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
-        "openedByGroup": "{name} açtı · {group}",
+        "openedByGroup": "{} açtı · {}",
         "replyComposerHint": "Bu konuya gönderi ekle..."
       },
       "details": {

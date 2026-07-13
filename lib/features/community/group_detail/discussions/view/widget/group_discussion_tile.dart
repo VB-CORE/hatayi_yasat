@@ -23,8 +23,6 @@ final class GroupDiscussionTile extends StatelessWidget {
   final GroupDiscussionModel model;
   final VoidCallback onTap;
 
-  static const double _iconBoxOpacity = 0.08;
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,7 +39,7 @@ final class GroupDiscussionTile extends StatelessWidget {
                 icon: AppIcons.forum,
                 iconColor: AppColors.navy400,
                 backgroundColor: AppColors.navy700,
-                backgroundOpacity: _iconBoxOpacity,
+                backgroundOpacity: 0.08,
               ),
               const EmptyBox(width: WidgetSizes.spacingS),
               Expanded(
@@ -57,11 +55,11 @@ final class GroupDiscussionTile extends StatelessWidget {
                     GeneralContentSmallTitle(
                       value: LocaleKeys.community_groupDetail_discussions_meta
                           .tr(
-                            namedArgs: {
-                              'name': model.author.maskedDisplayName,
-                              'time': model.createdAt.timeAgo,
-                              'count': model.entryCount.toString(),
-                            },
+                            args: [
+                              model.author.maskedDisplayName,
+                              model.createdAt.timeAgo,
+                              model.entryCount.toString(),
+                            ],
                           ),
                       color: AppColors.navy300,
                       maxLine: AppConstants.kOne,

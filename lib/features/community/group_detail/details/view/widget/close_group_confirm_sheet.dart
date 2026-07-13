@@ -10,7 +10,6 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-/// Grubu kapatma onayı — geri alınamaz aksiyon için bottom sheet.
 @immutable
 final class CloseGroupConfirmSheet extends StatelessWidget {
   const CloseGroupConfirmSheet({super.key});

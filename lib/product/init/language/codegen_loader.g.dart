@@ -474,7 +474,7 @@ class CodegenLoader extends AssetLoader {
       "tagline": "TOPLULUK",
       "groups": {
         "title": "Gruplar",
-        "groupCount": "{count} grup",
+        "groupCount": "{} grup",
         "openGroup": "AÇIK GRUP",
         "closedGroup": "KAPALI GRUP",
         "adminBadge": "Yönetici",
@@ -488,17 +488,17 @@ class CodegenLoader extends AssetLoader {
         "tabDetails": "Detaylar",
         "openGroup": "Açık grup",
         "closedGroup": "Kapalı grup",
-        "memberCount": "{count} üye",
+        "memberCount": "{} üye",
         "adminBadge": "YÖNETİCİ",
         "wall": {
           "composerHint": "Grupta bir şeyler paylaş...",
-          "commentCount": "{count} yorum",
+          "commentCount": "{} yorum",
           "empty": "Henüz gönderi yok.",
         },
         "discussions": {
           "startTitle": "Tartışma aç",
           "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
-          "meta": "{name} açtı · {time} · {count} gönderi",
+          "meta": "{} açtı · {} · {} gönderi",
           "empty": "Henüz tartışma yok.",
           "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
           "titleFieldLabel": "Başlık",
@@ -508,7 +508,7 @@ class CodegenLoader extends AssetLoader {
           "startButton": "Tartışmayı başlat",
           "anonymityBanner":
               "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
-          "openedByGroup": "{name} açtı · {group}",
+          "openedByGroup": "{} açtı · {}",
           "replyComposerHint": "Bu konuya gönderi ekle...",
         },
         "details": {
@@ -1035,7 +1035,7 @@ class CodegenLoader extends AssetLoader {
       "tagline": "COMMUNITY",
       "groups": {
         "title": "Groups",
-        "groupCount": "{count} groups",
+        "groupCount": "{} groups",
         "openGroup": "OPEN GROUP",
         "closedGroup": "CLOSED GROUP",
         "adminBadge": "Admin",
@@ -1049,17 +1049,17 @@ class CodegenLoader extends AssetLoader {
         "tabDetails": "Details",
         "openGroup": "Open group",
         "closedGroup": "Closed group",
-        "memberCount": "{count} members",
+        "memberCount": "{} members",
         "adminBadge": "ADMIN",
         "wall": {
           "composerHint": "Share something with the group...",
-          "commentCount": "{count} comments",
+          "commentCount": "{} comments",
           "empty": "No posts yet.",
         },
         "discussions": {
           "startTitle": "Start a discussion",
           "startSubtitle": "Start a new topic (admins only)",
-          "meta": "{name} started · {time} · {count} entries",
+          "meta": "{} started · {} · {} entries",
           "empty": "No discussions yet.",
           "sheetSubtitle": "Start a topic, say the first word",
           "titleFieldLabel": "Title",
@@ -1069,7 +1069,7 @@ class CodegenLoader extends AssetLoader {
               "Why did you open this? What should be discussed?",
           "startButton": "Start discussion",
           "anonymityBanner": "Names hidden · text posts only · no live chat",
-          "openedByGroup": "{name} started · {group}",
+          "openedByGroup": "{} started · {}",
           "replyComposerHint": "Add an entry to this topic...",
         },
         "details": {

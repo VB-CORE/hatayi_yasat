@@ -16,7 +16,6 @@ final class GroupMemberAvatar extends StatelessWidget {
   final String displayName;
   final Color backgroundColor;
 
-  /// Tartışmalar gibi anonimleştirilmiş bağlamlarda tek harf göstermek için.
   final bool singleLetter;
 
   @override

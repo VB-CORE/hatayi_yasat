@@ -16,8 +16,6 @@ final class GroupDiscussionModel extends Equatable {
   final GroupMemberModel author;
   final DateTime createdAt;
 
-  /// Mock aşamasında tartışmanın gönderileri — Firestore'a geçince
-  /// `DiscussionDetailViewModel` kendi sorgusunu yapacak, bu alan kalkacak.
   final List<GroupDiscussionEntryModel> entries;
 
   int get entryCount => entries.length;

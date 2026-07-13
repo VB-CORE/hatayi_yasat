@@ -7,18 +7,10 @@ import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 
-/// Community feature'ının TÜM mock verisi — akış testi için tek kaynak.
-///
-/// Bütün `GroupsViewModel`/`GroupWallViewModel`/`GroupDiscussionsViewModel`/
-/// `DiscussionDetailViewModel`/`CreateGroupViewModel` bu class'tan okuyor.
-// TODO(community): Firestore koleksiyonları (groups, group_posts,
-// group_discussions, groups_categories, üyelikler) bağlanınca bu dosya
-// komple silinecek; her `static` alan kendi ViewModel'indeki gerçek
-// sorguyla değişecek.
+/// Community feature'ının tek mock veri kaynağı.
+// TODO(community): Firestore bağlanınca bu dosya silinecek.
 final class CommunityMockData {
   const CommunityMockData._();
-
-  // ── Üyeler (tek tanım, her yerden referans) ──
 
   static const saim = GroupMemberModel(
     id: 'mock-member-1',
@@ -74,14 +66,11 @@ final class CommunityMockData {
     username: 'yaseminercan',
   );
 
-  /// Auth akışı bağlı değilken oturumdaki kullanıcı yerine geçer.
   static const currentMember = GroupMemberModel(
     id: 'mock-member-current',
     displayName: 'Hatay Gönüllüsü',
     username: 'hataygonullusu',
   );
-
-  // ── Kategoriler ──
 
   static const categories = [
     GroupCategoryModel(id: 'solidarity', name: 'Dayanışma'),
@@ -92,13 +81,8 @@ final class CommunityMockData {
     GroupCategoryModel(id: 'culture', name: 'Kültür'),
   ];
 
-  // ── Gruplar (her biri farklı senaryoyu test eder) ──
-
-  /// - mock-group-1: dolu duvar + dolu tartışmalar (tasarım senaryosu)
-  /// - mock-group-2: az içerik
-  /// - mock-group-3: kapaksız + BOŞ duvar/tartışma (boş durum senaryosu)
-  /// - mock-group-4: kullanıcının yönetici olduğu grup (admin senaryosu)
-  /// - mock-group-5: kapalı + kapaksız grup
+  /// group-1: dolu, group-2: az içerik, group-3: boş, group-4: admin,
+  /// group-5: kapalı.
   static List<GroupModel> get groups => [
     GroupModel(
       id: 'mock-group-1',
@@ -146,8 +130,6 @@ final class CommunityMockData {
       admins: const [hasan],
     ),
   ];
-
-  // ── Duvar gönderileri (grup bazlı) ──
 
   static List<GroupPostModel> postsOf(String groupId) => switch (groupId) {
     'mock-group-1' => [
@@ -208,8 +190,6 @@ final class CommunityMockData {
     ],
     _ => const [],
   };
-
-  // ── Tartışmalar (grup bazlı) ──
 
   static List<GroupDiscussionModel> discussionsOf(String groupId) =>
       switch (groupId) {

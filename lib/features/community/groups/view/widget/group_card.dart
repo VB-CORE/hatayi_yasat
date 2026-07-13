@@ -25,12 +25,10 @@ final class GroupCard extends StatelessWidget {
   final GroupModel model;
   final VoidCallback onTap;
 
-  static const double _cardHeightFactor = 0.155;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sized.dynamicHeight(_cardHeightFactor),
+      height: context.sized.dynamicHeight(0.155),
       child: Card(
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
@@ -59,12 +57,10 @@ final class _CoverImage extends StatelessWidget {
 
   final GroupModel model;
 
-  static const double _coverWidthFactor = 0.28;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: context.sized.dynamicWidth(_coverWidthFactor),
+      width: context.sized.dynamicWidth(0.28),
       height: double.infinity,
       child: GroupCoverImage(
         groupId: model.id,

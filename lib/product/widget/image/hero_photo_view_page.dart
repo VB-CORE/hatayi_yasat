@@ -22,10 +22,6 @@ final class HeroPhotoViewPage extends StatelessWidget {
   final String? imageUrl;
   final File? imageFile;
 
-  static const double _maxScale = 3;
-  static const double _minScale = 1;
-  static const double _barrierOpacity = 0.9;
-
   static Future<void> show(
     BuildContext context, {
     required Object heroTag,
@@ -35,7 +31,7 @@ final class HeroPhotoViewPage extends StatelessWidget {
     return Navigator.of(context).push(
       PageRouteBuilder<void>(
         opaque: false,
-        barrierColor: AppColors.navy900.withValues(alpha: _barrierOpacity),
+        barrierColor: AppColors.navy900,
         pageBuilder: (context, animation, secondaryAnimation) =>
             HeroPhotoViewPage(
               heroTag: heroTag,
@@ -61,8 +57,6 @@ final class HeroPhotoViewPage extends StatelessWidget {
                 child: Hero(
                   tag: heroTag,
                   child: InteractiveViewer(
-                    maxScale: _maxScale,
-                    minScale: _minScale,
                     child: imageFile != null
                         ? Image.file(imageFile!)
                         : CustomNetworkImage(imageUrl: imageUrl),

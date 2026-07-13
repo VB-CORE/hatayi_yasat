@@ -11,8 +11,6 @@ final class GroupsViewModel extends _$GroupsViewModel
   @override
   GroupsState build() => const GroupsState(groups: [], isFetching: true);
 
-  // TODO(community): Firestore groups koleksiyonu hazır olunca
-  // firebaseService üzerinden gerçek sorguya bağlanacak.
   Future<void> fetchGroups() async {
     state = state.copyWith(isFetching: true, isError: false);
     state = state.copyWith(
