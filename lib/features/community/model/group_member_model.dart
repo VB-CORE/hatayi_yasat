@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 final class GroupMemberModel extends Equatable {
   const GroupMemberModel({
@@ -30,7 +31,7 @@ final class GroupMemberModel extends Equatable {
   String get maskedDisplayName {
     return displayName
         .trim()
-        .split(RegExp(r'\s+'))
+        .split(RegexTypes.whitespace)
         .where((word) => word.isNotEmpty)
         .map(
           (word) =>
