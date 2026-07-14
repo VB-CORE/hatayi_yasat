@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_comment_list_view_mixin.dart';
@@ -45,22 +47,24 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
         widget.placeId,
       ).select((state) => state.hasVoted),
     );
+    final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
+    if (state.isLoading) {
+      return const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+    }
     return Column(
       children: [
-        if (widget.isCommentEnabled)
-          _CommentListBody(
-            placeId: widget.placeId,
+        if (widget.isCommentEnabled) _CommentListBody(placeId: widget.placeId),
+        if (widget.isCommentEnabled && !hasVoted)
+          Padding(
+            padding: const PagePadding.vertical12Symmetric(),
+            child: GeneralButtonV2.active(
+              label: _buttonLabel(hasVoted),
+              isBorderless: widget.isCommentEnabled,
+              action: () => onAddCommentPressed(hasVoted: hasVoted),
+            ),
           ),
-
-        Padding(
-          padding: const PagePadding.vertical12Symmetric(),
-          child: GeneralButtonV2.active(
-            label: _buttonLabel(hasVoted),
-            isBorderless: widget.isCommentEnabled,
-            isEnabled: widget.isCommentEnabled && !hasVoted,
-            action: () => onAddCommentPressed(hasVoted: hasVoted),
-          ),
-        ),
       ],
     );
   }
@@ -81,11 +85,6 @@ final class _CommentListBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(rateCommunityViewModelProvider(placeId));
-    if (state.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
     if (state.comments.isEmpty) {
       return GeneralContentSubTitle(
         value: LocaleKeys.rate_noCommentsYet.tr(),
@@ -95,26 +94,38 @@ final class _CommentListBody extends ConsumerWidget {
     final notifier = ref.read(
       rateCommunityViewModelProvider(placeId).notifier,
     );
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: state.comments.length,
-      itemBuilder: (context, index) {
-        final rate = state.comments[index];
-        final isOwn = state.vote?.userId == rate.userId;
-        final canModify = isOwn && !state.isProcessing;
-        return _RateCommentCard(
-          rateModel: rate,
-          onEdit: canModify
-              ? () => RateSheetFactory.showRateCard(
-                  context,
-                  placeId: placeId,
-                  initialComment: rate.comment,
-                )
-              : null,
-          onDelete: canModify ? notifier.deleteVote : null,
-        );
-      },
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+      ),
+      clipBehavior: .hardEdge,
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: .zero,
+        itemCount: state.comments.length,
+        separatorBuilder: (context, index) => const Divider(
+          indent: AppSpacing.md,
+          height: 1,
+        ),
+        itemBuilder: (context, index) {
+          final rate = state.comments[index];
+          final isOwn = state.vote?.userId == rate.userId;
+          final canModify = isOwn && !state.isProcessing;
+          return _RateCommentCard(
+            rateModel: rate,
+            onEdit: canModify
+                ? () => RateSheetFactory.showRateCard(
+                    context,
+                    placeId: placeId,
+                    initialComment: rate.comment,
+                  )
+                : null,
+            onDelete: canModify ? notifier.deleteVote : null,
+          );
+        },
+      ),
     );
   }
 }

@@ -16,7 +16,6 @@ final class _RateCommentCard extends StatelessWidget {
     final comment = rateModel.comment;
     return Container(
       padding: const PagePadding.generalCardAll(),
-      margin: const PagePadding.verticalLowSymmetric(),
       decoration: const BoxDecoration(
         color: AppColors.surface,
       ),
@@ -33,7 +32,7 @@ final class _RateCommentCard extends StatelessWidget {
               radius: CustomCircleRadius.medium,
               backgroundColor: AppColors.coral,
               child: GeneralContentSmallTitle(
-                value: rateModel.userName.initials,
+                value: rateModel.userName.initials(),
                 color: AppColors.white,
                 fontWeight: FontWeight.w600,
               ),

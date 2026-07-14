@@ -201,7 +201,9 @@
     "owner": "Business Owner",
     "description": "Business Description",
     "address": "Address Description",
+    "addressLabel": "Address",
     "phoneNumber": "Phone Number",
+    "phoneLabel": "Phone",
     "district": "District",
     "photos": "Photos",
     "call": "Call",
@@ -209,7 +211,14 @@
     "workingHours": "Working Hours",
     "openCloseHours": "Opening and Closing Hours",
     "nowOpen": "Now Open",
-    "nowClose": "Now Close"
+    "nowClose": "Now Close",
+    "tabAbout": "About",
+    "tabComments": "Comments ({})",
+    "aboutTitle": "About this place",
+    "contactTitle": "Contact information",
+    "makeComment": "Write a review",
+    "noDescription": "No information available about this place",
+    "reviewCount": "{} reviews"
   },
   "campaignDetailsView": {
     "publisher": "Publisher (Person or Institution Name)",

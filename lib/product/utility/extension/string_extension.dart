@@ -19,14 +19,14 @@ extension StringExtension on String {
       .trim();
 
   /// Avatar fallback for names without a photo: the first letters of up to
-  /// two words, upper-cased (e.g. 'Veli Bacik' -> 'VB').
+  /// [take] words (default 2), upper-cased (e.g. 'Veli Bacik' -> 'VB').
   /// Returns '?' when the string is blank.
-  String get initials {
+  String initials({int take = 2}) {
     final parts = trim()
         .split(RegexTypes.whitespace)
         .where((p) => p.isNotEmpty);
     if (parts.isEmpty) return '?';
-    return parts.map((p) => p[0].toUpperCase()).take(2).join();
+    return parts.map((p) => p[0].toUpperCase()).take(take).join();
   }
 
   String get withHttps {

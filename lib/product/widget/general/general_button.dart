@@ -8,6 +8,7 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 /// General button for all project
 /// For async action use async constructor
@@ -32,6 +33,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required String label,
     bool isEnabled = true,
     bool isBorderless = false,
+    IconData? icon,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -41,6 +43,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
+      icon: icon,
     );
   }
 
@@ -49,6 +52,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required String label,
     bool isEnabled = true,
     bool isBorderless = false,
+    IconData? icon,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -58,6 +62,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       isEnabled: isEnabled,
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
+      icon: icon,
     );
   }
   const GeneralButtonV2._({
@@ -66,6 +71,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     required this.isAsync,
     this.isEnabled = true,
     this.isBorderless = false,
+    this.icon,
     this.buttonPadding = const PagePadding.vertical12Symmetric(),
   });
 
@@ -74,6 +80,7 @@ final class GeneralButtonV2 extends StatefulWidget {
   final bool isAsync;
   final bool isEnabled;
   final bool isBorderless;
+  final IconData? icon;
   final EdgeInsets buttonPadding;
   @override
   State<GeneralButtonV2> createState() => _GeneralButtonV2State();
@@ -108,7 +115,9 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
           child: ValueListenableBuilder(
             valueListenable: _isLoading,
             builder: (context, value, _) {
-              if (!value) return _Child(label: widget.label);
+              if (!value) {
+                return _Child(label: widget.label, icon: widget.icon);
+              }
               return const _LoadingWidget();
             },
           ),
@@ -132,20 +141,30 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
 class _Child extends StatelessWidget {
   const _Child({
     required this.label,
+    this.icon,
   });
 
   final String label;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        label,
-        style: context.general.textTheme.titleMedium?.copyWith(
-          color: context.general.colorScheme.surface,
-          fontWeight: FontWeight.w900,
+    final contentColor = context.general.colorScheme.surface;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (icon != null) ...[
+          Icon(icon, color: contentColor),
+          const EmptyBox.smallWidth(),
+        ],
+        Text(
+          label,
+          style: context.general.textTheme.titleMedium?.copyWith(
+            color: contentColor,
+            fontWeight: FontWeight.w900,
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -14,17 +14,19 @@ final class CustomNetworkImage extends StatelessWidget {
     this.imageUrl,
     this.fit,
     this.height,
+    this.width,
     this.placeholder,
   });
 
   final String? imageUrl;
+  final double? width;
   final BoxFit? fit;
   final double? height;
   final Widget? placeholder;
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl == null) {
+    if (imageUrl.ext.isNullOrEmpty) {
       return ColoredBox(
         color: context.general.colorScheme.onPrimaryContainer,
         child: IconWithText(
@@ -36,7 +38,7 @@ final class CustomNetworkImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: imageUrl!,
       fit: fit,
-      width: context.sized.width,
+      width: width ?? context.sized.width,
       height: height,
       placeholder: (context, url) {
         if (placeholder != null) {

@@ -5,12 +5,12 @@ import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
-import 'package:lifeclient/features/details/view/place_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
+import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
@@ -94,7 +94,7 @@ final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
-    model: $extra,
+    store: $extra,
     id: id,
   );
 }
