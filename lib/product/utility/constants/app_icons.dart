@@ -54,6 +54,7 @@ final class AppIcons {
   static const IconData location = Icons.location_on;
   static const IconData check = Icons.check_outlined;
   static const IconData clear = Icons.clear_outlined;
+  static const IconData hourglass = Icons.hourglass_empty_outlined;
 
   static const IconData filter = Icons.tune_outlined;
   static const IconData community = Icons.people;

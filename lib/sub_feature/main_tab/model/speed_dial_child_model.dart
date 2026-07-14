@@ -26,8 +26,8 @@ final class SpeedDialChildModelList {
   void _fillItems(BuildContext context) {
     _speedDialChildItems = [
       SpeedDialChildModel(
-        location: const PlaceRequestFormRoute().location,
-        title: LocaleKeys.requestCompany_title.tr(context: context),
+        location: const MerchantApplicationViewRoute().location,
+        title: LocaleKeys.merchantApplication_headerLabel.tr(context: context),
       ),
       SpeedDialChildModel(
         location: const ProjectRequestFormRoute().location,

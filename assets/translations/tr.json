@@ -131,6 +131,37 @@
     "removedFavorite": "Favorilerden kaldırıldı",
     "copiedToClipboard": "Panoya kopyalandı"
   },
+  "merchantApplication": {
+    "headerLabel": "Esnaf Başvurusu",
+    "photosTitle": "Fotoğraflar",
+    "photosHint": "En fazla 5 fotoğraf — kapak ilki olur",
+    "commentToggle": "İşletme sayfamda yorumlara izin ver",
+    "documentLabel": "Aidiyet Belgesi",
+    "documentHint": "Aidiyet belgenizi yükleyiniz",
+    "status": {
+      "title": "Esnaf Başvurum",
+      "reviewing": "İnceleniyor",
+      "headline": "Başvurun bizde.\nYakında sana döneceğiz.",
+      "description": "Esnaf başvurun ekibimiz tarafından 1-3 iş günü içinde değerlendiriliyor. Onaylandığında bildirim alacaksın.",
+      "submitted": "Başvuru gönderildi",
+      "documentReview": "Belge incelemesi",
+      "documentReviewHint": "Şu anda burada — belgeler doğrulanıyor",
+      "approval": "Onay & rozet",
+      "approvalHint": "Mekanın yayınlanır",
+      "support": "Sorun mu var?",
+      "supportAction": "Destek ekibiyle konuş"
+    },
+    "modeExisting": "Mevcut firmalardan seç",
+    "modeNew": "Yeni firma ekle",
+    "selectCompany": "Firma seçiniz",
+    "next": "Devam et",
+    "back": "Geri",
+    "submit": "Başvuruyu Gönder",
+    "steps": {
+      "company": "Firma",
+      "owner": "Yetkili Bilgisi"
+    }
+  },
   "rate": {
     "trustQuestion": "Bu mekana güveniyor musun?",
     "singleVoteHint": "Tek bir oy hakkın var.",

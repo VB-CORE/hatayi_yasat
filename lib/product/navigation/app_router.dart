@@ -18,6 +18,8 @@ import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_s
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_status_view.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_view.dart';
 import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
@@ -61,6 +63,8 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
 
     // Forms
     PlaceRequestFormRoute.route,
+    MerchantApplicationViewRoute.route,
+    MerchantApplicationStatusRoute.route,
     ProjectRequestFormRoute.route,
     ScholarShipRequestFormRoute.route,
 
@@ -141,6 +145,34 @@ final class PlaceRequestFormRoute extends GoRouteData
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const PlaceRequestForm();
+}
+
+final class MerchantApplicationViewRoute extends GoRouteData
+    with $MerchantApplicationViewRoute {
+  const MerchantApplicationViewRoute();
+
+  static const route = TypedGoRoute<MerchantApplicationViewRoute>(
+    path: 'merchantApplicationView',
+    name: 'Merchant Application View',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MerchantApplicationView();
+}
+
+final class MerchantApplicationStatusRoute extends GoRouteData
+    with $MerchantApplicationStatusRoute {
+  const MerchantApplicationStatusRoute();
+
+  static const route = TypedGoRoute<MerchantApplicationStatusRoute>(
+    path: 'merchantApplicationStatus',
+    name: 'Merchant Application Status',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MerchantApplicationStatusView();
 }
 
 final class ProjectRequestFormRoute extends GoRouteData

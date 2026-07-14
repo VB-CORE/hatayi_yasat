@@ -131,6 +131,37 @@
     "removedFavorite": "Removed from favorites",
     "copiedToClipboard": "Copied to clipboard"
   },
+  "merchantApplication": {
+    "headerLabel": "Merchant Application",
+    "photosTitle": "Photos",
+    "photosHint": "Up to 5 photos — first one is the cover",
+    "commentToggle": "Allow comments on my business page",
+    "documentLabel": "Ownership Document",
+    "documentHint": "Upload your ownership document",
+    "status": {
+      "title": "My Merchant Application",
+      "reviewing": "In review",
+      "headline": "We got your application.\nWe'll get back to you soon.",
+      "description": "Your merchant application is reviewed by our team within 1-3 business days. You'll get a notification once it is approved.",
+      "submitted": "Application submitted",
+      "documentReview": "Document review",
+      "documentReviewHint": "Currently here — verifying documents",
+      "approval": "Approval & badge",
+      "approvalHint": "Your place goes live",
+      "support": "Having trouble?",
+      "supportAction": "Talk to support"
+    },
+    "modeExisting": "Select existing business",
+    "modeNew": "Add new business",
+    "selectCompany": "Select a business",
+    "next": "Continue",
+    "back": "Back",
+    "submit": "Submit Application",
+    "steps": {
+      "company": "Business",
+      "owner": "Owner Info"
+    }
+  },
   "rate": {
     "trustQuestion": "Do you trust this place?",
     "singleVoteHint": "You only have one vote.",

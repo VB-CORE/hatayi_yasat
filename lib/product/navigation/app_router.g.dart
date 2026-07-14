@@ -156,6 +156,16 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       factory: $PlaceRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
+      path: 'merchantApplicationView',
+      name: 'Merchant Application View',
+      factory: $MerchantApplicationViewRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'merchantApplicationStatus',
+      name: 'Merchant Application Status',
+      factory: $MerchantApplicationStatusRoute._fromState,
+    ),
+    GoRouteData.$route(
       path: 'projectRequestForm',
       name: 'Project Request Form',
       factory: $ProjectRequestFormRoute._fromState,
@@ -546,6 +556,49 @@ mixin $PlaceRequestFormRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/placeRequestForm');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MerchantApplicationViewRoute on GoRouteData {
+  static MerchantApplicationViewRoute _fromState(GoRouterState state) =>
+      const MerchantApplicationViewRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/merchantApplicationView');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $MerchantApplicationStatusRoute on GoRouteData {
+  static MerchantApplicationStatusRoute _fromState(GoRouterState state) =>
+      const MerchantApplicationStatusRoute();
+
+  @override
+  String get location =>
+      GoRouteData.$location('/main/merchantApplicationStatus');
 
   @override
   void go(BuildContext context) => context.go(location);
