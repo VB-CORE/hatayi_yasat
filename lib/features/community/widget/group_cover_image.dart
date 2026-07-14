@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_gradients.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 
 @immutable
@@ -16,14 +16,7 @@ final class GroupCoverImage extends StatelessWidget {
   // hashCode kararlı olmadığı için karakter kodlarından türetilen indeks.
   int get _gradientIndex =>
       groupId.codeUnits.fold<int>(0, (sum, unit) => sum + unit) %
-      _fallbackGradients.length;
-
-  static const List<List<Color>> _fallbackGradients = [
-    [AppColors.coral300, AppColors.coral700],
-    [AppColors.teal300, AppColors.navy500],
-    [AppColors.olive300, AppColors.olive700],
-    [AppColors.navy300, AppColors.teal600],
-  ];
+      AppGradients.coverFallbacks.length;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +27,7 @@ final class GroupCoverImage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: _fallbackGradients[_gradientIndex],
+            colors: AppGradients.coverFallbacks[_gradientIndex],
           ),
         ),
       );
