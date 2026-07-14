@@ -26,7 +26,7 @@ final class CustomNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl == null) {
+    if (imageUrl.ext.isNullOrEmpty) {
       return ColoredBox(
         color: context.general.colorScheme.onPrimaryContainer,
         child: IconWithText(
