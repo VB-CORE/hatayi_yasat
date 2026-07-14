@@ -115,7 +115,10 @@ final class ApplicationTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          elevation: 0,
+          shadowColor: Colors.transparent,
           backgroundColor: AppColors.coral,
+          foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
         ),
       ),

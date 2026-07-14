@@ -109,6 +109,8 @@ dependencies:
   hugeicons: ^1.1.5
   material_symbols_icons: ^4.2951.0
   qr_flutter: ^4.1.0
+  shimmer_animation: ^2.2.2+1
+  bounceable: ^1.0.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0

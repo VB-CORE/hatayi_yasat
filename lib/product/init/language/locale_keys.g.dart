@@ -157,7 +157,9 @@ abstract class  LocaleKeys {
   static const placeDetailView_owner = 'placeDetailView.owner';
   static const placeDetailView_description = 'placeDetailView.description';
   static const placeDetailView_address = 'placeDetailView.address';
+  static const placeDetailView_addressLabel = 'placeDetailView.addressLabel';
   static const placeDetailView_phoneNumber = 'placeDetailView.phoneNumber';
+  static const placeDetailView_phoneLabel = 'placeDetailView.phoneLabel';
   static const placeDetailView_district = 'placeDetailView.district';
   static const placeDetailView_photos = 'placeDetailView.photos';
   static const placeDetailView_call = 'placeDetailView.call';
@@ -166,6 +168,13 @@ abstract class  LocaleKeys {
   static const placeDetailView_openCloseHours = 'placeDetailView.openCloseHours';
   static const placeDetailView_nowOpen = 'placeDetailView.nowOpen';
   static const placeDetailView_nowClose = 'placeDetailView.nowClose';
+  static const placeDetailView_tabAbout = 'placeDetailView.tabAbout';
+  static const placeDetailView_tabComments = 'placeDetailView.tabComments';
+  static const placeDetailView_aboutTitle = 'placeDetailView.aboutTitle';
+  static const placeDetailView_contactTitle = 'placeDetailView.contactTitle';
+  static const placeDetailView_makeComment = 'placeDetailView.makeComment';
+  static const placeDetailView_noDescription = 'placeDetailView.noDescription';
+  static const placeDetailView_reviewCount = 'placeDetailView.reviewCount';
   static const placeDetailView = 'placeDetailView';
   static const campaignDetailsView_publisher = 'campaignDetailsView.publisher';
   static const campaignDetailsView_topic = 'campaignDetailsView.topic';
