@@ -18,6 +18,7 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
     final hasPhone = store.phone.ext.isNotNullOrNoEmpty;
     final hasOwner = store.owner.ext.isNotNullOrNoEmpty;
     final hasTown = town.ext.isNotNullOrNoEmpty;
+    final hasImage = store.images.firstOrNull.ext.isNotNullOrNoEmpty;
 
     return Container(
       width: double.infinity,
@@ -36,14 +37,15 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
           Row(
             spacing: AppSpacing.sm,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(AppRadius.md),
-                child: CustomImageWithViewDialog(
-                  image: store.images.first,
-                  height: context.sized.dynamicWidth(.15),
-                  width: context.sized.dynamicWidth(.15),
+              if (hasImage)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                  child: CustomImageWithViewDialog(
+                    image: store.images.firstOrNull,
+                    height: context.sized.dynamicWidth(.15),
+                    width: context.sized.dynamicWidth(.15),
+                  ),
                 ),
-              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
