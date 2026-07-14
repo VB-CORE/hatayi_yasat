@@ -31,6 +31,7 @@ class _MultipleSelectButtonState extends State<MultipleSelectButton>
     return SizedBox(
       width: context.general.mediaSize.width,
       child: ProductScrollBar(
+        controller: scrollController,
         child: ValueListenableBuilder(
           valueListenable: selectedItemsNotifier,
           builder: (context, selectedItems, _) {
