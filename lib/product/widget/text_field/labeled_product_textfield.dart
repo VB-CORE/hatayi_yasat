@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
-import 'package:lifeclient/product/utility/constants/string_constants.dart';
 import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
+import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_label.dart';
 
 class LabeledProductTextField extends StatelessWidget {
   const LabeledProductTextField({
@@ -36,7 +36,7 @@ class LabeledProductTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _Label(labelText: labelText, isRequired: isRequired),
+        CustomTextFieldLabel(labelText: labelText, isRequired: isRequired),
         context.sized.emptySizedHeightBoxLow,
         ProductTextField(
           hintText: hintText,
@@ -50,36 +50,6 @@ class LabeledProductTextField extends StatelessWidget {
           suffixIcon: suffixIcon,
         ),
       ],
-    );
-  }
-}
-
-class _Label extends StatelessWidget {
-  const _Label({
-    required this.labelText,
-    required this.isRequired,
-  });
-
-  final String labelText;
-  final bool isRequired;
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: '$labelText ',
-        style: context.general.textTheme.labelLarge?.copyWith(
-          color: context.general.colorScheme.onSurface,
-        ),
-        children: [
-          TextSpan(
-            text: isRequired ? StringConstants.asteriks : '',
-            style: context.general.textTheme.bodyLarge?.copyWith(
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

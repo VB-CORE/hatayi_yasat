@@ -65,7 +65,16 @@ final class AppIcons {
 
   static const IconData tree = Icons.forest_outlined;
 
-  static const IconData comment = Icons.comment_outlined;
-  static const IconData arrowBack = Icons.arrow_back_rounded;
   static const IconData openInNew = Icons.open_in_new_rounded;
+  // Community related icons
+  static const IconData globe = Icons.public;
+  static const IconData lockPerson = Icons.lock_person;
+  static const IconData visibilityOff = Icons.visibility_off_outlined;
+  static const IconData personAdd = Icons.person_add_alt_1;
+  static const IconData arrowBack = Icons.arrow_back;
+  static const IconData gridView = Icons.grid_view_outlined;
+  static const IconData forum = Icons.forum_outlined;
+  static const IconData comment = Icons.mode_comment_outlined;
+  static const IconData exitGroup = Icons.logout_outlined;
+  static const IconData send = Icons.send_rounded;
 }
