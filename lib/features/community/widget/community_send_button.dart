@@ -12,21 +12,17 @@ final class CommunitySendButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEnabled = onTap != null;
     return Padding(
       padding: const PagePadding.onlyLeft(),
-      child: InkWell(
-        onTap: onTap,
-        customBorder: const CircleBorder(),
-        child: CircleAvatar(
-          radius: AppIconSizes.medium,
-          backgroundColor: isEnabled ? AppColors.coral : AppColors.ink100,
-          child: Icon(
-            AppIcons.send,
-            size: AppIconSizes.xMedium,
-            color: isEnabled ? AppColors.white : AppColors.ink400,
-          ),
+      child: IconButton.filled(
+        onPressed: onTap,
+        style: IconButton.styleFrom(
+          backgroundColor: AppColors.coral,
+          disabledBackgroundColor: AppColors.ink100,
+          foregroundColor: AppColors.white,
+          disabledForegroundColor: AppColors.ink400,
         ),
+        icon: const Icon(AppIcons.send, size: AppIconSizes.xMedium),
       ),
     );
   }

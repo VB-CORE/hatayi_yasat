@@ -51,7 +51,7 @@ final class HeroPhotoViewPage extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: GestureDetector(
+            child: InkWell(
               onTap: () => Navigator.of(context).pop(),
               child: Center(
                 child: Hero(
