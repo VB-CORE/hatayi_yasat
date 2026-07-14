@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-/// Custom shimmer widget with a gradient.
 class CustomShimmer extends StatelessWidget {
   const CustomShimmer({
     required this.child,

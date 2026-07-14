@@ -1,21 +1,19 @@
 part of '../../place_detail_view.dart';
 
 final class PlaceDetailAboutTab extends StatelessWidget {
-  const PlaceDetailAboutTab({required this.store, super.key});
+  const PlaceDetailAboutTab({
+    required this.store,
+    required this.onCall,
+    required this.onCopyAddress,
+    super.key,
+  });
 
   final StoreModel store;
+  final VoidCallback onCall;
+  final VoidCallback onCopyAddress;
 
   @override
   Widget build(BuildContext context) {
-    final description = store.description.ext.isNullOrEmpty
-        ? LocaleKeys.placeDetailView_noDescription.tr()
-        : store.description!;
-    final hasPhone = store.phone.ext.isNotNullOrNoEmpty;
-    final hasAddress = store.address.ext.isNotNullOrNoEmpty;
-    final latLong = store.latLong;
-    final hasMap = hasAddress && latLong != null;
-    final hasContactInfo = hasPhone || hasAddress || hasMap;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.sm,
@@ -30,12 +28,14 @@ final class PlaceDetailAboutTab extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             Text(
-              description,
+              store.hasDescription
+                  ? store.description!
+                  : LocaleKeys.placeDetailView_noDescription.tr(),
               style: AppText.body.copyWith(color: AppColors.navy400),
             ),
           ],
         ),
-        if (hasContactInfo)
+        if (store.hasContactInfo)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppSpacing.xs,
@@ -45,13 +45,13 @@ final class PlaceDetailAboutTab extends StatelessWidget {
                 color: AppColors.navy900,
                 textAlign: TextAlign.start,
               ),
-              if (hasPhone)
+              if (store.hasPhone)
                 _ContactInfoTile(
                   icon: AppIcons.phone,
                   label: LocaleKeys.placeDetailView_phoneLabel.tr(),
                   value: store.phone,
                   action: TextButton(
-                    onPressed: () => _onCallPressed(context),
+                    onPressed: onCall,
                     style: TextButton.styleFrom(
                       visualDensity: VisualDensity.compact,
                       foregroundColor: AppColors.navy,
@@ -65,14 +65,14 @@ final class PlaceDetailAboutTab extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (hasAddress)
+              if (store.hasAddress)
                 _ContactInfoTile(
                   icon: AppIcons.location,
                   label: LocaleKeys.placeDetailView_addressLabel.tr(),
                   value: store.address!,
-                  valueMaxLines: 2,
+                  valueMaxLines: 3,
                   action: IconButton(
-                    onPressed: () => _onCopyAddressPressed(context),
+                    onPressed: onCopyAddress,
                     visualDensity: VisualDensity.compact,
                     icon: const Icon(
                       AppIcons.copy,
@@ -82,37 +82,11 @@ final class PlaceDetailAboutTab extends StatelessWidget {
                     tooltip: LocaleKeys.button_copy.tr(),
                   ),
                 ),
-              if (hasMap) PlaceAddressCard(latLong: latLong),
+              if (store.hasMap) PlaceAddressCard(latLong: store.latLong!),
             ],
           ),
       ],
     );
-  }
-
-  Future<void> _onCallPressed(BuildContext context) {
-    return RedirectionMixin.openToPhone(
-      context: context,
-      phoneNumber: store.phone,
-    );
-  }
-
-  Future<void> _onCopyAddressPressed(BuildContext context) async {
-    final address = store.address;
-    if (address.ext.isNullOrEmpty) return;
-
-    await address!.copyToClipboard();
-    if (!context.mounted) return;
-
-    ScaffoldMessenger.of(context)
-      ..clearSnackBars()
-      ..showSnackBar(
-        SnackBar(
-          content: Center(
-            child: Text(LocaleKeys.message_copiedToClipboard.tr()),
-          ),
-          backgroundColor: AppColors.navy,
-        ),
-      );
   }
 }
 

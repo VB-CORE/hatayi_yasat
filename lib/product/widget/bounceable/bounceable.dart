@@ -1,7 +1,7 @@
 import 'package:bounceable/bounceable.dart';
 import 'package:flutter/material.dart';
 
-class CustomBounceable extends StatelessWidget {
+final class CustomBounceable extends StatelessWidget {
   const CustomBounceable({
     required this.child,
     this.onTap,

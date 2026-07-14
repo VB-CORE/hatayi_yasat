@@ -12,7 +12,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/button/icon_title_button.dart';

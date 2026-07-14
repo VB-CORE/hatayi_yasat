@@ -14,15 +14,12 @@ import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
-import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/features/place_detail/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
-import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
-import 'package:lifeclient/product/utility/extension/string_extension.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
@@ -35,9 +32,12 @@ import 'package:lifeclient/product/widget/shimmer/shimmer.dart';
 part 'widget/place_address_card.dart';
 part 'widget/place_detail_header.dart';
 part 'widget/place_detail_tab_bar.dart';
+part 'widget/place_detail_tab_content.dart';
 part 'widget/place_summary_card.dart';
 part 'widget/tabs/place_detail_about.dart';
 part 'widget/tabs/place_detail_comments.dart';
+
+enum _PlaceDetailTab { about, comments }
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
   const PlaceDetailView({
@@ -58,7 +58,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: _PlaceDetailTab.values.length,
       child: Scaffold(
         backgroundColor: AppColors.bg,
         body: CustomScrollView(
@@ -68,41 +68,25 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
               store: widget.store,
               scrollController: scrollController,
               patternHeight: context.sized.dynamicHeight(patternHeightFactor),
+              onCall: onCall,
+              onComment: onComment,
             ),
             PinnedHeaderSliver(
               child: PlaceDetailTabBar(store: widget.store),
             ),
             SliverPadding(
-              padding: const EdgeInsets.all(AppSpacing.md),
+              padding: const PagePadding.generalAllLow(),
               sliver: SliverToBoxAdapter(
-                child: _PlaceDetailTabContent(store: widget.store),
+                child: PlaceDetailTabContent(
+                  store: widget.store,
+                  onCall: onCall,
+                  onCopyAddress: onCopyAddress,
+                ),
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-final class _PlaceDetailTabContent extends StatelessWidget {
-  const _PlaceDetailTabContent({required this.store});
-
-  final StoreModel store;
-
-  @override
-  Widget build(BuildContext context) {
-    final tabController = DefaultTabController.of(context);
-
-    return ListenableBuilder(
-      listenable: tabController,
-      builder: (context, child) {
-        return switch (tabController.index) {
-          0 => PlaceDetailAboutTab(store: store),
-          1 => PlaceDetailCommentsTab(store: store),
-          _ => const SizedBox.shrink(),
-        };
-      },
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
-import 'package:lifeclient/product/utility/extension/store_model_etension.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 
 class HomeAppBarSliver extends StatelessWidget {
   const HomeAppBarSliver({

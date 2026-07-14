@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-
-/// Mosaic pattern background.
+ 
 final class MosaicBackground extends StatelessWidget {
   const MosaicBackground({
     this.gradient,

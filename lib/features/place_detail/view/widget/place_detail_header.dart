@@ -5,12 +5,16 @@ final class PlaceDetailHeader extends StatelessWidget {
     required this.store,
     required this.scrollController,
     required this.patternHeight,
+    required this.onCall,
+    required this.onComment,
     super.key,
   });
 
   final StoreModel store;
   final ScrollController scrollController;
   final double patternHeight;
+  final VoidCallback onCall;
+  final VoidCallback onComment;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,8 @@ final class PlaceDetailHeader extends StatelessWidget {
           store: store,
           borderRadius: 0,
           showShadow: false,
+          onCall: onCall,
+          onComment: onComment,
         ),
       ),
       maxExtentPrototype: _ExpandedHeaderPrototype(
@@ -30,7 +36,11 @@ final class PlaceDetailHeader extends StatelessWidget {
         overlapFactor: .25,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-          child: PlaceSummaryCard(store: store),
+          child: PlaceSummaryCard(
+            store: store,
+            onCall: onCall,
+            onComment: onComment,
+          ),
         ),
       ),
       child: _HeaderContent(
@@ -38,6 +48,8 @@ final class PlaceDetailHeader extends StatelessWidget {
         scrollController: scrollController,
         topPadding: topPadding,
         patternHeight: patternHeight,
+        onCall: onCall,
+        onComment: onComment,
       ),
     );
   }
@@ -49,12 +61,16 @@ final class _HeaderContent extends StatelessWidget {
     required this.scrollController,
     required this.topPadding,
     required this.patternHeight,
+    required this.onCall,
+    required this.onComment,
   });
 
   final StoreModel store;
   final ScrollController scrollController;
   final double topPadding;
   final double patternHeight;
+  final VoidCallback onCall;
+  final VoidCallback onComment;
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +122,8 @@ final class _HeaderContent extends StatelessWidget {
                     store: store,
                     borderRadius: borderRadius,
                     showShadow: collapseProgress < .95,
+                    onCall: onCall,
+                    onComment: onComment,
                   ),
                 ),
               ),
