@@ -29,8 +29,6 @@ final class UnauthorizedView extends ConsumerStatefulWidget {
 
 final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
     with AppProviderMixin<UnauthorizedView>, UnauthorizedViewMixin {
-  static const double _descriptionOpacity = 0.7;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +63,7 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
                 GeneralContentSubTitle(
                   value: LocaleKeys.unauthorized_description.tr(),
                   textAlign: TextAlign.center,
-                  color: AppColors.white.withValues(alpha: _descriptionOpacity),
+                  color: AppColors.white.withValues(alpha: 0.7),
                 ),
                 if (widget.attemptedPath case final path?) ...[
                   const EmptyBox.middleHeight(),

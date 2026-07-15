@@ -37,8 +37,6 @@ final class _RequestAccessButton extends StatelessWidget {
 
   final VoidCallback onPressed;
 
-  static const double _borderOpacity = 0.3;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -47,7 +45,7 @@ final class _RequestAccessButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: BorderSide(
-            color: AppColors.white.withValues(alpha: _borderOpacity),
+            color: AppColors.white.withValues(alpha: 0.3),
           ),
           padding: const PagePadding.vertical12Symmetric(),
           shape: const RoundedRectangleBorder(

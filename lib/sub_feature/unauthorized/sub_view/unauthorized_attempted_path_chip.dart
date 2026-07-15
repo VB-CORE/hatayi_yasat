@@ -5,15 +5,13 @@ final class _AttemptedPathChip extends StatelessWidget {
 
   final String path;
 
-  static const double _borderOpacity = 0.4;
-
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: CustomRadius.xxLarge,
         border: Border.all(
-          color: AppColors.navy300.withValues(alpha: _borderOpacity),
+          color: AppColors.navy300.withValues(alpha: 0.4),
         ),
       ),
       child: Padding(

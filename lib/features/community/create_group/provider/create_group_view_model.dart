@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/create_group/model/create_group_model.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_state.dart';
@@ -22,9 +21,10 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
     );
   }
 
+  // TODO(community): Firestore servis PR'ında model gerçek isteğe gönderilecek.
   Future<bool> createGroup(CreateGroupModel model) async {
     state = state.copyWith(isSubmitting: true);
-    await Future<void>.delayed(Durations.medium2);
+    await Future<void>.delayed(const Duration(milliseconds: 300));
     state = state.copyWith(isSubmitting: false);
     return true;
   }
