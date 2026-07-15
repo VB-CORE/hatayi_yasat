@@ -33,7 +33,7 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
   Widget build(BuildContext context) {
     final colorScheme = context.general.colorScheme;
     return Scaffold(
-      backgroundColor: context.appColors.darkSurface,
+      backgroundColor: context.appColors.navy700,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

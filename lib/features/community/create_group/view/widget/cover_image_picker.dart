@@ -42,7 +42,7 @@ final class CoverImagePicker extends StatelessWidget {
                   child: Icon(
                     AppIcons.gallery,
                     size: AppIconSizes.xLarge,
-                    color: context.appColors.softBorder,
+                    color: context.appColors.ink200,
                   ),
                 ),
               ),

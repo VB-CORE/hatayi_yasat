@@ -12,7 +12,7 @@ final class _AttemptedPathChip extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: CustomRadius.xxLarge,
         border: Border.all(
-          color: appColors.mutedText.withValues(alpha: 0.4),
+          color: appColors.navy300.withValues(alpha: 0.4),
         ),
       ),
       child: Padding(
@@ -23,12 +23,12 @@ final class _AttemptedPathChip extends StatelessWidget {
             Icon(
               AppIcons.visibilityOff,
               size: AppIconSizes.xMedium,
-              color: appColors.mutedText,
+              color: appColors.navy300,
             ),
             const EmptyBox.smallWidth(),
             GeneralContentSmallTitle(
               value: path,
-              color: appColors.softTextOnDark,
+              color: appColors.navy100,
               fontWeight: FontWeight.w600,
             ),
           ],

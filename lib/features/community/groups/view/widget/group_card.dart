@@ -89,7 +89,7 @@ final class _GroupInfo extends StatelessWidget {
         const EmptyBox.xSmallHeight(),
         GeneralContentSmallTitle(
           value: model.description,
-          color: context.appColors.mutedText,
+          color: context.appColors.navy300,
           maxLine: AppConstants.kOne,
         ),
         const EmptyBox.smallHeight(),
@@ -114,11 +114,11 @@ final class _GroupMetaRow extends StatelessWidget {
         Icon(
           AppIcons.group,
           size: AppIconSizes.xMedium,
-          color: context.appColors.mutedText,
+          color: context.appColors.navy300,
         ),
         GeneralContentSmallTitle(
           value: model.memberCount.toString(),
-          color: context.appColors.mutedText,
+          color: context.appColors.navy300,
         ),
         GeneralStatusBadge(
           label: model.type.badgeLabel,
@@ -142,8 +142,8 @@ extension on GroupType {
   };
 
   Color badgeColor(BuildContext context) => switch (this) {
-    GroupType.open => context.appColors.openBadge,
-    GroupType.closed => context.appColors.closedBadge,
+    GroupType.open => context.appColors.olive600,
+    GroupType.closed => context.appColors.navy400,
   };
 
   IconData get badgeIcon => switch (this) {

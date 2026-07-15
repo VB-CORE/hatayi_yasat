@@ -29,7 +29,7 @@ final class _GroupsHeader extends StatelessWidget {
                 value: LocaleKeys.community_groups_groupCount.tr(
                   args: [state.groups.length.toString()],
                 ),
-                color: context.appColors.mutedText,
+                color: context.appColors.navy300,
               ),
           ],
         ),

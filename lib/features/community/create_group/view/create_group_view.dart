@@ -54,7 +54,7 @@ final class _CreateGroupViewState extends ConsumerState<CreateGroupView>
             padding: const PagePadding.onlyRight(),
             child: GeneralStatusBadge(
               label: LocaleKeys.community_createGroup_openBadge.tr(),
-              color: context.appColors.openBadge,
+              color: context.appColors.olive600,
               icon: AppIcons.globe,
             ),
           ),

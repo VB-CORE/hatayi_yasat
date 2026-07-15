@@ -7,14 +7,14 @@ final class _BackToGroupsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strongText = context.appColors.strongText;
+    final navy700 = context.appColors.navy700;
     return SizedBox(
       width: context.sized.width,
       child: ElevatedButton.icon(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: context.general.colorScheme.onTertiary,
-          foregroundColor: strongText,
+          foregroundColor: navy700,
           padding: const PagePadding.vertical12Symmetric(),
           shape: const RoundedRectangleBorder(
             borderRadius: CustomRadius.medium,
@@ -24,7 +24,7 @@ final class _BackToGroupsButton extends StatelessWidget {
         label: Text(
           LocaleKeys.unauthorized_backToGroups.tr(),
           style: context.general.textTheme.titleMedium?.copyWith(
-            color: strongText,
+            color: navy700,
             fontWeight: FontWeight.bold,
           ),
         ),

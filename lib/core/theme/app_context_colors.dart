@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 
 /// Material [ColorScheme] rolleriyle birebir örtüşmeyen marka tonları için
-/// `context.appColors.*` erişimi.
+/// `context.appColors.*` erişimi. İsimler `AppColors` sabitleriyle bire bir
+/// aynı — aynı ton farklı isimler altında tekrar tekrar eklenmesin diye.
 extension AppContextColors on BuildContext {
   AppColorTokens get appColors => const AppColorTokens();
 }
@@ -11,13 +12,14 @@ extension AppContextColors on BuildContext {
 final class AppColorTokens {
   const AppColorTokens();
 
-  Color get mutedText => AppColors.navy300;
-  Color get mutedTextAlt => AppColors.navy400;
-  Color get softBorder => AppColors.ink200;
-  Color get cardSurface => AppColors.surface;
-  Color get openBadge => AppColors.olive600;
-  Color get closedBadge => AppColors.navy400;
-  Color get darkSurface => AppColors.navy700;
-  Color get strongText => AppColors.navy700;
-  Color get softTextOnDark => AppColors.navy100;
+  Color get navy100 => AppColors.navy100;
+  Color get navy300 => AppColors.navy300;
+  Color get navy400 => AppColors.navy400;
+  Color get navy700 => AppColors.navy700;
+  Color get ink200 => AppColors.ink200;
+  Color get olive600 => AppColors.olive600;
+
+  /// `colorScheme.surface`'tan farklıdır (o `AppColors.bg`'ye eşlenir);
+  /// bu, `AppColors.surface`'ın (düz beyaz) kendisidir.
+  Color get surface => AppColors.surface;
 }

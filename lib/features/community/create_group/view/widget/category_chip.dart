@@ -26,16 +26,16 @@ final class CategoryChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = context.general.colorScheme;
     final appColors = context.appColors;
-    final color = isSelected ? colorScheme.onTertiary : appColors.mutedTextAlt;
+    final color = isSelected ? colorScheme.onTertiary : appColors.navy400;
     return InkWell(
       onTap: onTap,
       borderRadius: CustomRadius.xxLarge,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: isSelected ? colorScheme.tertiary : appColors.cardSurface,
+          color: isSelected ? colorScheme.tertiary : appColors.surface,
           borderRadius: CustomRadius.xxLarge,
           border: Border.all(
-            color: isSelected ? colorScheme.tertiary : appColors.softBorder,
+            color: isSelected ? colorScheme.tertiary : appColors.ink200,
           ),
         ),
         child: Padding(
