@@ -36,9 +36,9 @@ final class CoverImagePicker extends StatelessWidget {
             if (imageFile != null)
               Image.file(imageFile!, fit: BoxFit.cover)
             else
-              const ColoredBox(
-                color: AppColors.ink100,
-                child: Center(
+              ColoredBox(
+                color: context.general.colorScheme.outline,
+                child: const Center(
                   child: Icon(
                     AppIcons.gallery,
                     size: AppIconSizes.xLarge,

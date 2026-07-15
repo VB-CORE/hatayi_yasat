@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -23,16 +24,17 @@ final class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isSelected ? AppColors.white : AppColors.navy400;
+    final colorScheme = context.general.colorScheme;
+    final color = isSelected ? colorScheme.onTertiary : AppColors.navy400;
     return InkWell(
       onTap: onTap,
       borderRadius: CustomRadius.xxLarge,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.coral : AppColors.surface,
+          color: isSelected ? colorScheme.tertiary : AppColors.surface,
           borderRadius: CustomRadius.xxLarge,
           border: Border.all(
-            color: isSelected ? AppColors.coral : AppColors.ink200,
+            color: isSelected ? colorScheme.tertiary : AppColors.ink200,
           ),
         ),
         child: Padding(

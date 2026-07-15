@@ -5,18 +5,19 @@ final class _LockIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tertiary = context.general.colorScheme.tertiary;
     return Container(
       padding: const PagePadding.generalAllNormal(),
       decoration: BoxDecoration(
-        color: AppColors.coral.withValues(alpha: 0.15),
+        color: tertiary.withValues(alpha: 0.15),
         borderRadius: CustomRadius.extraLarge,
         border: Border.all(
-          color: AppColors.coral.withValues(alpha: 0.4),
+          color: tertiary.withValues(alpha: 0.4),
         ),
       ),
-      child: const Icon(
+      child: Icon(
         AppIcons.lockPerson,
-        color: AppColors.coral,
+        color: tertiary,
         size: AppIconSizes.xLarge,
       ),
     );
