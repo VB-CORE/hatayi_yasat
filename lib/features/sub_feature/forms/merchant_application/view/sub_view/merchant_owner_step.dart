@@ -9,7 +9,7 @@ final class _MerchantOwnerStep extends ConsumerStatefulWidget {
 }
 
 final class _MerchantOwnerStepState
-    extends RequestFormConsumerState<_MerchantOwnerStep>
+    extends StepFormConsumerState<_MerchantOwnerStep>
     with AppProviderMixin<_MerchantOwnerStep>, _MerchantOwnerStepMixin {
   @override
   Widget onBuild(BuildContext context) {
@@ -18,28 +18,20 @@ final class _MerchantOwnerStepState
         Expanded(
           child: ListViewWithSpace(
             children: [
-              CustomTextFormFieldWithTitle(
-                maxLength: TextFieldMaxLengths.large,
-                title: LocaleKeys.requestCompany_ownerName.tr(),
+              LabeledProductTextField(
                 controller: placeOwnerNameController,
-                validator: ValidatorNormalTextField(),
-              ),
-              CustomTextFormFieldWithTitle(
-                controller: phoneNumberController,
-                textInputType: TextInputType.phone,
-                formatters: TextFieldFormatters.phone,
-                validator: ValidatorPhoneTextField(),
-                title: LocaleKeys.requestCompany_phoneNumber.tr(),
+                labelText: LocaleKeys.requestCompany_ownerName.tr(),
+                hintText: LocaleKeys.requestCompany_ownerName.tr(),
+                validator: ValidatorNormalTextField().validate,
               ),
               Padding(
                 padding: const PagePadding.vertical12Symmetric(),
-                child: _PlacePickerFormField(
-                  initialValue: _selectedLocation,
-                  onChanged: updateSelectedLocation,
-                  initialPosition: LatLng(
-                    productState.selectedCity.location.latitude,
-                    productState.selectedCity.location.longitude,
-                  ),
+                child: LabeledProductTextField(
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.phone,
+                  labelText: LocaleKeys.requestCompany_phoneNumber.tr(),
+                  hintText: LocaleKeys.requestCompany_phoneNumber.tr(),
+                  validator: ValidatorPhoneTextField().validate,
                 ),
               ),
               UploadFileSection(
@@ -70,7 +62,7 @@ final class _MerchantOwnerStepState
         Padding(
           padding: const PagePadding.horizontalSymmetric(),
           child: KvkkCheckBox(
-            onChanged: (value) => updateKVKK(value: value),
+            onChanged: (value) => isKVKKChecked = value,
           ),
         ),
       ],

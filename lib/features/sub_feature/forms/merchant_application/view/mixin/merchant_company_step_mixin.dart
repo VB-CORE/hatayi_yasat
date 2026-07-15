@@ -1,31 +1,35 @@
 part of '../merchant_application_view.dart';
 
-const int _maxPhotoCount = 5;
-
 mixin _MerchantCompanyStepMixin
     on
-        RequestFormConsumerState<_MerchantCompanyStep>,
+        StepFormConsumerState<_MerchantCompanyStep>,
         AppProviderMixin<_MerchantCompanyStep> {
   final TextEditingController placeNameController = TextEditingController();
   final TextEditingController placeDescriptionController =
       TextEditingController();
-  final TimePickerController openTimeController = TimePickerController();
-  final TimePickerController closeTimeController = TimePickerController();
-  final List<File> _photoFiles = [];
-  bool _isNewCompanyMode = false;
-  _CompanyDropdownItem? _selectedCompany;
+
   late final List<CategoryModel> categoryModels;
   late final List<RegionalCityModel> regionalCityModels;
   late final List<RegionalTownModel> _regionalTownModels;
+
   late RegionalCityModel _selectedRegionalCityModel;
   late RegionalTownModel _selectedRegionalTownModel;
+
   RegionalTownSubItem? _selectedRegionalTownSubItem;
   CategoryModel? _selectedCategory;
+  MerchantCompanyDropdownModel? _selectedCompany;
+  bool _isNewCompanyMode = false;
 
   RegionalCityModel get selectedRegionalCityModel => _selectedRegionalCityModel;
   RegionalTownModel get selectedRegionalTownModel => _selectedRegionalTownModel;
   RegionalTownSubItem? get selectedRegionalTownSubItem =>
       _selectedRegionalTownSubItem;
+
+  String get companyName => placeNameController.text;
+  String get companyDescription => placeDescriptionController.text;
+  CategoryModel? get selectedCategory => _selectedCategory;
+  TownModel? get selectedDistrict => _selectedRegionalTownSubItem?.toTownModel;
+  String get selectedCityId => _selectedRegionalCityModel.documentId;
 
   @override
   void initState() {
@@ -34,16 +38,13 @@ mixin _MerchantCompanyStepMixin
     regionalCityModels = productState.regionalCityItems;
     _regionalTownModels = productState.regionalTownItems;
     _selectedRegionalCityModel = productState.selectedCity;
-    _updateRegionalTown();
+    _syncTownsWithSelectedCity();
   }
 
   @override
   bool get isHasAnyData =>
       placeNameController.text.isNotEmpty ||
       placeDescriptionController.text.isNotEmpty ||
-      openTimeController.isValid ||
-      closeTimeController.isValid ||
-      _photoFiles.isNotEmpty ||
       _selectedCompany != null ||
       _selectedCategory != null;
 
@@ -65,37 +66,39 @@ mixin _MerchantCompanyStepMixin
     return true;
   }
 
-  String get companyName => placeNameController.text;
-  String get companyDescription => placeDescriptionController.text;
-  CategoryModel? get selectedCategory => _selectedCategory;
-  TownModel? get selectedDistrict => _selectedRegionalTownSubItem?.toTownModel;
-  String get selectedCityId => _selectedRegionalCityModel.documentId;
-  List<File> get photoFiles => List.of(_photoFiles);
-  OpenAndCloseTimeValidationModel get timeValidationModel =>
-      OpenAndCloseTimeValidationModel(
-        openTime: openTimeController.time,
-        closeTime: closeTimeController.time,
-      );
-
-  void toggleCompanyMode({required bool isNew}) {
+  void _changeCompanyMode({required bool isNew}) {
     if (_isNewCompanyMode == isNew) return;
     _isNewCompanyMode = isNew;
+    if (isNew) {
+      _clearCompanyAutofill();
+      ref
+          .read(merchantApplicationViewModelProvider.notifier)
+          .clearSelectedCompany();
+    }
     setState(() {});
   }
 
-  void onCompanySelected(_CompanyDropdownItem item) {
+  void _clearCompanyAutofill() {
+    placeNameController.clear();
+    placeDescriptionController.clear();
+    _selectedCompany = null;
+    _selectedCategory = null;
+    _selectedRegionalCityModel = productState.selectedCity;
+    _syncTownsWithSelectedCity();
+  }
+
+  void _onCompanySelected(MerchantCompanyDropdownModel item) {
     _selectedCompany = item;
     _fillFromCompany(item.store);
+    ref
+        .read(merchantApplicationViewModelProvider.notifier)
+        .selectCompany(item.store);
     setState(() {});
   }
 
   void _fillFromCompany(StoreModel store) {
     placeNameController.text = store.name;
     placeDescriptionController.text = store.description ?? '';
-    final openTime = store.openTime;
-    if (openTime != null) openTimeController.text = openTime;
-    final closeTime = store.closeTime;
-    if (closeTime != null) closeTimeController.text = closeTime;
     for (final category in categoryModels) {
       if (category.value == store.category?.value) {
         _selectedCategory = category;
@@ -106,7 +109,7 @@ mixin _MerchantCompanyStepMixin
       for (final city in regionalCityModels) {
         if (city.documentId == store.cityId) {
           _selectedRegionalCityModel = city;
-          _updateRegionalTown();
+          _syncTownsWithSelectedCity();
           break;
         }
       }
@@ -119,44 +122,28 @@ mixin _MerchantCompanyStepMixin
     }
   }
 
-  void _updateRegionalTown() {
+  void _syncTownsWithSelectedCity() {
     _selectedRegionalTownModel = _regionalTownModels.firstWhere(
       (element) => element.cityId == _selectedRegionalCityModel.documentId,
+      orElse: () => _regionalTownModels.first,
     );
-    _selectedRegionalTownSubItem = _selectedRegionalTownModel.towns.first;
+    final towns = _selectedRegionalTownModel.towns;
+    _selectedRegionalTownSubItem = towns.isEmpty ? null : towns.first;
   }
 
-  void updateRegionalCityItem(RegionalCityModel item) {
+  void _onCityChanged(RegionalCityModel item) {
     _selectedRegionalCityModel = item;
-    _updateRegionalTown();
+    _syncTownsWithSelectedCity();
     setState(() {});
   }
 
-  void updateRegionalTownItem(RegionalTownSubItem item) {
+  void _onTownChanged(RegionalTownSubItem item) {
     _selectedRegionalTownSubItem = item;
   }
 
   void _onCategorySelected(CategoryModel category) {
     if (_selectedCategory == category) return;
     _selectedCategory = category;
-    setState(() {});
-  }
-
-  Future<void> _onPhotoSlotTapped(int index) async {
-    final file = await GeneralMediaSheet.open(context);
-    if (file == null) return;
-    setState(() {
-      if (index < _photoFiles.length) {
-        _photoFiles[index] = file;
-      } else {
-        _photoFiles.add(file);
-      }
-    });
-  }
-
-  void _onPhotoRemoved(int index) {
-    if (index >= _photoFiles.length) return;
-    _photoFiles.removeAt(index);
     setState(() {});
   }
 

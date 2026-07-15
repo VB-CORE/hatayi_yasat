@@ -134,7 +134,7 @@
   "merchantApplication": {
     "headerLabel": "Merchant Application",
     "photosTitle": "Photos",
-    "photosHint": "Up to 5 photos — first one is the cover",
+    "photosHint": "Up to 10 photos — first one is the cover",
     "commentToggle": "Allow comments on my business page",
     "documentLabel": "Ownership Document",
     "documentHint": "Upload your ownership document",
@@ -151,6 +151,8 @@
       "support": "Having trouble?",
       "supportAction": "Talk to support"
     },
+    "loginRequiredTitle": "Login required",
+    "loginRequiredContent": "You need to log in to submit a merchant application.",
     "modeExisting": "Select existing business",
     "modeNew": "Add new business",
     "selectCompany": "Select a business",
@@ -159,6 +161,7 @@
     "submit": "Submit Application",
     "steps": {
       "company": "Business",
+      "media": "Photos & Location",
       "owner": "Owner Info"
     }
   },

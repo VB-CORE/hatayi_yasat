@@ -8,11 +8,13 @@ final class SpeedDialChildModel {
   const SpeedDialChildModel({
     required this.location,
     required this.title,
+    this.requiresAuth = false,
   });
 
   /// route path adress
   final String location;
   final String title;
+  final bool requiresAuth;
 }
 
 final class SpeedDialChildModelList {
@@ -28,6 +30,7 @@ final class SpeedDialChildModelList {
       SpeedDialChildModel(
         location: const MerchantApplicationViewRoute().location,
         title: LocaleKeys.merchantApplication_headerLabel.tr(context: context),
+        requiresAuth: true,
       ),
       SpeedDialChildModel(
         location: const ProjectRequestFormRoute().location,

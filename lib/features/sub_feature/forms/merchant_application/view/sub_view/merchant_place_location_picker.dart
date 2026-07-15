@@ -1,10 +1,11 @@
 part of '../merchant_application_view.dart';
 
-final class _PlacePickerFormField extends FormField<LatLng?> {
-  _PlacePickerFormField({
+final class _MerchantPlacePickerFormField extends FormField<LatLng?> {
+  _MerchantPlacePickerFormField({
     required ValueChanged<LatLng> onChanged,
     required LatLng initialPosition,
     super.initialValue,
+    super.key,
   }) : super(
          validator: (LatLng? value) => value != null ? null : '',
          builder: (FormFieldState<LatLng?> state) {

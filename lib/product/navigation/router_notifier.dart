@@ -20,7 +20,15 @@ final class RouterNotifier extends ChangeNotifier {
 
   String? redirect(BuildContext context, GoRouterState state) {
     final authState = _ref.read(authViewModelProvider);
-    final isLoginRoute = state.matchedLocation == const LoginRoute().location;
+    final location = state.matchedLocation;
+    final isLoginRoute = location == const LoginRoute().location;
+
+    final isMerchantApplicationRoute =
+        location == const MerchantApplicationViewRoute().location ||
+        location == const MerchantApplicationStatusRoute().location;
+    if (isMerchantApplicationRoute && authState is! Authenticated) {
+      return const LoginRoute().location;
+    }
 
     if (authState is Authenticated && isLoginRoute) {
       final role = authState.user.role;

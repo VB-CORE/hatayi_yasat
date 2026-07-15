@@ -34,4 +34,11 @@ final class TimePickerController extends TextEditingController {
     _time = time;
     value = TextEditingValue(text: time.stringValue);
   }
+
+  /// [clear] cannot empty the field because the [value] setter rejects
+  /// unparseable text; use this to reset both the time and the text.
+  void reset() {
+    _time = null;
+    super.value = TextEditingValue.empty;
+  }
 }

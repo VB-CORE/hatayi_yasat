@@ -1,33 +1,50 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+
+enum MerchantApplicationStep {
+  company,
+  media,
+  owner;
+
+  String get titleKey => switch (this) {
+    MerchantApplicationStep.company =>
+      LocaleKeys.merchantApplication_steps_company,
+    MerchantApplicationStep.media => LocaleKeys.merchantApplication_steps_media,
+    MerchantApplicationStep.owner => LocaleKeys.merchantApplication_steps_owner,
+  };
+
+  MerchantApplicationStep? get next =>
+      index + 1 < values.length ? values[index + 1] : null;
+
+  MerchantApplicationStep? get previous => index > 0 ? values[index - 1] : null;
+}
 
 final class MerchantApplicationState extends Equatable {
   const MerchantApplicationState({
-    this.model,
     this.companies = const [],
-    this.currentStep = 0,
+    this.selectedCompany,
+    this.currentStep = MerchantApplicationStep.company,
     this.isFetching = false,
     this.isSubmitting = false,
     this.isError = false,
   });
 
-  final MerchantApplicationModel? model;
   final List<StoreModel> companies;
-  final int currentStep;
+  final StoreModel? selectedCompany;
+  final MerchantApplicationStep currentStep;
   final bool isFetching;
   final bool isSubmitting;
   final bool isError;
 
-  static const stepCount = 2;
-
-  bool get isFirstStep => currentStep == 0;
-  bool get isLastStep => currentStep == stepCount - 1;
+  static int get stepCount => MerchantApplicationStep.values.length;
+  bool get isFirstStep => currentStep == MerchantApplicationStep.values.first;
+  bool get isLastStep => currentStep == MerchantApplicationStep.values.last;
 
   @override
   List<Object?> get props => [
-    model,
     companies,
+    selectedCompany,
     currentStep,
     isFetching,
     isSubmitting,
@@ -35,15 +52,18 @@ final class MerchantApplicationState extends Equatable {
   ];
 
   MerchantApplicationState copyWith({
-    MerchantApplicationModel? model,
     List<StoreModel>? companies,
-    int? currentStep,
+    StoreModel? selectedCompany,
+    bool clearSelectedCompany = false,
+    MerchantApplicationStep? currentStep,
     bool? isFetching,
     bool? isSubmitting,
     bool? isError,
   }) => MerchantApplicationState(
-    model: model ?? this.model,
     companies: companies ?? this.companies,
+    selectedCompany: clearSelectedCompany
+        ? null
+        : (selectedCompany ?? this.selectedCompany),
     currentStep: currentStep ?? this.currentStep,
     isFetching: isFetching ?? this.isFetching,
     isSubmitting: isSubmitting ?? this.isSubmitting,

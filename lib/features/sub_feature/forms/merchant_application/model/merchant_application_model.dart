@@ -9,6 +9,7 @@ final class MerchantApplicationModel extends Equatable {
   const MerchantApplicationModel({
     required this.placeName,
     required this.placeDescription,
+    required this.placeAddress,
     required this.placeOwnerName,
     required this.placePhoneNumber,
     required this.placeCategory,
@@ -23,6 +24,7 @@ final class MerchantApplicationModel extends Equatable {
 
   final String placeName;
   final String placeDescription;
+  final String placeAddress;
   final String placeOwnerName;
   final String placePhoneNumber;
   final CategoryModel placeCategory;
@@ -38,6 +40,7 @@ final class MerchantApplicationModel extends Equatable {
   List<Object?> get props => [
     placeName,
     placeDescription,
+    placeAddress,
     placeOwnerName,
     placePhoneNumber,
     placeCategory,

@@ -9,7 +9,7 @@ final class _MerchantCompanyStep extends ConsumerStatefulWidget {
 }
 
 final class _MerchantCompanyStepState
-    extends RequestFormConsumerState<_MerchantCompanyStep>
+    extends StepFormConsumerState<_MerchantCompanyStep>
     with AppProviderMixin<_MerchantCompanyStep>, _MerchantCompanyStepMixin {
   @override
   Widget onBuild(BuildContext context) {
@@ -19,94 +19,54 @@ final class _MerchantCompanyStepState
             (value) => value.companies,
           ),
         )
-        .map(_CompanyDropdownItem.new)
+        .map(MerchantCompanyDropdownModel.new)
         .toList();
     return ListViewWithSpace(
       children: [
         _CompanyModeSelector(
           isNewMode: _isNewCompanyMode,
-          onChanged: (isNew) => toggleCompanyMode(isNew: isNew),
+          onChanged: (isNew) => _changeCompanyMode(isNew: isNew),
         ),
         if (!_isNewCompanyMode)
-          CustomDropdownFormField<_CompanyDropdownItem>(
+          CustomDropdownFormField<MerchantCompanyDropdownModel>(
             hint: LocaleKeys.merchantApplication_selectCompany.tr(),
-            onSelected: onCompanySelected,
+            onSelected: _onCompanySelected,
             items: companyItems,
             initialValue: _selectedCompany,
           ),
-        CustomTextFormFieldWithTitle(
-          maxLength: TextFieldMaxLengths.large,
-          title: LocaleKeys.requestCompany_name.tr(),
+        LabeledProductTextField(
           controller: placeNameController,
-          validator: ValidatorNormalTextField(),
+          labelText: LocaleKeys.requestCompany_name.tr(),
+          hintText: LocaleKeys.requestCompany_name.tr(),
+          validator: ValidatorNormalTextField().validate,
         ),
-        CustomTextFormFieldWithTitle.multiLine(
-          maxLength: TextFieldMaxLengths.large,
-          title: LocaleKeys.requestCompany_description.tr(),
+        LabeledProductTextField(
+          isMultiline: true,
           controller: placeDescriptionController,
-          validator: ValidatorNormalTextField(),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: CustomDropdownFormField<RegionalCityModel>(
-                hint: '',
-                onSelected: updateRegionalCityItem,
-                items: regionalCityModels,
-                initialValue: selectedRegionalCityModel,
-              ),
-            ),
-            const EmptyBox.middleWidth(),
-            Expanded(
-              child: CustomDropdownFormField<RegionalTownSubItem>(
-                hint: '',
-                onSelected: updateRegionalTownItem,
-                items: selectedRegionalTownModel.towns,
-                initialValue: selectedRegionalTownSubItem,
-              ),
-            ),
-          ],
-        ),
-        OpenAndCloseTimePicker(
-          closeTimeController: closeTimeController,
-          openTimeController: openTimeController,
+          labelText: LocaleKeys.requestCompany_description.tr(),
+          hintText: LocaleKeys.requestCompany_description.tr(),
+          validator: ValidatorNormalTextField().validate,
         ),
         Padding(
           padding: const PagePadding.vertical12Symmetric(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Row(
-                children: [
-                  GeneralBodySmallTitle(
-                    LocaleKeys.merchantApplication_photosTitle.tr(),
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const Spacer(),
-                  GeneralBodySmallTitle(
-                    LocaleKeys.merchantApplication_photosHint.tr(),
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.ink400,
-                  ),
-                ],
+              Expanded(
+                child: CustomDropdownFormField<RegionalCityModel>(
+                  hint: '',
+                  onSelected: _onCityChanged,
+                  items: regionalCityModels,
+                  initialValue: selectedRegionalCityModel,
+                ),
               ),
-              const EmptyBox.smallHeight(),
-              Row(
-                children: [
-                  for (var i = 0; i < _maxPhotoCount; i++) ...[
-                    if (i != 0) const SizedBox(width: WidgetSizes.spacingXs),
-                    Expanded(
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: _MerchantPhotoSlot(
-                          file: i < _photoFiles.length ? _photoFiles[i] : null,
-                          onTap: () => _onPhotoSlotTapped(i),
-                          onRemove: () => _onPhotoRemoved(i),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
+              const EmptyBox.middleWidth(),
+              Expanded(
+                child: CustomDropdownFormField<RegionalTownSubItem>(
+                  hint: '',
+                  onSelected: _onTownChanged,
+                  items: selectedRegionalTownModel.towns,
+                  initialValue: selectedRegionalTownSubItem,
+                ),
               ),
             ],
           ),
@@ -114,11 +74,10 @@ final class _MerchantCompanyStepState
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GeneralBodySmallTitle(
-              LocaleKeys.requestCompany_chooseCategory.tr(),
-              fontWeight: FontWeight.w500,
+            CustomTextFieldLabel(
+              labelText: LocaleKeys.requestCompany_chooseCategory.tr(),
             ),
-            const EmptyBox.middleHeight(),
+            context.sized.emptySizedHeightBoxLow,
             Wrap(
               spacing: WidgetSizes.spacingXs,
               runSpacing: WidgetSizes.spacingXs,
@@ -146,18 +105,6 @@ final class _MerchantCompanyStepState
       ],
     );
   }
-}
-
-final class _CompanyDropdownItem extends Equatable with BaseDropDownModel {
-  const _CompanyDropdownItem(this.store);
-
-  final StoreModel store;
-
-  @override
-  String get displayName => store.name;
-
-  @override
-  List<Object?> get props => [store.documentId];
 }
 
 final class _CompanyModeSelector extends StatelessWidget {
@@ -211,7 +158,7 @@ final class _ModeChip extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: DurationConstant.durationLow,
-        padding: const PagePadding.vertical12Symmetric(),
+        padding: const PagePadding.vertical8Symmetric(),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.coral : AppColors.surface,
           borderRadius: CustomRadius.medium,
@@ -229,71 +176,6 @@ final class _ModeChip extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-final class _MerchantPhotoSlot extends StatelessWidget {
-  const _MerchantPhotoSlot({
-    required this.file,
-    required this.onTap,
-    required this.onRemove,
-  });
-
-  final File? file;
-  final VoidCallback onTap;
-  final VoidCallback onRemove;
-
-  @override
-  Widget build(BuildContext context) {
-    final photoFile = file;
-    if (photoFile == null) {
-      return InkWell(
-        splashFactory: NoSplash.splashFactory,
-        onTap: onTap,
-        child: const GeneralDottedRectangle(
-          child: SizedBox.expand(
-            child: Icon(
-              AppIcons.addPhoto,
-              color: AppColors.ink300,
-            ),
-          ),
-        ),
-      );
-    }
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        InkWell(
-          splashFactory: NoSplash.splashFactory,
-          onTap: onTap,
-          child: ClipRRect(
-            borderRadius: CustomRadius.medium,
-            child: Image.file(photoFile, fit: BoxFit.cover),
-          ),
-        ),
-        Positioned(
-          top: WidgetSizes.spacingXSS,
-          right: WidgetSizes.spacingXSS,
-          child: InkWell(
-            splashFactory: NoSplash.splashFactory,
-            onTap: onRemove,
-            child: Container(
-              width: WidgetSizes.spacingL,
-              height: WidgetSizes.spacingL,
-              decoration: const BoxDecoration(
-                color: AppColors.ink800,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                AppIcons.close,
-                size: WidgetSizes.spacingM,
-                color: AppColors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

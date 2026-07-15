@@ -4,4 +4,5 @@ import 'package:lifeclient/features/sub_feature/forms/merchant_application/model
 abstract interface class MerchantApplicationService {
   Future<List<StoreModel>> fetchCompanies();
   Future<bool> submit(MerchantApplicationModel model);
+  Future<bool> hasActiveApplication();
 }

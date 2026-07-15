@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_v2_mixin.dart';
@@ -109,8 +109,8 @@ class _FileSectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralBodySmallTitle(
       (label ?? LocaleKeys.requestScholarship_studentDocument).tr(),
-      fontWeight: FontWeight.w500,
-      color: context.general.colorScheme.onPrimaryFixedVariant,
+      fontWeight: FontWeight.w700,
+      color: AppColors.ink900,
     );
   }
 }

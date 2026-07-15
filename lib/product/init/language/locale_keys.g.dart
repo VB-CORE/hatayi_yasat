@@ -140,6 +140,8 @@ abstract class  LocaleKeys {
   static const merchantApplication_status_support = 'merchantApplication.status.support';
   static const merchantApplication_status_supportAction = 'merchantApplication.status.supportAction';
   static const merchantApplication_status = 'merchantApplication.status';
+  static const merchantApplication_loginRequiredTitle = 'merchantApplication.loginRequiredTitle';
+  static const merchantApplication_loginRequiredContent = 'merchantApplication.loginRequiredContent';
   static const merchantApplication_modeExisting = 'merchantApplication.modeExisting';
   static const merchantApplication_modeNew = 'merchantApplication.modeNew';
   static const merchantApplication_selectCompany = 'merchantApplication.selectCompany';
@@ -147,6 +149,7 @@ abstract class  LocaleKeys {
   static const merchantApplication_back = 'merchantApplication.back';
   static const merchantApplication_submit = 'merchantApplication.submit';
   static const merchantApplication_steps_company = 'merchantApplication.steps.company';
+  static const merchantApplication_steps_media = 'merchantApplication.steps.media';
   static const merchantApplication_steps_owner = 'merchantApplication.steps.owner';
   static const merchantApplication_steps = 'merchantApplication.steps';
   static const merchantApplication = 'merchantApplication';

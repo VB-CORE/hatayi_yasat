@@ -1,3 +1,4 @@
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_service_provider.dart';
@@ -14,45 +15,42 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
 
   Future<void> loadCompanies() async {
     state = state.copyWith(isFetching: true);
-    try {
-      final companies = await ref
-          .read(merchantApplicationServiceProvider)
-          .fetchCompanies();
-      state = state.copyWith(companies: companies, isError: false);
-    } catch (_) {
-      state = state.copyWith(isError: true);
-    } finally {
-      state = state.copyWith(isFetching: false);
-    }
+    final companies = await ref
+        .read(merchantApplicationServiceProvider)
+        .fetchCompanies();
+    state = state.copyWith(companies: companies, isFetching: false);
   }
 
   void nextStep() {
-    if (state.isLastStep) return;
-    state = state.copyWith(currentStep: state.currentStep + 1);
+    final next = state.currentStep.next;
+    if (next == null) return;
+    state = state.copyWith(currentStep: next);
   }
 
   void previousStep() {
-    if (state.isFirstStep) return;
-    state = state.copyWith(currentStep: state.currentStep - 1);
+    final previous = state.currentStep.previous;
+    if (previous == null) return;
+    state = state.copyWith(currentStep: previous);
+  }
+
+  void goToStep(MerchantApplicationStep step) {
+    state = state.copyWith(currentStep: step);
+  }
+
+  void selectCompany(StoreModel company) {
+    state = state.copyWith(selectedCompany: company);
+  }
+
+  void clearSelectedCompany() {
+    state = state.copyWith(clearSelectedCompany: true);
   }
 
   Future<bool> submit(MerchantApplicationModel model) async {
-    state = state.copyWith(
-      model: model,
-      isSubmitting: true,
-      isError: false,
-    );
-    try {
-      final response = await ref
-          .read(merchantApplicationServiceProvider)
-          .submit(model);
-      state = state.copyWith(isError: !response);
-      return response;
-    } catch (_) {
-      state = state.copyWith(isError: true);
-      return false;
-    } finally {
-      state = state.copyWith(isSubmitting: false);
-    }
+    state = state.copyWith(isSubmitting: true, isError: false);
+    final response = await ref
+        .read(merchantApplicationServiceProvider)
+        .submit(model);
+    state = state.copyWith(isSubmitting: false, isError: !response);
+    return response;
   }
 }

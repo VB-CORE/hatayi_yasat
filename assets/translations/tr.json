@@ -134,7 +134,7 @@
   "merchantApplication": {
     "headerLabel": "Esnaf Başvurusu",
     "photosTitle": "Fotoğraflar",
-    "photosHint": "En fazla 5 fotoğraf — kapak ilki olur",
+    "photosHint": "En fazla 10 fotoğraf — kapak ilki olur",
     "commentToggle": "İşletme sayfamda yorumlara izin ver",
     "documentLabel": "Aidiyet Belgesi",
     "documentHint": "Aidiyet belgenizi yükleyiniz",
@@ -151,6 +151,8 @@
       "support": "Sorun mu var?",
       "supportAction": "Destek ekibiyle konuş"
     },
+    "loginRequiredTitle": "Giriş yapmanız gerekiyor",
+    "loginRequiredContent": "Esnaf başvurusu yapabilmek için giriş yapmalısınız.",
     "modeExisting": "Mevcut firmalardan seç",
     "modeNew": "Yeni firma ekle",
     "selectCompany": "Firma seçiniz",
@@ -159,6 +161,7 @@
     "submit": "Başvuruyu Gönder",
     "steps": {
       "company": "Firma",
+      "media": "Görünüm & Konum",
       "owner": "Yetkili Bilgisi"
     }
   },

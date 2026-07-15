@@ -39,7 +39,12 @@ final class _CustomDistrictSelectionFormFieldState<T extends BaseDropDownModel>
   Widget build(BuildContext context) {
     super.build(context);
     return DropdownButtonFormField<T>(
-      hint: Text(widget.hint),
+      hint: Text(
+        widget.hint,
+        style: context.general.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
       validator: DropdownModelValidate().validateDropDownField,
       decoration: CustomDropdownDecoration(context: context),
       dropdownColor: context.general.colorScheme.onPrimaryFixed,

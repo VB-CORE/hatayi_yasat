@@ -2,7 +2,7 @@ part of '../merchant_application_view.dart';
 
 mixin _MerchantOwnerStepMixin
     on
-        RequestFormConsumerState<_MerchantOwnerStep>,
+        StepFormConsumerState<_MerchantOwnerStep>,
         AppProviderMixin<_MerchantOwnerStep> {
   final TextEditingController placeOwnerNameController =
       TextEditingController();
@@ -10,32 +10,48 @@ mixin _MerchantOwnerStepMixin
   bool _isCommentEnabled = true;
   bool _isKVKKChecked = false;
   File? _documentFile;
-  LatLng? _selectedLocation;
 
   bool get isKVKKChecked => _isKVKKChecked;
+  set isKVKKChecked(bool value) => _isKVKKChecked = value;
   File? get documentFile => _documentFile;
-  LatLng? get selectedLocation => _selectedLocation;
   bool get isCommentEnabled => _isCommentEnabled;
+  String get ownerName => placeOwnerNameController.text;
+  String get phoneNumber => phoneNumberController.text;
+
+  @override
+  void initState() {
+    super.initState();
+    _fillFromCompany(
+      ref.read(merchantApplicationViewModelProvider).selectedCompany,
+    );
+    ref.listenManual(
+      merchantApplicationViewModelProvider.select(
+        (value) => value.selectedCompany,
+      ),
+      (previous, next) => setState(() => _fillFromCompany(next)),
+    );
+  }
+
+  void _fillFromCompany(StoreModel? store) {
+    if (store == null) return;
+    if (store.owner.isNotEmpty) {
+      placeOwnerNameController.text = store.owner;
+    }
+    if (store.phone.isNotEmpty) {
+      phoneNumberController.text = store.phone;
+    }
+  }
 
   @override
   bool get isHasAnyData =>
       placeOwnerNameController.text.isNotEmpty ||
       phoneNumberController.text.isNotEmpty ||
       _isKVKKChecked ||
-      _documentFile != null ||
-      _selectedLocation != null;
+      _documentFile != null;
 
   void _onCommentToggleChanged(bool value) {
     _isCommentEnabled = value;
     setState(() {});
-  }
-
-  void updateKVKK({required bool value}) {
-    _isKVKKChecked = value;
-  }
-
-  void updateSelectedLocation(LatLng value) {
-    _selectedLocation = value;
   }
 
   bool _validateDocumentSize(File file) {
@@ -52,7 +68,12 @@ mixin _MerchantOwnerStepMixin
 
   @override
   bool validateAndSave() {
-    if (!super.validateAndSave()) return false;
+    if (!super.validateAndSave()) {
+      if (!_isKVKKChecked) {
+        appProvider.showSnackbarMessage(LocaleKeys.validation_kvkk.tr());
+      }
+      return false;
+    }
     if (_documentFile == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.merchantApplication_documentHint.tr(),
@@ -61,9 +82,6 @@ mixin _MerchantOwnerStepMixin
     }
     return true;
   }
-
-  String get ownerName => placeOwnerNameController.text;
-  String get phoneNumber => phoneNumberController.text;
 
   @override
   void dispose() {
