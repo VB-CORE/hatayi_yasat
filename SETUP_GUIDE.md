@@ -465,6 +465,44 @@ scripts:
   format: dart format .
 ```
 
+### 4.5 Firebase Emulator (Local Backend)
+
+The backend — Cloud Functions **and** the Firestore/Storage security rules — lives
+in the **`life_admin`** repo. This app is a pure client that connects to that
+suite. The emulator is therefore started **from `life_admin`**, because only its
+`firebase.json` declares `functions`.
+
+**Ports** (defined in `life_admin/firebase.json`, mirrored in code):
+
+| Service   | Port | Notes                                              |
+|-----------|------|----------------------------------------------------|
+| Auth      | 3000 | `application_init.dart` → `useAuthEmulator`        |
+| Functions | 3001 |                                                    |
+| Firestore | 3004 | `application_init.dart` → `useFirestoreEmulator`   |
+| Storage   | 3005 |                                                    |
+| UI        | 4000 | http://127.0.0.1:4000                              |
+
+Both this app and `life_admin` (`lib/product/init/env/firebase_env.dart`) point at
+these same ports.
+
+**Start the suite** (from the `life_admin` repo — seeds & resumes local data):
+
+```bash
+cd ../life_admin
+./scripts/emulator.sh
+```
+
+This app connects to those emulators only in debug builds — see the `kDebugMode`
+block in [application_init.dart](lib/product/init/application_init.dart). Remove or
+disable it before shipping a release build.
+
+**Security rules:** `firebase/firestore.rules` here is kept **byte-identical** to
+`life_admin/firebase/firestore.rules` (the emulator/deploy source). If you change
+one, change the other in the same PR so the two repos never drift.
+
+**Functions & deploy:** the functions source, `MONGODB_URI` env, and the deploy
+workflow now live in `life_admin` — see that repo's `docs/admin-backend.md`.
+
 Run with:
 ```bash
 flutter pub run <script_name>
