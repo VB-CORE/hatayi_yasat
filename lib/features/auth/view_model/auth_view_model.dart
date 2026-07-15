@@ -21,7 +21,11 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   // dönmeye başlayınca stream burada dinlenip tek doğruluk kaynağı yapılacak;
   // o zaman metodlardaki manuel state atamaları kaldırılacak.
   @override
-  AuthState build() => const AuthInitial();
+  AuthState build() {
+    final subscription = authService.userStream.listen((_) {});
+    ref.onDispose(subscription.cancel);
+    return const AuthInitial();
+  }
 
   Future<void> signInWithGoogle() async {
     state = const AuthLoading();
