@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -38,11 +38,11 @@ final class CoverImagePicker extends StatelessWidget {
             else
               ColoredBox(
                 color: context.general.colorScheme.outline,
-                child: const Center(
+                child: Center(
                   child: Icon(
                     AppIcons.gallery,
                     size: AppIconSizes.xLarge,
-                    color: AppColors.ink200,
+                    color: context.appColors.softBorder,
                   ),
                 ),
               ),
@@ -65,8 +65,9 @@ final class _SelectImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.general.colorScheme;
     return Material(
-      color: AppColors.white,
+      color: colorScheme.onTertiary,
       elevation: WidgetSizes.spacingXSS,
       borderRadius: CustomRadius.xxLarge,
       child: InkWell(
@@ -79,10 +80,10 @@ final class _SelectImageButton extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 AppIcons.camera,
                 size: AppIconSizes.medium,
-                color: AppColors.coral,
+                color: colorScheme.tertiary,
               ),
               const EmptyBox.smallWidth(),
               GeneralContentSubTitle(

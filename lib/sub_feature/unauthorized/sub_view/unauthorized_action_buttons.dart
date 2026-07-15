@@ -7,13 +7,14 @@ final class _BackToGroupsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strongText = context.appColors.strongText;
     return SizedBox(
       width: context.sized.width,
       child: ElevatedButton.icon(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.white,
-          foregroundColor: AppColors.navy700,
+          backgroundColor: context.general.colorScheme.onTertiary,
+          foregroundColor: strongText,
           padding: const PagePadding.vertical12Symmetric(),
           shape: const RoundedRectangleBorder(
             borderRadius: CustomRadius.medium,
@@ -23,7 +24,7 @@ final class _BackToGroupsButton extends StatelessWidget {
         label: Text(
           LocaleKeys.unauthorized_backToGroups.tr(),
           style: context.general.textTheme.titleMedium?.copyWith(
-            color: AppColors.navy700,
+            color: strongText,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -45,7 +46,9 @@ final class _RequestAccessButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: BorderSide(
-            color: AppColors.white.withValues(alpha: 0.3),
+            color: context.general.colorScheme.onTertiary.withValues(
+              alpha: 0.3,
+            ),
           ),
           padding: const PagePadding.vertical12Symmetric(),
           shape: const RoundedRectangleBorder(
@@ -55,7 +58,7 @@ final class _RequestAccessButton extends StatelessWidget {
         child: Text(
           LocaleKeys.unauthorized_requestAccess.tr(),
           style: context.general.textTheme.titleMedium?.copyWith(
-            color: AppColors.white,
+            color: context.general.colorScheme.onTertiary,
             fontWeight: FontWeight.w600,
           ),
         ),

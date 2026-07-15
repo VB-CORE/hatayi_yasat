@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -31,8 +31,9 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
     with AppProviderMixin<UnauthorizedView>, UnauthorizedViewMixin {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.general.colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.navy700,
+      backgroundColor: context.appColors.darkSurface,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -45,7 +46,7 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
                 Text(
                   LocaleKeys.unauthorized_errorCode.tr(),
                   style: context.general.textTheme.labelMedium?.copyWith(
-                    color: AppColors.coral,
+                    color: colorScheme.tertiary,
                     fontWeight: FontWeight.w800,
                     letterSpacing: WidgetSizes.spacingXSSs,
                   ),
@@ -55,7 +56,7 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
                   LocaleKeys.unauthorized_title.tr(),
                   textAlign: TextAlign.center,
                   style: context.general.textTheme.headlineMedium?.copyWith(
-                    color: AppColors.white,
+                    color: colorScheme.onTertiary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -63,7 +64,7 @@ final class _UnauthorizedViewState extends ConsumerState<UnauthorizedView>
                 GeneralContentSubTitle(
                   value: LocaleKeys.unauthorized_description.tr(),
                   textAlign: TextAlign.center,
-                  color: AppColors.white.withValues(alpha: 0.7),
+                  color: colorScheme.onTertiary.withValues(alpha: 0.7),
                 ),
                 if (widget.attemptedPath case final path?) ...[
                   const EmptyBox.middleHeight(),

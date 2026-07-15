@@ -7,11 +7,12 @@ final class _AttemptedPathChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = context.appColors;
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: CustomRadius.xxLarge,
         border: Border.all(
-          color: AppColors.navy300.withValues(alpha: 0.4),
+          color: appColors.mutedText.withValues(alpha: 0.4),
         ),
       ),
       child: Padding(
@@ -19,15 +20,15 @@ final class _AttemptedPathChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
+            Icon(
               AppIcons.visibilityOff,
               size: AppIconSizes.xMedium,
-              color: AppColors.navy300,
+              color: appColors.mutedText,
             ),
             const EmptyBox.smallWidth(),
             GeneralContentSmallTitle(
               value: path,
-              color: AppColors.navy100,
+              color: appColors.softTextOnDark,
               fontWeight: FontWeight.w600,
             ),
           ],

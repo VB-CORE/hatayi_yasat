@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -25,16 +25,17 @@ final class CategoryChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.general.colorScheme;
-    final color = isSelected ? colorScheme.onTertiary : AppColors.navy400;
+    final appColors = context.appColors;
+    final color = isSelected ? colorScheme.onTertiary : appColors.mutedTextAlt;
     return InkWell(
       onTap: onTap,
       borderRadius: CustomRadius.xxLarge,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: isSelected ? colorScheme.tertiary : AppColors.surface,
+          color: isSelected ? colorScheme.tertiary : appColors.cardSurface,
           borderRadius: CustomRadius.xxLarge,
           border: Border.all(
-            color: isSelected ? colorScheme.tertiary : AppColors.ink200,
+            color: isSelected ? colorScheme.tertiary : appColors.softBorder,
           ),
         ),
         child: Padding(

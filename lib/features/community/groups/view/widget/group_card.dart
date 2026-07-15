@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
@@ -89,7 +89,7 @@ final class _GroupInfo extends StatelessWidget {
         const EmptyBox.xSmallHeight(),
         GeneralContentSmallTitle(
           value: model.description,
-          color: AppColors.navy300,
+          color: context.appColors.mutedText,
           maxLine: AppConstants.kOne,
         ),
         const EmptyBox.smallHeight(),
@@ -111,24 +111,24 @@ final class _GroupMetaRow extends StatelessWidget {
       runSpacing: WidgetSizes.spacingXxs,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        const Icon(
+        Icon(
           AppIcons.group,
           size: AppIconSizes.xMedium,
-          color: AppColors.navy300,
+          color: context.appColors.mutedText,
         ),
         GeneralContentSmallTitle(
           value: model.memberCount.toString(),
-          color: AppColors.navy300,
+          color: context.appColors.mutedText,
         ),
         GeneralStatusBadge(
           label: model.type.badgeLabel,
-          color: model.type.badgeColor,
+          color: model.type.badgeColor(context),
           icon: model.type.badgeIcon,
         ),
         if (model.isCurrentUserAdmin)
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
-            color: AppColors.coral500,
+            color: context.general.colorScheme.tertiary,
           ),
       ],
     );
@@ -141,9 +141,9 @@ extension on GroupType {
     GroupType.closed => LocaleKeys.community_groups_closedGroup.tr(),
   };
 
-  Color get badgeColor => switch (this) {
-    GroupType.open => AppColors.olive600,
-    GroupType.closed => AppColors.navy400,
+  Color badgeColor(BuildContext context) => switch (this) {
+    GroupType.open => context.appColors.openBadge,
+    GroupType.closed => context.appColors.closedBadge,
   };
 
   IconData get badgeIcon => switch (this) {

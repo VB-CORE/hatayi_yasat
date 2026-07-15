@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_view_model.dart';
 import 'package:lifeclient/features/community/create_group/view/mixin/create_group_view_mixin.dart';
 import 'package:lifeclient/features/community/create_group/view/widget/category_chip.dart';
@@ -54,7 +54,7 @@ final class _CreateGroupViewState extends ConsumerState<CreateGroupView>
             padding: const PagePadding.onlyRight(),
             child: GeneralStatusBadge(
               label: LocaleKeys.community_createGroup_openBadge.tr(),
-              color: AppColors.olive600,
+              color: context.appColors.openBadge,
               icon: AppIcons.globe,
             ),
           ),

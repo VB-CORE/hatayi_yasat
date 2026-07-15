@@ -14,7 +14,7 @@ final class _GroupsHeader extends StatelessWidget {
       children: [
         GeneralContentSmallTitle(
           value: LocaleKeys.community_tagline.tr(),
-          color: AppColors.coral,
+          color: context.general.colorScheme.tertiary,
           fontWeight: FontWeight.w700,
         ),
         const EmptyBox.xSmallHeight(),
@@ -29,7 +29,7 @@ final class _GroupsHeader extends StatelessWidget {
                 value: LocaleKeys.community_groups_groupCount.tr(
                   args: [state.groups.length.toString()],
                 ),
-                color: AppColors.navy300,
+                color: context.appColors.mutedText,
               ),
           ],
         ),

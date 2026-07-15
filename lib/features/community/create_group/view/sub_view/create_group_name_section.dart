@@ -28,7 +28,7 @@ final class _NameSection extends StatelessWidget {
             Expanded(
               child: GeneralContentSmallTitle(
                 value: LocaleKeys.community_createGroup_nameHelper.tr(),
-                color: AppColors.navy300,
+                color: context.appColors.mutedText,
               ),
             ),
             ValueListenableBuilder<TextEditingValue>(
@@ -36,7 +36,7 @@ final class _NameSection extends StatelessWidget {
               builder: (context, value, _) {
                 return GeneralContentSmallTitle(
                   value: '${value.text.length}/${_maxLength.value}',
-                  color: AppColors.navy300,
+                  color: context.appColors.mutedText,
                 );
               },
             ),
