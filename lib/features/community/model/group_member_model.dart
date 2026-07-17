@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/model/auth/app_user_model.dart';
 import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 final class GroupMemberModel extends Equatable {

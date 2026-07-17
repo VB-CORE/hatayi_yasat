@@ -1,11 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
 // GoRouter'ın refreshListenable'ı ChangeNotifier gerektiriyor; ChangeNotifierProvider
@@ -21,13 +19,14 @@ final class RouterNotifier extends ChangeNotifier {
   String? redirect(BuildContext context, GoRouterState state) {
     final authState = _ref.read(authViewModelProvider);
     final isLoginRoute = state.matchedLocation == const LoginRoute().location;
+    final isSplashRoute = state.matchedLocation == const SplashRoute().location;
 
     if (authState is Authenticated && isLoginRoute) {
-      final role = authState.user.role;
-      if (kDebugMode && role != UserRole.user) {
-        return RoleDashboardRoute(role: role.name).location;
-      }
       return const MainTabRoute().location;
+    }
+    // Splash, init akışı tamamlanmadan login'e yönlendirilmez.
+    if (authState is Unauthenticated && !isLoginRoute && !isSplashRoute) {
+      return const LoginRoute().location;
     }
     return null;
   }

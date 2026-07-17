@@ -3,15 +3,18 @@ import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/user_doc_cache_model.dart';
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})
-      : _cacheManager = cacheManager;
+    : _cacheManager = cacheManager;
 
   final CacheManager _cacheManager;
+  Future<void>? _initFuture;
 
-  Future<void> init() async {
-    await _cacheManager.init([
+  // Hive adapter'ları iki kez register edilmesin diye aynı Future paylaşılır.
+  Future<void> init() {
+    return _initFuture ??= _cacheManager.init([
       StoreModelCache.empty(),
       const AppCacheModel(),
       const MemoryCacheModel.empty(),
@@ -27,4 +30,7 @@ final class ProductCache {
 
   late final CacheOperation<MemoryCacheModel> memoryCacheModel =
       HiveOperationManager<MemoryCacheModel>();
+
+  late final CacheOperation<UserDocCacheModel> userDocCache =
+      HiveOperationManager<UserDocCacheModel>();
 }

@@ -1,13 +1,16 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
-import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/user_doc_cache_model.dart';
+import 'package:lifeclient/product/model/auth/app_user_model.dart';
+import 'package:lifeclient/product/model/auth/firestore_user_doc_model.dart';
+import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 
-final class FirebaseAuthService implements AuthService {
+final class FirebaseAuthService
+    with ProjectDependencyMixin
+    implements AuthService {
   FirebaseAuthService()
     : _auth = FirebaseAuth.instance,
       _googleSignIn = GoogleSignIn();
@@ -15,52 +18,49 @@ final class FirebaseAuthService implements AuthService {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
 
-  // TODO(auth): Geçici debug — users/{uid} doc'unu dinler; her değişimde token'ı
-  // yenileyip roleType/permissions claim'lerini debugPrint eder.
+  @override
+  bool get isSignedIn => _auth.currentUser != null;
+
+  AppUser _toAppUser(User user, Map<String, dynamic>? docData) {
+    return AppUser.fromJson({
+      'uid': user.uid,
+      'email': user.email ?? '',
+      'displayName': user.displayName ?? user.email ?? '',
+      'photoUrl': user.photoURL,
+      'permissions': docData?['permissions'],
+    });
+  }
+
   @override
   Stream<AppUser?> get userStream => _auth.authStateChanges().asyncExpand((
     user,
   ) {
-    if (user == null) {
-      debugPrint('[userStream] signed out');
-      return Stream<AppUser?>.value(null);
-    }
+    if (user == null) return Stream<AppUser?>.value(null);
+
     final doc = FirebaseFirestore.instance.collection('users').doc(user.uid);
-    unawaited(_ensureUserDoc(doc, user));
     return doc.snapshots().asyncMap((snapshot) async {
-      final tokenResult = await user.getIdTokenResult(true);
-      debugPrint('[userStream] uid=${user.uid}');
-      debugPrint('[userStream] doc.permissions=${snapshot.data()?["permissions"]}');
-      debugPrint(
-        '[userStream] claims.permissions=${tokenResult.claims?["permissions"]}',
-      );
-      return AppUser(
-        uid: user.uid,
-        email: user.email ?? '',
-        displayName: user.displayName ?? user.email ?? '',
-        photoUrl: user.photoURL,
-      );
+      await _refreshTokenIfUserDocChanged(user, snapshot);
+      return _toAppUser(user, snapshot.data());
     });
   });
 
-  // users/{uid} yoksa oluşturur. Create rule'una uyar: roleType=2, permissions boş.
-  Future<void> _ensureUserDoc(
-    DocumentReference<Map<String, dynamic>> doc,
+  // Doküman değiştiyse cache güncellenir ve token force-refresh edilir; token cache'lenmez.
+  Future<void> _refreshTokenIfUserDocChanged(
     User user,
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
   ) async {
     try {
-      final snapshot = await doc.get();
-      if (snapshot.exists) return;
-      await doc.set({
-        'uid': user.uid,
-        'email': user.email ?? '',
-        'displayName': user.displayName ?? '',
-        'roleType': 2,
-        'permissions': <int>[],
-      });
-      debugPrint('[userStream] created users/${user.uid}');
-    } on Exception catch (e) {
-      debugPrint('[userStream] ensureUserDoc failed: $e');
+      final data = snapshot.data();
+      if (data == null) return;
+      await productCache.init();
+      final current = UserDocCacheModel.fromFirestoreDoc(
+        FirestoreUserDocModel.fromJson(data),
+      );
+      if (productCache.userDocCache.get(user.uid) == current) return;
+      productCache.userDocCache.add(current);
+      await user.getIdTokenResult(true);
+    } catch (_) {
+      // Hive henüz hazır olmayabilir; login'i engellememek için yutulur.
     }
   }
 
@@ -75,29 +75,42 @@ final class FirebaseAuthService implements AuthService {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final result = await _auth.signInWithCredential(credential);
+      final result = await _auth
+          .signInWithCredential(credential)
+          .timeout(DurationConstant.durationNetworkTimeout);
       final user = result.user;
       if (user == null) return null;
-      return AppUser(
-        uid: user.uid,
-        email: user.email ?? '',
-        displayName: user.displayName ?? user.email ?? '',
-        photoUrl: user.photoURL,
+
+      final docRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid);
+      final doc = await docRef.get().timeout(
+        DurationConstant.durationNetworkTimeout,
       );
-    } on Exception catch (e, stackTrace) {
-      // TODO(auth): Merkezi bir logging servisi eklenince (ayrı PR) buraya bağlanacak.
-      debugPrint('signInWithGoogle failed: $e\n$stackTrace');
+      if (!doc.exists) {
+        final newUserDoc = FirestoreUserDocModel(
+          uid: user.uid,
+          email: user.email ?? '',
+          displayName: user.displayName ?? '',
+          photoUrl: user.photoURL,
+        );
+        await docRef
+            .set(newUserDoc.toJson())
+            .timeout(DurationConstant.durationNetworkTimeout);
+      }
+
+      return _toAppUser(user, doc.data());
+    } catch (_) {
+      // Exception/Error fark etmeksizin login başarısız sayılır.
       return null;
     }
   }
 
   @override
   Future<void> signOut() async {
-    try {
-      await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
-    } on Exception catch (e, stackTrace) {
-      // TODO(auth): Merkezi bir logging servisi eklenince (ayrı PR) buraya bağlanacak.
-      debugPrint('signOut failed: $e\n$stackTrace');
-    }
+    await Future.wait([
+      _googleSignIn.signOut(),
+      _auth.signOut(),
+    ]).timeout(DurationConstant.durationNetworkTimeout);
   }
 }
