@@ -1,108 +1,167 @@
 part of '../merchant_application_view.dart';
 
 final class _MerchantCompanyStep extends ConsumerStatefulWidget {
-  const _MerchantCompanyStep({super.key});
+  const _MerchantCompanyStep({
+    required this.formKey,
+    required this.nameController,
+    required this.descriptionController,
+  });
+
+  final GlobalKey<FormState> formKey;
+  final TextEditingController nameController;
+  final TextEditingController descriptionController;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
+  ConsumerState<_MerchantCompanyStep> createState() =>
       _MerchantCompanyStepState();
 }
 
 final class _MerchantCompanyStepState
-    extends StepFormConsumerState<_MerchantCompanyStep>
-    with AppProviderMixin<_MerchantCompanyStep>, _MerchantCompanyStepMixin {
+    extends ConsumerState<_MerchantCompanyStep>
+    with
+        AutomaticKeepAliveClientMixin<_MerchantCompanyStep>,
+        AppProviderMixin<_MerchantCompanyStep> {
   @override
-  Widget onBuild(BuildContext context) {
-    final companyItems = ref
-        .watch(
-          merchantApplicationViewModelProvider.select(
-            (value) => value.companies,
+  bool get wantKeepAlive => true;
+
+  MerchantApplicationViewModel get _viewModel =>
+      ref.read(merchantApplicationViewModelProvider.notifier);
+
+  Future<void> _openCompanySheet() async {
+    final store = await MerchantCompanySheet.show(context);
+    if (!mounted || store == null) return;
+    _viewModel.selectCompany(store);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    final state = ref.watch(merchantApplicationViewModelProvider);
+    return Form(
+      key: widget.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: ListViewWithSpace(
+        children: [
+          _CompanyModeSelector(
+            isNewMode: state.isNewCompanyMode,
+            onChanged: (isNew) => _viewModel.setCompanyMode(isNew: isNew),
           ),
-        )
-        .map(MerchantCompanyDropdownModel.new)
-        .toList();
-    return ListViewWithSpace(
-      children: [
-        _CompanyModeSelector(
-          isNewMode: _isNewCompanyMode,
-          onChanged: (isNew) => _changeCompanyMode(isNew: isNew),
-        ),
-        if (!_isNewCompanyMode)
-          CustomDropdownFormField<MerchantCompanyDropdownModel>(
-            hint: LocaleKeys.merchantApplication_selectCompany.tr(),
-            onSelected: _onCompanySelected,
-            items: companyItems,
-            initialValue: _selectedCompany,
+          if (!state.isNewCompanyMode)
+            _CompanySelectorField(
+              selectedName: state.selectedCompany?.name,
+              onTap: _openCompanySheet,
+            ),
+          LabeledProductTextField(
+            controller: widget.nameController,
+            labelText: LocaleKeys.requestCompany_name.tr(),
+            hintText: LocaleKeys.requestCompany_name.tr(),
+            validator: ValidatorNormalTextField().validate,
           ),
-        LabeledProductTextField(
-          controller: placeNameController,
-          labelText: LocaleKeys.requestCompany_name.tr(),
-          hintText: LocaleKeys.requestCompany_name.tr(),
-          validator: ValidatorNormalTextField().validate,
-        ),
-        LabeledProductTextField(
-          isMultiline: true,
-          controller: placeDescriptionController,
-          labelText: LocaleKeys.requestCompany_description.tr(),
-          hintText: LocaleKeys.requestCompany_description.tr(),
-          validator: ValidatorNormalTextField().validate,
-        ),
-        Padding(
-          padding: const PagePadding.vertical12Symmetric(),
-          child: Row(
+          LabeledProductTextField(
+            isMultiline: true,
+            controller: widget.descriptionController,
+            labelText: LocaleKeys.requestCompany_description.tr(),
+            hintText: LocaleKeys.requestCompany_description.tr(),
+            validator: ValidatorNormalTextField().validate,
+          ),
+          Padding(
+            padding: const PagePadding.vertical12Symmetric(),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomDropdownFormField<RegionalCityModel>(
+                    hint: '',
+                    onSelected: _viewModel.selectCity,
+                    items: productState.regionalCityItems,
+                    initialValue: state.selectedCity,
+                  ),
+                ),
+                const EmptyBox.middleWidth(),
+                Expanded(
+                  child: CustomDropdownFormField<RegionalTownSubItem>(
+                    hint: '',
+                    onSelected: _viewModel.selectTown,
+                    items: state.townItems,
+                    initialValue: state.selectedTown,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: CustomDropdownFormField<RegionalCityModel>(
-                  hint: '',
-                  onSelected: _onCityChanged,
-                  items: regionalCityModels,
-                  initialValue: selectedRegionalCityModel,
-                ),
+              CustomTextFieldLabel(
+                labelText: LocaleKeys.requestCompany_chooseCategory.tr(),
               ),
-              const EmptyBox.middleWidth(),
-              Expanded(
-                child: CustomDropdownFormField<RegionalTownSubItem>(
-                  hint: '',
-                  onSelected: _onTownChanged,
-                  items: selectedRegionalTownModel.towns,
-                  initialValue: selectedRegionalTownSubItem,
-                ),
+              context.sized.emptySizedHeightBoxLow,
+              Wrap(
+                spacing: WidgetSizes.spacingXs,
+                runSpacing: WidgetSizes.spacingXs,
+                children: [
+                  for (final category in productState.categoryItems)
+                    ActionChip(
+                      onPressed: () => _viewModel.selectCategory(category),
+                      elevation: kZero,
+                      pressElevation: kZero,
+                      backgroundColor: state.selectedCategory == category
+                          ? AppColors.coral
+                          : AppColors.surface,
+                      label: GeneralBodySmallTitle(
+                        category.displayName,
+                        fontWeight: FontWeight.w500,
+                        color: state.selectedCategory == category
+                            ? AppColors.white
+                            : context.general.colorScheme.primary,
+                      ),
+                    ),
+                ],
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+final class _CompanySelectorField extends StatelessWidget {
+  const _CompanySelectorField({
+    required this.selectedName,
+    required this.onTap,
+  });
+
+  final String? selectedName;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final name = selectedName;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: CustomRadius.medium,
+      child: DecoratedBox(
+        decoration: BoxDecorations.circularMedium(
+          borderColor: context.general.colorScheme.onPrimaryContainer,
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTextFieldLabel(
-              labelText: LocaleKeys.requestCompany_chooseCategory.tr(),
-            ),
-            context.sized.emptySizedHeightBoxLow,
-            Wrap(
-              spacing: WidgetSizes.spacingXs,
-              runSpacing: WidgetSizes.spacingXs,
-              children: [
-                for (final category in categoryModels)
-                  ActionChip(
-                    onPressed: () => _onCategorySelected(category),
-                    elevation: kZero,
-                    pressElevation: kZero,
-                    backgroundColor: _selectedCategory == category
-                        ? AppColors.coral
-                        : AppColors.surface,
-                    label: GeneralBodySmallTitle(
-                      category.displayName,
-                      fontWeight: FontWeight.w500,
-                      color: _selectedCategory == category
-                          ? AppColors.white
-                          : context.general.colorScheme.primary,
-                    ),
-                  ),
-              ],
-            ),
-          ],
+        child: Padding(
+          padding: const PagePadding.generalAllNormal(),
+          child: Row(
+            children: [
+              Expanded(
+                child: GeneralBodySmallTitle(
+                  name ?? LocaleKeys.merchantApplication_selectCompany.tr(),
+                  fontWeight: FontWeight.w500,
+                  color: name == null
+                      ? AppColors.ink400
+                      : context.general.colorScheme.primary,
+                ),
+              ),
+              const Icon(Icons.keyboard_arrow_down),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }

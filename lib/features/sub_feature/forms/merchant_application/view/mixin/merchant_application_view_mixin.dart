@@ -5,12 +5,27 @@ mixin MerchantApplicationViewMixin
         ConsumerState<MerchantApplicationView>,
         AppProviderMixin<MerchantApplicationView> {
   final PageController pageController = PageController();
-  final GlobalKey<_MerchantCompanyStepState> _companyStepKey =
-      GlobalKey<_MerchantCompanyStepState>();
-  final GlobalKey<_MerchantMediaStepState> _mediaStepKey =
-      GlobalKey<_MerchantMediaStepState>();
-  final GlobalKey<_MerchantOwnerStepState> _ownerStepKey =
-      GlobalKey<_MerchantOwnerStepState>();
+
+  final GlobalKey<FormState> companyFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> mediaFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> ownerFormKey = GlobalKey<FormState>();
+
+  final TextEditingController placeNameController = TextEditingController();
+  final TextEditingController placeDescriptionController =
+      TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TimePickerController openTimeController = TimePickerController();
+  final TimePickerController closeTimeController = TimePickerController();
+  final TextEditingController placeOwnerNameController =
+      TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+
+  GlobalKey<FormState> _formKeyFor(MerchantApplicationStep step) =>
+      switch (step) {
+        MerchantApplicationStep.company => companyFormKey,
+        MerchantApplicationStep.media => mediaFormKey,
+        MerchantApplicationStep.owner => ownerFormKey,
+      };
 
   MerchantApplicationViewModel get viewModel =>
       ref.read(merchantApplicationViewModelProvider.notifier);
@@ -18,14 +33,39 @@ mixin MerchantApplicationViewMixin
   @override
   void initState() {
     super.initState();
-    unawaited(Future.microtask(viewModel.loadCompanies));
-    ref.listenManual(
-      merchantApplicationViewModelProvider.select((value) => value.currentStep),
-      onStepChanged,
-    );
+    ref
+      ..listenManual(
+        merchantApplicationViewModelProvider.select(
+          (value) => value.currentStep,
+        ),
+        _onStepChanged,
+      )
+      ..listenManual(
+        merchantApplicationViewModelProvider.select(
+          (value) => value.selectedCompany,
+        ),
+        (previous, next) {
+          next == null
+              ? _clearCompanyControllers()
+              : _fillControllersFromStore(next);
+        },
+      );
   }
 
-  void onStepChanged(
+  @override
+  void dispose() {
+    pageController.dispose();
+    placeNameController.dispose();
+    placeDescriptionController.dispose();
+    addressController.dispose();
+    openTimeController.dispose();
+    closeTimeController.dispose();
+    placeOwnerNameController.dispose();
+    phoneNumberController.dispose();
+    super.dispose();
+  }
+
+  void _onStepChanged(
     MerchantApplicationStep? previousStep,
     MerchantApplicationStep nextStep,
   ) {
@@ -39,80 +79,75 @@ mixin MerchantApplicationViewMixin
     );
   }
 
-  bool _validateCurrentStep(MerchantApplicationStep step) => switch (step) {
-    MerchantApplicationStep.company =>
-      _companyStepKey.currentState?.validateAndSave() ?? false,
-    MerchantApplicationStep.media =>
-      _mediaStepKey.currentState?.validateAndSave() ?? false,
-    MerchantApplicationStep.owner =>
-      _ownerStepKey.currentState?.validateAndSave() ?? false,
-  };
-
   void onNextPressed() {
     final state = ref.read(merchantApplicationViewModelProvider);
-    if (!_validateCurrentStep(state.currentStep)) return;
     if (state.isLastStep) {
       unawaited(_submit());
       return;
     }
+    if (!_validateStep(state.currentStep)) return;
     viewModel.nextStep();
   }
 
   void onBackPressed() => viewModel.previousStep();
 
-  Future<void> _submit() async {
-    final company = _companyStepKey.currentState;
-    final media = _mediaStepKey.currentState;
-    final owner = _ownerStepKey.currentState;
-    if (company == null || media == null || owner == null) return;
-    if (!company.validateAndSave()) {
-      viewModel.goToStep(MerchantApplicationStep.company);
-      return;
-    }
-    if (!media.validateAndSave()) {
-      viewModel.goToStep(MerchantApplicationStep.media);
-      return;
-    }
-    if (!owner.validateAndSave()) return;
-
-    final model = _buildModel(company: company, media: media, owner: owner);
-    if (model == null) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.message_somethingWentWrong.tr(),
-      );
-      return;
-    }
-    final isSuccess = await viewModel.submit(model);
-    await _onSubmitResult(isSuccess: isSuccess);
+  bool _validateStep(MerchantApplicationStep step) {
+    final isFormValid = _formKeyFor(step).currentState?.validate() ?? false;
+    _flushAll();
+    final error = viewModel.validateStep(step, isFormValid: isFormValid);
+    if (error == null) return true;
+    final message = _messageFor(error);
+    if (message != null) appProvider.showSnackbarMessage(message.tr());
+    return false;
   }
 
-  MerchantApplicationModel? _buildModel({
-    required _MerchantCompanyStepState company,
-    required _MerchantMediaStepState media,
-    required _MerchantOwnerStepState owner,
-  }) {
-    final category = company.selectedCategory;
-    final district = company.selectedDistrict;
-    final documentFile = owner.documentFile;
-    final location = media.selectedLocation;
-    if (category == null || district == null) return null;
-    if (documentFile == null || location == null) return null;
+  void _flushAll() {
+    viewModel
+      ..setCompanyText(
+        name: placeNameController.text,
+        description: placeDescriptionController.text,
+      )
+      ..setMediaText(
+        address: addressController.text,
+        openTime: openTimeController.time,
+        closeTime: closeTimeController.time,
+      )
+      ..setOwnerText(
+        name: placeOwnerNameController.text,
+        phone: phoneNumberController.text,
+      );
+  }
 
-    return MerchantApplicationModel(
-      placeName: company.companyName,
-      placeDescription: company.companyDescription,
-      placeAddress: media.companyAddress,
-      placeOwnerName: owner.ownerName,
-      placePhoneNumber: owner.phoneNumber,
-      placeCategory: category,
-      placeDistrict: district,
-      photoFiles: media.photoFiles,
-      documentFile: documentFile,
-      timeValidationModel: media.timeValidationModel,
-      selectedLocation: location,
-      selectedCityId: company.selectedCityId,
-      isComment: owner.isCommentEnabled,
-    );
+  void _fillControllersFromStore(StoreModel store) {
+    placeNameController.text = store.name;
+    placeDescriptionController.text = store.description ?? '';
+    if (store.owner.isNotEmpty) placeOwnerNameController.text = store.owner;
+    if (store.phone.isNotEmpty) phoneNumberController.text = store.phone;
+    final address = store.address;
+    if (address != null && address.isNotEmpty) addressController.text = address;
+    final openTime = store.openTime;
+    if (openTime != null) openTimeController.text = openTime;
+    final closeTime = store.closeTime;
+    if (closeTime != null) closeTimeController.text = closeTime;
+  }
+
+  void _clearCompanyControllers() {
+    placeNameController.clear();
+    placeDescriptionController.clear();
+    addressController.clear();
+    openTimeController.reset();
+    closeTimeController.reset();
+  }
+
+  Future<void> _submit() async {
+    for (final step in MerchantApplicationStep.values) {
+      if (!_validateStep(step)) {
+        viewModel.goToStep(step);
+        return;
+      }
+    }
+    final isSuccess = await viewModel.submit();
+    await _onSubmitResult(isSuccess: isSuccess);
   }
 
   Future<void> _onSubmitResult({required bool isSuccess}) async {
@@ -142,9 +177,14 @@ mixin MerchantApplicationViewMixin
 
   void onClosePressed() => unawaited(_confirmAndClose());
 
-  @override
-  void dispose() {
-    super.dispose();
-    pageController.dispose();
-  }
+  String? _messageFor(MerchantStepError error) => switch (error) {
+    MerchantStepError.form => null,
+    MerchantStepError.companyNotSelected =>
+      LocaleKeys.merchantApplication_selectCompany,
+    MerchantStepError.categoryEmpty => LocaleKeys.validation_categoryEmpty,
+    MerchantStepError.photoRequired => LocaleKeys.validation_photoRequired,
+    MerchantStepError.kvkkRequired => LocaleKeys.validation_kvkk,
+    MerchantStepError.documentRequired =>
+      LocaleKeys.merchantApplication_documentHint,
+  };
 }

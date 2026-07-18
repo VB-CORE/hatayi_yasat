@@ -1,86 +1,115 @@
 part of '../merchant_application_view.dart';
 
+const int _maxPhotoCount = 10;
+const int _photosPerRow = 4;
+
 final class _MerchantMediaStep extends ConsumerStatefulWidget {
-  const _MerchantMediaStep({super.key});
+  const _MerchantMediaStep({
+    required this.formKey,
+    required this.addressController,
+    required this.openTimeController,
+    required this.closeTimeController,
+  });
+
+  final GlobalKey<FormState> formKey;
+  final TextEditingController addressController;
+  final TimePickerController openTimeController;
+  final TimePickerController closeTimeController;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _MerchantMediaStepState();
+  ConsumerState<_MerchantMediaStep> createState() => _MerchantMediaStepState();
 }
 
-final class _MerchantMediaStepState
-    extends StepFormConsumerState<_MerchantMediaStep>
-    with AppProviderMixin<_MerchantMediaStep>, _MerchantMediaStepMixin {
+final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
+    with
+        AutomaticKeepAliveClientMixin<_MerchantMediaStep>,
+        AppProviderMixin<_MerchantMediaStep> {
   @override
-  Widget onBuild(BuildContext context) {
-    return ListViewWithSpace(
-      children: [
-        const EmptyBox.middleHeight(),
-        OpenAndCloseTimePicker(
-          closeTimeController: closeTimeController,
-          openTimeController: openTimeController,
-        ),
-        LabeledProductTextField(
-          isMultiline: true,
-          controller: addressController,
-          labelText: LocaleKeys.requestCompany_address.tr(),
-          hintText: LocaleKeys.requestCompany_address.tr(),
-          validator: ValidatorNormalTextField().validate,
-        ),
-        Padding(
-          padding: const PagePadding.vertical12Symmetric(),
-          child: _MerchantPlacePickerFormField(
-            key: ValueKey(
-              ref.watch(
-                merchantApplicationViewModelProvider.select(
-                  (value) => value.selectedCompany?.documentId,
-                ),
+  bool get wantKeepAlive => true;
+
+  MerchantApplicationViewModel get _viewModel =>
+      ref.read(merchantApplicationViewModelProvider.notifier);
+
+  int _visiblePhotoSlotCount(int photoCount) =>
+      photoCount < _maxPhotoCount ? photoCount + 1 : _maxPhotoCount;
+
+  Future<void> _pickPhoto(int index) async {
+    final file = await GeneralMediaSheet.open(context);
+    if (!mounted || file == null) return;
+    _viewModel.addOrReplacePhoto(index, file);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    final state = ref.watch(merchantApplicationViewModelProvider);
+    final photoFiles = state.photoFiles;
+    return Form(
+      key: widget.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: ListViewWithSpace(
+        children: [
+          const EmptyBox.middleHeight(),
+          OpenAndCloseTimePicker(
+            closeTimeController: widget.closeTimeController,
+            openTimeController: widget.openTimeController,
+          ),
+          LabeledProductTextField(
+            isMultiline: true,
+            controller: widget.addressController,
+            labelText: LocaleKeys.requestCompany_address.tr(),
+            hintText: LocaleKeys.requestCompany_address.tr(),
+            validator: ValidatorNormalTextField().validate,
+          ),
+          Padding(
+            padding: const PagePadding.vertical12Symmetric(),
+            child: _MerchantPlacePickerFormField(
+              key: ValueKey(state.selectedCompany?.documentId),
+              initialValue: state.selectedLocation,
+              onChanged: _viewModel.setLocation,
+              initialPosition: LatLng(
+                productState.selectedCity.location.latitude,
+                productState.selectedCity.location.longitude,
               ),
-            ),
-            initialValue: _selectedLocation,
-            onChanged: _onLocationChanged,
-            initialPosition: LatLng(
-              productState.selectedCity.location.latitude,
-              productState.selectedCity.location.longitude,
             ),
           ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                GeneralBodySmallTitle(
-                  LocaleKeys.merchantApplication_photosTitle.tr(),
-                  fontWeight: FontWeight.w500,
-                ),
-                const Spacer(),
-                GeneralBodySmallTitle(
-                  LocaleKeys.merchantApplication_photosHint.tr(),
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.ink400,
-                ),
-              ],
-            ),
-            const EmptyBox.middleHeight(),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _visiblePhotoSlotCount,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: _photosPerRow,
-                mainAxisSpacing: WidgetSizes.spacingS,
-                crossAxisSpacing: WidgetSizes.spacingXs,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  GeneralBodySmallTitle(
+                    LocaleKeys.merchantApplication_photosTitle.tr(),
+                    fontWeight: FontWeight.w500,
+                  ),
+                  const Spacer(),
+                  GeneralBodySmallTitle(
+                    LocaleKeys.merchantApplication_photosHint.tr(),
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.ink400,
+                  ),
+                ],
               ),
-              itemBuilder: (context, index) => _MerchantPhotoSlot(
-                file: index < _photoFiles.length ? _photoFiles[index] : null,
-                onTap: () => _onPhotoSlotTapped(index),
-                onRemove: () => _removePhotoAt(index),
+              const EmptyBox.middleHeight(),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _visiblePhotoSlotCount(photoFiles.length),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: _photosPerRow,
+                  mainAxisSpacing: WidgetSizes.spacingS,
+                  crossAxisSpacing: WidgetSizes.spacingXs,
+                ),
+                itemBuilder: (context, index) => _MerchantPhotoSlot(
+                  file: index < photoFiles.length ? photoFiles[index] : null,
+                  onTap: () => _pickPhoto(index),
+                  onRemove: () => _viewModel.removePhotoAt(index),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -8,14 +8,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_model.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_company_dropdown_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_state.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_view_model.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/widget/merchant_company_sheet.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/widget/merchant_step_indicator.dart';
-import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
-import 'package:lifeclient/features/sub_feature/forms/step_form.dart';
 import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
@@ -38,9 +35,6 @@ import 'package:lifeclient/product/widget/text_field/labeled_product_textfield.d
 import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_label.dart';
 
 part 'mixin/merchant_application_view_mixin.dart';
-part 'mixin/merchant_company_step_mixin.dart';
-part 'mixin/merchant_media_step_mixin.dart';
-part 'mixin/merchant_owner_step_mixin.dart';
 part 'sub_view/merchant_company_step.dart';
 part 'sub_view/merchant_media_step.dart';
 part 'sub_view/merchant_owner_step.dart';
@@ -80,9 +74,22 @@ final class _MerchantApplicationViewState
                   controller: pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    _MerchantCompanyStep(key: _companyStepKey),
-                    _MerchantMediaStep(key: _mediaStepKey),
-                    _MerchantOwnerStep(key: _ownerStepKey),
+                    _MerchantCompanyStep(
+                      formKey: companyFormKey,
+                      nameController: placeNameController,
+                      descriptionController: placeDescriptionController,
+                    ),
+                    _MerchantMediaStep(
+                      formKey: mediaFormKey,
+                      addressController: addressController,
+                      openTimeController: openTimeController,
+                      closeTimeController: closeTimeController,
+                    ),
+                    _MerchantOwnerStep(
+                      formKey: ownerFormKey,
+                      nameController: placeOwnerNameController,
+                      phoneController: phoneNumberController,
+                    ),
                   ],
                 ),
               ),
