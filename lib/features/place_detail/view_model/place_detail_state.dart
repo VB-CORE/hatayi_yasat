@@ -14,11 +14,7 @@ final class PlaceDetailState extends Equatable {
   final bool isFetching;
   final bool isError;
   @override
-  List<Object?> get props => [
-        storeModel,
-        isFetching,
-        isError,
-      ];
+  List<Object?> get props => [storeModel, isFetching, isError];
 
   PlaceDetailState copyWith({
     StoreModel? storeModel,

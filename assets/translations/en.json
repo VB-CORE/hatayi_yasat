@@ -159,7 +159,9 @@
     "hoursAgo": "{} hours ago",
     "daysAgo": "{} days ago",
     "monthsAgo": "{} months ago",
-    "yearsAgo": "{} years ago"
+    "yearsAgo": "{} years ago",
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -221,7 +223,12 @@
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
     "placeNotFoundErrorMessage": "Place not found",
-    "advertiseNotFoundErrorMessage": "Advertise not found"
+    "advertiseNotFoundErrorMessage": "Advertise not found",
+    "typeStore": "Place",
+    "typeCampaign": "Campaign",
+    "typeNews": "News",
+    "typeAdvertise": "Announcement",
+    "typeLink": "Link"
   },
   "developers": {
     "title": "Developers",

@@ -15,6 +15,7 @@ import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
 import 'package:lifeclient/features/place_detail/mixin/place_detail_view_mixin.dart';
+import 'package:lifeclient/features/place_detail/view_model/place_detail_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
@@ -23,6 +24,7 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
@@ -40,11 +42,7 @@ part 'widget/tabs/place_detail_comments.dart';
 enum _PlaceDetailTab { about, comments }
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
-  const PlaceDetailView({
-    required this.store,
-    required this.id,
-    super.key,
-  });
+  const PlaceDetailView({required this.store, required this.id, super.key});
 
   final StoreModel store;
   final String id;
@@ -57,6 +55,27 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     with PlaceDetailViewMixin {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(placeDetailViewModelProvider(args));
+    final store = state.storeModel;
+
+    if (state.isError) {
+      return Scaffold(
+        backgroundColor: AppColors.bg,
+        appBar: AppBar(),
+        body: GeneralNotFoundWidget(
+          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+
+    if (state.isFetching || store.name.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(),
+        backgroundColor: AppColors.bg,
+        body: const PlaceShimmerList(),
+      );
+    }
+
     return DefaultTabController(
       length: _PlaceDetailTab.values.length,
       child: Scaffold(
@@ -65,20 +84,22 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
           controller: scrollController,
           slivers: [
             PlaceDetailHeader(
-              store: widget.store,
+              store: store,
               scrollController: scrollController,
-              patternHeight: context.sized.dynamicHeight(patternHeightFactor),
+              patternHeight: context.sized.dynamicHeight(
+                PlaceDetailViewMixin.patternHeightFactor,
+              ),
               onCall: onCall,
               onComment: onComment,
             ),
             PinnedHeaderSliver(
-              child: PlaceDetailTabBar(store: widget.store),
+              child: PlaceDetailTabBar(store: store),
             ),
             SliverPadding(
               padding: const PagePadding.generalAllLow(),
               sliver: SliverToBoxAdapter(
                 child: PlaceDetailTabContent(
-                  store: widget.store,
+                  store: store,
                   onCall: onCall,
                   onCopyAddress: onCopyAddress,
                 ),

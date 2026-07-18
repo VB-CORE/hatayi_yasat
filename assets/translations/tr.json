@@ -159,7 +159,9 @@
     "hoursAgo": "{} saat önce",
     "daysAgo": "{} gün önce",
     "monthsAgo": "{} ay önce",
-    "yearsAgo": "{} yıl önce"
+    "yearsAgo": "{} yıl önce",
+    "today": "Bugün",
+    "yesterday": "Dün"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -221,7 +223,12 @@
     "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
     "newsNotFoundErrorMessage": "Haber bulunamadı",
     "placeNotFoundErrorMessage": "Mekan bulunamadı",
-    "advertiseNotFoundErrorMessage": "İlan bulunamadı"
+    "advertiseNotFoundErrorMessage": "İlan bulunamadı",
+    "typeStore": "Mekan",
+    "typeCampaign": "Kampanya",
+    "typeNews": "Haber",
+    "typeAdvertise": "Duyuru",
+    "typeLink": "Bağlantı"
   },
   "developers": {
     "title": "Geliştiriciler",

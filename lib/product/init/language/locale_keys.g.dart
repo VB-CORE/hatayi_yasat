@@ -149,6 +149,8 @@ abstract class  LocaleKeys {
   static const date_daysAgo = 'date.daysAgo';
   static const date_monthsAgo = 'date.monthsAgo';
   static const date_yearsAgo = 'date.yearsAgo';
+  static const date_today = 'date.today';
+  static const date_yesterday = 'date.yesterday';
   static const date = 'date';
   static const search_latestSearch = 'search.latestSearch';
   static const search_place = 'search.place';
@@ -205,6 +207,11 @@ abstract class  LocaleKeys {
   static const notification_newsNotFoundErrorMessage = 'notification.newsNotFoundErrorMessage';
   static const notification_placeNotFoundErrorMessage = 'notification.placeNotFoundErrorMessage';
   static const notification_advertiseNotFoundErrorMessage = 'notification.advertiseNotFoundErrorMessage';
+  static const notification_typeStore = 'notification.typeStore';
+  static const notification_typeCampaign = 'notification.typeCampaign';
+  static const notification_typeNews = 'notification.typeNews';
+  static const notification_typeAdvertise = 'notification.typeAdvertise';
+  static const notification_typeLink = 'notification.typeLink';
   static const notification = 'notification';
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';

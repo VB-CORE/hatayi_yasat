@@ -39,6 +39,22 @@ extension DateTimeExtensions on DateTime {
     }
     return LocaleKeys.date_justNow.tr();
   }
+
+  DateTime get startOfDay => DateTime(year, month, day);
+
+  String get hm => DateFormat.Hm().format(this);
+
+  String get relativeDayLabel {
+    final now = DateTime.now();
+    final days = now.startOfDay.difference(startOfDay).inDays;
+
+    return switch (days) {
+      0 => LocaleKeys.date_today.tr(),
+      1 => LocaleKeys.date_yesterday.tr(),
+      _ when year == now.year => DateFormat.MMMMd().format(this),
+      _ => DateFormat.yMMMd().format(this),
+    };
+  }
 }
 
 extension DateTimeHourAndMinuteExtensions on int {

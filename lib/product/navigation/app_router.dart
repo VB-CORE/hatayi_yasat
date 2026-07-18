@@ -18,7 +18,7 @@ import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_s
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
-import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
+import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
