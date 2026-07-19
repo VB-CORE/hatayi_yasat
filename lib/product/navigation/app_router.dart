@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/admin_panel/view/admin_panel_view.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
@@ -377,6 +378,7 @@ final class SettingsRoute extends GoRouteData with $SettingsRoute {
     routes: [
       DevelopersRoute.route,
       ApplicationInformationRoute.route,
+      AdminPanelRoute.route,
     ],
   );
 
@@ -411,6 +413,19 @@ final class ApplicationInformationRoute extends GoRouteData
   // TODO: Bu sayfa yapılacak.
   Widget build(BuildContext context, GoRouterState state) =>
       const Text('Bu sayfa yapılacak.');
+}
+
+final class AdminPanelRoute extends GoRouteData with $AdminPanelRoute {
+  const AdminPanelRoute();
+
+  static const route = TypedGoRoute<AdminPanelRoute>(
+    path: 'admin',
+    name: 'Admin Panel',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AdminPanelView();
 }
 
 final class UsefulLinksRoute extends GoRouteData with $UsefulLinksRoute {

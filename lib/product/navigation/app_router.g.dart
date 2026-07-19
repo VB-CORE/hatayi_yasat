@@ -180,6 +180,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Application Information',
           factory: $ApplicationInformationRoute._fromState,
         ),
+        GoRouteData.$route(
+          path: 'admin',
+          name: 'Admin Panel',
+          factory: $AdminPanelRoute._fromState,
+        ),
       ],
     ),
   ],
@@ -650,6 +655,27 @@ mixin $ApplicationInformationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/settings/appInfo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $AdminPanelRoute on GoRouteData {
+  static AdminPanelRoute _fromState(GoRouterState state) =>
+      const AdminPanelRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/settings/admin');
 
   @override
   void go(BuildContext context) => context.go(location);

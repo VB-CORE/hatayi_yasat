@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/main/settings/model/contact_model.dart';
 import 'package:lifeclient/features/sub_feature/web_view/app_about_web_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/auth/user_role.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/app_review/app_review.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
@@ -18,6 +22,7 @@ import 'package:lifeclient/product/widget/checkbox/notification_permission_check
 import 'package:lifeclient/product/widget/dropdown/language_dropdown_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
+part 'widget/admin_panel_widget.dart';
 part 'widget/app_about_widget.dart';
 part 'widget/change_language_widget.dart';
 part 'widget/change_notification_widget.dart';
@@ -43,6 +48,7 @@ final class SettingsView extends StatelessWidget {
           SliverList.list(
             children: const [
               EmptyBox.middleHeight(),
+              _AdminPanelWidget(),
               _DevelopersWidget(),
               _ChangeNotificationWidget(),
               _ChangeLanguageWidget(),

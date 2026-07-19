@@ -77,4 +77,7 @@ final class AppIcons {
   static const IconData comment = Icons.mode_comment_outlined;
   static const IconData exitGroup = Icons.logout_outlined;
   static const IconData send = Icons.send_rounded;
+  static const IconData adminPanel = Icons.admin_panel_settings_outlined;
+  static const IconData createIssue = Icons.edit_note_outlined;
+  static const IconData createGroup = Icons.group_add_outlined;
 }
