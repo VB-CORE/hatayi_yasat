@@ -486,5 +486,30 @@
     "districtCountLabel": "{} districts",
     "openShort": "open",
     "favoritesShort": "favorites"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "usersTab": "Users",
+    "applicationsTab": "Applications",
+    "verifiedMerchant": "Verified Merchant",
+    "permissionsTitle": "Permissions",
+    "canCreateIssueTitle": "Create topics",
+    "canCreateIssueSubtitle": "Can start new topics on place pages.",
+    "canCreateGroupTitle": "Create groups",
+    "canCreateGroupSubtitle": "Can create new community groups.",
+    "permissionUpdateFailed": "Permission could not be updated. Please try again.",
+    "usersLoadFailed": "User list could not be loaded.",
+    "usersEmpty": "No users yet.",
+    "applicationsLoadFailed": "Applications could not be loaded.",
+    "noPendingApplications": "No pending applications",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approveSuccess": "Application approved.",
+    "approveFailed": "Application could not be approved. Please try again.",
+    "rejectSuccess": "Application rejected.",
+    "rejectFailed": "Application could not be rejected. Please try again.",
+    "statusPending": "Pending",
+    "statusApproved": "Approved",
+    "statusRejected": "Rejected"
   }
 }

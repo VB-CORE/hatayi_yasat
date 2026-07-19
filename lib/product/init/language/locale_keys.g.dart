@@ -429,5 +429,29 @@ abstract class  LocaleKeys {
   static const filter_openShort = 'filter.openShort';
   static const filter_favoritesShort = 'filter.favoritesShort';
   static const filter = 'filter';
+  static const admin_title = 'admin.title';
+  static const admin_usersTab = 'admin.usersTab';
+  static const admin_applicationsTab = 'admin.applicationsTab';
+  static const admin_verifiedMerchant = 'admin.verifiedMerchant';
+  static const admin_permissionsTitle = 'admin.permissionsTitle';
+  static const admin_canCreateIssueTitle = 'admin.canCreateIssueTitle';
+  static const admin_canCreateIssueSubtitle = 'admin.canCreateIssueSubtitle';
+  static const admin_canCreateGroupTitle = 'admin.canCreateGroupTitle';
+  static const admin_canCreateGroupSubtitle = 'admin.canCreateGroupSubtitle';
+  static const admin_permissionUpdateFailed = 'admin.permissionUpdateFailed';
+  static const admin_usersLoadFailed = 'admin.usersLoadFailed';
+  static const admin_usersEmpty = 'admin.usersEmpty';
+  static const admin_applicationsLoadFailed = 'admin.applicationsLoadFailed';
+  static const admin_noPendingApplications = 'admin.noPendingApplications';
+  static const admin_approve = 'admin.approve';
+  static const admin_reject = 'admin.reject';
+  static const admin_approveSuccess = 'admin.approveSuccess';
+  static const admin_approveFailed = 'admin.approveFailed';
+  static const admin_rejectSuccess = 'admin.rejectSuccess';
+  static const admin_rejectFailed = 'admin.rejectFailed';
+  static const admin_statusPending = 'admin.statusPending';
+  static const admin_statusApproved = 'admin.statusApproved';
+  static const admin_statusRejected = 'admin.statusRejected';
+  static const admin = 'admin';
 
 }

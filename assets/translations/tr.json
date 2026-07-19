@@ -486,5 +486,30 @@
     "districtCountLabel": "{} ilçe",
     "openShort": "açık",
     "favoritesShort": "favori"
+  },
+  "admin": {
+    "title": "Yönetim Paneli",
+    "usersTab": "Kullanıcılar",
+    "applicationsTab": "Başvurular",
+    "verifiedMerchant": "Doğrulanmış Esnaf",
+    "permissionsTitle": "Yetkiler",
+    "canCreateIssueTitle": "Konu açma",
+    "canCreateIssueSubtitle": "Mekan sayfalarında yeni konu açabilir.",
+    "canCreateGroupTitle": "Grup kurma",
+    "canCreateGroupSubtitle": "Toplulukta yeni grup kurabilir.",
+    "permissionUpdateFailed": "Yetki güncellenemedi. Lütfen tekrar dene.",
+    "usersLoadFailed": "Kullanıcı listesi yüklenemedi.",
+    "usersEmpty": "Henüz kullanıcı bulunmuyor.",
+    "applicationsLoadFailed": "Başvurular yüklenemedi.",
+    "noPendingApplications": "Bekleyen başvuru yok",
+    "approve": "Onayla",
+    "reject": "Reddet",
+    "approveSuccess": "Başvuru onaylandı.",
+    "approveFailed": "Başvuru onaylanamadı. Lütfen tekrar dene.",
+    "rejectSuccess": "Başvuru reddedildi.",
+    "rejectFailed": "Başvuru reddedilemedi. Lütfen tekrar dene.",
+    "statusPending": "Beklemede",
+    "statusApproved": "Onaylandı",
+    "statusRejected": "Reddedildi"
   }
 }
