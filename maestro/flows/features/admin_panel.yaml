@@ -1,0 +1,81 @@
+# Feature Flow: Admin Panel
+# Users list -> permission toggle -> merchant application approval (debug build)
+
+# maestro test maestro/flows/features/admin_panel.yaml
+appId: com.hatayiyasat.app
+---
+
+# Load all page object elements
+- runFlow: ../../elements/loadElements.yaml
+
+# Fresh state so onboarding and login are deterministic
+- launchApp:
+    clearState: true
+
+- runFlow: ../core/handle_splash.yaml
+
+# Reference data may load slowly on a cold start; wait for onboarding to appear
+- extendedWaitUntil:
+    visible:
+      id: ${output.common.onBoardButton}
+    timeout: 60000
+- runFlow: ../core/handle_onboarding.yaml
+
+# Continue as guest to reach the main tab
+- tapOn:
+    text: "Misafir olarak devam et"
+- waitForAnimationToEnd
+
+# Dismiss the what's new sheet if it appears
+- extendedWaitUntil:
+    visible:
+      id: ${output.common.whatsNewSheet}
+    timeout: 10000
+    optional: true
+- runFlow:
+    when:
+      visible:
+        id: ${output.common.whatsNewSheet}
+    commands:
+      # back does not dismiss the sheet on iOS; tapping the barrier works on both
+      - tapOn:
+          point: 50%,15%
+      - waitForAnimationToEnd
+
+# Open settings; the gear has no semantic label, use a relative point
+- tapOn:
+    point: 81%,10%
+- waitForAnimationToEnd
+
+# Settings -> admin panel entry
+- scrollUntilVisible:
+    element:
+      text: "Yönetim Paneli"
+    direction: DOWN
+- tapOn:
+    text: "Yönetim Paneli"
+- assertVisible:
+    id: "adminPanelView"
+- assertVisible:
+    id: "adminUsersTab"
+
+# Open the first known user and toggle a permission
+- tapOn:
+    text: "(?s).*Mehmet Kaya.*"
+- assertVisible:
+    id: "adminUserDetailSheet"
+- tapOn:
+    text: "(?s)Konu açma.*"
+# close the sheet via the barrier (back does not dismiss it on iOS)
+- tapOn:
+    point: 50%,15%
+- waitForAnimationToEnd
+
+# Approve the first pending application and expect the merchant badge
+- tapOn:
+    text: "(?s)Başvurular.*"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Onayla"
+- assertVisible:
+    text: "(?s).*Doğrulanmış Esnaf.*"
