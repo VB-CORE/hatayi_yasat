@@ -22,7 +22,13 @@ enum GeneralSemanticKeys {
   homeTab('homeTab'),
   communityTab('communityTab'),
   memoriesTab('memoriesTab'),
-  favoriteTab('favoriteTab');
+  favoriteTab('favoriteTab'),
+
+  adminPanelView('adminPanelView'),
+  adminUsersTab('adminUsersTab'),
+  adminApplicationsTab('adminApplicationsTab'),
+  adminUserDetailSheet('adminUserDetailSheet')
+  ;
 
   final String key;
 
