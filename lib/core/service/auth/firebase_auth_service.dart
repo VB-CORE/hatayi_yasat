@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,28 +23,42 @@ final class FirebaseAuthService
   @override
   bool get isSignedIn => _auth.currentUser != null;
 
-  AppUser _toAppUser(User user, Map<String, dynamic>? docData) {
-    return AppUser.fromJson({
-      'uid': user.uid,
-      'email': user.email ?? '',
-      'displayName': user.displayName ?? user.email ?? '',
-      'photoUrl': user.photoURL,
-      'permissions': docData?['permissions'],
-    });
-  }
-
+  // Auth durumu değişir değişmez önceki kullanıcının doküman dinleyicisi iptal
+  // edilir (switchMap davranışı) — çıkış/giriş olayları eski dinleyicinin
+  // kapanmasını beklemez.
   @override
-  Stream<AppUser?> get userStream => _auth.authStateChanges().asyncExpand((
-    user,
-  ) {
-    if (user == null) return Stream<AppUser?>.value(null);
+  Stream<AppUser?> get userStream {
+    StreamSubscription<User?>? authSubscription;
+    StreamSubscription<AppUser?>? docSubscription;
+    late final StreamController<AppUser?> controller;
 
-    final doc = FirebaseFirestore.instance.collection('users').doc(user.uid);
-    return doc.snapshots().asyncMap((snapshot) async {
-      await _refreshTokenIfUserDocChanged(user, snapshot);
-      return _toAppUser(user, snapshot.data());
-    });
-  });
+    controller = StreamController<AppUser?>(
+      onListen: () {
+        authSubscription = _auth.authStateChanges().listen((user) {
+          unawaited(docSubscription?.cancel());
+          docSubscription = null;
+          if (user == null) {
+            controller.add(null);
+            return;
+          }
+          docSubscription = FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .snapshots()
+              .asyncMap((snapshot) async {
+                await _refreshTokenIfUserDocChanged(user, snapshot);
+                return AppUser.fromFirebaseUser(user, snapshot.data());
+              })
+              .listen(controller.add, onError: controller.addError);
+        });
+      },
+      onCancel: () async {
+        await docSubscription?.cancel();
+        await authSubscription?.cancel();
+      },
+    );
+    return controller.stream;
+  }
 
   // Doküman değiştiyse cache güncellenir ve token force-refresh edilir; token cache'lenmez.
   Future<void> _refreshTokenIfUserDocChanged(
@@ -58,7 +74,9 @@ final class FirebaseAuthService
       );
       if (productCache.userDocCache.get(user.uid) == current) return;
       productCache.userDocCache.add(current);
-      await user.getIdTokenResult(true);
+      await user
+          .getIdTokenResult(true)
+          .timeout(DurationConstant.durationNetworkTimeout);
     } catch (_) {
       // Hive henüz hazır olmayabilir; login'i engellememek için yutulur.
     }
@@ -81,29 +99,33 @@ final class FirebaseAuthService
       final user = result.user;
       if (user == null) return null;
 
-      final docRef = FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid);
-      final doc = await docRef.get().timeout(
-        DurationConstant.durationNetworkTimeout,
-      );
-      if (!doc.exists) {
-        final newUserDoc = FirestoreUserDocModel(
-          uid: user.uid,
-          email: user.email ?? '',
-          displayName: user.displayName ?? '',
-          photoUrl: user.photoURL,
-        );
-        await docRef
-            .set(newUserDoc.toJson())
-            .timeout(DurationConstant.durationNetworkTimeout);
-      }
-
-      return _toAppUser(user, doc.data());
+      final docData = await _fetchOrCreateUserDoc(user);
+      return AppUser.fromFirebaseUser(user, docData);
     } catch (_) {
-      // Exception/Error fark etmeksizin login başarısız sayılır.
+      // Auth açılıp Firestore adımı başarısız olursa yarım oturum kalmasın.
+      signOut().ignore();
       return null;
     }
+  }
+
+  Future<Map<String, dynamic>> _fetchOrCreateUserDoc(User user) async {
+    final docRef = FirebaseFirestore.instance.collection('users').doc(user.uid);
+    final doc = await docRef.get().timeout(
+      DurationConstant.durationNetworkTimeout,
+    );
+    final existingData = doc.data();
+    if (existingData != null) return existingData;
+
+    final newUserDocJson = FirestoreUserDocModel(
+      uid: user.uid,
+      email: user.email ?? '',
+      displayName: user.displayName ?? '',
+      photoUrl: user.photoURL,
+    ).toJson();
+    await docRef
+        .set(newUserDocJson)
+        .timeout(DurationConstant.durationNetworkTimeout);
+    return newUserDocJson;
   }
 
   @override

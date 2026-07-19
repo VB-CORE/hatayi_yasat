@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:lifeclient/product/model/auth/permission_type.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
@@ -18,6 +19,16 @@ final class AppUser extends Equatable {
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>
       _$AppUserFromJson(json);
+
+  factory AppUser.fromFirebaseUser(User user, Map<String, dynamic>? docData) {
+    return AppUser.fromJson({
+      'uid': user.uid,
+      'email': user.email ?? '',
+      'displayName': user.displayName ?? user.email ?? '',
+      'photoUrl': user.photoURL,
+      'permissions': docData?['permissions'],
+    });
+  }
 
   final String uid;
   final String email;
