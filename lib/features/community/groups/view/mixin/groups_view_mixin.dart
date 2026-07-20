@@ -3,6 +3,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/groups_view.dart';
+import 'package:lifeclient/product/model/auth/permission_type.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin GroupsViewMixin
@@ -17,6 +18,7 @@ mixin GroupsViewMixin
 
   bool get canCreateGroup {
     final authState = ref.watch(authViewModelProvider);
-    return authState is Authenticated && authState.user.canCreateGroup;
+    return authState is Authenticated &&
+        authState.user.permissions.contains(PermissionType.createGroups);
   }
 }

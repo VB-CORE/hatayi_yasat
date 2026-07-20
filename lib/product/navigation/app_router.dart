@@ -27,6 +27,7 @@ import 'package:lifeclient/features/sub_feature/notifications/notifications_view
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
+import 'package:lifeclient/product/model/auth/permission_type.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
@@ -391,7 +392,8 @@ final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
       context,
     ).read(authViewModelProvider);
     final canCreateGroup =
-        authState is Authenticated && authState.user.canCreateGroup;
+        authState is Authenticated &&
+        authState.user.permissions.contains(PermissionType.createGroups);
     if (canCreateGroup) return null;
     return UnauthorizedRoute(attemptedPath: state.uri.toString()).location;
   }
