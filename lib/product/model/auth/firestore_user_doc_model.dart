@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:lifeclient/product/model/auth/permission_type.dart';
-import 'package:lifeclient/product/model/auth/role_type.dart';
+import 'package:lifeclient/product/model/auth/user_role.dart';
 
 part 'firestore_user_doc_model.g.dart';
 
@@ -12,7 +12,7 @@ final class FirestoreUserDocModel extends Equatable {
     required this.uid,
     required this.email,
     required this.displayName,
-    this.roleType = RoleType.user,
+    this.roleType = UserRole.user,
     this.permissions = const [],
     this.photoUrl,
   });
@@ -25,8 +25,8 @@ final class FirestoreUserDocModel extends Equatable {
   final String displayName;
   final String? photoUrl;
 
-  @JsonKey(fromJson: _roleTypeFromJson, toJson: _roleTypeToJson)
-  final RoleType roleType;
+  @JsonKey(fromJson: _userRoleFromJson, toJson: _userRoleToJson)
+  final UserRole roleType;
 
   @JsonKey(fromJson: _permissionsFromJson, toJson: _permissionsToJson)
   final List<PermissionType> permissions;
@@ -48,7 +48,7 @@ final class FirestoreUserDocModel extends Equatable {
     String? email,
     String? displayName,
     String? photoUrl,
-    RoleType? roleType,
+    UserRole? roleType,
     List<PermissionType>? permissions,
   }) {
     return FirestoreUserDocModel(
@@ -62,10 +62,10 @@ final class FirestoreUserDocModel extends Equatable {
   }
 }
 
-RoleType _roleTypeFromJson(int? code) =>
-    RoleType.fromCode(code) ?? RoleType.user;
+UserRole _userRoleFromJson(int? code) =>
+    UserRole.fromCode(code) ?? UserRole.user;
 
-int _roleTypeToJson(RoleType role) => role.code;
+int _userRoleToJson(UserRole role) => role.code;
 
 List<PermissionType> _permissionsFromJson(List<dynamic>? json) =>
     PermissionType.parseList(json);

@@ -10,11 +10,9 @@ final class ProductCache {
     : _cacheManager = cacheManager;
 
   final CacheManager _cacheManager;
-  Future<void>? _initFuture;
 
-  // Hive adapter'ları iki kez register edilmesin diye aynı Future paylaşılır.
-  Future<void> init() {
-    return _initFuture ??= _cacheManager.init([
+  Future<void> init() async {
+    await _cacheManager.init([
       StoreModelCache.empty(),
       const AppCacheModel(),
       const MemoryCacheModel.empty(),

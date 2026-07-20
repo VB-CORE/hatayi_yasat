@@ -26,6 +26,7 @@ final class AppUser extends Equatable {
       'email': user.email ?? '',
       'displayName': user.displayName ?? user.email ?? '',
       'photoUrl': user.photoURL,
+      'role': docData?['roleType'],
       'permissions': docData?['permissions'],
     });
   }
@@ -33,8 +34,10 @@ final class AppUser extends Equatable {
   final String uid;
   final String email;
   final String displayName;
-  final UserRole role;
   final String? photoUrl;
+
+  @JsonKey(fromJson: _userRoleFromJson, toJson: _userRoleToJson)
+  final UserRole role;
 
   @JsonKey(fromJson: _permissionsFromJson, toJson: _permissionsToJson)
   final List<PermissionType> permissions;
@@ -69,6 +72,11 @@ final class AppUser extends Equatable {
     );
   }
 }
+
+UserRole _userRoleFromJson(int? code) =>
+    UserRole.fromCode(code) ?? UserRole.user;
+
+int _userRoleToJson(UserRole role) => role.code;
 
 List<PermissionType> _permissionsFromJson(List<dynamic>? json) =>
     PermissionType.parseList(json);

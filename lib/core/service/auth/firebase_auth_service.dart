@@ -65,21 +65,14 @@ final class FirebaseAuthService
     User user,
     DocumentSnapshot<Map<String, dynamic>> snapshot,
   ) async {
-    try {
-      final data = snapshot.data();
-      if (data == null) return;
-      await productCache.init();
-      final current = UserDocCacheModel.fromFirestoreDoc(
-        FirestoreUserDocModel.fromJson(data),
-      );
-      if (productCache.userDocCache.get(user.uid) == current) return;
-      productCache.userDocCache.add(current);
-      await user
-          .getIdTokenResult(true)
-          .timeout(DurationConstant.durationNetworkTimeout);
-    } catch (_) {
-      // Hive henüz hazır olmayabilir; login'i engellememek için yutulur.
-    }
+    final data = snapshot.data();
+    if (data == null) return;
+    final current = UserDocCacheModel.fromFirestoreDoc(
+      FirestoreUserDocModel.fromJson(data),
+    );
+    if (productCache.userDocCache.get(user.uid) == current) return;
+    productCache.userDocCache.add(current);
+    await user.getIdTokenResult(true);
   }
 
   @override
