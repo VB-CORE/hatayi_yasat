@@ -47,7 +47,7 @@ final class MerchantApplicationViewModelProvider
 }
 
 String _$merchantApplicationViewModelHash() =>
-    r'40ac33a01228287e68646d4cb573c42414ff014d';
+    r'b781e27f12b8961b9353d9bb4717b0b2fb63dc8b';
 
 abstract class _$MerchantApplicationViewModel
     extends $Notifier<MerchantApplicationState> {
