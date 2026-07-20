@@ -10,10 +10,6 @@
       "port": 3000,
       "persist": true
     },
-    "functions": {
-      "port": 3001,
-      "persist": true
-    },
     "firestore": {
       "port": 3004,
       "persist": true
@@ -27,17 +23,5 @@
     },
     "exportOnExit": "./emulator-data",
     "importOnStart": "./emulator-data"
-  },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ]
-    }
-  ]
+  }
 }
