@@ -58,55 +58,43 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     final state = ref.watch(placeDetailViewModelProvider(args));
     final store = state.storeModel;
 
-    if (state.isError) {
-      return Scaffold(
-        backgroundColor: AppColors.bg,
-        appBar: AppBar(),
-        body: GeneralNotFoundWidget(
-          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        ),
-      );
-    }
-
-    if (state.isFetching || store.name.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(),
-        backgroundColor: AppColors.bg,
-        body: const PlaceShimmerList(),
-      );
-    }
-
     return DefaultTabController(
       length: _PlaceDetailTab.values.length,
       child: Scaffold(
         backgroundColor: AppColors.bg,
-        body: CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            PlaceDetailHeader(
-              store: store,
-              scrollController: scrollController,
-              patternHeight: context.sized.dynamicHeight(
-                PlaceDetailViewMixin.patternHeightFactor,
+        body: state.isError
+            ? GeneralNotFoundWidget(
+                title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+              )
+            : state.isFetching
+            ? const PlaceShimmerList()
+            : CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  PlaceDetailHeader(
+                    store: store,
+                    scrollController: scrollController,
+                    patternHeight: context.sized.dynamicHeight(
+                      PlaceDetailViewMixin.patternHeightFactor,
+                    ),
+                    onCall: onCall,
+                    onComment: onComment,
+                  ),
+                  PinnedHeaderSliver(
+                    child: PlaceDetailTabBar(store: store),
+                  ),
+                  SliverPadding(
+                    padding: const PagePadding.generalAllLow(),
+                    sliver: SliverToBoxAdapter(
+                      child: PlaceDetailTabContent(
+                        store: store,
+                        onCall: onCall,
+                        onCopyAddress: onCopyAddress,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              onCall: onCall,
-              onComment: onComment,
-            ),
-            PinnedHeaderSliver(
-              child: PlaceDetailTabBar(store: store),
-            ),
-            SliverPadding(
-              padding: const PagePadding.generalAllLow(),
-              sliver: SliverToBoxAdapter(
-                child: PlaceDetailTabContent(
-                  store: store,
-                  onCall: onCall,
-                  onCopyAddress: onCopyAddress,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

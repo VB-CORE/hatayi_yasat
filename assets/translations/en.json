@@ -493,5 +493,40 @@
     "districtCountLabel": "{} districts",
     "openShort": "open",
     "favoritesShort": "favorites"
+  },
+  "community": {
+    "tagline": "COMMUNITY",
+    "groups": {
+      "title": "Groups",
+      "groupCount": "{} groups",
+      "openGroup": "OPEN GROUP",
+      "closedGroup": "CLOSED GROUP",
+      "adminBadge": "Admin",
+      "noPermissionInfo": "You don't have permission to create a group. Authorized community members can create new groups.",
+      "empty": "No groups yet."
+    },
+    "createGroup": {
+      "title": "Create Group",
+      "openBadge": "OPEN",
+      "coverImageLabel": "Cover Image",
+      "selectImage": "Select image",
+      "nameLabel": "Group Name",
+      "nameHint": "E.g: Antakya Neighborhood Solidarity",
+      "nameHelper": "Members will see this name",
+      "categoryLabel": "Category",
+      "categoryValidationError": "Please select a category.",
+      "descriptionLabel": "Description",
+      "descriptionHint": "What is this group about? Who should join?",
+      "submitButton": "Create Group",
+      "success": "Group created successfully."
+    }
+  },
+  "unauthorized": {
+    "errorCode": "403 · ACCESS DENIED",
+    "title": "Unauthorized Access",
+    "description": "You don't have permission to access this page. Group creation is only available to authorized community members.",
+    "backToGroups": "Back to Groups",
+    "requestAccess": "Request access",
+    "requestAccessComingSoon": "This feature is coming soon."
   }
 }

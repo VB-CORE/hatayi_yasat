@@ -34,16 +34,13 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
        assert(loadMoreThreshold >= 0, 'loadMoreThreshold cannot be negative');
 
   final Query<T?> query;
-
   final K Function(T item) groupBy;
   final Widget Function(K key) groupHeaderBuilder;
   final int Function(K a, K b)? groupCompare;
   final GroupedFirestoreItemBuilder<T> itemBuilder;
-
   final Widget onEmpty;
   final Widget? onLoading;
   final Widget? onError;
-
   final bool Function(T item)? filter;
   final int pageSize;
   final int? maxItem;
@@ -68,39 +65,147 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
     return FirestoreQueryBuilder<T?>(
       query: query,
       pageSize: _effectivePageSize,
-      builder: (context, snapshot, _) => _buildContent(snapshot),
+      builder: (context, snapshot, _) => _GroupedFirestoreContent<T, K>(
+        snapshot: snapshot,
+        groupBy: groupBy,
+        groupHeaderBuilder: groupHeaderBuilder,
+        groupCompare: groupCompare,
+        itemBuilder: itemBuilder,
+        onEmpty: onEmpty,
+        onLoading: onLoading,
+        onError: onError,
+        filter: filter,
+        maxItem: maxItem,
+        loadMoreThreshold: loadMoreThreshold,
+        padding: padding,
+        separator: separator,
+        footer: footer,
+      ),
     );
   }
+}
 
-  Widget _buildContent(FirestoreQueryBuilderSnapshot<T?> snapshot) {
-    final items = _visibleItems(snapshot);
+final class _GroupedFirestoreContent<T, K> extends StatelessWidget {
+  const _GroupedFirestoreContent({
+    required this.snapshot,
+    required this.groupBy,
+    required this.groupHeaderBuilder,
+    required this.itemBuilder,
+    required this.onEmpty,
+    required this.loadMoreThreshold,
+    required this.padding,
+    required this.separator,
+    required this.footer,
+    this.groupCompare,
+    this.onLoading,
+    this.onError,
+    this.filter,
+    this.maxItem,
+  });
 
-    return switch (_resolveState(snapshot, items)) {
-      _ViewState.loading =>
-        onLoading ?? const Center(child: CircularProgressIndicator.adaptive()),
-      _ViewState.error =>
-        onError ??
-            ErrorWidget(
-              snapshot.error ?? StateError('An unknown error occurred'),
-            ),
-      _ViewState.empty => _buildEmpty(snapshot, items),
-      _ViewState.data => _buildList(snapshot, items),
+  final FirestoreQueryBuilderSnapshot<T?> snapshot;
+  final K Function(T item) groupBy;
+  final Widget Function(K key) groupHeaderBuilder;
+  final int Function(K a, K b)? groupCompare;
+  final GroupedFirestoreItemBuilder<T> itemBuilder;
+  final Widget onEmpty;
+  final Widget? onLoading;
+  final Widget? onError;
+  final bool Function(T item)? filter;
+  final int? maxItem;
+  final int loadMoreThreshold;
+  final EdgeInsetsGeometry padding;
+  final Widget separator;
+  final Widget footer;
+
+  static const _loading = Center(child: CircularProgressIndicator.adaptive());
+
+  @override
+  Widget build(BuildContext context) {
+    final items = _visibleItems();
+    final canLoadMore = _canLoadMore(items);
+
+    final errorWidget = ErrorWidget(
+      snapshot.error ?? StateError('An unknown error occurred'),
+    );
+
+    return switch (_resolveState(items)) {
+      _ViewState.loading => onLoading ?? _loading,
+      _ViewState.error => onError ?? errorWidget,
+      _ViewState.empty => _GroupedFirestoreEmpty<T>(
+        snapshot: snapshot,
+        canLoadMore: canLoadMore,
+        onEmpty: onEmpty,
+        onLoading: onLoading,
+      ),
+      _ViewState.data => _GroupedFirestoreList<T, K>(
+        items: items,
+        snapshot: snapshot,
+        groupBy: groupBy,
+        groupHeaderBuilder: groupHeaderBuilder,
+        groupCompare: groupCompare,
+        itemBuilder: itemBuilder,
+        canLoadMore: canLoadMore,
+        loadMoreThreshold: loadMoreThreshold,
+        padding: padding,
+        separator: separator,
+        footer: footer,
+      ),
     };
   }
 
-  _ViewState _resolveState(
-    FirestoreQueryBuilderSnapshot<T?> snapshot,
-    List<T> items,
-  ) {
+  List<T> _visibleItems() {
+    final items = snapshot.docs
+        .map((document) => document.data())
+        .whereType<T>()
+        .where((item) => filter?.call(item) ?? true);
+
+    if (maxItem == null) return items.toList(growable: false);
+    return items.take(maxItem!).toList(growable: false);
+  }
+
+  bool _canLoadMore(List<T> items) {
+    if (!snapshot.hasMore || snapshot.isFetchingMore) return false;
+    return maxItem == null || items.length < maxItem!;
+  }
+
+  _ViewState _resolveState(List<T> items) {
     if (snapshot.isFetching && snapshot.docs.isEmpty) return _ViewState.loading;
     if (snapshot.hasError) return _ViewState.error;
     if (items.isEmpty) return _ViewState.empty;
     return _ViewState.data;
   }
+}
 
-  Widget _buildList(FirestoreQueryBuilderSnapshot<T?> snapshot, List<T> items) {
-    final canLoadMore = _canLoadMore(snapshot, items);
+final class _GroupedFirestoreList<T, K> extends StatelessWidget {
+  const _GroupedFirestoreList({
+    required this.items,
+    required this.snapshot,
+    required this.groupBy,
+    required this.groupHeaderBuilder,
+    required this.itemBuilder,
+    required this.canLoadMore,
+    required this.loadMoreThreshold,
+    required this.padding,
+    required this.separator,
+    required this.footer,
+    this.groupCompare,
+  });
 
+  final List<T> items;
+  final FirestoreQueryBuilderSnapshot<T?> snapshot;
+  final K Function(T item) groupBy;
+  final Widget Function(K key) groupHeaderBuilder;
+  final int Function(K a, K b)? groupCompare;
+  final GroupedFirestoreItemBuilder<T> itemBuilder;
+  final bool canLoadMore;
+  final int loadMoreThreshold;
+  final EdgeInsetsGeometry padding;
+  final Widget separator;
+  final Widget footer;
+
+  @override
+  Widget build(BuildContext context) {
     return GroupedListView<T, K>(
       items: items,
       groupBy: groupBy,
@@ -115,37 +220,29 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
       footer: snapshot.isFetchingMore ? footer : null,
     );
   }
+}
 
-  Widget _buildEmpty(
-    FirestoreQueryBuilderSnapshot<T?> snapshot,
-    List<T> items,
-  ) {
-    if (_canLoadMore(snapshot, items)) {
+final class _GroupedFirestoreEmpty<T> extends StatelessWidget {
+  const _GroupedFirestoreEmpty({
+    required this.snapshot,
+    required this.canLoadMore,
+    required this.onEmpty,
+    this.onLoading,
+  });
+
+  final FirestoreQueryBuilderSnapshot<T?> snapshot;
+  final bool canLoadMore;
+  final Widget onEmpty;
+  final Widget? onLoading;
+
+  static const _loading = Center(child: CircularProgressIndicator.adaptive());
+
+  @override
+  Widget build(BuildContext context) {
+    if (canLoadMore) {
       snapshot.fetchMore();
-      return onLoading ??
-          const Center(child: CircularProgressIndicator.adaptive());
+      return onLoading ?? _loading;
     }
-
     return onEmpty;
-  }
-
-  bool _canLoadMore(
-    FirestoreQueryBuilderSnapshot<T?> snapshot,
-    List<T> items,
-  ) {
-    if (!snapshot.hasMore || snapshot.isFetchingMore) return false;
-    final limit = maxItem;
-    return limit == null || items.length < limit;
-  }
-
-  List<T> _visibleItems(FirestoreQueryBuilderSnapshot<T?> snapshot) {
-    final items = snapshot.docs
-        .map((document) => document.data())
-        .whereType<T>()
-        .where((item) => filter?.call(item) ?? true);
-
-    final limit = maxItem;
-    if (limit == null) return items.toList(growable: false);
-    return items.take(limit).toList(growable: false);
   }
 }

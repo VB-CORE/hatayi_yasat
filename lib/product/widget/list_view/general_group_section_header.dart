@@ -11,7 +11,7 @@ final class GeneralGroupSectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: AppColors.ink25,
+      color: AppColors.ink50,
       child: Padding(
         padding:
             const PagePadding.verticalLowSymmetric() +
@@ -19,7 +19,7 @@ final class GeneralGroupSectionHeader extends StatelessWidget {
         child: GeneralContentSmallTitle(
           value: label,
           fontWeight: FontWeight.w600,
-          color: AppColors.navy300,
+          color: AppColors.navy400,
         ),
       ),
     );
