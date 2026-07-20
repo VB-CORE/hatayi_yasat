@@ -486,5 +486,40 @@
     "districtCountLabel": "{} ilçe",
     "openShort": "açık",
     "favoritesShort": "favori"
+  },
+  "community": {
+    "tagline": "TOPLULUK",
+    "groups": {
+      "title": "Gruplar",
+      "groupCount": "{} grup",
+      "openGroup": "AÇIK GRUP",
+      "closedGroup": "KAPALI GRUP",
+      "adminBadge": "Yönetici",
+      "noPermissionInfo": "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
+      "empty": "Henüz grup yok."
+    },
+    "createGroup": {
+      "title": "Grup Oluştur",
+      "openBadge": "AÇIK",
+      "coverImageLabel": "Kapak Görseli",
+      "selectImage": "Görsel seç",
+      "nameLabel": "Grup Adı",
+      "nameHint": "Örn: Antakya Mahalle Dayanışması",
+      "nameHelper": "Üyeler bu adı görür",
+      "categoryLabel": "Kategori",
+      "categoryValidationError": "Lütfen bir kategori seçin.",
+      "descriptionLabel": "Açıklama",
+      "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
+      "submitButton": "Grubu Oluştur",
+      "success": "Grup başarıyla oluşturuldu."
+    }
+  },
+  "unauthorized": {
+    "errorCode": "403 · ERİŞİM ENGELLENDİ",
+    "title": "Yetkisiz Erişim",
+    "description": "Bu sayfaya erişim yetkin yok. Grup oluşturma yalnızca yetkili topluluk üyelerine açıktır.",
+    "backToGroups": "Gruplar'a dön",
+    "requestAccess": "Yetki talebinde bulun",
+    "requestAccessComingSoon": "Bu özellik yakında eklenecek."
   }
 }
