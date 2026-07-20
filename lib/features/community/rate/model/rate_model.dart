@@ -4,9 +4,9 @@ final class RateModel extends Equatable {
   const RateModel({
     required this.userId,
     required this.placeId,
-    required this.counted,
     required this.userName,
     required this.createdAt,
+    required this.updatedAt,
     required this.rate,
     this.comment,
     this.photoUrl,
@@ -14,8 +14,8 @@ final class RateModel extends Equatable {
   final String userId;
   final String placeId;
   final String userName;
-  final bool counted;
   final DateTime createdAt;
+  final DateTime updatedAt;
   final double rate;
   final String? comment;
   final String? photoUrl;
@@ -25,18 +25,18 @@ final class RateModel extends Equatable {
     userId,
     placeId,
     userName,
-    counted,
     createdAt,
     rate,
     comment,
     photoUrl,
+    updatedAt,
   ];
 
   RateModel copyWith({
     String? userId,
     String? placeId,
-    bool? counted,
     DateTime? createdAt,
+    DateTime? updatedAt,
     double? rate,
     String? comment,
     String? userName,
@@ -45,10 +45,10 @@ final class RateModel extends Equatable {
     userId: userId ?? this.userId,
     placeId: placeId ?? this.placeId,
     userName: userName ?? this.userName,
-    counted: counted ?? this.counted,
     createdAt: createdAt ?? this.createdAt,
     rate: rate ?? this.rate,
     comment: comment ?? this.comment,
     photoUrl: photoUrl ?? this.photoUrl,
+    updatedAt: updatedAt ?? this.updatedAt,
   );
 }

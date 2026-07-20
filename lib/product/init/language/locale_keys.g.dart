@@ -142,6 +142,8 @@ abstract class  LocaleKeys {
   static const rate_deleteFailedContent = 'rate.deleteFailedContent';
   static const rate_deleteSuccessMessage = 'rate.deleteSuccessMessage';
   static const rate_editCommentSuccessMessage = 'rate.editCommentSuccessMessage';
+  static const rate_deleteConfirmTitle = 'rate.deleteConfirmTitle';
+  static const rate_deleteConfirmContent = 'rate.deleteConfirmContent';
   static const rate = 'rate';
   static const date_justNow = 'date.justNow';
   static const date_minutesAgo = 'date.minutesAgo';
@@ -238,6 +240,8 @@ abstract class  LocaleKeys {
   static const dialog_completeScholarshipRequest = 'dialog.completeScholarshipRequest';
   static const dialog_permissionCameraLibrary = 'dialog.permissionCameraLibrary';
   static const dialog_permissionNotification = 'dialog.permissionNotification';
+  static const dialog_loginRequiredTitle = 'dialog.loginRequiredTitle';
+  static const dialog_loginRequiredContent = 'dialog.loginRequiredContent';
   static const dialog = 'dialog';
   static const specialAgency_title = 'specialAgency.title';
   static const specialAgency_agencyNumber = 'specialAgency.agencyNumber';

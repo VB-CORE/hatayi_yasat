@@ -69,8 +69,9 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 controller: commentController,
                 canSubmit: state.canEditVote,
                 isBusy: state.isBusy,
-                onSubmit: () =>
-                    notifier.editComment(commentController.text.normalize),
+                onSubmit: () => notifier.editRate(
+                  newComment: commentController.text.normalize,
+                ),
               )
             else
               _RateCommentSection(
@@ -161,7 +162,7 @@ final class _RateCommentSection extends StatelessWidget {
           controller: controller,
           validator: ValidatorNormalTextField(),
           enabled: !isBusy,
-          maxLength: TextFieldMaxLengths.max,
+          maxLength: TextFieldMaxLengths.veryLarge,
         ),
         const EmptyBox.middleHeight(),
         GeneralButtonV2.active(

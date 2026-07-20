@@ -151,7 +151,9 @@
     "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
     "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
     "deleteSuccessMessage": "Yorumun silindi.",
-    "editCommentSuccessMessage": "Yorumun güncellendi."
+    "editCommentSuccessMessage": "Yorumun güncellendi.",
+    "deleteConfirmTitle": "Yorumun silinsin mi?",
+    "deleteConfirmContent": "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz."
   },
   "date": {
     "justNow": "Az önce",
@@ -258,7 +260,9 @@
     "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
     "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
     "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
-    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
+    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+    "loginRequiredTitle": "Giriş yapmadınız",
+    "loginRequiredContent": "Bu işlem için giriş yapmanız gerekiyor."
   },
   "specialAgency": {
     "title": "Özel Kurumlar",

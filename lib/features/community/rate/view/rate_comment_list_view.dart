@@ -9,6 +9,7 @@ import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_comment_list_view_mixin.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';
+import 'package:lifeclient/features/community/rate/view/widget/rate_delete_confirm_dialog.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
@@ -112,6 +113,7 @@ final class _CommentListBody extends ConsumerWidget {
         itemBuilder: (context, index) {
           final rate = state.comments[index];
           final isOwn = state.vote?.userId == rate.userId;
+
           final canModify = isOwn && !state.isProcessing;
           return _RateCommentCard(
             rateModel: rate,
@@ -122,10 +124,21 @@ final class _CommentListBody extends ConsumerWidget {
                     initialComment: rate.comment,
                   )
                 : null,
-            onDelete: canModify ? notifier.deleteVote : null,
+            onDelete: canModify
+                ? () => _onDeletePressed(context, notifier)
+                : null,
           );
         },
       ),
     );
+  }
+
+  Future<void> _onDeletePressed(
+    BuildContext context,
+    RateCommunityViewModel notifier,
+  ) async {
+    final isConfirmed = await RateDeleteConfirmDialog.show(context);
+    if (!isConfirmed) return;
+    await notifier.deleteVote();
   }
 }

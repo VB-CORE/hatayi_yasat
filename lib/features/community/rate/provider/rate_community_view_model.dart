@@ -11,7 +11,7 @@ part 'rate_community_view_model.g.dart';
 @riverpod
 final class RateCommunityViewModel extends _$RateCommunityViewModel
     with ProjectDependencyMixin {
-  static const String _currentUserId = 'mock_user_4';
+  static const String _currentUserId = 'mock_user';
   static const String _currentUserName = 'Veli Bacik';
 
   @override
@@ -25,11 +25,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         .read(rateCommunityServiceProvider)
         .fetchRates(placeId);
     comments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
     final myVote = comments.firstWhereOrNull(
       (vote) => vote.userId == _currentUserId,
     );
     state = state.copyWith(
       vote: myVote,
+      clearVote: myVote == null,
       comments: comments,
       isLoading: false,
     );
@@ -50,9 +52,9 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       userId: _currentUserId,
       rate: state.draftRate,
       createdAt: DateTime.now(),
-      counted: false,
       comment: comment?.trim(),
       userName: _currentUserName,
+      updatedAt: DateTime.now(),
     );
     final success = await ref.read(rateCommunityServiceProvider).rate(vote);
     if (success) {
@@ -66,16 +68,17 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     }
   }
 
-  Future<void> editComment(String? newComment) async {
+  Future<void> editRate({String? newComment}) async {
     final currentVote = state.vote;
     if (currentVote == null || state.isProcessing) return;
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.update),
     );
-
     final updated = currentVote.copyWith(
       comment: newComment?.trim(),
+      updatedAt: DateTime.now(),
     );
+
     final success = await ref
         .read(rateCommunityServiceProvider)
         .changeComment(updated);

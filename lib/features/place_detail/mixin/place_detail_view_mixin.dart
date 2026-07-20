@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/features/community/rate/model/mock_auth.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/login_required_dialog.dart';
 
 mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   final double patternHeightFactor = .25;
@@ -33,8 +35,12 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
     );
   }
 
-  Future<void> onComment() {
-    return RateSheetFactory.showRateCard(
+  Future<void> onComment() async {
+    if (!MockAuth.isAuthenticated) {
+      await LoginRequiredDialog.show(context);
+      return;
+    }
+    await RateSheetFactory.showRateCard(
       context,
       placeId: widget.store.documentId,
     );

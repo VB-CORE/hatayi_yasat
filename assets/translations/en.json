@@ -151,7 +151,9 @@
     "editCommentFailedContent": "Your comment couldn't be updated. Please try again.",
     "deleteFailedContent": "Your comment couldn't be deleted. Please try again.",
     "deleteSuccessMessage": "Your comment was deleted.",
-    "editCommentSuccessMessage": "Your comment has been updated."
+    "editCommentSuccessMessage": "Your comment has been updated.",
+    "deleteConfirmTitle": "Delete your comment?",
+    "deleteConfirmContent": "Are you sure you want to delete this comment? This action can't be undone."
   },
   "date": {
     "justNow": "Just now",
@@ -258,7 +260,9 @@
     "completeRequest": "Your application has been received. Once approved by the system, you will be able to view it in the list.",
     "completeScholarshipRequest": "Your request has been received. After your application is evaluated, you will get contacted.",
     "permissionCameraLibrary": "We need permission for photos and camera.Please go to the settings and let me",
-    "permissionNotification": "We need a trail for notification.Please go to the settings and let me"
+    "permissionNotification": "We need a trail for notification.Please go to the settings and let me",
+    "loginRequiredTitle": "You're not logged in",
+    "loginRequiredContent": "You need to log in for this action."
   },
   "specialAgency": {
     "title": "Special Agency",

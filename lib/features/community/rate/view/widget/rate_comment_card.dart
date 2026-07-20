@@ -88,7 +88,7 @@ final class _RateCommentCard extends StatelessWidget {
                     padding: const PagePadding.verticalVeryLowSymmetric(),
                     child: GeneralContentSubTitle(
                       value: comment,
-                      maxLine: 5,
+                      maxLine: 6,
                     ),
                   ),
               ],
