@@ -10,30 +10,29 @@ import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 final class NotificationTile extends StatelessWidget {
-  const NotificationTile({required this.model, required this.onTap, super.key});
+  const NotificationTile({required this.item, required this.onTap, super.key});
 
-  final AppNotificationModel model;
+  final AppNotificationModel item;
   final VoidCallback onTap;
 
-  String get _content => model.type == AppNotificationType.link
-      ? model.title ?? ''
-      : model.body ?? '';
+  String get _content {
+    final type = item.type;
+    if (type == AppNotificationType.link) return item.title ?? '';
+    return item.body ?? item.title ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
-    final type = model.type;
-    if (type == null) return const SizedBox.shrink();
-
-    final meta = NotificationTypeMeta.of(type);
+    final meta = NotificationTypeMeta.of(item.type);
     final content = _content.trim();
-    final createdAt = model.createdAt;
+    final createdAt = item.createdAt;
 
     return CustomBounceable(
       onTap: onTap,
       child: Padding(
         padding:
             const PagePadding.horizontal16Symmetric() +
-            const PagePadding.vertical12Symmetric(),
+            const PagePadding.vertical6Symmetric(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: AppSpacing.xxs,

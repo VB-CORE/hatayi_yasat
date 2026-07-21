@@ -7,26 +7,26 @@ import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
 mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
-  static const maxNotificationItems = 50;
+  static const notificationItemTreshold = 50;
 
   Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
       .firebaseService
       .collectionReference(.notifications, AppNotificationModel())
       .orderBy(QueryOrders.createdAt.name, descending: true);
 
-  DateTime notificationGroupBy(AppNotificationModel model) =>
-      (model.createdAt ?? DateTime.now()).startOfDay;
+  DateTime notificationGroupBy(AppNotificationModel? item) =>
+      (item?.createdAt ?? DateTime.now()).startOfDay;
 
   int notificationCompare(DateTime a, DateTime b) => b.compareTo(a);
 
   Future<void> openNotification(
     BuildContext context,
-    AppNotificationModel model,
+    AppNotificationModel item,
   ) async {
-    final type = model.type;
+    final type = item.type;
     if (type == null) return;
 
-    final id = type == AppNotificationType.link ? model.documentId : model.id;
+    final id = type == AppNotificationType.link ? item.documentId : item.id;
     if (id.isEmpty) return;
 
     await NotificationNavigateParse(context).makeWithType(

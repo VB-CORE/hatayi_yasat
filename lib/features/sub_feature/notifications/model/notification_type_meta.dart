@@ -8,7 +8,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 final class NotificationTypeMeta extends Equatable {
   const NotificationTypeMeta({required this.icon, required this.label});
 
-  factory NotificationTypeMeta.of(AppNotificationType type) {
+  factory NotificationTypeMeta.of(AppNotificationType? type) {
     return switch (type) {
       AppNotificationType.store => NotificationTypeMeta(
         icon: AppIcons.home,
@@ -29,6 +29,10 @@ final class NotificationTypeMeta extends Equatable {
       AppNotificationType.link => NotificationTypeMeta(
         icon: AppIcons.openInNew,
         label: LocaleKeys.notification_typeLink.tr(),
+      ),
+      _ => NotificationTypeMeta(
+        icon: AppIcons.notifications,
+        label: LocaleKeys.notification_typeGeneral.tr(),
       ),
     };
   }

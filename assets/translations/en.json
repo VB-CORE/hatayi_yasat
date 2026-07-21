@@ -125,6 +125,7 @@
   },
   "message": {
     "emptySearch": "No Results Found",
+    "emptyList": "Nothing to show yet",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
@@ -228,7 +229,8 @@
     "typeCampaign": "Campaign",
     "typeNews": "News",
     "typeAdvertise": "Announcement",
-    "typeLink": "Link"
+    "typeLink": "Link",
+    "typeGeneral": "General"
   },
   "developers": {
     "title": "Developers",

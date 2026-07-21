@@ -125,6 +125,7 @@
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
+    "emptyList": "Henüz görüntülenecek bir içerik yok",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
@@ -228,7 +229,8 @@
     "typeCampaign": "Kampanya",
     "typeNews": "Haber",
     "typeAdvertise": "Duyuru",
-    "typeLink": "Bağlantı"
+    "typeLink": "Bağlantı",
+    "typeGeneral": "Genel"
   },
   "developers": {
     "title": "Geliştiriciler",

@@ -22,7 +22,7 @@ final class NotificationsView extends StatelessWidget
     return Scaffold(
       backgroundColor: context.general.colorScheme.surface,
       appBar: PageAppBar(pageTitle: LocaleKeys.home_notifications),
-      body: CustomGroupedFirestoreListView<AppNotificationModel, DateTime>(
+      body: CustomGroupedFirestoreListView<AppNotificationModel?, DateTime>(
         query: notificationsQuery,
         groupBy: notificationGroupBy,
         groupHeaderBuilder: (day) =>
@@ -32,11 +32,13 @@ final class NotificationsView extends StatelessWidget
         onEmpty: GeneralNotFoundWidget(
           title: LocaleKeys.notFound_notification.tr(),
         ),
-        itemBuilder: (context, model) => NotificationTile(
-          model: model,
-          onTap: () => openNotification(context, model),
-        ),
-        maxItem: NotificationsViewMixin.maxNotificationItems,
+        itemBuilder: (context, item) => item == null
+            ? const SizedBox.shrink()
+            : NotificationTile(
+                item: item,
+                onTap: () => openNotification(context, item),
+              ),
+        itemTreshold: NotificationsViewMixin.notificationItemTreshold,
         separator: const Divider(
           indent: AppSpacing.xl,
           endIndent: AppSpacing.xl,
