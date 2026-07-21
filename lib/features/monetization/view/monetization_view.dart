@@ -44,9 +44,7 @@ final class MonetizationView extends StatelessWidget {
           AppBarAction(
             title: LocaleKeys.monetization_addCouponAction.tr(),
             icon: AppIcons.add,
-            onPressed: () => const MonetizationCouponFormRoute().push<void>(
-              context,
-            ),
+            onPressed: () => const MonetizationCouponFormRoute().go(context),
           ),
         ],
       ),

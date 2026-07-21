@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/main/settings/model/contact_model.dart';
 import 'package:lifeclient/features/sub_feature/web_view/app_about_web_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -14,6 +16,7 @@ import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/button/index.dart';
 import 'package:lifeclient/product/widget/checkbox/notification_permission_checkbox.dart';
 import 'package:lifeclient/product/widget/dropdown/language_dropdown_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -53,10 +56,36 @@ final class SettingsView extends StatelessWidget {
               EmptyBox(
                 height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxl2,
               ),
+              _SignOutWidget(),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+// TODO: geçici eklendi.  profil sayfası gelince kaldır
+final class _SignOutWidget extends ConsumerWidget {
+  const _SignOutWidget();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(authViewModelProvider);
+    if (state is! Authenticated) return const SizedBox.shrink();
+    final user = state.user;
+    return Column(
+      crossAxisAlignment: .stretch,
+      spacing: 12,
+      children: [
+        Text('Role: ${user.role.name} - Permissions: ${user.permissions}'),
+        Text('Can Create Group: ${user.canCreateGroup}'),
+        Text('Can Create Topic: ${user.canCreateTopic}'),
+        ActiveButton(
+          label: 'Çıkış Yap',
+          onPressed: () => ref.read(authViewModelProvider.notifier).signOut(),
+        ),
+      ],
     );
   }
 }
