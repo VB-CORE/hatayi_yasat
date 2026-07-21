@@ -34,7 +34,7 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
          'itemTreshold must be greater than 0',
        );
 
-  final Query<T> query;
+  final Query<T?> query;
 
   final K Function(T item) groupBy;
   final Widget Function(K key) groupHeaderBuilder;
@@ -54,12 +54,13 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FirestoreQueryBuilder<T>(
+    return FirestoreQueryBuilder<T?>(
       query: query,
       pageSize: pageSize,
       builder: (context, snapshot, _) {
         final items = snapshot.docs
             .map((document) => document.data())
+            .whereType<T>()
             .toList(growable: false);
 
         final state = _resolveState(snapshot: snapshot, items: items);
@@ -86,7 +87,7 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
   }
 
   _ViewState _resolveState({
-    required FirestoreQueryBuilderSnapshot<T> snapshot,
+    required FirestoreQueryBuilderSnapshot<T?> snapshot,
     required List<T> items,
   }) {
     if (snapshot.isFetching && items.isEmpty) return _ViewState.loading;
@@ -110,7 +111,7 @@ final class _GroupedFirestoreListContent<T, K> extends StatelessWidget {
     this.separator = const SizedBox.shrink(),
   });
 
-  final FirestoreQueryBuilderSnapshot<T> snapshot;
+  final FirestoreQueryBuilderSnapshot<T?> snapshot;
   final List<T> items;
   final K Function(T item) groupBy;
   final Widget Function(K key) groupHeaderBuilder;

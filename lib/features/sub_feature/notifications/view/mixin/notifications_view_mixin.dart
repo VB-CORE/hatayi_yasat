@@ -14,8 +14,8 @@ mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
       .collectionReference(.notifications, AppNotificationModel())
       .orderBy(QueryOrders.createdAt.name, descending: true);
 
-  DateTime notificationGroupBy(AppNotificationModel? item) =>
-      (item?.createdAt ?? DateTime.now()).startOfDay;
+  DateTime notificationGroupBy(AppNotificationModel item) =>
+      (item.createdAt ?? DateTime.now()).startOfDay;
 
   int notificationCompare(DateTime a, DateTime b) => b.compareTo(a);
 
