@@ -18,6 +18,7 @@ final class AppColorTokens {
   Color get navy700 => AppColors.navy700;
   Color get ink200 => AppColors.ink200;
   Color get olive600 => AppColors.olive600;
+  Color get gold300 => AppColors.gold300;
 
   /// `colorScheme.surface`'tan farklıdır (o `AppColors.bg`'ye eşlenir);
   /// bu, `AppColors.surface`'ın (düz beyaz) kendisidir.

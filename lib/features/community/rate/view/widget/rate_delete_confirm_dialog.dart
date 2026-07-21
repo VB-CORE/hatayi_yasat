@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
@@ -23,7 +23,7 @@ final class RateDeleteConfirmDialog {
           onPressed: () => Navigator.pop(context, true),
         ),
       ],
-      backgroundColor: AppColors.bg,
+      backgroundColor: context.general.colorScheme.surface,
     );
     return isConfirmed ?? false;
   }

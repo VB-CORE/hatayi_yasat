@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lifeclient/features/community/rate/model/mock_auth.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
@@ -43,7 +44,7 @@ mixin RateCommentListViewMixin
 
   Future<void> onAddCommentPressed({required bool hasVoted}) async {
     if (!widget.isCommentEnabled || hasVoted) return;
-    if (!MockAuth.isAuthenticated) {
+    if (ref.read(authViewModelProvider) is! Authenticated) {
       await LoginRequiredDialog.show(context);
       return;
     }

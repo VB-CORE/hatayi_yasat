@@ -14,8 +14,10 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
   List<RegionalCityModel> get regionalCities => state.regionalCityItems;
   List<RegionalTownSubItem> get regionalTowns {
     final selectedCity = state.selectedCity;
-    final selectedCityRegionalTown = state.regionalTownItems
-        .firstWhere((element) => element.cityId == selectedCity.documentId);
+    final selectedCityRegionalTown = state.regionalTownItems.firstWhere(
+      (element) => element.cityId == selectedCity.documentId,
+      orElse: () => const RegionalTownModel(),
+    );
     return selectedCityRegionalTown.towns;
   }
 
@@ -42,8 +44,10 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
     storeModelCache = productCache.storeModelCache;
     appModelCache = productCache.appModelCache;
     state = state.copyWith(
-      favoritePlaces:
-          storeModelCache.getAll().map((e) => e.storeModel).toList(),
+      favoritePlaces: storeModelCache
+          .getAll()
+          .map((e) => e.storeModel)
+          .toList(),
     );
   }
 
@@ -79,7 +83,10 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
 
     state = state.copyWith(
       regionalCityItems: items,
-      selectedCity: items.firstWhere((element) => element.initial),
+      selectedCity: items.firstWhere(
+        (element) => element.initial,
+        orElse: () => items.isEmpty ? const RegionalCityModel() : items.first,
+      ),
     );
   }
 

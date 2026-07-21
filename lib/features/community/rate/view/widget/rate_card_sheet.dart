@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_community_mixin.dart';
@@ -47,7 +48,7 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
       child: Container(
         margin: const PagePadding.all(),
         padding: const PagePadding.all(),
-        decoration: _cardDecoration(state.hasVoted),
+        decoration: _cardDecoration(context, hasVoted: state.hasVoted),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -89,11 +90,16 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
     );
   }
 
-  BoxDecoration _cardDecoration(bool hasVoted) => BoxDecoration(
-    color: AppColors.surface,
+  BoxDecoration _cardDecoration(
+    BuildContext context, {
+    required bool hasVoted,
+  }) => BoxDecoration(
+    color: context.appColors.surface,
     borderRadius: AppRadius.card,
     border: Border.all(
-      color: hasVoted ? AppColors.olive : AppColors.ink100,
+      color: hasVoted
+          ? context.appColors.olive600
+          : context.general.colorScheme.outline,
     ),
   );
 }
@@ -104,7 +110,9 @@ final class _RateCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final accent = hasVoted ? AppColors.olive : AppColors.coral;
+    final accent = hasVoted
+        ? context.appColors.olive600
+        : context.general.colorScheme.tertiary;
     return Column(
       children: [
         Row(
@@ -127,7 +135,7 @@ final class _RateCardHeader extends StatelessWidget {
           value: hasVoted
               ? LocaleKeys.rate_voteRecorded.tr()
               : LocaleKeys.rate_singleVoteHint.tr(),
-          color: AppColors.ink400,
+          color: context.general.colorScheme.onSurfaceVariant,
         ),
       ],
     );

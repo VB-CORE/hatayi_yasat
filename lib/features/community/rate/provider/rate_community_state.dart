@@ -56,34 +56,34 @@ final class RateCommunityState extends Equatable {
     this.vote,
     this.comments = const [],
     this.isLoading = false,
-    this.draftRate = 0,
+    this.draftScore = 0,
     this.status = const RateActionIdle(),
   });
 
   final RateModel? vote;
   final List<RateModel> comments;
   final bool isLoading;
-  final double draftRate;
+  final int draftScore;
   final RateActionStatus status;
 
   bool get hasVoted => vote != null;
   bool get isBusy => isLoading || isProcessing;
-  double get value => hasVoted ? vote!.rate : draftRate;
+  double get value => (hasVoted ? vote!.score : draftScore).toDouble();
   bool get isProcessing => status is RateActionProcessing;
-  bool get canCreateVote => !hasVoted && draftRate > 0 && !isBusy;
+  bool get canCreateVote => !hasVoted && draftScore > 0 && !isBusy;
   bool get canEditVote => hasVoted && !isBusy;
 
   RateCommunityState copyWith({
     RateModel? vote,
     List<RateModel>? comments,
-    double? draftRate,
+    int? draftScore,
     bool? isLoading,
     bool clearVote = false,
     RateActionStatus? status,
   }) => RateCommunityState(
     vote: clearVote ? null : (vote ?? this.vote),
     comments: comments ?? this.comments,
-    draftRate: draftRate ?? this.draftRate,
+    draftScore: draftScore ?? this.draftScore,
     isLoading: isLoading ?? this.isLoading,
     status: status ?? this.status,
   );
@@ -92,7 +92,7 @@ final class RateCommunityState extends Equatable {
   List<Object?> get props => [
     vote,
     comments,
-    draftRate,
+    draftScore,
     isLoading,
     status,
   ];

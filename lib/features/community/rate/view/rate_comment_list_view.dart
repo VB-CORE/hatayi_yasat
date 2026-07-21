@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
@@ -97,7 +98,7 @@ final class _CommentListBody extends ConsumerWidget {
     );
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: context.appColors.surface,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       clipBehavior: .hardEdge,
@@ -112,7 +113,7 @@ final class _CommentListBody extends ConsumerWidget {
         ),
         itemBuilder: (context, index) {
           final rate = state.comments[index];
-          final isOwn = state.vote?.userId == rate.userId;
+          final isOwn = state.vote?.voterUid == rate.voterUid;
 
           final canModify = isOwn && !state.isProcessing;
           return _RateCommentCard(

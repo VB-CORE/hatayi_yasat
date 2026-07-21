@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'package:collection/collection.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_service_provider.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
+import 'package:lifeclient/product/model/auth/app_user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rate_community_view_model.g.dart';
@@ -11,8 +13,10 @@ part 'rate_community_view_model.g.dart';
 @riverpod
 final class RateCommunityViewModel extends _$RateCommunityViewModel
     with ProjectDependencyMixin {
-  static const String _currentUserId = 'mock_user';
-  static const String _currentUserName = 'Veli Bacik';
+  AppUser? get _currentUser {
+    final authState = ref.read(authViewModelProvider);
+    return authState is Authenticated ? authState.user : null;
+  }
 
   @override
   RateCommunityState build(String placeId) {
@@ -21,14 +25,22 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   Future<void> _loadVotes() async {
-    final comments = await ref
-        .read(rateCommunityServiceProvider)
-        .fetchRates(placeId);
+    final service = ref.read(rateCommunityServiceProvider);
+    final currentUid = _currentUser?.uid;
+    final commentsRequest = service.fetchRates(placeId);
+    final myVoteRequest = currentUid == null
+        ? Future<RateModel?>.value()
+        : service.fetchMyRate(placeId, currentUid);
+
+    final comments = await commentsRequest;
+    final myVote = await myVoteRequest;
+
+    if (myVote != null &&
+        !comments.any((vote) => vote.voterUid == myVote.voterUid)) {
+      comments.add(myVote);
+    }
     comments.sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
-    final myVote = comments.firstWhereOrNull(
-      (vote) => vote.userId == _currentUserId,
-    );
     state = state.copyWith(
       vote: myVote,
       clearVote: myVote == null,
@@ -37,24 +49,29 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     );
   }
 
-  void selectRating(double value) =>
-      state = state.copyWith(draftRate: value, status: const RateActionIdle());
+  void selectRating(double value) => state = state.copyWith(
+    draftScore: value.round(),
+    status: const RateActionIdle(),
+  );
 
   void resetStatus() => state = state.copyWith(status: const RateActionIdle());
 
   Future<void> submit({String? comment}) async {
-    if (state.hasVoted || state.isProcessing) return;
+    final user = _currentUser;
+    if (user == null || state.hasVoted || state.isProcessing) return;
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.create),
     );
+    final now = DateTime.now();
     final vote = RateModel(
       placeId: placeId,
-      userId: _currentUserId,
-      rate: state.draftRate,
-      createdAt: DateTime.now(),
+      voterUid: user.uid,
+      score: state.draftScore,
+      createdAt: now,
       comment: comment?.trim(),
-      userName: _currentUserName,
-      updatedAt: DateTime.now(),
+      userName: user.displayName,
+      photoUrl: user.photoUrl,
+      updatedAt: now,
     );
     final success = await ref.read(rateCommunityServiceProvider).rate(vote);
     if (success) {
@@ -88,7 +105,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         vote: updated,
         comments: state.comments
             .map(
-              (comment) => comment.userId == updated.userId ? updated : comment,
+              (comment) =>
+                  comment.voterUid == updated.voterUid ? updated : comment,
             )
             .toList(),
       );
@@ -110,9 +128,9 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       state = state.copyWith(
         clearVote: true,
         status: const RateActionSucceeded(RateAction.delete),
-        draftRate: 0,
+        draftScore: 0,
         comments: state.comments
-            .where((c) => c.userId != currentVote.userId)
+            .where((c) => c.voterUid != currentVote.voterUid)
             .toList(),
       );
     } else {

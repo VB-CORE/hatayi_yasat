@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,6 +37,7 @@ final class ApplicationInit {
       );
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 3004);
       await FirebaseAuth.instance.useAuthEmulator('localhost', 3000);
+      await FirebaseStorage.instance.useStorageEmulator('localhost', 3005);
     }
 
     final remoteConfig = FirebaseRemoteConfig.instance;

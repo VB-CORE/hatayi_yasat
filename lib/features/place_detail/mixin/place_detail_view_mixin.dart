@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/features/community/rate/model/mock_auth.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -36,7 +37,7 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   }
 
   Future<void> onComment() async {
-    if (!MockAuth.isAuthenticated) {
+    if (ref.read(authViewModelProvider) is! Authenticated) {
       await LoginRequiredDialog.show(context);
       return;
     }
