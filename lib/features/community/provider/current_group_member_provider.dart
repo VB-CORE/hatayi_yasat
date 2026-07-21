@@ -6,14 +6,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'current_group_member_provider.g.dart';
 
-/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme
-/// bilgisi modellerde taşınmaz; grup/gönderi durumları bu üye üzerinden
-/// türetilir.
+/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
+/// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
+/// karşılaştırılarak türetilir.
 // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 @riverpod
 GroupMemberModel currentGroupMember(Ref ref) {
   final authState = ref.watch(authViewModelProvider);
   return authState is Authenticated
-      ? GroupMemberModel.fromAppUser(authState.user)
+      ? GroupMemberModel.fromUser(authState.user)
       : CommunityMockData.currentMember;
 }

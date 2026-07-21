@@ -32,22 +32,14 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     );
   }
 
+  // TODO(community): Beğeni bilgisi kullanıcıya özeldir ve Firestore servis
+  // PR'ında sunucudan okunacak; şimdilik yalnızca sayaç güncelleniyor.
   void toggleLike(String postId) {
-    final isLiked = state.likedPostIds.contains(postId);
-    final likedPostIds = {...state.likedPostIds};
-    if (isLiked) {
-      likedPostIds.remove(postId);
-    } else {
-      likedPostIds.add(postId);
-    }
-
     final posts = state.posts.map((post) {
       if (post.id != postId) return post;
-      return post.copyWith(
-        likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1,
-      );
+      return post.copyWith(likeCount: post.likeCount + 1);
     }).toList();
-    state = state.copyWith(posts: posts, likedPostIds: likedPostIds);
+    state = state.copyWith(posts: posts);
   }
 
   // TODO(community): Firestore servis PR'ında gönderi sunucuya yazılacak.

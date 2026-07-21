@@ -1,14 +1,9 @@
 part of '../group_detail_sliver_header.dart';
 
 final class _HeaderToolbar extends StatelessWidget {
-  const _HeaderToolbar({
-    required this.model,
-    required this.isCurrentUserAdmin,
-    required this.titleOpacity,
-  });
+  const _HeaderToolbar({required this.model, required this.titleOpacity});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
   final double titleOpacity;
 
   @override
@@ -27,11 +22,7 @@ final class _HeaderToolbar extends StatelessWidget {
             ),
           ),
         ),
-        if (isCurrentUserAdmin)
-          const Padding(
-            padding: PagePadding.onlyRight(),
-            child: _AdminBadge(),
-          ),
+        _AdminBadge(model: model),
       ],
     );
   }
@@ -60,35 +51,43 @@ final class _BackButton extends StatelessWidget {
   }
 }
 
-final class _AdminBadge extends StatelessWidget {
-  const _AdminBadge();
+final class _AdminBadge extends ConsumerWidget {
+  const _AdminBadge({required this.model});
+
+  final GroupModel model;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentMember = ref.watch(currentGroupMemberProvider);
+    if (!model.isAdmin(currentMember.id)) return const SizedBox.shrink();
+
     final colorScheme = context.general.colorScheme;
-    return Center(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colorScheme.tertiary,
-          borderRadius: CustomRadius.xxLarge,
-        ),
-        child: Padding(
-          padding: const PagePadding.horizontalLowVerticalVeryLowSymmetric(),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                AppIcons.lockPerson,
-                size: AppIconSizes.smallX,
-                color: colorScheme.onTertiary,
-              ),
-              const EmptyBox(width: WidgetSizes.spacingXxs),
-              GeneralContentSmallTitle(
-                value: LocaleKeys.community_groupDetail_adminBadge.tr(),
-                color: colorScheme.onTertiary,
-                fontWeight: FontWeight.w700,
-              ),
-            ],
+    return Padding(
+      padding: const PagePadding.onlyRight(),
+      child: Center(
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: colorScheme.tertiary,
+            borderRadius: CustomRadius.xxLarge,
+          ),
+          child: Padding(
+            padding: const PagePadding.horizontalLowVerticalVeryLowSymmetric(),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  AppIcons.lockPerson,
+                  size: AppIconSizes.smallX,
+                  color: colorScheme.onTertiary,
+                ),
+                const EmptyBox(width: WidgetSizes.spacingXxs),
+                GeneralContentSmallTitle(
+                  value: LocaleKeys.community_groupDetail_adminBadge.tr(),
+                  color: colorScheme.onTertiary,
+                  fontWeight: FontWeight.w700,
+                ),
+              ],
+            ),
           ),
         ),
       ),

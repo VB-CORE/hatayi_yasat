@@ -24,14 +24,9 @@ part 'sub_view/group_details_info_rows.dart';
 part 'sub_view/group_details_section.dart';
 
 final class GroupDetailsView extends ConsumerStatefulWidget {
-  const GroupDetailsView({
-    required this.model,
-    required this.isCurrentUserAdmin,
-    super.key,
-  });
+  const GroupDetailsView({required this.model, super.key});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
 
   @override
   ConsumerState<GroupDetailsView> createState() => _GroupDetailsViewState();
@@ -65,7 +60,7 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
         _SectionCard(child: _AdminList(admins: model.admins)),
         const EmptyBox.largeHeight(),
         _LeaveGroupButton(onPressed: leaveGroup),
-        if (widget.isCurrentUserAdmin) ...[
+        if (isCurrentUserAdmin) ...[
           const EmptyBox.smallHeight(),
           _CloseGroupButton(onPressed: closeGroup),
         ],

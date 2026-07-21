@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/provider/group_discussions_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/group_discussions_view.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/start_discussion_sheet.dart';
+import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin GroupDiscussionsViewMixin
@@ -22,6 +23,13 @@ mixin GroupDiscussionsViewMixin
             .fetchDiscussions(widget.model.id),
       );
     });
+  }
+
+  /// Grup yöneticiliği modelde taşınmaz; oturumdaki üye ile grubun yönetici
+  /// listesi karşılaştırılarak türetilir.
+  bool get isCurrentUserAdmin {
+    final currentMember = ref.watch(currentGroupMemberProvider);
+    return widget.model.isAdmin(currentMember.id);
   }
 
   Future<void> startDiscussion(BuildContext context) async {

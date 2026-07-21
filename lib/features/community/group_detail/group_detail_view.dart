@@ -5,7 +5,6 @@ import 'package:lifeclient/features/community/group_detail/discussions/view/grou
 import 'package:lifeclient/features/community/group_detail/wall/view/group_wall_view.dart';
 import 'package:lifeclient/features/community/group_detail/widget/group_detail_sliver_header.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 final class GroupDetailView extends ConsumerWidget {
@@ -15,29 +14,18 @@ final class GroupDetailView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentMember = ref.watch(currentGroupMemberProvider);
-    final isCurrentUserAdmin = model.isAdmin(currentMember.id);
     return Scaffold(
       body: DefaultTabController(
         length: AppConstants.kThree,
         child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            GroupDetailSliverHeader(
-              model: model,
-              isCurrentUserAdmin: isCurrentUserAdmin,
-            ),
+            GroupDetailSliverHeader(model: model),
           ],
           body: TabBarView(
             children: [
               GroupWallView(model: model),
-              GroupDiscussionsView(
-                model: model,
-                isCurrentUserAdmin: isCurrentUserAdmin,
-              ),
-              GroupDetailsView(
-                model: model,
-                isCurrentUserAdmin: isCurrentUserAdmin,
-              ),
+              GroupDiscussionsView(model: model),
+              GroupDetailsView(model: model),
             ],
           ),
         ),

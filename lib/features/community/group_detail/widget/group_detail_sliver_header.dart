@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
+import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -15,19 +17,15 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
+part 'sliver_header/collapsing_header_space.dart';
 part 'sliver_header/expanded_background.dart';
 part 'sliver_header/header_toolbar.dart';
 
 @immutable
 final class GroupDetailSliverHeader extends StatelessWidget {
-  const GroupDetailSliverHeader({
-    required this.model,
-    required this.isCurrentUserAdmin,
-    super.key,
-  });
+  const GroupDetailSliverHeader({required this.model, super.key});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ final class GroupDetailSliverHeader extends StatelessWidget {
       pinned: true,
       backgroundColor: surface,
       automaticallyImplyLeading: false,
-      flexibleSpace: LayoutBuilder(builder: _buildFlexibleSpace),
+      flexibleSpace: _CollapsingHeaderSpace(model: model),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(kTextTabBarHeight),
         child: ColoredBox(
@@ -68,40 +66,5 @@ final class GroupDetailSliverHeader extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _buildFlexibleSpace(BuildContext context, BoxConstraints constraints) {
-    final topPadding = MediaQuery.paddingOf(context).top;
-    final expandRatio = _expandRatioOf(constraints, topPadding);
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Opacity(
-          opacity: expandRatio,
-          child: _ExpandedBackground(model: model),
-        ),
-        Positioned(
-          top: topPadding,
-          left: kZero,
-          right: kZero,
-          height: kToolbarHeight,
-          child: _HeaderToolbar(
-            model: model,
-            isCurrentUserAdmin: isCurrentUserAdmin,
-            titleOpacity: 1 - expandRatio,
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// Header'ın ne kadar açık olduğu: 1 tamamen genişlemiş, 0 tamamen toplanmış.
-  double _expandRatioOf(BoxConstraints constraints, double topPadding) {
-    final collapsedHeight = topPadding + kToolbarHeight + kTextTabBarHeight;
-    final maxExtent = WidgetSizes.spacingXxlL14 + topPadding;
-    if (maxExtent <= collapsedHeight) return 0;
-    return ((constraints.maxHeight - collapsedHeight) /
-            (maxExtent - collapsedHeight))
-        .clamp(0.0, 1.0);
   }
 }

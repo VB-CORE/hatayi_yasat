@@ -16,14 +16,9 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
 final class GroupDiscussionsView extends ConsumerStatefulWidget {
-  const GroupDiscussionsView({
-    required this.model,
-    required this.isCurrentUserAdmin,
-    super.key,
-  });
+  const GroupDiscussionsView({required this.model, super.key});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
 
   @override
   ConsumerState<GroupDiscussionsView> createState() =>
@@ -61,7 +56,7 @@ final class _GroupDiscussionsViewState
         padding: const PagePadding.horizontal16Symmetric(),
         children: [
           const EmptyBox.middleHeight(),
-          if (widget.isCurrentUserAdmin) ...[
+          if (isCurrentUserAdmin) ...[
             StartDiscussionCard(onTap: () => startDiscussion(context)),
             const EmptyBox.middleHeight(),
           ],

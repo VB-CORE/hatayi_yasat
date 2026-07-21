@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
+import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -18,13 +20,11 @@ import 'package:lifeclient/product/widget/general/index.dart';
 final class GroupCard extends StatelessWidget {
   const GroupCard({
     required this.model,
-    required this.isCurrentUserAdmin,
     required this.onTap,
     super.key,
   });
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
   final VoidCallback onTap;
 
   @override
@@ -43,10 +43,7 @@ final class GroupCard extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const PagePadding.generalCardAll(),
-                  child: _GroupInfo(
-                    model: model,
-                    isCurrentUserAdmin: isCurrentUserAdmin,
-                  ),
+                  child: _GroupInfo(model: model),
                 ),
               ),
             ],
@@ -76,10 +73,9 @@ final class _CoverImage extends StatelessWidget {
 }
 
 final class _GroupInfo extends StatelessWidget {
-  const _GroupInfo({required this.model, required this.isCurrentUserAdmin});
+  const _GroupInfo({required this.model});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -99,23 +95,20 @@ final class _GroupInfo extends StatelessWidget {
           maxLine: AppConstants.kOne,
         ),
         const EmptyBox.smallHeight(),
-        _GroupMetaRow(
-          model: model,
-          isCurrentUserAdmin: isCurrentUserAdmin,
-        ),
+        _GroupMetaRow(model: model),
       ],
     );
   }
 }
 
-final class _GroupMetaRow extends StatelessWidget {
-  const _GroupMetaRow({required this.model, required this.isCurrentUserAdmin});
+final class _GroupMetaRow extends ConsumerWidget {
+  const _GroupMetaRow({required this.model});
 
   final GroupModel model;
-  final bool isCurrentUserAdmin;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentMember = ref.watch(currentGroupMemberProvider);
     return Wrap(
       spacing: WidgetSizes.spacingXs,
       runSpacing: WidgetSizes.spacingXxs,
@@ -135,7 +128,7 @@ final class _GroupMetaRow extends StatelessWidget {
           color: model.type.badgeColor(context),
           icon: model.type.badgeIcon,
         ),
-        if (isCurrentUserAdmin)
+        if (model.isAdmin(currentMember.id))
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
             color: context.general.colorScheme.tertiary,

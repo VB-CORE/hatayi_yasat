@@ -8,17 +8,17 @@ part of 'current_group_member_provider.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme
-/// bilgisi modellerde taşınmaz; grup/gönderi durumları bu üye üzerinden
-/// türetilir.
+/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
+/// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
+/// karşılaştırılarak türetilir.
 // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 
 @ProviderFor(currentGroupMember)
 final currentGroupMemberProvider = CurrentGroupMemberProvider._();
 
-/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme
-/// bilgisi modellerde taşınmaz; grup/gönderi durumları bu üye üzerinden
-/// türetilir.
+/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
+/// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
+/// karşılaştırılarak türetilir.
 // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 
 final class CurrentGroupMemberProvider
@@ -29,9 +29,9 @@ final class CurrentGroupMemberProvider
           GroupMemberModel
         >
     with $Provider<GroupMemberModel> {
-  /// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme
-  /// bilgisi modellerde taşınmaz; grup/gönderi durumları bu üye üzerinden
-  /// türetilir.
+  /// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
+  /// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
+  /// karşılaştırılarak türetilir.
   // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
   CurrentGroupMemberProvider._()
     : super(
@@ -67,4 +67,4 @@ final class CurrentGroupMemberProvider
 }
 
 String _$currentGroupMemberHash() =>
-    r'27255bf949af4fa8f8309220484a0aab190cae37';
+    r'f06012a0ec7402be1c7cd61aa8730b9fdc12e8fc';

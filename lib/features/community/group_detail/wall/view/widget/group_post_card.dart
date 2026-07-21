@@ -12,6 +12,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
+import 'package:lifeclient/product/widget/button/like_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 
@@ -19,14 +20,12 @@ import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 final class GroupPostCard extends StatelessWidget {
   const GroupPostCard({
     required this.model,
-    required this.isLiked,
     required this.onLikeTap,
     required this.onCommentTap,
     super.key,
   });
 
   final GroupPostModel model;
-  final bool isLiked;
   final VoidCallback onLikeTap;
   final VoidCallback onCommentTap;
 
@@ -52,7 +51,6 @@ final class GroupPostCard extends StatelessWidget {
             const EmptyBox.smallHeight(),
             _PostFooterRow(
               model: model,
-              isLiked: isLiked,
               onLikeTap: onLikeTap,
               onCommentTap: onCommentTap,
             ),
@@ -130,13 +128,11 @@ final class _PostAuthorRow extends StatelessWidget {
 final class _PostFooterRow extends StatelessWidget {
   const _PostFooterRow({
     required this.model,
-    required this.isLiked,
     required this.onLikeTap,
     required this.onCommentTap,
   });
 
   final GroupPostModel model;
-  final bool isLiked;
   final VoidCallback onLikeTap;
   final VoidCallback onCommentTap;
 
@@ -145,23 +141,25 @@ final class _PostFooterRow extends StatelessWidget {
     final navy400 = context.appColors.navy400;
     return Row(
       children: [
-        InkWell(
-          onTap: onLikeTap,
-          borderRadius: CustomRadius.small,
-          child: Row(
-            children: [
-              Icon(
-                isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
-                size: AppIconSizes.xMedium,
-                color: context.general.colorScheme.tertiary,
-              ),
-              const EmptyBox(width: WidgetSizes.spacingXxs),
-              GeneralContentSmallTitle(
-                value: model.likeCount.toString(),
-                color: navy400,
-              ),
-            ],
+        // TODO(community): Beğenilmiş mi bilgisi Firestore servis PR'ında
+        // sunucudan okunacak; şimdilik her açılışta beğenilmemiş görünüyor.
+        CustomAnimatedLikeButton(
+          isLiked: false,
+          size: AppIconSizes.xMedium,
+          likeBuilder: (isLiked) => Icon(
+            isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
+            size: AppIconSizes.xMedium,
+            color: context.general.colorScheme.tertiary,
           ),
+          onTap: (isLiked) async {
+            onLikeTap();
+            return !isLiked;
+          },
+        ),
+        const EmptyBox(width: WidgetSizes.spacingXxs),
+        GeneralContentSmallTitle(
+          value: model.likeCount.toString(),
+          color: navy400,
         ),
         const EmptyBox.middleWidth(),
         InkWell(
