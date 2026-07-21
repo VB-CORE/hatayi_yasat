@@ -112,6 +112,7 @@ dependencies:
   shimmer_animation: ^2.2.2+1
   bounceable: ^1.0.0
   grouped_list: ^6.0.0
+  like_button: ^2.1.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0

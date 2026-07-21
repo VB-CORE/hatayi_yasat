@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button_mixin.dart';
+import 'package:lifeclient/product/widget/button/like_button.dart';
 import 'package:lifeclient/product/widget/general/icon/general_favorite_icon.dart';
 
 class FavoritePlaceButton extends ConsumerStatefulWidget {
@@ -25,11 +26,10 @@ class _FavoritePlaceButtonState extends ConsumerState<FavoritePlaceButton>
         AppProviderMixin {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return CustomAnimatedLikeButton(
+      isLiked: ref.watch(favoritePlaceProvider).isFavorite,
       onTap: onPressed,
-      child: GeneralFavoriteIcon(
-        isFavorite: ref.watch(favoritePlaceProvider).isFavorite,
-      ),
+      likeBuilder: (isLiked) => GeneralFavoriteIcon(isFavorite: isLiked),
     );
   }
 }

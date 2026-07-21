@@ -3,6 +3,7 @@ import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_view_model.g.dart';
@@ -26,10 +27,15 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
 
   Future<void> signIn(AuthProvider provider) async {
     state = const AuthLoading();
-    final user = await authService.signIn(provider);
-    state = user == null
-        ? AuthError(LocaleKeys.auth_error_failed, provider: provider)
-        : Authenticated(user);
+    final result = await authService.signIn(provider);
+    state = switch (result) {
+      SignInSuccess(:final user) => Authenticated(user),
+      SignInCancelled() => const Unauthenticated(),
+      SignInFailure() => AuthError(
+        LocaleKeys.auth_error_failed,
+        provider: provider,
+      ),
+    };
   }
 
   Future<void> signOut() => authService.signOut();
