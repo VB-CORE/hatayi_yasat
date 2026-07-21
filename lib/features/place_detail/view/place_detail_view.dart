@@ -71,8 +71,8 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
               onCall: onCall,
               onComment: onComment,
             ),
-            PinnedHeaderSliver(
-              child: PlaceDetailTabBar(store: widget.store),
+            const PinnedHeaderSliver(
+              child: PlaceDetailTabBar(),
             ),
             SliverPadding(
               padding: const PagePadding.generalAllLow(),
