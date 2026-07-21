@@ -28,7 +28,6 @@ final class NotificationsView extends StatelessWidget
         groupHeaderBuilder: (day) =>
             GeneralGroupSectionHeader(label: day.relativeDayLabel),
         groupCompare: notificationCompare,
-        filter: isVisibleNotification,
         onLoading: const PlaceShimmerList(),
         onEmpty: GeneralNotFoundWidget(
           title: LocaleKeys.notFound_notification.tr(),

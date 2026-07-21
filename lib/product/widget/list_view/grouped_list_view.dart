@@ -14,11 +14,10 @@ final class GroupedListView<T, K> extends StatelessWidget {
     this.footer,
     this.onReachEnd,
     this.canLoadMore = false,
-    this.loadMoreThreshold = 2,
     this.stickyHeaderBackgroundColor = AppColors.ink25,
     this.useStickyGroupSeparators = true,
     super.key,
-  }) : assert(loadMoreThreshold >= 0, 'loadMoreThreshold cannot be negative');
+  });
 
   final List<T> items;
   final K Function(T item) groupBy;
@@ -32,7 +31,6 @@ final class GroupedListView<T, K> extends StatelessWidget {
 
   final VoidCallback? onReachEnd;
   final bool canLoadMore;
-  final int loadMoreThreshold;
   final Color stickyHeaderBackgroundColor;
   final bool useStickyGroupSeparators;
 
@@ -54,9 +52,7 @@ final class GroupedListView<T, K> extends StatelessWidget {
   }
 
   Widget _buildItem(BuildContext context, T item, int index) {
-    final remainingItemCount = items.length - index - 1;
-
-    if (canLoadMore && remainingItemCount <= loadMoreThreshold) {
+    if (canLoadMore && index + 1 == items.length) {
       onReachEnd?.call();
     }
 

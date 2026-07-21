@@ -12,14 +12,10 @@ mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
   Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
       .firebaseService
       .collectionReference(.notifications, AppNotificationModel())
-      .orderBy(QueryOrders.createdAt.name, descending: true)
-      .limit(maxNotificationItems);
-
-  bool isVisibleNotification(AppNotificationModel model) =>
-      model.type != null && model.createdAt != null;
+      .orderBy(QueryOrders.createdAt.name, descending: true);
 
   DateTime notificationGroupBy(AppNotificationModel model) =>
-      model.createdAt!.startOfDay;
+      (model.createdAt ?? DateTime.now()).startOfDay;
 
   int notificationCompare(DateTime a, DateTime b) => b.compareTo(a);
 
