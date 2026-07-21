@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/product/model/auth/app_user.dart';
+import 'package:lifeclient/product/model/auth/user_model.dart';
 import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 final class GroupMemberModel extends Equatable {
@@ -12,14 +12,11 @@ final class GroupMemberModel extends Equatable {
     this.role = GroupMemberRole.member,
   });
 
-  factory GroupMemberModel.fromAppUser(AppUser user) {
-    final localPart = user.email.split('@').firstOrNull;
+  factory GroupMemberModel.fromUser(UserModel user) {
     return GroupMemberModel(
       id: user.uid,
       displayName: user.displayName,
-      username: localPart == null || localPart.isEmpty
-          ? user.displayName
-          : localPart,
+      username: user.email.split('@').firstOrNull ?? '-',
       avatarUrl: user.photoUrl,
     );
   }

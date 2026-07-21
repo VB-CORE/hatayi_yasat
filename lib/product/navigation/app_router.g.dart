@@ -10,10 +10,8 @@ List<RouteBase> get $appRoutes => [
   $splashRoute,
   $mainTabRoute,
   $loginRoute,
-  $roleDashboardRoute,
   $unauthorizedRoute,
   $groupsRoute,
-  $createGroupRoute,
   $groupDetailRoute,
 ];
 
@@ -673,39 +671,16 @@ RouteBase get $loginRoute =>
     GoRouteData.$route(path: '/login', factory: $LoginRoute._fromState);
 
 mixin $LoginRoute on GoRouteData {
-  static LoginRoute _fromState(GoRouterState state) => const LoginRoute();
+  static LoginRoute _fromState(GoRouterState state) =>
+      LoginRoute(from: state.uri.queryParameters['from']);
+
+  LoginRoute get _self => this as LoginRoute;
 
   @override
-  String get location => GoRouteData.$location('/login');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $roleDashboardRoute => GoRouteData.$route(
-  path: '/roleTest/:role',
-  factory: $RoleDashboardRoute._fromState,
-);
-
-mixin $RoleDashboardRoute on GoRouteData {
-  static RoleDashboardRoute _fromState(GoRouterState state) =>
-      RoleDashboardRoute(role: state.pathParameters['role']!);
-
-  RoleDashboardRoute get _self => this as RoleDashboardRoute;
-
-  @override
-  String get location =>
-      GoRouteData.$location('/roleTest/${Uri.encodeComponent(_self.role)}');
+  String get location => GoRouteData.$location(
+    '/login',
+    queryParams: {if (_self.from != null) 'from': _self.from},
+  );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -755,8 +730,16 @@ mixin $UnauthorizedRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $groupsRoute =>
-    GoRouteData.$route(path: '/groups', factory: $GroupsRoute._fromState);
+RouteBase get $groupsRoute => GoRouteData.$route(
+  path: '/groups',
+  factory: $GroupsRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'create-group',
+      factory: $CreateGroupRoute._fromState,
+    ),
+  ],
+);
 
 mixin $GroupsRoute on GoRouteData {
   static GroupsRoute _fromState(GoRouterState state) => const GroupsRoute();
@@ -778,17 +761,12 @@ mixin $GroupsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $createGroupRoute => GoRouteData.$route(
-  path: '/create-group',
-  factory: $CreateGroupRoute._fromState,
-);
-
 mixin $CreateGroupRoute on GoRouteData {
   static CreateGroupRoute _fromState(GoRouterState state) =>
       const CreateGroupRoute();
 
   @override
-  String get location => GoRouteData.$location('/create-group');
+  String get location => GoRouteData.$location('/groups/create-group');
 
   @override
   void go(BuildContext context) => context.go(location);

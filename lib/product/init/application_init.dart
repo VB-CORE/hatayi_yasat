@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
 import 'package:lifeclient/firebase_options.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
@@ -55,6 +56,7 @@ final class ApplicationInit {
       return true;
     };
     ProjectDependency.setup();
+    await ProjectDependencyItems.productCache.init();
     // ProjectDependencyItems.appProvider
     //     .changeAppTheme(theme: SharedCache.instance.theme);
     // await _injectTestEnvOnDebug();

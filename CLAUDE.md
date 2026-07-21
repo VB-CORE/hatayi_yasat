@@ -164,6 +164,19 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 `build()` widget'ı döner. Karmaşık nesne geçişi `$extra` ile. Codegen sonrası
 `app_router.g.dart` (commit edilir). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
 
+### `go` vs `push` (sert kural)
+
+- **Guard'lı (redirect'li) rotalara daima `go`.** `push` imperative'dir: declarative
+  URI değişmez, `refreshListenable` tetiklendiğinde go_router yalnızca declarative
+  location'ı yeniden değerlendirir — pushed sayfanın redirect'i bir daha çalışmaz.
+  (Örnek bug: push ile açılan login, girişten sonra ekranda takılı kalır.)
+- `push` yalnızca guard'sız, geçici overlay sayfalar için kullanılabilir.
+- `go` stack'i route ağacından türettiği için geri tuşunun çalışması istenen rotalar
+  parent'ın `routes:` listesinde alt-rota olarak tanımlanır (örn. `/groups/create-group`).
+- Auth navigasyon politikası router'dadır (`AuthGuard` + route `redirect`'leri);
+  view içinden auth amaçlı `context.go/push` yazılmaz. Login dönüş adresi resmi
+  go_router deseniyle `from` query parametresi üzerinden taşınır.
+
 ---
 
 ## 6. Styling (sert kurallar — lint/review reddeder)

@@ -1,10 +1,14 @@
 enum UserRole {
-  user,
-  merchant,
-  admin;
+  admin(1),
+  user(2)
+  ;
 
-  static UserRole fromString(String? value) => UserRole.values.firstWhere(
-        (e) => e.name == value,
-        orElse: () => UserRole.user,
-      );
+  const UserRole(this.value);
+
+  final int value;
+
+  static UserRole fromRoleType(int? value) => UserRole.values.firstWhere(
+    (role) => role.value == value,
+    orElse: () => UserRole.user,
+  );
 }

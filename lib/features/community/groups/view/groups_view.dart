@@ -39,7 +39,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
     final currentMember = ref.watch(currentGroupMemberProvider);
     return GeneralScaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => const CreateGroupRoute().push<void>(context),
+        onPressed: () => const CreateGroupRoute().go(context),
         child: const Icon(AppIcons.add),
       ),
       body: SafeArea(
