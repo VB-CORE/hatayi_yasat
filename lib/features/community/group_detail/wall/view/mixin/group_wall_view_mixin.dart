@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -18,8 +19,15 @@ mixin GroupWallViewMixin
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(groupWallViewModelProvider.notifier).fetchPosts(widget.model.id);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(
+        ref
+            .read(groupWallViewModelProvider.notifier)
+            .fetchPosts(
+              widget.model.id,
+            ),
+      );
     });
   }
 

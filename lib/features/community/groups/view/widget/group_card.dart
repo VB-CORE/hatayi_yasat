@@ -18,11 +18,13 @@ import 'package:lifeclient/product/widget/general/index.dart';
 final class GroupCard extends StatelessWidget {
   const GroupCard({
     required this.model,
+    required this.isCurrentUserAdmin,
     required this.onTap,
     super.key,
   });
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
   final VoidCallback onTap;
 
   @override
@@ -41,7 +43,10 @@ final class GroupCard extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const PagePadding.generalCardAll(),
-                  child: _GroupInfo(model: model),
+                  child: _GroupInfo(
+                    model: model,
+                    isCurrentUserAdmin: isCurrentUserAdmin,
+                  ),
                 ),
               ),
             ],
@@ -71,9 +76,10 @@ final class _CoverImage extends StatelessWidget {
 }
 
 final class _GroupInfo extends StatelessWidget {
-  const _GroupInfo({required this.model});
+  const _GroupInfo({required this.model, required this.isCurrentUserAdmin});
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -93,16 +99,20 @@ final class _GroupInfo extends StatelessWidget {
           maxLine: AppConstants.kOne,
         ),
         const EmptyBox.smallHeight(),
-        _GroupMetaRow(model: model),
+        _GroupMetaRow(
+          model: model,
+          isCurrentUserAdmin: isCurrentUserAdmin,
+        ),
       ],
     );
   }
 }
 
 final class _GroupMetaRow extends StatelessWidget {
-  const _GroupMetaRow({required this.model});
+  const _GroupMetaRow({required this.model, required this.isCurrentUserAdmin});
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +135,7 @@ final class _GroupMetaRow extends StatelessWidget {
           color: model.type.badgeColor(context),
           icon: model.type.badgeIcon,
         ),
-        if (model.isCurrentUserAdmin)
+        if (isCurrentUserAdmin)
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
             color: context.general.colorScheme.tertiary,

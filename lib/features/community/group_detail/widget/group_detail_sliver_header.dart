@@ -20,9 +20,14 @@ part 'sliver_header/header_toolbar.dart';
 
 @immutable
 final class GroupDetailSliverHeader extends StatelessWidget {
-  const GroupDetailSliverHeader({required this.model, super.key});
+  const GroupDetailSliverHeader({
+    required this.model,
+    required this.isCurrentUserAdmin,
+    super.key,
+  });
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -33,38 +38,7 @@ final class GroupDetailSliverHeader extends StatelessWidget {
       pinned: true,
       backgroundColor: surface,
       automaticallyImplyLeading: false,
-      flexibleSpace: LayoutBuilder(
-        builder: (context, constraints) {
-          final topPadding = MediaQuery.paddingOf(context).top;
-          final collapsedHeight =
-              topPadding + kToolbarHeight + kTextTabBarHeight;
-          final maxExtent = WidgetSizes.spacingXxlL14 + topPadding;
-          final expandRatio = maxExtent <= collapsedHeight
-              ? 0.0
-              : ((constraints.maxHeight - collapsedHeight) /
-                        (maxExtent - collapsedHeight))
-                    .clamp(0.0, 1.0);
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              Opacity(
-                opacity: expandRatio,
-                child: _ExpandedBackground(model: model),
-              ),
-              Positioned(
-                top: topPadding,
-                left: kZero,
-                right: kZero,
-                height: kToolbarHeight,
-                child: _HeaderToolbar(
-                  model: model,
-                  titleOpacity: 1 - expandRatio,
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+      flexibleSpace: LayoutBuilder(builder: _buildFlexibleSpace),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(kTextTabBarHeight),
         child: ColoredBox(
@@ -94,5 +68,40 @@ final class GroupDetailSliverHeader extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildFlexibleSpace(BuildContext context, BoxConstraints constraints) {
+    final topPadding = MediaQuery.paddingOf(context).top;
+    final expandRatio = _expandRatioOf(constraints, topPadding);
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Opacity(
+          opacity: expandRatio,
+          child: _ExpandedBackground(model: model),
+        ),
+        Positioned(
+          top: topPadding,
+          left: kZero,
+          right: kZero,
+          height: kToolbarHeight,
+          child: _HeaderToolbar(
+            model: model,
+            isCurrentUserAdmin: isCurrentUserAdmin,
+            titleOpacity: 1 - expandRatio,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Header'ın ne kadar açık olduğu: 1 tamamen genişlemiş, 0 tamamen toplanmış.
+  double _expandRatioOf(BoxConstraints constraints, double topPadding) {
+    final collapsedHeight = topPadding + kToolbarHeight + kTextTabBarHeight;
+    final maxExtent = WidgetSizes.spacingXxlL14 + topPadding;
+    if (maxExtent <= collapsedHeight) return 0;
+    return ((constraints.maxHeight - collapsedHeight) /
+            (maxExtent - collapsedHeight))
+        .clamp(0.0, 1.0);
   }
 }

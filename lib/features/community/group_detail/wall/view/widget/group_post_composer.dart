@@ -97,20 +97,7 @@ final class _ComposerPill extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              onTap: onPickImage,
-              customBorder: const CircleBorder(),
-              child: Padding(
-                padding: const PagePadding.allVeryLow(),
-                child: Icon(
-                  AppIcons.gallery,
-                  size: AppIconSizes.medium,
-                  color: hasImage
-                      ? context.general.colorScheme.tertiary
-                      : context.appColors.navy300,
-                ),
-              ),
-            ),
+            _PickImageButton(hasImage: hasImage, onTap: onPickImage),
             ValueListenableBuilder<TextEditingValue>(
               valueListenable: controller,
               builder: (context, value, _) {
@@ -124,6 +111,31 @@ final class _ComposerPill extends StatelessWidget {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+final class _PickImageButton extends StatelessWidget {
+  const _PickImageButton({required this.hasImage, required this.onTap});
+
+  final bool hasImage;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      customBorder: const CircleBorder(),
+      child: Padding(
+        padding: const PagePadding.allVeryLow(),
+        child: Icon(
+          AppIcons.gallery,
+          size: AppIconSizes.medium,
+          color: hasImage
+              ? context.general.colorScheme.tertiary
+              : context.appColors.navy300,
         ),
       ),
     );

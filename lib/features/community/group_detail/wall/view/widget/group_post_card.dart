@@ -19,12 +19,14 @@ import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 final class GroupPostCard extends StatelessWidget {
   const GroupPostCard({
     required this.model,
+    required this.isLiked,
     required this.onLikeTap,
     required this.onCommentTap,
     super.key,
   });
 
   final GroupPostModel model;
+  final bool isLiked;
   final VoidCallback onLikeTap;
   final VoidCallback onCommentTap;
 
@@ -50,6 +52,7 @@ final class GroupPostCard extends StatelessWidget {
             const EmptyBox.smallHeight(),
             _PostFooterRow(
               model: model,
+              isLiked: isLiked,
               onLikeTap: onLikeTap,
               onCommentTap: onCommentTap,
             ),
@@ -127,11 +130,13 @@ final class _PostAuthorRow extends StatelessWidget {
 final class _PostFooterRow extends StatelessWidget {
   const _PostFooterRow({
     required this.model,
+    required this.isLiked,
     required this.onLikeTap,
     required this.onCommentTap,
   });
 
   final GroupPostModel model;
+  final bool isLiked;
   final VoidCallback onLikeTap;
   final VoidCallback onCommentTap;
 
@@ -146,9 +151,7 @@ final class _PostFooterRow extends StatelessWidget {
           child: Row(
             children: [
               Icon(
-                model.isLikedByCurrentUser
-                    ? AppIcons.favorite
-                    : AppIcons.favoriteBorder,
+                isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
                 size: AppIconSizes.xMedium,
                 color: context.general.colorScheme.tertiary,
               ),

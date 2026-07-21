@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/provider/group_discussions_view_model.dart';
@@ -12,10 +14,13 @@ mixin GroupDiscussionsViewMixin
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref
-          .read(groupDiscussionsViewModelProvider.notifier)
-          .fetchDiscussions(widget.model.id);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(
+        ref
+            .read(groupDiscussionsViewModelProvider.notifier)
+            .fetchDiscussions(widget.model.id),
+      );
     });
   }
 

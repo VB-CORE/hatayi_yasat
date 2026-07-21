@@ -10,6 +10,7 @@ import 'package:lifeclient/features/community/groups/provider/groups_state.dart'
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/mixin/groups_view_mixin.dart';
 import 'package:lifeclient/features/community/groups/view/widget/group_card.dart';
+import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -35,6 +36,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(groupsViewModelProvider);
+    final currentMember = ref.watch(currentGroupMemberProvider);
     return GeneralScaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => const CreateGroupRoute().push<void>(context),
@@ -56,6 +58,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
             Expanded(
               child: _GroupsListBuilder(
                 state: state,
+                currentMemberId: currentMember.id,
                 onRetry: () => unawaited(
                   ref.read(groupsViewModelProvider.notifier).fetchGroups(),
                 ),

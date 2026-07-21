@@ -12,9 +12,8 @@ import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 final class CloseGroupConfirmSheet extends StatelessWidget {
-  const CloseGroupConfirmSheet({super.key});
+  const CloseGroupConfirmSheet._();
 
-  /// Kullanıcı onaylarsa `true`, vazgeçer/kapatırsa `null` döner.
   static Future<bool?> show(BuildContext context) {
     return showModalBottomSheet<bool>(
       context: context,
@@ -22,7 +21,7 @@ final class CloseGroupConfirmSheet extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
       ),
-      builder: (context) => const CloseGroupConfirmSheet(),
+      builder: (context) => const CloseGroupConfirmSheet._(),
     );
   }
 

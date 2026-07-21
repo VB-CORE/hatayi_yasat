@@ -21,12 +21,8 @@ mixin StartDiscussionSheetMixin on ConsumerState<StartDiscussionSheet> {
 
   @override
   void dispose() {
-    titleController
-      ..removeListener(_onFormFieldChanged)
-      ..dispose();
-    messageController
-      ..removeListener(_onFormFieldChanged)
-      ..dispose();
+    titleController.dispose();
+    messageController.dispose();
     super.dispose();
   }
 

@@ -18,9 +18,8 @@ import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
 import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_label.dart';
 
 final class StartDiscussionSheet extends ConsumerStatefulWidget {
-  const StartDiscussionSheet({super.key});
+  const StartDiscussionSheet._();
 
-  /// Kapatılırsa `null`, başlatılırsa oluşturulan model döner.
   static Future<GroupDiscussionModel?> show(BuildContext context) {
     return showModalBottomSheet<GroupDiscussionModel>(
       context: context,
@@ -29,7 +28,7 @@ final class StartDiscussionSheet extends ConsumerStatefulWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
       ),
-      builder: (context) => const StartDiscussionSheet(),
+      builder: (context) => const StartDiscussionSheet._(),
     );
   }
 

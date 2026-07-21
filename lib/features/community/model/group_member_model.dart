@@ -13,10 +13,13 @@ final class GroupMemberModel extends Equatable {
   });
 
   factory GroupMemberModel.fromAppUser(AppUser user) {
+    final localPart = user.email.split('@').firstOrNull;
     return GroupMemberModel(
       id: user.uid,
       displayName: user.displayName,
-      username: user.email.split('@').first,
+      username: localPart == null || localPart.isEmpty
+          ? user.displayName
+          : localPart,
       avatarUrl: user.photoUrl,
     );
   }

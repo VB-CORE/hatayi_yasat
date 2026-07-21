@@ -1,9 +1,14 @@
 part of '../groups_view.dart';
 
 final class _GroupsListBuilder extends StatelessWidget {
-  const _GroupsListBuilder({required this.state, required this.onRetry});
+  const _GroupsListBuilder({
+    required this.state,
+    required this.currentMemberId,
+    required this.onRetry,
+  });
 
   final GroupsState state;
+  final String currentMemberId;
   final VoidCallback onRetry;
 
   @override
@@ -29,6 +34,7 @@ final class _GroupsListBuilder extends StatelessWidget {
             padding: const PagePadding.vertical6Symmetric(),
             child: GroupCard(
               model: model,
+              isCurrentUserAdmin: model.isAdmin(currentMemberId),
               onTap: () => GroupDetailRoute($extra: model).push<void>(context),
             ),
           );

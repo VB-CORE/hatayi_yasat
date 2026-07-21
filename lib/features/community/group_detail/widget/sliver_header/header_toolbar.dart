@@ -1,9 +1,14 @@
 part of '../group_detail_sliver_header.dart';
 
 final class _HeaderToolbar extends StatelessWidget {
-  const _HeaderToolbar({required this.model, required this.titleOpacity});
+  const _HeaderToolbar({
+    required this.model,
+    required this.isCurrentUserAdmin,
+    required this.titleOpacity,
+  });
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
   final double titleOpacity;
 
   @override
@@ -22,7 +27,7 @@ final class _HeaderToolbar extends StatelessWidget {
             ),
           ),
         ),
-        if (model.isCurrentUserAdmin)
+        if (isCurrentUserAdmin)
           const Padding(
             padding: PagePadding.onlyRight(),
             child: _AdminBadge(),

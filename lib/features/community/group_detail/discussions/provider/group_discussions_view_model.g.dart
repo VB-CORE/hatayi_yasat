@@ -43,7 +43,7 @@ final class GroupDiscussionsViewModelProvider
 }
 
 String _$groupDiscussionsViewModelHash() =>
-    r'f83d2154c732ba43b52f5604780e2c5a50dcd926';
+    r'2fb08a963a730b9ac17219d9110dd07af34dac51';
 
 abstract class _$GroupDiscussionsViewModel
     extends $Notifier<GroupDiscussionsState> {

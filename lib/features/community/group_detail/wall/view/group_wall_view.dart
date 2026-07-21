@@ -50,7 +50,7 @@ final class _GroupWallViewState extends ConsumerState<GroupWallView>
           },
         ),
       ),
-      GroupWallState(:final posts) => ListView(
+      GroupWallState(:final posts, :final likedPostIds) => ListView(
         padding: const PagePadding.horizontal16Symmetric(),
         children: [
           const EmptyBox.middleHeight(),
@@ -71,6 +71,7 @@ final class _GroupWallViewState extends ConsumerState<GroupWallView>
                 padding: const PagePadding.vertical6Symmetric(),
                 child: GroupPostCard(
                   model: post,
+                  isLiked: likedPostIds.contains(post.id),
                   onLikeTap: () => ref
                       .read(groupWallViewModelProvider.notifier)
                       .toggleLike(post.id),

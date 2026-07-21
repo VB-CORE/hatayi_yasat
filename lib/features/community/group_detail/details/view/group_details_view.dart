@@ -14,6 +14,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
@@ -23,9 +24,14 @@ part 'sub_view/group_details_info_rows.dart';
 part 'sub_view/group_details_section.dart';
 
 final class GroupDetailsView extends ConsumerStatefulWidget {
-  const GroupDetailsView({required this.model, super.key});
+  const GroupDetailsView({
+    required this.model,
+    required this.isCurrentUserAdmin,
+    super.key,
+  });
 
   final GroupModel model;
+  final bool isCurrentUserAdmin;
 
   @override
   ConsumerState<GroupDetailsView> createState() => _GroupDetailsViewState();
@@ -59,7 +65,7 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
         _SectionCard(child: _AdminList(admins: model.admins)),
         const EmptyBox.largeHeight(),
         _LeaveGroupButton(onPressed: leaveGroup),
-        if (model.isCurrentUserAdmin) ...[
+        if (widget.isCurrentUserAdmin) ...[
           const EmptyBox.smallHeight(),
           _CloseGroupButton(onPressed: closeGroup),
         ],

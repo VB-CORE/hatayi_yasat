@@ -33,7 +33,7 @@ final class _InfoRows extends StatelessWidget {
           GroupInfoRow(
             icon: AppIcons.calendar,
             label: LocaleKeys.community_groupDetail_details_createdAtLabel.tr(),
-            value: DateFormat('d MMM y').format(createdAt),
+            value: createdAt.shortDate,
           ),
         ],
       ],

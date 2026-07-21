@@ -8,6 +8,8 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin GroupDetailsViewMixin
     on ConsumerState<GroupDetailsView>, AppProviderMixin<GroupDetailsView> {
+  // TODO(community): Firestore servis PR'ında üyelik kaydı silinecek;
+  // şimdilik yalnızca geri bildirim gösteriliyor.
   void leaveGroup() {
     appProvider.showSnackbarMessage(
       LocaleKeys.community_groupDetail_details_leaveSuccess.tr(),
@@ -15,6 +17,8 @@ mixin GroupDetailsViewMixin
     context.pop();
   }
 
+  // TODO(community): Firestore servis PR'ında grup sunucuda kapatılacak;
+  // şimdilik yalnızca geri bildirim gösteriliyor.
   Future<void> closeGroup() async {
     final isApproved = await CloseGroupConfirmSheet.show(context);
     if (isApproved == null || !mounted) return;
