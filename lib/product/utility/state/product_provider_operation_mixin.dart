@@ -38,7 +38,6 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
       _fetchCategories(),
       _fetchRegionalCities(),
       _fetchRegionalTowns(),
-      productCache.init(),
     ]);
 
     storeModelCache = productCache.storeModelCache;

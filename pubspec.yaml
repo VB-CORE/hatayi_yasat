@@ -102,7 +102,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.4.2
+      ref: v5.4.15
 
   file_picker: ^10.3.8
   sliver_tools: ^0.2.12
@@ -111,6 +111,7 @@ dependencies:
   qr_flutter: ^4.1.0
   shimmer_animation: ^2.2.2+1
   bounceable: ^1.0.0
+  like_button: ^2.1.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0

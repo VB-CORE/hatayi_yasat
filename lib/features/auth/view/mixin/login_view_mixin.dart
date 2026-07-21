@@ -23,8 +23,9 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
     });
   }
 
-  Future<void> onGoogleSignIn() =>
-      ref.read(authViewModelProvider.notifier).signInWithGoogle();
+  Future<void> onGoogleSignIn() => ref
+      .read(authViewModelProvider.notifier)
+      .signIn(AuthProvider.google);
 
   void onGuestTap() => const MainTabRoute().go(context);
 }
