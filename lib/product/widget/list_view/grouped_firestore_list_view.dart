@@ -52,20 +52,6 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
   final Widget separator;
   final Widget? footer;
 
-  Widget get _defaultFooter => const Padding(
-    padding: PagePadding.verticalLowSymmetric(),
-    child: Center(child: CircularProgressIndicator.adaptive()),
-  );
-
-  Widget get _defaultLoading =>
-      const Center(child: CircularProgressIndicator.adaptive());
-
-  Widget get _defaultError =>
-      GeneralNotFoundWidget(title: LocaleKeys.message_somethingWentWrong.tr());
-
-  Widget get _defaultEmpty =>
-      GeneralNotFoundWidget(title: LocaleKeys.message_emptyList.tr());
-
   @override
   Widget build(BuildContext context) {
     return FirestoreQueryBuilder<T>(
@@ -79,9 +65,9 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
         final state = _resolveState(snapshot: snapshot, items: items);
 
         return switch (state) {
-          _ViewState.loading => onLoading ?? _defaultLoading,
-          _ViewState.error => onError ?? _defaultError,
-          _ViewState.empty => onEmpty ?? _defaultEmpty,
+          _ViewState.loading => onLoading ?? const _DefaultLoading(),
+          _ViewState.error => onError ?? const _DefaultError(),
+          _ViewState.empty => onEmpty ?? const _DefaultEmpty(),
           _ViewState.data => _GroupedFirestoreListContent<T, K>(
             snapshot: snapshot,
             items: items,
@@ -92,7 +78,7 @@ final class CustomGroupedFirestoreListView<T, K> extends StatelessWidget {
             itemTreshold: itemTreshold,
             padding: padding,
             separator: separator,
-            footer: footer ?? _defaultFooter,
+            footer: footer ?? const _DefaultFooter(),
           ),
         };
       },
@@ -153,6 +139,47 @@ final class _GroupedFirestoreListContent<T, K> extends StatelessWidget {
       canLoadMore: canLoadMore,
       onReachEnd: snapshot.fetchMore,
       footer: snapshot.isFetchingMore ? footer : null,
+    );
+  }
+}
+
+final class _DefaultLoading extends StatelessWidget {
+  const _DefaultLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: CircularProgressIndicator.adaptive());
+  }
+}
+
+final class _DefaultError extends StatelessWidget {
+  const _DefaultError();
+
+  @override
+  Widget build(BuildContext context) {
+    return GeneralNotFoundWidget(
+      title: LocaleKeys.message_somethingWentWrong.tr(),
+    );
+  }
+}
+
+final class _DefaultEmpty extends StatelessWidget {
+  const _DefaultEmpty();
+
+  @override
+  Widget build(BuildContext context) {
+    return GeneralNotFoundWidget(title: LocaleKeys.message_emptyList.tr());
+  }
+}
+
+final class _DefaultFooter extends StatelessWidget {
+  const _DefaultFooter();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: PagePadding.verticalLowSymmetric(),
+      child: Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 }
