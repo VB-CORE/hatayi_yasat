@@ -26,8 +26,11 @@ class _FavoritePlaceButtonState extends ConsumerState<FavoritePlaceButton>
         AppProviderMixin {
   @override
   Widget build(BuildContext context) {
+    final isFavorite = ref.watch(
+      favoritePlaceProvider.select((state) => state.isFavorite),
+    );
     return CustomAnimatedLikeButton(
-      isLiked: ref.watch(favoritePlaceProvider).isFavorite,
+      isLiked: isFavorite,
       onTap: onPressed,
       likeBuilder: (isLiked) => GeneralFavoriteIcon(isFavorite: isLiked),
     );
