@@ -36,16 +36,22 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
 
   Future<void> signInWithGoogle() async {
     state = const AuthLoading();
-    final user = await authService.signInWithGoogle();
-    state = user == null
-        ? const AuthError(
-            LocaleKeys.auth_error_failed,
-            provider: AuthProvider.google,
-          )
-        : Authenticated(user);
+    try {
+      final user = await authService.signInWithGoogle();
+      state = user == null ? const Unauthenticated() : Authenticated(user);
+    } catch (_) {
+      state = const AuthError(
+        LocaleKeys.auth_error_failed,
+        provider: AuthProvider.google,
+      );
+    }
   }
 
   Future<void> signOut() async {
-    await authService.signOut();
+    try {
+      await authService.signOut();
+    } catch (_) {
+      state = const AuthError(LocaleKeys.auth_error_generic);
+    }
   }
 }

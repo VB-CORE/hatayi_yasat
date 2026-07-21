@@ -10,9 +10,6 @@ final class DurationConstant {
   /// Duration 2 seconds
   static const Duration durationMedium = Duration(seconds: 2);
 
-  /// Duration 10 seconds
-  static const Duration durationNetworkTimeout = Duration(seconds: 10);
-
   /// Duration -1 days
   static const Duration durationDayMinusOne = Duration(days: -1);
 

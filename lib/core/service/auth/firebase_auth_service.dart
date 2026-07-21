@@ -1,14 +1,12 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/user_doc_cache_model.dart';
 import 'package:lifeclient/product/model/auth/app_user_model.dart';
-import 'package:lifeclient/product/model/auth/firestore_user_doc_model.dart';
-import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 
 final class FirebaseAuthService
     with ProjectDependencyMixin
@@ -23,9 +21,6 @@ final class FirebaseAuthService
   @override
   bool get isSignedIn => _auth.currentUser != null;
 
-  // Auth durumu değişir değişmez önceki kullanıcının doküman dinleyicisi iptal
-  // edilir (switchMap davranışı) — çıkış/giriş olayları eski dinleyicinin
-  // kapanmasını beklemez.
   @override
   Stream<AppUser?> get userStream {
     StreamSubscription<User?>? authSubscription;
@@ -41,13 +36,16 @@ final class FirebaseAuthService
             controller.add(null);
             return;
           }
-          docSubscription = FirebaseFirestore.instance
-              .collection('users')
+          docSubscription = firebaseService
+              .collectionReference(CollectionPaths.users, const AppUser.empty())
               .doc(user.uid)
               .snapshots()
               .asyncMap((snapshot) async {
-                await _refreshTokenIfUserDocChanged(user, snapshot);
-                return AppUser.fromFirebaseUser(user, snapshot.data());
+                final appUser = snapshot.data();
+                if (appUser != null) {
+                  await _refreshTokenIfUserDocChanged(user, appUser);
+                }
+                return appUser;
               })
               .listen(controller.add, onError: controller.addError);
         });
@@ -60,16 +58,8 @@ final class FirebaseAuthService
     return controller.stream;
   }
 
-  // Doküman değiştiyse cache güncellenir ve token force-refresh edilir; token cache'lenmez.
-  Future<void> _refreshTokenIfUserDocChanged(
-    User user,
-    DocumentSnapshot<Map<String, dynamic>> snapshot,
-  ) async {
-    final data = snapshot.data();
-    if (data == null) return;
-    final current = UserDocCacheModel.fromFirestoreDoc(
-      FirestoreUserDocModel.fromJson(data),
-    );
+  Future<void> _refreshTokenIfUserDocChanged(User user, AppUser appUser) async {
+    final current = UserDocCacheModel.fromAppUser(appUser);
     if (productCache.userDocCache.get(user.uid) == current) return;
     productCache.userDocCache.add(current);
     await user.getIdTokenResult(true);
@@ -77,55 +67,52 @@ final class FirebaseAuthService
 
   @override
   Future<AppUser?> signInWithGoogle() async {
-    try {
-      final googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null;
+    final googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) return null;
 
+    try {
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final result = await _auth
-          .signInWithCredential(credential)
-          .timeout(DurationConstant.durationNetworkTimeout);
+      final result = await _auth.signInWithCredential(credential);
       final user = result.user;
-      if (user == null) return null;
+      if (user == null) throw Exception();
 
-      final docData = await _fetchOrCreateUserDoc(user);
-      return AppUser.fromFirebaseUser(user, docData);
+      return await _fetchOrCreateUserDoc(user);
     } catch (_) {
       // Auth açılıp Firestore adımı başarısız olursa yarım oturum kalmasın.
-      signOut().ignore();
-      return null;
+      unawaited(signOut());
+      rethrow;
     }
   }
 
-  Future<Map<String, dynamic>> _fetchOrCreateUserDoc(User user) async {
-    final docRef = FirebaseFirestore.instance.collection('users').doc(user.uid);
-    final doc = await docRef.get().timeout(
-      DurationConstant.durationNetworkTimeout,
+  Future<AppUser> _fetchOrCreateUserDoc(User user) async {
+    final existing = await firebaseService.getSingleData(
+      model: const AppUser.empty(),
+      path: CollectionPaths.users,
+      id: user.uid,
     );
-    final existingData = doc.data();
-    if (existingData != null) return existingData;
+    if (existing != null && existing.uid.isNotEmpty) return existing;
 
-    final newUserDocJson = FirestoreUserDocModel(
+    final newUser = AppUser(
       uid: user.uid,
       email: user.email ?? '',
-      displayName: user.displayName ?? '',
+      displayName: user.displayName ?? user.email ?? '',
       photoUrl: user.photoURL,
-    ).toJson();
-    await docRef
-        .set(newUserDocJson)
-        .timeout(DurationConstant.durationNetworkTimeout);
-    return newUserDocJson;
+    );
+    final isCreated = await firebaseService.insertWithID(
+      ref: CollectionPaths.users,
+      model: newUser,
+      key: user.uid,
+    );
+    if (!isCreated) throw Exception();
+    return newUser;
   }
 
   @override
   Future<void> signOut() async {
-    await Future.wait([
-      _googleSignIn.signOut(),
-      _auth.signOut(),
-    ]).timeout(DurationConstant.durationNetworkTimeout);
+    await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
   }
 }

@@ -1,35 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/auth/permission_type.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 
 part 'app_user_model.g.dart';
 
 @JsonSerializable()
-final class AppUser extends Equatable {
+final class AppUser extends BaseFirebaseModel<AppUser>
+    with EquatableMixin
+    implements BaseFirebaseConvert<AppUser> {
   const AppUser({
-    required this.uid,
-    required this.email,
-    required this.displayName,
-    this.role = UserRole.user,
+    this.uid = '',
+    this.email = '',
+    this.displayName = '',
     this.photoUrl,
+    this.roleType = UserRole.user,
     this.permissions = const [],
   });
 
-  factory AppUser.fromJson(Map<String, dynamic> json) =>
-      _$AppUserFromJson(json);
-
-  factory AppUser.fromFirebaseUser(User user, Map<String, dynamic>? docData) {
-    return AppUser.fromJson({
-      'uid': user.uid,
-      'email': user.email ?? '',
-      'displayName': user.displayName ?? user.email ?? '',
-      'photoUrl': user.photoURL,
-      'role': docData?['roleType'],
-      'permissions': docData?['permissions'],
-    });
-  }
+  const AppUser.empty() : this();
 
   final String uid;
   final String email;
@@ -37,20 +28,35 @@ final class AppUser extends Equatable {
   final String? photoUrl;
 
   @JsonKey(fromJson: _userRoleFromJson, toJson: _userRoleToJson)
-  final UserRole role;
+  final UserRole roleType;
 
   @JsonKey(fromJson: _permissionsFromJson, toJson: _permissionsToJson)
   final List<PermissionType> permissions;
 
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  String get documentId => uid;
+
+  @override
   Map<String, dynamic> toJson() => _$AppUserToJson(this);
+
+  @override
+  AppUser fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
+
+  @override
+  AppUser fromFirebase(DocumentSnapshot<Map<String, dynamic>> json) {
+    final data = json.data();
+    if (data == null) return this;
+    return _$AppUserFromJson(data);
+  }
 
   @override
   List<Object?> get props => [
     uid,
     email,
     displayName,
-    role,
     photoUrl,
+    roleType,
     permissions,
   ];
 
@@ -58,16 +64,16 @@ final class AppUser extends Equatable {
     String? uid,
     String? email,
     String? displayName,
-    UserRole? role,
     String? photoUrl,
+    UserRole? roleType,
     List<PermissionType>? permissions,
   }) {
     return AppUser(
       uid: uid ?? this.uid,
       email: email ?? this.email,
       displayName: displayName ?? this.displayName,
-      role: role ?? this.role,
       photoUrl: photoUrl ?? this.photoUrl,
+      roleType: roleType ?? this.roleType,
       permissions: permissions ?? this.permissions,
     );
   }
