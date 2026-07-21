@@ -9,6 +9,7 @@ import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/user_model.dart';
 
 final class FirebaseAuthService implements AuthService {
@@ -46,18 +47,19 @@ final class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserModel?> signIn(AuthProvider provider) async {
+  Future<SignInResult> signIn(AuthProvider provider) async {
     try {
       final credential = await _credentialFor(provider);
-      if (credential == null) return null;
+      if (credential == null) return const SignInCancelled();
       final sessionResult = userStream.first;
       final result = await _auth.signInWithCredential(credential);
-      if (result.user == null) return null;
-      return await sessionResult;
+      if (result.user == null) return const SignInFailure();
+      final user = await sessionResult;
+      return user == null ? const SignInFailure() : SignInSuccess(user);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
       await signOut();
-      return null;
+      return const SignInFailure();
     }
   }
 
