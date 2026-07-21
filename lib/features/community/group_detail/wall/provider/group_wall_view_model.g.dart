@@ -48,7 +48,7 @@ abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
   GroupWallState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupWallState, GroupWallState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

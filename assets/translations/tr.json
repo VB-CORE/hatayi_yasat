@@ -125,6 +125,7 @@
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
+    "emptyList": "Henüz görüntülenecek bir içerik yok",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
@@ -159,7 +160,9 @@
     "hoursAgo": "{} saat önce",
     "daysAgo": "{} gün önce",
     "monthsAgo": "{} ay önce",
-    "yearsAgo": "{} yıl önce"
+    "yearsAgo": "{} yıl önce",
+    "today": "Bugün",
+    "yesterday": "Dün"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -221,7 +224,13 @@
     "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
     "newsNotFoundErrorMessage": "Haber bulunamadı",
     "placeNotFoundErrorMessage": "Mekan bulunamadı",
-    "advertiseNotFoundErrorMessage": "İlan bulunamadı"
+    "advertiseNotFoundErrorMessage": "İlan bulunamadı",
+    "typeStore": "Mekan",
+    "typeCampaign": "Kampanya",
+    "typeNews": "Haber",
+    "typeAdvertise": "Duyuru",
+    "typeLink": "Bağlantı",
+    "typeGeneral": "Genel"
   },
   "developers": {
     "title": "Geliştiriciler",

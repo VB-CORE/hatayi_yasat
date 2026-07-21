@@ -50,7 +50,7 @@ abstract class _$GroupDiscussionsViewModel
   GroupDiscussionsState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupDiscussionsState, GroupDiscussionsState>;
     final element =
         ref.element
@@ -60,6 +60,6 @@ abstract class _$GroupDiscussionsViewModel
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

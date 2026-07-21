@@ -125,6 +125,7 @@
   },
   "message": {
     "emptySearch": "No Results Found",
+    "emptyList": "Nothing to show yet",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
@@ -159,7 +160,9 @@
     "hoursAgo": "{} hours ago",
     "daysAgo": "{} days ago",
     "monthsAgo": "{} months ago",
-    "yearsAgo": "{} years ago"
+    "yearsAgo": "{} years ago",
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -221,7 +224,13 @@
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
     "placeNotFoundErrorMessage": "Place not found",
-    "advertiseNotFoundErrorMessage": "Advertise not found"
+    "advertiseNotFoundErrorMessage": "Advertise not found",
+    "typeStore": "Place",
+    "typeCampaign": "Campaign",
+    "typeNews": "News",
+    "typeAdvertise": "Announcement",
+    "typeLink": "Link",
+    "typeGeneral": "General"
   },
   "developers": {
     "title": "Developers",
