@@ -25,11 +25,11 @@ mixin GroupDiscussionsViewMixin
     });
   }
 
-  /// Grup yöneticiliği modelde taşınmaz; oturumdaki üye ile grubun yönetici
-  /// listesi karşılaştırılarak türetilir.
   bool get isCurrentUserAdmin {
-    final currentMember = ref.watch(currentGroupMemberProvider);
-    return widget.model.isAdmin(currentMember.id);
+    final currentUserId = ref.watch(
+      currentGroupMemberProvider.select((member) => member.id),
+    );
+    return widget.model.isAdmin(currentUserId);
   }
 
   Future<void> startDiscussion(BuildContext context) async {

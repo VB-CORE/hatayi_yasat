@@ -1,6 +1,5 @@
 part of '../group_detail_sliver_header.dart';
 
-/// Kapak görselinin toplanma oranına göre arka planı soldurup başlığı açar.
 final class _CollapsingHeaderSpace extends StatelessWidget {
   const _CollapsingHeaderSpace({required this.model});
 

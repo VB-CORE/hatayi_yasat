@@ -108,7 +108,9 @@ final class _GroupMetaRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentMember = ref.watch(currentGroupMemberProvider);
+    final currentUserId = ref.watch(
+      currentGroupMemberProvider.select((member) => member.id),
+    );
     return Wrap(
       spacing: WidgetSizes.spacingXs,
       runSpacing: WidgetSizes.spacingXxs,
@@ -128,7 +130,7 @@ final class _GroupMetaRow extends ConsumerWidget {
           color: model.type.badgeColor(context),
           icon: model.type.badgeIcon,
         ),
-        if (model.isAdmin(currentMember.id))
+        if (model.isAdmin(currentUserId))
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
             color: context.general.colorScheme.tertiary,

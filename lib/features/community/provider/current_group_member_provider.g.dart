@@ -8,18 +8,9 @@ part of 'current_group_member_provider.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
-/// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
-/// karşılaştırılarak türetilir.
-// TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 
 @ProviderFor(currentGroupMember)
 final currentGroupMemberProvider = CurrentGroupMemberProvider._();
-
-/// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
-/// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
-/// karşılaştırılarak türetilir.
-// TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 
 final class CurrentGroupMemberProvider
     extends
@@ -29,10 +20,6 @@ final class CurrentGroupMemberProvider
           GroupMemberModel
         >
     with $Provider<GroupMemberModel> {
-  /// Topluluk ekranlarının ortak "oturumdaki üye" kaynağı. Yetkilendirme bilgisi
-  /// modellerde taşınmaz; grup yöneticiliği bu üye ile grubun yönetici listesi
-  /// karşılaştırılarak türetilir.
-  // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
   CurrentGroupMemberProvider._()
     : super(
         from: null,
