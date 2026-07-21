@@ -17,6 +17,16 @@ extension DateTimeExtensions on DateTime {
     return formatter.format(this);
   }
 
+  /// Kısa tarih gösterimi — aktif dile göre ay adı kısaltılır.
+  ///
+  /// ```dart
+  /// DateTime(2025, 1, 12).shortDate; // 12 Oca 2025
+  /// ```
+  String get shortDate {
+    final formatter = DateFormat('d MMM y');
+    return formatter.format(this);
+  }
+
   /// Göreceli süre. → `'2 saat önce'`, `'Az önce'`
   String get timeAgo {
     final difference = DateTime.now().difference(this);

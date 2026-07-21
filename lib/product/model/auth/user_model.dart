@@ -11,7 +11,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 final class UserModel extends BaseFirebaseModel<UserModel>
-    with Equatable, CacheModel {
+    with EquatableMixin, CacheModel {
   const UserModel({
     this.uid = '',
     this.email = '',
