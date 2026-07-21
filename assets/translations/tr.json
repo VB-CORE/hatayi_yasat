@@ -512,6 +512,52 @@
       "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
       "submitButton": "Grubu Oluştur",
       "success": "Grup başarıyla oluşturuldu."
+    },
+    "groupDetail": {
+      "tabWall": "Duvar",
+      "tabDiscussions": "Tartışmalar",
+      "tabDetails": "Detaylar",
+      "openGroup": "Açık grup",
+      "closedGroup": "Kapalı grup",
+      "memberCount": "{} üye",
+      "adminBadge": "YÖNETİCİ",
+      "wall": {
+        "composerHint": "Grupta bir şeyler paylaş...",
+        "commentCount": "{} yorum",
+        "empty": "Henüz gönderi yok."
+      },
+      "discussions": {
+        "startTitle": "Tartışma aç",
+        "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
+        "meta": "{} açtı · {} · {} gönderi",
+        "empty": "Henüz tartışma yok.",
+        "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
+        "titleFieldLabel": "Başlık",
+        "titleFieldHint": "Örn: Cumartesi pazarı yeni yer düzeni",
+        "messageFieldLabel": "İlk mesaj",
+        "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
+        "startButton": "Tartışmayı başlat",
+        "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
+        "openedByGroup": "{} açtı · {}",
+        "replyComposerHint": "Bu konuya gönderi ekle..."
+      },
+      "details": {
+        "aboutTitle": "HAKKINDA",
+        "infoTitle": "BİLGİLER",
+        "groupTypeLabel": "Grup türü",
+        "groupTypeOpen": "Açık grup · herkes katılabilir",
+        "groupTypeClosed": "Kapalı grup · davetle katılınır",
+        "memberCountLabel": "Üye sayısı",
+        "createdAtLabel": "Oluşturulma",
+        "adminsTitle": "YÖNETİCİLER",
+        "leaveGroup": "Gruptan ayrıl",
+        "leaveSuccess": "Gruptan ayrıldın.",
+        "closeGroup": "Grubu kapat",
+        "closeGroupConfirmTitle": "Grubu kapat",
+        "closeGroupConfirmMessage": "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
+        "closeGroupConfirmCancel": "Vazgeç",
+        "closeGroupSuccess": "Grup kapatıldı."
+      }
     }
   },
   "unauthorized": {

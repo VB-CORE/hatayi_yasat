@@ -514,6 +514,86 @@ abstract class LocaleKeys {
       'community.createGroup.submitButton';
   static const community_createGroup_success = 'community.createGroup.success';
   static const community_createGroup = 'community.createGroup';
+  static const community_groupDetail_tabWall = 'community.groupDetail.tabWall';
+  static const community_groupDetail_tabDiscussions =
+      'community.groupDetail.tabDiscussions';
+  static const community_groupDetail_tabDetails =
+      'community.groupDetail.tabDetails';
+  static const community_groupDetail_openGroup =
+      'community.groupDetail.openGroup';
+  static const community_groupDetail_closedGroup =
+      'community.groupDetail.closedGroup';
+  static const community_groupDetail_memberCount =
+      'community.groupDetail.memberCount';
+  static const community_groupDetail_adminBadge =
+      'community.groupDetail.adminBadge';
+  static const community_groupDetail_wall_composerHint =
+      'community.groupDetail.wall.composerHint';
+  static const community_groupDetail_wall_commentCount =
+      'community.groupDetail.wall.commentCount';
+  static const community_groupDetail_wall_empty =
+      'community.groupDetail.wall.empty';
+  static const community_groupDetail_wall = 'community.groupDetail.wall';
+  static const community_groupDetail_discussions_startTitle =
+      'community.groupDetail.discussions.startTitle';
+  static const community_groupDetail_discussions_startSubtitle =
+      'community.groupDetail.discussions.startSubtitle';
+  static const community_groupDetail_discussions_meta =
+      'community.groupDetail.discussions.meta';
+  static const community_groupDetail_discussions_empty =
+      'community.groupDetail.discussions.empty';
+  static const community_groupDetail_discussions_sheetSubtitle =
+      'community.groupDetail.discussions.sheetSubtitle';
+  static const community_groupDetail_discussions_titleFieldLabel =
+      'community.groupDetail.discussions.titleFieldLabel';
+  static const community_groupDetail_discussions_titleFieldHint =
+      'community.groupDetail.discussions.titleFieldHint';
+  static const community_groupDetail_discussions_messageFieldLabel =
+      'community.groupDetail.discussions.messageFieldLabel';
+  static const community_groupDetail_discussions_messageFieldHint =
+      'community.groupDetail.discussions.messageFieldHint';
+  static const community_groupDetail_discussions_startButton =
+      'community.groupDetail.discussions.startButton';
+  static const community_groupDetail_discussions_anonymityBanner =
+      'community.groupDetail.discussions.anonymityBanner';
+  static const community_groupDetail_discussions_openedByGroup =
+      'community.groupDetail.discussions.openedByGroup';
+  static const community_groupDetail_discussions_replyComposerHint =
+      'community.groupDetail.discussions.replyComposerHint';
+  static const community_groupDetail_discussions =
+      'community.groupDetail.discussions';
+  static const community_groupDetail_details_aboutTitle =
+      'community.groupDetail.details.aboutTitle';
+  static const community_groupDetail_details_infoTitle =
+      'community.groupDetail.details.infoTitle';
+  static const community_groupDetail_details_groupTypeLabel =
+      'community.groupDetail.details.groupTypeLabel';
+  static const community_groupDetail_details_groupTypeOpen =
+      'community.groupDetail.details.groupTypeOpen';
+  static const community_groupDetail_details_groupTypeClosed =
+      'community.groupDetail.details.groupTypeClosed';
+  static const community_groupDetail_details_memberCountLabel =
+      'community.groupDetail.details.memberCountLabel';
+  static const community_groupDetail_details_createdAtLabel =
+      'community.groupDetail.details.createdAtLabel';
+  static const community_groupDetail_details_adminsTitle =
+      'community.groupDetail.details.adminsTitle';
+  static const community_groupDetail_details_leaveGroup =
+      'community.groupDetail.details.leaveGroup';
+  static const community_groupDetail_details_leaveSuccess =
+      'community.groupDetail.details.leaveSuccess';
+  static const community_groupDetail_details_closeGroup =
+      'community.groupDetail.details.closeGroup';
+  static const community_groupDetail_details_closeGroupConfirmTitle =
+      'community.groupDetail.details.closeGroupConfirmTitle';
+  static const community_groupDetail_details_closeGroupConfirmMessage =
+      'community.groupDetail.details.closeGroupConfirmMessage';
+  static const community_groupDetail_details_closeGroupConfirmCancel =
+      'community.groupDetail.details.closeGroupConfirmCancel';
+  static const community_groupDetail_details_closeGroupSuccess =
+      'community.groupDetail.details.closeGroupSuccess';
+  static const community_groupDetail_details = 'community.groupDetail.details';
+  static const community_groupDetail = 'community.groupDetail';
   static const community = 'community';
   static const unauthorized_errorCode = 'unauthorized.errorCode';
   static const unauthorized_title = 'unauthorized.title';
