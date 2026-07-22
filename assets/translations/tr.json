@@ -51,7 +51,8 @@
     "more": "Daha fazla",
     "understood": "Anladım",
     "send": "Gönder",
-    "login": "Giriş Yap"
+    "login": "Giriş Yap",
+    "tryAgain": "Tekrar dene"
   },
   "component": {
     "mapPicker": {
@@ -153,7 +154,9 @@
     "deleteSuccessMessage": "Yorumun silindi.",
     "editCommentSuccessMessage": "Yorumun güncellendi.",
     "deleteConfirmTitle": "Yorumun silinsin mi?",
-    "deleteConfirmContent": "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz."
+    "deleteConfirmContent": "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz.",
+    "signInToSeeComments": "Yorumları görmek için giriş yapmalısın.",
+    "commentsLoadFailed": "Yorumlar yüklenemedi."
   },
   "date": {
     "justNow": "Az önce",

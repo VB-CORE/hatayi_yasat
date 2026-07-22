@@ -16,7 +16,6 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
     final selectedCity = state.selectedCity;
     final selectedCityRegionalTown = state.regionalTownItems.firstWhere(
       (element) => element.cityId == selectedCity.documentId,
-      orElse: () => const RegionalTownModel(),
     );
     return selectedCityRegionalTown.towns;
   }
@@ -82,10 +81,7 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
 
     state = state.copyWith(
       regionalCityItems: items,
-      selectedCity: items.firstWhere(
-        (element) => element.initial,
-        orElse: () => items.isEmpty ? const RegionalCityModel() : items.first,
-      ),
+      selectedCity: items.firstWhere((element) => element.initial),
     );
   }
 

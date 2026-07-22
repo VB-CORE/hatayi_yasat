@@ -54,46 +54,56 @@ final class RateActionFailed extends RateActionStatus {
 final class RateCommunityState extends Equatable {
   const RateCommunityState({
     this.vote,
-    this.comments = const [],
     this.isLoading = false,
+    this.isSignInRequired = false,
+    this.isError = false,
     this.draftScore = 0,
+    this.retryToken = 0,
     this.status = const RateActionIdle(),
   });
 
   final RateModel? vote;
-  final List<RateModel> comments;
   final bool isLoading;
+  final bool isSignInRequired;
+  final bool isError;
   final int draftScore;
+  final int retryToken;
   final RateActionStatus status;
 
   bool get hasVoted => vote != null;
   bool get isBusy => isLoading || isProcessing;
   double get value => (hasVoted ? vote!.score : draftScore).toDouble();
   bool get isProcessing => status is RateActionProcessing;
-  bool get canCreateVote => !hasVoted && draftScore > 0 && !isBusy;
+  bool get canCreateVote => !hasVoted && draftScore > 0 && !isBusy && !isError;
   bool get canEditVote => hasVoted && !isBusy;
 
   RateCommunityState copyWith({
     RateModel? vote,
-    List<RateModel>? comments,
     int? draftScore,
     bool? isLoading,
+    bool? isSignInRequired,
+    bool? isError,
+    int? retryToken,
     bool clearVote = false,
     RateActionStatus? status,
   }) => RateCommunityState(
     vote: clearVote ? null : (vote ?? this.vote),
-    comments: comments ?? this.comments,
     draftScore: draftScore ?? this.draftScore,
     isLoading: isLoading ?? this.isLoading,
+    isSignInRequired: isSignInRequired ?? this.isSignInRequired,
+    isError: isError ?? this.isError,
+    retryToken: retryToken ?? this.retryToken,
     status: status ?? this.status,
   );
 
   @override
   List<Object?> get props => [
     vote,
-    comments,
     draftScore,
     isLoading,
+    isSignInRequired,
+    isError,
+    retryToken,
     status,
   ];
 }

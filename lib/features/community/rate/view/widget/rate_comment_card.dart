@@ -14,6 +14,7 @@ final class _RateCommentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final comment = rateModel.comment;
+    final createdAt = rateModel.createdAt;
     return Container(
       padding: const PagePadding.generalCardAll(),
       decoration: BoxDecoration(
@@ -76,11 +77,12 @@ final class _RateCommentCard extends StatelessWidget {
                       value: rateModel.score.toDouble(),
                       isReadOnly: true,
                     ),
-                    Flexible(
-                      child: GeneralContentSmallTitle(
-                        value: ' - ${rateModel.createdAt.timeAgo}',
+                    if (createdAt != null)
+                      Flexible(
+                        child: GeneralContentSmallTitle(
+                          value: ' - ${createdAt.timeAgo}',
+                        ),
                       ),
-                    ),
                   ],
                 ),
                 if (comment != null && comment.isNotEmpty)

@@ -54,6 +54,7 @@ abstract class LocaleKeys {
   static const button_understood = 'button.understood';
   static const button_send = 'button.send';
   static const button_login = 'button.login';
+  static const button_tryAgain = 'button.tryAgain';
   static const button = 'button';
   static const component_mapPicker_title = 'component.mapPicker.title';
   static const component_mapPicker_selectedLocationSave =
@@ -146,9 +147,12 @@ abstract class LocaleKeys {
   static const rate_editCommentFailedContent = 'rate.editCommentFailedContent';
   static const rate_deleteFailedContent = 'rate.deleteFailedContent';
   static const rate_deleteSuccessMessage = 'rate.deleteSuccessMessage';
-  static const rate_editCommentSuccessMessage = 'rate.editCommentSuccessMessage';
+  static const rate_editCommentSuccessMessage =
+      'rate.editCommentSuccessMessage';
   static const rate_deleteConfirmTitle = 'rate.deleteConfirmTitle';
   static const rate_deleteConfirmContent = 'rate.deleteConfirmContent';
+  static const rate_signInToSeeComments = 'rate.signInToSeeComments';
+  static const rate_commentsLoadFailed = 'rate.commentsLoadFailed';
   static const rate = 'rate';
   static const date_justNow = 'date.justNow';
   static const date_minutesAgo = 'date.minutesAgo';

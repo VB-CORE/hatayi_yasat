@@ -76,12 +76,10 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
             ),
             SliverPadding(
               padding: const PagePadding.generalAllLow(),
-              sliver: SliverToBoxAdapter(
-                child: PlaceDetailTabContent(
-                  store: widget.store,
-                  onCall: onCall,
-                  onCopyAddress: onCopyAddress,
-                ),
+              sliver: PlaceDetailTabContent(
+                store: widget.store,
+                onCall: onCall,
+                onCopyAddress: onCopyAddress,
               ),
             ),
           ],

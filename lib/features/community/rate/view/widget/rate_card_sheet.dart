@@ -70,7 +70,7 @@ final class _RateCardSheetState extends ConsumerState<RateCardSheet>
                 controller: commentController,
                 canSubmit: state.canEditVote,
                 isBusy: state.isBusy,
-                onSubmit: () => notifier.editRate(
+                onSubmit: () => notifier.changeComment(
                   newComment: commentController.text.normalize,
                 ),
               )

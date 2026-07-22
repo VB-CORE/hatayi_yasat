@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -44,41 +46,53 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
     with AppProviderMixin<RateCommentListView>, RateCommentListViewMixin {
   @override
   Widget build(BuildContext context) {
-    final hasVoted = ref.watch(
-      rateCommunityViewModelProvider(
-        widget.placeId,
-      ).select((state) => state.hasVoted),
-    );
     final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
-    if (state.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator.adaptive(),
-      );
-    }
-    return Column(
-      children: [
+    final hasVoted = state.hasVoted;
+    return SliverMainAxisGroup(
+      slivers: [
         if (widget.isCommentEnabled) _CommentListBody(placeId: widget.placeId),
-        if (widget.isCommentEnabled && !hasVoted)
-          Padding(
-            padding: const PagePadding.vertical12Symmetric(),
-            child: GeneralButtonV2.active(
-              label: _buttonLabel(hasVoted),
-              isBorderless: widget.isCommentEnabled,
-              action: () => onAddCommentPressed(hasVoted: hasVoted),
+        if (widget.isCommentEnabled && state.isError)
+          SliverToBoxAdapter(
+            child: _RateLoadErrorRetry(
+              onRetry: ref
+                  .read(
+                    rateCommunityViewModelProvider(widget.placeId).notifier,
+                  )
+                  .retry,
+            ),
+          )
+        else if (widget.isCommentEnabled && !state.isLoading && !hasVoted)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const PagePadding.vertical12Symmetric(),
+              child: GeneralButtonV2.active(
+                label: _buttonLabel(
+                  hasVoted: hasVoted,
+                  isSignInRequired: state.isSignInRequired,
+                ),
+                isBorderless: widget.isCommentEnabled,
+                action: () => onAddCommentPressed(hasVoted: hasVoted),
+              ),
             ),
           ),
       ],
     );
   }
 
-  String _buttonLabel(bool hasVoted) {
+  String _buttonLabel({
+    required bool hasVoted,
+    required bool isSignInRequired,
+  }) {
     if (!widget.isCommentEnabled) {
       return LocaleKeys.rate_commentingDisabled.tr();
     }
+    if (isSignInRequired) return LocaleKeys.button_login.tr();
     if (hasVoted) return LocaleKeys.rate_commentAdded.tr();
     return LocaleKeys.rate_addComment.tr();
   }
 }
+
+const int _pageSize = 20;
 
 final class _CommentListBody extends ConsumerWidget {
   const _CommentListBody({required this.placeId});
@@ -87,50 +101,83 @@ final class _CommentListBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(rateCommunityViewModelProvider(placeId));
-    if (state.comments.isEmpty) {
-      return GeneralContentSubTitle(
-        value: LocaleKeys.rate_noCommentsYet.tr(),
-        textAlign: TextAlign.center,
-      );
-    }
     final notifier = ref.read(
       rateCommunityViewModelProvider(placeId).notifier,
     );
-    return Container(
-      decoration: BoxDecoration(
-        color: context.appColors.surface,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-      ),
-      clipBehavior: .hardEdge,
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: .zero,
-        itemCount: state.comments.length,
-        separatorBuilder: (context, index) => const Divider(
-          indent: AppSpacing.md,
-          height: 1,
+    if (state.isSignInRequired) {
+      return SliverToBoxAdapter(
+        child: GeneralContentSubTitle(
+          value: LocaleKeys.rate_signInToSeeComments.tr(),
+          textAlign: TextAlign.center,
         ),
-        itemBuilder: (context, index) {
-          final rate = state.comments[index];
-          final isOwn = state.vote?.voterUid == rate.voterUid;
-
-          final canModify = isOwn && !state.isProcessing;
-          return _RateCommentCard(
-            rateModel: rate,
-            onEdit: canModify
-                ? () => RateSheetFactory.showRateCard(
-                    context,
-                    placeId: placeId,
-                    initialComment: rate.comment,
-                  )
-                : null,
-            onDelete: canModify
-                ? () => _onDeletePressed(context, notifier)
-                : null,
+      );
+    }
+    return FirestoreQueryBuilder<RateModel?>(
+      key: ValueKey(state.retryToken),
+      query: notifier.votesQuery(),
+      pageSize: _pageSize,
+      builder: (context, snapshot, _) {
+        if (snapshot.isFetching) {
+          return const SliverToBoxAdapter(
+            child: Padding(
+              padding: PagePadding.vertical12Symmetric(),
+              child: Center(child: CircularProgressIndicator.adaptive()),
+            ),
           );
-        },
-      ),
+        }
+        if (snapshot.hasError) {
+          if (state.isError) return const SliverToBoxAdapter(child: SizedBox());
+          return SliverToBoxAdapter(
+            child: _RateLoadErrorRetry(onRetry: notifier.retry),
+          );
+        }
+        if (snapshot.docs.isEmpty) {
+          return SliverToBoxAdapter(
+            child: GeneralContentSubTitle(
+              value: LocaleKeys.rate_noCommentsYet.tr(),
+              textAlign: TextAlign.center,
+            ),
+          );
+        }
+        return DecoratedSliver(
+          decoration: BoxDecoration(
+            color: context.appColors.surface,
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+          sliver: SliverList.builder(
+            itemCount: snapshot.docs.length,
+            itemBuilder: (context, index) {
+              final isLastItem = index + 1 == snapshot.docs.length;
+              if (isLastItem && snapshot.hasMore) snapshot.fetchMore();
+
+              final rate = snapshot.docs[index].data();
+              if (rate == null) return const SizedBox.shrink();
+              final isOwn = state.vote?.voterUid == rate.voterUid;
+
+              final canModify = isOwn && !state.isProcessing;
+              return Column(
+                children: [
+                  _RateCommentCard(
+                    rateModel: rate,
+                    onEdit: canModify
+                        ? () => RateSheetFactory.showRateCard(
+                            context,
+                            placeId: placeId,
+                            initialComment: rate.comment,
+                          )
+                        : null,
+                    onDelete: canModify
+                        ? () => _onDeletePressed(context, notifier)
+                        : null,
+                  ),
+                  if (!isLastItem)
+                    const Divider(indent: AppSpacing.md, height: 1),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -141,5 +188,30 @@ final class _CommentListBody extends ConsumerWidget {
     final isConfirmed = await RateDeleteConfirmDialog.show(context);
     if (!isConfirmed) return;
     await notifier.deleteVote();
+  }
+}
+
+final class _RateLoadErrorRetry extends StatelessWidget {
+  const _RateLoadErrorRetry({required this.onRetry});
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GeneralContentSubTitle(
+          value: LocaleKeys.rate_commentsLoadFailed.tr(),
+          textAlign: TextAlign.center,
+        ),
+        Padding(
+          padding: const PagePadding.vertical12Symmetric(),
+          child: GeneralButtonV2.active(
+            label: LocaleKeys.button_tryAgain.tr(),
+            isBorderless: true,
+            action: onRetry,
+          ),
+        ),
+      ],
+    );
   }
 }
