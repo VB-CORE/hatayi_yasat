@@ -4,6 +4,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
+import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
+import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
 import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
 import 'package:lifeclient/features/community/groups/view/groups_view.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
@@ -420,6 +422,18 @@ final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       GroupDetailView(model: $extra);
+}
+
+@TypedGoRoute<DiscussionDetailRoute>(path: '/discussion-detail')
+final class DiscussionDetailRoute extends GoRouteData
+    with $DiscussionDetailRoute {
+  DiscussionDetailRoute({required this.$extra});
+
+  final DiscussionDetailArgs $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      DiscussionDetailView(args: $extra);
 }
 
 final class OnboardRoute extends GoRouteData with $OnboardRoute {
