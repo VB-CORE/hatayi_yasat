@@ -52,36 +52,36 @@ final class _DiscussionDetailViewState
         ],
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const EmptyBox.smallHeight(),
-            Padding(
-              padding: const PagePadding.horizontal16Symmetric(),
-              child: GeneralInfoBanner(
-                icon: AppIcons.visibilityOff,
-                message: LocaleKeys
-                    .community_groupDetail_discussions_anonymityBanner
-                    .tr(),
+        child: Padding(
+          padding: const PagePadding.vertical8Symmetric(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: WidgetSizes.spacingXs,
+            children: [
+              Padding(
+                padding: const PagePadding.horizontal16Symmetric(),
+                child: GeneralInfoBanner(
+                  icon: AppIcons.visibilityOff,
+                  message: LocaleKeys
+                      .community_groupDetail_discussions_anonymityBanner
+                      .tr(),
+                ),
               ),
-            ),
-            const EmptyBox.smallHeight(),
-            Expanded(
-              child: _EntriesList(
-                state: state,
-                scrollController: entriesScrollController,
+              Expanded(
+                child: _EntriesList(
+                  state: state,
+                  scrollController: entriesScrollController,
+                ),
               ),
-            ),
-            const EmptyBox.smallHeight(),
-            Padding(
-              padding: const PagePadding.horizontal16Symmetric(),
-              child: DiscussionReplyComposer(
-                controller: replyController,
-                onSubmit: submitReply,
+              Padding(
+                padding: const PagePadding.horizontal16Symmetric(),
+                child: DiscussionReplyComposer(
+                  controller: replyController,
+                  onSubmit: submitReply,
+                ),
               ),
-            ),
-            const EmptyBox.smallHeight(),
-          ],
+            ],
+          ),
         ),
       ),
     );

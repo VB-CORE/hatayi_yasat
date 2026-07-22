@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_view_model.dart';
 import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin DiscussionDetailViewMixin
@@ -30,15 +31,13 @@ mixin DiscussionDetailViewMixin
   }
 
   void submitReply() {
-    final content = replyController.text.trim();
+    final content = replyController.text.normalize;
     if (content.isEmpty) return;
     ref.read(discussionDetailViewModelProvider.notifier).addEntry(content);
     replyController.clear();
     _scrollToLatestEntry();
   }
 
-  // Yeni gönderi listeye eklendikten (frame çizildikten) sonra en alta
-  // kaydırır.
   void _scrollToLatestEntry() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!entriesScrollController.hasClients) return;
