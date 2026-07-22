@@ -126,7 +126,8 @@ final class FirebaseAuthService implements AuthService {
     try {
       final snapshot = await CollectionPaths.users.collection
           .doc(user.uid)
-          .get();
+          .get(const GetOptions(source: Source.server))
+          .timeout(_firebaseService.timeoutDuration);
       if (snapshot.exists) return true;
       return await _firebaseService.insertWithID(
         ref: CollectionPaths.users,

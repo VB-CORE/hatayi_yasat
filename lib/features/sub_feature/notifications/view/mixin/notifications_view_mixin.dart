@@ -11,7 +11,10 @@ mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
 
   Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
       .firebaseService
-      .collectionReference(.notifications, AppNotificationModel())
+      .collectionReference(
+        CollectionPaths.notifications,
+        AppNotificationModel(),
+      )
       .orderBy(QueryOrders.createdAt.name, descending: true);
 
   DateTime notificationGroupBy(AppNotificationModel item) =>

@@ -1,11 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/features/splash/view_model/splash_view_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/not_connected_to_internet_dialog.dart';
+import 'package:lifeclient/product/widget/sheet/index.dart';
 import 'package:lottie/lottie.dart';
 
 mixin SplashViewMixin
@@ -45,6 +48,19 @@ mixin SplashViewMixin
     ref.listenManual(_homeProvider, (previous, next) async {
       // When init done, stop lottie animation
       _controller.stop();
+
+      if (next.isError) {
+        final retry =
+            (await GeneralErrorSheet.show(
+              context,
+              title: LocaleKeys.message_somethingWentWrong.tr(),
+            )) ??
+            false;
+        if (!retry) return;
+        if (!context.mounted) return;
+        await ref.read(_homeProvider.notifier).refresh();
+        return;
+      }
 
       if (next.isNeedToOnBoard) {
         const OnboardRoute().pushReplacement(context);
