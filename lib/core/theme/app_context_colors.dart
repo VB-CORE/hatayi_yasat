@@ -16,6 +16,7 @@ final class AppColorTokens {
   Color get navy300 => AppColors.navy300;
   Color get navy400 => AppColors.navy400;
   Color get navy700 => AppColors.navy700;
+  Color get navy900 => AppColors.navy900;
   Color get ink200 => AppColors.ink200;
   Color get olive600 => AppColors.olive600;
   Color get gold300 => AppColors.gold300;

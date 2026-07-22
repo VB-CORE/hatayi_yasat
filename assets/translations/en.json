@@ -126,6 +126,7 @@
   },
   "message": {
     "emptySearch": "No Results Found",
+    "emptyList": "Nothing to show yet",
     "somethingWentWrong": "Something went wrong",
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
@@ -164,7 +165,9 @@
     "hoursAgo": "{} hours ago",
     "daysAgo": "{} days ago",
     "monthsAgo": "{} months ago",
-    "yearsAgo": "{} years ago"
+    "yearsAgo": "{} years ago",
+    "today": "Today",
+    "yesterday": "Yesterday"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -226,7 +229,13 @@
     "campaignNotFoundErrorMessage": "Event not found",
     "newsNotFoundErrorMessage": "No news found",
     "placeNotFoundErrorMessage": "Place not found",
-    "advertiseNotFoundErrorMessage": "Advertise not found"
+    "advertiseNotFoundErrorMessage": "Advertise not found",
+    "typeStore": "Place",
+    "typeCampaign": "Campaign",
+    "typeNews": "News",
+    "typeAdvertise": "Announcement",
+    "typeLink": "Link",
+    "typeGeneral": "General"
   },
   "developers": {
     "title": "Developers",
@@ -519,6 +528,52 @@
       "descriptionHint": "What is this group about? Who should join?",
       "submitButton": "Create Group",
       "success": "Group created successfully."
+    },
+    "groupDetail": {
+      "tabWall": "Wall",
+      "tabDiscussions": "Discussions",
+      "tabDetails": "Details",
+      "openGroup": "Open group",
+      "closedGroup": "Closed group",
+      "memberCount": "{} members",
+      "adminBadge": "ADMIN",
+      "wall": {
+        "composerHint": "Share something with the group...",
+        "commentCount": "{} comments",
+        "empty": "No posts yet."
+      },
+      "discussions": {
+        "startTitle": "Start a discussion",
+        "startSubtitle": "Start a new topic (admins only)",
+        "meta": "{} started · {} · {} entries",
+        "empty": "No discussions yet.",
+        "sheetSubtitle": "Start a topic, say the first word",
+        "titleFieldLabel": "Title",
+        "titleFieldHint": "E.g: New market layout for Saturday",
+        "messageFieldLabel": "First message",
+        "messageFieldHint": "Why did you open this? What should be discussed?",
+        "startButton": "Start discussion",
+        "anonymityBanner": "Names hidden · text posts only · no live chat",
+        "openedByGroup": "{} started · {}",
+        "replyComposerHint": "Add an entry to this topic..."
+      },
+      "details": {
+        "aboutTitle": "ABOUT",
+        "infoTitle": "INFO",
+        "groupTypeLabel": "Group type",
+        "groupTypeOpen": "Open group · anyone can join",
+        "groupTypeClosed": "Closed group · join by invite",
+        "memberCountLabel": "Member count",
+        "createdAtLabel": "Created",
+        "adminsTitle": "ADMINS",
+        "leaveGroup": "Leave group",
+        "leaveSuccess": "You left the group.",
+        "closeGroup": "Close group",
+        "closeGroupConfirmTitle": "Close group",
+        "closeGroupConfirmMessage": "This removes the group for all members and cannot be undone.",
+        "closeGroupConfirmCancel": "Cancel",
+        "closeGroupSuccess": "Group closed."
+      }
     }
   },
   "unauthorized": {

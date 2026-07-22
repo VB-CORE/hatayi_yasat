@@ -111,6 +111,7 @@ dependencies:
   qr_flutter: ^4.1.0
   shimmer_animation: ^2.2.2+1
   bounceable: ^1.0.0
+  grouped_list: ^6.0.0
   like_button: ^2.1.0
 
 dependency_overrides:

@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $loginRoute,
   $unauthorizedRoute,
   $groupsRoute,
+  $groupDetailRoute,
 ];
 
 RouteBase get $splashRoute => GoRouteData.$route(
@@ -779,4 +780,34 @@ mixin $CreateGroupRoute on GoRouteData {
 
   @override
   void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $groupDetailRoute => GoRouteData.$route(
+  path: '/group-detail',
+  factory: $GroupDetailRoute._fromState,
+);
+
+mixin $GroupDetailRoute on GoRouteData {
+  static GroupDetailRoute _fromState(GoRouterState state) =>
+      GroupDetailRoute($extra: state.extra as GroupModel);
+
+  GroupDetailRoute get _self => this as GroupDetailRoute;
+
+  @override
+  String get location => GoRouteData.$location('/group-detail');
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
