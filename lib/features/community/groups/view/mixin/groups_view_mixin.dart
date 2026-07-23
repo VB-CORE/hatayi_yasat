@@ -16,7 +16,6 @@ mixin GroupsViewMixin
   }
 
   bool get canCreateGroup {
-    final authState = ref.watch(authViewModelProvider);
-    return authState is Authenticated && authState.user.canCreateGroup;
+    return ref.watch(authViewModelProvider).user?.canCreateGroup ?? false;
   }
 }

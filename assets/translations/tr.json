@@ -455,6 +455,38 @@
     "error": {
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
       "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
+    },
+    "signOut": {
+      "title": "Çıkış Yap",
+      "content": "Hesabından çıkış yapmak istediğine emin misin?"
+    },
+    "editProfile": {
+      "title": "Profili Düzenle",
+      "displayName": "Ad Soyad",
+      "displayNameHint": "Adınızı ve soyadınızı girin",
+      "email": "E-posta",
+      "changePhoto": "Fotoğrafı Değiştir",
+      "error": "Profil güncellenemedi, lütfen tekrar deneyin."
+    }
+  },
+  "profile": {
+    "menu": {
+      "favorites": "Favorilerim",
+      "settings": "Ayarlar",
+      "rateUs": "Bizi Değerlendirin",
+      "privacy": "Gizlilik Politikası",
+      "about": "Hakkımızda",
+      "developers": "Geliştiriciler",
+      "signOut": "Çıkış Yap"
+    },
+    "stats": {
+      "posts": "Paylaşım",
+      "favorites": "Favori",
+      "comments": "Yorum"
+    },
+    "storeBanner": {
+      "title": "Mekanın var mı? Esnaf olarak başvur.",
+      "subtitle": "Mekanını ekle, \"Mekan Sahibi\" rozeti kazan."
     }
   },
   "userQr": {

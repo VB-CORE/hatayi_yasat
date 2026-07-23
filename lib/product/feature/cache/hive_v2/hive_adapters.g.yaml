@@ -99,7 +99,7 @@ types:
         index: 2
   UserModel:
     typeId: 7
-    nextIndex: 9
+    nextIndex: 10
     fields:
       uid:
         index: 0
@@ -119,3 +119,5 @@ types:
         index: 7
       updatedAt:
         index: 8
+      rates:
+        index: 9

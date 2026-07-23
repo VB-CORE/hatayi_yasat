@@ -1,5 +1,6 @@
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/utility/state/app_provider.dart';
@@ -20,4 +21,6 @@ mixin ProjectDependencyMixin {
   final ProductCache productCache = ProjectDependencyItems.productCache;
 
   final AuthService authService = ProjectDependencyItems.authService;
+
+  final UserService userService = ProjectDependencyItems.userService;
 }

@@ -455,6 +455,38 @@
     "error": {
       "generic": "Something went wrong while signing in, please try again.",
       "failed": "{provider} sign-in failed, please try again."
+    },
+    "signOut": {
+      "title": "Sign Out",
+      "content": "Are you sure you want to sign out?"
+    },
+    "editProfile": {
+      "title": "Edit Profile",
+      "displayName": "Full Name",
+      "displayNameHint": "Enter your first and last name",
+      "email": "Email",
+      "changePhoto": "Change Photo",
+      "error": "Profile could not be updated, please try again."
+    }
+  },
+  "profile": {
+    "menu": {
+      "favorites": "My Favorites",
+      "settings": "Settings",
+      "rateUs": "Rate Us",
+      "privacy": "Privacy Policy",
+      "about": "About Us",
+      "developers": "Developers",
+      "signOut": "Sign Out"
+    },
+    "stats": {
+      "posts": "Posts",
+      "favorites": "Favorites",
+      "comments": "Reviews"
+    },
+    "storeBanner": {
+      "title": "Own a place? Apply as a merchant.",
+      "subtitle": "Add your place and earn the \"Place Owner\" badge."
     }
   },
   "userQr": {

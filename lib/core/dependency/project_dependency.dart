@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
+import 'package:lifeclient/core/service/user/firebase_user_service.dart';
+import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/hive_cache.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -30,6 +32,12 @@ final class ProjectDependency {
       () => FirebaseAuthService(
         firebaseService: GetIt.I.get<FirebaseCustomService>(),
         productCache: GetIt.I.get<ProductCache>(),
+      ),
+    );
+
+    GetIt.I.registerLazySingleton<UserService>(
+      () => FirebaseUserService(
+        firebaseService: GetIt.I.get<FirebaseCustomService>(),
       ),
     );
 

@@ -14,26 +14,30 @@ class SplashViewModel extends Notifier<SplashState> {
   final AppProvider appProvider;
 
   Future<void> _controlApplication() async {
-    await appProvider.init();
+    try {
+      await appProvider.init();
 
-    if (!await _isConnectedToInternet()) {
-      state = state.copyWith(isConnectedToInternet: false);
-      return;
+      if (!await _isConnectedToInternet()) {
+        state = state.copyWith(isConnectedToInternet: false);
+        return;
+      }
+
+      await productProvider.initWhenApplicationStart();
+
+      if (_isFirstTimeCheck()) {
+        await SharedCache.instance.setFirstAppOpen();
+        state = state.copyWith(isNeedToOnBoard: true);
+        return;
+      }
+      if (_isNeedToForceUpdate()) {
+        state = state.copyWith(isNeedToForceUpdate: true);
+        return;
+      }
+
+      state = state.copyWith(isOperationStaring: false);
+    } on Object {
+      state = state.copyWith(isOperationStaring: false);
     }
-
-    await productProvider.initWhenApplicationStart();
-
-    if (_isFirstTimeCheck()) {
-      await SharedCache.instance.setFirstAppOpen();
-      state = state.copyWith(isNeedToOnBoard: true);
-      return;
-    }
-    if (_isNeedToForceUpdate()) {
-      state = state.copyWith(isNeedToForceUpdate: true);
-      return;
-    }
-
-    state = state.copyWith(isOperationStaring: false);
   }
 
   bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen;

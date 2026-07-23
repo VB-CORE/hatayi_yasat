@@ -185,6 +185,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
         ),
       ],
     ),
+    GoRouteData.$route(
+      path: 'editProfile',
+      name: 'Edit Profile',
+      factory: $EditProfileRoute._fromState,
+    ),
   ],
 );
 
@@ -653,6 +658,27 @@ mixin $ApplicationInformationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/settings/appInfo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $EditProfileRoute on GoRouteData {
+  static EditProfileRoute _fromState(GoRouterState state) =>
+      const EditProfileRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/editProfile');
 
   @override
   void go(BuildContext context) => context.go(location);

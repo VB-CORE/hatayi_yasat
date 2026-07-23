@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/utility/state/app_provider.dart';
@@ -27,4 +28,5 @@ final class ProjectDependencyItems {
   static final ProductCache productCache = GetIt.I.get<ProductCache>();
 
   static final AuthService authService = GetIt.I.get<AuthService>();
+  static final UserService userService = GetIt.I.get<UserService>();
 }

@@ -13,9 +13,6 @@ import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 
 mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
-  static const double patternHeightFactor = .25;
-
-  late final ScrollController scrollController;
   late final PlaceDetailArgs args;
 
   StoreModel get store =>
@@ -24,14 +21,7 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   @override
   void initState() {
     super.initState();
-    scrollController = ScrollController();
     args = PlaceDetailArgs(id: widget.id, store: widget.store);
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
   }
 
   Future<void> onCall() =>

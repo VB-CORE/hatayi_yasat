@@ -18,6 +18,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.displayName = '',
     this.roleType = 2,
     this.permissions = const [],
+    this.rates = const [],
     this.photoUrl,
     this.merchantStoreId,
     this.fcmToken,
@@ -43,6 +44,8 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final int roleType;
   @JsonKey(defaultValue: <int>[])
   final List<int> permissions;
+  @JsonKey(defaultValue: <String>[])
+  final List<String> rates;
   final String? photoUrl;
   final String? merchantStoreId;
   final String? fcmToken;
@@ -93,6 +96,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     String? displayName,
     int? roleType,
     List<int>? permissions,
+    List<String>? rates,
     String? photoUrl,
     String? merchantStoreId,
     String? fcmToken,
@@ -104,6 +108,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       displayName: displayName ?? this.displayName,
       roleType: roleType ?? this.roleType,
       permissions: permissions ?? this.permissions,
+      rates: rates ?? this.rates,
       photoUrl: photoUrl ?? this.photoUrl,
       merchantStoreId: merchantStoreId ?? this.merchantStoreId,
       fcmToken: fcmToken ?? this.fcmToken,
@@ -118,6 +123,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     displayName,
     roleType,
     permissions,
+    rates,
     photoUrl,
     merchantStoreId,
     fcmToken,
