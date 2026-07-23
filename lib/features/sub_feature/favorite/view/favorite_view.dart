@@ -1,4 +1,3 @@
-import 'package:bounceable/bounceable.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,10 +37,13 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      appBar: AppBar(
+        title: Text(LocaleKeys.favorite_title.tr(context: context)),
+      ),
       body: CustomScrollView(
         slivers: [
           _FavoriteSearchField(
-            onChanged: (String value) {
+            onChanged: (value) {
               ref
                   .read(favoriteViewModelProvider.notifier)
                   .searchFavorites(value);
@@ -50,8 +52,10 @@ class _FavoriteViewState extends ConsumerState<FavoriteView> {
           SliverToBoxAdapter(
             child: Consumer(
               builder: (context, ref, child) {
-                final isFavoritePlacesEmpty =
-                    ref.watch(favoriteViewModelProvider).favoritePlaces.isEmpty;
+                final isFavoritePlacesEmpty = ref
+                    .watch(favoriteViewModelProvider)
+                    .favoritePlaces
+                    .isEmpty;
                 if (isFavoritePlacesEmpty) return const SizedBox.shrink();
                 return _FavoriteClearAllButton(
                   onPressed: (value) {

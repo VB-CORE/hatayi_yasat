@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const project_name = 'project.name';
   static const project = 'project';
   static const validation_fullName = 'validation.fullName';
@@ -454,7 +454,33 @@ abstract class LocaleKeys {
   static const auth_error_generic = 'auth.error.generic';
   static const auth_error_failed = 'auth.error.failed';
   static const auth_error = 'auth.error';
+  static const auth_signOut_title = 'auth.signOut.title';
+  static const auth_signOut_content = 'auth.signOut.content';
+  static const auth_signOut = 'auth.signOut';
+  static const auth_editProfile_title = 'auth.editProfile.title';
+  static const auth_editProfile_displayName = 'auth.editProfile.displayName';
+  static const auth_editProfile_displayNameHint = 'auth.editProfile.displayNameHint';
+  static const auth_editProfile_email = 'auth.editProfile.email';
+  static const auth_editProfile_changePhoto = 'auth.editProfile.changePhoto';
+  static const auth_editProfile_error = 'auth.editProfile.error';
+  static const auth_editProfile = 'auth.editProfile';
   static const auth = 'auth';
+  static const profile_menu_favorites = 'profile.menu.favorites';
+  static const profile_menu_settings = 'profile.menu.settings';
+  static const profile_menu_rateUs = 'profile.menu.rateUs';
+  static const profile_menu_privacy = 'profile.menu.privacy';
+  static const profile_menu_about = 'profile.menu.about';
+  static const profile_menu_developers = 'profile.menu.developers';
+  static const profile_menu_signOut = 'profile.menu.signOut';
+  static const profile_menu = 'profile.menu';
+  static const profile_stats_posts = 'profile.stats.posts';
+  static const profile_stats_favorites = 'profile.stats.favorites';
+  static const profile_stats_comments = 'profile.stats.comments';
+  static const profile_stats = 'profile.stats';
+  static const profile_storeBanner_title = 'profile.storeBanner.title';
+  static const profile_storeBanner_subtitle = 'profile.storeBanner.subtitle';
+  static const profile_storeBanner = 'profile.storeBanner';
+  static const profile = 'profile';
   static const userQr_title = 'userQr.title';
   static const userQr_personalTitle = 'userQr.personalTitle';
   static const userQr_personalDescription = 'userQr.personalDescription';
@@ -531,83 +557,45 @@ abstract class LocaleKeys {
   static const community_createGroup_success = 'community.createGroup.success';
   static const community_createGroup = 'community.createGroup';
   static const community_groupDetail_tabWall = 'community.groupDetail.tabWall';
-  static const community_groupDetail_tabDiscussions =
-      'community.groupDetail.tabDiscussions';
-  static const community_groupDetail_tabDetails =
-      'community.groupDetail.tabDetails';
-  static const community_groupDetail_openGroup =
-      'community.groupDetail.openGroup';
-  static const community_groupDetail_closedGroup =
-      'community.groupDetail.closedGroup';
-  static const community_groupDetail_memberCount =
-      'community.groupDetail.memberCount';
-  static const community_groupDetail_adminBadge =
-      'community.groupDetail.adminBadge';
-  static const community_groupDetail_wall_composerHint =
-      'community.groupDetail.wall.composerHint';
-  static const community_groupDetail_wall_commentCount =
-      'community.groupDetail.wall.commentCount';
-  static const community_groupDetail_wall_empty =
-      'community.groupDetail.wall.empty';
+  static const community_groupDetail_tabDiscussions = 'community.groupDetail.tabDiscussions';
+  static const community_groupDetail_tabDetails = 'community.groupDetail.tabDetails';
+  static const community_groupDetail_openGroup = 'community.groupDetail.openGroup';
+  static const community_groupDetail_closedGroup = 'community.groupDetail.closedGroup';
+  static const community_groupDetail_memberCount = 'community.groupDetail.memberCount';
+  static const community_groupDetail_adminBadge = 'community.groupDetail.adminBadge';
+  static const community_groupDetail_wall_composerHint = 'community.groupDetail.wall.composerHint';
+  static const community_groupDetail_wall_commentCount = 'community.groupDetail.wall.commentCount';
+  static const community_groupDetail_wall_empty = 'community.groupDetail.wall.empty';
   static const community_groupDetail_wall = 'community.groupDetail.wall';
-  static const community_groupDetail_discussions_startTitle =
-      'community.groupDetail.discussions.startTitle';
-  static const community_groupDetail_discussions_startSubtitle =
-      'community.groupDetail.discussions.startSubtitle';
-  static const community_groupDetail_discussions_meta =
-      'community.groupDetail.discussions.meta';
-  static const community_groupDetail_discussions_empty =
-      'community.groupDetail.discussions.empty';
-  static const community_groupDetail_discussions_sheetSubtitle =
-      'community.groupDetail.discussions.sheetSubtitle';
-  static const community_groupDetail_discussions_titleFieldLabel =
-      'community.groupDetail.discussions.titleFieldLabel';
-  static const community_groupDetail_discussions_titleFieldHint =
-      'community.groupDetail.discussions.titleFieldHint';
-  static const community_groupDetail_discussions_messageFieldLabel =
-      'community.groupDetail.discussions.messageFieldLabel';
-  static const community_groupDetail_discussions_messageFieldHint =
-      'community.groupDetail.discussions.messageFieldHint';
-  static const community_groupDetail_discussions_startButton =
-      'community.groupDetail.discussions.startButton';
-  static const community_groupDetail_discussions_anonymityBanner =
-      'community.groupDetail.discussions.anonymityBanner';
-  static const community_groupDetail_discussions_openedByGroup =
-      'community.groupDetail.discussions.openedByGroup';
-  static const community_groupDetail_discussions_replyComposerHint =
-      'community.groupDetail.discussions.replyComposerHint';
-  static const community_groupDetail_discussions =
-      'community.groupDetail.discussions';
-  static const community_groupDetail_details_aboutTitle =
-      'community.groupDetail.details.aboutTitle';
-  static const community_groupDetail_details_infoTitle =
-      'community.groupDetail.details.infoTitle';
-  static const community_groupDetail_details_groupTypeLabel =
-      'community.groupDetail.details.groupTypeLabel';
-  static const community_groupDetail_details_groupTypeOpen =
-      'community.groupDetail.details.groupTypeOpen';
-  static const community_groupDetail_details_groupTypeClosed =
-      'community.groupDetail.details.groupTypeClosed';
-  static const community_groupDetail_details_memberCountLabel =
-      'community.groupDetail.details.memberCountLabel';
-  static const community_groupDetail_details_createdAtLabel =
-      'community.groupDetail.details.createdAtLabel';
-  static const community_groupDetail_details_adminsTitle =
-      'community.groupDetail.details.adminsTitle';
-  static const community_groupDetail_details_leaveGroup =
-      'community.groupDetail.details.leaveGroup';
-  static const community_groupDetail_details_leaveSuccess =
-      'community.groupDetail.details.leaveSuccess';
-  static const community_groupDetail_details_closeGroup =
-      'community.groupDetail.details.closeGroup';
-  static const community_groupDetail_details_closeGroupConfirmTitle =
-      'community.groupDetail.details.closeGroupConfirmTitle';
-  static const community_groupDetail_details_closeGroupConfirmMessage =
-      'community.groupDetail.details.closeGroupConfirmMessage';
-  static const community_groupDetail_details_closeGroupConfirmCancel =
-      'community.groupDetail.details.closeGroupConfirmCancel';
-  static const community_groupDetail_details_closeGroupSuccess =
-      'community.groupDetail.details.closeGroupSuccess';
+  static const community_groupDetail_discussions_startTitle = 'community.groupDetail.discussions.startTitle';
+  static const community_groupDetail_discussions_startSubtitle = 'community.groupDetail.discussions.startSubtitle';
+  static const community_groupDetail_discussions_meta = 'community.groupDetail.discussions.meta';
+  static const community_groupDetail_discussions_empty = 'community.groupDetail.discussions.empty';
+  static const community_groupDetail_discussions_sheetSubtitle = 'community.groupDetail.discussions.sheetSubtitle';
+  static const community_groupDetail_discussions_titleFieldLabel = 'community.groupDetail.discussions.titleFieldLabel';
+  static const community_groupDetail_discussions_titleFieldHint = 'community.groupDetail.discussions.titleFieldHint';
+  static const community_groupDetail_discussions_messageFieldLabel = 'community.groupDetail.discussions.messageFieldLabel';
+  static const community_groupDetail_discussions_messageFieldHint = 'community.groupDetail.discussions.messageFieldHint';
+  static const community_groupDetail_discussions_startButton = 'community.groupDetail.discussions.startButton';
+  static const community_groupDetail_discussions_anonymityBanner = 'community.groupDetail.discussions.anonymityBanner';
+  static const community_groupDetail_discussions_openedByGroup = 'community.groupDetail.discussions.openedByGroup';
+  static const community_groupDetail_discussions_replyComposerHint = 'community.groupDetail.discussions.replyComposerHint';
+  static const community_groupDetail_discussions = 'community.groupDetail.discussions';
+  static const community_groupDetail_details_aboutTitle = 'community.groupDetail.details.aboutTitle';
+  static const community_groupDetail_details_infoTitle = 'community.groupDetail.details.infoTitle';
+  static const community_groupDetail_details_groupTypeLabel = 'community.groupDetail.details.groupTypeLabel';
+  static const community_groupDetail_details_groupTypeOpen = 'community.groupDetail.details.groupTypeOpen';
+  static const community_groupDetail_details_groupTypeClosed = 'community.groupDetail.details.groupTypeClosed';
+  static const community_groupDetail_details_memberCountLabel = 'community.groupDetail.details.memberCountLabel';
+  static const community_groupDetail_details_createdAtLabel = 'community.groupDetail.details.createdAtLabel';
+  static const community_groupDetail_details_adminsTitle = 'community.groupDetail.details.adminsTitle';
+  static const community_groupDetail_details_leaveGroup = 'community.groupDetail.details.leaveGroup';
+  static const community_groupDetail_details_leaveSuccess = 'community.groupDetail.details.leaveSuccess';
+  static const community_groupDetail_details_closeGroup = 'community.groupDetail.details.closeGroup';
+  static const community_groupDetail_details_closeGroupConfirmTitle = 'community.groupDetail.details.closeGroupConfirmTitle';
+  static const community_groupDetail_details_closeGroupConfirmMessage = 'community.groupDetail.details.closeGroupConfirmMessage';
+  static const community_groupDetail_details_closeGroupConfirmCancel = 'community.groupDetail.details.closeGroupConfirmCancel';
+  static const community_groupDetail_details_closeGroupSuccess = 'community.groupDetail.details.closeGroupSuccess';
   static const community_groupDetail_details = 'community.groupDetail.details';
   static const community_groupDetail = 'community.groupDetail';
   static const community = 'community';

@@ -37,4 +37,10 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
       isError: store == null,
     );
   }
+
+  Future<void> retry() async {
+    if (args.placeId.isEmpty) return;
+    state = state.copyWith(isFetching: true, isError: false);
+    await _fetchStoreModel(args.placeId);
+  }
 }

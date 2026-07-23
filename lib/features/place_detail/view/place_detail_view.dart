@@ -1,4 +1,4 @@
-import 'dart:ui' as ui;
+import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,7 +10,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
@@ -22,17 +21,15 @@ import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
-import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
+import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
-import 'package:lifeclient/product/widget/shimmer/shimmer.dart';
 
 part 'widget/place_address_card.dart';
-part 'widget/place_detail_header.dart';
 part 'widget/place_detail_tab_bar.dart';
 part 'widget/place_detail_tab_content.dart';
 part 'widget/place_summary_card.dart';
@@ -58,39 +55,43 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     final state = ref.watch(placeDetailViewModelProvider(args));
     final store = state.storeModel;
 
-    return DefaultTabController(
-      length: _PlaceDetailTab.values.length,
-      child: Scaffold(
-        backgroundColor: AppColors.bg,
+    if (state.isError || state.isFetching) {
+      return Scaffold(
+        appBar: AppBar(),
         body: state.isError
             ? GeneralNotFoundWidget(
                 title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+                onRefresh: () => unawaited(
+                  ref.read(placeDetailViewModelProvider(args).notifier).retry(),
+                ),
               )
-            : state.isFetching
-            ? const PlaceShimmerList()
-            : CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  PlaceDetailHeader(
-                    store: store,
-                    scrollController: scrollController,
-                    patternHeight: context.sized.dynamicHeight(
-                      PlaceDetailViewMixin.patternHeightFactor,
-                    ),
-                    onCall: onCall,
-                    onComment: onComment,
-                  ),
-                  const PinnedHeaderSliver(child: PlaceDetailTabBar()),
-                  SliverPadding(
-                    padding: const PagePadding.generalAllLow(),
-                    sliver: PlaceDetailTabContent(
-                      store: store,
-                      onCall: onCall,
-                      onCopyAddress: onCopyAddress,
-                    ),
-                  ),
-                ],
-              ),
+            : const PlaceShimmerList(),
+      );
+    }
+
+    return DefaultTabController(
+      length: _PlaceDetailTab.values.length,
+      child: MosaicCollapsingPage(
+        leading: IconButton(
+          onPressed: context.pop,
+          style: IconButton.styleFrom(
+            foregroundColor: AppColors.surface,
+            backgroundColor: AppColors.navy.withValues(alpha: .7),
+          ),
+          icon: const Icon(AppIcons.arrowBack),
+        ),
+        header: PlaceSummaryCard(
+          store: store,
+          onCall: onCall,
+          onComment: onComment,
+        ),
+        pinnedHeader: const PlaceDetailTabBar(),
+        contentPadding: const PagePadding.generalAllLow(),
+        content: PlaceDetailTabContent(
+          store: store,
+          onCall: onCall,
+          onCopyAddress: onCopyAddress,
+        ),
       ),
     );
   }

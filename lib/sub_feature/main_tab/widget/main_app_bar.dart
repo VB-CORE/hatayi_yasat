@@ -25,7 +25,6 @@ final class _MainAppBar extends AppBar {
         ),
         actions: const [
           _NotificationButton(),
-          _SettingsButton(),
           _CustomPopupMenu(),
           SizedBox(width: AppSpacing.xxs),
         ],
@@ -107,20 +106,6 @@ final class _NotificationButton extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-final class _SettingsButton extends StatelessWidget {
-  const _SettingsButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () async {
-        await const SettingsRoute().push<void>(context);
-      },
-      icon: const Icon(AppIcons.settings),
     );
   }
 }

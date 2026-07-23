@@ -9,14 +9,12 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
-import 'package:lifeclient/product/utility/navigation/project_navigation.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
@@ -54,18 +52,29 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         },
         child: DefaultTabController(
           length: _tabItems.length,
-          child: Scaffold(
-            extendBody: true,
-            appBar: _MainAppBar(),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            body: _BodyTabBarViewWidget(tabItems: _tabItems),
-            resizeToAvoidBottomInset: false,
-            bottomNavigationBar: GeneralSemantic(
-              semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
-              child: _BottomAppBarWidget(tabItems: _tabItems),
-            ),
-            floatingActionButton: const _SpeedDialFabWidget(),
+          child: Builder(
+            builder: (context) {
+              final tabController = DefaultTabController.of(context);
+              return ListenableBuilder(
+                listenable: tabController,
+                builder: (context, _) {
+                  final showAppBar = _tabItems[tabController.index].showAppBar;
+                  return Scaffold(
+                    extendBody: true,
+                    appBar: showAppBar ? _MainAppBar() : null,
+                    floatingActionButtonLocation:
+                        FloatingActionButtonLocation.centerDocked,
+                    body: _BodyTabBarViewWidget(tabItems: _tabItems),
+                    resizeToAvoidBottomInset: false,
+                    bottomNavigationBar: GeneralSemantic(
+                      semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
+                      child: _BottomAppBarWidget(tabItems: _tabItems),
+                    ),
+                    floatingActionButton: const _SpeedDialFabWidget(),
+                  );
+                },
+              );
+            },
           ),
         ),
       ),
