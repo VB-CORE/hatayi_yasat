@@ -7,8 +7,6 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/auth/view_model/auth_state.dart';
-import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -22,14 +20,7 @@ final class ProfileStoreBanner extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomBounceable(
-      onTap: () {
-        final isAuthenticated = ref.read(authViewModelProvider).isAuthenticated;
-        if (!isAuthenticated) {
-          const LoginRoute().go(context);
-          return;
-        }
-        const PlaceRequestFormRoute().go(context);
-      },
+      onTap: () => const PlaceRequestFormRoute().go(context),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,

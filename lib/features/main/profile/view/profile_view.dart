@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
@@ -17,6 +18,7 @@ import 'package:lifeclient/product/package/app_review/app_review.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/auth/auth_switcher.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/checkbox/kvkk_checkbox.dart';
 import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
@@ -43,9 +45,10 @@ final class _ProfileViewState extends ConsumerState<ProfileView>
           colors: [AppColors.navy600, AppColors.navy400],
         ),
       ),
-      header: isAuthenticated
-          ? const ProfileAuthenticatedHeader()
-          : const ProfileGuestHeader(),
+      header: const AuthSwitcher(
+        authorized: ProfileAuthenticatedHeader(),
+        unauthorized: ProfileGuestHeader(),
+      ),
       content: Padding(
         padding: const PagePadding.vertical12Symmetric(),
         child: Column(
@@ -53,8 +56,6 @@ final class _ProfileViewState extends ConsumerState<ProfileView>
           children: [
             const ProfileStoreBanner(),
             ProfileMenuCard(
-              favoriteCount: favoriteCount,
-              isAuthenticated: isAuthenticated,
               onAboutPressed: onAboutPressed,
               onSignOut: onSignOut,
             ),

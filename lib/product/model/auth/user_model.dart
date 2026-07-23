@@ -34,17 +34,17 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     photoUrl: user.photoURL,
   );
 
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   final String uid;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   final String email;
-  @JsonKey(defaultValue: '')
+  @JsonKey()
   final String displayName;
-  @JsonKey(defaultValue: 2)
+  @JsonKey()
   final int roleType;
-  @JsonKey(defaultValue: <int>[])
+  @JsonKey()
   final List<int> permissions;
-  @JsonKey(defaultValue: <String>[])
+  @JsonKey()
   final List<String> rates;
   final String? photoUrl;
   final String? merchantStoreId;

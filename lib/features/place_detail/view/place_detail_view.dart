@@ -20,6 +20,7 @@ import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
 import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
@@ -52,11 +53,16 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     final state = ref.watch(placeDetailViewModelProvider(args));
     final store = state.storeModel;
 
-    if (state.isError || state.isFetching) {
-      return const Scaffold(
-        backgroundColor: AppColors.bg,
-        body: PlaceShimmerList(),
+    if (state.isError) {
+      return Scaffold(
+        body: GeneralNotFoundWidget(
+          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+        ),
       );
+    }
+
+    if (state.isFetching) {
+      return const Scaffold(body: PlaceShimmerList());
     }
 
     return DefaultTabController(

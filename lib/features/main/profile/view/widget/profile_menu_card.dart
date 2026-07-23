@@ -1,21 +1,23 @@
 part of '../profile_view.dart';
 
-final class ProfileMenuCard extends StatelessWidget {
+final class ProfileMenuCard extends ConsumerWidget {
   const ProfileMenuCard({
-    required this.favoriteCount,
-    required this.isAuthenticated,
     required this.onAboutPressed,
     required this.onSignOut,
     super.key,
   });
 
-  final int favoriteCount;
-  final bool isAuthenticated;
   final VoidCallback onAboutPressed;
   final VoidCallback onSignOut;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteCount = ref.watch(
+      ProjectDependencyItems.productProviderState.select(
+        (state) => state.favoritePlaces.length,
+      ),
+    );
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -65,16 +67,20 @@ final class ProfileMenuCard extends StatelessWidget {
             label: LocaleKeys.profile_menu_developers.tr(),
             onTap: () => const DevelopersRoute().push<void>(context),
           ),
-          if (isAuthenticated) ...[
-            const Divider(color: AppColors.navy50),
-            _ProfileMenuRow(
-              icon: AppIcons.exitGroup,
-              label: LocaleKeys.profile_menu_signOut.tr(),
-              labelColor: AppColors.coral500,
-              showChevron: false,
-              onTap: onSignOut,
+          AuthSwitcher(
+            authorized: Column(
+              children: [
+                const Divider(color: AppColors.navy50),
+                _ProfileMenuRow(
+                  icon: AppIcons.exitGroup,
+                  label: LocaleKeys.profile_menu_signOut.tr(),
+                  labelColor: AppColors.coral500,
+                  showChevron: false,
+                  onTap: onSignOut,
+                ),
+              ],
             ),
-          ],
+          ),
         ],
       ),
     );

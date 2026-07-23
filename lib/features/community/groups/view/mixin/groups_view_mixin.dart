@@ -16,6 +16,6 @@ mixin GroupsViewMixin
   }
 
   bool get canCreateGroup {
-    return ref.watch(authViewModelProvider).user?.canCreateGroup ?? false;
+    return ref.read(authViewModelProvider).user?.canCreateGroup ?? false;
   }
 }
