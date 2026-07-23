@@ -21,7 +21,11 @@ class SplashViewModel extends Notifier<SplashState> {
       return;
     }
 
-    await productProvider.initWhenApplicationStart();
+    final isInitialized = await productProvider.initWhenApplicationStart();
+    if (!isInitialized) {
+      state = state.copyWith(isError: true);
+      return;
+    }
 
     if (_isFirstTimeCheck()) {
       await SharedCache.instance.setFirstAppOpen();

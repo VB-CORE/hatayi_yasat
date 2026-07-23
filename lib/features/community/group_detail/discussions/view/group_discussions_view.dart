@@ -9,7 +9,9 @@ import 'package:lifeclient/features/community/group_detail/discussions/provider/
 import 'package:lifeclient/features/community/group_detail/discussions/view/mixin/group_discussions_view_mixin.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/group_discussion_tile.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/start_discussion_card.dart';
+import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -70,9 +72,12 @@ final class _GroupDiscussionsViewState
                 padding: const PagePadding.vertical6Symmetric(),
                 child: GroupDiscussionTile(
                   model: discussion,
-                  // TODO(community): Tartışma Detay PR'ında
-                  // DiscussionDetailRoute'a bağlanacak.
-                  onTap: () {},
+                  onTap: () => DiscussionDetailRoute(
+                    $extra: DiscussionDetailArgs(
+                      group: widget.model,
+                      discussion: discussion,
+                    ),
+                  ).push<void>(context),
                 ),
               ),
             ),
