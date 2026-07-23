@@ -11,7 +11,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 final class UserModel extends BaseFirebaseModel<UserModel>
-    with EquatableMixin, CacheModel {
+    with Equatable, CacheModel {
   const UserModel({
     this.uid = '',
     this.email = '',
@@ -73,6 +73,19 @@ final class UserModel extends BaseFirebaseModel<UserModel>
 
   @override
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  static Map<String, Object?> updateFields({
+    String? displayName,
+    String? photoUrl,
+    FieldValue? rates,
+  }) {
+    return {
+      'displayName': ?displayName,
+      'photoUrl': ?photoUrl,
+      'rates': ?rates,
+      'updatedAt': FieldValue.serverTimestamp(),
+    };
+  }
 
   @override
   UserModel fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

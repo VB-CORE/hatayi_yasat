@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
+import 'package:lifeclient/product/model/auth/user_model.dart';
 
 final class FirebaseUserService implements UserService {
   FirebaseUserService({
@@ -40,39 +41,30 @@ final class FirebaseUserService implements UserService {
   }
 
   @override
-  Future<bool> update({required String displayName, String? photoUrl}) async {
+  Future<bool> update({
+    String? displayName,
+    String? photoUrl,
+    FieldValue? rates,
+  }) async {
     final user = _auth.currentUser;
     if (user == null) return false;
 
-    final trimmedName = displayName.trim();
     final result = await _firestoreService.updateFields(
       path: CollectionPaths.users,
       documentId: user.uid,
-      fields: {'displayName': trimmedName, 'photoUrl': ?photoUrl},
+      fields: UserModel.updateFields(
+        displayName: displayName?.trim(),
+        photoUrl: photoUrl,
+        rates: rates,
+      ),
     );
     return result.isSuccess;
   }
 
   @override
-  Future<bool> addRate(String id) =>
-      _updateRates(id: id, value: FieldValue.arrayUnion([id]));
+  Future<bool> addRate(String id) => update(rates: FieldValue.arrayUnion([id]));
 
   @override
   Future<bool> removeRate(String id) =>
-      _updateRates(id: id, value: FieldValue.arrayRemove([id]));
-
-  Future<bool> _updateRates({
-    required String id,
-    required FieldValue value,
-  }) async {
-    final uid = _auth.currentUser?.uid;
-    if (uid == null || id.isEmpty) return false;
-
-    final result = await _firestoreService.updateFields(
-      path: CollectionPaths.users,
-      documentId: uid,
-      fields: {'rates': value},
-    );
-    return result.isSuccess;
-  }
+      update(rates: FieldValue.arrayRemove([id]));
 }

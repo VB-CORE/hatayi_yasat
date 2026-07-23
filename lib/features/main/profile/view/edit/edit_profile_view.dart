@@ -69,7 +69,7 @@ final class _EditProfileViewState extends ConsumerState<EditProfileView>
       ),
       bottomNavigationBar: BottomAppBar(
         child: GeneralButtonV2.async(
-          action: saveProfile,
+          action: updateProfile,
           label: LocaleKeys.button_save.tr(),
         ),
       ),

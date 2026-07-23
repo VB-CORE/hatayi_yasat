@@ -50,38 +50,37 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
     photoFileNotifier.value = file;
   }
 
-  Future<void> saveProfile() async {
+  Future<void> updateProfile() async {
     if (formKey.currentState?.validate() != true) return;
 
-    final userService = ProjectDependencyItems.userService;
-    final photoFile = photoFileNotifier.value;
+    final photo = await _savePhoto();
 
-    String? photoUrl;
+    if (!photo.isSuccess) return _showError();
 
-    if (photoFile != null) {
-      photoUrl = await userService.uploadPhoto(photoFile);
-      if (photoUrl == null) {
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(LocaleKeys.auth_editProfile_error.tr())),
-        );
-        return;
-      }
-    }
-
-    final updated = await userService.update(
+    final isUpdated = await ProjectDependencyItems.userService.update(
       displayName: displayNameController.text,
-      photoUrl: photoUrl,
+      photoUrl: photo.photoUrl,
     );
+
+    if (!isUpdated) return _showError();
+
     if (!mounted) return;
-
-    if (!updated) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(LocaleKeys.auth_editProfile_error.tr())),
-      );
-      return;
-    }
-
     context.pop();
+  }
+
+  Future<({bool isSuccess, String? photoUrl})> _savePhoto() async {
+    final photoFile = photoFileNotifier.value;
+    if (photoFile == null) return (isSuccess: true, photoUrl: null);
+
+    final photoUrl = await ProjectDependencyItems.userService.uploadPhoto(
+      photoFile,
+    );
+    return (isSuccess: photoUrl != null, photoUrl: photoUrl);
+  }
+
+  void _showError() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(LocaleKeys.auth_editProfile_error.tr())),
+    );
   }
 }
