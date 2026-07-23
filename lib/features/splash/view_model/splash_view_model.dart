@@ -38,6 +38,24 @@ class SplashViewModel extends Notifier<SplashState> {
     } on Object {
       state = state.copyWith(isOperationStaring: false);
     }
+
+    final isInitialized = await productProvider.initWhenApplicationStart();
+    if (!isInitialized) {
+      state = state.copyWith(isError: true);
+      return;
+    }
+
+    if (_isFirstTimeCheck()) {
+      await SharedCache.instance.setFirstAppOpen();
+      state = state.copyWith(isNeedToOnBoard: true);
+      return;
+    }
+    if (_isNeedToForceUpdate()) {
+      state = state.copyWith(isNeedToForceUpdate: true);
+      return;
+    }
+
+    state = state.copyWith(isOperationStaring: false);
   }
 
   bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen;

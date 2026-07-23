@@ -20,10 +20,9 @@ import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
-import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
-import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
+import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
 
@@ -53,16 +52,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     final state = ref.watch(placeDetailViewModelProvider(args));
     final store = state.storeModel;
 
-    if (state.isError) {
-      return Scaffold(
-        backgroundColor: AppColors.bg,
-        body: GeneralNotFoundWidget(
-          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        ),
-      );
-    }
-
-    if (state.isFetching) {
+    if (state.isError || state.isFetching) {
       return const Scaffold(
         backgroundColor: AppColors.bg,
         body: PlaceShimmerList(),
@@ -85,7 +75,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
           onCall: onCall,
           onComment: onComment,
         ),
-        pinnedHeader: PlaceDetailTabBar(store: store),
+        pinnedHeader: const PlaceDetailTabBar(),
         contentPadding: const PagePadding.generalAllLow(),
         content: PlaceDetailTabContent(
           store: store,

@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
@@ -14,9 +16,10 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
   List<RegionalCityModel> get regionalCities => state.regionalCityItems;
   List<RegionalTownSubItem> get regionalTowns {
     final selectedCity = state.selectedCity;
-    final selectedCityRegionalTown = state.regionalTownItems
-        .firstWhere((element) => element.cityId == selectedCity.documentId);
-    return selectedCityRegionalTown.towns;
+    final selectedCityRegionalTown = state.regionalTownItems.firstWhereOrNull(
+      (element) => element.cityId == selectedCity.documentId,
+    );
+    return selectedCityRegionalTown?.towns ?? const [];
   }
 
   RegionalCityModel get selectedCity => state.selectedCity;
@@ -29,21 +32,31 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
     state = state.copyWith(selectedCity: city);
   }
 
-  Future<void> initWhenApplicationStart() async {
-    final productCache = ProjectDependencyItems.productCache;
-    await Future.wait([
-      _fetchDevelopersAndAgency(),
-      _fetchCategories(),
-      _fetchRegionalCities(),
-      _fetchRegionalTowns(),
-    ]);
+  Future<bool> initWhenApplicationStart() async {
+    try {
+      final productCache = ProjectDependencyItems.productCache;
+      await Future.wait([
+        _fetchDevelopersAndAgency(),
+        _fetchCategories(),
+        _fetchRegionalCities(),
+        _fetchRegionalTowns(),
+      ]);
 
-    storeModelCache = productCache.storeModelCache;
-    appModelCache = productCache.appModelCache;
-    state = state.copyWith(
-      favoritePlaces:
-          storeModelCache.getAll().map((e) => e.storeModel).toList(),
-    );
+      if (state.regionalCityItems.isEmpty) return false;
+
+      storeModelCache = productCache.storeModelCache;
+      appModelCache = productCache.appModelCache;
+      state = state.copyWith(
+        favoritePlaces: storeModelCache
+            .getAll()
+            .map((e) => e.storeModel)
+            .toList(),
+      );
+      return true;
+    } on Object catch (error) {
+      CustomLogger.showError<void>(error);
+      return false;
+    }
   }
 
   Future<void> _fetchDevelopersAndAgency() async {
@@ -76,9 +89,12 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
       path: CollectionPaths.regionalCities,
     );
 
+    final selected =
+        items.firstWhereOrNull((element) => element.initial) ??
+        items.firstOrNull;
     state = state.copyWith(
       regionalCityItems: items,
-      selectedCity: items.firstWhere((element) => element.initial),
+      selectedCity: selected ?? state.selectedCity,
     );
   }
 
