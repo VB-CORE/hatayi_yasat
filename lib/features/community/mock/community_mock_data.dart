@@ -5,7 +5,6 @@ import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/model/group_type.dart';
 
 /// Community feature'ının tek mock veri kaynağı.
 // TODO(community): Firestore bağlanınca bu dosya silinecek.
@@ -89,7 +88,7 @@ final class CommunityMockData {
       name: 'Antakya Esnaf Dayanışması',
       description: 'Uzun Çarşı ve çevresi esnafının dayanışma ağı.',
       memberCount: 248,
-      coverImageUrl: 'https://picsum.photos/seed/antakya-esnaf/400',
+      imageUrl: 'https://picsum.photos/seed/antakya-esnaf/400',
       createdAt: DateTime(2025, 1, 12),
       admins: const [saim, ahmet],
     ),
@@ -98,7 +97,7 @@ final class CommunityMockData {
       name: 'Defne Mahalle Komitesi',
       description: 'Defne mahalleleri için yardımlaşma ve iletişim.',
       memberCount: 96,
-      coverImageUrl: 'https://picsum.photos/seed/defne-mahalle/400',
+      imageUrl: 'https://picsum.photos/seed/defne-mahalle/400',
       createdAt: DateTime(2025, 2, 3),
       admins: const [zeynep],
     ),
@@ -115,7 +114,7 @@ final class CommunityMockData {
       name: 'Samandağ Gönüllüleri',
       description: 'Bölge için gönüllülük ve yardımlaşma çalışmaları.',
       memberCount: 131,
-      coverImageUrl: 'https://picsum.photos/seed/samandag/400',
+      imageUrl: 'https://picsum.photos/seed/samandag/400',
       createdAt: DateTime(2025, 3, 8),
       admins: const [deniz, currentMember],
     ),
@@ -124,7 +123,7 @@ final class CommunityMockData {
       name: 'Harbiye Üreticileri',
       description: 'Yerel üreticiler arası kapalı iletişim ve sipariş ağı.',
       memberCount: 57,
-      type: GroupType.closed,
+      isClosed: true,
       createdAt: DateTime(2025, 4, 15),
       admins: const [hasan],
     ),
