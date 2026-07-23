@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -53,16 +55,18 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     final state = ref.watch(placeDetailViewModelProvider(args));
     final store = state.storeModel;
 
-    if (state.isError) {
+    if (state.isError || state.isFetching) {
       return Scaffold(
-        body: GeneralNotFoundWidget(
-          title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
-        ),
+        appBar: AppBar(),
+        body: state.isError
+            ? GeneralNotFoundWidget(
+                title: LocaleKeys.notification_placeNotFoundErrorMessage.tr(),
+                onRefresh: () => unawaited(
+                  ref.read(placeDetailViewModelProvider(args).notifier).retry(),
+                ),
+              )
+            : const PlaceShimmerList(),
       );
-    }
-
-    if (state.isFetching) {
-      return const Scaffold(body: PlaceShimmerList());
     }
 
     return DefaultTabController(

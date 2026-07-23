@@ -43,34 +43,30 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
     with AppProviderMixin<RateCommentListView>, RateCommentListViewMixin {
   @override
   Widget build(BuildContext context) {
-    if (!widget.isCommentEnabled) return const SliverToBoxAdapter();
+    if (!widget.isCommentEnabled) return const SizedBox.shrink();
     final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
     final hasVoted = state.hasVoted;
-    return SliverMainAxisGroup(
-      slivers: [
+    return Column(
+      children: [
         _CommentListBody(placeId: widget.placeId),
         if (state.isError)
-          SliverToBoxAdapter(
-            child: _RateLoadErrorRetry(
-              onRetry: ref
-                  .read(
-                    rateCommunityViewModelProvider(widget.placeId).notifier,
-                  )
-                  .retry,
-            ),
+          _RateLoadErrorRetry(
+            onRetry: ref
+                .read(
+                  rateCommunityViewModelProvider(widget.placeId).notifier,
+                )
+                .retry,
           )
         else if (!state.isLoading && !hasVoted)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const PagePadding.vertical12Symmetric(),
-              child: GeneralButtonV2.active(
-                label: _buttonLabel(
-                  hasVoted: hasVoted,
-                  isSignInRequired: state.isSignInRequired,
-                ),
-                isBorderless: true,
-                action: () => onAddCommentPressed(hasVoted: hasVoted),
+          Padding(
+            padding: const PagePadding.vertical12Symmetric(),
+            child: GeneralButtonV2.active(
+              label: _buttonLabel(
+                hasVoted: hasVoted,
+                isSignInRequired: state.isSignInRequired,
               ),
+              isBorderless: true,
+              action: () => onAddCommentPressed(hasVoted: hasVoted),
             ),
           ),
       ],
@@ -98,11 +94,9 @@ final class _CommentListBody extends ConsumerWidget {
       rateCommunityViewModelProvider(placeId).notifier,
     );
     if (state.isSignInRequired) {
-      return SliverToBoxAdapter(
-        child: GeneralContentSubTitle(
-          value: LocaleKeys.rate_signInToSeeComments.tr(),
-          textAlign: TextAlign.center,
-        ),
+      return GeneralContentSubTitle(
+        value: LocaleKeys.rate_signInToSeeComments.tr(),
+        textAlign: TextAlign.center,
       );
     }
     return StreamBuilder<List<RateModel>>(
@@ -110,26 +104,20 @@ final class _CommentListBody extends ConsumerWidget {
       stream: notifier.votesStream(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          if (state.isError) return const SliverToBoxAdapter(child: SizedBox());
-          return SliverToBoxAdapter(
-            child: _RateLoadErrorRetry(onRetry: notifier.retry),
-          );
+          if (state.isError) return const SizedBox.shrink();
+          return _RateLoadErrorRetry(onRetry: notifier.retry);
         }
         final comments = snapshot.data;
         if (comments == null) {
-          return const SliverToBoxAdapter(
-            child: Padding(
-              padding: PagePadding.vertical12Symmetric(),
-              child: Center(child: CircularProgressIndicator.adaptive()),
-            ),
+          return const Padding(
+            padding: PagePadding.vertical12Symmetric(),
+            child: Center(child: CircularProgressIndicator.adaptive()),
           );
         }
         if (comments.isEmpty) {
-          return SliverToBoxAdapter(
-            child: GeneralContentSubTitle(
-              value: LocaleKeys.rate_noCommentsYet.tr(),
-              textAlign: TextAlign.center,
-            ),
+          return GeneralContentSubTitle(
+            value: LocaleKeys.rate_noCommentsYet.tr(),
+            textAlign: TextAlign.center,
           );
         }
         final hasHiddenComments =
@@ -139,52 +127,35 @@ final class _CommentListBody extends ConsumerWidget {
             ? RateCommunityViewModel.previewCommentCount
             : comments.length;
 
-        return SliverMainAxisGroup(
-          slivers: [
-            DecoratedSliver(
+        return Column(
+          children: [
+            DecoratedBox(
               decoration: BoxDecoration(
                 color: context.appColors.surface,
                 borderRadius: BorderRadius.circular(AppRadius.md),
               ),
-              sliver: SliverList.builder(
-                itemCount: visibleCount,
-                itemBuilder: (context, index) {
-                  final isLastItem = index + 1 == visibleCount;
-                  final rate = comments[index];
-                  final isOwn = state.vote?.voterUid == rate.voterUid;
-
-                  final canModify = isOwn && !state.isProcessing;
-                  return Column(
-                    children: [
-                      _RateCommentCard(
-                        rateModel: rate,
-                        onEdit: canModify
-                            ? () => RateSheetFactory.showRateCard(
-                                context,
-                                placeId: placeId,
-                                initialComment: rate.comment,
-                              )
-                            : null,
-                        onDelete: canModify
-                            ? () => _onDeletePressed(context, notifier)
-                            : null,
-                      ),
-                      if (!isLastItem)
-                        const Divider(indent: AppSpacing.md, height: 1),
-                    ],
-                  );
-                },
+              child: Column(
+                children: [
+                  for (var index = 0; index < visibleCount; index++)
+                    _CommentListItem(
+                      rate: comments[index],
+                      placeId: placeId,
+                      isLastItem: index + 1 == visibleCount,
+                      canModify:
+                          state.vote?.voterUid == comments[index].voterUid &&
+                          !state.isProcessing,
+                      onDelete: () => _onDeletePressed(context, notifier),
+                    ),
+                ],
               ),
             ),
             if (hasHiddenComments)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const PagePadding.vertical12Symmetric(),
-                  child: GeneralButtonV2.active(
-                    label: LocaleKeys.button_more.tr(),
-                    isBorderless: true,
-                    action: notifier.expandComments,
-                  ),
+              Padding(
+                padding: const PagePadding.vertical12Symmetric(),
+                child: GeneralButtonV2.active(
+                  label: LocaleKeys.button_more.tr(),
+                  isBorderless: true,
+                  action: notifier.expandComments,
                 ),
               ),
           ],
@@ -200,6 +171,42 @@ final class _CommentListBody extends ConsumerWidget {
     final isConfirmed = await RateDeleteConfirmDialog.show(context);
     if (!isConfirmed) return;
     await notifier.deleteVote();
+  }
+}
+
+final class _CommentListItem extends StatelessWidget {
+  const _CommentListItem({
+    required this.rate,
+    required this.placeId,
+    required this.isLastItem,
+    required this.canModify,
+    required this.onDelete,
+  });
+
+  final RateModel rate;
+  final String placeId;
+  final bool isLastItem;
+  final bool canModify;
+  final VoidCallback onDelete;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _RateCommentCard(
+          rateModel: rate,
+          onEdit: canModify
+              ? () => RateSheetFactory.showRateCard(
+                  context,
+                  placeId: placeId,
+                  initialComment: rate.comment,
+                )
+              : null,
+          onDelete: canModify ? onDelete : null,
+        ),
+        if (!isLastItem) const Divider(indent: AppSpacing.md, height: 1),
+      ],
+    );
   }
 }
 
