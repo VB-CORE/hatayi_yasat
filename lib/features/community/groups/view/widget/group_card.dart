@@ -66,7 +66,7 @@ final class _CoverImage extends StatelessWidget {
       height: double.infinity,
       child: GroupCoverImage(
         groupId: model.id,
-        imageUrl: model.coverImageUrl,
+        imageUrl: model.imageUrl,
       ),
     );
   }
