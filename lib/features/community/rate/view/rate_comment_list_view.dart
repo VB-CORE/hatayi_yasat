@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -92,7 +91,7 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
   }
 }
 
-const int _pageSize = 20;
+const int _previewCommentCount = 5;
 
 final class _CommentListBody extends ConsumerWidget {
   const _CommentListBody({required this.placeId});
@@ -112,12 +111,18 @@ final class _CommentListBody extends ConsumerWidget {
         ),
       );
     }
-    return FirestoreQueryBuilder<RateModel?>(
+    return StreamBuilder<List<RateModel>>(
       key: ValueKey(state.retryToken),
-      query: notifier.votesQuery(),
-      pageSize: _pageSize,
-      builder: (context, snapshot, _) {
-        if (snapshot.isFetching) {
+      stream: notifier.votesStream(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          if (state.isError) return const SliverToBoxAdapter(child: SizedBox());
+          return SliverToBoxAdapter(
+            child: _RateLoadErrorRetry(onRetry: notifier.retry),
+          );
+        }
+        final comments = snapshot.data;
+        if (comments == null) {
           return const SliverToBoxAdapter(
             child: Padding(
               padding: PagePadding.vertical12Symmetric(),
@@ -125,13 +130,7 @@ final class _CommentListBody extends ConsumerWidget {
             ),
           );
         }
-        if (snapshot.hasError) {
-          if (state.isError) return const SliverToBoxAdapter(child: SizedBox());
-          return SliverToBoxAdapter(
-            child: _RateLoadErrorRetry(onRetry: notifier.retry),
-          );
-        }
-        if (snapshot.docs.isEmpty) {
+        if (comments.isEmpty) {
           return SliverToBoxAdapter(
             child: GeneralContentSubTitle(
               value: LocaleKeys.rate_noCommentsYet.tr(),
@@ -139,43 +138,61 @@ final class _CommentListBody extends ConsumerWidget {
             ),
           );
         }
-        return DecoratedSliver(
-          decoration: BoxDecoration(
-            color: context.appColors.surface,
-            borderRadius: BorderRadius.circular(AppRadius.md),
-          ),
-          sliver: SliverList.builder(
-            itemCount: snapshot.docs.length,
-            itemBuilder: (context, index) {
-              final isLastItem = index + 1 == snapshot.docs.length;
-              if (isLastItem && snapshot.hasMore) snapshot.fetchMore();
+        final hasHiddenComments =
+            !state.showAllComments && comments.length > _previewCommentCount;
+        final visibleCount = hasHiddenComments
+            ? _previewCommentCount
+            : comments.length;
 
-              final rate = snapshot.docs[index].data();
-              if (rate == null) return const SizedBox.shrink();
-              final isOwn = state.vote?.voterUid == rate.voterUid;
+        return SliverMainAxisGroup(
+          slivers: [
+            DecoratedSliver(
+              decoration: BoxDecoration(
+                color: context.appColors.surface,
+                borderRadius: BorderRadius.circular(AppRadius.md),
+              ),
+              sliver: SliverList.builder(
+                itemCount: visibleCount,
+                itemBuilder: (context, index) {
+                  final isLastItem = index + 1 == visibleCount;
+                  final rate = comments[index];
+                  final isOwn = state.vote?.voterUid == rate.voterUid;
 
-              final canModify = isOwn && !state.isProcessing;
-              return Column(
-                children: [
-                  _RateCommentCard(
-                    rateModel: rate,
-                    onEdit: canModify
-                        ? () => RateSheetFactory.showRateCard(
-                            context,
-                            placeId: placeId,
-                            initialComment: rate.comment,
-                          )
-                        : null,
-                    onDelete: canModify
-                        ? () => _onDeletePressed(context, notifier)
-                        : null,
+                  final canModify = isOwn && !state.isProcessing;
+                  return Column(
+                    children: [
+                      _RateCommentCard(
+                        rateModel: rate,
+                        onEdit: canModify
+                            ? () => RateSheetFactory.showRateCard(
+                                context,
+                                placeId: placeId,
+                                initialComment: rate.comment,
+                              )
+                            : null,
+                        onDelete: canModify
+                            ? () => _onDeletePressed(context, notifier)
+                            : null,
+                      ),
+                      if (!isLastItem)
+                        const Divider(indent: AppSpacing.md, height: 1),
+                    ],
+                  );
+                },
+              ),
+            ),
+            if (hasHiddenComments)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const PagePadding.vertical12Symmetric(),
+                  child: GeneralButtonV2.active(
+                    label: LocaleKeys.button_more.tr(),
+                    isBorderless: true,
+                    action: notifier.expandComments,
                   ),
-                  if (!isLastItem)
-                    const Divider(indent: AppSpacing.md, height: 1),
-                ],
-              );
-            },
-          ),
+                ),
+              ),
+          ],
         );
       },
     );

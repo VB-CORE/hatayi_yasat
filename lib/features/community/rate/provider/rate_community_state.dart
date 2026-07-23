@@ -59,6 +59,7 @@ final class RateCommunityState extends Equatable {
     this.isError = false,
     this.draftScore = 0,
     this.retryToken = 0,
+    this.showAllComments = false,
     this.status = const RateActionIdle(),
   });
 
@@ -68,6 +69,7 @@ final class RateCommunityState extends Equatable {
   final bool isError;
   final int draftScore;
   final int retryToken;
+  final bool showAllComments;
   final RateActionStatus status;
 
   bool get hasVoted => vote != null;
@@ -84,6 +86,7 @@ final class RateCommunityState extends Equatable {
     bool? isSignInRequired,
     bool? isError,
     int? retryToken,
+    bool? showAllComments,
     bool clearVote = false,
     RateActionStatus? status,
   }) => RateCommunityState(
@@ -93,6 +96,7 @@ final class RateCommunityState extends Equatable {
     isSignInRequired: isSignInRequired ?? this.isSignInRequired,
     isError: isError ?? this.isError,
     retryToken: retryToken ?? this.retryToken,
+    showAllComments: showAllComments ?? this.showAllComments,
     status: status ?? this.status,
   );
 
@@ -104,6 +108,7 @@ final class RateCommunityState extends Equatable {
     isSignInRequired,
     isError,
     retryToken,
+    showAllComments,
     status,
   ];
 }
