@@ -5,16 +5,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
-import 'package:lifeclient/product/init/firebase_custom_service.dart';
 
 final class FirebaseUserService implements UserService {
   FirebaseUserService({
-    required FirebaseCustomService firebaseService,
+    required CustomFirestoreService firestoreService,
+    required CustomStorageService storageService,
     FirebaseAuth? auth,
-  }) : _firebaseService = firebaseService,
+  }) : _firestoreService = firestoreService,
+       _storageService = storageService,
        _auth = auth ?? FirebaseAuth.instance;
 
-  final FirebaseCustomService _firebaseService;
+  final CustomFirestoreService _firestoreService;
+  final CustomStorageService _storageService;
   final FirebaseAuth _auth;
 
   @override
@@ -25,11 +27,12 @@ final class FirebaseUserService implements UserService {
     try {
       final bytes = await file.readAsBytes();
       // TODO: Burası düzenlenecek
-      return FirebaseStorageService().uploadImage(
+      final result = await _storageService.uploadImage(
         root: .user,
         key: uid,
         fileBytes: bytes,
       );
+      return result.dataOrNull;
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
       return null;
@@ -42,19 +45,12 @@ final class FirebaseUserService implements UserService {
     if (user == null) return false;
 
     final trimmedName = displayName.trim();
-    try {
-      final updated = await _firebaseService.updateFields(
-        ref: CollectionPaths.users,
-        documentId: user.uid,
-        fields: {'displayName': trimmedName, 'photoUrl': ?photoUrl},
-      );
-      if (!updated) return false;
-
-      return true;
-    } on Object catch (error) {
-      CustomLogger.showError<void>(error);
-      return false;
-    }
+    final result = await _firestoreService.updateFields(
+      path: CollectionPaths.users,
+      documentId: user.uid,
+      fields: {'displayName': trimmedName, 'photoUrl': ?photoUrl},
+    );
+    return result.isSuccess;
   }
 
   @override
@@ -72,15 +68,11 @@ final class FirebaseUserService implements UserService {
     final uid = _auth.currentUser?.uid;
     if (uid == null || id.isEmpty) return false;
 
-    try {
-      return _firebaseService.updateFields(
-        ref: CollectionPaths.users,
-        documentId: uid,
-        fields: {'rates': value},
-      );
-    } on Object catch (error) {
-      CustomLogger.showError<void>(error);
-      return false;
-    }
+    final result = await _firestoreService.updateFields(
+      path: CollectionPaths.users,
+      documentId: uid,
+      fields: {'rates': value},
+    );
+    return result.isSuccess;
   }
 }

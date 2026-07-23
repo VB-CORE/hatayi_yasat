@@ -43,7 +43,8 @@ final class ProjectDependency {
 
     GetIt.I.registerLazySingleton<UserService>(
       () => FirebaseUserService(
-        firebaseService: GetIt.I.get<FirebaseCustomService>(),
+        firestoreService: GetIt.I.get<CustomFirestoreService>(),
+        storageService: GetIt.I.get<CustomStorageService>(),
       ),
     );
 
