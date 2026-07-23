@@ -8,12 +8,14 @@ class SplashState extends Equatable {
     this.isNeedToForceUpdate = false,
     this.isConnectedToInternet = true,
     this.isNeedToOnBoard = false,
+    this.isError = false,
   });
 
   final bool isOperationStaring;
   final bool isNeedToForceUpdate;
   final bool isConnectedToInternet;
   final bool isNeedToOnBoard;
+  final bool isError;
 
   @override
   List<Object> get props => [
@@ -21,6 +23,7 @@ class SplashState extends Equatable {
         isNeedToForceUpdate,
         isConnectedToInternet,
         isNeedToOnBoard,
+        isError,
       ];
 
   SplashState copyWith({
@@ -28,6 +31,7 @@ class SplashState extends Equatable {
     bool? isNeedToForceUpdate,
     bool? isConnectedToInternet,
     bool? isNeedToOnBoard,
+    bool? isError,
   }) {
     return SplashState(
       isOperationStaring: isOperationStaring ?? this.isOperationStaring,
@@ -35,6 +39,7 @@ class SplashState extends Equatable {
       isConnectedToInternet:
           isConnectedToInternet ?? this.isConnectedToInternet,
       isNeedToOnBoard: isNeedToOnBoard ?? this.isNeedToOnBoard,
+      isError: isError ?? this.isError,
     );
   }
 }

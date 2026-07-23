@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:kartal/kartal.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 
@@ -24,12 +25,16 @@ final class PlaceRatingLabel extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(Icons.star_rounded, size: iconSize, color: AppColors.gold300),
+        Icon(
+          Icons.star_rounded,
+          size: iconSize,
+          color: context.appColors.gold300,
+        ),
         const SizedBox(width: AppSpacing.xxs),
         Text(
           rating,
           style: AppText.bodySm.copyWith(
-            color: AppColors.navy,
+            color: context.general.colorScheme.onSurface,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -37,7 +42,9 @@ final class PlaceRatingLabel extends StatelessWidget {
           const SizedBox(width: AppSpacing.xxs),
           Text(
             '($reviewCount)',
-            style: AppText.caption.copyWith(color: AppColors.ink400),
+            style: AppText.caption.copyWith(
+              color: context.general.colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
       ],

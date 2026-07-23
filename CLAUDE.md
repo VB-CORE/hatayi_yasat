@@ -68,8 +68,12 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 
   Future<void> fetchStoreModel(String id) async {
     state = state.copyWith(isFetching: true);
-    final item = await firebaseService.getSingleData<StoreModel>(/* ... */);
-    state = state.copyWith(storeModel: item, isFetching: false, isError: item == null);
+    final result = await firestoreService.getSingleData<StoreModel>(/* ... */);
+    state = switch (result) {
+      FirebaseSuccess(:final data) =>
+        state.copyWith(storeModel: data, isFetching: false, isError: data == null),
+      FirebaseFailure() => state.copyWith(isFetching: false, isError: true),
+    };
   }
 }
 ```
@@ -126,7 +130,25 @@ Referans: [home_state.dart](lib/features/main/home/provider/home_state.dart).
   `ApplicationInit.start()` içinde `ProjectDependency.setup()`.
 - **ViewModel içinde** servise erişim → `ProjectDependencyMixin`
   ([project_dependency_mixin.dart](lib/core/dependency/project_dependency_mixin.dart)):
-  `firebaseService`, `appProvider`, `productProvider`, `productCache`, `appProviderState`, `productProviderState`.
+  `firestoreService`, `storageService`, `appProvider`, `productProvider`, `productCache`,
+  `appProviderState`, `productProviderState`.
+
+### Firebase servisleri (geçiş dönemi)
+
+life_shared v5.4.17 ile Firebase erişimi ikiye ayrıldı; **iki servis bir süre yan yana yaşayacak**:
+
+| | Yeni (kullan) | Eski (deprecated) |
+|---|---|---|
+| Firestore | `firestoreService` → `CustomFirestoreService` | `firebaseService` → `FirebaseCustomService` |
+| Storage | `storageService` → `CustomStorageService` | `FirebaseStorageService()` (inline) |
+
+- **Yeni yazılan her şey `firestoreService` / `storageService` kullanır.** Eski servis yalnızca
+  henüz migrate edilmemiş çağrı yerleri için ayakta; yeni kodda kullanılırsa deprecation uyarısı verir.
+- Yeni servisler `FirestoreResult<T>` / `StorageResult<T>` döner (`FirebaseSuccess` | `FirebaseFailure`).
+  Hata artık yutulmuyor: timeout, permission, parse hataları `FirestoreError` / `StorageError`
+  enum'ıyla geliyor. `switch` ile ayrıştır; `dataOrNull` sadece hatayı gerçekten önemsemediğin
+  yerde kullanılır.
+- Toplu migrasyon **yapılmıyor**; bir dosyaya zaten dokunuyorsan o dosyayı çevirmek serbest.
 - **Widget içinde** global state erişimi → `AppProviderMixin<T>` (ConsumerStatefulWidget) /
   `AppProviderStateMixin` (ConsumerWidget)
   ([app_provider_mixin.dart](lib/product/utility/mixin/app_provider_mixin.dart)):
@@ -163,6 +185,19 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 `@TypedGoRoute<XRoute>` + `final class XRoute extends GoRouteData with $XRoute`,
 `build()` widget'ı döner. Karmaşık nesne geçişi `$extra` ile. Codegen sonrası
 `app_router.g.dart` (commit edilir). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
+
+### `go` vs `push` (sert kural)
+
+- **Guard'lı (redirect'li) rotalara daima `go`.** `push` imperative'dir: declarative
+  URI değişmez, `refreshListenable` tetiklendiğinde go_router yalnızca declarative
+  location'ı yeniden değerlendirir — pushed sayfanın redirect'i bir daha çalışmaz.
+  (Örnek bug: push ile açılan login, girişten sonra ekranda takılı kalır.)
+- `push` yalnızca guard'sız, geçici overlay sayfalar için kullanılabilir.
+- `go` stack'i route ağacından türettiği için geri tuşunun çalışması istenen rotalar
+  parent'ın `routes:` listesinde alt-rota olarak tanımlanır (örn. `/groups/create-group`).
+- Auth navigasyon politikası router'dadır (`AuthGuard` + route `redirect`'leri);
+  view içinden auth amaçlı `context.go/push` yazılmaz. Login dönüş adresi resmi
+  go_router deseniyle `from` query parametresi üzerinden taşınır.
 
 ---
 

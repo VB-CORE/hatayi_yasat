@@ -41,6 +41,7 @@ final class CustomTextFormMultiField extends StatelessWidget
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      maxLength: maxLength.value,
       autofillHints: autoFills.value,
       minLines: 3,
       maxLines: TextFieldMaxLengths.maxLine,

@@ -51,7 +51,8 @@
     "more": "Daha fazla",
     "understood": "Anladım",
     "send": "Gönder",
-    "login": "Giriş Yap"
+    "login": "Giriş Yap",
+    "tryAgain": "Tekrar dene"
   },
   "component": {
     "mapPicker": {
@@ -125,6 +126,7 @@
   },
   "message": {
     "emptySearch": "Sonuç Bulunamadı",
+    "emptyList": "Henüz görüntülenecek bir içerik yok",
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
@@ -185,7 +187,11 @@
     "editCommentFailedContent": "Yorumun güncellenemedi. Lütfen tekrar dene.",
     "deleteFailedContent": "Yorumun silinemedi. Lütfen tekrar dene.",
     "deleteSuccessMessage": "Yorumun silindi.",
-    "editCommentSuccessMessage": "Yorumun güncellendi."
+    "editCommentSuccessMessage": "Yorumun güncellendi.",
+    "deleteConfirmTitle": "Yorumun silinsin mi?",
+    "deleteConfirmContent": "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz.",
+    "signInToSeeComments": "Yorumları görmek için giriş yapmalısın.",
+    "commentsLoadFailed": "Yorumlar yüklenemedi."
   },
   "date": {
     "justNow": "Az önce",
@@ -193,7 +199,9 @@
     "hoursAgo": "{} saat önce",
     "daysAgo": "{} gün önce",
     "monthsAgo": "{} ay önce",
-    "yearsAgo": "{} yıl önce"
+    "yearsAgo": "{} yıl önce",
+    "today": "Bugün",
+    "yesterday": "Dün"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -216,7 +224,7 @@
     "nowOpen": "Şu an açık",
     "nowClose": "Şu an kapalı",
     "tabAbout": "Hakkında",
-    "tabComments": "Yorumlar ({})",
+    "tabComments": "Yorumlar",
     "aboutTitle": "Mekan Hakkında",
     "contactTitle": "İletişim Bilgileri",
     "makeComment": "Yorum Yap",
@@ -255,7 +263,13 @@
     "campaignNotFoundErrorMessage": "Etkinlik bulunamadı",
     "newsNotFoundErrorMessage": "Haber bulunamadı",
     "placeNotFoundErrorMessage": "Mekan bulunamadı",
-    "advertiseNotFoundErrorMessage": "İlan bulunamadı"
+    "advertiseNotFoundErrorMessage": "İlan bulunamadı",
+    "typeStore": "Mekan",
+    "typeCampaign": "Kampanya",
+    "typeNews": "Haber",
+    "typeAdvertise": "Duyuru",
+    "typeLink": "Bağlantı",
+    "typeGeneral": "Genel"
   },
   "developers": {
     "title": "Geliştiriciler",
@@ -292,7 +306,9 @@
     "completeRequest": "Başvurunuz alındı. Sistem tarafından onaylandıktan sonra listede görüntüleyebileceksiniz.",
     "completeScholarshipRequest": "Talebiniz alındı. Başvurunuz değerlendirildikten sonra sizinle iletişime geçilecektir.",
     "permissionCameraLibrary": "Fotoğraflar veya Kamera için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
-    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin"
+    "permissionNotification": "Bildirim için izine ihtiyacımız var. Lütfen ayarlara gidin ve izin verin",
+    "loginRequiredTitle": "Giriş yapmadınız",
+    "loginRequiredContent": "Bu işlem için giriş yapmanız gerekiyor."
   },
   "specialAgency": {
     "title": "Özel Kurumlar",
@@ -546,6 +562,52 @@
       "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
       "submitButton": "Grubu Oluştur",
       "success": "Grup başarıyla oluşturuldu."
+    },
+    "groupDetail": {
+      "tabWall": "Duvar",
+      "tabDiscussions": "Tartışmalar",
+      "tabDetails": "Detaylar",
+      "openGroup": "Açık grup",
+      "closedGroup": "Kapalı grup",
+      "memberCount": "{} üye",
+      "adminBadge": "YÖNETİCİ",
+      "wall": {
+        "composerHint": "Grupta bir şeyler paylaş...",
+        "commentCount": "{} yorum",
+        "empty": "Henüz gönderi yok."
+      },
+      "discussions": {
+        "startTitle": "Tartışma aç",
+        "startSubtitle": "Yeni bir konu başlat (yalnızca yöneticiler)",
+        "meta": "{} açtı · {} · {} gönderi",
+        "empty": "Henüz tartışma yok.",
+        "sheetSubtitle": "Konu başlat, ilk sözü sen söyle",
+        "titleFieldLabel": "Başlık",
+        "titleFieldHint": "Örn: Cumartesi pazarı yeni yer düzeni",
+        "messageFieldLabel": "İlk mesaj",
+        "messageFieldHint": "Konuyu neden açtın? Ne konuşulsun?",
+        "startButton": "Tartışmayı başlat",
+        "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
+        "openedByGroup": "{} açtı · {}",
+        "replyComposerHint": "Bu konuya gönderi ekle..."
+      },
+      "details": {
+        "aboutTitle": "HAKKINDA",
+        "infoTitle": "BİLGİLER",
+        "groupTypeLabel": "Grup türü",
+        "groupTypeOpen": "Açık grup · herkes katılabilir",
+        "groupTypeClosed": "Kapalı grup · davetle katılınır",
+        "memberCountLabel": "Üye sayısı",
+        "createdAtLabel": "Oluşturulma",
+        "adminsTitle": "YÖNETİCİLER",
+        "leaveGroup": "Gruptan ayrıl",
+        "leaveSuccess": "Gruptan ayrıldın.",
+        "closeGroup": "Grubu kapat",
+        "closeGroupConfirmTitle": "Grubu kapat",
+        "closeGroupConfirmMessage": "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
+        "closeGroupConfirmCancel": "Vazgeç",
+        "closeGroupSuccess": "Grup kapatıldı."
+      }
     }
   },
   "unauthorized": {

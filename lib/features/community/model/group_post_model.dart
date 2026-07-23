@@ -13,7 +13,6 @@ final class GroupPostModel extends Equatable {
     this.imageFile,
     this.likeCount = 0,
     this.commentCount = 0,
-    this.isLikedByCurrentUser = false,
   });
 
   final String id;
@@ -25,7 +24,6 @@ final class GroupPostModel extends Equatable {
   final File? imageFile;
   final int likeCount;
   final int commentCount;
-  final bool isLikedByCurrentUser;
 
   @override
   List<Object?> get props => [
@@ -37,7 +35,6 @@ final class GroupPostModel extends Equatable {
     imageFile,
     likeCount,
     commentCount,
-    isLikedByCurrentUser,
   ];
 
   GroupPostModel copyWith({
@@ -49,7 +46,6 @@ final class GroupPostModel extends Equatable {
     File? imageFile,
     int? likeCount,
     int? commentCount,
-    bool? isLikedByCurrentUser,
   }) {
     return GroupPostModel(
       id: id ?? this.id,
@@ -60,7 +56,6 @@ final class GroupPostModel extends Equatable {
       imageFile: imageFile ?? this.imageFile,
       likeCount: likeCount ?? this.likeCount,
       commentCount: commentCount ?? this.commentCount,
-      isLikedByCurrentUser: isLikedByCurrentUser ?? this.isLikedByCurrentUser,
     );
   }
 }

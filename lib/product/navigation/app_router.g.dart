@@ -10,10 +10,10 @@ List<RouteBase> get $appRoutes => [
   $splashRoute,
   $mainTabRoute,
   $loginRoute,
-  $roleDashboardRoute,
   $unauthorizedRoute,
   $groupsRoute,
-  $createGroupRoute,
+  $groupDetailRoute,
+  $discussionDetailRoute,
 ];
 
 RouteBase get $splashRoute => GoRouteData.$route(
@@ -725,39 +725,16 @@ RouteBase get $loginRoute =>
     GoRouteData.$route(path: '/login', factory: $LoginRoute._fromState);
 
 mixin $LoginRoute on GoRouteData {
-  static LoginRoute _fromState(GoRouterState state) => const LoginRoute();
+  static LoginRoute _fromState(GoRouterState state) =>
+      LoginRoute(from: state.uri.queryParameters['from']);
+
+  LoginRoute get _self => this as LoginRoute;
 
   @override
-  String get location => GoRouteData.$location('/login');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $roleDashboardRoute => GoRouteData.$route(
-  path: '/roleTest/:role',
-  factory: $RoleDashboardRoute._fromState,
-);
-
-mixin $RoleDashboardRoute on GoRouteData {
-  static RoleDashboardRoute _fromState(GoRouterState state) =>
-      RoleDashboardRoute(role: state.pathParameters['role']!);
-
-  RoleDashboardRoute get _self => this as RoleDashboardRoute;
-
-  @override
-  String get location =>
-      GoRouteData.$location('/roleTest/${Uri.encodeComponent(_self.role)}');
+  String get location => GoRouteData.$location(
+    '/login',
+    queryParams: {if (_self.from != null) 'from': _self.from},
+  );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -807,8 +784,16 @@ mixin $UnauthorizedRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $groupsRoute =>
-    GoRouteData.$route(path: '/groups', factory: $GroupsRoute._fromState);
+RouteBase get $groupsRoute => GoRouteData.$route(
+  path: '/groups',
+  factory: $GroupsRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'create-group',
+      factory: $CreateGroupRoute._fromState,
+    ),
+  ],
+);
 
 mixin $GroupsRoute on GoRouteData {
   static GroupsRoute _fromState(GoRouterState state) => const GroupsRoute();
@@ -830,17 +815,12 @@ mixin $GroupsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $createGroupRoute => GoRouteData.$route(
-  path: '/create-group',
-  factory: $CreateGroupRoute._fromState,
-);
-
 mixin $CreateGroupRoute on GoRouteData {
   static CreateGroupRoute _fromState(GoRouterState state) =>
       const CreateGroupRoute();
 
   @override
-  String get location => GoRouteData.$location('/create-group');
+  String get location => GoRouteData.$location('/groups/create-group');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -854,4 +834,64 @@ mixin $CreateGroupRoute on GoRouteData {
 
   @override
   void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $groupDetailRoute => GoRouteData.$route(
+  path: '/group-detail',
+  factory: $GroupDetailRoute._fromState,
+);
+
+mixin $GroupDetailRoute on GoRouteData {
+  static GroupDetailRoute _fromState(GoRouterState state) =>
+      GroupDetailRoute($extra: state.extra as GroupModel);
+
+  GroupDetailRoute get _self => this as GroupDetailRoute;
+
+  @override
+  String get location => GoRouteData.$location('/group-detail');
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
+}
+
+RouteBase get $discussionDetailRoute => GoRouteData.$route(
+  path: '/discussion-detail',
+  factory: $DiscussionDetailRoute._fromState,
+);
+
+mixin $DiscussionDetailRoute on GoRouteData {
+  static DiscussionDetailRoute _fromState(GoRouterState state) =>
+      DiscussionDetailRoute($extra: state.extra as DiscussionDetailArgs);
+
+  DiscussionDetailRoute get _self => this as DiscussionDetailRoute;
+
+  @override
+  String get location => GoRouteData.$location('/discussion-detail');
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -28,7 +28,7 @@ final class RateCommentOptionsSheet extends StatelessWidget {
           _RateOptionTile(
             icon: AppIcons.delete,
             label: LocaleKeys.rate_deleteComment.tr(),
-            color: AppColors.coral,
+            color: context.general.colorScheme.error,
             onTap: () =>
                 Navigator.of(context).pop(RateCommentOptionAction.delete),
           ),

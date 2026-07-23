@@ -14,10 +14,11 @@ final class _RateCommentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final comment = rateModel.comment;
+    final createdAt = rateModel.createdAt;
     return Container(
       padding: const PagePadding.generalCardAll(),
-      decoration: const BoxDecoration(
-        color: AppColors.surface,
+      decoration: BoxDecoration(
+        color: context.appColors.surface,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,10 +31,10 @@ final class _RateCommentCard extends StatelessWidget {
           else
             CircleAvatar(
               radius: CustomCircleRadius.medium,
-              backgroundColor: AppColors.coral,
+              backgroundColor: context.general.colorScheme.tertiary,
               child: GeneralContentSmallTitle(
                 value: rateModel.userName.initials(),
-                color: AppColors.white,
+                color: context.general.colorScheme.onTertiary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -56,11 +57,11 @@ final class _RateCommentCard extends StatelessWidget {
                       GestureDetector(
                         onTap: () => _showCommentOptions(context),
                         behavior: HitTestBehavior.opaque,
-                        child: const Padding(
-                          padding: PagePadding.generalIconLowAll(),
+                        child: Padding(
+                          padding: const PagePadding.generalIconLowAll(),
                           child: Icon(
                             AppIcons.moreDots,
-                            color: AppColors.navy,
+                            color: context.general.colorScheme.onSurface,
                             size: AppIconSizes.medium,
                           ),
                         ),
@@ -73,14 +74,15 @@ final class _RateCommentCard extends StatelessWidget {
                   children: [
                     AppRatingWidget(
                       itemSize: AppIconSizes.smallX,
-                      value: rateModel.rate,
+                      value: rateModel.score.toDouble(),
                       isReadOnly: true,
                     ),
-                    Flexible(
-                      child: GeneralContentSmallTitle(
-                        value: ' - ${rateModel.createdAt.timeAgo}',
+                    if (createdAt != null)
+                      Flexible(
+                        child: GeneralContentSmallTitle(
+                          value: ' - ${createdAt.timeAgo}',
+                        ),
                       ),
-                    ),
                   ],
                 ),
                 if (comment != null && comment.isNotEmpty)
@@ -88,7 +90,7 @@ final class _RateCommentCard extends StatelessWidget {
                     padding: const PagePadding.verticalVeryLowSymmetric(),
                     child: GeneralContentSubTitle(
                       value: comment,
-                      maxLine: 5,
+                      maxLine: 6,
                     ),
                   ),
               ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
@@ -25,11 +25,11 @@ final class AppRatingWidget extends StatelessWidget {
       initialRating: value,
       glow: false,
       ignoreGestures: isReadOnly,
-      unratedColor: AppColors.ink200,
+      unratedColor: context.appColors.ink200,
       itemPadding: const PagePadding.generalIconLowAll(),
-      itemBuilder: (context, _) => const Icon(
+      itemBuilder: (context, _) => Icon(
         AppIcons.star,
-        color: AppColors.gold300,
+        color: context.appColors.gold300,
       ),
       onRatingUpdate: (value) => onRatingUpdate?.call(value),
     );

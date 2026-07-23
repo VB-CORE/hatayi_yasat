@@ -8,10 +8,10 @@ mixin FavoritePlaceButtonMixin
     on
         AppProviderMixin<FavoritePlaceButton>,
         ConsumerState<FavoritePlaceButton> {
-
+          
   /// Todo: Update to better manager
   late final NotifierProvider<FavoritePlaceProvider, FavoritePlaceState>
-      _favoritePlaceProvider = NotifierProvider(
+  _favoritePlaceProvider = NotifierProvider(
     () => FavoritePlaceProvider(
       cacheService: productProvider.storeModelCache,
       storeModel: widget.store,
@@ -19,7 +19,7 @@ mixin FavoritePlaceButtonMixin
   );
 
   NotifierProvider<FavoritePlaceProvider, FavoritePlaceState>
-      get favoritePlaceProvider => _favoritePlaceProvider;
+  get favoritePlaceProvider => _favoritePlaceProvider;
 
   bool get isLoading => ref.watch(_favoritePlaceProvider).isLoading;
 
@@ -28,9 +28,10 @@ mixin FavoritePlaceButtonMixin
     super.initState();
   }
 
-  Future<void> onPressed() async {
-    if (isLoading) return;
+  Future<bool> onPressed(bool isLiked) async {
+    if (isLoading) return isLiked;
 
     await ref.read(_favoritePlaceProvider.notifier).onSaved(widget.store);
+    return !isLiked;
   }
 }

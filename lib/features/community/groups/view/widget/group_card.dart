@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
+import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -99,13 +101,16 @@ final class _GroupInfo extends StatelessWidget {
   }
 }
 
-final class _GroupMetaRow extends StatelessWidget {
+final class _GroupMetaRow extends ConsumerWidget {
   const _GroupMetaRow({required this.model});
 
   final GroupModel model;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentUserId = ref.watch(
+      currentGroupMemberProvider.select((member) => member.id),
+    );
     return Wrap(
       spacing: WidgetSizes.spacingXs,
       runSpacing: WidgetSizes.spacingXxs,
@@ -125,7 +130,7 @@ final class _GroupMetaRow extends StatelessWidget {
           color: model.type.badgeColor(context),
           icon: model.type.badgeIcon,
         ),
-        if (model.isCurrentUserAdmin)
+        if (model.isAdmin(currentUserId))
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
             color: context.general.colorScheme.tertiary,

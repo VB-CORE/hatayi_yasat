@@ -12,7 +12,6 @@ final class GroupModel extends Equatable {
     this.type = GroupType.open,
     this.createdAt,
     this.admins = const [],
-    this.isCurrentUserAdmin = false,
   });
 
   final String id;
@@ -24,7 +23,8 @@ final class GroupModel extends Equatable {
   final DateTime? createdAt;
   final List<GroupMemberModel> admins;
 
-  final bool isCurrentUserAdmin;
+  /// Verilen üyenin bu grubun yöneticisi olup olmadığı.
+  bool isAdmin(String memberId) => admins.any((admin) => admin.id == memberId);
 
   @override
   List<Object?> get props => [
@@ -36,7 +36,6 @@ final class GroupModel extends Equatable {
     type,
     createdAt,
     admins,
-    isCurrentUserAdmin,
   ];
 
   GroupModel copyWith({
@@ -48,7 +47,6 @@ final class GroupModel extends Equatable {
     GroupType? type,
     DateTime? createdAt,
     List<GroupMemberModel>? admins,
-    bool? isCurrentUserAdmin,
   }) {
     return GroupModel(
       id: id ?? this.id,
@@ -59,7 +57,6 @@ final class GroupModel extends Equatable {
       type: type ?? this.type,
       createdAt: createdAt ?? this.createdAt,
       admins: admins ?? this.admins,
-      isCurrentUserAdmin: isCurrentUserAdmin ?? this.isCurrentUserAdmin,
     );
   }
 }

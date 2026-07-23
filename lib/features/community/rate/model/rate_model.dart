@@ -1,54 +1,95 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:life_shared/life_shared.dart';
 
-final class RateModel extends Equatable {
+part 'rate_model.g.dart';
+
+@JsonSerializable(includeIfNull: false)
+final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   const RateModel({
-    required this.userId,
-    required this.placeId,
-    required this.counted,
-    required this.userName,
-    required this.createdAt,
-    required this.rate,
+    this.voterUid = '',
+    this.placeId = '',
+    this.userName = '',
+    this.score = 0,
     this.comment,
     this.photoUrl,
+    this.createdAt,
+    this.updatedAt,
   });
-  final String userId;
+
+  final String voterUid;
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final String placeId;
+
   final String userName;
-  final bool counted;
-  final DateTime createdAt;
-  final double rate;
+  final int score;
   final String? comment;
   final String? photoUrl;
 
+  @JsonKey(
+    toJson: FirebaseTimeParse.dateTimeToTimestamp,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+    defaultValue: DateTime.now,
+  )
+  final DateTime? createdAt;
+
+  @JsonKey(
+    toJson: FirebaseTimeParse.dateTimeToTimestamp,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+    defaultValue: DateTime.now,
+  )
+  final DateTime? updatedAt;
+
   @override
-  List<Object?> get props => [
-    userId,
-    placeId,
-    userName,
-    counted,
-    createdAt,
-    rate,
-    comment,
-    photoUrl,
-  ];
+  String get documentId => voterUid;
+
+  @override
+  Map<String, dynamic> toJson() => _$RateModelToJson(this);
+
+  @override
+  RateModel fromJson(Map<String, dynamic> json) => _$RateModelFromJson(json);
+
+  @override
+  RateModel fromFirebase(DocumentSnapshot<Map<String, dynamic>> json) {
+    final data = json.data();
+    if (data == null) return this;
+    return fromJson(data).copyWith(
+      voterUid: json.id,
+      placeId: json.reference.parent.parent?.id ?? '',
+    );
+  }
 
   RateModel copyWith({
-    String? userId,
+    String? voterUid,
     String? placeId,
-    bool? counted,
     DateTime? createdAt,
-    double? rate,
+    DateTime? updatedAt,
+    int? score,
     String? comment,
     String? userName,
     String? photoUrl,
   }) => RateModel(
-    userId: userId ?? this.userId,
+    voterUid: voterUid ?? this.voterUid,
     placeId: placeId ?? this.placeId,
     userName: userName ?? this.userName,
-    counted: counted ?? this.counted,
     createdAt: createdAt ?? this.createdAt,
-    rate: rate ?? this.rate,
+    score: score ?? this.score,
     comment: comment ?? this.comment,
     photoUrl: photoUrl ?? this.photoUrl,
+    updatedAt: updatedAt ?? this.updatedAt,
   );
+
+  @override
+  List<Object?> get props => [
+    voterUid,
+    placeId,
+    userName,
+    createdAt,
+    score,
+    comment,
+    photoUrl,
+    updatedAt,
+  ];
 }

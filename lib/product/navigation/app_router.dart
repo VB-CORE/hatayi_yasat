@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
-import 'package:lifeclient/features/auth/view_model/auth_state.dart';
-import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
+import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
+import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
+import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
 import 'package:lifeclient/features/community/groups/view/groups_view.dart';
+import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
@@ -25,11 +26,12 @@ import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_se
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_status_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_view.dart';
-import 'package:lifeclient/features/sub_feature/notifications/notifications_view.dart';
+import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
+import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
@@ -149,6 +151,10 @@ final class PlaceRequestFormRoute extends GoRouteData
   );
 
   @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
   Widget build(BuildContext context, GoRouterState state) =>
       const PlaceRequestForm();
 }
@@ -161,6 +167,10 @@ final class MerchantApplicationViewRoute extends GoRouteData
     path: 'merchantApplicationView',
     name: 'Merchant Application View',
   );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
@@ -177,6 +187,10 @@ final class MerchantApplicationStatusRoute extends GoRouteData
   );
 
   @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
   Widget build(BuildContext context, GoRouterState state) =>
       const MerchantApplicationStatusView();
 }
@@ -191,6 +205,10 @@ final class ProjectRequestFormRoute extends GoRouteData
   );
 
   @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ProjectRequestForm();
 }
@@ -203,6 +221,10 @@ final class ScholarShipRequestFormRoute extends GoRouteData
     path: 'scholarShipRequestForm',
     name: 'ScholarShip Request Form',
   );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
@@ -272,6 +294,10 @@ final class MonetizationCouponFormRoute extends GoRouteData
     path: 'couponForm',
     name: 'Monetization Coupon Form',
   );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
@@ -375,23 +401,16 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
 
 @TypedGoRoute<LoginRoute>(path: '/login')
 final class LoginRoute extends GoRouteData with $LoginRoute {
-  const LoginRoute();
+  const LoginRoute({this.from});
+
+  final String? from;
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.redirectIfSignedIn(context, state, to: from);
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
-}
-
-// TODO(auth): Gerçek dashboard ekranları hazır olunca bu route'u kaldır.
-@TypedGoRoute<RoleDashboardRoute>(path: '/roleTest/:role')
-final class RoleDashboardRoute extends GoRouteData with $RoleDashboardRoute {
-  const RoleDashboardRoute({required this.role});
-
-  final String role;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => Scaffold(
-    body: Center(child: Text('$role Dashboard')),
-  );
 }
 
 @TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')
@@ -405,7 +424,12 @@ final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
       UnauthorizedView(attemptedPath: attemptedPath);
 }
 
-@TypedGoRoute<GroupsRoute>(path: '/groups')
+@TypedGoRoute<GroupsRoute>(
+  path: '/groups',
+  routes: [
+    TypedGoRoute<CreateGroupRoute>(path: 'create-group'),
+  ],
+)
 final class GroupsRoute extends GoRouteData with $GroupsRoute {
   const GroupsRoute();
 
@@ -413,24 +437,43 @@ final class GroupsRoute extends GoRouteData with $GroupsRoute {
   Widget build(BuildContext context, GoRouterState state) => const GroupsView();
 }
 
-@TypedGoRoute<CreateGroupRoute>(path: '/create-group')
 final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
   const CreateGroupRoute();
 
   @override
-  String? redirect(BuildContext context, GoRouterState state) {
-    final authState = ProviderScope.containerOf(
-      context,
-    ).read(authViewModelProvider);
-    final canCreateGroup =
-        authState is Authenticated && authState.user.canCreateGroup;
-    if (canCreateGroup) return null;
-    return UnauthorizedRoute(attemptedPath: state.uri.toString()).location;
-  }
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requirePermission(
+        context,
+        state,
+        hasPermission: (user) => user.canCreateGroup,
+      );
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const CreateGroupView();
+}
+
+@TypedGoRoute<GroupDetailRoute>(path: '/group-detail')
+final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
+  GroupDetailRoute({required this.$extra});
+
+  final GroupModel $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      GroupDetailView(model: $extra);
+}
+
+@TypedGoRoute<DiscussionDetailRoute>(path: '/discussion-detail')
+final class DiscussionDetailRoute extends GoRouteData
+    with $DiscussionDetailRoute {
+  DiscussionDetailRoute({required this.$extra});
+
+  final DiscussionDetailArgs $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      DiscussionDetailView(args: $extra);
 }
 
 final class OnboardRoute extends GoRouteData with $OnboardRoute {

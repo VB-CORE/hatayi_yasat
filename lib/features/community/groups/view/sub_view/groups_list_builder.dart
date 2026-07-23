@@ -24,13 +24,12 @@ final class _GroupsListBuilder extends StatelessWidget {
       GroupsState(:final groups) => ListView.builder(
         itemCount: groups.length,
         itemBuilder: (context, index) {
+          final model = groups[index];
           return Padding(
             padding: const PagePadding.vertical6Symmetric(),
             child: GroupCard(
-              model: groups[index],
-              // TODO(community): Grup Detay PR'ında GroupDetailRoute'a
-              // bağlanacak.
-              onTap: () {},
+              model: model,
+              onTap: () => GroupDetailRoute($extra: model).push<void>(context),
             ),
           );
         },

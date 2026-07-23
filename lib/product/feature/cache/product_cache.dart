@@ -3,6 +3,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
+import 'package:lifeclient/product/model/auth/user_model.dart';
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})
@@ -15,6 +16,7 @@ final class ProductCache {
       StoreModelCache.empty(),
       const AppCacheModel(),
       const MemoryCacheModel.empty(),
+      const UserModel.empty(),
     ]);
   }
 
@@ -27,4 +29,7 @@ final class ProductCache {
 
   late final CacheOperation<MemoryCacheModel> memoryCacheModel =
       HiveOperationManager<MemoryCacheModel>();
+
+  late final CacheOperation<UserModel> userCache =
+      HiveOperationManager<UserModel>();
 }

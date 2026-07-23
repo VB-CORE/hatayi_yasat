@@ -1,9 +1,7 @@
 part of '../place_detail_view.dart';
 
 final class PlaceDetailTabBar extends StatelessWidget {
-  const PlaceDetailTabBar({required this.store, super.key});
-
-  final StoreModel store;
+  const PlaceDetailTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +18,7 @@ final class PlaceDetailTabBar extends StatelessWidget {
         ),
         tabs: [
           Tab(text: LocaleKeys.placeDetailView_tabAbout.tr()),
-          Tab(
-            text: LocaleKeys.placeDetailView_tabComments.tr(
-              args: ['${PlaceMetaMock(store).reviewCount}'],
-            ),
-          ),
+          Tab(text: LocaleKeys.placeDetailView_tabComments.tr()),
         ],
       ),
     );

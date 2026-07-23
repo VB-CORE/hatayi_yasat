@@ -4,11 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
 import 'package:lifeclient/firebase_options.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
@@ -36,6 +38,7 @@ final class ApplicationInit {
       );
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 3004);
       await FirebaseAuth.instance.useAuthEmulator('localhost', 3000);
+      await FirebaseStorage.instance.useStorageEmulator('localhost', 3005);
     }
 
     final remoteConfig = FirebaseRemoteConfig.instance;
@@ -55,6 +58,7 @@ final class ApplicationInit {
       return true;
     };
     ProjectDependency.setup();
+    await ProjectDependencyItems.productCache.init();
     // ProjectDependencyItems.appProvider
     //     .changeAppTheme(theme: SharedCache.instance.theme);
     // await _injectTestEnvOnDebug();

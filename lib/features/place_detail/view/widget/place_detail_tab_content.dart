@@ -20,11 +20,13 @@ final class PlaceDetailTabContent extends StatelessWidget {
       listenable: tabController,
       builder: (context, child) {
         return switch (_PlaceDetailTab.values[tabController.index]) {
-          _PlaceDetailTab.about => PlaceDetailAboutTab(
+          _PlaceDetailTab.about => SliverToBoxAdapter(
+            child: PlaceDetailAboutTab(
               store: store,
               onCall: onCall,
               onCopyAddress: onCopyAddress,
             ),
+          ),
           _PlaceDetailTab.comments => PlaceDetailCommentsTab(store: store),
         };
       },

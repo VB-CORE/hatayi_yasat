@@ -117,8 +117,7 @@ final class CommunityMockData {
       memberCount: 131,
       coverImageUrl: 'https://picsum.photos/seed/samandag/400',
       createdAt: DateTime(2025, 3, 8),
-      isCurrentUserAdmin: true,
-      admins: const [deniz],
+      admins: const [deniz, currentMember],
     ),
     GroupModel(
       id: 'mock-group-5',
