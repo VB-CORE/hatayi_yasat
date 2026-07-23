@@ -12,7 +12,7 @@ final class _ExpandedBackground extends StatelessWidget {
       background: Stack(
         fit: StackFit.expand,
         children: [
-          GroupCoverImage(groupId: model.id, imageUrl: model.coverImageUrl),
+          GroupCoverImage(groupId: model.id, imageUrl: model.imageUrl),
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
