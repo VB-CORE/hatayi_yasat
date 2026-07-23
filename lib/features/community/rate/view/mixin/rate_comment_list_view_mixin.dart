@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
@@ -10,11 +8,8 @@ import 'package:lifeclient/features/community/rate/provider/rate_community_view_
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_action_failed_dialog.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
-import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
+import 'package:lifeclient/product/widget/dialog/login_required_dialog.dart';
 
 mixin RateCommentListViewMixin
     on
@@ -50,31 +45,9 @@ mixin RateCommentListViewMixin
   Future<void> onAddCommentPressed({required bool hasVoted}) async {
     if (!widget.isCommentEnabled || hasVoted) return;
     if (ref.read(authViewModelProvider) is! Authenticated) {
-      await showLoginRequiredDialog(context);
+      await LoginRequiredDialog.show(context);
       return;
     }
     await RateSheetFactory.showRateCard(context, placeId: widget.placeId);
-  }
-
-  Future<void> showLoginRequiredDialog(BuildContext context) async {
-    final goLogin = await GeneralTextDialog.show<bool>(
-      context,
-      LocaleKeys.rate_loginRequiredTitle.tr(),
-      LocaleKeys.rate_loginRequiredContent.tr(),
-      [
-        GeneralDialogButton(
-          title: LocaleKeys.button_cancel,
-          onPressed: () => Navigator.pop(context, false),
-        ),
-        GeneralDialogButton(
-          title: LocaleKeys.button_login,
-          onPressed: () => Navigator.pop(context, true),
-        ),
-      ],
-      backgroundColor: AppColors.bg,
-    );
-    if ((goLogin ?? false) && context.mounted) {
-      const MainTabRoute().go(context);
-    }
   }
 }

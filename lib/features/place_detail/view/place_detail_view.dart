@@ -80,17 +80,13 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                     onCall: onCall,
                     onComment: onComment,
                   ),
-                  PinnedHeaderSliver(
-                    child: PlaceDetailTabBar(store: store),
-                  ),
+                  const PinnedHeaderSliver(child: PlaceDetailTabBar()),
                   SliverPadding(
                     padding: const PagePadding.generalAllLow(),
-                    sliver: SliverToBoxAdapter(
-                      child: PlaceDetailTabContent(
-                        store: store,
-                        onCall: onCall,
-                        onCopyAddress: onCopyAddress,
-                      ),
+                    sliver: PlaceDetailTabContent(
+                      store: store,
+                      onCall: onCall,
+                      onCopyAddress: onCopyAddress,
                     ),
                   ),
                 ],

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_args.dart';
@@ -11,6 +13,7 @@ import 'package:lifeclient/features/place_detail/view_model/place_detail_view_mo
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
+import 'package:lifeclient/product/widget/dialog/login_required_dialog.dart';
 
 mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   static const double patternHeightFactor = .25;
@@ -37,8 +40,13 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   Future<void> onCall() =>
       RedirectionMixin.openToPhone(context: context, phoneNumber: store.phone);
 
-  Future<void> onComment() =>
-      RateSheetFactory.showRateCard(context, placeId: widget.id);
+  Future<void> onComment() async {
+    if (ref.read(authViewModelProvider) is! Authenticated) {
+      await LoginRequiredDialog.show(context);
+      return;
+    }
+    await RateSheetFactory.showRateCard(context, placeId: widget.id);
+  }
 
   Future<void> onCopyAddress() async {
     final address = store.address;
