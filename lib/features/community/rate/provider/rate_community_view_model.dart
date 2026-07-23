@@ -13,6 +13,8 @@ part 'rate_community_view_model.g.dart';
 @riverpod
 final class RateCommunityViewModel extends _$RateCommunityViewModel
     with ProjectDependencyMixin {
+  static const int previewCommentCount = 5;
+
   UserModel? get _currentUser {
     final authState = ref.read(authViewModelProvider);
     return authState is Authenticated ? authState.user : null;
@@ -23,6 +25,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
 
   @override
   RateCommunityState build(String placeId) {
+    _votesStream = null;
     final currentUid = _currentUser?.uid;
     if (currentUid == null) {
       return const RateCommunityState(isSignInRequired: true);
@@ -33,10 +36,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
 
   Stream<List<RateModel>>? _votesStream;
 
-  /// Tek sorguda tüm yorumlar; kaç tanesinin gösterileceğine view karar verir.
-  /// Her çağrıda yeni stream üretilirse StreamBuilder her rebuild'de yeniden
-  /// abone olur, o yüzden aynı örnek tutuluyor
-  Stream<List<RateModel>> votesStream() => _votesStream ??= firebaseService
+  Stream<List<RateModel>> votesStream() => _votesStream ??= firestoreService
       .queryWithOrderBy<RateModel>(
         path: _votes,
         model: const RateModel(),
@@ -63,18 +63,21 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   Future<void> _loadMyVote(String currentUid) async {
-    final myVote = await firebaseService.getSingleData<RateModel>(
+    final result = await firestoreService.getSingleData<RateModel>(
       model: const RateModel(),
       path: _votes,
       id: currentUid,
     );
 
-    state = state.copyWith(
-      vote: myVote,
-      clearVote: myVote == null,
-      isLoading: false,
-      isError: false,
-    );
+    state = switch (result) {
+      FirebaseSuccess(:final data) => state.copyWith(
+        vote: data,
+        clearVote: data == null,
+        isLoading: false,
+        isError: false,
+      ),
+      FirebaseFailure() => state.copyWith(isLoading: false, isError: true),
+    };
   }
 
   void selectRating(double value) => state = state.copyWith(
@@ -105,11 +108,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       photoUrl: user.photoUrl,
       updatedAt: now,
     );
-    final success = await firebaseService.insertWithID<RateModel>(
-      ref: _votes,
+    final result = await firestoreService.insertWithID<RateModel>(
+      path: _votes,
       model: vote,
     );
-    if (success) {
+    if (result.isSuccess) {
       state = state.copyWith(
         vote: vote,
         status: const RateActionSucceeded(RateAction.create),
@@ -130,8 +133,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       updatedAt: DateTime.now(),
     );
 
-    final success = await firebaseService.updateFields(
-      ref: _votes,
+    final result = await firestoreService.updateFields(
+      path: _votes,
       documentId: updated.voterUid,
       fields: {
         _commentField: updated.comment,
@@ -140,7 +143,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         ),
       },
     );
-    if (success) {
+    if (result.isSuccess) {
       state = state.copyWith(
         status: const RateActionSucceeded(RateAction.update),
         vote: updated,
@@ -156,11 +159,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.delete),
     );
-    final success = await firebaseService.delete<RateModel>(
-      _votes,
-      currentVote,
+    final result = await firestoreService.delete<RateModel>(
+      path: _votes,
+      model: currentVote,
     );
-    if (success) {
+    if (result.isSuccess) {
       state = state.copyWith(
         clearVote: true,
         status: const RateActionSucceeded(RateAction.delete),

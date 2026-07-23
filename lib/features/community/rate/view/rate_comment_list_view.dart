@@ -45,12 +45,13 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
     with AppProviderMixin<RateCommentListView>, RateCommentListViewMixin {
   @override
   Widget build(BuildContext context) {
+    if (!widget.isCommentEnabled) return const SliverToBoxAdapter();
     final state = ref.watch(rateCommunityViewModelProvider(widget.placeId));
     final hasVoted = state.hasVoted;
     return SliverMainAxisGroup(
       slivers: [
-        if (widget.isCommentEnabled) _CommentListBody(placeId: widget.placeId),
-        if (widget.isCommentEnabled && state.isError)
+        _CommentListBody(placeId: widget.placeId),
+        if (state.isError)
           SliverToBoxAdapter(
             child: _RateLoadErrorRetry(
               onRetry: ref
@@ -60,7 +61,7 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
                   .retry,
             ),
           )
-        else if (widget.isCommentEnabled && !state.isLoading && !hasVoted)
+        else if (!state.isLoading && !hasVoted)
           SliverToBoxAdapter(
             child: Padding(
               padding: const PagePadding.vertical12Symmetric(),
@@ -69,7 +70,7 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
                   hasVoted: hasVoted,
                   isSignInRequired: state.isSignInRequired,
                 ),
-                isBorderless: widget.isCommentEnabled,
+                isBorderless: true,
                 action: () => onAddCommentPressed(hasVoted: hasVoted),
               ),
             ),
@@ -82,16 +83,11 @@ final class _RateCommentListViewState extends ConsumerState<RateCommentListView>
     required bool hasVoted,
     required bool isSignInRequired,
   }) {
-    if (!widget.isCommentEnabled) {
-      return LocaleKeys.rate_commentingDisabled.tr();
-    }
     if (isSignInRequired) return LocaleKeys.button_login.tr();
     if (hasVoted) return LocaleKeys.rate_commentAdded.tr();
     return LocaleKeys.rate_addComment.tr();
   }
 }
-
-const int _previewCommentCount = 5;
 
 final class _CommentListBody extends ConsumerWidget {
   const _CommentListBody({required this.placeId});
@@ -139,9 +135,10 @@ final class _CommentListBody extends ConsumerWidget {
           );
         }
         final hasHiddenComments =
-            !state.showAllComments && comments.length > _previewCommentCount;
+            !state.showAllComments &&
+            comments.length > RateCommunityViewModel.previewCommentCount;
         final visibleCount = hasHiddenComments
-            ? _previewCommentCount
+            ? RateCommunityViewModel.previewCommentCount
             : comments.length;
 
         return SliverMainAxisGroup(
