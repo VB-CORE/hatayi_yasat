@@ -23,21 +23,10 @@ final class _RateCommentCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (rateModel.photoUrl?.isNotEmpty ?? false)
-            CustomCircleNetworkImage(
-              imageUrl: rateModel.photoUrl,
-              radius: CustomCircleRadius.medium,
-            )
-          else
-            CircleAvatar(
-              radius: CustomCircleRadius.medium,
-              backgroundColor: context.general.colorScheme.tertiary,
-              child: GeneralContentSmallTitle(
-                value: rateModel.userName.initials(),
-                color: context.general.colorScheme.onTertiary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+          CustomUserAvatar(
+            userName: rateModel.userName,
+            imageUrl: rateModel.photoUrl,
+          ),
           const EmptyBox.middleWidth(),
           Expanded(
             child: Column(

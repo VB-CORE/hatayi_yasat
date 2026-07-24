@@ -9,8 +9,8 @@ part 'current_group_member_provider.g.dart';
 // TODO(community): Firestore servis PR'ında mock fallback kaldırılacak.
 @riverpod
 GroupMemberModel currentGroupMember(Ref ref) {
-  final authState = ref.watch(authViewModelProvider);
-  return authState is Authenticated
-      ? GroupMemberModel.fromUser(authState.user)
+  final user = ref.watch(authViewModelProvider).user;
+  return user != null
+      ? GroupMemberModel.fromUser(user)
       : CommunityMockData.currentMember;
 }

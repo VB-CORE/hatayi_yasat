@@ -16,6 +16,7 @@ class LabeledProductTextField extends StatelessWidget {
     this.keyboardType,
     this.controller,
     this.readOnly = false,
+    this.enabled = true,
     this.onTap,
     this.suffixIcon,
   });
@@ -30,7 +31,7 @@ class LabeledProductTextField extends StatelessWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final IconData? suffixIcon;
-
+  final bool enabled;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,6 +49,7 @@ class LabeledProductTextField extends StatelessWidget {
           readOnly: readOnly,
           onTap: onTap,
           suffixIcon: suffixIcon,
+          enabled: enabled,
         ),
       ],
     );

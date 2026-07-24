@@ -13,6 +13,7 @@ import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
+import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
@@ -74,6 +75,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
 
     // Settings
     SettingsRoute.route,
+    EditProfileRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
@@ -463,6 +465,32 @@ final class SettingsRoute extends GoRouteData with $SettingsRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SettingsView();
+}
+
+final class EditProfileRoute extends GoRouteData with $EditProfileRoute {
+  const EditProfileRoute();
+
+  static const route = TypedGoRoute<EditProfileRoute>(
+    path: 'editProfile',
+    name: 'Edit Profile',
+  );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage<void>(
+      key: state.pageKey,
+      fullscreenDialog: true,
+      child: build(context, state),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EditProfileView();
 }
 
 final class DevelopersRoute extends GoRouteData with $DevelopersRoute {

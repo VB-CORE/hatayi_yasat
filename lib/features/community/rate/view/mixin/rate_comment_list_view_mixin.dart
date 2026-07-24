@@ -43,8 +43,8 @@ mixin RateCommentListViewMixin
   }
 
   Future<void> onAddCommentPressed({required bool hasVoted}) async {
-    if (!widget.isCommentEnabled || hasVoted) return;
-    if (ref.read(authViewModelProvider) is! Authenticated) {
+    if (!widget.isCommentEnabled || hasVoted) return; 
+    if (!ref.read(authViewModelProvider).isAuthenticated) {
       await LoginRequiredDialog.show(context);
       return;
     }
