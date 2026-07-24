@@ -10,6 +10,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_state.dart';
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
@@ -18,7 +19,7 @@ import 'package:lifeclient/product/widget/bubble/bubble_chart.dart';
 import 'package:lifeclient/product/widget/bubble/bubble_data.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
-part 'widget/developers_grid_builder.dart';
+part 'widget/developers_bubble_chart.dart';
 part 'widget/soft_arc_mosaic.dart';
 
 final class DevelopersView extends ConsumerStatefulWidget {

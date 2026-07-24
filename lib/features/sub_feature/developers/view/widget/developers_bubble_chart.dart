@@ -33,12 +33,32 @@ final class _DevelopersBubbleChart extends StatelessWidget {
             child: const IgnorePointer(child: _SoftArcMosaic()),
           ),
         ),
+        const Align(
+          child: IgnorePointer(child: _DevelopersLogoWatermark()),
+        ),
         BubbleChart(data: bubbles),
         const Align(
           alignment: .topCenter,
           child: IgnorePointer(child: _DevelopersThanksHeader()),
         ),
       ],
+    );
+  }
+}
+
+final class _DevelopersLogoWatermark extends StatelessWidget {
+  const _DevelopersLogoWatermark();
+
+  @override
+  Widget build(BuildContext context) {
+    final size = context.sized.dynamicWidth(0.55);
+    return Opacity(
+      opacity: 0.25,
+      child: Assets.icons.icApp.image(
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
