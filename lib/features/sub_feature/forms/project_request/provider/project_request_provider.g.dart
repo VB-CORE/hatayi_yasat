@@ -48,7 +48,7 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
   ProjectRequestState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ProjectRequestState, ProjectRequestState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
