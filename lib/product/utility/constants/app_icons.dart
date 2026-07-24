@@ -7,6 +7,7 @@ final class AppIcons {
   static const IconData star = Icons.star;
   static const IconData close = Icons.close_outlined;
   static const IconData info = Icons.info_outlined;
+  static const IconData infoFilled = Icons.info_rounded; 
   static const IconData add = Icons.add_outlined;
   static const IconData edit = Icons.edit_outlined;
   static const IconData moreDots = Icons.more_vert_outlined;
@@ -55,6 +56,11 @@ final class AppIcons {
   static const IconData location = Icons.location_on;
   static const IconData check = Icons.check_outlined;
   static const IconData clear = Icons.clear_outlined;
+  static const IconData store = Icons.storefront_outlined;
+  static const IconData rate = Icons.stars_rounded;
+  static const IconData privacy = Icons.shield_outlined;
+  static const IconData privacyFilled = Icons.shield_rounded;
+  static const IconData code = Icons.code_outlined;
 
   static const IconData filter = Icons.tune_outlined;
   static const IconData community = Icons.people;

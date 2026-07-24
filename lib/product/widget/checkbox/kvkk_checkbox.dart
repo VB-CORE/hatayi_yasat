@@ -28,7 +28,7 @@ class KvkkCheckBox extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  _navigate(context);
+                  navigate(context);
                 },
             ),
             TextSpan(
@@ -53,7 +53,7 @@ class KvkkCheckBox extends StatelessWidget {
     );
   }
 
-  void _navigate(BuildContext context) {
+  static void navigate(BuildContext context) {
     Navigator.push(
       context,
       CupertinoPageRoute<void>(

@@ -38,3 +38,12 @@ final class AuthError extends AuthState {
   @override
   List<Object?> get props => [message, provider];
 }
+
+extension AuthStateX on AuthState {
+  UserModel? get user => switch (this) {
+    Authenticated(:final user) => user,
+    _ => null,
+  };
+
+  bool get isAuthenticated => this is Authenticated;
+}

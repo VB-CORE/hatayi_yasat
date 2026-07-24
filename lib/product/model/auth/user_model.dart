@@ -11,13 +11,14 @@ part 'user_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 final class UserModel extends BaseFirebaseModel<UserModel>
-    with EquatableMixin, CacheModel {
+    with Equatable, CacheModel {
   const UserModel({
     this.uid = '',
     this.email = '',
     this.displayName = '',
     this.roleType = 2,
     this.permissions = const [],
+    this.rates = const [],
     this.photoUrl,
     this.merchantStoreId,
     this.fcmToken,
@@ -33,16 +34,12 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     photoUrl: user.photoURL,
   );
 
-  @JsonKey(defaultValue: '')
   final String uid;
-  @JsonKey(defaultValue: '')
   final String email;
-  @JsonKey(defaultValue: '')
   final String displayName;
-  @JsonKey(defaultValue: 2)
   final int roleType;
-  @JsonKey(defaultValue: <int>[])
   final List<int> permissions;
+  final List<String> rates;
   final String? photoUrl;
   final String? merchantStoreId;
   final String? fcmToken;
@@ -71,6 +68,19 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   @override
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
+  static Map<String, Object?> updateFields({
+    String? displayName,
+    String? photoUrl,
+    FieldValue? rates,
+  }) {
+    return {
+      'displayName': ?displayName,
+      'photoUrl': ?photoUrl,
+      'rates': ?rates,
+      'updatedAt': FieldValue.serverTimestamp(),
+    };
+  }
+
   @override
   UserModel fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
@@ -93,6 +103,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     String? displayName,
     int? roleType,
     List<int>? permissions,
+    List<String>? rates,
     String? photoUrl,
     String? merchantStoreId,
     String? fcmToken,
@@ -104,6 +115,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       displayName: displayName ?? this.displayName,
       roleType: roleType ?? this.roleType,
       permissions: permissions ?? this.permissions,
+      rates: rates ?? this.rates,
       photoUrl: photoUrl ?? this.photoUrl,
       merchantStoreId: merchantStoreId ?? this.merchantStoreId,
       fcmToken: fcmToken ?? this.fcmToken,
@@ -118,6 +130,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     displayName,
     roleType,
     permissions,
+    rates,
     photoUrl,
     merchantStoreId,
     fcmToken,

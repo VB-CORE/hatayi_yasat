@@ -19,6 +19,7 @@ class ProductTextField extends StatelessWidget {
     this.onTap,
     this.suffixIcon,
     this.maxLength = TextFieldMaxLengths.none,
+    this.enabled = true,
   });
   final bool isMultiline;
   final String? Function(String?) validator;
@@ -30,7 +31,7 @@ class ProductTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData? suffixIcon;
   final TextFieldMaxLengths maxLength;
-
+  final bool enabled;
   @override
   Widget build(BuildContext context) {
     final decoration =
@@ -53,6 +54,7 @@ class ProductTextField extends StatelessWidget {
       decoration: decoration,
       validator: validator,
       readOnly: readOnly,
+      enabled: enabled,
       onTap: onTap,
     );
   }
