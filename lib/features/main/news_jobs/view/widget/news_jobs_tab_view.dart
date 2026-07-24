@@ -11,7 +11,7 @@ final class _NewsEventJobsTabView extends StatelessWidget {
       children: [
         TabNewsView(),
         EventView(),
-        TabJobsView(),
+        GroupsView(),
       ],
     );
   }

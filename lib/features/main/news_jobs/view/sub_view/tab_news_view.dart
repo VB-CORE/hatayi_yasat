@@ -30,8 +30,9 @@ final class TabNewsView extends ConsumerWidget {
         return NewsCard(
           item: model,
           onTap: () {
-            NewsDetailRoute($extra: NewsModelCopy.fromNewsModel(model))
-                .push<NewsDetailRoute>(context);
+            NewsDetailRoute(
+              $extra: NewsModelCopy.fromNewsModel(model),
+            ).push<NewsDetailRoute>(context);
           },
         );
       },

@@ -1,7 +1,7 @@
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
 import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
 import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,8 +10,6 @@ part 'discussion_detail_view_model.g.dart';
 @riverpod
 final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     with ProjectDependencyMixin {
-  static const _localIdPrefix = 'local-';
-
   @override
   DiscussionDetailState build() => DiscussionDetailState(
     entries: const [],
@@ -19,23 +17,55 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     isFetching: true,
   );
 
-  // TODO(community): Firestore servis PR'ında mock yerine gerçek istek gelecek.
-  void fetchEntries(GroupDiscussionModel discussion) {
+  FirestoreCollectionPath _entriesPath(String groupId, String discussionId) =>
+      CollectionPaths.groups
+          .sub(groupId, SubCollectionPaths.discussions)
+          .sub(discussionId, SubCollectionPaths.entries);
+
+  Future<void> fetchEntries(String groupId, String discussionId) async {
+    state = state.copyWith(isFetching: true, isError: false);
+    final result = await firestoreService.getList<GroupDiscussionEntryModel>(
+      model: const GroupDiscussionEntryModel.empty(),
+      path: _entriesPath(groupId, discussionId),
+    );
+    final entries =
+        (result.dataOrNull ?? const <GroupDiscussionEntryModel>[])
+            .where((entry) => !entry.isDeleted)
+            .toList()
+          ..sort(
+            (a, b) => (a.createdAt ?? DateTime(0)).compareTo(
+              b.createdAt ?? DateTime(0),
+            ),
+          );
     state = state.copyWith(
-      entries: discussion.entries,
+      entries: entries,
       isFetching: false,
-      isError: false,
+      isError: !result.isSuccess,
     );
   }
 
-  // TODO(community): Firestore servis PR'ında gönderi sunucuya yazılacak.
-  void addEntry(String content) {
+  Future<bool> addEntry(
+    String groupId,
+    String discussionId,
+    String content,
+  ) async {
     final entry = GroupDiscussionEntryModel(
-      id: '$_localIdPrefix${DateTime.now().microsecondsSinceEpoch}',
       author: state.currentMember,
       content: content,
       createdAt: DateTime.now(),
     );
-    state = state.copyWith(entries: [...state.entries, entry]);
+    final result = await firestoreService.add<GroupDiscussionEntryModel>(
+      model: entry,
+      path: _entriesPath(groupId, discussionId),
+    );
+    final id = result.dataOrNull;
+    if (id == null) return false;
+    state = state.copyWith(
+      entries: [
+        ...state.entries,
+        entry.copyWith(id: id),
+      ],
+    );
+    return true;
   }
 }

@@ -11,8 +11,8 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
-final class CloseGroupConfirmSheet extends StatelessWidget {
-  const CloseGroupConfirmSheet._();
+final class JoinGroupConfirmSheet extends StatelessWidget {
+  const JoinGroupConfirmSheet._();
 
   static Future<bool?> show(BuildContext context) {
     return showModalBottomSheet<bool>(
@@ -21,7 +21,7 @@ final class CloseGroupConfirmSheet extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
       ),
-      builder: (context) => const CloseGroupConfirmSheet._(),
+      builder: (context) => const JoinGroupConfirmSheet._(),
     );
   }
 
@@ -37,15 +37,13 @@ final class CloseGroupConfirmSheet extends StatelessWidget {
             Row(
               children: [
                 SoftIconBox(
-                  icon: AppIcons.delete,
-                  iconColor: context.general.colorScheme.tertiary,
+                  icon: AppIcons.personAdd,
+                  iconColor: context.general.colorScheme.primary,
                 ),
                 const EmptyBox(width: WidgetSizes.spacingS),
                 Expanded(
                   child: GeneralContentTitle(
-                    value: LocaleKeys
-                        .community_groupDetail_details_closeGroupConfirmTitle
-                        .tr(),
+                    value: LocaleKeys.community_groups_joinConfirmTitle.tr(),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -53,25 +51,21 @@ final class CloseGroupConfirmSheet extends StatelessWidget {
             ),
             const EmptyBox.middleHeight(),
             GeneralContentSubTitle(
-              value: LocaleKeys
-                  .community_groupDetail_details_closeGroupConfirmMessage
-                  .tr(),
+              value: LocaleKeys.community_groups_joinConfirmMessage.tr(),
               color: context.appColors.navy400,
             ),
             const EmptyBox.largeHeight(),
             GeneralButtonV2.async(
               action: () async => Navigator.of(context).pop(true),
-              label: LocaleKeys.community_groupDetail_details_closeGroup.tr(),
-              icon: AppIcons.delete,
+              label: LocaleKeys.community_groups_join.tr(),
+              icon: AppIcons.personAdd,
             ),
             const EmptyBox.smallHeight(),
             Center(
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(
-                  LocaleKeys
-                      .community_groupDetail_details_closeGroupConfirmCancel
-                      .tr(),
+                  LocaleKeys.community_groups_joinConfirmCancel.tr(),
                 ),
               ),
             ),

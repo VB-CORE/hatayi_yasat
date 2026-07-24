@@ -1,10 +1,15 @@
 part of '../groups_view.dart';
 
 final class _GroupsListBuilder extends StatelessWidget {
-  const _GroupsListBuilder({required this.state, required this.onRetry});
+  const _GroupsListBuilder({
+    required this.state,
+    required this.onRetry,
+    required this.onGroupTap,
+  });
 
   final GroupsState state;
   final VoidCallback onRetry;
+  final ValueChanged<GroupModel> onGroupTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ final class _GroupsListBuilder extends StatelessWidget {
             padding: const PagePadding.vertical6Symmetric(),
             child: GroupCard(
               model: model,
-              onTap: () => GroupDetailRoute($extra: model).push<void>(context),
+              onTap: () => onGroupTap(model),
             ),
           );
         },

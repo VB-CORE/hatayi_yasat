@@ -3,14 +3,12 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_view_model.dart';
 import 'package:lifeclient/features/community/create_group/view/mixin/create_group_view_mixin.dart';
 import 'package:lifeclient/features/community/create_group/view/widget/category_chip.dart';
 import 'package:lifeclient/features/community/create_group/view/widget/cover_image_picker.dart';
-import 'package:lifeclient/features/community/model/group_category_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/index.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -44,7 +42,7 @@ final class _CreateGroupViewState extends ConsumerState<CreateGroupView>
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(AppIcons.close),
-          onPressed: () => context.pop(),
+          onPressed: closeView,
         ),
         title: GeneralContentTitle(
           value: LocaleKeys.community_createGroup_title.tr(),

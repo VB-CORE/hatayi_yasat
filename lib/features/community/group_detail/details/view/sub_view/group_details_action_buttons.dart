@@ -27,8 +27,8 @@ final class _LeaveGroupButton extends StatelessWidget {
   }
 }
 
-final class _CloseGroupButton extends StatelessWidget {
-  const _CloseGroupButton({required this.onPressed});
+final class _DeleteGroupButton extends StatelessWidget {
+  const _DeleteGroupButton({required this.onPressed});
 
   final VoidCallback onPressed;
 
@@ -48,7 +48,7 @@ final class _CloseGroupButton extends StatelessWidget {
           ),
         ),
         icon: const Icon(AppIcons.delete),
-        label: Text(LocaleKeys.community_groupDetail_details_closeGroup.tr()),
+        label: Text(LocaleKeys.community_groupDetail_details_deleteGroup.tr()),
       ),
     );
   }

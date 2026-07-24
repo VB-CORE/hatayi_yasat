@@ -1,9 +1,10 @@
 part of '../group_details_view.dart';
 
 final class _InfoRows extends StatelessWidget {
-  const _InfoRows({required this.model});
+  const _InfoRows({required this.model, required this.memberCount});
 
   final GroupModel model;
+  final int memberCount;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ final class _InfoRows extends StatelessWidget {
           icon: AppIcons.group,
           label: LocaleKeys.community_groupDetail_details_memberCountLabel.tr(),
           value: LocaleKeys.community_groupDetail_memberCount.tr(
-            args: [model.memberCount.toString()],
+            args: [memberCount.toString()],
           ),
         ),
         if (createdAt != null) ...[

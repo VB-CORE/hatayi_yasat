@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';

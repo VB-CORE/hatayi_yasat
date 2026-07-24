@@ -54,4 +54,4 @@ final class CurrentGroupMemberProvider
 }
 
 String _$currentGroupMemberHash() =>
-    r'f06012a0ec7402be1c7cd61aa8730b9fdc12e8fc';
+    r'465a0414ffcd6d547a03c2a22950e00be6ffd742';

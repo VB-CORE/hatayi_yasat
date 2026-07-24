@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/widget/group_member_avatar.dart';
+import 'package:lifeclient/product/widget/avatar/profile_avatar.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -105,7 +105,10 @@ final class _PostAuthorRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GroupMemberAvatar(displayName: model.author.displayName),
+        ProfileAvatar(
+          name: model.author.displayName,
+          imageUrl: model.author.avatarUrl,
+        ),
         const EmptyBox(width: WidgetSizes.spacingS),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +118,7 @@ final class _PostAuthorRow extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
             GeneralContentSmallTitle(
-              value: model.createdAt.timeAgo,
+              value: model.createdAt.timeAgoOrNow,
               color: context.appColors.navy300,
             ),
           ],

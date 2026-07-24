@@ -9,6 +9,7 @@ import 'package:lifeclient/features/community/model/group_discussion_model.dart'
 import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/index.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -18,9 +19,14 @@ import 'package:lifeclient/product/widget/text_field/product_textfield.dart';
 import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_label.dart';
 
 final class StartDiscussionSheet extends ConsumerStatefulWidget {
-  const StartDiscussionSheet._();
+  const StartDiscussionSheet._({required this.groupId});
 
-  static Future<GroupDiscussionModel?> show(BuildContext context) {
+  final String groupId;
+
+  static Future<GroupDiscussionModel?> show(
+    BuildContext context, {
+    required String groupId,
+  }) {
     return showModalBottomSheet<GroupDiscussionModel>(
       context: context,
       isScrollControlled: true,
@@ -28,7 +34,7 @@ final class StartDiscussionSheet extends ConsumerStatefulWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: CustomRadius.large.topLeft),
       ),
-      builder: (context) => const StartDiscussionSheet._(),
+      builder: (context) => StartDiscussionSheet._(groupId: groupId),
     );
   }
 
@@ -39,7 +45,7 @@ final class StartDiscussionSheet extends ConsumerStatefulWidget {
 
 final class _StartDiscussionSheetState
     extends ConsumerState<StartDiscussionSheet>
-    with StartDiscussionSheetMixin {
+    with AppProviderMixin<StartDiscussionSheet>, StartDiscussionSheetMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(

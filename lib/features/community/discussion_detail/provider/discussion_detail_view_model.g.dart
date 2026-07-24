@@ -43,14 +43,14 @@ final class DiscussionDetailViewModelProvider
 }
 
 String _$discussionDetailViewModelHash() =>
-    r'f3a4dd2ee900c64ac0fb494d325802fa5a58d0eb';
+    r'2248d7208283dd3678f725c0206cba9dddf99191';
 
 abstract class _$DiscussionDetailViewModel
     extends $Notifier<DiscussionDetailState> {
   DiscussionDetailState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<DiscussionDetailState, DiscussionDetailState>;
     final element =
         ref.element
@@ -60,6 +60,6 @@ abstract class _$DiscussionDetailViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

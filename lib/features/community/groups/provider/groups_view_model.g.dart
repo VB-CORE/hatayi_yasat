@@ -41,13 +41,13 @@ final class GroupsViewModelProvider
   }
 }
 
-String _$groupsViewModelHash() => r'f81e14be28ca47a5278083a1d4ffb147c2970be2';
+String _$groupsViewModelHash() => r'c6f3ebb3348031e20eac3268fba94e50ecba7c7d';
 
 abstract class _$GroupsViewModel extends $Notifier<GroupsState> {
   GroupsState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<GroupsState, GroupsState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$GroupsViewModel extends $Notifier<GroupsState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

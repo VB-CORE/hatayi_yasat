@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
@@ -7,7 +8,8 @@ import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/create_group/model/create_group_model.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_state.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
-import 'package:lifeclient/features/community/mock/community_mock_data.dart';
+import 'package:lifeclient/features/community/model/group_member_model.dart';
+import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -23,8 +25,12 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
 
   Future<void> fetchCategories() async {
     state = state.copyWith(isFetchingCategories: true);
+    final result = await firestoreService.getList<GroupCategoryModel>(
+      model: const GroupCategoryModel.empty(),
+      path: CollectionPaths.groupCategories,
+    );
     state = state.copyWith(
-      categories: CommunityMockData.categories,
+      categories: result.dataOrNull ?? const [],
       isFetchingCategories: false,
     );
   }
@@ -47,9 +53,34 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
       path: CollectionPaths.groups,
     );
 
-    state = state.copyWith(isSubmitting: false);
-    if (result.dataOrNull == null) return false;
+    final groupId = result.dataOrNull;
+    if (groupId == null) {
+      state = state.copyWith(isSubmitting: false);
+      return false;
+    }
 
+    final memberResult = await firestoreService.insertWithID<GroupMemberModel>(
+      path: CollectionPaths.groups.sub(groupId, SubCollectionPaths.members),
+      model: GroupMemberModel.fromUser(
+        authState.user,
+      ).copyWith(role: GroupMemberRole.admin),
+      key: authState.user.uid,
+    );
+    if (!memberResult.isSuccess) {
+      await firestoreService.updateFields(
+        path: CollectionPaths.groups,
+        documentId: groupId,
+        fields: {
+          'isDeleted': true,
+          'deletedAt': FieldValue.serverTimestamp(),
+          'updatedAt': FieldValue.serverTimestamp(),
+        },
+      );
+      state = state.copyWith(isSubmitting: false);
+      return false;
+    }
+
+    state = state.copyWith(isSubmitting: false);
     await ref.read(groupsViewModelProvider.notifier).fetchGroups();
     return true;
   }
@@ -59,7 +90,7 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
     try {
       final bytes = await file.readAsBytes();
       final result = await storageService.uploadImage(
-        root: RootStorageName.company,
+        root: RootStorageName.groups,
         key: const Uuid().v4(),
         fileBytes: bytes,
       );

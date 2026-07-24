@@ -35,7 +35,10 @@ mixin GroupDiscussionsViewMixin
   }
 
   Future<void> startDiscussion(BuildContext context) async {
-    final discussion = await StartDiscussionSheet.show(context);
+    final discussion = await StartDiscussionSheet.show(
+      context,
+      groupId: widget.model.id,
+    );
     if (discussion == null || !context.mounted) return;
     await DiscussionDetailRoute(
       $extra: DiscussionDetailArgs(group: widget.model, discussion: discussion),

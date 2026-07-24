@@ -37,13 +37,16 @@ final class _ExpandedBackground extends StatelessWidget {
   }
 }
 
-final class _GroupTitleArea extends StatelessWidget {
+final class _GroupTitleArea extends ConsumerWidget {
   const _GroupTitleArea({required this.model});
 
   final GroupModel model;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final memberCount = ref.watch(
+      groupMembersViewModelProvider(model.id).select((s) => s.memberCount),
+    );
     final typeLabel = model.type == GroupType.open
         ? LocaleKeys.community_groupDetail_openGroup.tr()
         : LocaleKeys.community_groupDetail_closedGroup.tr();
@@ -79,7 +82,7 @@ final class _GroupTitleArea extends StatelessWidget {
             const EmptyBox(width: WidgetSizes.spacingXxs),
             GeneralContentSmallTitle(
               value: LocaleKeys.community_groupDetail_memberCount.tr(
-                args: [model.memberCount.toString()],
+                args: [memberCount.toString()],
               ),
               color: onCover,
             ),

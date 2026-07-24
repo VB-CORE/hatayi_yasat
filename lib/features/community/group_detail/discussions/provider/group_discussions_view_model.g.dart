@@ -43,14 +43,14 @@ final class GroupDiscussionsViewModelProvider
 }
 
 String _$groupDiscussionsViewModelHash() =>
-    r'2fb08a963a730b9ac17219d9110dd07af34dac51';
+    r'587fa673b376fab9baf9ed6be469f698f44621af';
 
 abstract class _$GroupDiscussionsViewModel
     extends $Notifier<GroupDiscussionsState> {
   GroupDiscussionsState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<GroupDiscussionsState, GroupDiscussionsState>;
     final element =
         ref.element
@@ -60,6 +60,6 @@ abstract class _$GroupDiscussionsViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

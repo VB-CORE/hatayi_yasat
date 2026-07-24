@@ -58,9 +58,9 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
                     ),
                     Expanded(
                       child: _CustomTabButton(
-                        tab: NewsEventJobTabs.jobs,
+                        tab: NewsEventJobTabs.groups,
                         onPressed: () =>
-                            _changeCurrentTabView(NewsEventJobTabs.jobs),
+                            _changeCurrentTabView(NewsEventJobTabs.groups),
                         selectedTab: _currentTab,
                       ),
                     ),
@@ -92,7 +92,7 @@ mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
         return WidgetSizes.spacingXxs;
       case NewsEventJobTabs.event:
         return tabWidth + WidgetSizes.spacingXxs;
-      case NewsEventJobTabs.jobs:
+      case NewsEventJobTabs.groups:
         return (tabWidth * 2) + WidgetSizes.spacingXxs;
     }
   }

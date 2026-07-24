@@ -7,7 +7,9 @@ import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/mixin/group_details_view_mixin.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/widget/group_admin_tile.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/widget/group_info_row.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
+import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -37,6 +39,10 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
   @override
   Widget build(BuildContext context) {
     final model = widget.model;
+    final membersState = ref.watch(groupMembersViewModelProvider(model.id));
+    final admins = membersState.members
+        .where((member) => member.role == GroupMemberRole.admin)
+        .toList();
     return ListView(
       padding: const PagePadding.horizontal16Symmetric(),
       children: [
@@ -51,19 +57,23 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
           value: LocaleKeys.community_groupDetail_details_infoTitle.tr(),
         ),
         const EmptyBox.smallHeight(),
-        _SectionCard(child: _InfoRows(model: model)),
+        _SectionCard(
+          child: _InfoRows(
+            model: model,
+            memberCount: membersState.memberCount,
+          ),
+        ),
         const EmptyBox.middleHeight(),
         _SectionLabel(
           value: LocaleKeys.community_groupDetail_details_adminsTitle.tr(),
         ),
         const EmptyBox.smallHeight(),
-        _SectionCard(child: _AdminList(admins: model.admins)),
+        _SectionCard(child: _AdminList(admins: admins)),
         const EmptyBox.largeHeight(),
-        _LeaveGroupButton(onPressed: leaveGroup),
-        if (isCurrentUserAdmin) ...[
-          const EmptyBox.smallHeight(),
-          _CloseGroupButton(onPressed: closeGroup),
-        ],
+        if (isCurrentUserAdmin)
+          _DeleteGroupButton(onPressed: deleteGroup)
+        else
+          _LeaveGroupButton(onPressed: leaveGroup),
         const EmptyBox.largeHeight(),
       ],
     );
