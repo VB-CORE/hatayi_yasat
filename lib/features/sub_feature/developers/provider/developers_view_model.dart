@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
+
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_state.dart';
@@ -11,14 +12,24 @@ final class DevelopersViewModel extends _$DevelopersViewModel
     with ProjectDependencyMixin {
   @override
   DevelopersState build() {
-    return const DevelopersState();
+    unawaited(_loadDevelopers());
+    return const DevelopersState(isFetching: true);
   }
 
-  CollectionReference<DeveloperModel?> fetchDevelopersCollectionReference() {
-    return firebaseService.collectionReference(
-      CollectionPaths.developers,
-      DeveloperModel(),
+  Future<void> fetchDevelopers() async {
+    state = state.copyWith(isFetching: true, isError: false);
+    await _loadDevelopers();
+  }
+
+  Future<void> _loadDevelopers() async {
+    final result = await firestoreService.getList<DeveloperModel>(
+      model: DeveloperModel(),
+      path: CollectionPaths.developers,
     );
-    
+    state = state.copyWith(
+      developers: result.dataOrNull ?? const [],
+      isFetching: false,
+      isError: !result.isSuccess,
+    );
   }
 }
