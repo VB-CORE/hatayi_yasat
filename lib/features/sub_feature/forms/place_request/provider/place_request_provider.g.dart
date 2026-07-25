@@ -48,7 +48,7 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
   PlaceRequestState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<PlaceRequestState, PlaceRequestState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

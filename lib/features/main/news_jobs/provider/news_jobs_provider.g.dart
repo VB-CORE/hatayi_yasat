@@ -47,7 +47,7 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
   NewsJobsState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<NewsJobsState, NewsJobsState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

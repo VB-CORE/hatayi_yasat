@@ -47,7 +47,7 @@ abstract class _$HomeViewModel extends $Notifier<HomeState> {
   HomeState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<HomeState, HomeState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$HomeViewModel extends $Notifier<HomeState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

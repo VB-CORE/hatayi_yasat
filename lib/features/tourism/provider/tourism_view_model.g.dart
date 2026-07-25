@@ -47,7 +47,7 @@ abstract class _$TourismViewModel extends $Notifier<TourismState> {
   TourismState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<TourismState, TourismState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$TourismViewModel extends $Notifier<TourismState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }
