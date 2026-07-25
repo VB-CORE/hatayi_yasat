@@ -42,7 +42,7 @@ final class GroupWallViewModelProvider
 }
 
 String _$groupWallViewModelHash() =>
-    r'1ef5109df868fd169b30635f3ff0e40886fcf77b';
+    r'e016b60959f2b5a99bed108b382e279b8ffe7879';
 
 abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
   GroupWallState build();

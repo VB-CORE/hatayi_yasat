@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_state.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
@@ -14,11 +17,15 @@ part 'group_wall_view_model.g.dart';
 final class GroupWallViewModel extends _$GroupWallViewModel
     with ProjectDependencyMixin {
   @override
-  GroupWallState build() => GroupWallState(
-    posts: const [],
-    currentMember: ref.read(currentGroupMemberProvider),
-    isFetching: true,
-  );
+  GroupWallState build() {
+    final user = ref.read(authViewModelProvider).user;
+    return GroupWallState(
+      posts: const [],
+      currentMember: ref.read(currentGroupMemberProvider),
+      likedPostIds: user?.likedPosts.toSet() ?? const {},
+      isFetching: true,
+    );
+  }
 
   FirestoreCollectionPath _pathFor(String groupId) =>
       CollectionPaths.groups.sub(groupId, SubCollectionPaths.posts);
@@ -76,14 +83,57 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     return true;
   }
 
-  // Beğeni bilgisi kullanıcıya özeldir; Firestore kuralları yalnızca soft-delete
-  // güncellemesine izin verdiği için sayaç şimdilik yalnızca lokal tutulur.
-  void toggleLike(String postId) {
+  /// Beğeni: optimistic UI (kalp + sayaç anında) + atomik batch (3 yazma).
+  /// Batch başarısızsa önceki duruma dönülür. Dönen değer = son beğeni durumu,
+  /// böylece animasyonlu beğeni butonu hata halinde kalbi geri alabilir.
+  Future<bool> toggleLike(String groupId, String postId) async {
+    final uid = ref.read(authViewModelProvider).user?.uid;
+    if (uid == null) return state.likedPostIds.contains(postId);
+
+    final willLike = !state.likedPostIds.contains(postId);
+    final previousState = state;
+    state = _withToggledLike(postId, like: willLike);
+
+    final posts = _pathFor(groupId);
+    final likeRef = posts.sub(postId, SubCollectionPaths.likes).collection.doc(uid);
+    final postRef = posts.collection.doc(postId);
+    final userRef = CollectionPaths.users.collection.doc(uid);
+
+    final result = await batchService.commit(
+      (batch) => batch
+        ..set(likeRef, {
+          _isDeletedField: !willLike,
+          _updatedAtField: FieldValue.serverTimestamp(),
+          if (!willLike) _deletedAtField: FieldValue.serverTimestamp(),
+        })
+        ..update(userRef, {
+          _likedPostsField: willLike
+              ? FieldValue.arrayUnion([postId])
+              : FieldValue.arrayRemove([postId]),
+          _updatedAtField: FieldValue.serverTimestamp(),
+        })
+        ..update(postRef, {
+          _likeCountField: FieldValue.increment(willLike ? 1 : -1),
+        }),
+    );
+
+    if (result case FirebaseFailure()) state = previousState;
+    return state.likedPostIds.contains(postId);
+  }
+
+  GroupWallState _withToggledLike(String postId, {required bool like}) {
+    final likedPostIds = {...state.likedPostIds};
+    if (like) {
+      likedPostIds.add(postId);
+    } else {
+      likedPostIds.remove(postId);
+    }
     final posts = state.posts.map((post) {
       if (post.id != postId) return post;
-      return post.copyWith(likeCount: post.likeCount + 1);
+      final next = post.likeCount + (like ? 1 : -1);
+      return post.copyWith(likeCount: next < 0 ? 0 : next);
     }).toList();
-    state = state.copyWith(posts: posts);
+    return state.copyWith(posts: posts, likedPostIds: likedPostIds);
   }
 
   Future<String?> _uploadImage(File file) async {
@@ -99,4 +149,10 @@ final class GroupWallViewModel extends _$GroupWallViewModel
       return null;
     }
   }
+
+  static const String _isDeletedField = 'isDeleted';
+  static const String _deletedAtField = 'deletedAt';
+  static const String _updatedAtField = 'updatedAt';
+  static const String _likedPostsField = 'likedPosts';
+  static const String _likeCountField = 'likeCount';
 }

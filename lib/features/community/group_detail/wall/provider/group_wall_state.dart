@@ -8,12 +8,14 @@ final class GroupWallState extends Equatable {
   const GroupWallState({
     required this.posts,
     required this.currentMember,
+    this.likedPostIds = const {},
     this.isFetching = false,
     this.isError = false,
   });
 
   final List<GroupPostModel> posts;
   final GroupMemberModel currentMember;
+  final Set<String> likedPostIds;
   final bool isFetching;
   final bool isError;
 
@@ -21,6 +23,7 @@ final class GroupWallState extends Equatable {
   List<Object?> get props => [
     posts,
     currentMember,
+    likedPostIds,
     isFetching,
     isError,
   ];
@@ -28,12 +31,14 @@ final class GroupWallState extends Equatable {
   GroupWallState copyWith({
     List<GroupPostModel>? posts,
     GroupMemberModel? currentMember,
+    Set<String>? likedPostIds,
     bool? isFetching,
     bool? isError,
   }) {
     return GroupWallState(
       posts: posts ?? this.posts,
       currentMember: currentMember ?? this.currentMember,
+      likedPostIds: likedPostIds ?? this.likedPostIds,
       isFetching: isFetching ?? this.isFetching,
       isError: isError ?? this.isError,
     );
