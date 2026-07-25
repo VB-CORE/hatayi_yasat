@@ -49,10 +49,9 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     String discussionId,
     String content,
   ) async {
-    final entry = GroupDiscussionEntryModel(
+    final entry = GroupDiscussionEntryModel.fromAuthor(
       author: state.currentMember,
       content: content,
-      createdAt: DateTime.now(),
     );
     final result = await firestoreService.add<GroupDiscussionEntryModel>(
       model: entry,

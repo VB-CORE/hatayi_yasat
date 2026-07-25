@@ -62,11 +62,10 @@ final class GroupWallViewModel extends _$GroupWallViewModel
       imageUrl = await _uploadImage(imageFile);
       if (imageUrl == null) return false;
     }
-    final post = GroupPostModel(
+    final post = GroupPostModel.fromAuthor(
       author: state.currentMember,
       content: content,
       imageUrl: imageUrl,
-      createdAt: DateTime.now(),
     );
     final result = await firestoreService.add<GroupPostModel>(
       model: post,
@@ -92,7 +91,10 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     state = _withToggledLike(postId, like: willLike);
 
     final posts = _pathFor(groupId);
-    final likeRef = posts.sub(postId, SubCollectionPaths.likes).collection.doc(uid);
+    final likeRef = posts
+        .sub(postId, SubCollectionPaths.likes)
+        .collection
+        .doc(uid);
     final postRef = posts.collection.doc(postId);
     final userRef = CollectionPaths.users.collection.doc(uid);
 

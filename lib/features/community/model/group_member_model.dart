@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/community/model/community_timestamp.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/product/model/auth/user_model.dart';
 import 'package:lifeclient/product/utility/constants/regex_types.dart';
@@ -17,6 +18,8 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     this.username = '',
     this.avatarUrl,
     this.role = GroupMemberRole.member,
+    this.createdAt,
+    this.updatedAt,
     this.isDeleted = false,
   });
 
@@ -36,7 +39,21 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   final String displayName;
   final String username;
   final String? avatarUrl;
+  @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
+
+  @JsonKey(
+    toJson: serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? createdAt;
+
+  @JsonKey(
+    toJson: serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? updatedAt;
+
   final bool isDeleted;
 
   String get maskedDisplayName {
@@ -50,23 +67,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
         )
         .join(' ');
   }
-
-  Map<String, dynamic> toAuthorJson() => {
-    'authorUid': id,
-    'authorDisplayName': displayName,
-    'authorUsername': username,
-    if (avatarUrl != null) 'authorAvatarUrl': avatarUrl,
-    'authorRole': role.name,
-  };
-
-  static GroupMemberModel authorFromJson(Map<String, dynamic> json) =>
-      GroupMemberModel(
-        id: (json['authorUid'] as String?) ?? '',
-        displayName: (json['authorDisplayName'] as String?) ?? '',
-        username: (json['authorUsername'] as String?) ?? '',
-        avatarUrl: json['authorAvatarUrl'] as String?,
-        role: GroupMemberRole.fromString(json['authorRole'] as String?),
-      );
 
   @override
   String get documentId => id;
@@ -94,6 +94,8 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     username,
     avatarUrl,
     role,
+    createdAt,
+    updatedAt,
     isDeleted,
   ];
 
@@ -103,6 +105,8 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     String? username,
     String? avatarUrl,
     GroupMemberRole? role,
+    DateTime? createdAt,
+    DateTime? updatedAt,
     bool? isDeleted,
   }) {
     return GroupMemberModel(
@@ -111,6 +115,8 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
       username: username ?? this.username,
       avatarUrl: avatarUrl ?? this.avatarUrl,
       role: role ?? this.role,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
       isDeleted: isDeleted ?? this.isDeleted,
     );
   }

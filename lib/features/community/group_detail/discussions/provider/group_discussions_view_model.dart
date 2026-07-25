@@ -56,9 +56,9 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
     String message,
   ) async {
     final currentMember = ref.read(currentGroupMemberProvider);
-    final discussion = GroupDiscussionModel(
-      title: title,
+    final discussion = GroupDiscussionModel.fromAuthor(
       author: currentMember,
+      title: title,
     );
     final discussionResult = await firestoreService.add<GroupDiscussionModel>(
       model: discussion,
@@ -67,7 +67,7 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
     final discussionId = discussionResult.dataOrNull;
     if (discussionId == null) return null;
 
-    final entry = GroupDiscussionEntryModel(
+    final entry = GroupDiscussionEntryModel.fromAuthor(
       author: currentMember,
       content: message,
     );

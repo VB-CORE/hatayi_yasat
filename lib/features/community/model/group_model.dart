@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/community/model/community_timestamp.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 
@@ -17,9 +18,10 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     this.description = '',
     this.imageUrl,
     this.isClosed = false,
-    this.isDeleted = false,
     this.memberCount = 0,
     this.createdAt,
+    this.updatedAt,
+    this.isDeleted = false,
     this.admins = const [],
   });
 
@@ -32,14 +34,19 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
   final String description;
   final String? imageUrl;
   final bool isClosed;
-  final bool isDeleted;
   @JsonKey(includeFromJson: false, includeToJson: false)
   final int memberCount;
   @JsonKey(
-    includeToJson: false,
+    toJson: serverTimestampToJson,
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? createdAt;
+  @JsonKey(
+    toJson: serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? updatedAt;
+  final bool isDeleted;
   @JsonKey(includeFromJson: false, includeToJson: false)
   final List<GroupMemberModel> admins;
 
@@ -52,10 +59,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
   String get documentId => id;
 
   @override
-  Map<String, dynamic> toJson() => {
-    ..._$GroupModelToJson(this),
-    'createdAt': FieldValue.serverTimestamp(),
-  };
+  Map<String, dynamic> toJson() => _$GroupModelToJson(this);
 
   @override
   GroupModel fromJson(Map<String, dynamic> json) => _$GroupModelFromJson(json);
@@ -75,10 +79,11 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     description,
     imageUrl,
     isClosed,
-    isDeleted,
     memberCount,
     createdAt,
+    updatedAt,
     admins,
+    isDeleted,
   ];
 
   GroupModel copyWith({
@@ -88,10 +93,11 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     String? description,
     String? imageUrl,
     bool? isClosed,
-    bool? isDeleted,
     int? memberCount,
     DateTime? createdAt,
+    DateTime? updatedAt,
     List<GroupMemberModel>? admins,
+    bool? isDeleted,
   }) {
     return GroupModel(
       id: id ?? this.id,
@@ -100,10 +106,11 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
       isClosed: isClosed ?? this.isClosed,
-      isDeleted: isDeleted ?? this.isDeleted,
       memberCount: memberCount ?? this.memberCount,
       createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
       admins: admins ?? this.admins,
+      isDeleted: isDeleted ?? this.isDeleted,
     );
   }
 }
