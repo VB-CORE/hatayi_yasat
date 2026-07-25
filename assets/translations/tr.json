@@ -239,7 +239,8 @@
   },
   "developers": {
     "title": "Geliştiriciler",
-    "seeProfileButtonText": "Profili Görüntüle"
+    "seeProfileButtonText": "Profili Görüntüle",
+    "thanksMessage": "Bizimle olup destek olan arkadaşlarımıza teşekkür ediyoruz"
   },
   "navigationTabs": {
     "home": "Anasayfa",
