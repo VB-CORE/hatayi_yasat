@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/widget/bubble/bubble_data.dart';
 
 final class BubbleItem extends StatelessWidget {
@@ -29,10 +30,10 @@ final class BubbleItem extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         ColoredBox(color: data.color),
-        Image.network(
-          data.imageUrl!,
-          fit: BoxFit.cover,
-          errorBuilder: (_, _, _) => _fallbackContent(context),
+        CustomNetworkImage(
+          imageUrl: data.imageUrl,
+          fit: .cover,
+          placeholder: _fallbackContent(context),
         ),
         if (data.title.isNotEmpty) _titleOverlay(context),
       ],
