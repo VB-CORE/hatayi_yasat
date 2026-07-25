@@ -58,7 +58,7 @@ final class DiscussionEntryTile extends StatelessWidget {
                         ],
                       ),
                       GeneralContentSmallTitle(
-                        value: model.createdAt.timeAgo,
+                        value: (model.createdAt ?? DateTime.now()).timeAgo,
                         color: context.appColors.navy300,
                       ),
                     ],

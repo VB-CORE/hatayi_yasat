@@ -17,6 +17,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     this.description = '',
     this.imageUrl,
     this.isClosed = false,
+    this.isDeleted = false,
     this.memberCount = 0,
     this.createdAt,
     this.admins = const [],
@@ -31,6 +32,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
   final String description;
   final String? imageUrl;
   final bool isClosed;
+  final bool isDeleted;
   @JsonKey(includeFromJson: false, includeToJson: false)
   final int memberCount;
   @JsonKey(
@@ -50,7 +52,10 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
   String get documentId => id;
 
   @override
-  Map<String, dynamic> toJson() => _$GroupModelToJson(this);
+  Map<String, dynamic> toJson() => {
+    ..._$GroupModelToJson(this),
+    'createdAt': FieldValue.serverTimestamp(),
+  };
 
   @override
   GroupModel fromJson(Map<String, dynamic> json) => _$GroupModelFromJson(json);
@@ -70,6 +75,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     description,
     imageUrl,
     isClosed,
+    isDeleted,
     memberCount,
     createdAt,
     admins,
@@ -82,6 +88,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     String? description,
     String? imageUrl,
     bool? isClosed,
+    bool? isDeleted,
     int? memberCount,
     DateTime? createdAt,
     List<GroupMemberModel>? admins,
@@ -93,6 +100,7 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
       isClosed: isClosed ?? this.isClosed,
+      isDeleted: isDeleted ?? this.isDeleted,
       memberCount: memberCount ?? this.memberCount,
       createdAt: createdAt ?? this.createdAt,
       admins: admins ?? this.admins,

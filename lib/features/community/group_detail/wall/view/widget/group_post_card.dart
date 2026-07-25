@@ -115,7 +115,7 @@ final class _PostAuthorRow extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
             GeneralContentSmallTitle(
-              value: model.createdAt.timeAgo,
+              value: (model.createdAt ?? DateTime.now()).timeAgo,
               color: context.appColors.navy300,
             ),
           ],
