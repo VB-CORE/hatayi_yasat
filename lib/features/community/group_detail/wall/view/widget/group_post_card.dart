@@ -9,8 +9,8 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
-import 'package:lifeclient/product/widget/avatar/profile_avatar.dart';
 import 'package:lifeclient/product/widget/button/like_button.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 
@@ -103,8 +103,8 @@ final class _PostAuthorRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ProfileAvatar(
-          name: model.author.displayName,
+        CustomUserAvatar(
+          userName: model.author.displayName,
           imageUrl: model.author.avatarUrl,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),

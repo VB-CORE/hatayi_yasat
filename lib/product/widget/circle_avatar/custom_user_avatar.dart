@@ -12,6 +12,7 @@ final class CustomUserAvatar extends StatelessWidget {
     this.radius = CustomCircleRadius.medium,
     this.backgroundColor = AppColors.coral,
     this.foregroundColor = AppColors.white,
+    this.singleLetter = false,
     super.key,
   });
 
@@ -20,6 +21,7 @@ final class CustomUserAvatar extends StatelessWidget {
   final double radius;
   final Color backgroundColor;
   final Color foregroundColor;
+  final bool singleLetter;
 
   bool get _hasImage => imageUrl?.isNotEmpty ?? false;
 
@@ -33,7 +35,7 @@ final class CustomUserAvatar extends StatelessWidget {
       radius: radius,
       backgroundColor: backgroundColor,
       child: Text(
-        userName.initials(),
+        userName.initials(take: singleLetter ? 1 : 2),
         style: AppText.body.copyWith(
           color: foregroundColor,
           fontWeight: .bold,
