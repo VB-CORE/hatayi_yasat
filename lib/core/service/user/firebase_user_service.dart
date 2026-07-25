@@ -27,7 +27,6 @@ final class FirebaseUserService implements UserService {
 
     try {
       final bytes = await file.readAsBytes();
-      // TODO: Burası düzenlenecek
       final result = await _storageService.uploadImage(
         root: .user,
         key: uid,

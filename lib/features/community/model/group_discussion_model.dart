@@ -22,7 +22,6 @@ final class GroupDiscussionModel extends BaseFirebaseModel<GroupDiscussionModel>
   final DateTime? createdAt;
   final bool isDeleted;
 
-  /// Alt koleksiyondan (entries) sayılıp doldurulur; dokümanda saklanmaz.
   final int entryCount;
 
   @override

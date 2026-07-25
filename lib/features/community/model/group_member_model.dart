@@ -39,7 +39,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   final GroupMemberRole role;
   final bool isDeleted;
 
-  /// Tartışmalar sekmesi için isim maskesi — "Saim Yıldırım" → "S••• Y•••••".
   String get maskedDisplayName {
     return displayName
         .trim()
@@ -52,7 +51,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
         .join(' ');
   }
 
-  /// Gönderi/tartışma/entry dokümanlarında yazar bilgisini düz alanlara açar.
   Map<String, dynamic> toAuthorJson() => {
     'authorUid': id,
     'authorDisplayName': displayName,

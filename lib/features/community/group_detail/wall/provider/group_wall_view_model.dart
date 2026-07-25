@@ -83,9 +83,6 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     return true;
   }
 
-  /// Beğeni: optimistic UI (kalp + sayaç anında) + atomik batch (3 yazma).
-  /// Batch başarısızsa önceki duruma dönülür. Dönen değer = son beğeni durumu,
-  /// böylece animasyonlu beğeni butonu hata halinde kalbi geri alabilir.
   Future<bool> toggleLike(String groupId, String postId) async {
     final uid = ref.read(authViewModelProvider).user?.uid;
     if (uid == null) return state.likedPostIds.contains(postId);

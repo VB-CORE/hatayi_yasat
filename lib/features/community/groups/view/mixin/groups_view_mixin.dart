@@ -26,7 +26,6 @@ mixin GroupsViewMixin
     final authState = ref.read(authViewModelProvider);
     final uid = authState is Authenticated ? authState.user.uid : null;
 
-    // Grubu oluşturan zaten yöneticidir; ayrıca üyeyse de doğrudan girer.
     final isCreator = uid != null && model.creatorUid == uid;
     final isMember =
         isCreator ||
