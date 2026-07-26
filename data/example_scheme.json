@@ -155,6 +155,7 @@
     },
     "categories": {
         "name": "Sağlık",
+        "value": 1,
         "description": "Sağlıkla ilgili makaleler ve duyurular.",
         "iconUrl": "https://example.com/health_icon.png"
     },

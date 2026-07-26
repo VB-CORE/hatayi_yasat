@@ -41,6 +41,11 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
         (value) => value.isCommentEnabled,
       ),
     );
+    final isLocked = ref.watch(
+      merchantApplicationViewModelProvider.select(
+        (value) => value.isCompanyLocked,
+      ),
+    );
     return Form(
       key: widget.formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -51,6 +56,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
               children: [
                 LabeledProductTextField(
                   controller: widget.nameController,
+                  readOnly: isLocked && widget.nameController.text.isNotEmpty,
                   labelText: LocaleKeys.requestCompany_ownerName.tr(),
                   hintText: LocaleKeys.requestCompany_ownerName.tr(),
                   validator: ValidatorNormalTextField().validate,
@@ -59,6 +65,8 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
                   padding: const PagePadding.vertical12Symmetric(),
                   child: LabeledProductTextField(
                     controller: widget.phoneController,
+                    readOnly:
+                        isLocked && widget.phoneController.text.isNotEmpty,
                     keyboardType: TextInputType.phone,
                     labelText: LocaleKeys.requestCompany_phoneNumber.tr(),
                     hintText: LocaleKeys.requestCompany_phoneNumber.tr(),
@@ -84,7 +92,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
                       value: isCommentEnabled,
                       onChanged: (value) =>
                           _viewModel.setCommentEnabled(value: value),
-                      activeTrackColor: AppColors.coral,
+                      activeTrackColor: context.general.colorScheme.tertiary,
                     ),
                   ],
                 ),

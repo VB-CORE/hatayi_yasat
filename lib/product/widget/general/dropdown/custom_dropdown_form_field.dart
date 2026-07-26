@@ -19,6 +19,7 @@ final class CustomDropdownFormField<T extends BaseDropDownModel>
     required this.onSelected,
     required this.hint,
     this.initialValue,
+    this.enabled = true,
     super.key,
   });
 
@@ -26,6 +27,7 @@ final class CustomDropdownFormField<T extends BaseDropDownModel>
   final ValueChanged<T> onSelected;
   final String hint;
   final T? initialValue;
+  final bool enabled;
 
   @override
   State<CustomDropdownFormField> createState() =>
@@ -61,10 +63,12 @@ final class _CustomDistrictSelectionFormFieldState<T extends BaseDropDownModel>
             ),
           )
           .toList(),
-      onChanged: (val) {
-        if (val == null) return;
-        widget.onSelected.call(val);
-      },
+      onChanged: widget.enabled
+          ? (val) {
+              if (val == null) return;
+              widget.onSelected.call(val);
+            }
+          : null,
     );
   }
 

@@ -53,6 +53,8 @@ final class _MerchantCompanyStepState
             ),
           LabeledProductTextField(
             controller: widget.nameController,
+            readOnly:
+                state.isCompanyLocked && widget.nameController.text.isNotEmpty,
             labelText: LocaleKeys.requestCompany_name.tr(),
             hintText: LocaleKeys.requestCompany_name.tr(),
             validator: ValidatorNormalTextField().validate,
@@ -60,6 +62,9 @@ final class _MerchantCompanyStepState
           LabeledProductTextField(
             isMultiline: true,
             controller: widget.descriptionController,
+            readOnly:
+                state.isCompanyLocked &&
+                widget.descriptionController.text.isNotEmpty,
             labelText: LocaleKeys.requestCompany_description.tr(),
             hintText: LocaleKeys.requestCompany_description.tr(),
             validator: ValidatorNormalTextField().validate,
@@ -71,6 +76,7 @@ final class _MerchantCompanyStepState
                 Expanded(
                   child: CustomDropdownFormField<RegionalCityModel>(
                     hint: '',
+                    enabled: !state.isCompanyLocked,
                     onSelected: _viewModel.selectCity,
                     items: productState.regionalCityItems,
                     initialValue: state.selectedCity,
@@ -80,6 +86,7 @@ final class _MerchantCompanyStepState
                 Expanded(
                   child: CustomDropdownFormField<RegionalTownSubItem>(
                     hint: '',
+                    enabled: !state.isCompanyLocked,
                     onSelected: _viewModel.selectTown,
                     items: state.townItems,
                     initialValue: state.selectedTown,
@@ -101,17 +108,21 @@ final class _MerchantCompanyStepState
                 children: [
                   for (final category in productState.categoryItems)
                     ActionChip(
-                      onPressed: () => _viewModel.selectCategory(category),
+                      onPressed:
+                          (state.isCompanyLocked &&
+                              state.selectedCategory != null)
+                          ? null
+                          : () => _viewModel.selectCategory(category),
                       elevation: kZero,
                       pressElevation: kZero,
                       backgroundColor: state.selectedCategory == category
-                          ? AppColors.coral
-                          : AppColors.surface,
+                          ? context.general.colorScheme.tertiary
+                          : context.appColors.surface,
                       label: GeneralBodySmallTitle(
                         category.displayName,
                         fontWeight: FontWeight.w500,
                         color: state.selectedCategory == category
-                            ? AppColors.white
+                            ? context.general.colorScheme.onTertiary
                             : context.general.colorScheme.primary,
                       ),
                     ),
@@ -153,7 +164,7 @@ final class _CompanySelectorField extends StatelessWidget {
                   name ?? LocaleKeys.merchantApplication_selectCompany.tr(),
                   fontWeight: FontWeight.w500,
                   color: name == null
-                      ? AppColors.ink400
+                      ? context.general.colorScheme.onSurfaceVariant
                       : context.general.colorScheme.primary,
                 ),
               ),
@@ -219,10 +230,14 @@ final class _ModeChip extends StatelessWidget {
         duration: DurationConstant.durationLow,
         padding: const PagePadding.vertical8Symmetric(),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.coral : AppColors.surface,
+          color: isSelected
+              ? context.general.colorScheme.tertiary
+              : context.appColors.surface,
           borderRadius: CustomRadius.medium,
           border: Border.all(
-            color: isSelected ? AppColors.coral : AppColors.ink100,
+            color: isSelected
+                ? context.general.colorScheme.tertiary
+                : context.general.colorScheme.outline,
           ),
         ),
         child: Center(
@@ -230,7 +245,7 @@ final class _ModeChip extends StatelessWidget {
             label,
             fontWeight: FontWeight.w500,
             color: isSelected
-                ? AppColors.white
+                ? context.general.colorScheme.onTertiary
                 : context.general.colorScheme.primary,
           ),
         ),

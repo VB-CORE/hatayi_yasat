@@ -3,13 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/application_model.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/model/auth/app_permission.dart';
 import 'package:lifeclient/product/model/auth/user_role.dart';
 
 part 'user_model.g.dart';
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 final class UserModel extends BaseFirebaseModel<UserModel>
     with EquatableMixin, CacheModel {
   const UserModel({
@@ -22,6 +23,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.merchantStoreId,
     this.fcmToken,
     this.updatedAt,
+    this.application,
   });
 
   const UserModel.empty() : this();
@@ -51,6 +53,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? updatedAt;
+  final Application? application;
 
   UserRole get role => UserRole.fromRoleType(roleType);
 
@@ -97,6 +100,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     String? merchantStoreId,
     String? fcmToken,
     DateTime? updatedAt,
+    Application? application,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -108,6 +112,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       merchantStoreId: merchantStoreId ?? this.merchantStoreId,
       fcmToken: fcmToken ?? this.fcmToken,
       updatedAt: updatedAt ?? this.updatedAt,
+      application: application ?? this.application,
     );
   }
 
@@ -122,5 +127,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     merchantStoreId,
     fcmToken,
     updatedAt,
+    application,
   ];
 }

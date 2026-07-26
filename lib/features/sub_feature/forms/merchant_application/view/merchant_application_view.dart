@@ -7,7 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_step.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_photo.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_state.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_view_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/widget/merchant_company_sheet.dart';
@@ -17,6 +19,7 @@ import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker.dart
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_section_v2.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/controller/time_picker_controller.dart';
 import 'package:lifeclient/product/utility/decorations/box_decorations.dart';

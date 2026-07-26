@@ -96,7 +96,7 @@ mixin MerchantApplicationViewMixin
     _flushAll();
     final error = viewModel.validateStep(step, isFormValid: isFormValid);
     if (error == null) return true;
-    final message = _messageFor(error);
+    final message = error.messageKey;
     if (message != null) appProvider.showSnackbarMessage(message.tr());
     return false;
   }
@@ -176,15 +176,4 @@ mixin MerchantApplicationViewMixin
   }
 
   void onClosePressed() => unawaited(_confirmAndClose());
-
-  String? _messageFor(MerchantStepError error) => switch (error) {
-    MerchantStepError.form => null,
-    MerchantStepError.companyNotSelected =>
-      LocaleKeys.merchantApplication_selectCompany,
-    MerchantStepError.categoryEmpty => LocaleKeys.validation_categoryEmpty,
-    MerchantStepError.photoRequired => LocaleKeys.validation_photoRequired,
-    MerchantStepError.kvkkRequired => LocaleKeys.validation_kvkk,
-    MerchantStepError.documentRequired =>
-      LocaleKeys.merchantApplication_documentHint,
-  };
 }

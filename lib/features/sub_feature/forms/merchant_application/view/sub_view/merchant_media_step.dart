@@ -43,7 +43,7 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
   Widget build(BuildContext context) {
     super.build(context);
     final state = ref.watch(merchantApplicationViewModelProvider);
-    final photoFiles = state.photoFiles;
+    final photos = state.photos;
     return Form(
       key: widget.formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -57,6 +57,8 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
           LabeledProductTextField(
             isMultiline: true,
             controller: widget.addressController,
+            readOnly:
+                state.isCompanyLocked && widget.addressController.text.isNotEmpty,
             labelText: LocaleKeys.requestCompany_address.tr(),
             hintText: LocaleKeys.requestCompany_address.tr(),
             validator: ValidatorNormalTextField().validate,
@@ -86,7 +88,7 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
                   GeneralBodySmallTitle(
                     LocaleKeys.merchantApplication_photosHint.tr(),
                     fontWeight: FontWeight.w500,
-                    color: AppColors.ink400,
+                    color: context.general.colorScheme.onSurfaceVariant,
                   ),
                 ],
               ),
@@ -94,14 +96,17 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: _visiblePhotoSlotCount(photoFiles.length),
+                itemCount: state.isCompanyLocked
+                    ? photos.length
+                    : _visiblePhotoSlotCount(photos.length),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: _photosPerRow,
                   mainAxisSpacing: WidgetSizes.spacingS,
                   crossAxisSpacing: WidgetSizes.spacingXs,
                 ),
                 itemBuilder: (context, index) => _MerchantPhotoSlot(
-                  file: index < photoFiles.length ? photoFiles[index] : null,
+                  photo: index < photos.length ? photos[index] : null,
+                  isLocked: state.isCompanyLocked,
                   onTap: () => _pickPhoto(index),
                   onRemove: () => _viewModel.removePhotoAt(index),
                 ),
@@ -116,28 +121,30 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
 
 final class _MerchantPhotoSlot extends StatelessWidget {
   const _MerchantPhotoSlot({
-    required this.file,
+    required this.photo,
+    required this.isLocked,
     required this.onTap,
     required this.onRemove,
   });
 
-  final File? file;
+  final MerchantPhoto? photo;
+  final bool isLocked;
   final VoidCallback onTap;
   final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
-    final photoFile = file;
-    if (photoFile == null) {
+    final currentPhoto = photo;
+    if (currentPhoto == null) {
       return InkWell(
         splashFactory: NoSplash.splashFactory,
         onTap: onTap,
-        child: const GeneralDottedRectangle(
+        child: GeneralDottedRectangle(
           borderRadius: CustomRadius.small,
           child: SizedBox.expand(
             child: Icon(
               AppIcons.addPhoto,
-              color: AppColors.ink300,
+              color: context.appColors.ink300,
             ),
           ),
         ),
@@ -148,33 +155,43 @@ final class _MerchantPhotoSlot extends StatelessWidget {
       children: [
         InkWell(
           splashFactory: NoSplash.splashFactory,
-          onTap: onTap,
+          onTap: isLocked ? null : onTap,
           child: ClipRRect(
             borderRadius: CustomRadius.medium,
-            child: Image.file(photoFile, fit: BoxFit.cover),
+            child: switch (currentPhoto) {
+              MerchantPhotoFile(:final file) => Image.file(
+                file,
+                fit: BoxFit.cover,
+              ),
+              MerchantPhotoUrl(:final url) => CustomNetworkImage(
+                imageUrl: url,
+                fit: BoxFit.cover,
+              ),
+            },
           ),
         ),
-        Positioned(
-          top: WidgetSizes.spacingXSS,
-          right: WidgetSizes.spacingXSS,
-          child: InkWell(
-            splashFactory: NoSplash.splashFactory,
-            onTap: onRemove,
-            child: Container(
-              width: WidgetSizes.spacingL,
-              height: WidgetSizes.spacingL,
-              decoration: const BoxDecoration(
-                color: AppColors.ink800,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                AppIcons.close,
-                size: WidgetSizes.spacingM,
-                color: AppColors.white,
+        if (!isLocked)
+          Positioned(
+            top: WidgetSizes.spacingXSS,
+            right: WidgetSizes.spacingXSS,
+            child: InkWell(
+              splashFactory: NoSplash.splashFactory,
+              onTap: onRemove,
+              child: Container(
+                width: WidgetSizes.spacingL,
+                height: WidgetSizes.spacingL,
+                decoration: BoxDecoration(
+                  color: context.appColors.ink800,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  AppIcons.close,
+                  size: WidgetSizes.spacingM,
+                  color: context.general.colorScheme.onInverseSurface,
+                ),
               ),
             ),
           ),
-        ),
       ],
     );
   }

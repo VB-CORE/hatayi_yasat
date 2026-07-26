@@ -15,11 +15,13 @@ final class MerchantApplicationModel extends Equatable {
     required this.placeCategory,
     required this.placeDistrict,
     required this.photoFiles,
+    required this.photoUrls,
     required this.documentFile,
     required this.timeValidationModel,
     required this.selectedLocation,
     required this.selectedCityId,
     required this.isComment,
+    required this.ownerId,
   });
 
   final String placeName;
@@ -30,11 +32,13 @@ final class MerchantApplicationModel extends Equatable {
   final CategoryModel placeCategory;
   final TownModel placeDistrict;
   final List<File> photoFiles;
+  final List<String> photoUrls;
   final File documentFile;
   final OpenAndCloseTimeValidationModel timeValidationModel;
   final LatLng selectedLocation;
   final String selectedCityId;
   final bool isComment;
+  final String ownerId;
 
   @override
   List<Object?> get props => [
@@ -46,10 +50,12 @@ final class MerchantApplicationModel extends Equatable {
     placeCategory,
     placeDistrict,
     photoFiles,
+    photoUrls,
     documentFile,
     timeValidationModel,
     selectedLocation,
     selectedCityId,
     isComment,
+    ownerId,
   ];
 }

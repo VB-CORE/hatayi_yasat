@@ -143,6 +143,11 @@
     "status": {
       "title": "Esnaf Başvurum",
       "reviewing": "İnceleniyor",
+      "approved": "Onaylandı",
+      "denied": "Reddedildi",
+      "approvedHeadline": "Başvurun onaylandı!\nMekanın artık yayında.",
+      "deniedHeadline": "Başvurun reddedildi.",
+      "deniedReason": "Red nedeni",
       "headline": "Başvurun bizde.\nYakında sana döneceğiz.",
       "description": "Esnaf başvurun ekibimiz tarafından 1-3 iş günü içinde değerlendiriliyor. Onaylandığında bildirim alacaksın.",
       "submitted": "Başvuru gönderildi",

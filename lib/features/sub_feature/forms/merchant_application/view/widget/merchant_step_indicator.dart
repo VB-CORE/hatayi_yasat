@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -44,7 +44,7 @@ final class MerchantStepIndicator extends StatelessWidget {
                       LocaleKeys.merchantApplication_headerLabel
                           .tr()
                           .toUpperCase(),
-                      color: AppColors.coral,
+                      color: context.general.colorScheme.tertiary,
                     ),
                     GeneralBodyTitle(title),
                   ],
@@ -52,7 +52,7 @@ final class MerchantStepIndicator extends StatelessWidget {
               ),
               GeneralBodySmallTitle(
                 '${currentStep + 1}/$stepCount',
-                color: AppColors.ink400,
+                color: context.general.colorScheme.onSurfaceVariant,
                 fontWeight: FontWeight.w500,
               ),
             ],
@@ -69,8 +69,8 @@ final class MerchantStepIndicator extends StatelessWidget {
                     height: WidgetSizes.spacingXxs,
                     decoration: BoxDecoration(
                       color: i <= currentStep
-                          ? AppColors.coral
-                          : AppColors.ink100,
+                          ? context.general.colorScheme.tertiary
+                          : context.general.colorScheme.outline,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
                     ),
                   ),

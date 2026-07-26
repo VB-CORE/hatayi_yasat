@@ -29,6 +29,7 @@ final class MerchantCompanySheetViewModel
           .read(homeViewModelProvider.notifier)
           .fetchApprovedCollectionQuery();
       final snapshot = await query.limit(_fetchLimit).get();
+
       state = state.copyWith(
         companies: snapshot.docs
             .map((doc) => doc.data())

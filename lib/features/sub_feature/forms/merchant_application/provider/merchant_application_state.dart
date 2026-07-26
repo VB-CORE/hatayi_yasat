@@ -4,34 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-
-enum MerchantApplicationStep {
-  company,
-  media,
-  owner;
-
-  String get titleKey => switch (this) {
-    MerchantApplicationStep.company =>
-      LocaleKeys.merchantApplication_steps_company,
-    MerchantApplicationStep.media => LocaleKeys.merchantApplication_steps_media,
-    MerchantApplicationStep.owner => LocaleKeys.merchantApplication_steps_owner,
-  };
-
-  MerchantApplicationStep? get next =>
-      index + 1 < values.length ? values[index + 1] : null;
-
-  MerchantApplicationStep? get previous => index > 0 ? values[index - 1] : null;
-}
-
-enum MerchantStepError {
-  form,
-  companyNotSelected,
-  categoryEmpty,
-  photoRequired,
-  kvkkRequired,
-  documentRequired,
-}
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_step.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_photo.dart';
 
 final class MerchantApplicationState extends Equatable {
   const MerchantApplicationState({
@@ -48,7 +22,7 @@ final class MerchantApplicationState extends Equatable {
     this.openTime,
     this.closeTime,
     this.selectedLocation,
-    this.photoFiles = const [],
+    this.photos = const [],
     this.ownerName = '',
     this.phoneNumber = '',
     this.documentFile,
@@ -61,32 +35,30 @@ final class MerchantApplicationState extends Equatable {
   final StoreModel? selectedCompany;
   final MerchantApplicationStep currentStep;
   final bool isNewCompanyMode;
-
   final String companyName;
   final String companyDescription;
   final CategoryModel? selectedCategory;
   final RegionalCityModel? selectedCity;
   final List<RegionalTownSubItem> townItems;
   final RegionalTownSubItem? selectedTown;
-
   final String address;
   final TimeOfDay? openTime;
   final TimeOfDay? closeTime;
   final LatLng? selectedLocation;
-  final List<File> photoFiles;
-
+  final List<MerchantPhoto> photos;
   final String ownerName;
   final String phoneNumber;
   final File? documentFile;
   final bool isKVKKChecked;
   final bool isCommentEnabled;
-
   final bool isSubmitting;
   final bool isError;
 
   static int get stepCount => MerchantApplicationStep.values.length;
   bool get isFirstStep => currentStep == MerchantApplicationStep.values.first;
   bool get isLastStep => currentStep == MerchantApplicationStep.values.last;
+
+  bool get isCompanyLocked => !isNewCompanyMode && selectedCompany != null;
 
   @override
   List<Object?> get props => [
@@ -103,7 +75,7 @@ final class MerchantApplicationState extends Equatable {
     openTime,
     closeTime,
     selectedLocation,
-    photoFiles,
+    photos,
     ownerName,
     phoneNumber,
     documentFile,
@@ -133,7 +105,7 @@ final class MerchantApplicationState extends Equatable {
     bool clearCloseTime = false,
     LatLng? selectedLocation,
     bool clearSelectedLocation = false,
-    List<File>? photoFiles,
+    List<MerchantPhoto>? photos,
     String? ownerName,
     String? phoneNumber,
     File? documentFile,
@@ -164,7 +136,7 @@ final class MerchantApplicationState extends Equatable {
     selectedLocation: clearSelectedLocation
         ? null
         : (selectedLocation ?? this.selectedLocation),
-    photoFiles: photoFiles ?? this.photoFiles,
+    photos: photos ?? this.photos,
     ownerName: ownerName ?? this.ownerName,
     phoneNumber: phoneNumber ?? this.phoneNumber,
     documentFile: clearDocumentFile
