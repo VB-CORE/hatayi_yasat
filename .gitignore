@@ -16,7 +16,7 @@ package-lock.json
 .metadata
 
 firebase-export-*
-# *.g.dart
+*.g.dart
 !**/*_view_model.g.dart
 !**/app_router.g.dart
 !**/locale_keys.g.dart
