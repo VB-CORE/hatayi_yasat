@@ -240,7 +240,8 @@
   },
   "developers": {
     "title": "Developers",
-    "seeProfileButtonText": "See Profile"
+    "seeProfileButtonText": "See Profile",
+    "thanksMessage": "Thank you to our friends who support us"
   },
   "navigationTabs": {
     "home": "Home",

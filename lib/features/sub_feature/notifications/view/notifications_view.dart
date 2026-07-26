@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
@@ -18,7 +17,7 @@ final class NotificationsView extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.general.colorScheme.surface,
+      backgroundColor: AppColors.white,
       appBar: PageAppBar(pageTitle: LocaleKeys.home_notifications),
       body: CustomGroupedFirestoreListView<AppNotificationModel, DateTime>(
         query: notificationsQuery,

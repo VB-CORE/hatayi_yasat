@@ -29,6 +29,21 @@ extension StringExtension on String {
     return parts.map((p) => p[0].toUpperCase()).take(take).join();
   }
 
+  /// Short display form: first word + last initial (e.g. 'Veli Bacik' -> 'Veli B.').
+  String get shortDisplayName {
+    final name = trim();
+    if (name.isEmpty) return '';
+
+    final parts = name
+        .split(RegexTypes.whitespace)
+        .where((part) => part.isNotEmpty);
+
+    if (parts.isEmpty) return '';
+    if (parts.length == 1) return parts.first;
+
+    return '${parts.first} ${parts.last[0].toUpperCase()}.';
+  }
+
   String get withHttps {
     if (startsWith('http')) {
       return this;
