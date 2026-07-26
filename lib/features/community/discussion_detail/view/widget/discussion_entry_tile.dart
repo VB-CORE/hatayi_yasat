@@ -5,11 +5,11 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/features/community/widget/group_member_avatar.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
@@ -31,8 +31,8 @@ final class DiscussionEntryTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                GroupMemberAvatar(
-                  displayName: model.author.displayName,
+                CustomUserAvatar(
+                  userName: model.author.displayName,
                   backgroundColor: context.appColors.ink300,
                   singleLetter: true,
                 ),
@@ -58,7 +58,7 @@ final class DiscussionEntryTile extends StatelessWidget {
                         ],
                       ),
                       GeneralContentSmallTitle(
-                        value: model.createdAt.timeAgo,
+                        value: model.createdAt.timeAgoOrNow,
                         color: context.appColors.navy300,
                       ),
                     ],

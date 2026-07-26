@@ -131,7 +131,8 @@
     "addedFavorite": "Added to favorites",
     "emptyFavorite": "Your favorites list is empty",
     "removedFavorite": "Removed from favorites",
-    "copiedToClipboard": "Copied to clipboard"
+    "copiedToClipboard": "Copied to clipboard",
+    "imageTooLarge": "The image must be smaller than {} MB."
   },
   "merchantApplication": {
     "headerLabel": "Merchant Application",
@@ -278,7 +279,8 @@
   },
   "developers": {
     "title": "Developers",
-    "seeProfileButtonText": "See Profile"
+    "seeProfileButtonText": "See Profile",
+    "thanksMessage": "Thank you to our friends who support us"
   },
   "navigationTabs": {
     "home": "Home",
@@ -288,6 +290,7 @@
     "request": "Request",
     "advertise": "Advertise",
     "community": "Community",
+    "groups": "Groups",
     "memories": "Memories",
     "places": "Places",
     "feed": "Feed",
@@ -501,6 +504,38 @@
     "error": {
       "generic": "Something went wrong while signing in, please try again.",
       "failed": "{provider} sign-in failed, please try again."
+    },
+    "signOut": {
+      "title": "Sign Out",
+      "content": "Are you sure you want to sign out?"
+    },
+    "editProfile": {
+      "title": "Edit Profile",
+      "displayName": "Full Name",
+      "displayNameHint": "Enter your first and last name",
+      "email": "Email",
+      "changePhoto": "Change Photo",
+      "error": "Profile could not be updated, please try again."
+    }
+  },
+  "profile": {
+    "menu": {
+      "favorites": "My Favorites",
+      "settings": "Settings",
+      "rateUs": "Rate Us",
+      "privacy": "Privacy Policy",
+      "about": "About Us",
+      "developers": "Developers",
+      "signOut": "Sign Out"
+    },
+    "stats": {
+      "posts": "Posts",
+      "favorites": "Favorites",
+      "comments": "Reviews"
+    },
+    "storeBanner": {
+      "title": "Own a place? Apply as a merchant.",
+      "subtitle": "Add your place and earn the \"Place Owner\" badge."
     }
   },
   "userQr": {
@@ -551,12 +586,18 @@
       "closedGroup": "CLOSED GROUP",
       "adminBadge": "Admin",
       "noPermissionInfo": "You don't have permission to create a group. Authorized community members can create new groups.",
-      "empty": "No groups yet."
+      "empty": "No groups yet.",
+      "joinConfirmTitle": "Join Group",
+      "joinConfirmMessage": "Do you want to join this group? Once you join, you can access the group's content.",
+      "join": "Join",
+      "joinConfirmCancel": "Cancel",
+      "allCategories": "All"
     },
     "createGroup": {
       "title": "Create Group",
       "openBadge": "OPEN",
       "coverImageLabel": "Cover Image",
+      "coverImageHint": "Cover image must be at most 1 MB.",
       "selectImage": "Select image",
       "nameLabel": "Group Name",
       "nameHint": "E.g: Antakya Neighborhood Solidarity",
@@ -566,7 +607,8 @@
       "descriptionLabel": "Description",
       "descriptionHint": "What is this group about? Who should join?",
       "submitButton": "Create Group",
-      "success": "Group created successfully."
+      "success": "Group created successfully.",
+      "categoryLoadError": "Categories could not be loaded. Please try again."
     },
     "groupDetail": {
       "tabWall": "Wall",
@@ -607,11 +649,12 @@
         "adminsTitle": "ADMINS",
         "leaveGroup": "Leave group",
         "leaveSuccess": "You left the group.",
-        "closeGroup": "Close group",
-        "closeGroupConfirmTitle": "Close group",
-        "closeGroupConfirmMessage": "This removes the group for all members and cannot be undone.",
-        "closeGroupConfirmCancel": "Cancel",
-        "closeGroupSuccess": "Group closed."
+        "deleteGroup": "Delete group",
+        "deleteGroupConfirmTitle": "Delete group",
+        "deleteGroupConfirmMessage": "This removes the group for all members.",
+        "deleteGroupConfirmCancel": "Cancel",
+        "deleteGroupSuccess": "Group deleted.",
+        "categoryLabel": "Category"
       }
     }
   },

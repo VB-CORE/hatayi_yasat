@@ -63,9 +63,9 @@ types:
         index: 16
       updatedAt:
         index: 17
-      ownerId:
-        index: 18
       isCommentEnabled:
+        index: 18
+      ownerId:
         index: 19
   MemoryModel:
     typeId: 4
@@ -103,7 +103,7 @@ types:
         index: 2
   UserModel:
     typeId: 7
-    nextIndex: 10
+    nextIndex: 12
     fields:
       uid:
         index: 0
@@ -123,8 +123,10 @@ types:
         index: 7
       updatedAt:
         index: 8
-      application:
+      rates:
         index: 9
+      application:
+        index: 11
   Application:
     typeId: 8
     nextIndex: 6

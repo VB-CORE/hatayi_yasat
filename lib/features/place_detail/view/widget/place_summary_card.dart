@@ -5,42 +5,28 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
     required this.store,
     required this.onCall,
     required this.onComment,
-    this.borderRadius = AppRadius.lg,
-    this.showShadow = true,
     super.key,
   });
 
   final StoreModel store;
   final VoidCallback onCall;
   final VoidCallback onComment;
-  final double borderRadius;
-  final bool showShadow;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final town = productProvider(ref).fetchTownFromCode(store.townCode);
     final meta = PlaceMetaMock(store);
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppSpacing.md),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: AppColors.ink50),
-        boxShadow: showShadow ? AppShadows.card : null,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: AppSpacing.xs,
-        children: [
-          _SummaryHeader(store: store, town: town),
-          StatusPill(store: store),
-          _SummaryRatingRow(meta: meta),
-          _SummaryActions(store: store, onCall: onCall, onComment: onComment),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: AppSpacing.xs,
+      children: [
+        _SummaryHeader(store: store, town: town),
+        StatusPill(store: store),
+        _SummaryRatingRow(meta: meta),
+        _SummaryActions(store: store, onCall: onCall, onComment: onComment),
+      ],
     );
   }
 }

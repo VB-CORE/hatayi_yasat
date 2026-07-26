@@ -24,7 +24,12 @@ final class PhotoPickerManager {
   final ImagePicker _picker = ImagePicker();
   final BuildContext context;
 
-  Future<File?> pickPhoto({required PhotoPickType type}) async {
+  Future<File?> pickPhoto({
+    required PhotoPickType type,
+    List<CropAspectRatioPreset> aspectRatioPresets = const [
+      CropAspectRatioPreset.ratio4x3,
+    ],
+  }) async {
     XFile? mediaFile;
     try {
       switch (type) {
@@ -43,17 +48,13 @@ final class PhotoPickerManager {
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: LocaleKeys.component_picker_cropperTitle.tr(),
-          initAspectRatio: CropAspectRatioPreset.original,
+          initAspectRatio: aspectRatioPresets.first,
           lockAspectRatio: true,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.ratio4x3,
-          ],
+          aspectRatioPresets: aspectRatioPresets,
         ),
         IOSUiSettings(
           title: LocaleKeys.component_picker_cropperTitle.tr(),
-          aspectRatioPresets: [
-            CropAspectRatioPreset.ratio4x3,
-          ],
+          aspectRatioPresets: aspectRatioPresets,
         ),
       ],
     );

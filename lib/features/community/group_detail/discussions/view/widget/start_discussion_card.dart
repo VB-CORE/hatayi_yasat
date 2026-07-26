@@ -7,7 +7,6 @@ import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/widget/general/dotted/general_dotted_rectangle.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable

@@ -4,9 +4,10 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
-import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
+import 'package:lifeclient/features/main/profile/view/profile_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
+import 'package:lifeclient/sub_feature/main_tab/widget/profile_tab_avatar.dart';
 
 final class TabModel extends Equatable {
   const TabModel({
@@ -14,15 +15,17 @@ final class TabModel extends Equatable {
     required this.icon,
     required this.title,
     required this.semanticKey,
+    this.showAppBar = true,
   });
 
   @override
-  List<Object?> get props => [page, icon, title, semanticKey];
+  List<Object?> get props => [page, icon, title, semanticKey, showAppBar];
 
   final Widget page;
   final Widget icon;
   final String title;
   final GeneralSemanticKeys semanticKey;
+  final bool showAppBar;
 }
 
 final class TabModels {
@@ -47,10 +50,11 @@ final class TabModels {
         semanticKey: GeneralSemanticKeys.memoriesTab,
       ),
       const TabModel(
-        page: FavoriteView(),
-        icon: HugeIcon(icon: HugeIcons.strokeRoundedUser),
+        page: ProfileView(),
+        icon: ProfileTabAvatar(),
         title: LocaleKeys.navigationTabs_profile,
         semanticKey: GeneralSemanticKeys.favoriteTab,
+        showAppBar: false,
       ),
     ];
   }

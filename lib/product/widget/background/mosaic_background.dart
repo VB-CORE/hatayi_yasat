@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
- 
+
 final class MosaicBackground extends StatelessWidget {
   const MosaicBackground({
     this.gradient,
+    this.showGradient = true,
+    this.tileOpacity = 0.30,
     super.key,
   });
 
   final Gradient? gradient;
+  final bool showGradient;
+  final double tileOpacity;
 
   static const Gradient _defaultGradient = LinearGradient(
     begin: .topLeft,
@@ -21,6 +25,8 @@ final class MosaicBackground extends StatelessWidget {
       child: CustomPaint(
         painter: _MosaicPatternPainter(
           gradient: gradient ?? _defaultGradient,
+          showGradient: showGradient,
+          tileOpacity: tileOpacity,
         ),
       ),
     );
@@ -30,14 +36,17 @@ final class MosaicBackground extends StatelessWidget {
 final class _MosaicPatternPainter extends CustomPainter {
   const _MosaicPatternPainter({
     required this.gradient,
+    required this.showGradient,
+    required this.tileOpacity,
   });
 
   final Gradient gradient;
+  final bool showGradient;
+  final double tileOpacity;
 
   static const double _tileSize = 20;
   static const double _tileGap = 7;
   static const double _tileRadius = 4;
-  static const double _tileOpacity = 0.30;
 
   static const List<Color> _colors = [
     AppColors.gold300,
@@ -54,7 +63,9 @@ final class _MosaicPatternPainter extends CustomPainter {
       ..save()
       ..clipRect(bounds);
 
-    _paintGradient(canvas, bounds);
+    if (showGradient) {
+      _paintGradient(canvas, bounds);
+    }
     _paintTiles(canvas, size);
 
     canvas.restore();
@@ -79,7 +90,7 @@ final class _MosaicPatternPainter extends CustomPainter {
         paint.color = _resolveColor(
           row: row,
           column: column,
-        ).withValues(alpha: _tileOpacity);
+        ).withValues(alpha: tileOpacity);
 
         final rect = Rect.fromLTWH(
           column * tileStep,
@@ -103,6 +114,8 @@ final class _MosaicPatternPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _MosaicPatternPainter oldDelegate) {
-    return oldDelegate.gradient != gradient;
+    return oldDelegate.gradient != gradient ||
+        oldDelegate.showGradient != showGradient ||
+        oldDelegate.tileOpacity != tileOpacity;
   }
 }

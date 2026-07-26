@@ -59,7 +59,7 @@ final class PlaceDetailViewModelProvider
 }
 
 String _$placeDetailViewModelHash() =>
-    r'13121995cba6246c03f2d8a3b52c69e0f687b54f';
+    r'20043f6b738659b961e4fa7ef22e01510c76b9f0';
 
 final class PlaceDetailViewModelFamily extends $Family
     with

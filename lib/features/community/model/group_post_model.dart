@@ -1,61 +1,90 @@
-import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/community/model/group_author_model.dart';
 
-final class GroupPostModel extends Equatable {
+part 'group_post_model.g.dart';
+
+@JsonSerializable(includeIfNull: false)
+final class GroupPostModel extends BaseFirebaseModel<GroupPostModel>
+    with EquatableMixin {
   const GroupPostModel({
-    required this.id,
-    required this.author,
-    required this.content,
-    required this.createdAt,
+    this.id = '',
+    this.author = const GroupAuthorModel.empty(),
+    this.content = '',
     this.imageUrl,
-    this.imageFile,
     this.likeCount = 0,
-    this.commentCount = 0,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  final String id;
-  final GroupMemberModel author;
-  final String content;
-  final DateTime createdAt;
-  final String? imageUrl;
+  const GroupPostModel.empty() : this();
 
-  final File? imageFile;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final String id;
+
+  final GroupAuthorModel author;
+  final String content;
+  final String? imageUrl;
   final int likeCount;
-  final int commentCount;
+
+  @JsonKey(
+    toJson: FirebaseTimeParse.serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? createdAt;
+
+  @JsonKey(
+    toJson: FirebaseTimeParse.serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? updatedAt;
+  @override
+  String get documentId => id;
+
+  @override
+  Map<String, dynamic> toJson() => _$GroupPostModelToJson(this);
+
+  @override
+  GroupPostModel fromJson(Map<String, dynamic> json) =>
+      _$GroupPostModelFromJson(json);
+
+  @override
+  GroupPostModel fromFirebase(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data();
+    if (data == null) return const GroupPostModel.empty();
+    return fromJson(data).copyWith(id: snapshot.id);
+  }
 
   @override
   List<Object?> get props => [
     id,
     author,
     content,
-    createdAt,
     imageUrl,
-    imageFile,
     likeCount,
-    commentCount,
+    createdAt,
+    updatedAt,
   ];
 
   GroupPostModel copyWith({
     String? id,
-    GroupMemberModel? author,
+    GroupAuthorModel? author,
     String? content,
-    DateTime? createdAt,
     String? imageUrl,
-    File? imageFile,
     int? likeCount,
-    int? commentCount,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return GroupPostModel(
       id: id ?? this.id,
       author: author ?? this.author,
       content: content ?? this.content,
-      createdAt: createdAt ?? this.createdAt,
       imageUrl: imageUrl ?? this.imageUrl,
-      imageFile: imageFile ?? this.imageFile,
       likeCount: likeCount ?? this.likeCount,
-      commentCount: commentCount ?? this.commentCount,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

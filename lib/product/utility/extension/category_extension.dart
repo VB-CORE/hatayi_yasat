@@ -5,12 +5,12 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 extension CategoryExtension on CategoryModel {
   static CategoryModel get emptyAll => CategoryModel(
-        name: LocaleKeys.button_allFilter.tr(),
-        value: kErrorNumber.toInt(),
-      );
+    name: LocaleKeys.button_allFilter.tr(),
+    value: kErrorNumber.toInt(),
+  );
 
   static TownModel get emptyAllTown => TownModel(
-        code: -1,
-        name: LocaleKeys.button_allFilter.tr(),
-      );
+    code: -1,
+    name: LocaleKeys.button_allFilter.tr(),
+  );
 }

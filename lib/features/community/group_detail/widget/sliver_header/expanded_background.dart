@@ -12,7 +12,7 @@ final class _ExpandedBackground extends StatelessWidget {
       background: Stack(
         fit: StackFit.expand,
         children: [
-          GroupCoverImage(groupId: model.id, imageUrl: model.coverImageUrl),
+          GroupCoverImage(groupId: model.id, imageUrl: model.imageUrl),
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -37,16 +37,18 @@ final class _ExpandedBackground extends StatelessWidget {
   }
 }
 
-final class _GroupTitleArea extends StatelessWidget {
+final class _GroupTitleArea extends ConsumerWidget {
   const _GroupTitleArea({required this.model});
 
   final GroupModel model;
 
   @override
-  Widget build(BuildContext context) {
-    final typeLabel = model.type == GroupType.open
-        ? LocaleKeys.community_groupDetail_openGroup.tr()
-        : LocaleKeys.community_groupDetail_closedGroup.tr();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final memberCount = ref.watch(
+      groupDetailViewModelProvider(
+        model.id,
+      ).select((state) => state.group?.memberCount ?? model.memberCount),
+    );
     final onCover = context.general.colorScheme.onTertiary;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -61,15 +63,9 @@ final class _GroupTitleArea extends StatelessWidget {
         const EmptyBox.xSmallHeight(),
         Row(
           children: [
-            Icon(
-              model.type == GroupType.open
-                  ? AppIcons.globe
-                  : AppIcons.lockPerson,
-              size: AppIconSizes.xMedium,
-              color: onCover,
-            ),
+            Icon(model.type.icon, size: AppIconSizes.xMedium, color: onCover),
             const EmptyBox(width: WidgetSizes.spacingXxs),
-            GeneralContentSmallTitle(value: typeLabel, color: onCover),
+            GeneralContentSmallTitle(value: model.type.label, color: onCover),
             const EmptyBox.smallWidth(),
             Icon(
               AppIcons.group,
@@ -79,7 +75,7 @@ final class _GroupTitleArea extends StatelessWidget {
             const EmptyBox(width: WidgetSizes.spacingXxs),
             GeneralContentSmallTitle(
               value: LocaleKeys.community_groupDetail_memberCount.tr(
-                args: [model.memberCount.toString()],
+                args: [memberCount.toString()],
               ),
               color: onCover,
             ),

@@ -42,7 +42,7 @@ final class DevelopersViewModelProvider
 }
 
 String _$developersViewModelHash() =>
-    r'4bfc0480b999629d7a4c1a984f3210775a3bc4b6';
+    r'e88ca4fecdb4c5642e76e7c86233578ba97fd061';
 
 abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
   DevelopersState build();

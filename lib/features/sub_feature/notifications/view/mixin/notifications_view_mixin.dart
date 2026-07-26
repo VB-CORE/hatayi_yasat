@@ -7,15 +7,15 @@ import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
 mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
-  static const notificationItemTreshold = 50;
+  static const notificationItemThreshold = 50;
 
   Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
-      .firebaseService
+      .firestoreService
       .collectionReference(
         CollectionPaths.notifications,
         AppNotificationModel(),
       )
-      .orderBy(QueryOrders.createdAt.name, descending: true);
+      .orderBy(FirestoreFields.createdAt.name, descending: true);
 
   DateTime notificationGroupBy(AppNotificationModel item) =>
       (item.createdAt ?? DateTime.now()).startOfDay;
