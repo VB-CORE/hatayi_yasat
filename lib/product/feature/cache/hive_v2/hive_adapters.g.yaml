@@ -25,7 +25,7 @@ types:
         index: 0
   StoreModel:
     typeId: 3
-    nextIndex: 18
+    nextIndex: 20
     fields:
       name:
         index: 0
@@ -63,6 +63,10 @@ types:
         index: 16
       updatedAt:
         index: 17
+      isCommentEnabled:
+        index: 18
+      ownerId:
+        index: 19
   MemoryModel:
     typeId: 4
     nextIndex: 6
