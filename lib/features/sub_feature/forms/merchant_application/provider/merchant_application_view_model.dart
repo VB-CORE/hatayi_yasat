@@ -219,22 +219,12 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     final documentUrl = await _uploadDocument(model.documentFile);
     if (documentUrl == null) return false;
 
-    final storeId = await _createStore(model, images);
-    if (storeId == null) return false;
-
-    return _createApplicationRecord(
-      model: model,
-      storeId: storeId,
-      documentUrl: documentUrl,
-    );
-  }
-
-  Future<String?> _createStore(
-    MerchantApplicationModel model,
-    List<String> images,
-  ) async {
     final deviceId = await ''.ext.deviceId;
     final now = DateTime.now();
+    final storeReference = CollectionPaths.unApprovedApplications.collection
+        .doc();
+    final userReference = CollectionPaths.users.collection.doc(model.ownerId);
+
     final store = StoreModel(
       name: model.placeName,
       owner: model.placeOwnerName,
@@ -258,30 +248,17 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
       createdAt: now,
       updatedAt: now,
     );
-    final result = await firestoreService.add<StoreModel>(
-      model: store,
-      path: CollectionPaths.unApprovedApplications,
-    );
-    return result.dataOrNull;
-  }
-
-  Future<bool> _createApplicationRecord({
-    required MerchantApplicationModel model,
-    required String storeId,
-    required String documentUrl,
-  }) async {
-    final now = DateTime.now();
     final record = Application(
-      id: storeId,
-      status: MerchantApplicationStatus.pending,
+      id: storeReference.id,
       ownershipDocumentUrl: documentUrl,
       createdAt: now,
       updatedAt: now,
     );
-    final result = await firestoreService.updateFields(
-      path: CollectionPaths.users,
-      documentId: model.ownerId,
-      fields: {'application': record.toJson()},
+
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(storeReference, store.toJson())
+        ..update(userReference, {'application': record.toJson()}),
     );
     return result.isSuccess;
   }
