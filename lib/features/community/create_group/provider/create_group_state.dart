@@ -1,35 +1,20 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 final class CreateGroupState extends Equatable {
-  const CreateGroupState({
-    required this.categories,
-    this.isFetchingCategories = false,
-    this.isSubmitting = false,
-  });
+  const CreateGroupState({this.isSubmitting = false, this.isError = false});
 
-  final List<GroupCategoryModel> categories;
-  final bool isFetchingCategories;
   final bool isSubmitting;
+  final bool isError;
 
   @override
-  List<Object?> get props => [
-    categories,
-    isFetchingCategories,
-    isSubmitting,
-  ];
+  List<Object?> get props => [isSubmitting, isError];
 
-  CreateGroupState copyWith({
-    List<GroupCategoryModel>? categories,
-    bool? isFetchingCategories,
-    bool? isSubmitting,
-  }) {
+  CreateGroupState copyWith({bool? isSubmitting, bool? isError}) {
     return CreateGroupState(
-      categories: categories ?? this.categories,
-      isFetchingCategories: isFetchingCategories ?? this.isFetchingCategories,
       isSubmitting: isSubmitting ?? this.isSubmitting,
+      isError: isError ?? this.isError,
     );
   }
 }

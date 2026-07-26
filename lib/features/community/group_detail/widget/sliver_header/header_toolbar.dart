@@ -58,10 +58,10 @@ final class _AdminBadge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUserId = ref.watch(
-      currentGroupMemberProvider.select((member) => member.id),
+    final isAdmin = ref.watch(
+      groupMembersViewModelProvider(model.id).select((state) => state.isAdmin),
     );
-    if (!model.isAdmin(currentUserId)) return const SizedBox.shrink();
+    if (!isAdmin) return const SizedBox.shrink();
 
     final colorScheme = context.general.colorScheme;
     return Padding(

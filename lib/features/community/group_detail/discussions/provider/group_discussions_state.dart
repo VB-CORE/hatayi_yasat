@@ -1,30 +1,22 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 final class GroupDiscussionsState extends Equatable {
   const GroupDiscussionsState({
-    required this.discussions,
-    this.isFetching = false,
+    this.isSubmitting = false,
     this.isError = false,
   });
 
-  final List<GroupDiscussionModel> discussions;
-  final bool isFetching;
+  final bool isSubmitting;
   final bool isError;
 
   @override
-  List<Object?> get props => [discussions, isFetching, isError];
+  List<Object?> get props => [isSubmitting, isError];
 
-  GroupDiscussionsState copyWith({
-    List<GroupDiscussionModel>? discussions,
-    bool? isFetching,
-    bool? isError,
-  }) {
+  GroupDiscussionsState copyWith({bool? isSubmitting, bool? isError}) {
     return GroupDiscussionsState(
-      discussions: discussions ?? this.discussions,
-      isFetching: isFetching ?? this.isFetching,
+      isSubmitting: isSubmitting ?? this.isSubmitting,
       isError: isError ?? this.isError,
     );
   }

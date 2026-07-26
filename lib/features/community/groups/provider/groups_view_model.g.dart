@@ -8,12 +8,21 @@ part of 'groups_view_model.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// Owns the list screen, including the membership check and join that happen
+/// on a tap. `GroupMembersViewModel` is scoped to the detail screen, so it is
+/// not alive yet at that point — both go through [GroupMembershipMixin].
 
 @ProviderFor(GroupsViewModel)
 final groupsViewModelProvider = GroupsViewModelProvider._();
 
+/// Owns the list screen, including the membership check and join that happen
+/// on a tap. `GroupMembersViewModel` is scoped to the detail screen, so it is
+/// not alive yet at that point — both go through [GroupMembershipMixin].
 final class GroupsViewModelProvider
     extends $NotifierProvider<GroupsViewModel, GroupsState> {
+  /// Owns the list screen, including the membership check and join that happen
+  /// on a tap. `GroupMembersViewModel` is scoped to the detail screen, so it is
+  /// not alive yet at that point — both go through [GroupMembershipMixin].
   GroupsViewModelProvider._()
     : super(
         from: null,
@@ -41,13 +50,17 @@ final class GroupsViewModelProvider
   }
 }
 
-String _$groupsViewModelHash() => r'c6f3ebb3348031e20eac3268fba94e50ecba7c7d';
+String _$groupsViewModelHash() => r'b5fda6b048fd4d199ff39eb44c48e91e1ee7009a';
+
+/// Owns the list screen, including the membership check and join that happen
+/// on a tap. `GroupMembersViewModel` is scoped to the detail screen, so it is
+/// not alive yet at that point — both go through [GroupMembershipMixin].
 
 abstract class _$GroupsViewModel extends $Notifier<GroupsState> {
   GroupsState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupsState, GroupsState>;
     final element =
         ref.element
@@ -57,6 +70,6 @@ abstract class _$GroupsViewModel extends $Notifier<GroupsState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

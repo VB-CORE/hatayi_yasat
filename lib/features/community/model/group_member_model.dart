@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/community/model/community_timestamp.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/product/model/auth/user_model.dart';
-import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 part 'group_member_model.g.dart';
 
@@ -15,7 +13,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   const GroupMemberModel({
     this.id = '',
     this.displayName = '',
-    this.username = '',
     this.avatarUrl,
     this.role = GroupMemberRole.member,
     this.createdAt,
@@ -25,48 +22,40 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
 
   const GroupMemberModel.empty() : this();
 
-  factory GroupMemberModel.fromUser(UserModel user) {
+  factory GroupMemberModel.fromUser(
+    UserModel user, {
+    GroupMemberRole role = GroupMemberRole.member,
+  }) {
     return GroupMemberModel(
       id: user.uid,
       displayName: user.displayName,
-      username: user.email.split('@').firstOrNull ?? '-',
       avatarUrl: user.photoUrl,
+      role: role,
     );
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String id;
   final String displayName;
-  final String username;
   final String? avatarUrl;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 
   @JsonKey(
-    toJson: serverTimestampToJson,
+    toJson: FirebaseTimeParse.serverTimestampToJson,
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? createdAt;
 
   @JsonKey(
-    toJson: serverTimestampToJson,
+    toJson: FirebaseTimeParse.serverTimestampToJson,
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? updatedAt;
 
   final bool isDeleted;
 
-  String get maskedDisplayName {
-    return displayName
-        .trim()
-        .split(RegexTypes.whitespace)
-        .where((word) => word.isNotEmpty)
-        .map(
-          (word) =>
-              word.length <= 1 ? word : '${word[0]}${'•' * (word.length - 1)}',
-        )
-        .join(' ');
-  }
+  bool get isAdmin => role == GroupMemberRole.admin;
 
   @override
   String get documentId => id;
@@ -91,7 +80,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   List<Object?> get props => [
     id,
     displayName,
-    username,
     avatarUrl,
     role,
     createdAt,
@@ -102,7 +90,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   GroupMemberModel copyWith({
     String? id,
     String? displayName,
-    String? username,
     String? avatarUrl,
     GroupMemberRole? role,
     DateTime? createdAt,
@@ -112,7 +99,6 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     return GroupMemberModel(
       id: id ?? this.id,
       displayName: displayName ?? this.displayName,
-      username: username ?? this.username,
       avatarUrl: avatarUrl ?? this.avatarUrl,
       role: role ?? this.role,
       createdAt: createdAt ?? this.createdAt,

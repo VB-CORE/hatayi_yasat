@@ -1,70 +1,56 @@
-import 'package:life_shared/life_shared.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
+import 'package:lifeclient/features/community/model/community_counter_fields.dart';
+import 'package:lifeclient/features/community/model/group_author_model.dart';
 import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
+import 'package:lifeclient/features/community/query/community_paths.dart';
+import 'package:lifeclient/features/community/query/community_queries.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'discussion_detail_view_model.g.dart';
 
 @riverpod
 final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
-    with ProjectDependencyMixin {
+    with ProjectDependencyMixin, CommunityQueryMixin {
   @override
-  DiscussionDetailState build() => DiscussionDetailState(
-    entries: const [],
-    currentMember: ref.read(currentGroupMemberProvider),
-    isFetching: true,
-  );
+  DiscussionDetailState build(String groupId, String discussionId) =>
+      const DiscussionDetailState();
 
-  FirestoreCollectionPath _entriesPath(String groupId, String discussionId) =>
-      CollectionPaths.groups
-          .sub(groupId, SubCollectionPaths.discussions)
-          .sub(discussionId, SubCollectionPaths.entries);
+  Query<GroupDiscussionEntryModel?> get entries =>
+      entriesQuery(groupId, discussionId);
 
-  Future<void> fetchEntries(String groupId, String discussionId) async {
-    state = state.copyWith(isFetching: true, isError: false);
-    final result = await firestoreService.getList<GroupDiscussionEntryModel>(
-      model: const GroupDiscussionEntryModel.empty(),
-      path: _entriesPath(groupId, discussionId),
-    );
-    final entries =
-        (result.dataOrNull ?? const <GroupDiscussionEntryModel>[])
-            .where((entry) => !entry.isDeleted)
-            .toList()
-          ..sort(
-            (a, b) => (a.createdAt ?? DateTime(0)).compareTo(
-              b.createdAt ?? DateTime(0),
-            ),
-          );
-    state = state.copyWith(
-      entries: entries,
-      isFetching: false,
-      isError: !result.isSuccess,
-    );
-  }
+  Future<bool> addEntry(String content) async {
+    final member = ref
+        .read(groupMembersViewModelProvider(groupId))
+        .currentMember;
+    if (member == null || state.isSubmitting) return false;
 
-  Future<bool> addEntry(
-    String groupId,
-    String discussionId,
-    String content,
-  ) async {
-    final entry = GroupDiscussionEntryModel.fromAuthor(
-      author: state.currentMember,
+    state = state.copyWith(isSubmitting: true, isError: false);
+
+    final entry = GroupDiscussionEntryModel(
+      author: GroupAuthorModel.fromMember(member),
       content: content,
     );
-    final result = await firestoreService.add<GroupDiscussionEntryModel>(
-      model: entry,
-      path: _entriesPath(groupId, discussionId),
+
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(
+          CommunityPaths.entries(groupId, discussionId).collection.doc(),
+          entry.toJson(),
+        )
+        ..update(
+          CommunityPaths.discussions(groupId).collection.doc(discussionId),
+          {
+            CommunityCounterFields.entryCount.name: FieldValue.increment(1),
+          },
+        ),
     );
-    final id = result.dataOrNull;
-    if (id == null) return false;
-    state = state.copyWith(
-      entries: [
-        ...state.entries,
-        entry.copyWith(id: id),
-      ],
-    );
-    return true;
+
+    if (ref.mounted) {
+      state = state.copyWith(isSubmitting: false, isError: !result.isSuccess);
+    }
+    return result.isSuccess;
   }
 }

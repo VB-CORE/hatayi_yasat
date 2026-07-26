@@ -16,18 +16,11 @@ mixin DiscussionDetailViewMixin
   final TextEditingController replyController = TextEditingController();
   final ScrollController entriesScrollController = ScrollController();
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      unawaited(
-        ref
-            .read(discussionDetailViewModelProvider.notifier)
-            .fetchEntries(widget.args.group.id, widget.args.discussion.id),
+  DiscussionDetailViewModelProvider get entriesNotifier =>
+      discussionDetailViewModelProvider(
+        widget.args.group.id,
+        widget.args.discussion.id,
       );
-    });
-  }
 
   @override
   void dispose() {
@@ -39,32 +32,29 @@ mixin DiscussionDetailViewMixin
   Future<void> submitReply() async {
     final content = replyController.text.normalize;
     if (content.isEmpty) return;
-    replyController.clear();
 
-    final isAdded = await ref
-        .read(discussionDetailViewModelProvider.notifier)
-        .addEntry(
-          widget.args.group.id,
-          widget.args.discussion.id,
-          content,
-        );
+    final isAdded = await ref.read(entriesNotifier.notifier).addEntry(content);
     if (!mounted) return;
-    if (isAdded) {
-      _scrollToLatestEntry();
-    } else {
+
+    if (!isAdded) {
+      replyController.clear();
       appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
+      return;
     }
+    _scrollToLatestEntry();
   }
 
   void _scrollToLatestEntry() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!entriesScrollController.hasClients) return;
-      entriesScrollController.animateTo(
-        entriesScrollController.position.maxScrollExtent,
-        duration: Durations.medium2,
-        curve: Curves.easeOut,
+      unawaited(
+        entriesScrollController.animateTo(
+          entriesScrollController.position.maxScrollExtent,
+          duration: Durations.medium2,
+          curve: Curves.easeOut,
+        ),
       );
     });
   }

@@ -485,6 +485,7 @@ abstract class  LocaleKeys {
   static const community_groups_joinConfirmMessage = 'community.groups.joinConfirmMessage';
   static const community_groups_join = 'community.groups.join';
   static const community_groups_joinConfirmCancel = 'community.groups.joinConfirmCancel';
+  static const community_groups_allCategories = 'community.groups.allCategories';
   static const community_groups = 'community.groups';
   static const community_createGroup_title = 'community.createGroup.title';
   static const community_createGroup_openBadge = 'community.createGroup.openBadge';
@@ -500,6 +501,7 @@ abstract class  LocaleKeys {
   static const community_createGroup_descriptionHint = 'community.createGroup.descriptionHint';
   static const community_createGroup_submitButton = 'community.createGroup.submitButton';
   static const community_createGroup_success = 'community.createGroup.success';
+  static const community_createGroup_categoryLoadError = 'community.createGroup.categoryLoadError';
   static const community_createGroup = 'community.createGroup';
   static const community_groupDetail_tabWall = 'community.groupDetail.tabWall';
   static const community_groupDetail_tabDiscussions = 'community.groupDetail.tabDiscussions';
@@ -541,6 +543,7 @@ abstract class  LocaleKeys {
   static const community_groupDetail_details_deleteGroupConfirmMessage = 'community.groupDetail.details.deleteGroupConfirmMessage';
   static const community_groupDetail_details_deleteGroupConfirmCancel = 'community.groupDetail.details.deleteGroupConfirmCancel';
   static const community_groupDetail_details_deleteGroupSuccess = 'community.groupDetail.details.deleteGroupSuccess';
+  static const community_groupDetail_details_categoryLabel = 'community.groupDetail.details.categoryLabel';
   static const community_groupDetail_details = 'community.groupDetail.details';
   static const community_groupDetail = 'community.groupDetail';
   static const community = 'community';

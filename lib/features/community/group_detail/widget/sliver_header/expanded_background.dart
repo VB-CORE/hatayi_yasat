@@ -45,11 +45,10 @@ final class _GroupTitleArea extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final memberCount = ref.watch(
-      groupMembersViewModelProvider(model.id).select((s) => s.memberCount),
+      groupDetailViewModelProvider(
+        model.id,
+      ).select((state) => state.group?.memberCount ?? model.memberCount),
     );
-    final typeLabel = model.type == GroupType.open
-        ? LocaleKeys.community_groupDetail_openGroup.tr()
-        : LocaleKeys.community_groupDetail_closedGroup.tr();
     final onCover = context.general.colorScheme.onTertiary;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -64,15 +63,9 @@ final class _GroupTitleArea extends ConsumerWidget {
         const EmptyBox.xSmallHeight(),
         Row(
           children: [
-            Icon(
-              model.type == GroupType.open
-                  ? AppIcons.globe
-                  : AppIcons.lockPerson,
-              size: AppIconSizes.xMedium,
-              color: onCover,
-            ),
+            Icon(model.type.icon, size: AppIconSizes.xMedium, color: onCover),
             const EmptyBox(width: WidgetSizes.spacingXxs),
-            GeneralContentSmallTitle(value: typeLabel, color: onCover),
+            GeneralContentSmallTitle(value: model.type.label, color: onCover),
             const EmptyBox.smallWidth(),
             Icon(
               AppIcons.group,

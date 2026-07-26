@@ -1,35 +1,26 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 final class GroupsState extends Equatable {
-  const GroupsState({
-    required this.groups,
-    this.isFetching = false,
-    this.isError = false,
-  });
+  const GroupsState({this.selectedCategoryValue, this.isProcessing = false});
 
-  final List<GroupModel> groups;
-  final bool isFetching;
-  final bool isError;
+  final int? selectedCategoryValue;
+  final bool isProcessing;
 
   @override
-  List<Object?> get props => [
-    groups,
-    isFetching,
-    isError,
-  ];
+  List<Object?> get props => [selectedCategoryValue, isProcessing];
 
   GroupsState copyWith({
-    List<GroupModel>? groups,
-    bool? isFetching,
-    bool? isError,
+    int? selectedCategoryValue,
+    bool clearSelectedCategory = false,
+    bool? isProcessing,
   }) {
     return GroupsState(
-      groups: groups ?? this.groups,
-      isFetching: isFetching ?? this.isFetching,
-      isError: isError ?? this.isError,
+      selectedCategoryValue: clearSelectedCategory
+          ? null
+          : selectedCategoryValue ?? this.selectedCategoryValue,
+      isProcessing: isProcessing ?? this.isProcessing,
     );
   }
 }

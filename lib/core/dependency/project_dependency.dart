@@ -4,8 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
-import 'package:lifeclient/core/service/firestore/batch_service.dart';
-import 'package:lifeclient/core/service/firestore/custom_batch_service.dart';
 import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
 import 'package:lifeclient/core/service/user/firebase_user_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
@@ -35,8 +33,6 @@ final class ProjectDependency {
       FirestoreService.new,
     );
     GetIt.I.registerLazySingleton<CustomStorageService>(StorageService.new);
-
-    GetIt.I.registerLazySingleton<CustomBatchService>(BatchService.new);
 
     GetIt.I.registerLazySingleton<AuthService>(
       () => FirebaseAuthService(

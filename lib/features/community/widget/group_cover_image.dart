@@ -13,7 +13,6 @@ final class GroupCoverImage extends StatelessWidget {
   final String groupId;
   final String? imageUrl;
 
-  // hashCode kararlı olmadığı için karakter kodlarından türetilen indeks.
   int get _gradientIndex =>
       groupId.codeUnits.fold<int>(0, (sum, unit) => sum + unit) %
       AppGradients.coverFallbacks.length;

@@ -9,10 +9,10 @@ import 'package:lifeclient/features/community/model/group_discussion_model.dart'
 import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/index.dart';
-import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/text_field/product_textfield.dart';

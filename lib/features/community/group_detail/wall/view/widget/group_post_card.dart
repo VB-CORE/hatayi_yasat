@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -18,14 +20,15 @@ import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 final class GroupPostCard extends StatelessWidget {
   const GroupPostCard({
     required this.model,
-    required this.isLiked,
-    required this.onLikeTap,
+    required this.groupId,
+    required this.groupName,
     super.key,
   });
 
   final GroupPostModel model;
-  final bool isLiked;
-  final Future<bool> Function() onLikeTap;
+  final String groupId;
+
+  final String groupName;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +45,15 @@ final class GroupPostCard extends StatelessWidget {
               const EmptyBox.smallHeight(),
               GeneralContentSubTitle(value: model.content),
             ],
-            if (model.imageFile != null || model.imageUrl != null) ...[
+            if (model.imageUrl != null) ...[
               const EmptyBox.smallHeight(),
               _PostImage(model: model),
             ],
             const EmptyBox.smallHeight(),
             _PostFooterRow(
               model: model,
-              isLiked: isLiked,
-              onLikeTap: onLikeTap,
+              groupId: groupId,
+              groupName: groupName,
             ),
           ],
         ),
@@ -71,7 +74,6 @@ final class _PostImage extends StatelessWidget {
         context,
         heroTag: model.id,
         imageUrl: model.imageUrl,
-        imageFile: model.imageFile,
       ),
       borderRadius: CustomRadius.medium,
       child: Hero(
@@ -81,12 +83,10 @@ final class _PostImage extends StatelessWidget {
           child: SizedBox(
             height: context.sized.dynamicHeight(0.18),
             width: double.infinity,
-            child: model.imageFile != null
-                ? Image.file(model.imageFile!, fit: BoxFit.cover)
-                : CustomNetworkImage(
-                    imageUrl: model.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+            child: CustomNetworkImage(
+              imageUrl: model.imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
@@ -129,35 +129,55 @@ final class _PostAuthorRow extends StatelessWidget {
 final class _PostFooterRow extends StatelessWidget {
   const _PostFooterRow({
     required this.model,
-    required this.isLiked,
-    required this.onLikeTap,
+    required this.groupId,
+    required this.groupName,
   });
 
   final GroupPostModel model;
-  final bool isLiked;
-  final Future<bool> Function() onLikeTap;
+  final String groupId;
+  final String groupName;
 
   @override
   Widget build(BuildContext context) {
-    final navy400 = context.appColors.navy400;
     return Row(
       children: [
-        CustomAnimatedLikeButton(
-          isLiked: isLiked,
-          size: AppIconSizes.xMedium,
-          likeBuilder: (isLiked) => Icon(
-            isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
-            size: AppIconSizes.xMedium,
-            color: context.general.colorScheme.tertiary,
-          ),
-          onTap: (isLiked) => onLikeTap(),
-        ),
+        _LikeButton(model: model, groupId: groupId, groupName: groupName),
         const EmptyBox(width: WidgetSizes.spacingXxs),
         GeneralContentSmallTitle(
           value: model.likeCount.toString(),
-          color: navy400,
+          color: context.appColors.navy400,
         ),
       ],
+    );
+  }
+}
+
+final class _LikeButton extends ConsumerWidget {
+  const _LikeButton({
+    required this.model,
+    required this.groupId,
+    required this.groupName,
+  });
+
+  final GroupPostModel model;
+  final String groupId;
+  final String groupName;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = postLikeViewModelProvider(groupId, model.id);
+    final isLiked = ref.watch(provider.select((state) => state.isLiked));
+
+    return CustomAnimatedLikeButton(
+      isLiked: isLiked,
+      size: AppIconSizes.xMedium,
+      likeBuilder: (isLiked) => Icon(
+        isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
+        size: AppIconSizes.xMedium,
+        color: context.general.colorScheme.tertiary,
+      ),
+      onTap: (_) =>
+          ref.read(provider.notifier).toggle(model, groupName: groupName),
     );
   }
 }

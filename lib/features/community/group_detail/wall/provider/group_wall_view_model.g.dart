@@ -10,23 +10,30 @@ part of 'group_wall_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(GroupWallViewModel)
-final groupWallViewModelProvider = GroupWallViewModelProvider._();
+final groupWallViewModelProvider = GroupWallViewModelFamily._();
 
 final class GroupWallViewModelProvider
     extends $NotifierProvider<GroupWallViewModel, GroupWallState> {
-  GroupWallViewModelProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'groupWallViewModelProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+  GroupWallViewModelProvider._({
+    required GroupWallViewModelFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'groupWallViewModelProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
   String debugGetCreateSourceHash() => _$groupWallViewModelHash();
+
+  @override
+  String toString() {
+    return r'groupWallViewModelProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
@@ -39,16 +46,54 @@ final class GroupWallViewModelProvider
       providerOverride: $SyncValueProvider<GroupWallState>(value),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GroupWallViewModelProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$groupWallViewModelHash() =>
-    r'e016b60959f2b5a99bed108b382e279b8ffe7879';
+    r'42cba15401f1b9cd5bbdeb44db832229af70a91e';
+
+final class GroupWallViewModelFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          GroupWallViewModel,
+          GroupWallState,
+          GroupWallState,
+          GroupWallState,
+          String
+        > {
+  GroupWallViewModelFamily._()
+    : super(
+        retry: null,
+        name: r'groupWallViewModelProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GroupWallViewModelProvider call(String groupId) =>
+      GroupWallViewModelProvider._(argument: groupId, from: this);
+
+  @override
+  String toString() => r'groupWallViewModelProvider';
+}
 
 abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
-  GroupWallState build();
+  late final _$args = ref.$arg as String;
+  String get groupId => _$args;
+
+  GroupWallState build(String groupId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupWallState, GroupWallState>;
     final element =
         ref.element
@@ -58,6 +103,6 @@ abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, () => build(_$args));
   }
 }

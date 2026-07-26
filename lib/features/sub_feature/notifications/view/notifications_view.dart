@@ -30,7 +30,7 @@ final class NotificationsView extends StatelessWidget
           item: item,
           onTap: () => openNotification(context, item),
         ),
-        itemTreshold: NotificationsViewMixin.notificationItemTreshold,
+        itemThreshold: NotificationsViewMixin.notificationItemThreshold,
         separator: const Divider(
           indent: AppSpacing.xl,
           endIndent: AppSpacing.xl,

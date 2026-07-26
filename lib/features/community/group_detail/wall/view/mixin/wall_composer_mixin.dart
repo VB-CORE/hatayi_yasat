@@ -1,38 +1,22 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
-import 'package:lifeclient/features/community/group_detail/wall/view/group_wall_view.dart';
+import 'package:lifeclient/features/community/group_detail/wall/view/widget/wall_composer.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dart';
 import 'package:lifeclient/product/utility/extension/file_size_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/sheet/media_photo_sheet.dart';
 
-mixin GroupWallViewMixin
-    on ConsumerState<GroupWallView>, AppProviderMixin<GroupWallView> {
+mixin WallComposerMixin
+    on ConsumerState<WallComposer>, AppProviderMixin<WallComposer> {
   final TextEditingController postController = TextEditingController();
 
   File? _postImageFile;
   File? get postImageFile => _postImageFile;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      unawaited(
-        ref
-            .read(groupWallViewModelProvider.notifier)
-            .fetchPosts(
-              widget.model.id,
-            ),
-      );
-    });
-  }
 
   @override
   void dispose() {
@@ -42,12 +26,12 @@ mixin GroupWallViewMixin
 
   Future<void> pickPostImage() async {
     final type = await MediaOrPhoto.openSheet(context);
-    if (type == null) return;
-    if (!mounted) return;
+    if (type == null || !mounted) return;
+
     final file = await PhotoPickerManager(context: context).pickPhoto(
       type: type,
     );
-    if (file == null) return;
+    if (file == null || !mounted) return;
     setState(() => _postImageFile = file);
   }
 
@@ -58,23 +42,22 @@ mixin GroupWallViewMixin
     final imageFile = _postImageFile;
     if (content.isEmpty && imageFile == null) return;
 
-    if (imageFile != null && imageFile.exceedsUploadLimit) {
+    if (imageFile != null && await imageFile.exceedsUploadLimit) {
       appProvider.showSnackbarMessage(
-        LocaleKeys.message_imageTooLarge.tr(),
+        LocaleKeys.message_imageTooLarge.tr(args: [FileSizeX.uploadLimitLabel]),
       );
       return;
     }
 
-    postController.clear();
-    setState(() => _postImageFile = null);
-
     final isAdded = await ref
-        .read(groupWallViewModelProvider.notifier)
-        .addPost(widget.model.id, content, imageFile: imageFile);
-    if (!isAdded && mounted) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.message_somethingWentWrong.tr(),
-      );
+        .read(groupWallViewModelProvider(widget.groupId).notifier)
+        .addPost(content, imageFile: imageFile);
+    if (isAdded || !mounted) {
+      postController.clear();
+      setState(() => _postImageFile = null);
+      return;
     }
+
+    appProvider.showSnackbarMessage(LocaleKeys.message_somethingWentWrong.tr());
   }
 }

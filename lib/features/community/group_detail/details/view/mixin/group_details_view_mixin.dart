@@ -5,24 +5,23 @@ import 'package:lifeclient/features/community/group_detail/details/view/group_de
 import 'package:lifeclient/features/community/group_detail/details/view/widget/delete_group_confirm_sheet.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin GroupDetailsViewMixin
     on ConsumerState<GroupDetailsView>, AppProviderMixin<GroupDetailsView> {
-  bool get isCurrentUserAdmin {
-    final currentUserId = ref.watch(
-      currentGroupMemberProvider.select((member) => member.id),
-    );
-    return widget.model.isAdmin(currentUserId);
-  }
-
   Future<void> leaveGroup() async {
-    await ref
+    final hasLeft = await ref
         .read(groupMembersViewModelProvider(widget.model.id).notifier)
         .leave();
     if (!mounted) return;
+
+    if (!hasLeft) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.message_somethingWentWrong.tr(),
+      );
+      return;
+    }
     appProvider.showSnackbarMessage(
       LocaleKeys.community_groupDetail_details_leaveSuccess.tr(),
     );
@@ -37,15 +36,16 @@ mixin GroupDetailsViewMixin
         .read(groupsViewModelProvider.notifier)
         .deleteGroup(widget.model.id);
     if (!mounted) return;
-    if (isDeleted) {
-      appProvider.showSnackbarMessage(
-        LocaleKeys.community_groupDetail_details_deleteGroupSuccess.tr(),
-      );
-      context.pop();
-    } else {
+
+    if (!isDeleted) {
       appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
+      return;
     }
+    appProvider.showSnackbarMessage(
+      LocaleKeys.community_groupDetail_details_deleteGroupSuccess.tr(),
+    );
+    context.pop();
   }
 }

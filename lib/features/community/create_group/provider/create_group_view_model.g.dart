@@ -42,13 +42,13 @@ final class CreateGroupViewModelProvider
 }
 
 String _$createGroupViewModelHash() =>
-    r'84dc2e89a015039ae22986655c45514f65ce904c';
+    r'3dc49e426524b09c94b220632bcb3baa7190836b';
 
 abstract class _$CreateGroupViewModel extends $Notifier<CreateGroupState> {
   CreateGroupState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<CreateGroupState, CreateGroupState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$CreateGroupViewModel extends $Notifier<CreateGroupState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

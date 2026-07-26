@@ -132,7 +132,7 @@
     "emptyFavorite": "Favori listeniz boş",
     "removedFavorite": "Favorilerden kaldırıldı",
     "copiedToClipboard": "Panoya kopyalandı",
-    "imageTooLarge": "Görsel 1 MB'den küçük olmalı."
+    "imageTooLarge": "Görsel {} MB'den küçük olmalı."
   },
   "rate": {
     "trustQuestion": "Bu mekana güveniyor musun?",
@@ -550,7 +550,8 @@
       "joinConfirmTitle": "Gruba Katıl",
       "joinConfirmMessage": "Bu gruba katılmak istiyor musun? Katıldıktan sonra grubun içeriğine erişebilirsin.",
       "join": "Katıl",
-      "joinConfirmCancel": "Vazgeç"
+      "joinConfirmCancel": "Vazgeç",
+      "allCategories": "Tümü"
     },
     "createGroup": {
       "title": "Grup Oluştur",
@@ -566,7 +567,8 @@
       "descriptionLabel": "Açıklama",
       "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
       "submitButton": "Grubu Oluştur",
-      "success": "Grup başarıyla oluşturuldu."
+      "success": "Grup başarıyla oluşturuldu.",
+      "categoryLoadError": "Kategoriler yüklenemedi. Lütfen tekrar deneyin."
     },
     "groupDetail": {
       "tabWall": "Duvar",
@@ -611,7 +613,8 @@
         "deleteGroupConfirmTitle": "Grubu sil",
         "deleteGroupConfirmMessage": "Bu işlem grubu tüm üyeler için kaldırır.",
         "deleteGroupConfirmCancel": "Vazgeç",
-        "deleteGroupSuccess": "Grup silindi."
+        "deleteGroupSuccess": "Grup silindi.",
+        "categoryLabel": "Kategori"
       }
     }
   },

@@ -35,9 +35,6 @@ mixin CreateGroupViewMixin
   void initState() {
     super.initState();
     nameController.addListener(_onFormFieldChanged);
-    Future.microtask(() {
-      ref.read(createGroupViewModelProvider.notifier).fetchCategories();
-    });
   }
 
   @override
@@ -81,9 +78,9 @@ mixin CreateGroupViewMixin
     }
 
     final coverImage = _coverImageFile;
-    if (coverImage != null && coverImage.exceedsUploadLimit) {
+    if (coverImage != null && await coverImage.exceedsUploadLimit) {
       appProvider.showSnackbarMessage(
-        LocaleKeys.message_imageTooLarge.tr(),
+        LocaleKeys.message_imageTooLarge.tr(args: [FileSizeX.uploadLimitLabel]),
       );
       return;
     }

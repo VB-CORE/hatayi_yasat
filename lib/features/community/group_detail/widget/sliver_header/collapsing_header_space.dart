@@ -34,7 +34,6 @@ final class _CollapsingHeaderSpace extends StatelessWidget {
     );
   }
 
-  /// Header'ın ne kadar açık olduğu: 1 tamamen genişlemiş, 0 tamamen toplanmış.
   double _expandRatioOf(BoxConstraints constraints, double topPadding) {
     final collapsedHeight = topPadding + kToolbarHeight + kTextTabBarHeight;
     final maxExtent = WidgetSizes.spacingXxlL14 + topPadding;

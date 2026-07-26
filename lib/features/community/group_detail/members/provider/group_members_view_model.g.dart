@@ -59,7 +59,7 @@ final class GroupMembersViewModelProvider
 }
 
 String _$groupMembersViewModelHash() =>
-    r'0909379d1d7356456339dbfc0fbb49dddc213da8';
+    r'33a8adbc83ad531f05ba56179f3c469b4daf0828';
 
 final class GroupMembersViewModelFamily extends $Family
     with
@@ -93,7 +93,7 @@ abstract class _$GroupMembersViewModel extends $Notifier<GroupMembersState> {
   GroupMembersState build(String groupId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupMembersState, GroupMembersState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$GroupMembersViewModel extends $Notifier<GroupMembersState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

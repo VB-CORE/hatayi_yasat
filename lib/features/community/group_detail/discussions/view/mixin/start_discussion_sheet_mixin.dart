@@ -39,11 +39,10 @@ mixin StartDiscussionSheetMixin
     if (!isFormValid) return;
 
     final discussion = await ref
-        .read(groupDiscussionsViewModelProvider.notifier)
-        .addDiscussion(
-          widget.groupId,
-          titleController.text.trim(),
-          messageController.text.trim(),
+        .read(groupDiscussionsViewModelProvider(widget.groupId).notifier)
+        .startDiscussion(
+          title: titleController.text.trim(),
+          message: messageController.text.trim(),
         );
     if (!mounted) return;
     if (discussion == null) {

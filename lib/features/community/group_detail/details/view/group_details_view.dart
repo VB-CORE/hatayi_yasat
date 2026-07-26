@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -8,10 +9,10 @@ import 'package:lifeclient/features/community/group_detail/details/view/mixin/gr
 import 'package:lifeclient/features/community/group_detail/details/view/widget/group_admin_tile.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/widget/group_info_row.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
+import 'package:lifeclient/features/community/group_detail/provider/group_detail_view_model.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/model/group_type.dart';
+import 'package:lifeclient/features/community/widget/group_type_presentation.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -20,10 +21,10 @@ import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-part 'sub_view/group_details_action_buttons.dart';
-part 'sub_view/group_details_admin_list.dart';
-part 'sub_view/group_details_info_rows.dart';
-part 'sub_view/group_details_section.dart';
+part 'widget/group_details_action_buttons.dart';
+part 'widget/group_details_admin_list.dart';
+part 'widget/group_details_info_rows.dart';
+part 'widget/group_details_section.dart';
 
 final class GroupDetailsView extends ConsumerStatefulWidget {
   const GroupDetailsView({required this.model, super.key});
@@ -39,10 +40,6 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
   @override
   Widget build(BuildContext context) {
     final model = widget.model;
-    final membersState = ref.watch(groupMembersViewModelProvider(model.id));
-    final admins = membersState.members
-        .where((member) => member.role == GroupMemberRole.admin)
-        .toList();
     return ListView(
       padding: const PagePadding.horizontal16Symmetric(),
       children: [
@@ -57,23 +54,19 @@ final class _GroupDetailsViewState extends ConsumerState<GroupDetailsView>
           value: LocaleKeys.community_groupDetail_details_infoTitle.tr(),
         ),
         const EmptyBox.smallHeight(),
-        _SectionCard(
-          child: _InfoRows(
-            model: model,
-            memberCount: membersState.memberCount,
-          ),
-        ),
+        _SectionCard(child: _InfoRows(model: model)),
         const EmptyBox.middleHeight(),
         _SectionLabel(
           value: LocaleKeys.community_groupDetail_details_adminsTitle.tr(),
         ),
         const EmptyBox.smallHeight(),
-        _SectionCard(child: _AdminList(admins: admins)),
+        _SectionCard(child: _AdminList(groupId: model.id)),
         const EmptyBox.largeHeight(),
-        if (isCurrentUserAdmin)
-          _DeleteGroupButton(onPressed: deleteGroup)
-        else
-          _LeaveGroupButton(onPressed: leaveGroup),
+        _MembershipButton(
+          groupId: model.id,
+          onLeave: leaveGroup,
+          onDelete: deleteGroup,
+        ),
         const EmptyBox.largeHeight(),
       ],
     );

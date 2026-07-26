@@ -1,45 +1,19 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 final class GroupWallState extends Equatable {
-  const GroupWallState({
-    required this.posts,
-    required this.currentMember,
-    this.likedPostIds = const {},
-    this.isFetching = false,
-    this.isError = false,
-  });
+  const GroupWallState({this.isSubmitting = false, this.isError = false});
 
-  final List<GroupPostModel> posts;
-  final GroupMemberModel currentMember;
-  final Set<String> likedPostIds;
-  final bool isFetching;
+  final bool isSubmitting;
   final bool isError;
 
   @override
-  List<Object?> get props => [
-    posts,
-    currentMember,
-    likedPostIds,
-    isFetching,
-    isError,
-  ];
+  List<Object?> get props => [isSubmitting, isError];
 
-  GroupWallState copyWith({
-    List<GroupPostModel>? posts,
-    GroupMemberModel? currentMember,
-    Set<String>? likedPostIds,
-    bool? isFetching,
-    bool? isError,
-  }) {
+  GroupWallState copyWith({bool? isSubmitting, bool? isError}) {
     return GroupWallState(
-      posts: posts ?? this.posts,
-      currentMember: currentMember ?? this.currentMember,
-      likedPostIds: likedPostIds ?? this.likedPostIds,
-      isFetching: isFetching ?? this.isFetching,
+      isSubmitting: isSubmitting ?? this.isSubmitting,
       isError: isError ?? this.isError,
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
-import 'package:lifeclient/core/service/firestore/custom_batch_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -28,9 +27,6 @@ final class ProjectDependencyItems {
 
   static final CustomStorageService storageService = GetIt.I
       .get<CustomStorageService>();
-
-  static final CustomBatchService batchService = GetIt.I
-      .get<CustomBatchService>();
 
   static final AppProvider appProvider = GetIt.I.get<AppProvider>();
   static final NotifierProvider<AppProvider, AppProviderState>
