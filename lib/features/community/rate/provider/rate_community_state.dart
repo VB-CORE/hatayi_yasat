@@ -5,7 +5,8 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 enum RateAction {
   create,
   update,
-  delete;
+  delete
+  ;
 
   String get failedMessageKey => switch (this) {
     RateAction.create => LocaleKeys.rate_submitFailedContent,

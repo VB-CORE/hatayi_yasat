@@ -8,23 +8,35 @@ final class SpeedDialChildModel {
   const SpeedDialChildModel({
     required this.location,
     required this.title,
+    this.isVisible = true,
   });
 
-  /// route path adress
   final String location;
   final String title;
+
+  final bool isVisible;
 }
 
 final class SpeedDialChildModelList {
-  SpeedDialChildModelList({required BuildContext context}) {
+  SpeedDialChildModelList({
+    required BuildContext context,
+    this.canCreateGroup = false,
+  }) {
     _context = context;
     _fillItems(_context);
   }
+
+  final bool canCreateGroup;
 
   late BuildContext _context;
 
   void _fillItems(BuildContext context) {
     _speedDialChildItems = [
+      SpeedDialChildModel(
+        location: const CreateGroupRoute().location,
+        title: LocaleKeys.community_createGroup_title.tr(context: context),
+        isVisible: canCreateGroup,
+      ),
       SpeedDialChildModel(
         location: const PlaceRequestFormRoute().location,
         title: LocaleKeys.requestCompany_title.tr(context: context),
@@ -42,5 +54,6 @@ final class SpeedDialChildModelList {
 
   late final List<SpeedDialChildModel> _speedDialChildItems;
 
-  List<SpeedDialChildModel> get speedDialChildItems => _speedDialChildItems;
+  List<SpeedDialChildModel> get speedDialChildItems =>
+      _speedDialChildItems.where((item) => item.isVisible).toList();
 }

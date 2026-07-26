@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/widget/group_member_avatar.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -13,6 +12,7 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/widget/button/like_button.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 
@@ -20,14 +20,15 @@ import 'package:lifeclient/product/widget/image/hero_photo_view_page.dart';
 final class GroupPostCard extends StatelessWidget {
   const GroupPostCard({
     required this.model,
-    required this.onLikeTap,
-    required this.onCommentTap,
+    required this.groupId,
+    required this.groupName,
     super.key,
   });
 
   final GroupPostModel model;
-  final VoidCallback onLikeTap;
-  final VoidCallback onCommentTap;
+  final String groupId;
+
+  final String groupName;
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +45,15 @@ final class GroupPostCard extends StatelessWidget {
               const EmptyBox.smallHeight(),
               GeneralContentSubTitle(value: model.content),
             ],
-            if (model.imageFile != null || model.imageUrl != null) ...[
+            if (model.imageUrl != null) ...[
               const EmptyBox.smallHeight(),
               _PostImage(model: model),
             ],
             const EmptyBox.smallHeight(),
             _PostFooterRow(
               model: model,
-              onLikeTap: onLikeTap,
-              onCommentTap: onCommentTap,
+              groupId: groupId,
+              groupName: groupName,
             ),
           ],
         ),
@@ -73,7 +74,6 @@ final class _PostImage extends StatelessWidget {
         context,
         heroTag: model.id,
         imageUrl: model.imageUrl,
-        imageFile: model.imageFile,
       ),
       borderRadius: CustomRadius.medium,
       child: Hero(
@@ -83,12 +83,10 @@ final class _PostImage extends StatelessWidget {
           child: SizedBox(
             height: context.sized.dynamicHeight(0.18),
             width: double.infinity,
-            child: model.imageFile != null
-                ? Image.file(model.imageFile!, fit: BoxFit.cover)
-                : CustomNetworkImage(
-                    imageUrl: model.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+            child: CustomNetworkImage(
+              imageUrl: model.imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
@@ -105,7 +103,10 @@ final class _PostAuthorRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GroupMemberAvatar(displayName: model.author.displayName),
+        CustomUserAvatar(
+          userName: model.author.displayName,
+          imageUrl: model.author.avatarUrl,
+        ),
         const EmptyBox(width: WidgetSizes.spacingS),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +116,7 @@ final class _PostAuthorRow extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
             GeneralContentSmallTitle(
-              value: model.createdAt.timeAgo,
+              value: model.createdAt.timeAgoOrNow,
               color: context.appColors.navy300,
             ),
           ],
@@ -128,61 +129,55 @@ final class _PostAuthorRow extends StatelessWidget {
 final class _PostFooterRow extends StatelessWidget {
   const _PostFooterRow({
     required this.model,
-    required this.onLikeTap,
-    required this.onCommentTap,
+    required this.groupId,
+    required this.groupName,
   });
 
   final GroupPostModel model;
-  final VoidCallback onLikeTap;
-  final VoidCallback onCommentTap;
+  final String groupId;
+  final String groupName;
 
   @override
   Widget build(BuildContext context) {
-    final navy400 = context.appColors.navy400;
     return Row(
       children: [
-        // TODO(community): Beğenilmiş mi bilgisi Firestore servis PR'ında
-        // sunucudan okunacak; şimdilik her açılışta beğenilmemiş görünüyor.
-        CustomAnimatedLikeButton(
-          isLiked: false,
-          size: AppIconSizes.xMedium,
-          likeBuilder: (isLiked) => Icon(
-            isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
-            size: AppIconSizes.xMedium,
-            color: context.general.colorScheme.tertiary,
-          ),
-          onTap: (isLiked) async {
-            onLikeTap();
-            return !isLiked;
-          },
-        ),
+        _LikeButton(model: model, groupId: groupId, groupName: groupName),
         const EmptyBox(width: WidgetSizes.spacingXxs),
         GeneralContentSmallTitle(
           value: model.likeCount.toString(),
-          color: navy400,
-        ),
-        const EmptyBox.middleWidth(),
-        InkWell(
-          onTap: onCommentTap,
-          borderRadius: CustomRadius.small,
-          child: Row(
-            children: [
-              Icon(
-                AppIcons.comment,
-                size: AppIconSizes.xMedium,
-                color: navy400,
-              ),
-              const EmptyBox(width: WidgetSizes.spacingXxs),
-              GeneralContentSmallTitle(
-                value: LocaleKeys.community_groupDetail_wall_commentCount.tr(
-                  args: [model.commentCount.toString()],
-                ),
-                color: navy400,
-              ),
-            ],
-          ),
+          color: context.appColors.navy400,
         ),
       ],
+    );
+  }
+}
+
+final class _LikeButton extends ConsumerWidget {
+  const _LikeButton({
+    required this.model,
+    required this.groupId,
+    required this.groupName,
+  });
+
+  final GroupPostModel model;
+  final String groupId;
+  final String groupName;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final provider = postLikeViewModelProvider(groupId, model.id);
+    final isLiked = ref.watch(provider.select((state) => state.isLiked));
+
+    return CustomAnimatedLikeButton(
+      isLiked: isLiked,
+      size: AppIconSizes.xMedium,
+      likeBuilder: (isLiked) => Icon(
+        isLiked ? AppIcons.favorite : AppIcons.favoriteBorder,
+        size: AppIconSizes.xMedium,
+        color: context.general.colorScheme.tertiary,
+      ),
+      onTap: (_) =>
+          ref.read(provider.notifier).toggle(model, groupName: groupName),
     );
   }
 }

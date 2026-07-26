@@ -5,6 +5,10 @@ targets:
         generate_for:
           - lib/**/*_model.dart
         options:
+          # Models are written straight to Firestore, which takes a Map and
+          # never runs jsonEncode. Without this, a nested model is emitted as a
+          # raw Dart object and the write fails with "Invalid argument".
+          explicit_to_json: true
       go_router_builder:go_router_builder: # this for @AutoRouterConfig
         generate_for:
           - lib/product/navigation/app_router.dart

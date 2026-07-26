@@ -16,6 +16,11 @@ final class _CoverSection extends StatelessWidget {
         ),
         const EmptyBox.smallHeight(),
         CoverImagePicker(imageFile: imageFile, onTap: onTap),
+        const EmptyBox.smallHeight(),
+        GeneralContentSmallTitle(
+          value: LocaleKeys.community_createGroup_coverImageHint.tr(),
+          color: context.appColors.navy400,
+        ),
       ],
     );
   }

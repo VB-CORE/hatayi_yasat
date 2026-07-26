@@ -1,56 +1,64 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_state.dart';
-import 'package:lifeclient/features/community/mock/community_mock_data.dart';
+import 'package:lifeclient/features/community/model/group_author_model.dart';
 import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
+import 'package:lifeclient/features/community/provider/community_image_upload_mixin.dart';
+import 'package:lifeclient/features/community/query/community_paths.dart';
+import 'package:lifeclient/features/community/query/community_queries.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'group_wall_view_model.g.dart';
 
 @riverpod
 final class GroupWallViewModel extends _$GroupWallViewModel
-    with ProjectDependencyMixin {
-  static const _localIdPrefix = 'local-';
-  static const _mockFetchDelay = Duration(milliseconds: 400);
-
+    with
+        ProjectDependencyMixin,
+        CommunityQueryMixin,
+        CommunityImageUploadMixin {
   @override
-  GroupWallState build() => GroupWallState(
-    posts: const [],
-    currentMember: ref.read(currentGroupMemberProvider),
-    isFetching: true,
-  );
+  GroupWallState build(String groupId) => const GroupWallState();
 
-  // TODO(community): Firestore servis PR'ında mock yerine gerçek istek gelecek.
-  Future<void> fetchPosts(String groupId) async {
-    state = state.copyWith(isFetching: true, isError: false);
-    await Future<void>.delayed(_mockFetchDelay);
-    state = state.copyWith(
-      posts: CommunityMockData.postsOf(groupId),
-      isFetching: false,
-    );
-  }
+  Query<GroupPostModel?> get posts => postsQuery(groupId);
 
-  // TODO(community): Beğeni bilgisi kullanıcıya özeldir ve Firestore servis
-  // PR'ında sunucudan okunacak; şimdilik yalnızca sayaç güncelleniyor.
-  void toggleLike(String postId) {
-    final posts = state.posts.map((post) {
-      if (post.id != postId) return post;
-      return post.copyWith(likeCount: post.likeCount + 1);
-    }).toList();
-    state = state.copyWith(posts: posts);
-  }
+  Future<bool> addPost(String content, {File? imageFile}) async {
+    final member = ref
+        .read(groupMembersViewModelProvider(groupId))
+        .currentMember;
+    if (member == null || state.isSubmitting) return false;
 
-  // TODO(community): Firestore servis PR'ında gönderi sunucuya yazılacak.
-  void addPost(String content, {File? imageFile}) {
+    state = state.copyWith(isSubmitting: true, isError: false);
+
+    String? imageUrl;
+    if (imageFile != null) {
+      imageUrl = (await uploadImage(imageFile)).dataOrNull;
+      if (imageUrl == null) return _failed();
+    }
+
     final post = GroupPostModel(
-      id: '$_localIdPrefix${DateTime.now().microsecondsSinceEpoch}',
-      author: state.currentMember,
+      author: GroupAuthorModel.fromMember(member),
       content: content,
-      createdAt: DateTime.now(),
-      imageFile: imageFile,
+      imageUrl: imageUrl,
     );
-    state = state.copyWith(posts: [post, ...state.posts]);
+    final result = await firestoreService.add<GroupPostModel>(
+      model: post,
+      path: CommunityPaths.posts(groupId),
+    );
+
+    if (!result.isSuccess) {
+      await discardImage(imageUrl);
+      return _failed();
+    }
+
+    if (ref.mounted) state = state.copyWith(isSubmitting: false);
+    return true;
+  }
+
+  bool _failed() {
+    if (ref.mounted) state = state.copyWith(isSubmitting: false, isError: true);
+    return false;
   }
 }

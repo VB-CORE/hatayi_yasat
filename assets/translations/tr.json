@@ -131,7 +131,8 @@
     "addedFavorite": "Favorilere eklendi",
     "emptyFavorite": "Favori listeniz boş",
     "removedFavorite": "Favorilerden kaldırıldı",
-    "copiedToClipboard": "Panoya kopyalandı"
+    "copiedToClipboard": "Panoya kopyalandı",
+    "imageTooLarge": "Görsel {} MB'den küçük olmalı."
   },
   "rate": {
     "trustQuestion": "Bu mekana güveniyor musun?",
@@ -250,6 +251,7 @@
     "request": "Talep",
     "advertise": "İş İlanı",
     "community": "Topluluk",
+    "groups": "Gruplar",
     "memories": "Hatıralar",
     "places": "Mekanlar",
     "feed": "Akış",
@@ -545,12 +547,18 @@
       "closedGroup": "KAPALI GRUP",
       "adminBadge": "Yönetici",
       "noPermissionInfo": "Grup oluşturma yetkin yok. Yetkili topluluk üyeleri yeni grup kurabilir.",
-      "empty": "Henüz grup yok."
+      "empty": "Henüz grup yok.",
+      "joinConfirmTitle": "Gruba Katıl",
+      "joinConfirmMessage": "Bu gruba katılmak istiyor musun? Katıldıktan sonra grubun içeriğine erişebilirsin.",
+      "join": "Katıl",
+      "joinConfirmCancel": "Vazgeç",
+      "allCategories": "Tümü"
     },
     "createGroup": {
       "title": "Grup Oluştur",
       "openBadge": "AÇIK",
       "coverImageLabel": "Kapak Görseli",
+      "coverImageHint": "Kapak görseli en fazla 1 MB olmalıdır.",
       "selectImage": "Görsel seç",
       "nameLabel": "Grup Adı",
       "nameHint": "Örn: Antakya Mahalle Dayanışması",
@@ -560,7 +568,8 @@
       "descriptionLabel": "Açıklama",
       "descriptionHint": "Grup ne hakkında? Kimler katılmalı?",
       "submitButton": "Grubu Oluştur",
-      "success": "Grup başarıyla oluşturuldu."
+      "success": "Grup başarıyla oluşturuldu.",
+      "categoryLoadError": "Kategoriler yüklenemedi. Lütfen tekrar deneyin."
     },
     "groupDetail": {
       "tabWall": "Duvar",
@@ -601,11 +610,12 @@
         "adminsTitle": "YÖNETİCİLER",
         "leaveGroup": "Gruptan ayrıl",
         "leaveSuccess": "Gruptan ayrıldın.",
-        "closeGroup": "Grubu kapat",
-        "closeGroupConfirmTitle": "Grubu kapat",
-        "closeGroupConfirmMessage": "Bu işlem tüm üyeler için grubu kaldırır ve geri alınamaz.",
-        "closeGroupConfirmCancel": "Vazgeç",
-        "closeGroupSuccess": "Grup kapatıldı."
+        "deleteGroup": "Grubu sil",
+        "deleteGroupConfirmTitle": "Grubu sil",
+        "deleteGroupConfirmMessage": "Bu işlem grubu tüm üyeler için kaldırır.",
+        "deleteGroupConfirmCancel": "Vazgeç",
+        "deleteGroupSuccess": "Grup silindi.",
+        "categoryLabel": "Kategori"
       }
     }
   },

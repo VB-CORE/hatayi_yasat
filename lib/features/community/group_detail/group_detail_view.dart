@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/group_details_view.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/group_discussions_view.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/group_wall_view.dart';
@@ -7,13 +6,13 @@ import 'package:lifeclient/features/community/group_detail/widget/group_detail_s
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
-final class GroupDetailView extends ConsumerWidget {
+final class GroupDetailView extends StatelessWidget {
   const GroupDetailView({required this.model, super.key});
 
   final GroupModel model;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
         length: AppConstants.kThree,

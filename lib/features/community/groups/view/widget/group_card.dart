@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/model/group_type.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
+import 'package:lifeclient/features/community/widget/group_type_presentation.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -18,11 +19,7 @@ import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 final class GroupCard extends StatelessWidget {
-  const GroupCard({
-    required this.model,
-    required this.onTap,
-    super.key,
-  });
+  const GroupCard({required this.model, required this.onTap, super.key});
 
   final GroupModel model;
   final VoidCallback onTap;
@@ -64,10 +61,7 @@ final class _CoverImage extends StatelessWidget {
     return SizedBox(
       width: context.sized.dynamicWidth(0.28),
       height: double.infinity,
-      child: GroupCoverImage(
-        groupId: model.id,
-        imageUrl: model.imageUrl,
-      ),
+      child: GroupCoverImage(groupId: model.id, imageUrl: model.imageUrl),
     );
   }
 }
@@ -108,8 +102,8 @@ final class _GroupMetaRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUserId = ref.watch(
-      currentGroupMemberProvider.select((member) => member.id),
+    final currentUid = ref.watch(
+      authViewModelProvider.select((state) => state.user?.uid),
     );
     return Wrap(
       spacing: WidgetSizes.spacingXs,
@@ -126,11 +120,16 @@ final class _GroupMetaRow extends ConsumerWidget {
           color: context.appColors.navy300,
         ),
         GeneralStatusBadge(
-          label: model.type.badgeLabel,
+          label: model.type.label,
           color: model.type.badgeColor(context),
-          icon: model.type.badgeIcon,
+          icon: model.type.icon,
         ),
-        if (model.isAdmin(currentUserId))
+        if (model.categoryName.isNotEmpty)
+          GeneralStatusBadge(
+            label: model.categoryName,
+            color: context.appColors.navy400,
+          ),
+        if (model.isCreatedBy(currentUid))
           GeneralStatusBadge(
             label: LocaleKeys.community_groups_adminBadge.tr(),
             color: context.general.colorScheme.tertiary,
@@ -138,21 +137,4 @@ final class _GroupMetaRow extends ConsumerWidget {
       ],
     );
   }
-}
-
-extension on GroupType {
-  String get badgeLabel => switch (this) {
-    GroupType.open => LocaleKeys.community_groups_openGroup.tr(),
-    GroupType.closed => LocaleKeys.community_groups_closedGroup.tr(),
-  };
-
-  Color badgeColor(BuildContext context) => switch (this) {
-    GroupType.open => context.appColors.olive600,
-    GroupType.closed => context.appColors.navy400,
-  };
-
-  IconData get badgeIcon => switch (this) {
-    GroupType.open => AppIcons.globe,
-    GroupType.closed => AppIcons.lockPerson,
-  };
 }

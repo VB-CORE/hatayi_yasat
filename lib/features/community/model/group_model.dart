@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/model/group_type.dart';
 
 part 'group_model.g.dart';
@@ -16,13 +15,34 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     this.name = '',
     this.description = '',
     this.imageUrl,
+    this.categoryValue = 0,
+    this.categoryName = '',
     this.isClosed = false,
     this.memberCount = 0,
     this.createdAt,
-    this.admins = const [],
+    this.updatedAt,
+    this.isDeleted = false,
   });
 
   const GroupModel.empty() : this();
+
+  factory GroupModel.fromCategory({
+    required String creatorUid,
+    required String name,
+    required GroupCategoryModel category,
+    String description = '',
+    String? imageUrl,
+  }) {
+    return GroupModel(
+      creatorUid: creatorUid,
+      name: name,
+      description: description,
+      imageUrl: imageUrl,
+      categoryValue: category.value,
+      categoryName: category.name,
+      memberCount: 1,
+    );
+  }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String id;
@@ -30,21 +50,30 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
   final String name;
   final String description;
   final String? imageUrl;
+
+  final int categoryValue;
+  final String categoryName;
+
   final bool isClosed;
-  @JsonKey(includeFromJson: false, includeToJson: false)
   final int memberCount;
+
   @JsonKey(
-    includeToJson: false,
+    toJson: FirebaseTimeParse.serverTimestampToJson,
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? createdAt;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final List<GroupMemberModel> admins;
+
+  @JsonKey(
+    toJson: FirebaseTimeParse.serverTimestampToJson,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? updatedAt;
+
+  final bool isDeleted;
 
   GroupType get type => isClosed ? GroupType.closed : GroupType.open;
 
-  bool isAdmin(String memberId) =>
-      memberId == creatorUid || admins.any((admin) => admin.id == memberId);
+  bool isCreatedBy(String? uid) => uid != null && uid == creatorUid;
 
   @override
   String get documentId => id;
@@ -69,10 +98,13 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     name,
     description,
     imageUrl,
+    categoryValue,
+    categoryName,
     isClosed,
     memberCount,
     createdAt,
-    admins,
+    updatedAt,
+    isDeleted,
   ];
 
   GroupModel copyWith({
@@ -81,10 +113,13 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
     String? name,
     String? description,
     String? imageUrl,
+    int? categoryValue,
+    String? categoryName,
     bool? isClosed,
     int? memberCount,
     DateTime? createdAt,
-    List<GroupMemberModel>? admins,
+    DateTime? updatedAt,
+    bool? isDeleted,
   }) {
     return GroupModel(
       id: id ?? this.id,
@@ -92,10 +127,13 @@ final class GroupModel extends BaseFirebaseModel<GroupModel>
       name: name ?? this.name,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
+      categoryValue: categoryValue ?? this.categoryValue,
+      categoryName: categoryName ?? this.categoryName,
       isClosed: isClosed ?? this.isClosed,
       memberCount: memberCount ?? this.memberCount,
       createdAt: createdAt ?? this.createdAt,
-      admins: admins ?? this.admins,
+      updatedAt: updatedAt ?? this.updatedAt,
+      isDeleted: isDeleted ?? this.isDeleted,
     );
   }
 }

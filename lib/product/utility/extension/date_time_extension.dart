@@ -74,6 +74,12 @@ extension DateTimeExtensions on DateTime {
   }
 }
 
+extension NullableDateTimeExtensions on DateTime? {
+  /// `null` ise (henüz yazılmamış server timestamp) "şimdi" varsayıp
+  /// göreceli süre döner. → `'Az önce'`
+  String get timeAgoOrNow => (this ?? DateTime.now()).timeAgo;
+}
+
 extension DateTimeHourAndMinuteExtensions on int {
   /// Tek haneli sayıya 0 ekler. → `'05'`
   String get beauty {

@@ -1,53 +1,65 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/provider/group_discussions_state.dart';
-import 'package:lifeclient/features/community/mock/community_mock_data.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
+import 'package:lifeclient/features/community/model/group_author_model.dart';
 import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
 import 'package:lifeclient/features/community/model/group_discussion_model.dart';
-import 'package:lifeclient/features/community/provider/current_group_member_provider.dart';
+import 'package:lifeclient/features/community/query/community_paths.dart';
+import 'package:lifeclient/features/community/query/community_queries.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'group_discussions_view_model.g.dart';
 
 @riverpod
 final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
-    with ProjectDependencyMixin {
-  static const _localIdPrefix = 'local-';
-  static const _mockFetchDelay = Duration(milliseconds: 400);
-
+    with ProjectDependencyMixin, CommunityQueryMixin {
   @override
-  GroupDiscussionsState build() =>
-      const GroupDiscussionsState(discussions: [], isFetching: true);
+  GroupDiscussionsState build(String groupId) => const GroupDiscussionsState();
 
-  // TODO(community): Firestore servis PR'ında mock yerine gerçek istek gelecek.
-  Future<void> fetchDiscussions(String groupId) async {
-    state = state.copyWith(isFetching: true, isError: false);
-    await Future<void>.delayed(_mockFetchDelay);
-    state = state.copyWith(
-      discussions: CommunityMockData.discussionsOf(groupId),
-      isFetching: false,
-    );
-  }
+  Query<GroupDiscussionModel?> get discussions => discussionsQuery(groupId);
 
-  // TODO(community): Firestore servis PR'ında tartışma sunucuya yazılacak.
-  GroupDiscussionModel addDiscussion(String title, String message) {
-    final currentMember = ref.read(currentGroupMemberProvider);
-    final createdAt = DateTime.now();
-    final localId = '$_localIdPrefix${createdAt.microsecondsSinceEpoch}';
-    final discussion = GroupDiscussionModel(
-      id: localId,
+  Future<GroupDiscussionModel?> startDiscussion({
+    required String title,
+    required String message,
+  }) async {
+    final member = ref
+        .read(groupMembersViewModelProvider(groupId))
+        .currentMember;
+    if (member == null || state.isSubmitting) return null;
+
+    state = state.copyWith(isSubmitting: true, isError: false);
+
+    final author = GroupAuthorModel.fromMember(member);
+    final discussionReference = CommunityPaths.discussions(
+      groupId,
+    ).collection.doc();
+    final discussion = GroupDiscussionModel.opening(
+      author: author,
       title: title,
-      author: currentMember,
-      createdAt: createdAt,
-      entries: [
-        GroupDiscussionEntryModel(
-          id: localId,
-          author: currentMember,
-          content: message,
-          createdAt: createdAt,
-        ),
-      ],
     );
-    state = state.copyWith(discussions: [discussion, ...state.discussions]);
-    return discussion;
+    final openingEntry = GroupDiscussionEntryModel(
+      author: author,
+      content: message,
+    );
+
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(discussionReference, discussion.toJson())
+        ..set(
+          CommunityPaths.entries(
+            groupId,
+            discussionReference.id,
+          ).collection.doc(),
+          openingEntry.toJson(),
+        ),
+    );
+
+    if (ref.mounted) {
+      state = state.copyWith(isSubmitting: false, isError: !result.isSuccess);
+    }
+    return result.isSuccess
+        ? discussion.copyWith(id: discussionReference.id)
+        : null;
   }
 }

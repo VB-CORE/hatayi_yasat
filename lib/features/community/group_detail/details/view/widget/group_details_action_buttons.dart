@@ -1,5 +1,27 @@
 part of '../group_details_view.dart';
 
+final class _MembershipButton extends ConsumerWidget {
+  const _MembershipButton({
+    required this.groupId,
+    required this.onLeave,
+    required this.onDelete,
+  });
+
+  final String groupId;
+  final VoidCallback onLeave;
+  final VoidCallback onDelete;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isAdmin = ref.watch(
+      groupMembersViewModelProvider(groupId).select((state) => state.isAdmin),
+    );
+    return isAdmin
+        ? _DeleteGroupButton(onPressed: onDelete)
+        : _LeaveGroupButton(onPressed: onLeave);
+  }
+}
+
 final class _LeaveGroupButton extends StatelessWidget {
   const _LeaveGroupButton({required this.onPressed});
 
@@ -27,8 +49,8 @@ final class _LeaveGroupButton extends StatelessWidget {
   }
 }
 
-final class _CloseGroupButton extends StatelessWidget {
-  const _CloseGroupButton({required this.onPressed});
+final class _DeleteGroupButton extends StatelessWidget {
+  const _DeleteGroupButton({required this.onPressed});
 
   final VoidCallback onPressed;
 
@@ -48,7 +70,7 @@ final class _CloseGroupButton extends StatelessWidget {
           ),
         ),
         icon: const Icon(AppIcons.delete),
-        label: Text(LocaleKeys.community_groupDetail_details_closeGroup.tr()),
+        label: Text(LocaleKeys.community_groupDetail_details_deleteGroup.tr()),
       ),
     );
   }

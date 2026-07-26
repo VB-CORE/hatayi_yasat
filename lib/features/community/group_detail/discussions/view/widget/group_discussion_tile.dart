@@ -58,7 +58,7 @@ final class GroupDiscussionTile extends StatelessWidget {
                           .tr(
                             args: [
                               model.author.maskedDisplayName,
-                              model.createdAt.timeAgo,
+                              model.createdAt.timeAgoOrNow,
                               model.entryCount.toString(),
                             ],
                           ),

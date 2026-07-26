@@ -59,7 +59,7 @@ final class PlaceDetailViewModelProvider
 }
 
 String _$placeDetailViewModelHash() =>
-    r'13121995cba6246c03f2d8a3b52c69e0f687b54f';
+    r'20043f6b738659b961e4fa7ef22e01510c76b9f0';
 
 final class PlaceDetailViewModelFamily extends $Family
     with
@@ -93,7 +93,7 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
   PlaceDetailState build(PlaceDetailArgs args);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<PlaceDetailState, PlaceDetailState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }
