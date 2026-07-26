@@ -25,7 +25,7 @@ mixin MerchantCompanySheetMixin on ConsumerState<MerchantCompanySheet> {
     final company = await ref
         .read(merchantCompanySheetViewModelProvider.notifier)
         .selectCompany(id);
-    if (!mounted) return;
+    if (!mounted || company == null) return;
     Navigator.pop(context, company);
   }
 }

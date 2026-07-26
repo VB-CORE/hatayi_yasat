@@ -110,7 +110,7 @@ final class _MerchantCompanyStepState
                     ActionChip(
                       onPressed:
                           (state.isCompanyLocked &&
-                              state.selectedCategory != null)
+                              state.selectedCompany?.category != null)
                           ? null
                           : () => _viewModel.selectCategory(category),
                       elevation: kZero,

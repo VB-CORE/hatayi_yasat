@@ -134,6 +134,8 @@ mixin MerchantApplicationViewMixin
   void _clearCompanyControllers() {
     placeNameController.clear();
     placeDescriptionController.clear();
+    placeOwnerNameController.clear();
+    phoneNumberController.clear();
     addressController.clear();
     openTimeController.reset();
     closeTimeController.reset();

@@ -26,7 +26,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
       ref.read(merchantApplicationViewModelProvider.notifier);
 
   bool _validateDocumentSize(File file) {
-    if (_viewModel.isDocumentSizeValid(file)) return true;
+    if (_viewModel.isFileSizeValid(file)) return true;
     appProvider.showSnackbarMessage(
       LocaleKeys.requestScholarship_error_fileSizeError.tr(),
     );

@@ -35,9 +35,9 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
         .read(merchantApplicationViewModelProvider.notifier)
         .hasActiveApplication();
     if (hasApplication) {
-      const MerchantApplicationStatusRoute().push<void>(context);
+      const MerchantApplicationStatusRoute().go(context);
       return;
     }
-    const MerchantApplicationViewRoute().push<void>(context);
+    const MerchantApplicationViewRoute().go(context);
   }
 }

@@ -76,6 +76,7 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
       selectedTown: defaultTown,
       clearSelectedTown: defaultTown == null,
       clearSelectedLocation: true,
+      photos: const [],
     );
   }
 
@@ -188,7 +189,7 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     state = state.copyWith(isCommentEnabled: value);
   }
 
-  bool isDocumentSizeValid(File file) =>
+  bool isFileSizeValid(File file) =>
       file.lengthSync() <= FileSizes.large.toByte;
 
   MerchantStepError? validateStep(
@@ -211,7 +212,11 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     return response;
   }
 
-  bool hasActiveApplication() => _currentUser?.application != null;
+  bool hasActiveApplication() {
+    final status = _currentUser?.application?.status;
+    if (status == null) return false;
+    return status != MerchantApplicationStatus.denied;
+  }
 
   Future<bool> _sendApplication(MerchantApplicationModel model) async {
     final images = await _uploadImages(model);

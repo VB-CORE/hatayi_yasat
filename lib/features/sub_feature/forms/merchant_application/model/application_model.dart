@@ -7,9 +7,7 @@ import 'package:lifeclient/features/sub_feature/forms/merchant_application/model
 part 'application_model.g.dart';
 
 @JsonSerializable()
-final class Application
-    extends BaseFirebaseModel<Application>
-    with Equatable {
+final class Application extends BaseFirebaseModel<Application> with Equatable {
   const Application({
     this.id = '',
     this.status = MerchantApplicationStatus.pending,

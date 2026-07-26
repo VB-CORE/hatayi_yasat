@@ -36,6 +36,12 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
   Future<void> _pickPhoto(int index) async {
     final file = await GeneralMediaSheet.open(context);
     if (!mounted || file == null) return;
+    if (!_viewModel.isFileSizeValid(file)) {
+      appProvider.showSnackbarMessage(
+        LocaleKeys.requestScholarship_error_fileSizeError.tr(),
+      );
+      return;
+    }
     _viewModel.addOrReplacePhoto(index, file);
   }
 
@@ -58,7 +64,8 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
             isMultiline: true,
             controller: widget.addressController,
             readOnly:
-                state.isCompanyLocked && widget.addressController.text.isNotEmpty,
+                state.isCompanyLocked &&
+                widget.addressController.text.isNotEmpty,
             labelText: LocaleKeys.requestCompany_address.tr(),
             hintText: LocaleKeys.requestCompany_address.tr(),
             validator: ValidatorNormalTextField().validate,

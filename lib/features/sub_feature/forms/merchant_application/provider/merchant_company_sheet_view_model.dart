@@ -56,11 +56,18 @@ final class MerchantCompanySheetViewModel
     }
   }
 
-  Future<StoreModel?> selectCompany(String id) {
-    return appProvider.customService.getSingleData<StoreModel>(
+  Future<StoreModel?> selectCompany(String id) async {
+    final result = await firestoreService.getSingleData<StoreModel>(
       model: StoreModel.empty(),
       path: CollectionPaths.approvedApplications,
       id: id,
     );
+    switch (result) {
+      case FirebaseSuccess(:final data):
+        return data;
+      case FirebaseFailure():
+        state = state.copyWith(isError: true);
+        return null;
+    }
   }
 }
