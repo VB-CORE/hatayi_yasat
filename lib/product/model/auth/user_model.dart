@@ -19,7 +19,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.roleType = 2,
     this.permissions = const [],
     this.rates = const [],
-    this.likedPosts = const [],
     this.photoUrl,
     this.merchantStoreId,
     this.fcmToken,
@@ -41,7 +40,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final int roleType;
   final List<int> permissions;
   final List<String> rates;
-  final List<String> likedPosts;
   final String? photoUrl;
   final String? merchantStoreId;
   final String? fcmToken;
@@ -106,7 +104,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     int? roleType,
     List<int>? permissions,
     List<String>? rates,
-    List<String>? likedPosts,
     String? photoUrl,
     String? merchantStoreId,
     String? fcmToken,
@@ -119,7 +116,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       roleType: roleType ?? this.roleType,
       permissions: permissions ?? this.permissions,
       rates: rates ?? this.rates,
-      likedPosts: likedPosts ?? this.likedPosts,
       photoUrl: photoUrl ?? this.photoUrl,
       merchantStoreId: merchantStoreId ?? this.merchantStoreId,
       fcmToken: fcmToken ?? this.fcmToken,
@@ -135,7 +131,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     roleType,
     permissions,
     rates,
-    likedPosts,
     photoUrl,
     merchantStoreId,
     fcmToken,

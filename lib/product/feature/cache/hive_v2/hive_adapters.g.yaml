@@ -121,5 +121,3 @@ types:
         index: 8
       rates:
         index: 9
-      likedPosts:
-        index: 10
