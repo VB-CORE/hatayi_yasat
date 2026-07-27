@@ -20,6 +20,7 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/index.dart';
 
+part 'widget/create_group_fab.dart';
 part 'widget/groups_category_filter.dart';
 part 'widget/groups_list.dart';
 part 'widget/groups_permission_banner.dart';
@@ -36,15 +37,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      floatingActionButton: canCreateGroup
-          ? Padding(
-              padding: const EdgeInsets.only(bottom: WidgetSizes.spacingXxl12),
-              child: FloatingActionButton(
-                onPressed: () => const CreateGroupRoute().go(context),
-                child: const Icon(AppIcons.add),
-              ),
-            )
-          : null,
+      floatingActionButton: canCreateGroup ? const _CreateGroupFab() : null,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
