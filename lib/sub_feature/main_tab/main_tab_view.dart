@@ -25,6 +25,7 @@ import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/widget/qr_fab_button.dart';
 
 part 'widget/main_app_bar.dart';
 part 'widget/main_bottom_app_bar.dart';
@@ -40,6 +41,9 @@ final class MainTabView extends ConsumerStatefulWidget {
 class _MainTabViewState extends ConsumerState<MainTabView>
     with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
   final List<TabModel> _tabItems = TabModels.create().tabItems;
+
+  double get bottomSafePadding =>
+      _BottomAppBarWidget.height + context.general.mediaQuery.padding.bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +68,12 @@ class _MainTabViewState extends ConsumerState<MainTabView>
                     appBar: showAppBar ? _MainAppBar() : null,
                     floatingActionButtonLocation:
                         FloatingActionButtonLocation.centerDocked,
-                    body: _BodyTabBarViewWidget(tabItems: _tabItems),
+                    body: Stack(
+                      children: [
+                        _BodyTabBarViewWidget(tabItems: _tabItems),
+                        QrFabButton(bottom: bottomSafePadding),
+                      ],
+                    ),
                     resizeToAvoidBottomInset: false,
                     bottomNavigationBar: GeneralSemantic(
                       semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,

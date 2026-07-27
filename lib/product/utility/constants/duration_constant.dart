@@ -1,6 +1,8 @@
 final class DurationConstant {
   DurationConstant._();
 
+  /// Duration 0.25 second
+  static const Duration durationVeryLow = Duration(milliseconds: 250);
   /// Duration 0.5 second
   static const Duration durationLow = Duration(milliseconds: 500);
 

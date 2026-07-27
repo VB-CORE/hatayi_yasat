@@ -36,6 +36,7 @@ final class AppIcons {
   static const IconData group = Icons.group_sharp;
   static const IconData event = Icons.event;
   static const IconData textSnippet = Icons.text_snippet;
+  static const IconData qrCodeRounded = Icons.qr_code_rounded;
 
   static const IconData personPin = Icons.person_pin;
   static const IconData person = Icons.person;
