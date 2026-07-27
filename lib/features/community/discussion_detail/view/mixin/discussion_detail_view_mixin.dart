@@ -37,12 +37,12 @@ mixin DiscussionDetailViewMixin
     if (!mounted) return;
 
     if (!isAdded) {
-      replyController.clear();
       appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
       return;
     }
+    replyController.clear();
     _scrollToLatestEntry();
   }
 
