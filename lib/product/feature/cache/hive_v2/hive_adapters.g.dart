@@ -346,9 +346,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           : (fields[4] as List).cast<int>(),
       rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
       photoUrl: fields[5] as String?,
-      merchantStoreId: fields[6] as String?,
       fcmToken: fields[7] as String?,
       updatedAt: fields[8] as DateTime?,
+      application: fields[11] as UserApplicationModel?,
     );
   }
 
@@ -368,14 +368,14 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..write(obj.permissions)
       ..writeByte(5)
       ..write(obj.photoUrl)
-      ..writeByte(6)
-      ..write(obj.merchantStoreId)
       ..writeByte(7)
       ..write(obj.fcmToken)
       ..writeByte(8)
       ..write(obj.updatedAt)
       ..writeByte(9)
-      ..write(obj.rates);
+      ..write(obj.rates)
+      ..writeByte(11)
+      ..write(obj.application);
   }
 
   @override
@@ -385,6 +385,98 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is UserModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class UserApplicationModelAdapter extends TypeAdapter<UserApplicationModel> {
+  @override
+  final typeId = 10;
+
+  @override
+  UserApplicationModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return UserApplicationModel(
+      id: fields[0] == null ? '' : fields[0] as String,
+      status: fields[1] == null
+          ? UserApplicationStatus.pending
+          : fields[1] as UserApplicationStatus,
+      deniedMessage: fields[2] as String?,
+      ownershipDocumentUrl: fields[3] == null ? '' : fields[3] as String,
+      createdAt: fields[4] as DateTime?,
+      updatedAt: fields[5] as DateTime?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, UserApplicationModel obj) {
+    writer
+      ..writeByte(6)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.status)
+      ..writeByte(2)
+      ..write(obj.deniedMessage)
+      ..writeByte(3)
+      ..write(obj.ownershipDocumentUrl)
+      ..writeByte(4)
+      ..write(obj.createdAt)
+      ..writeByte(5)
+      ..write(obj.updatedAt);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserApplicationModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class UserApplicationStatusAdapter extends TypeAdapter<UserApplicationStatus> {
+  @override
+  final typeId = 11;
+
+  @override
+  UserApplicationStatus read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return UserApplicationStatus.pending;
+      case 1:
+        return UserApplicationStatus.approved;
+      case 2:
+        return UserApplicationStatus.denied;
+      default:
+        return UserApplicationStatus.pending;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, UserApplicationStatus obj) {
+    switch (obj) {
+      case UserApplicationStatus.pending:
+        writer.writeByte(0);
+      case UserApplicationStatus.approved:
+        writer.writeByte(1);
+      case UserApplicationStatus.denied:
+        writer.writeByte(2);
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserApplicationStatusAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

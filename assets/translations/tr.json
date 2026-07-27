@@ -134,6 +134,45 @@
     "copiedToClipboard": "Panoya kopyalandı",
     "imageTooLarge": "Görsel {} MB'den küçük olmalı."
   },
+  "merchantApplication": {
+    "headerLabel": "Esnaf Başvurusu",
+    "photosTitle": "Fotoğraflar",
+    "photosHint": "En fazla 10 fotoğraf — kapak ilki olur",
+    "commentToggle": "İşletme sayfamda yorumlara izin ver",
+    "documentLabel": "Aidiyet Belgesi",
+    "documentHint": "Aidiyet belgenizi yükleyiniz",
+    "status": {
+      "title": "Esnaf Başvurum",
+      "reviewing": "İnceleniyor",
+      "approved": "Onaylandı",
+      "denied": "Reddedildi",
+      "approvedHeadline": "Başvurun onaylandı!\nMekanın artık yayında.",
+      "deniedHeadline": "Başvurun reddedildi.",
+      "deniedReason": "Red nedeni",
+      "headline": "Başvurun bizde.\nYakında sana döneceğiz.",
+      "description": "Esnaf başvurun ekibimiz tarafından 1-3 iş günü içinde değerlendiriliyor. Onaylandığında bildirim alacaksın.",
+      "submitted": "Başvuru gönderildi",
+      "documentReview": "Belge incelemesi",
+      "documentReviewHint": "Şu anda burada — belgeler doğrulanıyor",
+      "approval": "Onay & rozet",
+      "approvalHint": "Mekanın yayınlanır",
+      "support": "Sorun mu var?",
+      "supportAction": "Destek ekibiyle konuş"
+    },
+    "loginRequiredTitle": "Giriş yapmanız gerekiyor",
+    "loginRequiredContent": "Esnaf başvurusu yapabilmek için giriş yapmalısınız.",
+    "modeExisting": "Mevcut firmalardan seç",
+    "modeNew": "Yeni firma ekle",
+    "selectCompany": "Firma seçiniz",
+    "next": "Devam et",
+    "back": "Geri",
+    "submit": "Başvuruyu Gönder",
+    "steps": {
+      "company": "Firma",
+      "media": "Görünüm & Konum",
+      "owner": "Yetkili Bilgisi"
+    }
+  },
   "rate": {
     "trustQuestion": "Bu mekana güveniyor musun?",
     "singleVoteHint": "Tek bir oy hakkın var.",
@@ -416,7 +455,11 @@
     "discountRate": "İndirim Oranı",
     "discountRateValue": "%{}",
     "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
-    "emptyCoupons": "Henüz kupon bulunmuyor"
+    "emptyCoupons": "Henüz kupon bulunmuyor",
+    "addSuccess": "Kupon eklendi.",
+    "deleteConfirmTitle": "Kupon silinsin mi?",
+    "deleteConfirmContent": "Bu kuponu silmek istediğine emin misin? Bu işlem geri alınamaz.",
+    "deleteSuccess": "Kupon silindi."
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
@@ -496,7 +539,13 @@
     },
     "storeBanner": {
       "title": "Mekanın var mı? Esnaf olarak başvur.",
-      "subtitle": "Mekanını ekle, \"Mekan Sahibi\" rozeti kazan."
+      "subtitle": "Mekanını ekle, \"Mekan Sahibi\" rozeti kazan.",
+      "approvedTitle": "Esnaf Panelim",
+      "approvedSubtitle": "Mekanınızı görüntüleyin ve düzenleyin",
+      "pendingTitle": "Başvurunuz inceleniyor",
+      "pendingSubtitle": "En kısa sürede size geri dönüş yapacağız",
+      "deniedTitle": "Başvurunuz reddedildi",
+      "deniedSubtitle": "Lütfen başvurunuzu kontrol ediniz"
     }
   },
   "userQr": {

@@ -11,6 +11,7 @@ import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/firebase/custom_functions.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 part './view/place_build_response_result.dart';
@@ -65,7 +66,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
   }
 
   Widget _buildResultsOrSuggestions(BuildContext context) {
-    if (!query.isNotEmptyAndLength) {
+    if (!query.isValidSearchTerm) {
       if (_history.isNotEmpty) _history.clear();
       return _PlaceSearchEmptyResult(
         onSelected: (value) {
@@ -97,10 +98,6 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
       },
     );
   }
-}
-
-extension _QueryCheckExtension on String {
-  bool get isNotEmptyAndLength => isNotEmpty && trim().length > 2;
 }
 
 mixin _PlaceSearchMixin on SearchDelegate<SearchResponse> {

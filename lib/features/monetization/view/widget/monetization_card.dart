@@ -1,9 +1,13 @@
 part of '../monetization_view.dart';
 
 final class _MonetizationCard extends StatelessWidget {
-  const _MonetizationCard({required this.coupon});
+  const _MonetizationCard({
+    required this.coupon,
+    required this.onDelete,
+  });
 
   final DiscountCouponModel coupon;
+  final VoidCallback onDelete;
 
   String get _statusLabel {
     if (coupon.isExpired) return LocaleKeys.monetization_inactive.tr();
@@ -44,7 +48,7 @@ final class _MonetizationCard extends StatelessWidget {
                     mainAxisAlignment: .center,
                     children: [
                       Text(
-                        '%${coupon.discountRate ?? 0}',
+                        '%${coupon.ratio ?? 0}',
                         style: AppText.displayLg.copyWith(
                           color: onDiscountCardColor,
                         ),
@@ -70,18 +74,29 @@ final class _MonetizationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: AppSpacing.xs,
                   children: [
-                    Text(
-                      coupon.desc ?? '',
-                      style: AppText.bodyLg,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            coupon.desc ?? '',
+                            style: AppText.bodyLg,
+                          ),
+                        ),
+
+                        Bounceable(
+                          onTap: onDelete,
+                          child: const Icon(
+                            AppIcons.delete,
+                            color: AppColors.ink500,
+                            size: AppIconSizes.medium,
+                          ),
+                        ),
+                      ],
                     ),
                     if (coupon.expiresAt case final expiresAt?)
                       Text(
                         LocaleKeys.monetization_expiresAtSummary.tr(
-                          args: [
-                            DateFormat.yMMMd(
-                              context.locale.toLanguageTag(),
-                            ).format(expiresAt.toLocal()),
-                          ],
+                          args: [expiresAt.dateTimeLabel],
                         ),
                         style: AppText.bodySm.copyWith(color: AppColors.ink500),
                       ),

@@ -55,4 +55,9 @@ extension StringExtension on String {
   Future<void> copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: this));
   }
+
+  /// Aramaya gitmeden önce minimum uzunluk kontrolü
+  /// atıldıktan sonra en az 3 karakter. Yer aramasında ve şirket sheet'inde
+  /// aynı eşik için kullanılır.
+  bool get isValidSearchTerm => trim().length > 2;
 }

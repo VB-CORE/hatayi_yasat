@@ -14,6 +14,8 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(MemoryModelAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
+    registerAdapter(UserApplicationModelAdapter());
+    registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
   }
 }
@@ -27,6 +29,8 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(MemoryModelAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
+    registerAdapter(UserApplicationModelAdapter());
+    registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
   }
 }

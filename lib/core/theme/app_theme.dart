@@ -34,6 +34,7 @@ final class ApplicationTheme {
       surfaceContainerHighest: AppColors.bgDeep,
       outline: AppColors.ink100,
       outlineVariant: AppColors.ink50,
+      onPrimaryFixed: AppColors.surface,
       inverseSurface: AppColors.navy,
       onInverseSurface: AppColors.white,
       inversePrimary: AppColors.coral,

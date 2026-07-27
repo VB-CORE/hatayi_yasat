@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/file_picker/file_extension_enum.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_v2_mixin.dart';
@@ -26,12 +26,20 @@ final class UploadFileSection extends StatefulWidget {
     required this.hintText,
     required this.onFilePicked,
     this.allowedExtension,
+    this.label,
+    this.fileValidator,
     super.key,
   });
 
   final String hintText;
   final ValueSetter<File> onFilePicked;
   final List<FileExtensionEnum>? allowedExtension;
+
+  /// Locale key of the section label; defaults to the scholarship document key
+  final String? label;
+
+  /// Called before accepting a picked file; return false to reject it
+  final bool Function(File file)? fileValidator;
 
   @override
   State<UploadFileSection> createState() => UploadFileSectionV2State();
@@ -44,7 +52,7 @@ class UploadFileSectionV2State extends State<UploadFileSection>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _FileSectionLabel(),
+        _FileSectionLabel(label: widget.label),
         const EmptyBox.smallHeight(),
         DecoratedBox(
           decoration: BoxDecoration(
@@ -63,13 +71,13 @@ class UploadFileSectionV2State extends State<UploadFileSection>
                   valueListenable: documentFileNotifier,
                   builder: (BuildContext context, File? file, Widget? _) =>
                       Expanded(
-                    child: isFilePicked(file)
-                        ? _UploadedFileText(
-                            fileName: getNameOfFile(file!)!,
-                            onPressed: () => showPdfFilePreview(file),
-                          )
-                        : _HintText(hintText: widget.hintText),
-                  ),
+                        child: isFilePicked(file)
+                            ? _UploadedFileText(
+                                fileName: getNameOfFile(file!)!,
+                                onPressed: () => showPdfFilePreview(file),
+                              )
+                            : _HintText(hintText: widget.hintText),
+                      ),
                 ),
                 const EmptyBox.smallWidth(),
                 ValueListenableBuilder(
@@ -92,15 +100,17 @@ class UploadFileSectionV2State extends State<UploadFileSection>
 
 class _FileSectionLabel extends StatelessWidget {
   const _FileSectionLabel({
-    super.key,
+    this.label,
   });
+
+  final String? label;
 
   @override
   Widget build(BuildContext context) {
     return GeneralBodySmallTitle(
-      LocaleKeys.requestScholarship_studentDocument.tr(),
-      fontWeight: FontWeight.w500,
-      color: context.general.colorScheme.onPrimaryFixedVariant,
+      (label ?? LocaleKeys.requestScholarship_studentDocument).tr(),
+      fontWeight: FontWeight.w700,
+      color: AppColors.ink900,
     );
   }
 }
