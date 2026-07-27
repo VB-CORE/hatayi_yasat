@@ -45,9 +45,7 @@ extension AuthStateX on AuthState {
     _ => null,
   };
 
-  bool get isAuthenticated => this is Authenticated;
-
-  bool get hasMerchantStore => user?.application?.id != null;
+  bool get isAuthenticated => this is Authenticated; 
 
   bool get canCreateGroup => user?.canCreateGroup ?? false;
 }
