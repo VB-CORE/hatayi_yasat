@@ -13,11 +13,14 @@ import 'package:lifeclient/features/community/groups/view/widget/group_card.dart
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/provider/group_categories_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/index.dart';
 
+part 'widget/create_group_fab.dart';
 part 'widget/groups_category_filter.dart';
 part 'widget/groups_list.dart';
 part 'widget/groups_permission_banner.dart';
@@ -34,6 +37,7 @@ final class _GroupsViewState extends ConsumerState<GroupsView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      floatingActionButton: canCreateGroup ? const _CreateGroupFab() : null,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -7,7 +7,6 @@ import 'package:lifeclient/features/community/create_group/view/create_group_vie
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
 import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
 import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
-import 'package:lifeclient/features/community/groups/view/groups_view.dart';
 import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
@@ -76,6 +75,9 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     // Settings
     SettingsRoute.route,
     EditProfileRoute.route,
+
+    // Community
+    CreateGroupRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
@@ -386,21 +388,10 @@ final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
       UnauthorizedView(attemptedPath: attemptedPath);
 }
 
-@TypedGoRoute<GroupsRoute>(
-  path: '/groups',
-  routes: [
-    TypedGoRoute<CreateGroupRoute>(path: 'create-group'),
-  ],
-)
-final class GroupsRoute extends GoRouteData with $GroupsRoute {
-  const GroupsRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const GroupsView();
-}
-
 final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
   const CreateGroupRoute();
+
+  static const route = TypedGoRoute<CreateGroupRoute>(path: 'create-group');
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>
