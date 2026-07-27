@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
@@ -50,7 +51,9 @@ final class _ProfileViewState extends ConsumerState<ProfileView>
         unauthorized: ProfileGuestHeader(),
       ),
       content: Padding(
-        padding: const PagePadding.vertical12Symmetric(),
+        padding:
+            const PagePadding.vertical12Symmetric() +
+            .only(bottom: context.general.mediaQuery.padding.bottom),
         child: Column(
           spacing: AppSpacing.sm,
           children: [

@@ -36,9 +36,11 @@ service cloud.firestore {
         && request.resource.data.permissions.size() == 0
         && !('merchantStoreId' in request.resource.data);
       allow update: if request.auth.uid == uid
-        && affects(['fcmToken', 'displayName', 'photoUrl', 'updatedAt']);
+        && affects(['fcmToken', 'displayName', 'photoUrl', 'updatedAt','application']);
       allow update: if isAdmin();
-    }
+   
+  }
+    
 
     match /approvedApplications/{storeId} {
       allow read: if true;

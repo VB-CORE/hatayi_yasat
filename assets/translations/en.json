@@ -134,6 +134,45 @@
     "copiedToClipboard": "Copied to clipboard",
     "imageTooLarge": "The image must be smaller than {} MB."
   },
+  "merchantApplication": {
+    "headerLabel": "Merchant Application",
+    "photosTitle": "Photos",
+    "photosHint": "Up to 10 photos — first one is the cover",
+    "commentToggle": "Allow comments on my business page",
+    "documentLabel": "Ownership Document",
+    "documentHint": "Upload your ownership document",
+    "status": {
+      "title": "My Merchant Application",
+      "reviewing": "In review",
+      "approved": "Approved",
+      "denied": "Denied",
+      "approvedHeadline": "Your application is approved!\nYour place is now live.",
+      "deniedHeadline": "Your application was denied.",
+      "deniedReason": "Reason",
+      "headline": "We got your application.\nWe'll get back to you soon.",
+      "description": "Your merchant application is reviewed by our team within 1-3 business days. You'll get a notification once it is approved.",
+      "submitted": "Application submitted",
+      "documentReview": "Document review",
+      "documentReviewHint": "Currently here — verifying documents",
+      "approval": "Approval & badge",
+      "approvalHint": "Your place goes live",
+      "support": "Having trouble?",
+      "supportAction": "Talk to support"
+    },
+    "loginRequiredTitle": "Login required",
+    "loginRequiredContent": "You need to log in to submit a merchant application.",
+    "modeExisting": "Select existing business",
+    "modeNew": "Add new business",
+    "selectCompany": "Select a business",
+    "next": "Continue",
+    "back": "Back",
+    "submit": "Submit Application",
+    "steps": {
+      "company": "Business",
+      "media": "Photos & Location",
+      "owner": "Owner Info"
+    }
+  },
   "rate": {
     "trustQuestion": "Do you trust this place?",
     "singleVoteHint": "You only have one vote.",
@@ -416,7 +455,11 @@
     "discountRate": "Discount Rate",
     "discountRateValue": "%{}",
     "invalidUsageLimit": "Enter a valid usage limit (1+)",
-    "emptyCoupons": "No coupons yet"
+    "emptyCoupons": "No coupons yet",
+    "addSuccess": "Coupon added.",
+    "deleteConfirmTitle": "Delete coupon?",
+    "deleteConfirmContent": "Are you sure you want to delete this coupon? This action can't be undone.",
+    "deleteSuccess": "Coupon deleted."
   },
   "whatsNew": {
     "title": "New in v8.1.0 🎉",
@@ -496,7 +539,13 @@
     },
     "storeBanner": {
       "title": "Own a place? Apply as a merchant.",
-      "subtitle": "Add your place and earn the \"Place Owner\" badge."
+      "subtitle": "Add your place and earn the \"Place Owner\" badge.",
+      "approvedTitle": "My Merchant Panel",
+      "approvedSubtitle": "View and edit your place",
+      "pendingTitle": "Your application is under review",
+      "pendingSubtitle": "We'll get back to you as soon as possible",
+      "deniedTitle": "Your application was denied",
+      "deniedSubtitle": "Check your application for details"
     }
   },
   "userQr": {

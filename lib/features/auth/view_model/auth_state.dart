@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 sealed class AuthState extends Equatable {
   const AuthState();
@@ -45,5 +45,7 @@ extension AuthStateX on AuthState {
     _ => null,
   };
 
-  bool get isAuthenticated => this is Authenticated;
+  bool get isAuthenticated => this is Authenticated; 
+
+  bool get canCreateGroup => user?.canCreateGroup ?? false;
 }

@@ -5,21 +5,29 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 /// Project dotted rectangle widget
 final class GeneralDottedRectangle extends StatelessWidget {
-  const GeneralDottedRectangle({required this.child, this.color, super.key});
+  const GeneralDottedRectangle({
+    required this.child,
+    this.color,
+    this.borderRadius,
+    super.key,
+  });
   final Widget child;
   final Color? color;
+
+  /// Overrides the default corner radius; falls back to the current behavior
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
       options: RoundedRectDottedBorderOptions(
         color: color ?? context.general.colorScheme.onPrimaryFixedVariant,
-        radius: context.border.normalRadius,
+        radius: borderRadius?.topLeft ?? context.border.normalRadius,
         dashPattern: const [3, 6],
         strokeCap: StrokeCap.square,
       ),
       child: ClipRRect(
-        borderRadius: CustomRadius.medium,
+        borderRadius: borderRadius ?? CustomRadius.medium,
         child: child,
       ),
     );

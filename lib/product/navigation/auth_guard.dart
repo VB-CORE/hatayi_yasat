@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
 abstract final class AuthGuard {
@@ -36,4 +37,9 @@ abstract final class AuthGuard {
 
   static AuthState _authState(BuildContext context) =>
       ProviderScope.containerOf(context).read(authViewModelProvider);
+
+  static UserApplicationModel? application(BuildContext context) =>
+      ProviderScope.containerOf(
+        context,
+      ).read(authViewModelProvider).user?.application;
 }

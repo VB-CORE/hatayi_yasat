@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 final class FirebaseUserService implements UserService {
   FirebaseUserService({

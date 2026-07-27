@@ -19,8 +19,17 @@ import 'package:lifeclient/product/widget/text_field/widget/custom_text_field_de
 /// Params:
 ///  - [onDateSelected] is a callback that returns the selected date
 final class DateTimeFormField extends StatefulWidget {
-  const DateTimeFormField({required this.onDateSelected, super.key});
+  const DateTimeFormField({
+    required this.onDateSelected,
+    this.labelText,
+    this.hintText,
+    super.key,
+  });
+
   final ValueSetter<DateTime> onDateSelected;
+  final String? labelText;
+  final String? hintText;
+
   @override
   State<DateTimeFormField> createState() => _DateTimeFormFieldState();
 }
@@ -32,7 +41,10 @@ class _DateTimeFormFieldState extends State<DateTimeFormField>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _DateFormFieldLabel(),
+        _DateFormFieldLabel(
+          labelText:
+              widget.labelText ?? LocaleKeys.projectRequest_dateInputTitle.tr(),
+        ),
         const EmptyBox.smallHeight(),
         TextFormField(
           readOnly: true,
@@ -41,15 +53,16 @@ class _DateTimeFormFieldState extends State<DateTimeFormField>
           decoration: CustomDateTimeFieldDecoration(
             context: context,
             suffixIcon: AppIcons.calendar,
-            hint: LocaleKeys.projectRequest_expireDate.tr(),
+            hint: widget.hintText ?? LocaleKeys.projectRequest_expireDate.tr(),
           ),
           style: context.general.textTheme.titleMedium?.copyWith(
             color: context.general.colorScheme.onSecondaryFixed,
             fontWeight: FontWeight.w400,
           ),
           onTap: () async => _updateSelectedDate(),
-          validator: (_) => TextFieldValidatorIsNullEmpty()
-              .validate(_selectedDate?.toIso8601String()),
+          validator: (_) => TextFieldValidatorIsNullEmpty().validate(
+            _selectedDate?.toIso8601String(),
+          ),
         ),
       ],
     );
@@ -57,12 +70,14 @@ class _DateTimeFormFieldState extends State<DateTimeFormField>
 }
 
 final class _DateFormFieldLabel extends StatelessWidget {
-  const _DateFormFieldLabel();
+  const _DateFormFieldLabel({required this.labelText});
+
+  final String labelText;
 
   @override
   Widget build(BuildContext context) {
     return GeneralBodySmallTitle(
-      LocaleKeys.projectRequest_dateInputTitle.tr(),
+      labelText,
       fontWeight: FontWeight.w500,
       color: context.general.colorScheme.onPrimaryFixedVariant,
     );

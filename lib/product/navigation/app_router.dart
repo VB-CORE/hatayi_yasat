@@ -14,6 +14,7 @@ import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
+import 'package:lifeclient/features/merchant_panel/merchant_panel_view.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
@@ -24,6 +25,8 @@ import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_s
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_result_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/view/filter_search_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/index.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_status_pending_view.dart';
+import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_view.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
@@ -37,6 +40,7 @@ import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 export 'package:life_shared/life_shared.dart' show NewsModel;
 
 part 'app_router.g.dart';
+part 'merchant_guard.dart';
 
 @TypedGoRoute<SplashRoute>(
   path: '/',
@@ -69,6 +73,9 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
 
     // Forms
     PlaceRequestFormRoute.route,
+    _MerchantPanelRoute.route,
+    _MerchantPendingRoute.route,
+    _MerchantApplicationRoute.route,
     ProjectRequestFormRoute.route,
     ScholarShipRequestFormRoute.route,
 
@@ -157,6 +164,61 @@ final class PlaceRequestFormRoute extends GoRouteData
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const PlaceRequestForm();
+}
+
+final class _MerchantPanelRoute extends GoRouteData with $_MerchantPanelRoute {
+  const _MerchantPanelRoute();
+
+  static const route = TypedGoRoute<_MerchantPanelRoute>(
+    path: 'merchantPanel',
+    name: 'Merchant Panel',
+  );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      MerchantGuard.redirect(context, state);
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MerchantPanelView();
+}
+
+final class _MerchantApplicationRoute extends GoRouteData
+    with $_MerchantApplicationRoute {
+  const _MerchantApplicationRoute();
+
+  static const route = TypedGoRoute<_MerchantApplicationRoute>(
+    path: 'merchantApplication',
+    name: 'Merchant Application',
+  );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      MerchantGuard.redirect(context, state);
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MerchantApplicationView();
+}
+
+final class _MerchantPendingRoute extends GoRouteData
+    with $_MerchantPendingRoute {
+  const _MerchantPendingRoute();
+
+  static const route = TypedGoRoute<_MerchantPendingRoute>(
+    path: 'merchantPending',
+    name: 'Merchant Pending',
+  );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      MerchantGuard.redirect(context, state);
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    final application = AuthGuard.application(context)!;
+    return MerchantApplicationPendingView(application);
+  }
 }
 
 final class ProjectRequestFormRoute extends GoRouteData

@@ -1,19 +1,27 @@
+import 'dart:async';
+
+import 'package:bounceable/bounceable.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_mock.dart';
 import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
+import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
+import 'package:lifeclient/features/monetization/view/mixin/monetization_view_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
+import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/utility/extension/number_extension.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/app_bar_action.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
@@ -23,18 +31,18 @@ part 'widget/monetization_body_view.dart';
 part 'widget/monetization_card.dart';
 part 'widget/monetization_tab_bar.dart';
 
-final class MonetizationView extends StatelessWidget {
+final class MonetizationView extends ConsumerStatefulWidget {
   const MonetizationView({super.key});
 
   @override
+  ConsumerState<MonetizationView> createState() => _MonetizationViewState();
+}
+
+final class _MonetizationViewState extends ConsumerState<MonetizationView>
+    with AppProviderMixin<MonetizationView>, MonetizationViewMixin {
+  @override
   Widget build(BuildContext context) {
-    final coupons = DiscountCouponMock.mockDiscountCoupons;
-    final activeCoupons = coupons
-        .where((coupon) => !coupon.isInactive)
-        .toList();
-    final inactiveCoupons = coupons
-        .where((coupon) => coupon.isInactive)
-        .toList();
+    final state = ref.watch(monetizationViewModelProvider);
 
     return GeneralScaffold(
       appBar: PageAppBar(
@@ -48,29 +56,45 @@ final class MonetizationView extends StatelessWidget {
           ),
         ],
       ),
-      body: coupons.isEmpty
-          ? GeneralNotFoundWidget(
-              title: LocaleKeys.monetization_emptyCoupons.tr(),
-            )
-          : DefaultTabController(
-              length: MonetizationCouponTab.values.length,
-              child: Column(
-                children: [
-                  _MonetizationTabBar(
-                    activeCount: activeCoupons.length,
-                    inactiveCount: inactiveCoupons.length,
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        _MonetizationBodyView(coupons: activeCoupons),
-                        _MonetizationBodyView(coupons: inactiveCoupons),
-                      ],
-                    ),
-                  ),
-                ],
+      body: switch (state) {
+        _ when state.isFetching => const Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
+        _ when state.isError => GeneralNotFoundWidget(
+          title: LocaleKeys.message_somethingWentWrong.tr(),
+          onRefresh: () => unawaited(
+            ref.read(monetizationViewModelProvider.notifier).fetchCoupons(),
+          ),
+        ),
+        _ when state.coupons.isEmpty => GeneralNotFoundWidget(
+          title: LocaleKeys.monetization_emptyCoupons.tr(),
+        ),
+        _ => DefaultTabController(
+          length: MonetizationCouponTab.values.length,
+          child: Column(
+            children: [
+              _MonetizationTabBar(
+                activeCount: state.activeCoupons.length,
+                inactiveCount: state.inactiveCoupons.length,
               ),
-            ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    _MonetizationBodyView(
+                      coupons: state.activeCoupons,
+                      onDelete: onDelete,
+                    ),
+                    _MonetizationBodyView(
+                      coupons: state.inactiveCoupons,
+                      onDelete: onDelete,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      },
     );
   }
 }

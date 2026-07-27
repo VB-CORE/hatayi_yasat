@@ -60,6 +60,9 @@ extension DateTimeExtensions on DateTime {
   /// 24s format. → `'14:30'`
   String get hm => DateFormat.Hm().format(this);
 
+  /// Tarih + saat. → `'27 Tem 2026 14:30'`
+  String get dateTimeLabel => DateFormat('d MMM y, HH:mm').format(this);
+
   /// Bugün/dün/tarih etiketi. → `'Bugün'`, `'Dün'`, `'20 Temmuz'`
   String get relativeDayLabel {
     final now = DateTime.now();

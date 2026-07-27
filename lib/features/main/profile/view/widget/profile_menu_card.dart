@@ -39,7 +39,7 @@ final class ProfileMenuCard extends ConsumerWidget {
           ),
           const Divider(color: AppColors.navy50),
           _ProfileMenuRow(
-            icon: AppIcons.settings,
+            icon: AppIcons.settingsFilled,
             label: LocaleKeys.profile_menu_settings.tr(),
             onTap: () => const SettingsRoute().push<void>(context),
           ),

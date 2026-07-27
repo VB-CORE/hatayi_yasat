@@ -1,33 +1,40 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_mixin.dart';
+import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:lifeclient/product/widget/text_field/date_time_form_field.dart';
 import 'package:lifeclient/product/widget/text_field/labeled_product_textfield.dart';
 
 part 'widget/monetization_discount_rate_slider.dart';
 
 @immutable
-final class MonetizationCouponFormView extends StatefulWidget {
+final class MonetizationCouponFormView extends ConsumerStatefulWidget {
   const MonetizationCouponFormView({super.key});
 
   @override
-  State<MonetizationCouponFormView> createState() =>
+  ConsumerState<MonetizationCouponFormView> createState() =>
       _MonetizationCouponFormViewState();
 }
 
-class _MonetizationCouponFormViewState extends State<MonetizationCouponFormView>
-    with MonetizationCouponFormMixin {
+final class _MonetizationCouponFormViewState
+    extends ConsumerState<MonetizationCouponFormView>
+    with
+        AppProviderMixin<MonetizationCouponFormView>,
+        MonetizationCouponFormMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,25 +78,39 @@ class _MonetizationCouponFormViewState extends State<MonetizationCouponFormView>
                 ).validate,
               ),
               const EmptyBox.smallHeight(),
-              LabeledProductTextField(
-                controller: expiresAtController,
+              DateTimeFormField(
                 labelText: LocaleKeys.monetization_expiryDateLabel.tr(),
                 hintText: LocaleKeys.monetization_expiryDateLabel.tr(),
-                readOnly: true,
-                suffixIcon: AppIcons.calendar,
-                onTap: pickExpiryDate,
-                validator: TextFieldValidatorIsNullEmpty().validate,
+                onDateSelected: (value) => expiresAt = value,
               ),
               const EmptyBox.smallHeight(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: GeneralButtonV2.active(
-          action: saveCoupon,
-          label: LocaleKeys.button_save.tr(),
-        ),
+      bottomNavigationBar: _MonetizationCouponFormSaveButton(
+        onSave: saveCoupon,
+      ),
+    );
+  }
+}
+
+final class _MonetizationCouponFormSaveButton extends ConsumerWidget {
+  const _MonetizationCouponFormSaveButton({required this.onSave});
+
+  final Future<void> Function() onSave;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSubmitting = ref.watch(
+      monetizationViewModelProvider.select((state) => state.isSubmitting),
+    );
+
+    return BottomAppBar(
+      child: GeneralButtonV2.async(
+        action: onSave,
+        isEnabled: !isSubmitting,
+        label: LocaleKeys.button_save.tr(),
       ),
     );
   }
