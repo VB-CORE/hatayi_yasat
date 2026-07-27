@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/security/nonce_generator.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -22,15 +20,20 @@ final class FirebaseAuthService implements AuthService {
     required ProductCache productCache,
     FirebaseAuth? auth,
     GoogleSignIn? googleSignIn,
+    NonceGenerator? nonceGenerator,
   }) : _firebaseService = firebaseService,
        _productCache = productCache,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleSignIn = googleSignIn ?? GoogleSignIn();
+       _googleSignIn = googleSignIn ?? GoogleSignIn(),
+       _nonceGenerator = nonceGenerator ?? const NonceGenerator();
 
   final FirebaseCustomService _firebaseService;
   final ProductCache _productCache;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final NonceGenerator _nonceGenerator;
+
+  static const _appleProviderId = 'apple.com';
 
   final StreamController<UserModel?> _userController =
       StreamController<UserModel?>.broadcast();
@@ -185,8 +188,8 @@ final class FirebaseAuthService implements AuthService {
   Future<AuthCredential?> _appleCredential() async {
     // Apple, hash'lenmiş nonce'u identityToken'ın içine gömüyor; Firebase
     // rawNonce'u kendi hash'leyip karşılaştırıyor (token replay'e karşı).
-    final rawNonce = _generateNonce();
-    final hashedNonce = _sha256(rawNonce);
+    final rawNonce = _nonceGenerator.generate();
+    final hashedNonce = _nonceGenerator.sha256Hex(rawNonce);
 
     final AuthorizationCredentialAppleID appleCredential;
     try {
@@ -204,21 +207,9 @@ final class FirebaseAuthService implements AuthService {
 
     final identityToken = appleCredential.identityToken;
     if (identityToken == null) return null;
-    return OAuthProvider('apple.com').credential(
+    return OAuthProvider(_appleProviderId).credential(
       idToken: identityToken,
       rawNonce: rawNonce,
     );
   }
-
-  String _generateNonce([int length = 32]) {
-    const charset =
-        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._';
-    final random = Random.secure();
-    return List.generate(
-      length,
-      (_) => charset[random.nextInt(charset.length)],
-    ).join();
-  }
-
-  String _sha256(String input) => sha256.convert(utf8.encode(input)).toString();
 }
