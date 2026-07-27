@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,14 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/application_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_model.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_status.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_step.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_photo.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_step_error.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_state.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -203,26 +203,28 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     MerchantApplicationStep.owner => _validateOwner(isFormValid: isFormValid),
   };
 
-  Future<bool> submit() async {
+  Future<UserApplicationModel?> submit() async {
     final model = _buildModel();
-    if (model == null) return false;
+    if (model == null) return null;
     state = state.copyWith(isSubmitting: true, isError: false);
-    final response = await _sendApplication(model);
-    state = state.copyWith(isSubmitting: false, isError: !response);
-    return response;
+    final application = await _sendApplication(model);
+    if (application != null) {
+      ref.read(authViewModelProvider.notifier).updateApplication(application);
+    }
+    state = state.copyWith(
+      isSubmitting: false,
+      isError: application == null,
+    );
+    return application;
   }
 
-  bool hasActiveApplication() {
-    final status = _currentUser?.application?.status;
-    if (status == null) return false;
-    return status != MerchantApplicationStatus.denied;
-  }
-
-  Future<bool> _sendApplication(MerchantApplicationModel model) async {
+  Future<UserApplicationModel?> _sendApplication(
+    MerchantApplicationModel model,
+  ) async {
     final images = await _uploadImages(model);
-    if (images == null) return false;
+    if (images == null) return null;
     final documentUrl = await _uploadDocument(model.documentFile);
-    if (documentUrl == null) return false;
+    if (documentUrl == null) return null;
 
     final deviceId = await ''.ext.deviceId;
     final now = DateTime.now();
@@ -253,7 +255,7 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
       createdAt: now,
       updatedAt: now,
     );
-    final record = Application(
+    final record = UserApplicationModel(
       id: storeReference.id,
       ownershipDocumentUrl: documentUrl,
       createdAt: now,
@@ -263,9 +265,9 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     final result = await firestoreService.batchWrite(
       (batch) => batch
         ..set(storeReference, store.toJson())
-        ..update(userReference, {'application': record.toJson()}),
+        ..update(userReference, UserModel.updateFields(application: record)),
     );
-    return result.isSuccess;
+    return result.isSuccess ? record : null;
   }
 
   Future<List<String>?> _uploadImages(MerchantApplicationModel model) async {

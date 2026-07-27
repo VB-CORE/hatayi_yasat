@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/application_model.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/model/auth/app_permission.dart';
-import 'package:lifeclient/product/model/auth/user_role.dart';
+import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_role.dart';
 
 part 'user_model.g.dart';
 
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false)
 final class UserModel extends BaseFirebaseModel<UserModel>
     with Equatable, CacheModel {
   const UserModel({
@@ -21,7 +21,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.permissions = const [],
     this.rates = const [],
     this.photoUrl,
-    this.merchantStoreId,
     this.fcmToken,
     this.updatedAt,
     this.application,
@@ -43,14 +42,13 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final List<int> permissions;
   final List<String> rates;
   final String? photoUrl;
-  final String? merchantStoreId;
   final String? fcmToken;
   @JsonKey(
     includeToJson: false,
     fromJson: FirebaseTimeParse.datetimeFromTimestamp,
   )
   final DateTime? updatedAt;
-  final Application? application;
+  final UserApplicationModel? application;
 
   UserRole get role => UserRole.fromRoleType(roleType);
 
@@ -75,11 +73,13 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     String? displayName,
     String? photoUrl,
     FieldValue? rates,
+    UserApplicationModel? application,
   }) {
     return {
       'displayName': ?displayName,
       'photoUrl': ?photoUrl,
       'rates': ?rates,
+      'application': ?application?.toJson(),
       'updatedAt': FieldValue.serverTimestamp(),
     };
   }
@@ -108,10 +108,9 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     List<int>? permissions,
     List<String>? rates,
     String? photoUrl,
-    String? merchantStoreId,
     String? fcmToken,
     DateTime? updatedAt,
-    Application? application,
+    UserApplicationModel? application,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -121,7 +120,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       permissions: permissions ?? this.permissions,
       rates: rates ?? this.rates,
       photoUrl: photoUrl ?? this.photoUrl,
-      merchantStoreId: merchantStoreId ?? this.merchantStoreId,
       fcmToken: fcmToken ?? this.fcmToken,
       updatedAt: updatedAt ?? this.updatedAt,
       application: application ?? this.application,
@@ -137,7 +135,6 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     permissions,
     rates,
     photoUrl,
-    merchantStoreId,
     fcmToken,
     updatedAt,
     application,

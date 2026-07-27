@@ -410,6 +410,10 @@ abstract class  LocaleKeys {
   static const monetization_discountRateValue = 'monetization.discountRateValue';
   static const monetization_invalidUsageLimit = 'monetization.invalidUsageLimit';
   static const monetization_emptyCoupons = 'monetization.emptyCoupons';
+  static const monetization_addSuccess = 'monetization.addSuccess';
+  static const monetization_deleteConfirmTitle = 'monetization.deleteConfirmTitle';
+  static const monetization_deleteConfirmContent = 'monetization.deleteConfirmContent';
+  static const monetization_deleteSuccess = 'monetization.deleteSuccess';
   static const monetization = 'monetization';
   static const whatsNew_title = 'whatsNew.title';
   static const whatsNew_features_favoritePlaces = 'whatsNew.features.favoritePlaces';
@@ -473,6 +477,12 @@ abstract class  LocaleKeys {
   static const profile_stats = 'profile.stats';
   static const profile_storeBanner_title = 'profile.storeBanner.title';
   static const profile_storeBanner_subtitle = 'profile.storeBanner.subtitle';
+  static const profile_storeBanner_approvedTitle = 'profile.storeBanner.approvedTitle';
+  static const profile_storeBanner_approvedSubtitle = 'profile.storeBanner.approvedSubtitle';
+  static const profile_storeBanner_pendingTitle = 'profile.storeBanner.pendingTitle';
+  static const profile_storeBanner_pendingSubtitle = 'profile.storeBanner.pendingSubtitle';
+  static const profile_storeBanner_deniedTitle = 'profile.storeBanner.deniedTitle';
+  static const profile_storeBanner_deniedSubtitle = 'profile.storeBanner.deniedSubtitle';
   static const profile_storeBanner = 'profile.storeBanner';
   static const profile = 'profile';
   static const userQr_title = 'userQr.title';

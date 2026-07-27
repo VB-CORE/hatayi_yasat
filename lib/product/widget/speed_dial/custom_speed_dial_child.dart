@@ -8,11 +8,8 @@ final class CustomSpeedDialRouteChild extends SpeedDialChild {
     required BuildContext context,
     required String location,
     required String label,
-    VoidCallback? onTap,
   }) : super(
-         child: GeneralBodyTitle(
-           label,
-         ),
-         onTap: onTap ?? () => context.go(location),
+         child: GeneralBodyTitle(label),
+         onTap: () => context.go(location),
        );
 }

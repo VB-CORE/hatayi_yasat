@@ -1,9 +1,13 @@
 part of '../monetization_view.dart';
 
 final class _MonetizationBodyView extends StatelessWidget {
-  const _MonetizationBodyView({required this.coupons});
+  const _MonetizationBodyView({
+    required this.coupons,
+    required this.onDelete,
+  });
 
   final List<DiscountCouponModel> coupons;
+  final ValueChanged<DiscountCouponModel> onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,10 @@ final class _MonetizationBodyView extends StatelessWidget {
       padding: const PagePadding.onlyTop(),
       separatorBuilder: (context, index) => const EmptyBox.smallHeight(),
       itemCount: coupons.length,
-      itemBuilder: (_, index) => _MonetizationCard(coupon: coupons[index]),
+      itemBuilder: (_, index) => _MonetizationCard(
+        coupon: coupons[index],
+        onDelete: () => onDelete(coupons[index]),
+      ),
     );
   }
 }

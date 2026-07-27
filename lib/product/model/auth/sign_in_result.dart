@@ -1,4 +1,4 @@
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 sealed class SignInResult {
   const SignInResult();

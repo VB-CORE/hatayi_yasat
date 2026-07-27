@@ -28,6 +28,7 @@ final class AppIcons {
   static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings_outlined;
+  static const IconData settingsFilled = Icons.settings_rounded;
   static const IconData rightArrow = Icons.keyboard_arrow_right_outlined;
   static const IconData phone = Icons.phone;
   static const IconData share = Icons.share_rounded;
@@ -55,9 +56,13 @@ final class AppIcons {
 
   static const IconData location = Icons.location_on;
   static const IconData check = Icons.check_outlined;
+  static const IconData checkFilled = Icons.check_circle_rounded;
   static const IconData clear = Icons.clear_outlined;
+  static const IconData cancelFilled = Icons.cancel_rounded;
   static const IconData hourglass = Icons.hourglass_empty_outlined;
+  static const IconData hourglassFilled = Icons.hourglass_bottom_rounded;
   static const IconData store = Icons.storefront_outlined;
+  static const IconData storeFilled = Icons.storefront_rounded;
   static const IconData rate = Icons.stars_rounded;
   static const IconData privacy = Icons.shield_outlined;
   static const IconData privacyFilled = Icons.shield_rounded;

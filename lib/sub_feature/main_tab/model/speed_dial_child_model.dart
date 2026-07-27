@@ -20,22 +20,17 @@ final class SpeedDialChildModel {
 final class SpeedDialChildModelList {
   SpeedDialChildModelList({
     required BuildContext context,
-    this.canCreateGroup = false,
+    this.canCreateGroup = false, 
   }) {
     _context = context;
     _fillItems(_context);
   }
 
-  final bool canCreateGroup;
-
+  final bool canCreateGroup; 
   late BuildContext _context;
 
   void _fillItems(BuildContext context) {
     _speedDialChildItems = [
-      SpeedDialChildModel(
-        location: const MerchantApplicationViewRoute().location,
-        title: LocaleKeys.merchantApplication_headerLabel.tr(context: context),
-      ),
       SpeedDialChildModel(
         location: const CreateGroupRoute().location,
         title: LocaleKeys.community_createGroup_title.tr(context: context),

@@ -148,13 +148,15 @@ mixin MerchantApplicationViewMixin
         return;
       }
     }
-    final isSuccess = await viewModel.submit();
-    await _onSubmitResult(isSuccess: isSuccess);
+    final application = await viewModel.submit();
+    await _onSubmitResult(application: application);
   }
 
-  Future<void> _onSubmitResult({required bool isSuccess}) async {
+  Future<void> _onSubmitResult({
+    required UserApplicationModel? application,
+  }) async {
     if (!mounted) return;
-    if (!isSuccess) {
+    if (application == null) {
       appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
@@ -163,7 +165,7 @@ mixin MerchantApplicationViewMixin
     appProvider.showSnackbarMessage(
       LocaleKeys.merchantApplication_status_submitted.tr(),
     );
-    const MerchantApplicationStatusRoute().pushReplacement(context);
+    MerchantGuard.pushReplacement(context);
   }
 
   void onPopInvoked(bool didPop, Object? result) {

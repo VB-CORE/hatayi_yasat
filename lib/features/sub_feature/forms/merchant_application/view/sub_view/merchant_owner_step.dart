@@ -68,6 +68,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
                     readOnly:
                         isLocked && widget.phoneController.text.isNotEmpty,
                     keyboardType: TextInputType.phone,
+                    formatters: TextFieldFormatters.phone.value,
                     labelText: LocaleKeys.requestCompany_phoneNumber.tr(),
                     hintText: LocaleKeys.requestCompany_phoneNumber.tr(),
                     validator: ValidatorPhoneTextField().validate,

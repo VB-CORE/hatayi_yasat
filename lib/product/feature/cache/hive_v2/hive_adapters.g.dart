@@ -346,17 +346,16 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           : (fields[4] as List).cast<int>(),
       rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
       photoUrl: fields[5] as String?,
-      merchantStoreId: fields[6] as String?,
       fcmToken: fields[7] as String?,
       updatedAt: fields[8] as DateTime?,
-      application: fields[11] as Application?,
+      application: fields[11] as UserApplicationModel?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.uid)
       ..writeByte(1)
@@ -369,8 +368,6 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..write(obj.permissions)
       ..writeByte(5)
       ..write(obj.photoUrl)
-      ..writeByte(6)
-      ..write(obj.merchantStoreId)
       ..writeByte(7)
       ..write(obj.fcmToken)
       ..writeByte(8)
@@ -392,21 +389,21 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           typeId == other.typeId;
 }
 
-class ApplicationAdapter extends TypeAdapter<Application> {
+class UserApplicationModelAdapter extends TypeAdapter<UserApplicationModel> {
   @override
-  final typeId = 8;
+  final typeId = 10;
 
   @override
-  Application read(BinaryReader reader) {
+  UserApplicationModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Application(
+    return UserApplicationModel(
       id: fields[0] == null ? '' : fields[0] as String,
       status: fields[1] == null
-          ? MerchantApplicationStatus.pending
-          : fields[1] as MerchantApplicationStatus,
+          ? UserApplicationStatus.pending
+          : fields[1] as UserApplicationStatus,
       deniedMessage: fields[2] as String?,
       ownershipDocumentUrl: fields[3] == null ? '' : fields[3] as String,
       createdAt: fields[4] as DateTime?,
@@ -415,7 +412,7 @@ class ApplicationAdapter extends TypeAdapter<Application> {
   }
 
   @override
-  void write(BinaryWriter writer, Application obj) {
+  void write(BinaryWriter writer, UserApplicationModel obj) {
     writer
       ..writeByte(6)
       ..writeByte(0)
@@ -438,38 +435,37 @@ class ApplicationAdapter extends TypeAdapter<Application> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ApplicationAdapter &&
+      other is UserApplicationModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
 
-class MerchantApplicationStatusAdapter
-    extends TypeAdapter<MerchantApplicationStatus> {
+class UserApplicationStatusAdapter extends TypeAdapter<UserApplicationStatus> {
   @override
-  final typeId = 9;
+  final typeId = 11;
 
   @override
-  MerchantApplicationStatus read(BinaryReader reader) {
+  UserApplicationStatus read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return MerchantApplicationStatus.pending;
+        return UserApplicationStatus.pending;
       case 1:
-        return MerchantApplicationStatus.approved;
+        return UserApplicationStatus.approved;
       case 2:
-        return MerchantApplicationStatus.denied;
+        return UserApplicationStatus.denied;
       default:
-        return MerchantApplicationStatus.pending;
+        return UserApplicationStatus.pending;
     }
   }
 
   @override
-  void write(BinaryWriter writer, MerchantApplicationStatus obj) {
+  void write(BinaryWriter writer, UserApplicationStatus obj) {
     switch (obj) {
-      case MerchantApplicationStatus.pending:
+      case UserApplicationStatus.pending:
         writer.writeByte(0);
-      case MerchantApplicationStatus.approved:
+      case UserApplicationStatus.approved:
         writer.writeByte(1);
-      case MerchantApplicationStatus.denied:
+      case UserApplicationStatus.denied:
         writer.writeByte(2);
     }
   }
@@ -480,7 +476,7 @@ class MerchantApplicationStatusAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MerchantApplicationStatusAdapter &&
+      other is UserApplicationStatusAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

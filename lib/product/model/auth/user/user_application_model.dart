@@ -2,31 +2,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_status.dart';
+import 'package:lifeclient/product/model/auth/user/user_application_status.dart';
 
-part 'application_model.g.dart';
+part 'user_application_model.g.dart';
 
-@JsonSerializable()
-final class Application extends BaseFirebaseModel<Application> with Equatable {
-  const Application({
+@JsonSerializable(includeIfNull: false)
+final class UserApplicationModel extends BaseFirebaseModel<UserApplicationModel>
+    with Equatable {
+  const UserApplicationModel({
     this.id = '',
-    this.status = MerchantApplicationStatus.pending,
+    this.status = UserApplicationStatus.pending,
     this.deniedMessage,
     this.ownershipDocumentUrl = '',
     this.createdAt,
     this.updatedAt,
   });
 
-  factory Application.fromJson(Map<String, dynamic> json) =>
-      _$ApplicationFromJson(json);
+  factory UserApplicationModel.fromJson(Map<String, dynamic> json) =>
+      _$UserApplicationModelFromJson(json);
 
   final String id;
 
   @JsonKey(
-    fromJson: MerchantApplicationStatus.fromValue,
+    fromJson: UserApplicationStatus.fromValue,
     toJson: _statusToJson,
   )
-  final MerchantApplicationStatus status;
+  final UserApplicationStatus status;
   final String? deniedMessage;
   final String ownershipDocumentUrl;
 
@@ -46,30 +47,31 @@ final class Application extends BaseFirebaseModel<Application> with Equatable {
     defaultValue: DateTime.now,
   )
   final DateTime? updatedAt;
-  @override
-  Map<String, dynamic> toJson() => _$ApplicationToJson(this);
 
   @override
-  Application fromJson(Map<String, dynamic> json) =>
-      _$ApplicationFromJson(json);
+  Map<String, dynamic> toJson() => _$UserApplicationModelToJson(this);
 
   @override
-  Application fromFirebase(
+  UserApplicationModel fromJson(Map<String, dynamic> json) =>
+      _$UserApplicationModelFromJson(json);
+
+  @override
+  UserApplicationModel fromFirebase(
     DocumentSnapshot<Map<String, dynamic>> json,
   ) {
     final data = json.data();
     if (data == null) return this;
-    return _$ApplicationFromJson(data).copyWith(id: json.id);
+    return _$UserApplicationModelFromJson(data).copyWith(id: json.id);
   }
 
-  Application copyWith({
+  UserApplicationModel copyWith({
     String? id,
-    MerchantApplicationStatus? status,
+    UserApplicationStatus? status,
     String? deniedMessage,
     String? ownershipDocumentUrl,
     DateTime? updatedAt,
     DateTime? createdAt,
-  }) => Application(
+  }) => UserApplicationModel(
     id: id ?? this.id,
     status: status ?? this.status,
     deniedMessage: deniedMessage ?? this.deniedMessage,
@@ -89,4 +91,4 @@ final class Application extends BaseFirebaseModel<Application> with Equatable {
   ];
 }
 
-int _statusToJson(MerchantApplicationStatus status) => status.value;
+int _statusToJson(UserApplicationStatus status) => status.value;

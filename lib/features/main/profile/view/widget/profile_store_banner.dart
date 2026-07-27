@@ -7,6 +7,8 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
@@ -19,13 +21,54 @@ final class ProfileStoreBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final application = ref.watch(authViewModelProvider).user?.application;
+
+    Gradient linear(List<Color> colors) => LinearGradient(colors: colors);
+
+    final gradient = switch (application?.status) {
+      .approved => linear([AppColors.navy400, AppColors.navy600]),
+      .denied => linear([AppColors.coral400, AppColors.coral600]),
+      _ => null,
+    };
+
+    final borderColor = switch (application?.status) {
+      .approved => AppColors.navy400,
+      _ => AppColors.coral400,
+    };
+
+    final deniedMessage = application?.deniedMessage;
+
+    final title = switch (application?.status) {
+      .approved => LocaleKeys.profile_storeBanner_approvedTitle.tr(),
+      .pending => LocaleKeys.profile_storeBanner_pendingTitle.tr(),
+      .denied => LocaleKeys.profile_storeBanner_deniedTitle.tr(),
+      _ => LocaleKeys.profile_storeBanner_title.tr(),
+    };
+
+    final subtitle = switch (application?.status) {
+      .approved => LocaleKeys.profile_storeBanner_approvedSubtitle.tr(),
+      .pending => LocaleKeys.profile_storeBanner_pendingSubtitle.tr(),
+      .denied =>
+        deniedMessage.ext.isNotNullOrNoEmpty
+            ? deniedMessage!
+            : LocaleKeys.profile_storeBanner_deniedSubtitle.tr(),
+      _ => LocaleKeys.profile_storeBanner_subtitle.tr(),
+    };
+
+    final icon = switch (application?.status) {
+      .approved => AppIcons.storeFilled,
+      .pending => AppIcons.hourglassFilled,
+      .denied => AppIcons.cancelFilled,
+      _ => AppIcons.storeFilled,
+    };
+
     return CustomBounceable(
-      onTap: () => const PlaceRequestFormRoute().go(context),
+      onTap: () => MerchantGuard.go(context),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: .circular(AppRadius.md),
-          border: .all(color: AppColors.coral400),
+          border: .all(color: borderColor),
         ),
         clipBehavior: Clip.hardEdge,
         child: IntrinsicHeight(
@@ -35,12 +78,12 @@ final class ProfileStoreBanner extends ConsumerWidget {
             children: [
               SizedBox(
                 width: context.sized.dynamicWidth(0.16),
-                child: const Stack(
+                child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    MosaicBackground(),
+                    MosaicBackground(gradient: gradient),
                     Icon(
-                      AppIcons.store,
+                      icon,
                       size: AppIconSizes.largeX,
                       color: AppColors.white,
                     ),
@@ -60,13 +103,13 @@ final class ProfileStoreBanner extends ConsumerWidget {
                     spacing: AppSpacing.xxs,
                     children: [
                       Text(
-                        LocaleKeys.profile_storeBanner_title.tr(),
+                        title,
                         style: AppText.title.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        LocaleKeys.profile_storeBanner_subtitle.tr(),
+                        subtitle,
                         style: AppText.body.copyWith(
                           color: AppColors.ink500,
                         ),

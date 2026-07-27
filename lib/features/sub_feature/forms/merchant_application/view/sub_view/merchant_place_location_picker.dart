@@ -7,8 +7,8 @@ final class _MerchantPlacePickerFormField extends FormField<LatLng?> {
     super.initialValue,
     super.key,
   }) : super(
-         validator: (LatLng? value) => value != null ? null : '',
-         builder: (FormFieldState<LatLng?> state) {
+         validator: (value) => value != null ? null : '',
+         builder: (state) {
            final context = state.context;
            return Column(
              crossAxisAlignment: CrossAxisAlignment.start,

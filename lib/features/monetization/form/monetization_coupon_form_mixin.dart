@@ -1,47 +1,57 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
+import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
-mixin MonetizationCouponFormMixin on State<MonetizationCouponFormView> {
+mixin MonetizationCouponFormMixin
+    on
+        ConsumerState<MonetizationCouponFormView>,
+        AppProviderMixin<MonetizationCouponFormView> {
   final formKey = GlobalKey<FormState>();
   final descController = TextEditingController();
   final usageLimitController = TextEditingController();
-  final expiresAtController = TextEditingController();
   final discountRateNotifier = ValueNotifier<int>(
     MonetizationDiscountRateSlider.minRate,
   );
 
-  DateTime? _expiresAt;
+  DateTime? expiresAt;
 
   @override
   void dispose() {
     descController.dispose();
     usageLimitController.dispose();
-    expiresAtController.dispose();
     discountRateNotifier.dispose();
     super.dispose();
   }
 
-  Future<void> pickExpiryDate() async {
-    final now = DateTime.now();
-    final tomorrow = DateTime(now.year, now.month, now.day + 1);
-    final selectedDate = await showDatePicker(
-      context: context,
-      initialDate: tomorrow,
-      firstDate: tomorrow,
-      lastDate: DateTime(now.year + 1),
-    );
-    if (selectedDate == null || !mounted) return;
+  Future<void> saveCoupon() async {
+    if (formKey.currentState?.validate() != true || expiresAt == null) return;
 
-    _expiresAt = selectedDate;
-    expiresAtController.text = DateFormat.yMMMd(
-      context.locale.toLanguageTag(),
-    ).format(selectedDate);
-  }
+    final usageLimitText = usageLimitController.text.trim();
+    final usageLimit = int.tryParse(usageLimitText);
 
-  void saveCoupon() {
-    if (formKey.currentState?.validate() != true || _expiresAt == null) return;
+    final isCreated = await ref
+        .read(monetizationViewModelProvider.notifier)
+        .addCoupon(
+          desc: descController.text.trim(),
+          rate: discountRateNotifier.value,
+          expiresAt: expiresAt!,
+          usageLimit: usageLimit,
+        );
+
+    if (!mounted) return;
+
+    if (!isCreated) {
+      return appProvider.showSnackbarMessage(
+        LocaleKeys.message_somethingWentWrong.tr(),
+      );
+    }
+
+    appProvider.showSnackbarMessage(LocaleKeys.monetization_addSuccess.tr());
     context.pop();
   }
 }

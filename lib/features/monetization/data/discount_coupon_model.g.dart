@@ -9,12 +9,11 @@ part of 'discount_coupon_model.dart';
 DiscountCouponModel _$DiscountCouponModelFromJson(Map<String, dynamic> json) =>
     DiscountCouponModel(
       storeId: json['storeId'] as String?,
+      merchantUid: json['merchantUid'] as String?,
       desc: json['desc'] as String?,
-      discountRate: (json['discountRate'] as num?)?.toInt(),
-      storeName: json['storeName'] as String?,
-      createdBy: json['createdBy'] as String?,
+      ratio: (json['ratio'] as num?)?.toInt(),
       expiresAt: FirebaseTimeParse.datetimeFromTimestamp(json['expiresAt']),
-      usageCount: (json['usageCount'] as num?)?.toInt(),
+      usageCount: (json['usageCount'] as num?)?.toInt() ?? 0,
       usageLimit: (json['usageLimit'] as num?)?.toInt(),
       createdAt: json['createdAt'] == null
           ? DateTime.now()
@@ -27,14 +26,13 @@ DiscountCouponModel _$DiscountCouponModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DiscountCouponModelToJson(
   DiscountCouponModel instance,
 ) => <String, dynamic>{
-  'storeId': instance.storeId,
-  'desc': instance.desc,
-  'discountRate': instance.discountRate,
-  'storeName': instance.storeName,
-  'createdBy': instance.createdBy,
-  'usageCount': instance.usageCount,
-  'usageLimit': instance.usageLimit,
-  'expiresAt': FirebaseTimeParse.dateTimeToTimestamp(instance.expiresAt),
-  'createdAt': FirebaseTimeParse.dateTimeToTimestamp(instance.createdAt),
-  'updatedAt': FirebaseTimeParse.dateTimeToTimestamp(instance.updatedAt),
+  'storeId': ?instance.storeId,
+  'merchantUid': ?instance.merchantUid,
+  'desc': ?instance.desc,
+  'ratio': ?instance.ratio,
+  'usageCount': ?instance.usageCount,
+  'usageLimit': ?instance.usageLimit,
+  'expiresAt': ?FirebaseTimeParse.dateTimeToTimestamp(instance.expiresAt),
+  'createdAt': ?FirebaseTimeParse.dateTimeToTimestamp(instance.createdAt),
+  'updatedAt': ?FirebaseTimeParse.dateTimeToTimestamp(instance.updatedAt),
 };

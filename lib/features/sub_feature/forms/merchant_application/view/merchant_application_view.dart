@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,9 @@ import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/
 import 'package:lifeclient/features/sub_feature/forms/place_request/view/widget/open_and_close_time_picker.dart';
 import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:lifeclient/product/model/constant/project_general_constant.dart';
+import 'package:lifeclient/product/model/enum/text_field/text_field_formatters.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/file_picker/upload_file_section_v2.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';

@@ -8,14 +8,14 @@ import 'package:lifeclient/product/feature/cache/hive_v2/hive_adapters.dart';
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(AppCacheModelAdapter());
-    registerAdapter(ApplicationAdapter());
     registerAdapter(CategoryModelAdapter());
     registerAdapter(GeoPointAdapter());
     registerAdapter(MemoryCacheModelAdapter());
     registerAdapter(MemoryModelAdapter());
-    registerAdapter(MerchantApplicationStatusAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
+    registerAdapter(UserApplicationModelAdapter());
+    registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
   }
 }
@@ -23,14 +23,14 @@ extension HiveRegistrar on HiveInterface {
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(AppCacheModelAdapter());
-    registerAdapter(ApplicationAdapter());
     registerAdapter(CategoryModelAdapter());
     registerAdapter(GeoPointAdapter());
     registerAdapter(MemoryCacheModelAdapter());
     registerAdapter(MemoryModelAdapter());
-    registerAdapter(MerchantApplicationStatusAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
+    registerAdapter(UserApplicationModelAdapter());
+    registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
   }
 }

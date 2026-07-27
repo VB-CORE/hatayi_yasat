@@ -455,7 +455,11 @@
     "discountRate": "İndirim Oranı",
     "discountRateValue": "%{}",
     "invalidUsageLimit": "Geçerli bir kullanım limiti giriniz (1+)",
-    "emptyCoupons": "Henüz kupon bulunmuyor"
+    "emptyCoupons": "Henüz kupon bulunmuyor",
+    "addSuccess": "Kupon eklendi.",
+    "deleteConfirmTitle": "Kupon silinsin mi?",
+    "deleteConfirmContent": "Bu kuponu silmek istediğine emin misin? Bu işlem geri alınamaz.",
+    "deleteSuccess": "Kupon silindi."
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
@@ -535,7 +539,13 @@
     },
     "storeBanner": {
       "title": "Mekanın var mı? Esnaf olarak başvur.",
-      "subtitle": "Mekanını ekle, \"Mekan Sahibi\" rozeti kazan."
+      "subtitle": "Mekanını ekle, \"Mekan Sahibi\" rozeti kazan.",
+      "approvedTitle": "Esnaf Panelim",
+      "approvedSubtitle": "Mekanınızı görüntüleyin ve düzenleyin",
+      "pendingTitle": "Başvurunuz inceleniyor",
+      "pendingSubtitle": "En kısa sürede size geri dönüş yapacağız",
+      "deniedTitle": "Başvurunuz reddedildi",
+      "deniedSubtitle": "Lütfen başvurunuzu kontrol ediniz"
     }
   },
   "userQr": {

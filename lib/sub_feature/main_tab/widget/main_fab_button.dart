@@ -6,10 +6,9 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final canCreateGroup = ref.watch(
-      authViewModelProvider.select(
-        (state) => state.user?.canCreateGroup ?? false,
-      ),
+      authViewModelProvider.select((state) => state.canCreateGroup),
     );
+
     final items = SpeedDialChildModelList(
       context: context,
       canCreateGroup: canCreateGroup,
@@ -21,23 +20,9 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
               context: context,
               location: e.location,
               label: e.title,
-              onTap: e.location == const MerchantApplicationViewRoute().location
-                  ? () => _onMerchantApplicationTapped(context, ref)
-                  : null,
             ),
           )
           .toList(),
     );
-  }
-
-  void _onMerchantApplicationTapped(BuildContext context, WidgetRef ref) {
-    final hasApplication = ref
-        .read(merchantApplicationViewModelProvider.notifier)
-        .hasActiveApplication();
-    if (hasApplication) {
-      const MerchantApplicationStatusRoute().go(context);
-      return;
-    }
-    const MerchantApplicationViewRoute().go(context);
   }
 }

@@ -5,19 +5,17 @@ import 'package:life_shared/life_shared.dart';
 
 part 'discount_coupon_model.g.dart';
 
-// Life Shared CampaignModel referans alındı
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
-    with EquatableMixin
+    with Equatable
     implements BaseFirebaseConvert<DiscountCouponModel> {
   DiscountCouponModel({
     this.storeId,
+    this.merchantUid,
     this.desc,
-    this.discountRate,
-    this.storeName,
-    this.createdBy,
+    this.ratio,
     this.expiresAt,
-    this.usageCount,
+    this.usageCount = 0,
     this.usageLimit,
     this.createdAt,
     this.updatedAt,
@@ -25,10 +23,9 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
   });
 
   final String? storeId;
+  final String? merchantUid;
   final String? desc;
-  final int? discountRate;
-  final String? storeName;
-  final String? createdBy;
+  final int? ratio;
   final int? usageCount;
   final int? usageLimit;
 
@@ -73,23 +70,22 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
   @override
   List<Object?> get props => [
     storeId,
+    merchantUid,
     desc,
-    discountRate,
-    storeName,
-    createdBy,
+    ratio,
     expiresAt,
     usageCount,
     usageLimit,
     createdAt,
     updatedAt,
+    documentId,
   ];
 
   DiscountCouponModel copyWith({
     String? storeId,
+    String? merchantUid,
     String? desc,
-    int? discountRate,
-    String? storeName,
-    String? createdBy,
+    int? ratio,
     DateTime? expiresAt,
     int? usageCount,
     int? usageLimit,
@@ -99,10 +95,9 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
   }) {
     return DiscountCouponModel(
       storeId: storeId ?? this.storeId,
+      merchantUid: merchantUid ?? this.merchantUid,
       desc: desc ?? this.desc,
-      discountRate: discountRate ?? this.discountRate,
-      storeName: storeName ?? this.storeName,
-      createdBy: createdBy ?? this.createdBy,
+      ratio: ratio ?? this.ratio,
       expiresAt: expiresAt ?? this.expiresAt,
       usageCount: usageCount ?? this.usageCount,
       usageLimit: usageLimit ?? this.usageLimit,
