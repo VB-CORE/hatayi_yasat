@@ -13,6 +13,10 @@ import 'package:lifeclient/product/widget/dialog/login_required_dialog.dart';
 
 mixin GroupsViewMixin
     on ConsumerState<GroupsView>, AppProviderMixin<GroupsView> {
+  bool get canCreateGroup => ref.watch(
+    authViewModelProvider.select((state) => state.user?.canCreateGroup ?? false),
+  );
+
   Future<void> onGroupTap(GroupModel model) async {
     if (!ref.read(authViewModelProvider).isAuthenticated) {
       return LoginRequiredDialog.show(context);

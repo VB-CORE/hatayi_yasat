@@ -5,14 +5,7 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final canCreateGroup = ref.watch(
-      authViewModelProvider.select((state) => state.canCreateGroup),
-    );
-
-    final items = SpeedDialChildModelList(
-      context: context,
-      canCreateGroup: canCreateGroup,
-    ).speedDialChildItems;
+    final items = SpeedDialChildModelList(context: context).speedDialChildItems;
     return CustomSpeedDial(
       children: items
           .map(

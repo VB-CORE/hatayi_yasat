@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/create_group/model/create_group_model.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_view_model.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/photo_picker/photo_picker_manager.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/extension/file_size_extension.dart';
@@ -109,8 +109,8 @@ mixin CreateGroupViewMixin
     appProvider.showSnackbarMessage(
       LocaleKeys.community_createGroup_success.tr(),
     );
-    const MainTabRoute().go(context);
+    context.pop();
   }
 
-  void closeView() => const MainTabRoute().go(context);
+  void closeView() => context.pop();
 }
