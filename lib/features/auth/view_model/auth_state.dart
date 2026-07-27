@@ -13,9 +13,10 @@ final class AuthInitial extends AuthState {
 }
 
 final class AuthLoading extends AuthState {
-  const AuthLoading();
+  const AuthLoading(this.provider);
+  final AuthProvider provider;
   @override
-  List<Object> get props => [];
+  List<Object> get props => [provider];
 }
 
 final class Unauthenticated extends AuthState {

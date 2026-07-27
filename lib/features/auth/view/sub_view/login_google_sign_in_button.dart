@@ -8,7 +8,10 @@ final class _GoogleSignInButtonConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(
-      authViewModelProvider.select((state) => state is AuthLoading),
+      authViewModelProvider.select(
+        (state) =>
+            state is AuthLoading && state.provider == AuthProvider.google,
+      ),
     );
 
     return GoogleSignInButton(onTap: onTap, isLoading: isLoading);

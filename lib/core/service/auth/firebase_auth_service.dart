@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
@@ -11,6 +14,7 @@ import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService({
@@ -165,9 +169,7 @@ final class FirebaseAuthService implements AuthService {
   Future<AuthCredential?> _credentialFor(AuthProvider provider) =>
       switch (provider) {
         AuthProvider.google => _googleCredential(),
-        AuthProvider.apple => throw UnimplementedError(
-          'Apple Sign-In henüz bağlı değil',
-        ),
+        AuthProvider.apple => _appleCredential(),
       };
 
   Future<AuthCredential?> _googleCredential() async {
@@ -179,4 +181,44 @@ final class FirebaseAuthService implements AuthService {
       idToken: googleAuth.idToken,
     );
   }
+
+  Future<AuthCredential?> _appleCredential() async {
+    // Apple, hash'lenmiş nonce'u identityToken'ın içine gömüyor; Firebase
+    // rawNonce'u kendi hash'leyip karşılaştırıyor (token replay'e karşı).
+    final rawNonce = _generateNonce();
+    final hashedNonce = _sha256(rawNonce);
+
+    final AuthorizationCredentialAppleID appleCredential;
+    try {
+      appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: hashedNonce,
+      );
+    } on SignInWithAppleAuthorizationException catch (error) {
+      if (error.code == AuthorizationErrorCode.canceled) return null;
+      rethrow;
+    }
+
+    final identityToken = appleCredential.identityToken;
+    if (identityToken == null) return null;
+    return OAuthProvider('apple.com').credential(
+      idToken: identityToken,
+      rawNonce: rawNonce,
+    );
+  }
+
+  String _generateNonce([int length = 32]) {
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._';
+    final random = Random.secure();
+    return List.generate(
+      length,
+      (_) => charset[random.nextInt(charset.length)],
+    ).join();
+  }
+
+  String _sha256(String input) => sha256.convert(utf8.encode(input)).toString();
 }

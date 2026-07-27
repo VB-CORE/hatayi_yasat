@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -8,6 +9,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -18,6 +20,7 @@ import 'package:lifeclient/product/widget/button/google_sign_in_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 part 'sub_view/login_app_header.dart';
+part 'sub_view/login_apple_sign_in_button.dart';
 part 'sub_view/login_google_sign_in_button.dart';
 part 'sub_view/login_guest_button.dart';
 part 'sub_view/login_hero_text.dart';
@@ -46,9 +49,10 @@ final class _LoginViewState extends ConsumerState<LoginView>
             const EmptyBox(height: WidgetSizes.spacingXxl3),
             _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
             const EmptyBox.middleHeight(),
-            // TODO(auth): Apple Sign-In şu an bağlı değil, öncelik Google Sign-In.
-            AppleSignInButton(onTap: () {}),
-            const EmptyBox.middleHeight(),
+            if (defaultTargetPlatform == TargetPlatform.iOS) ...[
+              _AppleSignInButtonConsumer(onTap: onAppleSignIn),
+              const EmptyBox.middleHeight(),
+            ],
             _LoginGuestButton(onTap: onGuestTap),
             const EmptyBox.middleHeight(),
             const _LoginLegalText(),
