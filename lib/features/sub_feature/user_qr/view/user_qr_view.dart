@@ -48,7 +48,7 @@ class _UserQrViewState extends ConsumerState<UserQrView>
                 alignment: Alignment.center,
                 children: [
                   ValueListenableBuilder<bool>(
-                    valueListenable: isQrVisible,
+                    valueListenable: isQrVisibleNotifier,
                     builder: (context, isVisible, child) {
                       return AnimatedOpacity(
                         opacity: isVisible ? 1 : 0,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/model/enum/hero_tags.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
@@ -21,24 +21,28 @@ final class QrFabButton extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          gradient: const LinearGradient(
-            colors: [AppColors.white, AppColors.teal300],
+          gradient: LinearGradient(
+            colors: [context.appColors.white, context.appColors.teal300],
           ),
-          boxShadow: [GeneralShadow.sampleGrayShadow(color: AppColors.teal100)],
+          boxShadow: [
+            GeneralShadow.sampleGrayShadow(color: context.appColors.teal50),
+          ],
         ),
-        child: CustomShimmer(
-          child: FloatingActionButton(
-            heroTag: null,
-            onPressed: () => const UserQrRoute().go(context),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            shape: const CircleBorder(),
-            child: Hero(
-              tag: HeroTags.userQrFab.name,
-              child: Assets.icons.icAppTransparent.image(
-                width: AppIconSizes.largeX,
-                height: AppIconSizes.largeX,
-                fit: BoxFit.contain,
+        child: ClipOval(
+          child: CustomShimmer(
+            child: FloatingActionButton(
+              heroTag: null,
+              onPressed: () => const UserQrRoute().go(context),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              shape: const CircleBorder(),
+              child: Hero(
+                tag: HeroTags.userQrFab.name,
+                child: Assets.icons.icAppTransparent.image(
+                  width: AppIconSizes.largeX,
+                  height: AppIconSizes.largeX,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
