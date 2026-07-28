@@ -38,7 +38,7 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
           children: [
             CustomUserAvatar(
               userName: user.displayName,
-              imageUrl: user.photoUrl,
+              avatarType: user.avatarType,
               radius: avatarRadius,
             ),
             Expanded(

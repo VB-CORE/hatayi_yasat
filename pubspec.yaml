@@ -171,6 +171,7 @@ flutter:
     - assets/lottie/
     - assets/images/
     - assets/svg/
+    - assets/avatars/
 
   fonts:
     - family: PlusJakartaSans

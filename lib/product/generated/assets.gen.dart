@@ -15,6 +15,34 @@ import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:lottie/lottie.dart' as _lottie;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsAvatarsGen {
+  const $AssetsAvatarsGen();
+
+  /// File path: assets/avatars/a1.png
+  AssetGenImage get a1 => const AssetGenImage('assets/avatars/a1.png');
+
+  /// File path: assets/avatars/a2.png
+  AssetGenImage get a2 => const AssetGenImage('assets/avatars/a2.png');
+
+  /// File path: assets/avatars/a3.png
+  AssetGenImage get a3 => const AssetGenImage('assets/avatars/a3.png');
+
+  /// File path: assets/avatars/a4.png
+  AssetGenImage get a4 => const AssetGenImage('assets/avatars/a4.png');
+
+  /// File path: assets/avatars/a5.png
+  AssetGenImage get a5 => const AssetGenImage('assets/avatars/a5.png');
+
+  /// File path: assets/avatars/a6.png
+  AssetGenImage get a6 => const AssetGenImage('assets/avatars/a6.png');
+
+  /// File path: assets/avatars/a7.png
+  AssetGenImage get a7 => const AssetGenImage('assets/avatars/a7.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [a1, a2, a3, a4, a5, a6, a7];
+}
+
 class $AssetsDocsGen {
   const $AssetsDocsGen();
 
@@ -130,6 +158,7 @@ class $AssetsTranslationsGen {
 }
 
 abstract final class Assets {
+  static const $AssetsAvatarsGen avatars = $AssetsAvatarsGen();
   static const $AssetsDocsGen docs = $AssetsDocsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

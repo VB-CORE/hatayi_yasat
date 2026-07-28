@@ -105,7 +105,7 @@ final class _PostAuthorRow extends StatelessWidget {
       children: [
         CustomUserAvatar(
           userName: model.author.displayName,
-          imageUrl: model.author.avatarUrl,
+          avatarType: model.author.avatarType,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),
         Column(

@@ -21,7 +21,7 @@ final class GroupAdminTile extends StatelessWidget {
       children: [
         CustomUserAvatar(
           userName: model.displayName,
-          imageUrl: model.avatarUrl,
+          avatarType: model.avatarType,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),
         Expanded(

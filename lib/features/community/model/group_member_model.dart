@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 part 'group_member_model.g.dart';
@@ -13,7 +14,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   const GroupMemberModel({
     this.id = '',
     this.displayName = '',
-    this.avatarUrl,
+    this.avatarType = AvatarType.a1,
     this.role = GroupMemberRole.member,
     this.createdAt,
     this.updatedAt,
@@ -29,7 +30,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     return GroupMemberModel(
       id: user.uid,
       displayName: user.displayName,
-      avatarUrl: user.photoUrl,
+      avatarType: user.avatarType,
       role: role,
     );
   }
@@ -37,7 +38,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String id;
   final String displayName;
-  final String? avatarUrl;
+  final AvatarType avatarType;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 
@@ -80,7 +81,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   List<Object?> get props => [
     id,
     displayName,
-    avatarUrl,
+    avatarType,
     role,
     createdAt,
     updatedAt,
@@ -90,7 +91,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   GroupMemberModel copyWith({
     String? id,
     String? displayName,
-    String? avatarUrl,
+    AvatarType? avatarType,
     GroupMemberRole? role,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -99,7 +100,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     return GroupMemberModel(
       id: id ?? this.id,
       displayName: displayName ?? this.displayName,
-      avatarUrl: avatarUrl ?? this.avatarUrl,
+      avatarType: avatarType ?? this.avatarType,
       role: role ?? this.role,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,

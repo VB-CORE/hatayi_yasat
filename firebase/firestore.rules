@@ -36,7 +36,7 @@ service cloud.firestore {
         && request.resource.data.permissions.size() == 0
         && !('merchantStoreId' in request.resource.data);
       allow update: if request.auth.uid == uid
-        && affects(['fcmToken', 'displayName', 'photoUrl', 'updatedAt','application']);
+        && affects(['fcmToken', 'displayName', 'avatarType', 'updatedAt','application']);
       allow update: if isAdmin();
    
   }

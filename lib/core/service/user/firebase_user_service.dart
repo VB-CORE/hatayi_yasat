@@ -1,48 +1,24 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 final class FirebaseUserService implements UserService {
   FirebaseUserService({
     required CustomFirestoreService firestoreService,
-    required CustomStorageService storageService,
     FirebaseAuth? auth,
   }) : _firestoreService = firestoreService,
-       _storageService = storageService,
        _auth = auth ?? FirebaseAuth.instance;
 
   final CustomFirestoreService _firestoreService;
-  final CustomStorageService _storageService;
   final FirebaseAuth _auth;
-
-  @override
-  Future<String?> uploadPhoto(File file) async {
-    final uid = _auth.currentUser?.uid;
-    if (uid == null) return null;
-
-    try {
-      final bytes = await file.readAsBytes();
-      final result = await _storageService.uploadImage(
-        root: .user,
-        key: uid,
-        fileBytes: bytes,
-      );
-      return result.dataOrNull;
-    } on Object catch (error) {
-      CustomLogger.showError<void>(error);
-      return null;
-    }
-  }
 
   @override
   Future<bool> update({
     String? displayName,
-    String? photoUrl,
+    AvatarType? avatarType,
     FieldValue? rates,
   }) async {
     final user = _auth.currentUser;
@@ -53,7 +29,7 @@ final class FirebaseUserService implements UserService {
       documentId: user.uid,
       fields: UserModel.updateFields(
         displayName: displayName?.trim(),
-        photoUrl: photoUrl,
+        avatarType: avatarType,
         rates: rates,
       ),
     );
