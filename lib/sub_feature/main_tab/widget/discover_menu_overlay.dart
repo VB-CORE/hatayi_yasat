@@ -8,9 +8,10 @@ final class _DiscoverMenuOverlay {
     final topInset = MediaQuery.paddingOf(context).top + appBarHeight;
     return showGeneralDialog<void>(
       context: context,
+      barrierDismissible: true,
       barrierLabel: LocaleKeys.navigationTabs_explore.tr(),
-      barrierColor: Colors.transparent,
-      pageBuilder: (context, animation, secondaryAnimation) {
+      barrierColor: context.appColors.navy.withValues(alpha: 0.05),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
         return Stack(
           children: [
             Positioned(
@@ -18,19 +19,21 @@ final class _DiscoverMenuOverlay {
               left: kZero,
               right: kZero,
               bottom: kZero,
-              child: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: WidgetSizes.spacingXs,
-                    sigmaY: WidgetSizes.spacingXs,
-                  ),
-                  child: Container(
-                    color: context.appColors.navy.withValues(alpha: 0.05),
-                  ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: WidgetSizes.spacingXs,
+                  sigmaY: WidgetSizes.spacingXs,
                 ),
+                child: const SizedBox.expand(),
               ),
             ),
+            child,
+          ],
+        );
+      },
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Stack(
+          children: [
             Positioned(
               top: topInset,
               left: AppSpacing.lg,
