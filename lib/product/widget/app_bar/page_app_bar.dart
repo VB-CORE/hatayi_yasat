@@ -11,6 +11,7 @@ final class PageAppBar extends AppBar {
     super.actions,
     super.automaticallyImplyLeading,
     super.actionsPadding,
+    super.centerTitle = false,
     super.key,
   }) : super(
          bottom: PreferredSize(
@@ -19,7 +20,6 @@ final class PageAppBar extends AppBar {
              height: AppConstants.kOne.toDouble(),
            ),
          ),
-         centerTitle: false,
          title: GeneralContentTitle(
            value: pageTitle.tr(),
            fontWeight: FontWeight.bold,

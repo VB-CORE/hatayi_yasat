@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 final class GeneralShadow extends BoxShadow {
-  GeneralShadow.sampleGrayShadow()
+  GeneralShadow.sampleGrayShadow({Color? color})
       : super(
-          color: Colors.grey.withValues(alpha: .5),
+          color: color ?? Colors.grey.withValues(alpha: .5),
           spreadRadius: AppConstants.kOne.toDouble(),
           blurRadius: AppConstants.kFour.toDouble(),
           offset: Offset(

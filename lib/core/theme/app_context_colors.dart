@@ -30,6 +30,9 @@ final class AppColorTokens {
   Color get gold300 => AppColors.gold300;
   Color get coral => AppColors.coral;
   Color get coral100 => AppColors.coral100;
+  Color get teal50 => AppColors.teal50;
+  Color get teal300 => AppColors.teal300;
+  Color get white => AppColors.white;
   Color get teal => AppColors.teal;
 
   /// `colorScheme.surface`'tan farklıdır (o `AppColors.bg`'ye eşlenir);

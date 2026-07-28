@@ -30,6 +30,7 @@ import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/
 import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
+import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
@@ -70,6 +71,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     EventRoute.route,
     NotificationsRoute.route,
     FilterResultRoute.route,
+    UserQrRoute.route,
 
     // Forms
     PlaceRequestFormRoute.route,
@@ -268,6 +270,31 @@ final class NotificationsRoute extends GoRouteData with $NotificationsRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NotificationsView();
+}
+
+final class UserQrRoute extends GoRouteData with $UserQrRoute {
+  const UserQrRoute();
+
+  static const route = TypedGoRoute<UserQrRoute>(
+    path: 'userQr',
+    name: 'User QR',
+  );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage<void>(
+      key: state.pageKey,
+      fullscreenDialog: true,
+      child: build(context, state),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const UserQrView();
 }
 
 final class SpecialAgencyRoute extends GoRouteData with $SpecialAgencyRoute {

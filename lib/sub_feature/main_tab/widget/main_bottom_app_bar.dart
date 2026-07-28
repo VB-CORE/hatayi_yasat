@@ -19,6 +19,8 @@ final class _BottomAppBarWidget extends ConsumerWidget {
 
   final List<TabModel> tabItems;
 
+  static const double height = WidgetSizes.spacingXxl8;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isScrolledBottom = ref
@@ -33,7 +35,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
         child: BottomAppBar(
-          height: WidgetSizes.spacingXxl8,
+          height: height,
           padding: EdgeInsets.zero,
           shape: const CircularNotchedRectangle(),
           elevation: kZero,
