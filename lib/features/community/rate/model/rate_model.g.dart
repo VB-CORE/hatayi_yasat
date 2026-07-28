@@ -18,6 +18,10 @@ RateModel _$RateModelFromJson(Map<String, dynamic> json) => RateModel(
   updatedAt: json['updatedAt'] == null
       ? DateTime.now()
       : FirebaseTimeParse.datetimeFromTimestamp(json['updatedAt']),
+  merchantReply: json['merchantReply'] as String?,
+  merchantReplyAt: FirebaseTimeParse.datetimeFromTimestamp(
+    json['merchantReplyAt'],
+  ),
 );
 
 Map<String, dynamic> _$RateModelToJson(RateModel instance) => <String, dynamic>{
@@ -26,6 +30,10 @@ Map<String, dynamic> _$RateModelToJson(RateModel instance) => <String, dynamic>{
   'score': instance.score,
   'comment': ?instance.comment,
   'photoUrl': ?instance.photoUrl,
+  'merchantReply': ?instance.merchantReply,
+  'merchantReplyAt': ?FirebaseTimeParse.dateTimeToTimestamp(
+    instance.merchantReplyAt,
+  ),
   'createdAt': ?FirebaseTimeParse.dateTimeToTimestamp(instance.createdAt),
   'updatedAt': ?FirebaseTimeParse.dateTimeToTimestamp(instance.updatedAt),
 };

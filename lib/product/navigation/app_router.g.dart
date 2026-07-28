@@ -86,6 +86,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Monetization Coupon Form',
           factory: $MonetizationCouponFormRoute._fromState,
         ),
+        GoRouteData.$route(
+          path: 'redeem',
+          name: 'Coupon Redeem',
+          factory: $CouponRedeemRoute._fromState,
+        ),
       ],
     ),
     GoRouteData.$route(
@@ -275,23 +280,52 @@ mixin $MonetizationRoute on GoRouteData {
 
 mixin $MonetizationCouponFormRoute on GoRouteData {
   static MonetizationCouponFormRoute _fromState(GoRouterState state) =>
-      const MonetizationCouponFormRoute();
+      MonetizationCouponFormRoute($extra: state.extra as DiscountCouponModel?);
+
+  MonetizationCouponFormRoute get _self => this as MonetizationCouponFormRoute;
 
   @override
   String get location => GoRouteData.$location('/main/monetization/couponForm');
 
   @override
-  void go(BuildContext context) => context.go(location);
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
   @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
   @override
   void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+      context.pushReplacement(location, extra: _self.$extra);
 
   @override
-  void replace(BuildContext context) => context.replace(location);
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
+}
+
+mixin $CouponRedeemRoute on GoRouteData {
+  static CouponRedeemRoute _fromState(GoRouterState state) =>
+      CouponRedeemRoute($extra: state.extra as DiscountCouponModel);
+
+  CouponRedeemRoute get _self => this as CouponRedeemRoute;
+
+  @override
+  String get location => GoRouteData.$location('/main/monetization/redeem');
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
 mixin $TurismRoute on GoRouteData {

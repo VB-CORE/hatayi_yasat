@@ -7,7 +7,7 @@ part 'discount_coupon_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
-    with Equatable
+    with EquatableMixin
     implements BaseFirebaseConvert<DiscountCouponModel> {
   DiscountCouponModel({
     this.storeId,
@@ -92,6 +92,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
     DateTime? createdAt,
     DateTime? updatedAt,
     String? documentId,
+    bool clearUsageLimit = false,
   }) {
     return DiscountCouponModel(
       storeId: storeId ?? this.storeId,
@@ -100,7 +101,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
       ratio: ratio ?? this.ratio,
       expiresAt: expiresAt ?? this.expiresAt,
       usageCount: usageCount ?? this.usageCount,
-      usageLimit: usageLimit ?? this.usageLimit,
+      usageLimit: clearUsageLimit ? null : usageLimit ?? this.usageLimit,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       documentId: documentId ?? this.documentId,

@@ -18,6 +18,7 @@ final class PlaceDetailAboutTab extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.sm,
       children: [
+        PlaceDetailShowcaseSection(placeId: store.documentId),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: AppSpacing.xs,

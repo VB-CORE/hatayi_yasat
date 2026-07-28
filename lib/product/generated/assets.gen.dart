@@ -129,7 +129,9 @@ class $AssetsTranslationsGen {
   List<String> get values => [en, tr];
 }
 
-abstract final class Assets {
+class Assets {
+  const Assets._();
+
   static const $AssetsDocsGen docs = $AssetsDocsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

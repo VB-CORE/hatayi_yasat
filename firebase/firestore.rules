@@ -21,12 +21,69 @@ service cloud.firestore {
 
     function isMerchantOf(storeId) {
       return isSignedIn()
-        && get(/databases/$(database)/documents/approvedApplications/$(storeId)).data.ownerUid
+        && get(/databases/$(database)/documents/approvedApplications/$(storeId)).data.ownerId
+           == request.auth.uid;
+    }
+
+    function isCouponOwner(couponId) {
+      return isSignedIn()
+        && get(/databases/$(database)/documents/coupons/$(couponId)).data.merchantUid
            == request.auth.uid;
     }
 
     function affects(keys) {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+    }
+
+    // --- Community (groups / topics) helpers ---
+
+    function isGroupOwner(groupId) {
+      return get(/databases/$(database)/documents/groups/$(groupId)).data.creatorUid
+        == request.auth.uid;
+    }
+
+    // Leaving is a soft-delete, so existence alone is not membership.
+    function isGroupMember(groupId) {
+      return exists(
+          /databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)
+        )
+        && get(
+          /databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)
+        ).data.get('isDeleted', false) == false;
+    }
+
+    // Author of the existing document (update context).
+    function isAuthor() {
+      return resource.data.author.uid == request.auth.uid;
+    }
+
+    // Author of the incoming document (create context).
+    function isIncomingAuthor() {
+      return request.resource.data.author.uid == request.auth.uid;
+    }
+
+    // No hard delete anywhere: "deleting" only flips these soft-delete flags.
+    function isSoftDelete() {
+      return affects(['isDeleted', 'deletedAt', 'updatedAt']);
+    }
+
+    // Denormalised counters (memberCount, entryCount, likeCount) are moved by
+    // the client, so they may only step by one and never go negative.
+    function movesCounterByOne(field) {
+      return movesCounterUp(field) || movesCounterDown(field);
+    }
+
+    function movesCounterUp(field) {
+      return affects([field])
+        && request.resource.data[field] is int
+        && request.resource.data[field] == resource.data[field] + 1;
+    }
+
+    function movesCounterDown(field) {
+      return affects([field])
+        && request.resource.data[field] is int
+        && request.resource.data[field] >= 0
+        && request.resource.data[field] == resource.data[field] - 1;
     }
 
     match /users/{uid} {
@@ -36,21 +93,30 @@ service cloud.firestore {
         && request.resource.data.permissions.size() == 0
         && !('merchantStoreId' in request.resource.data);
       allow update: if request.auth.uid == uid
-        && affects(['fcmToken', 'displayName', 'photoUrl', 'updatedAt','application']);
+        && affects(['fcmToken', 'displayName', 'photoUrl', 'updatedAt',
+                    'application']);
       allow update: if isAdmin();
-   
-  }
-    
+
+      // Which posts this user liked. The post id is the document id, and
+      // posts/{postId}.likeCount is the counter derived from it.
+      match /likedPosts/{postId} {
+        allow read, write: if request.auth.uid == uid;
+      }
+    }
 
     match /approvedApplications/{storeId} {
       allow read: if true;
       allow write: if isAdmin();
-      allow update: if resource.data.ownerUid == request.auth.uid
+      // Onaylı esnaf kendi mekanının vitrinini ve künyesini yönetir; onay
+      // durumu (isApproved), sahiplik (ownerId) ve sayaçlar dışarıda kalır.
+      allow update: if resource.data.ownerId == request.auth.uid
         && affects(['showcaseModules', 'description', 'images',
-                    'openTime', 'closeTime', 'updatedAt']);
+                    'openTime', 'closeTime', 'updatedAt',
+                    'name', 'phone', 'address', 'category',
+                    'isCommentEnabled']);
       allow update: if isSignedIn()
-        && affects(['viewCount'])
-        && request.resource.data.viewCount == resource.data.viewCount + 1;
+        && affects(['visitCount'])
+        && request.resource.data.visitCount == resource.data.visitCount + 1;
 
       match /votes/{voterUid} {
         allow read: if isSignedIn();
@@ -60,6 +126,11 @@ service cloud.firestore {
           && request.resource.data.score is int
           && request.resource.data.score >= 1
           && request.resource.data.score <= 5;
+        // Mekan sahibi yalnızca yanıt alanlarına dokunabilir; puan/yorum korunur.
+        allow update: if isMerchantOf(storeId)
+          && affects(['merchantReply', 'merchantReplyAt'])
+          && (request.resource.data.merchantReply is string
+              || request.resource.data.merchantReply == null);
         allow delete: if request.auth.uid == voterUid || isAdmin();
       }
     }
@@ -81,40 +152,72 @@ service cloud.firestore {
         allow read: if isSignedIn();
         allow create: if isSignedIn()
           && request.resource.data.authorUid == request.auth.uid;
-        allow delete: if resource.data.authorUid == request.auth.uid || isAdmin();
-        allow update: if false;
+        allow update: if isSoftDelete()
+          && (resource.data.authorUid == request.auth.uid || isAdmin());
+        allow delete: if false;
       }
     }
 
     match /groups/{groupId} {
-      allow read: if isSignedIn();
+      // The group list is public; joining and reading its content is not.
+      allow read: if true;
       allow create: if hasPerm(1)
-        && request.resource.data.creatorUid == request.auth.uid;
+        && request.resource.data.creatorUid == request.auth.uid
+        && request.resource.data.memberCount == 1;
       allow update: if isAdmin()
         || (resource.data.creatorUid == request.auth.uid
-            && affects(['name', 'description', 'imageUrl', 'isClosed', 'updatedAt']));
+            && affects(['name', 'description', 'imageUrl', 'categoryValue',
+                        'categoryName', 'isClosed', 'updatedAt']))
+        || (resource.data.creatorUid == request.auth.uid && isSoftDelete())
+        // Sayaç yalnızca çağıranın kendi üyeliğiyle tutarlı yönde oynayabilir:
+        // üye olmayan artırır, aktif üye azaltır.
+        || (isSignedIn() && movesCounterUp('memberCount')
+            && !isGroupMember(groupId))
+        || (movesCounterDown('memberCount') && isGroupMember(groupId));
       allow delete: if isAdmin();
 
+      // Membership. Leaving is a soft-delete; counts must filter isDeleted == false.
       match /members/{memberUid} {
         allow read: if isSignedIn();
-        allow create: if request.auth.uid == memberUid;
-        allow delete: if request.auth.uid == memberUid
-          || get(/databases/$(database)/documents/groups/$(groupId)).data.creatorUid
-             == request.auth.uid
-          || isAdmin();
+        allow create: if request.auth.uid == memberUid
+          && (request.resource.data.role == 'member' || isGroupOwner(groupId));
+        allow update: if isSoftDelete()
+          && (request.auth.uid == memberUid || isGroupOwner(groupId) || isAdmin());
+        // Rejoining rewrites the membership that leaving soft-deleted.
+        allow update: if request.auth.uid == memberUid
+          && resource.data.isDeleted == true
+          && request.resource.data.isDeleted == false
+          // `role` dışarıda: yeniden katılım yetki yükseltmeye dönüşemez.
+          && affects(['isDeleted', 'deletedAt', 'updatedAt', 'createdAt',
+                      'displayName', 'avatarUrl']);
+        allow delete: if false;
       }
 
+      // Wall posts. Members author them; content is immutable and only the
+      // like counter moves.
       match /posts/{postId} {
         allow read: if isSignedIn();
-        allow create: if exists(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid))
-          && request.resource.data.authorUid == request.auth.uid;
-        allow delete: if resource.data.authorUid == request.auth.uid
-          || get(/databases/$(database)/documents/groups/$(groupId)).data.creatorUid
-             == request.auth.uid
-          || isAdmin();
-        allow update: if false;
+        allow create: if isGroupMember(groupId) && isIncomingAuthor();
+        allow update: if isGroupMember(groupId) && movesCounterByOne('likeCount');
+        allow delete: if false;
+      }
+
+      // Discussions and their replies share the same access shape as posts.
+      match /discussions/{discussionId} {
+        allow read: if isSignedIn();
+        allow create: if isGroupMember(groupId) && isIncomingAuthor();
+        allow update: if isGroupMember(groupId) && movesCounterByOne('entryCount');
+        allow delete: if false;
+
+        match /entries/{entryId} {
+          allow read: if isSignedIn();
+          allow create: if isGroupMember(groupId) && isIncomingAuthor();
+          allow update: if false;
+          allow delete: if false;
+        }
       }
     }
+
 
     match /coupons/{couponId} {
       allow read: if isSignedIn();
@@ -126,11 +229,19 @@ service cloud.firestore {
         && request.resource.data.expiresAt is timestamp;
       allow update, delete: if resource.data.merchantUid == request.auth.uid || isAdmin();
 
-      match /redemptions/{rid} {
-        allow read: if resource.data.merchantUid == request.auth.uid
-          || resource.data.userUid == request.auth.uid
+      // Doküman kimliği kullanan uid'idir: bir kullanıcı bir kupondan yalnızca
+      // bir kez yararlanabilir, ikinci create aynı kimliğe düşer ve reddedilir.
+      match /redemptions/{userUid} {
+        allow read: if isCouponOwner(couponId)
+          || request.auth.uid == userUid
           || isAdmin();
-        allow write: if false;
+        allow create: if isCouponOwner(couponId)
+          && request.resource.data.userUid == userUid
+          && request.resource.data.merchantUid == request.auth.uid
+          && !exists(
+            /databases/$(database)/documents/coupons/$(couponId)/redemptions/$(userUid)
+          );
+        allow update, delete: if isAdmin();
       }
     }
 
@@ -197,6 +308,10 @@ service cloud.firestore {
     }
 
     match /categories/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /groupCategories/{document} {
       allow read: if true;
       allow write: if isAdmin();
     }

@@ -14,6 +14,12 @@ part 'monetization_view_model.g.dart';
 @riverpod
 final class MonetizationViewModel extends _$MonetizationViewModel
     with ProjectDependencyMixin {
+  static const String _descField = 'desc';
+  static const String _ratioField = 'ratio';
+  static const String _expiresAtField = 'expiresAt';
+  static const String _usageLimitField = 'usageLimit';
+  static const String _updatedAtField = 'updatedAt';
+
   String? get _storeId => ref.read(authViewModelProvider).user?.application?.id;
   String? get _merchantUid => ref.read(authViewModelProvider).user?.uid;
 
@@ -79,6 +85,54 @@ final class MonetizationViewModel extends _$MonetizationViewModel
       coupons: [
         ...state.coupons,
         coupon.copyWith(documentId: result.dataOrNull),
+      ],
+      isSubmitting: false,
+    );
+    return true;
+  }
+
+  Future<bool> updateCoupon({
+    required DiscountCouponModel coupon,
+    required String desc,
+    required int rate,
+    required DateTime expiresAt,
+    int? usageLimit,
+  }) async {
+    if (coupon.documentId.isEmpty || state.isSubmitting) return false;
+
+    state = state.copyWith(isSubmitting: true, isError: false);
+
+    final now = DateTime.now();
+    final updated = coupon.copyWith(
+      desc: desc,
+      ratio: rate,
+      expiresAt: expiresAt,
+      usageLimit: usageLimit,
+      clearUsageLimit: usageLimit == null,
+      updatedAt: now,
+    );
+
+    final result = await firestoreService.updateFields(
+      path: CollectionPaths.coupons,
+      documentId: coupon.documentId,
+      fields: {
+        _descField: desc,
+        _ratioField: rate,
+        _expiresAtField: FirebaseTimeParse.dateTimeToTimestamp(expiresAt),
+        _usageLimitField: usageLimit,
+        _updatedAtField: FirebaseTimeParse.dateTimeToTimestamp(now),
+      },
+    );
+
+    if (!result.isSuccess) {
+      state = state.copyWith(isSubmitting: false, isError: true);
+      return false;
+    }
+
+    state = state.copyWith(
+      coupons: [
+        for (final item in state.coupons)
+          if (item.documentId == coupon.documentId) updated else item,
       ],
       isSubmitting: false,
     );

@@ -13,8 +13,11 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
+import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_module_model.dart';
+import 'package:lifeclient/features/merchant_panel/view/widget/merchant_showcase_card.dart';
 import 'package:lifeclient/features/place_detail/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_view_model.dart';
+import 'package:lifeclient/features/place_detail/view_model/place_showcase_provider.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
@@ -35,6 +38,7 @@ part 'widget/place_detail_tab_content.dart';
 part 'widget/place_summary_card.dart';
 part 'widget/tabs/place_detail_about.dart';
 part 'widget/tabs/place_detail_comments.dart';
+part 'widget/tabs/place_detail_showcase.dart';
 
 enum _PlaceDetailTab { about, comments }
 

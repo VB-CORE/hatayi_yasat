@@ -7,6 +7,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_mixin.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -23,7 +24,9 @@ part 'widget/monetization_discount_rate_slider.dart';
 
 @immutable
 final class MonetizationCouponFormView extends ConsumerStatefulWidget {
-  const MonetizationCouponFormView({super.key});
+  const MonetizationCouponFormView({super.key, this.coupon});
+
+  final DiscountCouponModel? coupon;
 
   @override
   ConsumerState<MonetizationCouponFormView> createState() =>
@@ -40,7 +43,11 @@ final class _MonetizationCouponFormViewState
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.bg,
-      appBar: PageAppBar(pageTitle: LocaleKeys.monetization_addCoupon),
+      appBar: PageAppBar(
+        pageTitle: isEditing
+            ? LocaleKeys.monetization_editCoupon
+            : LocaleKeys.monetization_addCoupon,
+      ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: const PagePadding.horizontal16Symmetric(),

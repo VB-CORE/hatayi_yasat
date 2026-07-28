@@ -27,7 +27,7 @@ final class RouterNotifier extends ChangeNotifier {
 
     final previousUser = previous.user;
     final nextUser = next.user;
-    
+
     if (previousUser == null && nextUser == null) return false;
     if (previousUser == null || nextUser == null) return true;
     return previousUser.roleType != nextUser.roleType ||

@@ -8,7 +8,7 @@ part 'user_application_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 final class UserApplicationModel extends BaseFirebaseModel<UserApplicationModel>
-    with Equatable {
+    with EquatableMixin {
   const UserApplicationModel({
     this.id = '',
     this.status = UserApplicationStatus.pending,

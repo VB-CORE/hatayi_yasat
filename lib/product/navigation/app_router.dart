@@ -14,8 +14,10 @@ import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
-import 'package:lifeclient/features/merchant_panel/merchant_panel_view.dart';
+import 'package:lifeclient/features/merchant_panel/view/merchant_panel_view.dart';
+import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
+import 'package:lifeclient/features/monetization/redeem/coupon_redeem_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
@@ -304,6 +306,7 @@ final class MonetizationRoute extends GoRouteData with $MonetizationRoute {
     name: 'Monetization',
     routes: [
       MonetizationCouponFormRoute.route,
+      CouponRedeemRoute.route,
     ],
   );
 
@@ -312,14 +315,35 @@ final class MonetizationRoute extends GoRouteData with $MonetizationRoute {
       const MonetizationView();
 }
 
+final class CouponRedeemRoute extends GoRouteData with $CouponRedeemRoute {
+  const CouponRedeemRoute({required this.$extra});
+
+  static const route = TypedGoRoute<CouponRedeemRoute>(
+    path: 'redeem',
+    name: 'Coupon Redeem',
+  );
+
+  final DiscountCouponModel $extra;
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      CouponRedeemView(coupon: $extra);
+}
+
 final class MonetizationCouponFormRoute extends GoRouteData
     with $MonetizationCouponFormRoute {
-  const MonetizationCouponFormRoute();
+  const MonetizationCouponFormRoute({this.$extra});
 
   static const route = TypedGoRoute<MonetizationCouponFormRoute>(
     path: 'couponForm',
     name: 'Monetization Coupon Form',
   );
+
+  final DiscountCouponModel? $extra;
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>

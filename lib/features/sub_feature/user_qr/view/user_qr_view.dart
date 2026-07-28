@@ -9,6 +9,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
 
@@ -26,6 +27,16 @@ class _UserQrViewState extends State<UserQrView>
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.general.colorScheme;
+    final qrUrl = userQrUrl;
+
+    if (qrUrl == null) {
+      return GeneralScaffold(
+        appBar: PageAppBar(pageTitle: LocaleKeys.userQr_title),
+        body: GeneralNotFoundWidget(
+          title: LocaleKeys.message_somethingWentWrong.tr(),
+        ),
+      );
+    }
 
     return GeneralScaffold(
       appBar: PageAppBar(
@@ -36,7 +47,7 @@ class _UserQrViewState extends State<UserQrView>
           padding: const PagePadding.all(),
           child: Column(
             children: [
-              const GeneralQrImage(data: UserQrViewMixin.userQrUrl),
+              GeneralQrImage(data: qrUrl),
               const EmptyBox.middleHeight(),
               Container(
                 width: double.infinity,

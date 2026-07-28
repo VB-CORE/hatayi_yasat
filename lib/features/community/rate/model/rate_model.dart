@@ -6,7 +6,7 @@ import 'package:life_shared/life_shared.dart';
 part 'rate_model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
-final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
+final class RateModel extends BaseFirebaseModel<RateModel> with EquatableMixin {
   const RateModel({
     this.voterUid = '',
     this.placeId = '',
@@ -16,6 +16,8 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     this.photoUrl,
     this.createdAt,
     this.updatedAt,
+    this.merchantReply,
+    this.merchantReplyAt,
   });
 
   final String voterUid;
@@ -27,6 +29,16 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   final int score;
   final String? comment;
   final String? photoUrl;
+
+  final String? merchantReply;
+
+  @JsonKey(
+    toJson: FirebaseTimeParse.dateTimeToTimestamp,
+    fromJson: FirebaseTimeParse.datetimeFromTimestamp,
+  )
+  final DateTime? merchantReplyAt;
+
+  bool get hasMerchantReply => merchantReply?.trim().isNotEmpty ?? false;
 
   @JsonKey(
     toJson: FirebaseTimeParse.dateTimeToTimestamp,
@@ -70,6 +82,9 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     String? comment,
     String? userName,
     String? photoUrl,
+    String? merchantReply,
+    DateTime? merchantReplyAt,
+    bool clearMerchantReply = false,
   }) => RateModel(
     voterUid: voterUid ?? this.voterUid,
     placeId: placeId ?? this.placeId,
@@ -79,6 +94,12 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     comment: comment ?? this.comment,
     photoUrl: photoUrl ?? this.photoUrl,
     updatedAt: updatedAt ?? this.updatedAt,
+    merchantReply: clearMerchantReply
+        ? null
+        : merchantReply ?? this.merchantReply,
+    merchantReplyAt: clearMerchantReply
+        ? null
+        : merchantReplyAt ?? this.merchantReplyAt,
   );
 
   @override
@@ -91,5 +112,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     comment,
     photoUrl,
     updatedAt,
+    merchantReply,
+    merchantReplyAt,
   ];
 }

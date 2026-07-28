@@ -113,6 +113,7 @@ dependencies:
   bounceable: ^1.0.0
   grouped_list: ^6.0.0
   like_button: ^2.1.0
+  mobile_scanner: ^7.4.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0
