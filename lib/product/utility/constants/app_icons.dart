@@ -63,6 +63,8 @@ final class AppIcons {
   static const IconData hourglassFilled = Icons.hourglass_bottom_rounded;
   static const IconData store = Icons.storefront_outlined;
   static const IconData storeFilled = Icons.storefront_rounded;
+  static const IconData accountBalance = Icons.account_balance_outlined;
+  static const IconData link = Icons.link_rounded;
   static const IconData rate = Icons.stars_rounded;
   static const IconData privacy = Icons.shield_outlined;
   static const IconData privacyFilled = Icons.shield_rounded;
