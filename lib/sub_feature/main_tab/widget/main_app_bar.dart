@@ -115,54 +115,12 @@ final class _CustomPopupMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      elevation: 0,
+    return IconButton(
+      onPressed: () => _DiscoverMenuOverlay.show(context),
       icon: Icon(
         AppIcons.moreDots,
         color: context.general.colorScheme.primary,
       ),
-      onSelected: (value) {},
-      itemBuilder: (context) {
-        return [
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.specialAgency_title,
-            destination: () {
-              const SpecialAgencyRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.chain_stores_title,
-            destination: () {
-              const ChainStoresRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.tourismView_title,
-            destination: () {
-              const TurismRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.usefulLink_title,
-            destination: () {
-              const UsefulLinksRoute().go(context);
-            },
-          ),
-        ];
-      },
     );
   }
-}
-
-final class _CustomPopupMenuItem<T> extends PopupMenuItem<T> {
-  _CustomPopupMenuItem({
-    required String itemLabel,
-    required VoidCallback destination,
-  }) : super(
-         child: GeneralContentSubTitle(
-           value: itemLabel.tr(),
-           fontWeight: FontWeight.bold,
-         ),
-         onTap: destination,
-       );
 }

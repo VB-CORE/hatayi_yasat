@@ -12,6 +12,7 @@ extension AppContextColors on BuildContext {
 final class AppColorTokens {
   const AppColorTokens();
 
+  Color get navy => AppColors.navy;
   Color get navy100 => AppColors.navy100;
   Color get navy300 => AppColors.navy300;
   Color get navy400 => AppColors.navy400;
@@ -27,7 +28,9 @@ final class AppColorTokens {
   Color get gold => AppColors.gold;
   Color get gold200 => AppColors.gold200;
   Color get gold300 => AppColors.gold300;
+  Color get coral => AppColors.coral;
   Color get coral100 => AppColors.coral100;
+  Color get teal => AppColors.teal;
 
   /// `colorScheme.surface`'tan farklıdır (o `AppColors.bg`'ye eşlenir);
   /// bu, `AppColors.surface`'ın (düz beyaz) kendisidir.
