@@ -1,0 +1,33 @@
+{
+    "emulators": {
+        "auth": {
+            "host": "0.0.0.0",
+            "port": 3000,
+            "persist": true
+        },
+        "firestore": {
+            "host": "0.0.0.0",
+            "port": 3004,
+            "persist": true
+        },
+        "storage": {
+            "host": "0.0.0.0",
+            "port": 3005,
+            "persist": true
+        },
+        "ui": {
+            "enabled": true,
+            "host": "0.0.0.0",
+            "port": 3002
+        },
+        "exportOnExit": "./emulator-data",
+        "importOnStart": "./emulator-data"
+    },
+    "storage": {
+        "rules": "firebase/storage.rules"
+    },
+    "firestore": {
+        "rules": "firebase/firestore.rules",
+        "indexes": "firebase/firestore.indexes.json"
+    }
+}

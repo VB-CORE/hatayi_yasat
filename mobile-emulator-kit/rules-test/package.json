@@ -1,0 +1,14 @@
+{
+  "name": "hatay-rules-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "firebase/firestore.rules icin guvenlik kurali testleri",
+  "scripts": {
+    "test": "./run.sh"
+  },
+  "dependencies": {
+    "@firebase/rules-unit-testing": "^5.0.1",
+    "firebase": "^12.16.0"
+  }
+}
