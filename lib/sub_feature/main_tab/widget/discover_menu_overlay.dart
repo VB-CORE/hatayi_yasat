@@ -12,35 +12,26 @@ final class _DiscoverMenuOverlay {
       barrierLabel: LocaleKeys.navigationTabs_explore.tr(),
       barrierColor: context.appColors.navy.withValues(alpha: 0.05),
       transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return Stack(
-          children: [
-            Positioned(
-              top: topInset,
-              left: kZero,
-              right: kZero,
-              bottom: kZero,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: WidgetSizes.spacingXs,
-                  sigmaY: WidgetSizes.spacingXs,
-                ),
-                child: const SizedBox.expand(),
+        return Padding(
+          padding: EdgeInsets.only(top: topInset),
+          child: ClipRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: WidgetSizes.spacingXs,
+                sigmaY: WidgetSizes.spacingXs,
               ),
+              child: child,
             ),
-            child,
-          ],
+          ),
         );
       },
       pageBuilder: (context, animation, secondaryAnimation) {
-        return Stack(
-          children: [
-            Positioned(
-              top: topInset,
-              left: AppSpacing.lg,
-              right: AppSpacing.lg,
-              child: const _DiscoverMenuCard(),
-            ),
-          ],
+        return const Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: _DiscoverMenuCard(),
+          ),
         );
       },
     );
