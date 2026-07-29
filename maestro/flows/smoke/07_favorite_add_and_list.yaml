@@ -1,0 +1,55 @@
+# 07 — Uçtan uca favori akışı:
+# Anasayfa -> mekan detayı -> favorile -> Favoriler sekmesinde gör -> Tümünü Temizle.
+# Sonda temizlik yapılır ki ekran boş duruma dönsün (test kendi izini siler).
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - favorite
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_home.yaml
+
+# Favoriler başlangıçta boş (clearState).
+- runFlow: ../core/goto_favorite.yaml
+- assertVisible: "Favori listeniz boş"
+
+- runFlow: ../core/goto_home.yaml
+- tapOn:
+    id: "place_grid_card_.*"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: "placeDetailCallButton"
+    timeout: 30000
+
+# NEEDS-ID: FavoritePlaceButton `Semantics` ile sarılmadığı için id'si yok;
+# görselin sağ üstündeki kalp konumdan tıklanıyor.
+# `GeneralSemanticKeys.placeDetailFavoriteButton` eklenirse burası `id:` olmalı.
+- tapOn:
+    point: "92%,18%"
+- waitForAnimationToEnd
+- takeScreenshot: "../../reports/smoke/07_place_favorited"
+
+- tapOn: "Geri"
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000
+
+- runFlow: ../core/goto_favorite.yaml
+- extendedWaitUntil:
+    visible: "Favorinizi arayın"
+    timeout: 30000
+- assertVisible: "Tümünü Temizle"
+- assertNotVisible: "Favori listeniz boş"
+- takeScreenshot: "../../reports/smoke/07_favorite_filled"
+
+# Temizlik: onay dialogundan geçip boş duruma dön.
+- tapOn: "Tümünü Temizle"
+- extendedWaitUntil:
+    visible: "Tüm favorilerinizi silmek istediğinize emin misiniz?"
+    timeout: 15000
+- tapOn: "Evet, eminim"
+- extendedWaitUntil:
+    visible: "Favori listeniz boş"
+    timeout: 15000

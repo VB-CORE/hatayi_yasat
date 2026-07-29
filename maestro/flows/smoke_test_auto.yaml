@@ -1,0 +1,40 @@
+# smoke_test_auto — TEK RUN, TÜM AKIŞLAR.
+#
+# Ana sayfa bottom tab bar'ının 4 sekmesini ve bağlı akışları uçtan uca doğrular.
+# Her alt akış `core/bootstrap.yaml` ile BAŞTAN başlar (launchApp + clearState), yani
+# adımlar birbirinden izoledir: bir testin bıraktığı favori/dialog durumu diğerini etkilemez.
+#
+# Koşum:
+#   maestro test maestro/flows/smoke_test_auto.yaml
+#   ./maestro/run.sh                     (build + install + bu dosya)
+#
+# Tek tek koşmak için: maestro/flows/smoke/<NN>_*.yaml
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - auto
+---
+# 01 — Sıfırdan açılış: splash -> onboarding -> "Yenilikler" -> ana kabuk + 4 sekme.
+- runFlow: smoke/01_app_launch.yaml
+
+# 02 — Anasayfa: mekan listesi, arama alanı, boş-durum yok.
+- runFlow: smoke/02_home_tab.yaml
+
+# 03 — Anasayfa -> mekan detayı (Ara / Yol Tarifi Al) -> geri.
+- runFlow: smoke/03_home_place_detail.yaml
+
+# 04 — Topluluk: Haberler / Etkinlikler / İş İlanı alt sekme şeridi.
+- runFlow: smoke/04_community_tab.yaml
+
+# 05 — Hatıralar: ilk ziyaret dialogu, foto grid, "Favori Anılarım" sheet'i.
+- runFlow: smoke/05_memories_tab.yaml
+
+# 06 — Favoriler: boş durum.
+- runFlow: smoke/06_favorite_tab.yaml
+
+# 07 — Favori uçtan uca: detayda favorile -> Favoriler'de gör -> tümünü temizle.
+- runFlow: smoke/07_favorite_add_and_list.yaml
+
+# 08 — Tab bar turu: 4 sekme ileri-geri, tek seçili sekme kuralı.
+- runFlow: smoke/08_tab_bar_navigation.yaml

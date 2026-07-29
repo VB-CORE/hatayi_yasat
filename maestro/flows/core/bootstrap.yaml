@@ -1,0 +1,53 @@
+# Her smoke testinin sıfırdan başlangıç noktası.
+# clearState ile uygulama verisi silinir; bu yüzden onboarding ve "Yenilikler"
+# sheet'i her koşuda görünür. Akış: splash -> onboarding -> whats new -> Anasayfa.
+appId: com.hatayiyasat.app
+---
+- launchApp:
+    clearState: true
+
+- extendedWaitUntil:
+    visible:
+      id: "splashView"
+    timeout: 30000
+
+- extendedWaitUntil:
+    notVisible:
+      id: "splashView"
+    timeout: 60000
+
+# İlk kurulum onboarding'i (kapatma butonu sağ üstteki X).
+- runFlow:
+    when:
+      visible:
+        id: "onboardButton"
+    commands:
+      - tapOn:
+          id: "onboardButton"
+      - waitForAnimationToEnd
+
+# Sürüm değiştiğinde post-frame açılan sheet. Başlık sürüm numarası içerdiği için
+# daima id ile yakalanır; kapatma butonu yok, scrim'e dokunularak kapatılır.
+- runFlow:
+    when:
+      visible:
+        id: "whatsNewSheet"
+    commands:
+      - tapOn:
+          point: "50%,20%"
+      - waitForAnimationToEnd
+      - assertNotVisible:
+          id: "whatsNewSheet"
+
+- extendedWaitUntil:
+    visible:
+      id: "mainTabView"
+    timeout: 30000
+
+- assertVisible:
+    id: "mainTabBottomNavigation"
+
+# Anasayfa Firestore sorgusu döndü mü.
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000

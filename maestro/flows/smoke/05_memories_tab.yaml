@@ -1,0 +1,48 @@
+# 05 — Hatıralar sekmesi.
+# DİKKAT: Bu ekranda sabit metin YOKTUR (foto grid + 2 ikon FAB, hepsi id'siz).
+# Bu yüzden ekrana varış sekmenin seçili olmasıyla, içerik ise "Favori Anılarım"
+# sheet'i açılarak doğrulanır.
+# Sekmeye İLK girişte tek seferlik bilgi dialogu açılır (barrierDismissible: false);
+# bootstrap clearState ile başladığı için bu akışta daima görünür ve burada test edilir.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - memories
+---
+- runFlow: ../core/bootstrap.yaml
+
+- tapOn:
+    id: "memoriesTab"
+- waitForAnimationToEnd
+
+# İlk ziyaret bilgi dialogu.
+- extendedWaitUntil:
+    visible: "Anladım"
+    timeout: 30000
+- takeScreenshot: "../../reports/smoke/05_memories_first_visit_dialog"
+- tapOn: "Anladım"
+- waitForAnimationToEnd
+
+- assertVisible:
+    id: "memoriesTab"
+    selected: true
+- assertNotVisible: "Mekanlar"
+- assertNotVisible: "Haberler"
+- takeScreenshot: "../../reports/smoke/05_memories_grid"
+
+# NEEDS-ID: kalp FAB'ının id'si yok, konumdan tıklanıyor (endDocked, sağ alt).
+# `GeneralSemanticKeys.memoryFavoriteButton` eklenirse burası `id:` ile değiştirilmeli.
+- tapOn:
+    point: "89%,75%"
+- extendedWaitUntil:
+    visible: "Favori Anılarım"
+    timeout: 30000
+- assertVisible: "Henüz favori anınız yok"
+- takeScreenshot: "../../reports/smoke/05_memories_favorites_sheet"
+
+- tapOn: "Geri"
+- waitForAnimationToEnd
+- assertVisible:
+    id: "memoriesTab"
+    selected: true

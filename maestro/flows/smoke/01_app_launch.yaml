@@ -1,0 +1,32 @@
+# 01 — Sıfırdan açılış: splash -> onboarding -> "Yenilikler" sheet -> Anasayfa.
+# Ana kabuğun ve 4 sekmeli bottom bar'ın kurulduğunu doğrular.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+---
+- runFlow: ../core/bootstrap.yaml
+
+- assertVisible:
+    id: "mainTabView"
+- assertVisible:
+    id: "mainTabBottomNavigation"
+
+- assertVisible:
+    id: "homeTab"
+- assertVisible:
+    id: "communityTab"
+- assertVisible:
+    id: "memoriesTab"
+- assertVisible:
+    id: "favoriteTab"
+
+# Açılışta Anasayfa seçili olmalı.
+- assertVisible:
+    id: "homeTab"
+    selected: true
+- assertVisible:
+    id: "communityTab"
+    selected: false
+
+- takeScreenshot: "../../reports/smoke/01_app_launch"

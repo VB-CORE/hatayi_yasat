@@ -1,0 +1,35 @@
+# 04 — Topluluk sekmesi ve alt sekme şeridi: Haberler / Etkinlikler / İş İlanı.
+# Alt sekmelerin id'si yok, TR metinleriyle seçilir. İçerik (haber/etkinlik/ilan) canlı
+# Firestore'dan geldiği ve boş dönebildiği için içeriğe değil şeridin kendisine assert edilir.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - community
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_community.yaml
+
+- assertVisible: "Haberler"
+- assertVisible: "Etkinlikler"
+- assertVisible: "İş İlanı"
+- assertNotVisible: "Mekanlar"
+- takeScreenshot: "../../reports/smoke/04_community_news"
+
+- tapOn: "Etkinlikler"
+- waitForAnimationToEnd
+- assertVisible: "Haberler"
+- assertVisible: "İş İlanı"
+- takeScreenshot: "../../reports/smoke/04_community_events"
+
+- tapOn: "İş İlanı"
+- waitForAnimationToEnd
+- assertVisible: "Haberler"
+- assertVisible: "Etkinlikler"
+- takeScreenshot: "../../reports/smoke/04_community_jobs"
+
+- tapOn: "Haberler"
+- waitForAnimationToEnd
+- assertVisible:
+    id: "communityTab"
+    selected: true

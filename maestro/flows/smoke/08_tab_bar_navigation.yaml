@@ -1,0 +1,49 @@
+# 08 — Bottom tab bar turu: 4 sekme ileri-geri gezilir, her adımda YALNIZCA
+# hedef sekmenin seçili olduğu doğrulanır.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+---
+- runFlow: ../core/bootstrap.yaml
+
+- assertVisible:
+    id: "homeTab"
+    selected: true
+
+- runFlow: ../core/goto_community.yaml
+- assertVisible:
+    id: "homeTab"
+    selected: false
+- assertVisible:
+    id: "memoriesTab"
+    selected: false
+- assertVisible:
+    id: "favoriteTab"
+    selected: false
+
+- runFlow: ../core/goto_memories.yaml
+- assertVisible:
+    id: "communityTab"
+    selected: false
+
+- runFlow: ../core/goto_favorite.yaml
+- assertVisible:
+    id: "memoriesTab"
+    selected: false
+
+- runFlow: ../core/goto_home.yaml
+- assertVisible:
+    id: "favoriteTab"
+    selected: false
+
+# Seçili sekmeye tekrar dokunmak ekranı bozmamalı.
+- tapOn:
+    id: "homeTab"
+- waitForAnimationToEnd
+- assertVisible: "Mekanlar"
+- assertVisible:
+    id: "homeTab"
+    selected: true
+
+- takeScreenshot: "../../reports/smoke/08_tab_bar_navigation"

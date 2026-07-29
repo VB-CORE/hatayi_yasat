@@ -1,0 +1,24 @@
+# 02 — Anasayfa sekmesi: mekan listesi, arama alanı ve kategori şeridi render oldu mu.
+# Firestore canlı olduğu için mekan/kategori ADLARINA assert edilmez; yapısal kontrol yapılır.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - home
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_home.yaml
+
+- assertVisible: "Mekanlar"
+- assertVisible: "Mekan ara"
+
+# Liste doldu: en az bir mekan kartı var ve boş-durum metni yok.
+- assertVisible:
+    id: "place_grid_card_.*"
+- assertNotVisible: "Sonuç Bulunamadı"
+
+# Diğer sekmelerin içeriği ekranda olmamalı.
+- assertNotVisible: "Haberler"
+- assertNotVisible: "Favori listeniz boş"
+
+- takeScreenshot: "../../reports/smoke/02_home_tab"

@@ -1,0 +1,10 @@
+appId: com.hatayiyasat.app
+---
+- tapOn:
+    id: "homeTab"
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000
+- assertVisible:
+    id: "homeTab"
+    selected: true

@@ -1,0 +1,10 @@
+appId: com.hatayiyasat.app
+---
+- tapOn:
+    id: "communityTab"
+- extendedWaitUntil:
+    visible: "Haberler"
+    timeout: 30000
+- assertVisible:
+    id: "communityTab"
+    selected: true

@@ -1,0 +1,43 @@
+# 03 — Anasayfa -> mekan detayı -> geri.
+# Listedeki İLK kart açılır (ad Firestore'dan geldiği için id regex + index: 0 ile seçilir).
+# Detayda yalnızca KOŞULSUZ render olan kontrollere assert edilir: "Ara" ve "Yol Tarifi Al".
+# ("Çalışma Saatleri" / "İşletme Açıklaması" mekana göre gizlenebiliyor — assert edilmez.)
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - home
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_home.yaml
+
+- assertVisible:
+    id: "place_grid_card_.*"
+- tapOn:
+    id: "place_grid_card_.*"
+    index: 0
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      id: "placeDetailCallButton"
+    timeout: 30000
+- assertVisible:
+    id: "placeDetailFindThePlaceButton"
+- assertVisible: "Ara"
+- assertVisible: "Yol Tarifi Al"
+- assertVisible: "Geri"
+
+# Detay ekranı ana kabuğun ÜSTÜNDE açılır: bottom bar görünmez.
+- assertNotVisible:
+    id: "mainTabBottomNavigation"
+
+- takeScreenshot: "../../reports/smoke/03_place_detail"
+
+- tapOn: "Geri"
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000
+- assertVisible:
+    id: "homeTab"
+    selected: true

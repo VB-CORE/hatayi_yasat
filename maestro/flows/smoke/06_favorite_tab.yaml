@@ -1,0 +1,20 @@
+# 06 — Favoriler sekmesi, boş durum.
+# bootstrap clearState ile başladığı için favori listesi DAİMA boştur; bu yüzden
+# "Favori listeniz boş" burada deterministik bir assert'tir.
+appId: com.hatayiyasat.app
+tags:
+  - smoke
+  - tabbar
+  - favorite
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_favorite.yaml
+
+- assertVisible:
+    id: "favoriteTab"
+    selected: true
+- assertVisible: "Favori listeniz boş"
+- assertNotVisible: "Tümünü Temizle"
+- assertNotVisible: "Mekanlar"
+
+- takeScreenshot: "../../reports/smoke/06_favorite_empty"

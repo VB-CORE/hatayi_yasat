@@ -1,0 +1,13 @@
+# Favoriler ekranının anchor'ı listenin dolu/boş olmasına göre değişir
+# (dolu: "Favorinizi arayın" · boş: "Favori listeniz boş").
+# Bu yüzden varış sekmenin seçili olmasıyla doğrulanır; içerik assert'i çağıran flow'da.
+appId: com.hatayiyasat.app
+---
+- tapOn:
+    id: "favoriteTab"
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      id: "favoriteTab"
+      selected: true
+    timeout: 30000

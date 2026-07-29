@@ -1,0 +1,22 @@
+# Hatıralar ekranında sabit metin anchor'ı YOKTUR (sadece foto grid + 2 FAB).
+# Bu yüzden ekrana varış, sekmenin seçili olmasıyla doğrulanır.
+# İlk ziyarette tek seferlik bilgi dialogu açılır (SharedCache.isFirstHistoryPageVisit,
+# barrierDismissible: false) — kapatılmazsa altındaki hiçbir kontrol seçilemez.
+appId: com.hatayiyasat.app
+---
+- tapOn:
+    id: "memoriesTab"
+- waitForAnimationToEnd
+
+- runFlow:
+    when:
+      visible: "Anladım"
+    commands:
+      - tapOn: "Anladım"
+      - waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      id: "memoriesTab"
+      selected: true
+    timeout: 30000
