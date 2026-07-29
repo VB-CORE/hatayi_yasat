@@ -23,7 +23,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.roleType = 2,
     this.permissions = const [],
     this.rates = const [],
-    this.avatarType = 'a1',
+    this.avatarType = 1,
     this.fcmToken,
     this.updatedAt,
     this.application,
@@ -35,7 +35,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     uid: user.uid,
     email: user.email ?? '',
     displayName: user.displayName ?? user.email ?? '',
-    avatarType: AvatarTypes.all[Random().nextInt(AvatarTypes.all.length)].name,
+    avatarType: AvatarTypes.all[Random().nextInt(AvatarTypes.all.length)].id,
   );
 
   final String uid;
@@ -44,7 +44,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final int roleType;
   final List<int> permissions;
   final List<String> rates;
-  final String avatarType;
+  final int avatarType;
   final String? fcmToken;
   @JsonKey(
     includeToJson: false,
@@ -74,7 +74,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
 
   static Map<String, Object?> updateFields({
     String? displayName,
-    String? avatarType,
+    int? avatarType,
     FieldValue? rates,
     UserApplicationModel? application,
   }) {
@@ -110,7 +110,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     int? roleType,
     List<int>? permissions,
     List<String>? rates,
-    String? avatarType,
+    int? avatarType,
     String? fcmToken,
     DateTime? updatedAt,
     UserApplicationModel? application,

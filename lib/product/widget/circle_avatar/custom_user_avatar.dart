@@ -19,7 +19,7 @@ final class CustomUserAvatar extends StatelessWidget {
   });
 
   final String userName;
-  final String? avatarType;
+  final int? avatarType;
   final String? imageUrl;
   final double radius;
   final Color backgroundColor;
@@ -33,7 +33,7 @@ final class CustomUserAvatar extends StatelessWidget {
     if (avatarType != null) {
       return CircleAvatar(
         radius: radius,
-        backgroundImage: AssetImage(AvatarTypes.byName(avatarType!).path),
+        backgroundImage: AssetImage(AvatarTypes.byId(avatarType!).path),
       );
     }
 

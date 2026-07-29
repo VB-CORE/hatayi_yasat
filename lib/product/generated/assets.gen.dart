@@ -18,29 +18,29 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsAvatarsGen {
   const $AssetsAvatarsGen();
 
-  /// File path: assets/avatars/a1.png
-  AssetGenImage get a1 => const AssetGenImage('assets/avatars/a1.png');
+  /// File path: assets/avatars/01.png
+  AssetGenImage get a01 => const AssetGenImage('assets/avatars/01.png');
 
-  /// File path: assets/avatars/a2.png
-  AssetGenImage get a2 => const AssetGenImage('assets/avatars/a2.png');
+  /// File path: assets/avatars/02.png
+  AssetGenImage get a02 => const AssetGenImage('assets/avatars/02.png');
 
-  /// File path: assets/avatars/a3.png
-  AssetGenImage get a3 => const AssetGenImage('assets/avatars/a3.png');
+  /// File path: assets/avatars/03.png
+  AssetGenImage get a03 => const AssetGenImage('assets/avatars/03.png');
 
-  /// File path: assets/avatars/a4.png
-  AssetGenImage get a4 => const AssetGenImage('assets/avatars/a4.png');
+  /// File path: assets/avatars/04.png
+  AssetGenImage get a04 => const AssetGenImage('assets/avatars/04.png');
 
-  /// File path: assets/avatars/a5.png
-  AssetGenImage get a5 => const AssetGenImage('assets/avatars/a5.png');
+  /// File path: assets/avatars/05.png
+  AssetGenImage get a05 => const AssetGenImage('assets/avatars/05.png');
 
-  /// File path: assets/avatars/a6.png
-  AssetGenImage get a6 => const AssetGenImage('assets/avatars/a6.png');
+  /// File path: assets/avatars/06.png
+  AssetGenImage get a06 => const AssetGenImage('assets/avatars/06.png');
 
-  /// File path: assets/avatars/a7.png
-  AssetGenImage get a7 => const AssetGenImage('assets/avatars/a7.png');
+  /// File path: assets/avatars/07.png
+  AssetGenImage get a07 => const AssetGenImage('assets/avatars/07.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [a1, a2, a3, a4, a5, a6, a7];
+  List<AssetGenImage> get values => [a01, a02, a03, a04, a05, a06, a07];
 }
 
 class $AssetsDocsGen {

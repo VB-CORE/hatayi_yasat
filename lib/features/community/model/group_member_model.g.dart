@@ -9,7 +9,7 @@ part of 'group_member_model.dart';
 GroupMemberModel _$GroupMemberModelFromJson(Map<String, dynamic> json) =>
     GroupMemberModel(
       displayName: json['displayName'] as String? ?? '',
-      avatarType: json['avatarType'] as String? ?? 'a1',
+      avatarType: (json['avatarType'] as num?)?.toInt() ?? 1,
       role:
           $enumDecodeNullable(
             _$GroupMemberRoleEnumMap,

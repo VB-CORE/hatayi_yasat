@@ -13,7 +13,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   const GroupMemberModel({
     this.id = '',
     this.displayName = '',
-    this.avatarType = 'a1',
+    this.avatarType = 1,
     this.role = GroupMemberRole.member,
     this.createdAt,
     this.updatedAt,
@@ -37,7 +37,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String id;
   final String displayName;
-  final String avatarType;
+  final int avatarType;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 
@@ -90,7 +90,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   GroupMemberModel copyWith({
     String? id,
     String? displayName,
-    String? avatarType,
+    int? avatarType,
     GroupMemberRole? role,
     DateTime? createdAt,
     DateTime? updatedAt,

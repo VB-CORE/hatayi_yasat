@@ -11,7 +11,7 @@ final class GroupAuthorModel extends Equatable {
   const GroupAuthorModel({
     this.uid = '',
     this.displayName = '',
-    this.avatarType = 'a1',
+    this.avatarType = 1,
     this.role = GroupMemberRole.member,
   });
 
@@ -31,7 +31,7 @@ final class GroupAuthorModel extends Equatable {
 
   final String uid;
   final String displayName;
-  final String avatarType;
+  final int avatarType;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 

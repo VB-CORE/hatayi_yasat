@@ -17,7 +17,7 @@ final class FirebaseUserService implements UserService {
   @override
   Future<bool> update({
     String? displayName,
-    String? avatarType,
+    int? avatarType,
     FieldValue? rates,
   }) async {
     final user = _auth.currentUser;

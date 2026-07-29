@@ -13,8 +13,8 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
   final displayNameController = TextEditingController();
   final emailController = TextEditingController();
 
-  String _avatarType = 'a1';
-  String get avatarType => _avatarType;
+  int _avatarType = 1;
+  int get avatarType => _avatarType;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
     final user = ref.read(authViewModelProvider).user;
     displayNameController.text = user?.displayName ?? '';
     emailController.text = user?.email ?? '';
-    _avatarType = user?.avatarType ?? 'a1';
+    _avatarType = user?.avatarType ?? 1;
   }
 
   @override
@@ -32,7 +32,7 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
     super.dispose();
   }
 
-  void selectAvatarType(String type) {
+  void selectAvatarType(int type) {
     setState(() => _avatarType = type);
   }
 

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 final class AvatarTypeModel extends Equatable {
-  const AvatarTypeModel({required this.name, required this.path});
+  const AvatarTypeModel({required this.id, required this.path});
 
-  final String name;
+  final int id;
   final String path;
 
   @override
-  List<Object?> get props => [name, path];
+  List<Object?> get props => [id, path];
 }

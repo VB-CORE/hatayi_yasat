@@ -13,7 +13,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     this.userName = '',
     this.score = 0,
     this.comment,
-    this.avatarType = 'a1',
+    this.avatarType = 1,
     this.createdAt,
     this.updatedAt,
   });
@@ -26,7 +26,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   final String userName;
   final int score;
   final String? comment;
-  final String avatarType;
+  final int avatarType;
 
   @JsonKey(
     toJson: FirebaseTimeParse.dateTimeToTimestamp,
@@ -69,7 +69,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     int? score,
     String? comment,
     String? userName,
-    String? avatarType,
+    int? avatarType,
   }) => RateModel(
     voterUid: voterUid ?? this.voterUid,
     placeId: placeId ?? this.placeId,

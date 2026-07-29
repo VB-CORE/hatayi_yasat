@@ -12,8 +12,8 @@ final class EditProfilePhoto extends StatelessWidget {
     super.key,
   });
 
-  final String avatarType;
-  final ValueChanged<String> onSelect;
+  final int avatarType;
+  final ValueChanged<int> onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ final class EditProfilePhoto extends StatelessWidget {
         separatorBuilder: (context, index) => const EmptyBox.smallWidth(),
         itemBuilder: (context, index) {
           final type = types[index];
-          final isSelected = type.name == avatarType;
+          final isSelected = type.id == avatarType;
           return GestureDetector(
-            onTap: () => onSelect(type.name),
+            onTap: () => onSelect(type.id),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

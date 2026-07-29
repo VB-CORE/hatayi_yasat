@@ -345,7 +345,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           ? const []
           : (fields[4] as List).cast<int>(),
       rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
-      avatarType: fields[13] == null ? 'a1' : fields[13] as String,
+      avatarType: fields[13] == null ? 1 : (fields[13] as num).toInt(),
       fcmToken: fields[7] as String?,
       updatedAt: fields[8] as DateTime?,
       application: fields[11] as UserApplicationModel?,
