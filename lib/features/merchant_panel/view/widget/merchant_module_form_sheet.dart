@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -158,7 +158,7 @@ final class _MerchantModuleFormSheetState
                     child: ChoiceChip(
                       selected: _type == type,
                       showCheckmark: false,
-                      selectedColor: AppColors.coral50,
+                      selectedColor: context.appColors.coral50,
                       onSelected: (_) => setState(() => _type = type),
                       label: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -248,10 +248,10 @@ final class _MerchantModuleFormSheetState
                     child: IconButton(
                       onPressed: _removeImage,
                       style: IconButton.styleFrom(
-                        backgroundColor: AppColors.navy700.withValues(
+                        backgroundColor: context.appColors.navy700.withValues(
                           alpha: .6,
                         ),
-                        foregroundColor: AppColors.surface,
+                        foregroundColor: context.appColors.surface,
                       ),
                       icon: const Icon(
                         AppIcons.close,

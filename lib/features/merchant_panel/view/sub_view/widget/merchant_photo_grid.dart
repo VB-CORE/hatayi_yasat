@@ -70,7 +70,7 @@ final class _PhotoTile extends StatelessWidget {
                 url,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                    const ColoredBox(color: AppColors.ink100),
+                    ColoredBox(color: context.appColors.ink100),
               ),
               MerchantPhotoFile(:final file) => Image.file(
                 file,
@@ -88,12 +88,12 @@ final class _PhotoTile extends StatelessWidget {
                   vertical: AppSpacing.xxs,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.coral,
+                  color: context.appColors.coral,
                   borderRadius: BorderRadius.circular(AppRadius.pill),
                 ),
                 child: Text(
                   LocaleKeys.merchantPanel_store_photoCover.tr(),
-                  style: AppText.micro.copyWith(color: AppColors.surface),
+                  style: AppText.micro.copyWith(color: context.appColors.surface),
                 ),
               ),
             ),
@@ -103,8 +103,8 @@ final class _PhotoTile extends StatelessWidget {
             child: IconButton(
               onPressed: onRemove,
               style: IconButton.styleFrom(
-                backgroundColor: AppColors.navy700.withValues(alpha: .6),
-                foregroundColor: AppColors.surface,
+                backgroundColor: context.appColors.navy700.withValues(alpha: .6),
+                foregroundColor: context.appColors.surface,
               ),
               icon: const Icon(AppIcons.close, size: AppIconSizes.xMedium),
             ),
@@ -126,17 +126,17 @@ final class _AddPhotoTile extends StatelessWidget {
       onTap: onTap,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppColors.ink25,
+          color: context.appColors.ink25,
           borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: AppColors.ink200),
+          border: Border.all(color: context.appColors.ink200),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               AppIcons.addPhoto,
               size: AppIconSizes.large,
-              color: AppColors.ink400,
+              color: context.appColors.ink400,
             ),
             Text(
               LocaleKeys.merchantPanel_store_photoAdd.tr(),

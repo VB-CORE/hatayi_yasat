@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -67,26 +67,26 @@ final class _MerchantReviewsSubViewState
               .read(merchantReviewsViewModelProvider(widget.storeId).notifier)
               .changeFilter(filter),
         ),
-        Expanded(
-          child: reviews.isEmpty
-              ? GeneralNotFoundWidget(
-                  title: LocaleKeys.merchantPanel_reviews_empty.tr(),
-                )
-              : ListView.builder(
-                  padding: const PagePadding.generalAllLow(),
-                  itemCount: reviews.length,
-                  itemBuilder: (context, index) {
-                    final review = reviews[index];
-                    return _MerchantReviewCard(
-                      review: review,
-                      isSubmitting: state.replyingVoterUid == review.voterUid,
-                      onReply: () => unawaited(openReplySheet(review)),
-                      onRemoveReply: () =>
-                          unawaited(confirmRemoveReply(review)),
-                    );
-                  },
-                ),
-        ),
+        if (reviews.isEmpty)
+          GeneralNotFoundWidget(
+            title: LocaleKeys.merchantPanel_reviews_empty.tr(),
+          )
+        else
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const PagePadding.generalAllLow(),
+            itemCount: reviews.length,
+            itemBuilder: (context, index) {
+              final review = reviews[index];
+              return _MerchantReviewCard(
+                review: review,
+                isSubmitting: state.replyingVoterUid == review.voterUid,
+                onReply: () => unawaited(openReplySheet(review)),
+                onRemoveReply: () => unawaited(confirmRemoveReply(review)),
+              );
+            },
+          ),
       ],
     );
   }

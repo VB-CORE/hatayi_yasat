@@ -88,6 +88,7 @@ final class _MonetizationCouponFormViewState
               DateTimeFormField(
                 labelText: LocaleKeys.monetization_expiryDateLabel.tr(),
                 hintText: LocaleKeys.monetization_expiryDateLabel.tr(),
+                initialDate: expiresAt,
                 onDateSelected: (value) => expiresAt = value,
               ),
               const EmptyBox.smallHeight(),

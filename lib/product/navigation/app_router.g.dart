@@ -158,6 +158,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       factory: $FilterResultRoute._fromState,
     ),
     GoRouteData.$route(
+      path: 'userQr',
+      name: 'User QR',
+      factory: $UserQrRoute._fromState,
+    ),
+    GoRouteData.$route(
       path: 'placeRequestForm',
       name: 'Place Request Form',
       factory: $PlaceRequestFormRoute._fromState,
@@ -598,6 +603,26 @@ mixin $FilterResultRoute on GoRouteData {
   @override
   void replace(BuildContext context) =>
       context.replace(location, extra: _self.$extra);
+}
+
+mixin $UserQrRoute on GoRouteData {
+  static UserQrRoute _fromState(GoRouterState state) => const UserQrRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/userQr');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
 }
 
 mixin $PlaceRequestFormRoute on GoRouteData {

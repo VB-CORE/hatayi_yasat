@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -48,6 +48,7 @@ final class _MerchantShowcaseSubViewState
     }
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const PagePadding.generalAllLow(),
@@ -81,19 +82,18 @@ final class _MerchantShowcaseSubViewState
             ],
           ),
         ),
-        Expanded(
-          child: state.isPreview
-              ? _MerchantShowcasePreview(modules: state.publishedModules)
-              : _MerchantShowcaseEditor(
-                  modules: state.modules,
-                  isSaving: state.isSaving,
-                  onReorder: (oldIndex, newIndex) =>
-                      unawaited(reorder(oldIndex, newIndex)),
-                  onEdit: (module) => unawaited(openModuleForm(module: module)),
-                  onDelete: (module) => unawaited(confirmDelete(module)),
-                  onToggleActive: (module) => unawaited(toggleActive(module)),
-                ),
-        ),
+        if (state.isPreview)
+          _MerchantShowcasePreview(modules: state.publishedModules)
+        else
+          _MerchantShowcaseEditor(
+            modules: state.modules,
+            isSaving: state.isSaving,
+            onReorder: (oldIndex, newIndex) =>
+                unawaited(reorder(oldIndex, newIndex)),
+            onEdit: (module) => unawaited(openModuleForm(module: module)),
+            onDelete: (module) => unawaited(confirmDelete(module)),
+            onToggleActive: (module) => unawaited(toggleActive(module)),
+          ),
       ],
     );
   }

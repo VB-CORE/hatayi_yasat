@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/model/user_qr_payload.dart';
@@ -9,7 +10,9 @@ import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/widget/general/qr_image/qr_image_exporter.dart';
 
-mixin UserQrViewMixin on State<UserQrView>, ProjectDependencyMixin {
+mixin UserQrViewMixin on ConsumerState<UserQrView>, ProjectDependencyMixin {
+  final ValueNotifier<bool> isQrVisibleNotifier = ValueNotifier(false);
+
   String? get userQrUrl {
     final uid = authService.cachedUser?.uid;
     if (uid == null || uid.isEmpty) return null;

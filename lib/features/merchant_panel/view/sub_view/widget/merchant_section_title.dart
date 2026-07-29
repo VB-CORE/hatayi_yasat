@@ -19,7 +19,7 @@ final class _MerchantSectionTitle extends StatelessWidget {
       child: Row(
         spacing: AppSpacing.xs,
         children: [
-          Icon(icon, size: AppIconSizes.medium, color: AppColors.coral),
+          Icon(icon, size: AppIconSizes.medium, color: context.appColors.coral),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

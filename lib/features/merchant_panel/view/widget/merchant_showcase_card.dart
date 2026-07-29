@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -24,9 +24,9 @@ final class MerchantShowcaseCard extends StatelessWidget {
     return Container(
       margin: const PagePadding.verticalLowSymmetric(),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: context.appColors.surface,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.ink200),
+        border: Border.all(color: context.appColors.ink200),
       ),
       clipBehavior: Clip.hardEdge,
       child: Column(
@@ -40,7 +40,7 @@ final class MerchantShowcaseCard extends StatelessWidget {
                 imageUrl,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                    const ColoredBox(color: AppColors.ink100),
+                    ColoredBox(color: context.appColors.ink100),
               ),
             ),
           Padding(

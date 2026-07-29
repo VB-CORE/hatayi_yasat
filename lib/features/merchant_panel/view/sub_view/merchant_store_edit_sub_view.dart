@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -50,6 +50,8 @@ final class _MerchantStoreEditSubViewState
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
         padding: const PagePadding.generalAllLow(),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           _MerchantSectionTitle(
             icon: AppIcons.photoLibrary,

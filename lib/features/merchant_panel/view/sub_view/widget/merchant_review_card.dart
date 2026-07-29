@@ -24,9 +24,9 @@ final class _MerchantReviewCard extends StatelessWidget {
       child: Container(
         padding: const PagePadding.generalAllLow(),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: context.appColors.surface,
           borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: AppColors.ink200),
+          border: Border.all(color: context.appColors.ink200),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,14 +36,14 @@ final class _MerchantReviewCard extends StatelessWidget {
               spacing: AppSpacing.xs,
               children: [
                 CircleAvatar(
-                  backgroundColor: AppColors.navy50,
+                  backgroundColor: context.appColors.navy50,
                   foregroundImage: review.photoUrl == null
                       ? null
                       : NetworkImage(review.photoUrl!),
-                  child: const Icon(
+                  child: Icon(
                     AppIcons.person,
                     size: AppIconSizes.medium,
-                    color: AppColors.navy300,
+                    color: context.appColors.navy300,
                   ),
                 ),
                 Expanded(
@@ -64,8 +64,8 @@ final class _MerchantReviewCard extends StatelessWidget {
                               AppIcons.star,
                               size: AppIconSizes.smallX,
                               color: index < review.score
-                                  ? AppColors.gold
-                                  : AppColors.ink200,
+                                  ? context.appColors.gold
+                                  : context.appColors.ink200,
                             ),
                           Flexible(
                             child: Text(
@@ -87,12 +87,12 @@ final class _MerchantReviewCard extends StatelessWidget {
                       vertical: AppSpacing.xxs,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.coral50,
+                      color: context.appColors.coral50,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
                     ),
                     child: Text(
                       LocaleKeys.merchantPanel_reviews_pendingBadge.tr(),
-                      style: AppText.micro.copyWith(color: AppColors.coral600),
+                      style: AppText.micro.copyWith(color: context.appColors.coral600),
                     ),
                   ),
               ],
@@ -103,7 +103,7 @@ final class _MerchantReviewCard extends StatelessWidget {
                 width: double.infinity,
                 padding: const PagePadding.allLow(),
                 decoration: BoxDecoration(
-                  color: AppColors.ink25,
+                  color: context.appColors.ink25,
                   borderRadius: BorderRadius.circular(AppRadius.sm),
                 ),
                 child: Column(
@@ -124,7 +124,7 @@ final class _MerchantReviewCard extends StatelessWidget {
                   TextButton.icon(
                     onPressed: isSubmitting ? null : onRemoveReply,
                     style: TextButton.styleFrom(
-                      foregroundColor: AppColors.coral600,
+                      foregroundColor: context.appColors.coral600,
                     ),
                     icon: const Icon(
                       AppIcons.delete,

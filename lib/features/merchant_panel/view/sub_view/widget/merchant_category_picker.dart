@@ -21,15 +21,15 @@ final class _MerchantCategoryPicker extends StatelessWidget {
           ChoiceChip(
             selected: selected == category,
             showCheckmark: false,
-            selectedColor: AppColors.coral50,
-            backgroundColor: AppColors.surface,
+            selectedColor: context.appColors.coral50,
+            backgroundColor: context.appColors.surface,
             onSelected: (_) => onSelected(category),
             label: Text(
               category.displayName,
               style: AppText.caption.copyWith(
                 color: selected == category
-                    ? AppColors.coral600
-                    : AppColors.ink600,
+                    ? context.appColors.coral600
+                    : context.appColors.ink600,
               ),
             ),
           ),

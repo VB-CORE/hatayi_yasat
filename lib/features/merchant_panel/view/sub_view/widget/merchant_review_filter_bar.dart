@@ -36,12 +36,12 @@ final class _MerchantReviewFilterBar extends StatelessWidget {
               selected: state.filter == filter,
               onSelected: (_) => onChanged(filter),
               showCheckmark: false,
-              selectedColor: AppColors.coral,
-              backgroundColor: AppColors.surface,
+              selectedColor: context.appColors.coral,
+              backgroundColor: context.appColors.surface,
               labelStyle: AppText.caption.copyWith(
                 color: state.filter == filter
-                    ? AppColors.surface
-                    : AppColors.ink600,
+                    ? context.appColors.surface
+                    : context.appColors.ink600,
               ),
               label: Text(_labelOf(filter)),
             ),

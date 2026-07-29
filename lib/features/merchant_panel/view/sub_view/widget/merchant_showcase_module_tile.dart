@@ -25,10 +25,10 @@ final class _MerchantShowcaseModuleTile extends StatelessWidget {
       child: Container(
         padding: const PagePadding.allLow(),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: context.appColors.surface,
           borderRadius: BorderRadius.circular(AppRadius.md),
           border: Border.all(
-            color: module.isPublished ? AppColors.ink200 : AppColors.ink100,
+            color: module.isPublished ? context.appColors.ink200 : context.appColors.ink100,
           ),
         ),
         child: Row(
@@ -36,10 +36,10 @@ final class _MerchantShowcaseModuleTile extends StatelessWidget {
           children: [
             ReorderableDragStartListener(
               index: index,
-              child: const Icon(
+              child: Icon(
                 AppIcons.dragHandle,
                 size: AppIconSizes.medium,
-                color: AppColors.ink300,
+                color: context.appColors.ink300,
               ),
             ),
             Container(
@@ -83,7 +83,7 @@ final class _MerchantShowcaseModuleTile extends StatelessWidget {
             ),
             IconButton(
               onPressed: isSaving ? null : onDelete,
-              color: AppColors.coral,
+              color: context.appColors.coral,
               icon: const Icon(AppIcons.delete, size: AppIconSizes.medium),
             ),
           ],

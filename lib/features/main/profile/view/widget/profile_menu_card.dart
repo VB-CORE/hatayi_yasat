@@ -17,123 +17,55 @@ final class ProfileMenuCard extends ConsumerWidget {
         (state) => state.favoritePlaces.length,
       ),
     );
-
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.navy50),
-        boxShadow: AppShadows.card,
-      ),
-      padding: const PagePadding.allLow(),
-      child: Column(
-        children: [
-          _ProfileMenuRow(
-            icon: AppIcons.favorite,
-            label: LocaleKeys.profile_menu_favorites.tr(),
-            onTap: () => const FavoriteRoute().push<void>(context),
-            trailing: Text(
-              '$favoriteCount',
-              style: AppText.bodyLg.copyWith(color: AppColors.navy300),
-            ),
-          ),
-          const Divider(color: AppColors.navy50),
-          _ProfileMenuRow(
-            icon: AppIcons.settingsFilled,
-            label: LocaleKeys.profile_menu_settings.tr(),
-            onTap: () => const SettingsRoute().push<void>(context),
-          ),
-          const Divider(color: AppColors.navy50),
-          _ProfileMenuRow(
-            icon: AppIcons.rate,
-            label: LocaleKeys.profile_menu_rateUs.tr(),
-            onTap: AppReview.instance.openStore,
-          ),
-          const Divider(color: AppColors.navy50),
-          _ProfileMenuRow(
-            icon: AppIcons.privacyFilled,
-            label: LocaleKeys.profile_menu_privacy.tr(),
-            onTap: () => KvkkCheckBox.navigate(context),
-          ),
-          const Divider(color: AppColors.navy50),
-          _ProfileMenuRow(
-            icon: AppIcons.infoFilled,
-            label: LocaleKeys.profile_menu_about.tr(),
-            onTap: onAboutPressed,
-          ),
-          const Divider(color: AppColors.navy50),
-          _ProfileMenuRow(
-            icon: AppIcons.code,
-            label: LocaleKeys.profile_menu_developers.tr(),
-            onTap: () => const DevelopersRoute().push<void>(context),
-          ),
-          AuthSwitcher(
-            authorized: Column(
-              children: [
-                const Divider(color: AppColors.navy50),
-                _ProfileMenuRow(
-                  icon: AppIcons.exitGroup,
-                  label: LocaleKeys.profile_menu_signOut.tr(),
-                  labelColor: AppColors.coral500,
-                  showChevron: false,
-                  onTap: onSignOut,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+    final isAuthenticated = ref.watch(
+      authViewModelProvider.select((state) => state.isAuthenticated),
     );
-  }
-}
 
-final class _ProfileMenuRow extends StatelessWidget {
-  const _ProfileMenuRow({
-    required this.icon,
-    required this.label,
-    this.trailing,
-    this.labelColor,
-    this.showChevron = true,
-    this.onTap,
-  });
-
-  final IconData icon;
-  final String label;
-  final Widget? trailing;
-  final Color? labelColor;
-  final bool showChevron;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomBounceable(
-      onTap: onTap,
-      child: Row(
-        spacing: AppSpacing.sm,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.coral50,
-              borderRadius: BorderRadius.circular(AppRadius.sm),
-            ),
-            padding: const PagePadding.allLow(),
-            child: Icon(
-              icon,
-              size: AppIconSizes.medium,
-              color: AppColors.coral500,
-            ),
+    return ContentMenu(
+      items: [
+        ContentMenuItem(
+          icon: AppIcons.favorite,
+          label: LocaleKeys.profile_menu_favorites.tr(),
+          onTap: () => const FavoriteRoute().push<void>(context),
+          trailing: Text(
+            '$favoriteCount',
+            style: AppText.bodyLg.copyWith(color: AppColors.navy300),
           ),
-          Text(label, style: AppText.bodyLg.copyWith(color: labelColor)),
-          const Spacer(),
-          ?trailing,
-          if (showChevron)
-            const Icon(
-              AppIcons.rightSelect,
-              size: AppIconSizes.medium,
-              color: AppColors.navy300,
-            ),
-        ],
-      ),
+        ),
+        ContentMenuItem(
+          icon: AppIcons.settingsFilled,
+          label: LocaleKeys.profile_menu_settings.tr(),
+          onTap: () => const SettingsRoute().push<void>(context),
+        ),
+        ContentMenuItem(
+          icon: AppIcons.rate,
+          label: LocaleKeys.profile_menu_rateUs.tr(),
+          onTap: AppReview.instance.openStore,
+        ),
+        ContentMenuItem(
+          icon: AppIcons.privacyFilled,
+          label: LocaleKeys.profile_menu_privacy.tr(),
+          onTap: () => KvkkCheckBox.navigate(context),
+        ),
+        ContentMenuItem(
+          icon: AppIcons.infoFilled,
+          label: LocaleKeys.profile_menu_about.tr(),
+          onTap: onAboutPressed,
+        ),
+        ContentMenuItem(
+          icon: AppIcons.code,
+          label: LocaleKeys.profile_menu_developers.tr(),
+          onTap: () => const DevelopersRoute().push<void>(context),
+        ),
+        if (isAuthenticated)
+          ContentMenuItem(
+            icon: AppIcons.exitGroup,
+            label: LocaleKeys.profile_menu_signOut.tr(),
+            labelColor: AppColors.coral500,
+            showChevron: false,
+            onTap: onSignOut,
+          ),
+      ],
     );
   }
 }

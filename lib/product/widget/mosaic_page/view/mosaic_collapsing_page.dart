@@ -32,7 +32,9 @@ final class MosaicCollapsingPage extends StatefulWidget {
     required this.content,
     this.headerStyle = const MosaicCollapsingHeaderStyle(),
     this.leading,
+    this.title,
     this.pinnedHeader,
+    this.bottomNavigationBar,
     this.contentPadding = const PagePadding.horizontalNormalSymmetric(),
     super.key,
   });
@@ -41,7 +43,9 @@ final class MosaicCollapsingPage extends StatefulWidget {
   final Widget content;
   final MosaicCollapsingHeaderStyle headerStyle;
   final Widget? leading;
+  final Widget? title;
   final Widget? pinnedHeader;
+  final Widget? bottomNavigationBar;
   final EdgeInsetsGeometry contentPadding;
 
   @override
@@ -54,6 +58,7 @@ final class _MosaicCollapsingPageState extends State<MosaicCollapsingPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bg,
+      bottomNavigationBar: widget.bottomNavigationBar,
       body: CustomScrollView(
         controller: scrollController,
         slivers: [
@@ -62,6 +67,7 @@ final class _MosaicCollapsingPageState extends State<MosaicCollapsingPage>
             header: widget.header,
             style: widget.headerStyle,
             leading: widget.leading,
+            title: widget.title,
           ),
           if (widget.pinnedHeader case final pinnedHeader?)
             PinnedHeaderSliver(child: pinnedHeader),

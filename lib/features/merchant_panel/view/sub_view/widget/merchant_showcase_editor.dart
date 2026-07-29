@@ -26,6 +26,8 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
     }
 
     return ReorderableListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       padding: const PagePadding.generalAllLow(),
       itemCount: modules.length,
       onReorderItem: onReorder,
@@ -60,6 +62,8 @@ final class _MerchantShowcasePreview extends StatelessWidget {
     }
 
     return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       padding: const PagePadding.generalAllLow(),
       itemCount: modules.length,
       itemBuilder: (context, index) =>

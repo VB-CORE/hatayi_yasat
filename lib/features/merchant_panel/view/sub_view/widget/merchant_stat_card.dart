@@ -16,15 +16,15 @@ final class _MerchantStatCard extends StatelessWidget {
     return Container(
       padding: const PagePadding.allLow(),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: context.appColors.surface,
         borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.ink200),
+        border: Border.all(color: context.appColors.ink200),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: AppSpacing.xxs,
         children: [
-          Icon(icon, size: AppIconSizes.xMedium, color: AppColors.navy300),
+          Icon(icon, size: AppIconSizes.xMedium, color: context.appColors.navy300),
           Text(value, style: AppText.displaySm),
           Text(
             label,

@@ -6,24 +6,23 @@ enum MerchantPanelTab {
   dashboard(
     label: LocaleKeys.merchantPanel_tabs_dashboard,
     icon: AppIcons.gridView,
-    selectedIcon: AppIcons.gridView,
+    selectedIcon: AppIcons.gridViewFilled,
   ),
   reviews(
     label: LocaleKeys.merchantPanel_tabs_reviews,
     icon: AppIcons.comment,
-    selectedIcon: AppIcons.forum,
+    selectedIcon: AppIcons.commentFilled,
   ),
   showcase(
     label: LocaleKeys.merchantPanel_tabs_showcase,
     icon: AppIcons.announcement,
-    selectedIcon: AppIcons.announcement,
+    selectedIcon: AppIcons.announcementFilled,
   ),
   store(
     label: LocaleKeys.merchantPanel_tabs_store,
     icon: AppIcons.store,
     selectedIcon: AppIcons.storeFilled,
-  )
-  ;
+  );
 
   const MerchantPanelTab({
     required this.label,
