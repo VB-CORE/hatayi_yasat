@@ -7,7 +7,7 @@ import 'package:lifeclient/features/sub_feature/user_qr/model/user_qr_payload.da
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/share/custom_share.dart';
-import 'package:lifeclient/product/utility/extension/string_extension.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart'; 
 import 'package:lifeclient/product/widget/general/qr_image/qr_image_exporter.dart';
 
 mixin UserQrViewMixin on ConsumerState<UserQrView>, ProjectDependencyMixin {
