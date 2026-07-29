@@ -69,6 +69,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
                 listenable: tabController,
                 builder: (context, _) {
                   final showAppBar = _tabItems[tabController.index].showAppBar;
+                  final showQr = _tabItems[tabController.index].showQr;
                   return Scaffold(
                     extendBody: true,
                     appBar: showAppBar ? _MainAppBar() : null,
@@ -77,7 +78,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
                     body: Stack(
                       children: [
                         _BodyTabBarViewWidget(tabItems: _tabItems),
-                        QrFabButton(bottom: bottomSafePadding),
+                        if (showQr) QrFabButton(bottom: bottomSafePadding),
                       ],
                     ),
                     resizeToAvoidBottomInset: false,

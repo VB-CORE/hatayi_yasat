@@ -10,7 +10,7 @@ GroupAuthorModel _$GroupAuthorModelFromJson(Map<String, dynamic> json) =>
     GroupAuthorModel(
       uid: json['uid'] as String? ?? '',
       displayName: json['displayName'] as String? ?? '',
-      avatarUrl: json['avatarUrl'] as String?,
+      avatarType: (json['avatarType'] as num?)?.toInt() ?? 1,
       role:
           $enumDecodeNullable(
             _$GroupMemberRoleEnumMap,
@@ -24,7 +24,7 @@ Map<String, dynamic> _$GroupAuthorModelToJson(GroupAuthorModel instance) =>
     <String, dynamic>{
       'uid': instance.uid,
       'displayName': instance.displayName,
-      'avatarUrl': ?instance.avatarUrl,
+      'avatarType': instance.avatarType,
       'role': _$GroupMemberRoleEnumMap[instance.role]!,
     };
 

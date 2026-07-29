@@ -105,7 +105,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       createdAt: now,
       comment: comment?.trim(),
       userName: user.displayName,
-      photoUrl: user.photoUrl,
+      avatarType: user.avatarType,
       updatedAt: now,
     );
     final result = await firestoreService.insertWithID<RateModel>(

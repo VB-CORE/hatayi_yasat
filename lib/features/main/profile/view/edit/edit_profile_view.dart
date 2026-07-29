@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
@@ -11,6 +10,7 @@ import 'package:lifeclient/features/main/profile/view/edit/widget/edit_profile_p
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/text_field/labeled_product_textfield.dart';
 
@@ -37,16 +37,21 @@ final class _EditProfileViewState extends ConsumerState<EditProfileView>
           child: Column(
             spacing: AppSpacing.sm,
             children: [
-              ValueListenableBuilder<File?>(
-                valueListenable: photoFileNotifier,
-                builder: (context, photoFile, _) {
-                  return EditProfilePhoto(
+              Center(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.navy200,
+                      width: WidgetSizes.spacingXSS,
+                    ),
+                  ),
+                  child: CustomUserAvatar(
                     userName: displayNameController.text,
-                    photoFile: photoFile,
-                    photoUrl: currentPhotoUrl,
-                    onTap: pickProfilePhoto,
-                  );
-                },
+                    avatarType: avatarType,
+                    radius: context.sized.dynamicWidth(0.14),
+                  ),
+                ),
               ),
               LabeledProductTextField(
                 controller: displayNameController,
@@ -62,6 +67,10 @@ final class _EditProfileViewState extends ConsumerState<EditProfileView>
                 enabled: false,
                 keyboardType: TextInputType.emailAddress,
                 validator: (_) => null,
+              ),
+              EditProfilePhoto(
+                avatarType: avatarType,
+                onSelect: selectAvatarType,
               ),
             ],
           ),
