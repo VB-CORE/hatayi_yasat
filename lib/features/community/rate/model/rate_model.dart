@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 
 part 'rate_model.g.dart';
 
@@ -14,7 +13,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     this.userName = '',
     this.score = 0,
     this.comment,
-    this.avatarType = AvatarType.a1,
+    this.avatarType = 'a1',
     this.createdAt,
     this.updatedAt,
   });
@@ -27,7 +26,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   final String userName;
   final int score;
   final String? comment;
-  final AvatarType avatarType;
+  final String avatarType;
 
   @JsonKey(
     toJson: FirebaseTimeParse.dateTimeToTimestamp,
@@ -70,7 +69,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     int? score,
     String? comment,
     String? userName,
-    AvatarType? avatarType,
+    String? avatarType,
   }) => RateModel(
     voterUid: voterUid ?? this.voterUid,
     placeId: placeId ?? this.placeId,

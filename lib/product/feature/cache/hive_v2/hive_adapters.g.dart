@@ -345,7 +345,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           ? const []
           : (fields[4] as List).cast<int>(),
       rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
-      avatarType: fields[13] == null ? AvatarType.a1 : fields[13] as AvatarType,
+      avatarType: fields[13] == null ? 'a1' : fields[13] as String,
       fcmToken: fields[7] as String?,
       updatedAt: fields[8] as DateTime?,
       application: fields[11] as UserApplicationModel?,
@@ -477,63 +477,6 @@ class UserApplicationStatusAdapter extends TypeAdapter<UserApplicationStatus> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is UserApplicationStatusAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class AvatarTypeAdapter extends TypeAdapter<AvatarType> {
-  @override
-  final typeId = 13;
-
-  @override
-  AvatarType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return AvatarType.a1;
-      case 1:
-        return AvatarType.a2;
-      case 2:
-        return AvatarType.a3;
-      case 3:
-        return AvatarType.a4;
-      case 4:
-        return AvatarType.a5;
-      case 5:
-        return AvatarType.a6;
-      case 6:
-        return AvatarType.a7;
-      default:
-        return AvatarType.a1;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, AvatarType obj) {
-    switch (obj) {
-      case AvatarType.a1:
-        writer.writeByte(0);
-      case AvatarType.a2:
-        writer.writeByte(1);
-      case AvatarType.a3:
-        writer.writeByte(2);
-      case AvatarType.a4:
-        writer.writeByte(3);
-      case AvatarType.a5:
-        writer.writeByte(4);
-      case AvatarType.a6:
-        writer.writeByte(5);
-      case AvatarType.a7:
-        writer.writeByte(6);
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AvatarTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

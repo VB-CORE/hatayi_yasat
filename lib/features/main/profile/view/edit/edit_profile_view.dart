@@ -38,7 +38,7 @@ final class _EditProfileViewState extends ConsumerState<EditProfileView>
             spacing: AppSpacing.sm,
             children: [
               Center(
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(

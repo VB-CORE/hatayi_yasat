@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
 part 'group_author_model.g.dart';
@@ -12,7 +11,7 @@ final class GroupAuthorModel extends Equatable {
   const GroupAuthorModel({
     this.uid = '',
     this.displayName = '',
-    this.avatarType = AvatarType.a1,
+    this.avatarType = 'a1',
     this.role = GroupMemberRole.member,
   });
 
@@ -32,7 +31,7 @@ final class GroupAuthorModel extends Equatable {
 
   final String uid;
   final String displayName;
-  final AvatarType avatarType;
+  final String avatarType;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 

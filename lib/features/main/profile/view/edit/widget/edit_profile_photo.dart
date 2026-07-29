@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_types.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 final class EditProfilePhoto extends StatelessWidget {
@@ -12,25 +12,26 @@ final class EditProfilePhoto extends StatelessWidget {
     super.key,
   });
 
-  final AvatarType avatarType;
-  final ValueChanged<AvatarType> onSelect;
+  final String avatarType;
+  final ValueChanged<String> onSelect;
 
   @override
   Widget build(BuildContext context) {
     final radius = context.sized.dynamicWidth(0.09);
+    final types = AvatarTypes.all;
 
     return SizedBox(
       height: radius * 2 + WidgetSizes.spacingM,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: AvatarType.values.length,
+        itemCount: types.length,
         separatorBuilder: (context, index) => const EmptyBox.smallWidth(),
         itemBuilder: (context, index) {
-          final type = AvatarType.values[index];
-          final isSelected = type == avatarType;
+          final type = types[index];
+          final isSelected = type.name == avatarType;
           return GestureDetector(
-            onTap: () => onSelect(type),
-            child: Container(
+            onTap: () => onSelect(type.name),
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -40,9 +41,12 @@ final class EditProfilePhoto extends StatelessWidget {
                       : WidgetSizes.spacingXSS,
                 ),
               ),
-              child: CircleAvatar(
-                radius: radius,
-                backgroundImage: AssetImage(type.asset.path),
+              child: Padding(
+                padding: const EdgeInsets.all(WidgetSizes.spacingXSs),
+                child: CircleAvatar(
+                  radius: radius,
+                  backgroundImage: AssetImage(type.path),
+                ),
               ),
             ),
           );

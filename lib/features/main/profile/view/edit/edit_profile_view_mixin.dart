@@ -7,14 +7,14 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 
 mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
   final formKey = GlobalKey<FormState>();
   final displayNameController = TextEditingController();
   final emailController = TextEditingController();
 
-  AvatarType avatarType = AvatarType.a1;
+  String _avatarType = 'a1';
+  String get avatarType => _avatarType;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
     final user = ref.read(authViewModelProvider).user;
     displayNameController.text = user?.displayName ?? '';
     emailController.text = user?.email ?? '';
-    avatarType = user?.avatarType ?? AvatarType.a1;
+    _avatarType = user?.avatarType ?? 'a1';
   }
 
   @override
@@ -32,8 +32,8 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
     super.dispose();
   }
 
-  void selectAvatarType(AvatarType type) {
-    setState(() => avatarType = type);
+  void selectAvatarType(String type) {
+    setState(() => _avatarType = type);
   }
 
   Future<void> updateProfile() async {
@@ -41,7 +41,7 @@ mixin EditProfileViewMixin on ConsumerState<EditProfileView> {
 
     final isUpdated = await ProjectDependencyItems.userService.update(
       displayName: displayNameController.text,
-      avatarType: avatarType,
+      avatarType: _avatarType,
     );
 
     if (!isUpdated) return _showError();

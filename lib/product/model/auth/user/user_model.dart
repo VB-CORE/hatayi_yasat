@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/model/auth/app_permission.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_types.dart';
 import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
 import 'package:lifeclient/product/model/auth/user/user_role.dart';
 
@@ -23,7 +23,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.roleType = 2,
     this.permissions = const [],
     this.rates = const [],
-    this.avatarType = AvatarType.a1,
+    this.avatarType = 'a1',
     this.fcmToken,
     this.updatedAt,
     this.application,
@@ -35,7 +35,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     uid: user.uid,
     email: user.email ?? '',
     displayName: user.displayName ?? user.email ?? '',
-    avatarType: AvatarType.values[Random().nextInt(AvatarType.values.length)],
+    avatarType: AvatarTypes.all[Random().nextInt(AvatarTypes.all.length)].name,
   );
 
   final String uid;
@@ -44,7 +44,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final int roleType;
   final List<int> permissions;
   final List<String> rates;
-  final AvatarType avatarType;
+  final String avatarType;
   final String? fcmToken;
   @JsonKey(
     includeToJson: false,
@@ -74,13 +74,13 @@ final class UserModel extends BaseFirebaseModel<UserModel>
 
   static Map<String, Object?> updateFields({
     String? displayName,
-    AvatarType? avatarType,
+    String? avatarType,
     FieldValue? rates,
     UserApplicationModel? application,
   }) {
     return {
       'displayName': ?displayName,
-      'avatarType': ?avatarType?.name,
+      'avatarType': ?avatarType,
       'rates': ?rates,
       'application': ?application?.toJson(),
       'updatedAt': FieldValue.serverTimestamp(),
@@ -110,7 +110,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     int? roleType,
     List<int>? permissions,
     List<String>? rates,
-    AvatarType? avatarType,
+    String? avatarType,
     String? fcmToken,
     DateTime? updatedAt,
     UserApplicationModel? application,

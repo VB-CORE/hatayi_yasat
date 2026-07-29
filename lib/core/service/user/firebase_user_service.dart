@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
 import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 final class FirebaseUserService implements UserService {
@@ -18,7 +17,7 @@ final class FirebaseUserService implements UserService {
   @override
   Future<bool> update({
     String? displayName,
-    AvatarType? avatarType,
+    String? avatarType,
     FieldValue? rates,
   }) async {
     final user = _auth.currentUser;

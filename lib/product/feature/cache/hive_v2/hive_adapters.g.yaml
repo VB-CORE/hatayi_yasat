@@ -151,21 +151,3 @@ types:
         index: 1
       denied:
         index: 2
-  AvatarType:
-    typeId: 13
-    nextIndex: 7
-    fields:
-      a1:
-        index: 0
-      a2:
-        index: 1
-      a3:
-        index: 2
-      a4:
-        index: 3
-      a5:
-        index: 4
-      a6:
-        index: 5
-      a7:
-        index: 6

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/product/model/auth/user/avatar_type.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_types.dart';
 import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
 import 'package:lifeclient/product/utility/decorations/custom_circle_radius.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
@@ -19,7 +19,7 @@ final class CustomUserAvatar extends StatelessWidget {
   });
 
   final String userName;
-  final AvatarType? avatarType;
+  final String? avatarType;
   final String? imageUrl;
   final double radius;
   final Color backgroundColor;
@@ -33,7 +33,7 @@ final class CustomUserAvatar extends StatelessWidget {
     if (avatarType != null) {
       return CircleAvatar(
         radius: radius,
-        backgroundImage: AssetImage(avatarType!.asset.path),
+        backgroundImage: AssetImage(AvatarTypes.byName(avatarType!).path),
       );
     }
 
