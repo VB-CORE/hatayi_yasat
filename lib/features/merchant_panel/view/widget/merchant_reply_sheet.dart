@@ -6,6 +6,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/validator/validator_text_field.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -69,7 +70,7 @@ final class _MerchantReplySheetState extends ConsumerState<MerchantReplySheet> {
               const EmptyBox.xSmallHeight(),
               Text(
                 widget.review.comment ?? '',
-                maxLines: 3,
+                maxLines: AppConstants.kThree,
                 overflow: TextOverflow.ellipsis,
                 style: AppText.bodySm,
               ),

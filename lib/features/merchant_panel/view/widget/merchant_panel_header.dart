@@ -7,6 +7,7 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
@@ -66,7 +67,7 @@ final class MerchantPanelHeader extends StatelessWidget {
                 children: [
                   Text(
                     store.updatedName,
-                    maxLines: 2,
+                    maxLines: AppConstants.kTwo,
                     overflow: TextOverflow.ellipsis,
                     style: AppText.title.copyWith(
                       fontWeight: FontWeight.bold,

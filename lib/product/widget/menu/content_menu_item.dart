@@ -4,6 +4,7 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
@@ -77,7 +78,7 @@ final class ContentMenuItemTile extends StatelessWidget {
                 if (item.subtitle case final subtitle? when subtitle.isNotEmpty)
                   Text(
                     subtitle,
-                    maxLines: 2,
+                    maxLines: AppConstants.kTwo,
                     overflow: TextOverflow.ellipsis,
                     style: AppText.bodySm.copyWith(color: AppColors.navy300),
                   ),

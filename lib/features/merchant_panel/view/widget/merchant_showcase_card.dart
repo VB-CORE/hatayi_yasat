@@ -8,6 +8,8 @@ import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_module_model.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_type_extension.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 
@@ -36,12 +38,7 @@ final class MerchantShowcaseCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: context.sized.dynamicHeight(0.14),
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    ColoredBox(color: context.appColors.ink100),
-              ),
+              child: CustomNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover),
             ),
           Padding(
             padding: const PagePadding.generalAllLow(),
@@ -83,7 +80,7 @@ final class MerchantShowcaseCard extends StatelessWidget {
                       Flexible(
                         child: Text(
                           dateLabel,
-                          maxLines: 1,
+                          maxLines: AppConstants.kOne,
                           overflow: TextOverflow.ellipsis,
                           style: AppText.micro,
                         ),

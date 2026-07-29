@@ -28,7 +28,7 @@ final class _MerchantStatCard extends StatelessWidget {
           Text(value, style: AppText.displaySm),
           Text(
             label,
-            maxLines: 1,
+            maxLines: AppConstants.kOne,
             overflow: TextOverflow.ellipsis,
             style: AppText.caption,
           ),

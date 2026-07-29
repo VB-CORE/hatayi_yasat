@@ -14,6 +14,8 @@ import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_type.
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_type_extension.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -168,7 +170,7 @@ final class _MerchantModuleFormSheetState
                           Flexible(
                             child: Text(
                               type.label.tr(),
-                              maxLines: 1,
+                              maxLines: AppConstants.kOne,
                               overflow: TextOverflow.ellipsis,
                               style: AppText.caption,
                             ),
@@ -239,7 +241,10 @@ final class _MerchantModuleFormSheetState
                       height: context.sized.dynamicHeight(0.16),
                       child: imageFile != null
                           ? Image.file(imageFile, fit: BoxFit.cover)
-                          : Image.network(imageUrl!, fit: BoxFit.cover),
+                          : CustomNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   Positioned(
@@ -314,7 +319,7 @@ final class _DateField extends StatelessWidget {
           label: Text(
             value?.shortDate ??
                 LocaleKeys.merchantPanel_showcase_dateEmpty.tr(),
-            maxLines: 1,
+            maxLines: AppConstants.kOne,
             overflow: TextOverflow.ellipsis,
           ),
         ),

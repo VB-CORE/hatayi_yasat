@@ -60,7 +60,7 @@ final class _MerchantShowcaseModuleTile extends StatelessWidget {
                 children: [
                   Text(
                     module.title,
-                    maxLines: 1,
+                    maxLines: AppConstants.kOne,
                     overflow: TextOverflow.ellipsis,
                     style: AppText.bodyLg,
                   ),

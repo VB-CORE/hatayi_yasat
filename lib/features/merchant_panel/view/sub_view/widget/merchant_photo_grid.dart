@@ -66,11 +66,9 @@ final class _PhotoTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(AppRadius.md),
             child: switch (photo) {
-              MerchantPhotoUrl(:final url) => Image.network(
-                url,
+              MerchantPhotoUrl(:final url) => CustomNetworkImage(
+                imageUrl: url,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    ColoredBox(color: context.appColors.ink100),
               ),
               MerchantPhotoFile(:final file) => Image.file(
                 file,

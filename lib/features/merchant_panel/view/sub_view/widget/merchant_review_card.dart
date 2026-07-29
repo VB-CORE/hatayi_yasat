@@ -52,7 +52,7 @@ final class _MerchantReviewCard extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        maxLines: 1,
+                        maxLines: AppConstants.kOne,
                         overflow: TextOverflow.ellipsis,
                         style: AppText.bodyLg,
                       ),
@@ -70,7 +70,7 @@ final class _MerchantReviewCard extends StatelessWidget {
                           Flexible(
                             child: Text(
                               review.createdAt.timeAgoOrNow,
-                              maxLines: 1,
+                              maxLines: AppConstants.kOne,
                               overflow: TextOverflow.ellipsis,
                               style: AppText.micro,
                             ),
