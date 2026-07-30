@@ -102,7 +102,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v5.4.18
+      ref: v6.0.0
 
   file_picker: ^10.3.8
   sliver_tools: ^0.2.12
@@ -115,7 +115,7 @@ dependencies:
   like_button: ^2.1.0
 
 dependency_overrides:
-  # v6.0.0 gelistirilirken; tag kesilince silinecek.
+  # life_shared v6.0.0 uzak repoya push edilene kadar; sonra bu iki satir silinecek.
   life_shared:
     path: ../life_shared
   device_info_plus: ^12.3.0
