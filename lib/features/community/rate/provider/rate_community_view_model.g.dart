@@ -94,7 +94,7 @@ abstract class _$RateCommunityViewModel extends $Notifier<RateCommunityState> {
   RateCommunityState build(String placeId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<RateCommunityState, RateCommunityState>;
     final element =
         ref.element
@@ -104,6 +104,6 @@ abstract class _$RateCommunityViewModel extends $Notifier<RateCommunityState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

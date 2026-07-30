@@ -241,7 +241,6 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
       images: images,
       townCode: model.placeDistrict.code ?? 0,
       cityId: model.selectedCityId,
-      ownerId: model.ownerId,
       isCommentEnabled: model.isComment,
       isApproved: false,
       openTime: model.timeValidationModel.openTime?.stringValue,
