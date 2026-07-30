@@ -53,7 +53,7 @@ final class _ProfileViewState extends ConsumerState<ProfileView>
         SliverToBoxAdapter(
           child: Padding(
             padding:
-                const PagePadding.vertical12Symmetric() +
+                const PagePadding.allLow() +
                 .only(bottom: context.general.mediaQuery.padding.bottom),
             child: Column(
               spacing: AppSpacing.sm,

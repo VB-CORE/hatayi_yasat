@@ -86,6 +86,36 @@ service cloud.firestore {
         && request.resource.data[field] == resource.data[field] - 1;
     }
 
+    // Store rating aggregates (ratingSum / ratingCount). Missing fields count as 0
+    // so older documents without these keys can still accept the first vote.
+    function storeRatingCount() {
+      return resource.data.get('ratingCount', 0);
+    }
+
+    function storeRatingSum() {
+      return resource.data.get('ratingSum', 0);
+    }
+
+    function movesStoreRatingUp() {
+      return affects(['ratingSum', 'ratingCount'])
+        && request.resource.data.ratingCount is int
+        && request.resource.data.ratingSum is int
+        && request.resource.data.ratingCount == storeRatingCount() + 1
+        && request.resource.data.ratingSum - storeRatingSum() >= 1
+        && request.resource.data.ratingSum - storeRatingSum() <= 5;
+    }
+
+    function movesStoreRatingDown() {
+      return affects(['ratingSum', 'ratingCount'])
+        && request.resource.data.ratingCount is int
+        && request.resource.data.ratingSum is int
+        && request.resource.data.ratingCount == storeRatingCount() - 1
+        && request.resource.data.ratingCount >= 0
+        && request.resource.data.ratingSum >= 0
+        && storeRatingSum() - request.resource.data.ratingSum >= 1
+        && storeRatingSum() - request.resource.data.ratingSum <= 5;
+    }
+
     match /users/{uid} {
       allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
       allow create: if request.auth.uid == uid
@@ -117,6 +147,9 @@ service cloud.firestore {
       allow update: if isSignedIn()
         && affects(['visitCount'])
         && request.resource.data.visitCount == resource.data.visitCount + 1;
+      // Oy create/delete batch'i store sayaçlarını ±1 count / ±(1..5) sum oynatır.
+      allow update: if isSignedIn()
+        && (movesStoreRatingUp() || movesStoreRatingDown());
 
       match /votes/{voterUid} {
         allow read: if isSignedIn();

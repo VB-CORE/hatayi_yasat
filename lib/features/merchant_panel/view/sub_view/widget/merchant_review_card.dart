@@ -35,16 +35,9 @@ final class _MerchantReviewCard extends StatelessWidget {
             Row(
               spacing: AppSpacing.xs,
               children: [
-                CircleAvatar(
-                  backgroundColor: context.appColors.navy50,
-                  foregroundImage: review.photoUrl == null
-                      ? null
-                      : NetworkImage(review.photoUrl!),
-                  child: Icon(
-                    AppIcons.person,
-                    size: AppIconSizes.medium,
-                    color: context.appColors.navy300,
-                  ),
+                CustomUserAvatar(
+                  userName: name,
+                  avatarType: review.avatarType,
                 ),
                 Expanded(
                   child: Column(
@@ -92,7 +85,9 @@ final class _MerchantReviewCard extends StatelessWidget {
                     ),
                     child: Text(
                       LocaleKeys.merchantPanel_reviews_pendingBadge.tr(),
-                      style: AppText.micro.copyWith(color: context.appColors.coral600),
+                      style: AppText.micro.copyWith(
+                        color: context.appColors.coral600,
+                      ),
                     ),
                   ),
               ],

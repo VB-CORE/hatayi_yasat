@@ -18,6 +18,7 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/list_view/firestore_sliver_list_view.dart';
 
 part 'widget/merchant_review_card.dart';
