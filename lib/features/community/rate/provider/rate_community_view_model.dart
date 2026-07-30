@@ -3,9 +3,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rate_community_view_model.g.dart';
@@ -34,19 +32,19 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     return const RateCommunityState(isLoading: true);
   }
 
-  Stream<List<RateModel>>? _votesStream;
+  Stream<List<VoteModel>>? _votesStream;
 
-  Stream<List<RateModel>> votesStream() => _votesStream ??= firestoreService
-      .queryWithOrderBy<RateModel>(
+  Stream<List<VoteModel>> votesStream() => _votesStream ??= firestoreService
+      .queryWithOrderBy<VoteModel>(
         path: _votes,
-        model: const RateModel(),
+        model: const VoteModel(),
         orderBy: const MapEntry(_createdAtField, true),
       )
       .snapshots()
       .map(
         (snapshot) => snapshot.docs
             .map((document) => document.data())
-            .whereType<RateModel>()
+            .whereType<VoteModel>()
             .toList(),
       );
 
@@ -63,8 +61,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   Future<void> _loadMyVote(String currentUid) async {
-    final result = await firestoreService.getSingleData<RateModel>(
-      model: const RateModel(),
+    final result = await firestoreService.getSingleData<VoteModel>(
+      model: const VoteModel(),
       path: _votes,
       id: currentUid,
     );
@@ -98,8 +96,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       status: const RateActionProcessing(RateAction.create),
     );
     final now = DateTime.now();
-    final vote = RateModel(
-      placeId: placeId,
+    final vote = VoteModel(
+      storeId: placeId,
       voterUid: user.uid,
       score: state.draftScore,
       createdAt: now,
@@ -108,7 +106,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       avatarType: user.avatarType,
       updatedAt: now,
     );
-    final result = await firestoreService.insertWithID<RateModel>(
+    final result = await firestoreService.insertWithID<VoteModel>(
       path: _votes,
       model: vote,
     );
@@ -159,7 +157,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.delete),
     );
-    final result = await firestoreService.delete<RateModel>(
+    final result = await firestoreService.delete<VoteModel>(
       path: _votes,
       model: currentVote,
     );

@@ -7,8 +7,6 @@ import 'package:lifeclient/features/community/group_detail/discussions/provider/
 import 'package:lifeclient/features/community/group_detail/discussions/view/mixin/group_discussions_view_mixin.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/discussions_composer.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/group_discussion_tile.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';

@@ -4,7 +4,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';

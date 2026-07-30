@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 @immutable
 final class GroupMembersState extends Equatable {

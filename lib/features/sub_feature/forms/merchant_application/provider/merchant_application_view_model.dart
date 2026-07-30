@@ -15,8 +15,6 @@ import 'package:lifeclient/features/sub_feature/forms/merchant_application/model
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_step_error.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/provider/merchant_application_state.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/open_and_close_time_validation_model.dart';
-import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';

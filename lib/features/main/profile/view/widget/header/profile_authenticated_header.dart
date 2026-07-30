@@ -68,7 +68,7 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
                       ),
                       // TODO(profile): Yorum yönlendirmesi eklenecek.
                       ProfileStatics(
-                        count: user.rates.length,
+                        count: user.commentCount,
                         label: LocaleKeys.profile_stats_comments.tr(),
                         onTap: () {},
                       ),

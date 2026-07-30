@@ -7,7 +7,6 @@ import 'package:lifeclient/features/community/create_group/view/create_group_vie
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
 import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
 import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';

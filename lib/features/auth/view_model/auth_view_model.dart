@@ -4,7 +4,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
-import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_view_model.g.dart';

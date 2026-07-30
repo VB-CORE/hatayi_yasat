@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 sealed class AuthState extends Equatable {
   const AuthState();

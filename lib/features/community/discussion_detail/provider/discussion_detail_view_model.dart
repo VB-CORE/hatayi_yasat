@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
-import 'package:lifeclient/features/community/model/community_counter_fields.dart';
-import 'package:lifeclient/features/community/model/group_author_model.dart';
-import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -30,7 +28,7 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     state = state.copyWith(isSubmitting: true, isError: false);
 
     final entry = GroupDiscussionEntryModel(
-      author: GroupAuthorModel.fromMember(member),
+      author: AuthorModel.fromMember(member),
       content: content,
     );
 

@@ -1,13 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
-import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/model/liked_post_model.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 
 mixin CommunityQueryMixin on ProjectDependencyMixin {

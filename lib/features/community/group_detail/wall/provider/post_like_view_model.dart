@@ -5,9 +5,7 @@ import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_state.dart';
-import 'package:lifeclient/features/community/model/community_counter_fields.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/model/liked_post_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
