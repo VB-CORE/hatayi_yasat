@@ -13,7 +13,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     this.userName = '',
     this.score = 0,
     this.comment,
-    this.photoUrl,
+    this.avatarType = 1,
     this.createdAt,
     this.updatedAt,
     this.merchantReply,
@@ -28,7 +28,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   final String userName;
   final int score;
   final String? comment;
-  final String? photoUrl;
+  final int avatarType;
 
   /// Always written (even as null) so Firestore `isNull` queries can find
   /// unanswered reviews.
@@ -114,7 +114,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     int? score,
     String? comment,
     String? userName,
-    String? photoUrl,
+    int? avatarType,
     String? merchantReply,
     DateTime? merchantReplyAt,
     bool clearMerchantReply = false,
@@ -125,7 +125,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     createdAt: createdAt ?? this.createdAt,
     score: score ?? this.score,
     comment: comment ?? this.comment,
-    photoUrl: photoUrl ?? this.photoUrl,
+    avatarType: avatarType ?? this.avatarType,
     updatedAt: updatedAt ?? this.updatedAt,
     merchantReply: clearMerchantReply
         ? null
@@ -143,7 +143,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
     createdAt,
     score,
     comment,
-    photoUrl,
+    avatarType,
     updatedAt,
     merchantReply,
     merchantReplyAt,

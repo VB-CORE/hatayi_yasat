@@ -351,7 +351,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
           ? const []
           : (fields[4] as List).cast<int>(),
       rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
-      photoUrl: fields[5] as String?,
+      avatarType: fields[13] == null ? 1 : (fields[13] as num).toInt(),
       fcmToken: fields[7] as String?,
       updatedAt: fields[8] as DateTime?,
       application: fields[11] as UserApplicationModel?,
@@ -372,8 +372,6 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..write(obj.roleType)
       ..writeByte(4)
       ..write(obj.permissions)
-      ..writeByte(5)
-      ..write(obj.photoUrl)
       ..writeByte(7)
       ..write(obj.fcmToken)
       ..writeByte(8)
@@ -381,7 +379,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(9)
       ..write(obj.rates)
       ..writeByte(11)
-      ..write(obj.application);
+      ..write(obj.application)
+      ..writeByte(13)
+      ..write(obj.avatarType);
   }
 
   @override

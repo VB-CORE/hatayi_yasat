@@ -25,7 +25,7 @@ final class _RateCommentCard extends StatelessWidget {
         children: [
           CustomUserAvatar(
             userName: rateModel.userName,
-            imageUrl: rateModel.photoUrl,
+            avatarType: rateModel.avatarType,
           ),
           const EmptyBox.middleWidth(),
           Expanded(

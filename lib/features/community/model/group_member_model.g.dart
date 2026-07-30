@@ -9,7 +9,7 @@ part of 'group_member_model.dart';
 GroupMemberModel _$GroupMemberModelFromJson(Map<String, dynamic> json) =>
     GroupMemberModel(
       displayName: json['displayName'] as String? ?? '',
-      avatarUrl: json['avatarUrl'] as String?,
+      avatarType: (json['avatarType'] as num?)?.toInt() ?? 1,
       role:
           $enumDecodeNullable(
             _$GroupMemberRoleEnumMap,
@@ -25,7 +25,7 @@ GroupMemberModel _$GroupMemberModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$GroupMemberModelToJson(GroupMemberModel instance) =>
     <String, dynamic>{
       'displayName': instance.displayName,
-      'avatarUrl': ?instance.avatarUrl,
+      'avatarType': instance.avatarType,
       'role': _$GroupMemberRoleEnumMap[instance.role]!,
       'createdAt': FirebaseTimeParse.serverTimestampToJson(instance.createdAt),
       'updatedAt': FirebaseTimeParse.serverTimestampToJson(instance.updatedAt),

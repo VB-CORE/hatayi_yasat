@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,6 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/model/auth/app_permission.dart';
+import 'package:lifeclient/product/model/auth/user/avatar_types.dart';
 import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
 import 'package:lifeclient/product/model/auth/user/user_role.dart';
 
@@ -20,7 +23,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     this.roleType = 2,
     this.permissions = const [],
     this.rates = const [],
-    this.photoUrl,
+    this.avatarType = 1,
     this.fcmToken,
     this.updatedAt,
     this.application,
@@ -32,7 +35,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     uid: user.uid,
     email: user.email ?? '',
     displayName: user.displayName ?? user.email ?? '',
-    photoUrl: user.photoURL,
+    avatarType: AvatarTypes.all[Random().nextInt(AvatarTypes.all.length)].id,
   );
 
   final String uid;
@@ -41,7 +44,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
   final int roleType;
   final List<int> permissions;
   final List<String> rates;
-  final String? photoUrl;
+  final int avatarType;
   final String? fcmToken;
   @JsonKey(
     includeToJson: false,
@@ -71,13 +74,13 @@ final class UserModel extends BaseFirebaseModel<UserModel>
 
   static Map<String, Object?> updateFields({
     String? displayName,
-    String? photoUrl,
+    int? avatarType,
     FieldValue? rates,
     UserApplicationModel? application,
   }) {
     return {
       'displayName': ?displayName,
-      'photoUrl': ?photoUrl,
+      'avatarType': ?avatarType,
       'rates': ?rates,
       'application': ?application?.toJson(),
       'updatedAt': FieldValue.serverTimestamp(),
@@ -107,7 +110,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     int? roleType,
     List<int>? permissions,
     List<String>? rates,
-    String? photoUrl,
+    int? avatarType,
     String? fcmToken,
     DateTime? updatedAt,
     UserApplicationModel? application,
@@ -119,7 +122,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
       roleType: roleType ?? this.roleType,
       permissions: permissions ?? this.permissions,
       rates: rates ?? this.rates,
-      photoUrl: photoUrl ?? this.photoUrl,
+      avatarType: avatarType ?? this.avatarType,
       fcmToken: fcmToken ?? this.fcmToken,
       updatedAt: updatedAt ?? this.updatedAt,
       application: application ?? this.application,
@@ -134,7 +137,7 @@ final class UserModel extends BaseFirebaseModel<UserModel>
     roleType,
     permissions,
     rates,
-    photoUrl,
+    avatarType,
     fcmToken,
     updatedAt,
     application,

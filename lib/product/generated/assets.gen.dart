@@ -15,6 +15,34 @@ import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:lottie/lottie.dart' as _lottie;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsAvatarsGen {
+  const $AssetsAvatarsGen();
+
+  /// File path: assets/avatars/01.png
+  AssetGenImage get a01 => const AssetGenImage('assets/avatars/01.png');
+
+  /// File path: assets/avatars/02.png
+  AssetGenImage get a02 => const AssetGenImage('assets/avatars/02.png');
+
+  /// File path: assets/avatars/03.png
+  AssetGenImage get a03 => const AssetGenImage('assets/avatars/03.png');
+
+  /// File path: assets/avatars/04.png
+  AssetGenImage get a04 => const AssetGenImage('assets/avatars/04.png');
+
+  /// File path: assets/avatars/05.png
+  AssetGenImage get a05 => const AssetGenImage('assets/avatars/05.png');
+
+  /// File path: assets/avatars/06.png
+  AssetGenImage get a06 => const AssetGenImage('assets/avatars/06.png');
+
+  /// File path: assets/avatars/07.png
+  AssetGenImage get a07 => const AssetGenImage('assets/avatars/07.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [a01, a02, a03, a04, a05, a06, a07];
+}
+
 class $AssetsDocsGen {
   const $AssetsDocsGen();
 
@@ -129,9 +157,8 @@ class $AssetsTranslationsGen {
   List<String> get values => [en, tr];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
+  static const $AssetsAvatarsGen avatars = $AssetsAvatarsGen();
   static const $AssetsDocsGen docs = $AssetsDocsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

@@ -13,7 +13,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   const GroupMemberModel({
     this.id = '',
     this.displayName = '',
-    this.avatarUrl,
+    this.avatarType = 1,
     this.role = GroupMemberRole.member,
     this.createdAt,
     this.updatedAt,
@@ -29,7 +29,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     return GroupMemberModel(
       id: user.uid,
       displayName: user.displayName,
-      avatarUrl: user.photoUrl,
+      avatarType: user.avatarType,
       role: role,
     );
   }
@@ -37,7 +37,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String id;
   final String displayName;
-  final String? avatarUrl;
+  final int avatarType;
   @JsonKey(unknownEnumValue: GroupMemberRole.member)
   final GroupMemberRole role;
 
@@ -80,7 +80,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   List<Object?> get props => [
     id,
     displayName,
-    avatarUrl,
+    avatarType,
     role,
     createdAt,
     updatedAt,
@@ -90,7 +90,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
   GroupMemberModel copyWith({
     String? id,
     String? displayName,
-    String? avatarUrl,
+    int? avatarType,
     GroupMemberRole? role,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -99,7 +99,7 @@ final class GroupMemberModel extends BaseFirebaseModel<GroupMemberModel>
     return GroupMemberModel(
       id: id ?? this.id,
       displayName: displayName ?? this.displayName,
-      avatarUrl: avatarUrl ?? this.avatarUrl,
+      avatarType: avatarType ?? this.avatarType,
       role: role ?? this.role,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,

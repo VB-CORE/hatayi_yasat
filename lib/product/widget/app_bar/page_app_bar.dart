@@ -22,7 +22,7 @@ final class PageAppBar extends AppBar {
          ),
          title: GeneralContentTitle(
            value: pageTitle.tr(),
-           fontWeight: FontWeight.bold,
+           fontWeight: FontWeight.w500,
          ),
        );
 }
