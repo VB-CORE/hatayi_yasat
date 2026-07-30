@@ -42,9 +42,13 @@ final class GroupWallViewModel extends _$GroupWallViewModel
       content: content,
       imageUrl: imageUrl,
     );
-    final result = await firestoreService.add<GroupPostModel>(
-      model: post,
-      path: CommunityPaths.posts(groupId),
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(CommunityPaths.posts(groupId).collection.doc(), post.toJson())
+        ..update(
+          CollectionPaths.users.collection.doc(member.uid),
+          UserModel.counterStep(UserCounterFields.postCount),
+        ),
     );
 
     if (!result.isSuccess) {

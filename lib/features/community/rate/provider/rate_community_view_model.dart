@@ -109,9 +109,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       avatarType: user.avatarType,
       updatedAt: now,
     );
-    final result = await firestoreService.insertWithID<VoteModel>(
-      path: _votes,
-      model: vote,
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(_votes.collection.doc(vote.voterUid), vote.toJson())
+        ..update(
+          CollectionPaths.users.collection.doc(user.uid),
+          UserModel.counterStep(UserCounterFields.voteCount),
+        ),
     );
     if (result.isSuccess) {
       state = state.copyWith(
@@ -160,9 +164,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.delete),
     );
-    final result = await firestoreService.delete<VoteModel>(
-      path: _votes,
-      model: currentVote,
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..delete(_votes.collection.doc(currentVote.voterUid))
+        ..update(
+          CollectionPaths.users.collection.doc(currentVote.voterUid),
+          UserModel.counterStep(UserCounterFields.voteCount, by: -1),
+        ),
     );
     if (result.isSuccess) {
       state = state.copyWith(

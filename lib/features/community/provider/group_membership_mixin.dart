@@ -27,7 +27,11 @@ mixin GroupMembershipMixin on ProjectDependencyMixin {
         )
         ..update(CommunityPaths.groups.collection.doc(groupId), {
           CommunityCounterFields.memberCount.name: FieldValue.increment(1),
-        }),
+        })
+        ..update(
+          CollectionPaths.users.collection.doc(member.uid),
+          UserModel.counterStep(UserCounterFields.groupCount),
+        ),
     );
     return result.isSuccess;
   }
@@ -44,7 +48,11 @@ mixin GroupMembershipMixin on ProjectDependencyMixin {
         )
         ..update(CommunityPaths.groups.collection.doc(groupId), {
           CommunityCounterFields.memberCount.name: FieldValue.increment(-1),
-        }),
+        })
+        ..update(
+          CollectionPaths.users.collection.doc(uid),
+          UserModel.counterStep(UserCounterFields.groupCount, by: -1),
+        ),
     );
     return result.isSuccess;
   }

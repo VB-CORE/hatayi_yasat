@@ -35,6 +35,7 @@ import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
+import 'package:lifeclient/sub_feature/banned/banned_view.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
@@ -463,6 +464,14 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
+}
+
+@TypedGoRoute<BannedRoute>(path: '/banned')
+final class BannedRoute extends GoRouteData with $BannedRoute {
+  const BannedRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const BannedView();
 }
 
 @TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')

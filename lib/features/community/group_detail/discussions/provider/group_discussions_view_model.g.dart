@@ -61,7 +61,7 @@ final class GroupDiscussionsViewModelProvider
 }
 
 String _$groupDiscussionsViewModelHash() =>
-    r'c754287656a3310d0ad9db797608ddaa1feac0b5';
+    r'79199fad5caf30f67042b2661a62582586c1d5a3';
 
 final class GroupDiscussionsViewModelFamily extends $Family
     with

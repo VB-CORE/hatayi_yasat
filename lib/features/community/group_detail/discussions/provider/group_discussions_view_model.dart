@@ -50,6 +50,10 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
             discussionReference.id,
           ).collection.doc(),
           openingEntry.toJson(),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(member.uid),
+          UserModel.counterStep(UserCounterFields.discussionCount),
         ),
     );
 

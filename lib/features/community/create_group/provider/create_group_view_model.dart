@@ -48,6 +48,10 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
         ..set(
           CommunityPaths.members(groupReference.id).collection.doc(creator.uid),
           creator.toJson(),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(creator.uid),
+          UserModel.counterStep(UserCounterFields.groupCount),
         ),
     );
 

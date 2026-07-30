@@ -15,7 +15,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   AuthState build() {
     final subscription = authService.userStream.listen(
       (user) {
-        state = user == null ? const Unauthenticated() : Authenticated(user);
+        state = _stateFor(user);
       },
       onError: (Object error, StackTrace stackTrace) =>
           CustomLogger.showError<void>(error),
@@ -23,14 +23,19 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     ref.onDispose(subscription.cancel);
 
     final cached = authService.cachedUser;
-    return cached == null ? const AuthInitial() : Authenticated(cached);
+    return cached == null ? const AuthInitial() : _stateFor(cached);
+  }
+
+  AuthState _stateFor(UserModel? user) {
+    if (user == null) return const Unauthenticated();
+    return user.isBanned ? AuthBanned(user) : Authenticated(user);
   }
 
   Future<void> signIn(AuthProvider provider) async {
     state = const AuthLoading();
     final result = await authService.signIn(provider);
     state = switch (result) {
-      SignInSuccess(:final user) => Authenticated(user),
+      SignInSuccess(:final user) => _stateFor(user),
       SignInCancelled() => const Unauthenticated(),
       SignInFailure() => AuthError(
         LocaleKeys.auth_error_failed,
@@ -46,6 +51,6 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     if (user == null) return;
     final updatedUser = user.copyWith(application: application);
     productCache.userCache.update(updatedUser);
-    state = Authenticated(updatedUser);
+    state = _stateFor(updatedUser);
   }
 }

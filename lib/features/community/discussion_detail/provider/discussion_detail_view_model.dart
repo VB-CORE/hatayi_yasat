@@ -43,6 +43,10 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
           {
             CommunityCounterFields.entryCount.name: FieldValue.increment(1),
           },
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(member.uid),
+          UserModel.counterStep(UserCounterFields.commentCount),
         ),
     );
 

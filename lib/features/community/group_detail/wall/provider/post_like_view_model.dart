@@ -50,6 +50,13 @@ final class PostLikeViewModel extends _$PostLikeViewModel
           willLike ? 1 : -1,
         ),
       });
+      batch.update(
+        CollectionPaths.users.collection.doc(uid),
+        UserModel.counterStep(
+          UserCounterFields.likeCount,
+          by: willLike ? 1 : -1,
+        ),
+      );
     });
 
     if (!ref.mounted) return result.isSuccess ? willLike : !willLike;
