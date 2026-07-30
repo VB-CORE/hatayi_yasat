@@ -28,7 +28,9 @@ final class _MerchantShowcaseModuleTile extends StatelessWidget {
           color: context.appColors.surface,
           borderRadius: BorderRadius.circular(AppRadius.md),
           border: Border.all(
-            color: module.isPublished ? context.appColors.ink200 : context.appColors.ink100,
+            color: module.isPublished
+                ? context.appColors.ink200
+                : context.appColors.ink100,
           ),
         ),
         child: Row(

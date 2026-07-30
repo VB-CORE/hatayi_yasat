@@ -30,7 +30,7 @@ Map<String, dynamic> _$RateModelToJson(RateModel instance) => <String, dynamic>{
   'score': instance.score,
   'comment': ?instance.comment,
   'photoUrl': ?instance.photoUrl,
-  'merchantReply': ?instance.merchantReply,
+  'merchantReply': instance.merchantReply,
   'merchantReplyAt': ?FirebaseTimeParse.dateTimeToTimestamp(
     instance.merchantReplyAt,
   ),

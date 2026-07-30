@@ -25,7 +25,7 @@ types:
         index: 0
   StoreModel:
     typeId: 3
-    nextIndex: 20
+    nextIndex: 22
     fields:
       name:
         index: 0
@@ -67,6 +67,10 @@ types:
         index: 18
       ownerId:
         index: 19
+      ratingSum:
+        index: 20
+      ratingCount:
+        index: 21
   MemoryModel:
     typeId: 4
     nextIndex: 6

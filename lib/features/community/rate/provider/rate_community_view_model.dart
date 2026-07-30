@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
@@ -23,6 +25,9 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   FirestoreCollectionPath get _votes => CollectionPaths.approvedApplications
       .sub(placeId, SubCollectionPaths.votes);
 
+  DocumentReference<Map<String, dynamic>> get _storeRef =>
+      CollectionPaths.approvedApplications.collection.doc(placeId);
+
   @override
   RateCommunityState build(String placeId) {
     _votesStream = null;
@@ -40,7 +45,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       .queryWithOrderBy<RateModel>(
         path: _votes,
         model: const RateModel(),
-        orderBy: const MapEntry(_createdAtField, true),
+        orderBy: MapEntry(FirestoreFields.createdAt.name, true),
       )
       .snapshots()
       .map(
@@ -108,10 +113,14 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       photoUrl: user.photoUrl,
       updatedAt: now,
     );
-    final result = await firestoreService.insertWithID<RateModel>(
-      path: _votes,
-      model: vote,
-    );
+    final result = await firestoreService.batchWrite((batch) {
+      batch
+        ..set(_votes.collection.doc(vote.voterUid), vote.toJson())
+        ..update(
+          _storeRef,
+          RateModel.ratingDelta(score: vote.score, isIncrement: true),
+        );
+    });
     if (result.isSuccess) {
       state = state.copyWith(
         vote: vote,
@@ -136,12 +145,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     final result = await firestoreService.updateFields(
       path: _votes,
       documentId: updated.voterUid,
-      fields: {
-        _commentField: updated.comment,
-        _updatedAtField: FirebaseTimeParse.dateTimeToTimestamp(
-          updated.updatedAt,
-        ),
-      },
+      fields: RateModel.updateFields(comment: updated.comment),
     );
     if (result.isSuccess) {
       state = state.copyWith(
@@ -159,10 +163,14 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.delete),
     );
-    final result = await firestoreService.delete<RateModel>(
-      path: _votes,
-      model: currentVote,
-    );
+    final result = await firestoreService.batchWrite((batch) {
+      batch
+        ..delete(_votes.collection.doc(currentVote.voterUid))
+        ..update(
+          _storeRef,
+          RateModel.ratingDelta(score: currentVote.score, isIncrement: false),
+        );
+    });
     if (result.isSuccess) {
       state = state.copyWith(
         clearVote: true,
@@ -173,8 +181,4 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       state = state.copyWith(status: const RateActionFailed(RateAction.delete));
     }
   }
-
-  static const String _createdAtField = 'createdAt';
-  static const String _commentField = 'comment';
-  static const String _updatedAtField = 'updatedAt';
 }

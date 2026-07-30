@@ -49,21 +49,25 @@ final class _ProfileViewState extends ConsumerState<ProfileView>
         authorized: ProfileAuthenticatedHeader(),
         unauthorized: ProfileGuestHeader(),
       ),
-      content: Padding(
-        padding:
-            const PagePadding.vertical12Symmetric() +
-            .only(bottom: context.general.mediaQuery.padding.bottom),
-        child: Column(
-          spacing: AppSpacing.sm,
-          children: [
-            const ProfileStoreBanner(),
-            ProfileMenuCard(
-              onAboutPressed: onAboutPressed,
-              onSignOut: onSignOut,
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding:
+                const PagePadding.vertical12Symmetric() +
+                .only(bottom: context.general.mediaQuery.padding.bottom),
+            child: Column(
+              spacing: AppSpacing.sm,
+              children: [
+                const ProfileStoreBanner(),
+                ProfileMenuCard(
+                  onAboutPressed: onAboutPressed,
+                  onSignOut: onSignOut,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

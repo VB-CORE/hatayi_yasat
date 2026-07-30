@@ -64,6 +64,24 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
 
   bool get isInactive => isExpired || isUsageLimitReached;
 
+  static Map<String, Object?> updateFields({
+    String? desc,
+    int? ratio,
+    DateTime? expiresAt,
+    int? usageLimit,
+    bool clearUsageLimit = false,
+  }) => {
+    'desc': ?desc,
+    'ratio': ?ratio,
+    if (expiresAt != null)
+      'expiresAt': FirebaseTimeParse.dateTimeToTimestamp(expiresAt),
+    if (clearUsageLimit)
+      'usageLimit': null
+    else
+      'usageLimit': ?usageLimit,
+    'updatedAt': FieldValue.serverTimestamp(),
+  };
+
   @override
   Map<String, dynamic> toJson() => _$DiscountCouponModelToJson(this);
 

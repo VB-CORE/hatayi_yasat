@@ -61,7 +61,7 @@ final class MerchantStoreEditViewModelProvider
 }
 
 String _$merchantStoreEditViewModelHash() =>
-    r'9698b3e3211ec7b5c96312d63e470c04f45f686a';
+    r'ef98256b8ade5bae04bce9d55272695c536b013a';
 
 final class MerchantStoreEditViewModelFamily extends $Family
     with

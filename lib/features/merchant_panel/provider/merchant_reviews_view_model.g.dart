@@ -60,7 +60,7 @@ final class MerchantReviewsViewModelProvider
 }
 
 String _$merchantReviewsViewModelHash() =>
-    r'abdea16fbe15df251f603d33b5e2f4c7b73e8981';
+    r'66a0fa8a8f8a6bdaa329aaefb83e76d9ea434b0a';
 
 final class MerchantReviewsViewModelFamily extends $Family
     with

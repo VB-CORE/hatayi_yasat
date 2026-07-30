@@ -15,7 +15,6 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final town = productProvider(ref).fetchTownFromCode(store.townCode);
-    final meta = PlaceMetaMock(store);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -24,7 +23,7 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
       children: [
         _SummaryHeader(store: store, town: town),
         StatusPill(store: store),
-        _SummaryRatingRow(meta: meta),
+        _SummaryRatingRow(store: store),
         _SummaryActions(store: store, onCall: onCall, onComment: onComment),
       ],
     );
@@ -106,19 +105,19 @@ final class _SummaryOwnerRow extends StatelessWidget {
 }
 
 final class _SummaryRatingRow extends StatelessWidget {
-  const _SummaryRatingRow({required this.meta});
+  const _SummaryRatingRow({required this.store});
 
-  final PlaceMetaMock meta;
+  final StoreModel store;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       spacing: AppSpacing.xs,
       children: [
-        PlaceRatingLabel(rating: meta.ratingLabel),
+        PlaceRatingLabel(rating: store.averageRatingLabel),
         Text(
           LocaleKeys.placeDetailView_reviewCount.tr(
-            args: ['${meta.reviewCount}'],
+            args: ['${store.ratingCount}'],
           ),
           style: AppText.bodySm,
         ),

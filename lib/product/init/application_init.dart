@@ -21,11 +21,6 @@ final class ApplicationInit {
 
   final CoreLocalize localize = CoreLocalize();
 
-  static String get _emulatorHost =>
-      defaultTargetPlatform == TargetPlatform.android
-      ? '10.0.2.2'
-      : '127.0.0.1';
-
   /// The start function is a future that does not return any
   /// value and can be awaited.
   Future<void> start() async {
@@ -41,9 +36,9 @@ final class ApplicationInit {
       FirebaseFirestore.instance.settings = const Settings(
         persistenceEnabled: false,
       );
-      FirebaseFirestore.instance.useFirestoreEmulator(_emulatorHost, 3004);
-      await FirebaseAuth.instance.useAuthEmulator(_emulatorHost, 3000);
-      await FirebaseStorage.instance.useStorageEmulator(_emulatorHost, 3005);
+      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 3004);
+      await FirebaseAuth.instance.useAuthEmulator('localhost', 3000);
+      await FirebaseStorage.instance.useStorageEmulator('localhost', 3005);
     }
 
     final remoteConfig = FirebaseRemoteConfig.instance;

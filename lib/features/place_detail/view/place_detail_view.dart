@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
@@ -23,7 +22,6 @@ import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -76,26 +74,24 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     return DefaultTabController(
       length: _PlaceDetailTab.values.length,
       child: MosaicCollapsingPage(
-        leading: IconButton(
-          onPressed: context.pop,
-          style: IconButton.styleFrom(
-            foregroundColor: AppColors.surface,
-            backgroundColor: AppColors.navy.withValues(alpha: .7),
-          ),
-          icon: const Icon(AppIcons.arrowBack),
-        ),
+        showLoeading: true,
+
         header: PlaceSummaryCard(
           store: store,
           onCall: onCall,
           onComment: onComment,
         ),
         pinnedHeader: const PlaceDetailTabBar(),
-        contentPadding: const PagePadding.generalAllLow(),
-        content: PlaceDetailTabContent(
-          store: store,
-          onCall: onCall,
-          onCopyAddress: onCopyAddress,
-        ),
+
+        slivers: [
+          SliverToBoxAdapter(
+            child: PlaceDetailTabContent(
+              store: store,
+              onCall: onCall,
+              onCopyAddress: onCopyAddress,
+            ),
+          ),
+        ],
       ),
     );
   }

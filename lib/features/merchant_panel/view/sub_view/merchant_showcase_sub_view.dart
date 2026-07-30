@@ -40,62 +40,91 @@ final class _MerchantShowcaseSubViewState
   Widget build(BuildContext context) {
     final state = ref.watch(merchantShowcaseViewModelProvider(widget.storeId));
 
-    if (state.isFetching) return const PlaceShimmerList();
+    if (state.isFetching) {
+      return const SliverToBoxAdapter(child: PlaceShimmerList());
+    }
+
     if (state.isError && state.modules.isEmpty) {
-      return GeneralNotFoundWidget(
-        title: LocaleKeys.message_somethingWentWrong.tr(),
-        onRefresh: () => unawaited(viewModel.retry()),
+      return SliverToBoxAdapter(
+        child: GeneralNotFoundWidget(
+          title: LocaleKeys.message_somethingWentWrong.tr(),
+          onRefresh: () => unawaited(viewModel.retry()),
+        ),
       );
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const PagePadding.generalAllLow(),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  state.isPreview
-                      ? LocaleKeys.merchantPanel_showcase_previewTitle.tr()
-                      : LocaleKeys.merchantPanel_showcase_reorderHint.tr(),
-                  style: AppText.caption,
-                ),
-              ),
-              TextButton.icon(
-                onPressed: viewModel.togglePreview,
-                icon: Icon(
-                  state.isPreview ? AppIcons.edit : AppIcons.visibility,
-                  size: AppIconSizes.medium,
-                ),
-                label: Text(
-                  state.isPreview
-                      ? LocaleKeys.merchantPanel_showcase_editAction.tr()
-                      : LocaleKeys.merchantPanel_showcase_previewAction.tr(),
-                ),
-              ),
-              if (!state.isPreview)
-                IconButton.filled(
-                  onPressed: () => unawaited(openModuleForm()),
-                  icon: const Icon(AppIcons.add, size: AppIconSizes.medium),
-                ),
-            ],
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _MerchantShowcaseToolbar(
+            isPreview: state.isPreview,
+            onTogglePreview: viewModel.togglePreview,
+            onAdd: () => unawaited(openModuleForm()),
           ),
-        ),
-        if (state.isPreview)
-          _MerchantShowcasePreview(modules: state.publishedModules)
-        else
-          _MerchantShowcaseEditor(
-            modules: state.modules,
-            isSaving: state.isSaving,
-            onReorder: (oldIndex, newIndex) =>
-                unawaited(reorder(oldIndex, newIndex)),
-            onEdit: (module) => unawaited(openModuleForm(module: module)),
-            onDelete: (module) => unawaited(confirmDelete(module)),
-            onToggleActive: (module) => unawaited(toggleActive(module)),
+          if (state.isPreview)
+            _MerchantShowcasePreview(modules: state.publishedModules)
+          else
+            _MerchantShowcaseEditor(
+              modules: state.modules,
+              isSaving: state.isSaving,
+              onReorder: (oldIndex, newIndex) =>
+                  unawaited(viewModel.reorder(oldIndex, newIndex)),
+              onEdit: (module) => unawaited(openModuleForm(module: module)),
+              onDelete: (module) => unawaited(confirmDelete(module)),
+              onToggleActive: (module) => unawaited(toggleActive(module)),
+            ),
+          const SizedBox(height: AppSpacing.xxl),
+        ],
+      ),
+    );
+  }
+}
+
+final class _MerchantShowcaseToolbar extends StatelessWidget {
+  const _MerchantShowcaseToolbar({
+    required this.isPreview,
+    required this.onTogglePreview,
+    required this.onAdd,
+  });
+
+  final bool isPreview;
+  final VoidCallback onTogglePreview;
+  final VoidCallback onAdd;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const PagePadding.generalAllLow(),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              isPreview
+                  ? LocaleKeys.merchantPanel_showcase_previewTitle.tr()
+                  : LocaleKeys.merchantPanel_showcase_reorderHint.tr(),
+              style: AppText.caption,
+            ),
           ),
-      ],
+          TextButton.icon(
+            onPressed: onTogglePreview,
+            icon: Icon(
+              isPreview ? AppIcons.edit : AppIcons.visibility,
+              size: AppIconSizes.medium,
+            ),
+            label: Text(
+              isPreview
+                  ? LocaleKeys.merchantPanel_showcase_editAction.tr()
+                  : LocaleKeys.merchantPanel_showcase_previewAction.tr(),
+            ),
+          ),
+          if (!isPreview)
+            IconButton.filled(
+              onPressed: onAdd,
+              icon: const Icon(AppIcons.add, size: AppIconSizes.medium),
+            ),
+        ],
+      ),
     );
   }
 }

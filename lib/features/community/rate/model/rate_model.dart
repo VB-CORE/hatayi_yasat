@@ -5,8 +5,8 @@ import 'package:life_shared/life_shared.dart';
 
 part 'rate_model.g.dart';
 
-@JsonSerializable(includeIfNull: false)
-final class RateModel extends BaseFirebaseModel<RateModel> with EquatableMixin {
+@JsonSerializable(includeIfNull: false) 
+final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   const RateModel({
     this.voterUid = '',
     this.placeId = '',
@@ -30,6 +30,9 @@ final class RateModel extends BaseFirebaseModel<RateModel> with EquatableMixin {
   final String? comment;
   final String? photoUrl;
 
+  /// Always written (even as null) so Firestore `isNull` queries can find
+  /// unanswered reviews.
+  @JsonKey(includeIfNull: true)
   final String? merchantReply;
 
   @JsonKey(
@@ -56,6 +59,36 @@ final class RateModel extends BaseFirebaseModel<RateModel> with EquatableMixin {
 
   @override
   String get documentId => voterUid;
+ 
+  static const String merchantReplyField = 'merchantReply';
+
+  static Map<String, Object?> updateFields({
+    String? comment,
+    String? merchantReply,
+    bool clearMerchantReply = false,
+  }) => {
+    'comment': ?comment,
+    'updatedAt': FieldValue.serverTimestamp(),
+    if (clearMerchantReply) ...{
+      'merchantReply': null,
+      'merchantReplyAt': null,
+    } else if (merchantReply != null) ...{
+      'merchantReply': merchantReply,
+      'merchantReplyAt': FieldValue.serverTimestamp(),
+    },
+  };
+
+  static Map<String, Object> ratingDelta({
+    required int score,
+    required bool isIncrement,
+  }) {
+    final delta = isIncrement ? 1 : -1;
+
+    return {
+      'ratingSum': FieldValue.increment(score * delta),
+      'ratingCount': FieldValue.increment(delta),
+    };
+  }
 
   @override
   Map<String, dynamic> toJson() => _$RateModelToJson(this);

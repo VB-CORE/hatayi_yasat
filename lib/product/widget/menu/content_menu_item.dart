@@ -17,7 +17,7 @@ final class ContentMenuItem {
     this.subtitle,
     this.trailing,
     this.labelColor,
-    this.badgeCount = 0,
+    this.showBadge = false,
     this.showChevron = true,
     this.onTap,
   });
@@ -27,7 +27,7 @@ final class ContentMenuItem {
   final String? subtitle;
   final Widget? trailing;
   final Color? labelColor;
-  final int badgeCount;
+  final bool showBadge;
   final bool showChevron;
   final VoidCallback? onTap;
 }
@@ -63,8 +63,12 @@ final class ContentMenuItemTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.sm),
             ),
             padding: const PagePadding.allLow(),
-            child: item.badgeCount > 0
-                ? Badge.count(count: item.badgeCount, child: icon)
+            child: item.showBadge
+                ? Badge(
+                    backgroundColor: AppColors.coral,
+                    smallSize: AppIconSizes.small,
+                    child: icon,
+                  )
                 : icon,
           ),
           Expanded(

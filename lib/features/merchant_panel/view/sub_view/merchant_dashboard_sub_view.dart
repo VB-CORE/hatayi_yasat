@@ -29,113 +29,113 @@ final class MerchantDashboardSubView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.store == null) return const SizedBox.shrink();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding:
-              const PagePadding.horizontalNormalSymmetric() +
-              const PagePadding.vertical12Symmetric(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                LocaleKeys.merchantPanel_dashboard_summaryTitle
-                    .tr()
-                    .toUpperCase(),
-                style: AppText.eyebrow,
-              ),
-              const EmptyBox.smallHeight(),
-              Row(
-                spacing: AppSpacing.xs,
-                children: [
-                  Expanded(
-                    child: _MerchantStatCard(
-                      icon: AppIcons.visibility,
-                      value: '${state.visitCount}',
-                      label: LocaleKeys.merchantPanel_dashboard_visitCount.tr(),
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding:
+                const PagePadding.horizontalNormalSymmetric() +
+                const PagePadding.vertical12Symmetric(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  LocaleKeys.merchantPanel_dashboard_summaryTitle
+                      .tr()
+                      .toUpperCase(),
+                  style: AppText.eyebrow,
+                ),
+                const EmptyBox.smallHeight(),
+                Row(
+                  spacing: AppSpacing.xs,
+                  children: [
+                    Expanded(
+                      child: _MerchantStatCard(
+                        icon: AppIcons.visibility,
+                        value: '${state.visitCount}',
+                        label: LocaleKeys.merchantPanel_dashboard_visitCount
+                            .tr(),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: _MerchantStatCard(
-                      icon: AppIcons.rate,
-                      value: state.averageScore.toStringAsFixed(1),
-                      label: LocaleKeys.merchantPanel_dashboard_averageScore
+                    Expanded(
+                      child: _MerchantStatCard(
+                        icon: AppIcons.rate,
+                        value: state.store?.averageRatingLabel ?? '0',
+                        label: LocaleKeys.merchantPanel_dashboard_averageScore
+                            .tr(),
+                      ),
+                    ),
+                    Expanded(
+                      child: _MerchantStatCard(
+                        icon: AppIcons.comment,
+                        value: '${state.reviewCount}',
+                        label: LocaleKeys.merchantPanel_dashboard_reviewCount
+                            .tr(),
+                      ),
+                    ),
+                  ],
+                ),
+                const EmptyBox.middleHeight(),
+                Text(
+                  LocaleKeys.merchantPanel_dashboard_manageTitle
+                      .tr()
+                      .toUpperCase(),
+                  style: AppText.eyebrow,
+                ),
+                const EmptyBox.smallHeight(),
+                ContentMenu(
+                  iconColor: context.appColors.navy400,
+                  iconBackgroundColor: context.appColors.navy50,
+                  items: [
+                    ContentMenuItem(
+                      icon: AppIcons.commentFilled,
+                      showBadge: state.hasPendingReply,
+                      label: LocaleKeys.merchantPanel_dashboard_manageReviews
                           .tr(),
+                      subtitle: state.hasPendingReply
+                          ? LocaleKeys
+                                .merchantPanel_dashboard_manageReviewsSubtitle
+                                .tr()
+                          : LocaleKeys
+                                .merchantPanel_dashboard_manageReviewsEmptySubtitle
+                                .tr(),
+                      onTap: () => onNavigate(MerchantPanelTab.reviews),
                     ),
-                  ),
-                  Expanded(
-                    child: _MerchantStatCard(
-                      icon: AppIcons.comment,
-                      value: '${state.comments.length}',
-                      label: LocaleKeys.merchantPanel_dashboard_reviewCount
+                    ContentMenuItem(
+                      icon: AppIcons.announcement,
+                      label: LocaleKeys.merchantPanel_dashboard_manageShowcase
                           .tr(),
+                      subtitle: LocaleKeys
+                          .merchantPanel_dashboard_manageShowcaseSubtitle
+                          .tr(),
+                      onTap: () => onNavigate(MerchantPanelTab.showcase),
                     ),
-                  ),
-                ],
-              ),
-              const EmptyBox.middleHeight(),
-              Text(
-                LocaleKeys.merchantPanel_dashboard_manageTitle
-                    .tr()
-                    .toUpperCase(),
-                style: AppText.eyebrow,
-              ),
-              const EmptyBox.smallHeight(),
-              ContentMenu(
-                iconColor: context.appColors.navy400,
-                iconBackgroundColor: context.appColors.navy50,
-                items: [
-                  ContentMenuItem(
-                    icon: AppIcons.commentFilled,
-                    badgeCount: state.pendingReplyCount,
-                    label: LocaleKeys.merchantPanel_dashboard_manageReviews
-                        .tr(),
-                    subtitle: state.pendingReplyCount == 0
-                        ? LocaleKeys
-                              .merchantPanel_dashboard_manageReviewsEmptySubtitle
-                              .tr()
-                        : LocaleKeys
-                              .merchantPanel_dashboard_manageReviewsSubtitle
-                              .tr(
-                                args: ['${state.pendingReplyCount}'],
-                              ),
-                    onTap: () => onNavigate(MerchantPanelTab.reviews),
-                  ),
-                  ContentMenuItem(
-                    icon: AppIcons.announcement,
-                    label: LocaleKeys.merchantPanel_dashboard_manageShowcase
-                        .tr(),
-                    subtitle: LocaleKeys
-                        .merchantPanel_dashboard_manageShowcaseSubtitle
-                        .tr(),
-                    onTap: () => onNavigate(MerchantPanelTab.showcase),
-                  ),
-                  ContentMenuItem(
-                    icon: AppIcons.storeFilled,
-                    label: LocaleKeys.merchantPanel_dashboard_manageStore.tr(),
-                    subtitle: LocaleKeys
-                        .merchantPanel_dashboard_manageStoreSubtitle
-                        .tr(),
-                    onTap: () => onNavigate(MerchantPanelTab.store),
-                  ),
-                  ContentMenuItem(
-                    icon: AppIcons.discount,
-                    label: LocaleKeys.merchantPanel_dashboard_manageCoupons
-                        .tr(),
-                    subtitle: LocaleKeys
-                        .merchantPanel_dashboard_manageCouponsSubtitle
-                        .tr(),
-                    onTap: () => const MonetizationRoute().go(context),
-                  ),
-                ],
-              ),
-            ],
+                    ContentMenuItem(
+                      icon: AppIcons.storeFilled,
+                      label: LocaleKeys.merchantPanel_dashboard_manageStore
+                          .tr(),
+                      subtitle: LocaleKeys
+                          .merchantPanel_dashboard_manageStoreSubtitle
+                          .tr(),
+                      onTap: () => onNavigate(MerchantPanelTab.store),
+                    ),
+                    ContentMenuItem(
+                      icon: AppIcons.discount,
+                      label: LocaleKeys.merchantPanel_dashboard_manageCoupons
+                          .tr(),
+                      subtitle: LocaleKeys
+                          .merchantPanel_dashboard_manageCouponsSubtitle
+                          .tr(),
+                      onTap: () => const MonetizationRoute().go(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

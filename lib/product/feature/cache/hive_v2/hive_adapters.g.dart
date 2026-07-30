@@ -140,13 +140,15 @@ class StoreModelAdapter extends TypeAdapter<StoreModel> {
       latLong: fields[14] as GeoPoint?,
       cityId: fields[11] == null ? '' : fields[11] as String,
       isCommentEnabled: fields[18] == null ? true : fields[18] as bool,
+      ratingSum: fields[20] == null ? 0 : (fields[20] as num).toInt(),
+      ratingCount: fields[21] == null ? 0 : (fields[21] as num).toInt(),
     );
   }
 
   @override
   void write(BinaryWriter writer, StoreModel obj) {
     writer
-      ..writeByte(20)
+      ..writeByte(22)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -186,7 +188,11 @@ class StoreModelAdapter extends TypeAdapter<StoreModel> {
       ..writeByte(18)
       ..write(obj.isCommentEnabled)
       ..writeByte(19)
-      ..write(obj.ownerId);
+      ..write(obj.ownerId)
+      ..writeByte(20)
+      ..write(obj.ratingSum)
+      ..writeByte(21)
+      ..write(obj.ratingCount);
   }
 
   @override

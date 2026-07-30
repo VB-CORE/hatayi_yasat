@@ -6,6 +6,7 @@ import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_panel_view_model.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_store_edit_state.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_photo.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -98,18 +99,19 @@ final class MerchantStoreEditViewModel extends _$MerchantStoreEditViewModel
     final result = await firestoreService.updateFields(
       path: CollectionPaths.approvedApplications,
       documentId: storeId,
-      fields: {
-        'name': name.trim(),
-        'description': description.trim(),
-        'phone': phone.trim().ext.phoneFormatValue,
-        'address': address.trim(),
-        'category': state.category?.toJson(),
-        'isCommentEnabled': state.isCommentEnabled,
-        'images': images,
-        'openTime': state.openTime,
-        'closeTime': state.closeTime,
-        'updatedAt': FirebaseTimeParse.dateTimeToTimestamp(DateTime.now()),
-      },
+      fields: StoreModelExtension.updateFields(
+        name: name.trim(),
+        description: description.trim(),
+        phone: phone.trim().ext.phoneFormatValue,
+        address: address.trim(),
+        category: state.category,
+        isCommentEnabled: state.isCommentEnabled,
+        images: images,
+        openTime: state.openTime,
+        closeTime: state.closeTime,
+        clearOpenTime: state.openTime == null,
+        clearCloseTime: state.closeTime == null,
+      ),
     );
 
     if (!result.isSuccess) {

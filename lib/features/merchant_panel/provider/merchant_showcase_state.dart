@@ -14,7 +14,6 @@ final class MerchantShowcaseState extends Equatable {
   final bool isFetching;
   final bool isError;
   final bool isSaving;
-
   final bool isPreview;
 
   List<MerchantShowcaseModuleModel> get publishedModules =>

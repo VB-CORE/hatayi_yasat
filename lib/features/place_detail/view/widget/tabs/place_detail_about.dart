@@ -14,79 +14,81 @@ final class PlaceDetailAboutTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: AppSpacing.sm,
-      children: [
-        PlaceDetailShowcaseSection(placeId: store.documentId),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: AppSpacing.xs,
-          children: [
-            GeneralBodyTitle(
-              LocaleKeys.placeDetailView_aboutTitle.tr(),
-              color: AppColors.navy900,
-              textAlign: TextAlign.start,
-            ),
-            Text(
-              store.hasDescription
-                  ? store.description!
-                  : LocaleKeys.placeDetailView_noDescription.tr(),
-              style: AppText.body.copyWith(color: AppColors.navy400),
-            ),
-          ],
-        ),
-        if (store.hasContactInfo)
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: AppSpacing.sm,
+        children: [
+          PlaceDetailShowcaseSection(placeId: store.documentId),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppSpacing.xs,
             children: [
               GeneralBodyTitle(
-                LocaleKeys.placeDetailView_contactTitle.tr(),
+                LocaleKeys.placeDetailView_aboutTitle.tr(),
                 color: AppColors.navy900,
                 textAlign: TextAlign.start,
               ),
-              if (store.hasPhone)
-                _ContactInfoTile(
-                  icon: AppIcons.phone,
-                  label: LocaleKeys.placeDetailView_phoneLabel.tr(),
-                  value: store.phone,
-                  action: TextButton(
-                    onPressed: onCall,
-                    style: TextButton.styleFrom(
-                      visualDensity: VisualDensity.compact,
-                      foregroundColor: AppColors.navy,
-                    ),
-                    child: Text(
-                      LocaleKeys.placeDetailView_call.tr(),
-                      style: AppText.bodySm.copyWith(
-                        color: AppColors.navy600,
-                        fontWeight: FontWeight.bold,
+              Text(
+                store.hasDescription
+                    ? store.description!
+                    : LocaleKeys.placeDetailView_noDescription.tr(),
+                style: AppText.body.copyWith(color: AppColors.navy400),
+              ),
+            ],
+          ),
+          if (store.hasContactInfo)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppSpacing.xs,
+              children: [
+                GeneralBodyTitle(
+                  LocaleKeys.placeDetailView_contactTitle.tr(),
+                  color: AppColors.navy900,
+                  textAlign: TextAlign.start,
+                ),
+                if (store.hasPhone)
+                  _ContactInfoTile(
+                    icon: AppIcons.phone,
+                    label: LocaleKeys.placeDetailView_phoneLabel.tr(),
+                    value: store.phone,
+                    action: TextButton(
+                      onPressed: onCall,
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        foregroundColor: AppColors.navy,
+                      ),
+                      child: Text(
+                        LocaleKeys.placeDetailView_call.tr(),
+                        style: AppText.bodySm.copyWith(
+                          color: AppColors.navy600,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              if (store.hasAddress)
-                _ContactInfoTile(
-                  icon: AppIcons.location,
-                  label: LocaleKeys.placeDetailView_addressLabel.tr(),
-                  value: store.address!,
-                  valueMaxLines: 3,
-                  action: IconButton(
-                    onPressed: onCopyAddress,
-                    visualDensity: VisualDensity.compact,
-                    icon: const Icon(
-                      AppIcons.copy,
-                      color: AppColors.navy600,
-                      size: AppIconSizes.medium,
+                if (store.hasAddress)
+                  _ContactInfoTile(
+                    icon: AppIcons.location,
+                    label: LocaleKeys.placeDetailView_addressLabel.tr(),
+                    value: store.address!,
+                    valueMaxLines: 3,
+                    action: IconButton(
+                      onPressed: onCopyAddress,
+                      visualDensity: VisualDensity.compact,
+                      icon: const Icon(
+                        AppIcons.copy,
+                        color: AppColors.navy600,
+                        size: AppIconSizes.medium,
+                      ),
+                      tooltip: LocaleKeys.button_copy.tr(),
                     ),
-                    tooltip: LocaleKeys.button_copy.tr(),
                   ),
-                ),
-              if (store.hasMap) PlaceAddressCard(latLong: store.latLong!),
-            ],
-          ),
-      ],
+                if (store.hasMap) PlaceAddressCard(latLong: store.latLong!),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }

@@ -60,7 +60,7 @@ final class RateCommunityViewModelProvider
 }
 
 String _$rateCommunityViewModelHash() =>
-    r'b9a24205ae81b7cb259ba6ffd746a3aec44f88ad';
+    r'a56834b4fba69692c724ebf91169b0209d95be96';
 
 final class RateCommunityViewModelFamily extends $Family
     with

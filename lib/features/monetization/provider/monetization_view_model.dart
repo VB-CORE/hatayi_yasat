@@ -14,12 +14,6 @@ part 'monetization_view_model.g.dart';
 @riverpod
 final class MonetizationViewModel extends _$MonetizationViewModel
     with ProjectDependencyMixin {
-  static const String _descField = 'desc';
-  static const String _ratioField = 'ratio';
-  static const String _expiresAtField = 'expiresAt';
-  static const String _usageLimitField = 'usageLimit';
-  static const String _updatedAtField = 'updatedAt';
-
   String? get _storeId => ref.read(authViewModelProvider).user?.application?.id;
   String? get _merchantUid => ref.read(authViewModelProvider).user?.uid;
 
@@ -115,13 +109,13 @@ final class MonetizationViewModel extends _$MonetizationViewModel
     final result = await firestoreService.updateFields(
       path: CollectionPaths.coupons,
       documentId: coupon.documentId,
-      fields: {
-        _descField: desc,
-        _ratioField: rate,
-        _expiresAtField: FirebaseTimeParse.dateTimeToTimestamp(expiresAt),
-        _usageLimitField: usageLimit,
-        _updatedAtField: FirebaseTimeParse.dateTimeToTimestamp(now),
-      },
+      fields: DiscountCouponModel.updateFields(
+        desc: desc,
+        ratio: rate,
+        expiresAt: expiresAt,
+        usageLimit: usageLimit,
+        clearUsageLimit: usageLimit == null,
+      ),
     );
 
     if (!result.isSuccess) {

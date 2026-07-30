@@ -15,14 +15,9 @@ import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.da
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
 
 final class MerchantPanelHeader extends StatelessWidget {
-  const MerchantPanelHeader({
-    required this.store,
-    required this.averageScore,
-    super.key,
-  });
+  const MerchantPanelHeader({required this.store, super.key});
 
   final StoreModel store;
-  final double averageScore;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +85,7 @@ final class MerchantPanelHeader extends StatelessWidget {
                         color: context.appColors.gold,
                       ),
                       Text(
-                        averageScore.toStringAsFixed(1),
+                        store.averageRatingLabel,
                         style: AppText.label,
                       ),
                       Flexible(child: StatusPill(store: store)),
