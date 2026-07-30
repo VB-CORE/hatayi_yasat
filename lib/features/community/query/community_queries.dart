@@ -30,6 +30,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
         CommunityPaths.posts(groupId),
         const GroupPostModel.empty(),
       )
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(FirestoreFields.createdAt.name, descending: true);
 
   Query<GroupDiscussionModel?> discussionsQuery(String groupId) =>
@@ -38,6 +39,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
             CommunityPaths.discussions(groupId),
             const GroupDiscussionModel.empty(),
           )
+          .where(FirestoreFields.isDeleted.name, isEqualTo: false)
           .orderBy(FirestoreFields.createdAt.name, descending: true);
 
   Query<GroupDiscussionEntryModel?> entriesQuery(
@@ -48,6 +50,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
         CommunityPaths.entries(groupId, discussionId),
         const GroupDiscussionEntryModel.empty(),
       )
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(FirestoreFields.createdAt.name);
 
   Query<LikedPostModel?> likedPostsQuery(String uid) => firestoreService
@@ -55,6 +58,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
         CommunityPaths.likedPosts(uid),
         const LikedPostModel.empty(),
       )
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(_likedAtField, descending: true);
 
   static const String _categoryValueField = 'categoryValue';

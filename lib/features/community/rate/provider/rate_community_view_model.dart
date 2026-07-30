@@ -45,6 +45,9 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         (snapshot) => snapshot.docs
             .map((document) => document.data())
             .whereType<VoteModel>()
+            // queryWithOrderBy takes no filter, and a place holds few enough
+            // votes that dropping the banned ones here costs nothing.
+            .where((vote) => !vote.isDeleted)
             .toList(),
       );
 
