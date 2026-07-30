@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 
 part 'rate_model.g.dart';
 
-@JsonSerializable(includeIfNull: false) 
+@JsonSerializable(includeIfNull: false)
 final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   const RateModel({
     this.voterUid = '',
@@ -30,8 +30,6 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
   final String? comment;
   final int avatarType;
 
-  /// Always written (even as null) so Firestore `isNull` queries can find
-  /// unanswered reviews.
   @JsonKey(includeIfNull: true)
   final String? merchantReply;
 
@@ -59,7 +57,7 @@ final class RateModel extends BaseFirebaseModel<RateModel> with Equatable {
 
   @override
   String get documentId => voterUid;
- 
+
   static const String merchantReplyField = 'merchantReply';
 
   static Map<String, Object?> updateFields({
