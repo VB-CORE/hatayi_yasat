@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- IMAGE 3 — Key vs Semantics proof. 1600×610. Render: ./docs/assets/render_figures.sh figure3 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0B0D10; --panel:#111519; --ink:#F5F7FA; --muted:#8A93A0; --dim:#5C6672;
+    --accent:#FF6B35; --green:#2ED573; --line:#1E2329;
+    --kw:#C792EA; --str:#C3E88D; --cls:#82AAFF;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1600px; height:610px; overflow:hidden; background:var(--bg); }
+
+  .fig {
+    width:1600px; height:610px; position:relative;
+    background: radial-gradient(1100px 620px at 50% -10%, rgba(255,107,53,.10), transparent 62%), var(--bg);
+    font-family:'Inter',system-ui,sans-serif; color:var(--ink);
+    padding:38px 48px 34px; display:flex; flex-direction:column;
+  }
+  .fig::before {
+    content:''; position:absolute; inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:52px 52px; opacity:.22;
+    mask-image:radial-gradient(1200px 700px at 50% 46%, #000 42%, transparent 82%);
+  }
+
+  header { position:relative; z-index:2; margin-bottom:24px; }
+  h2 { font-size:29px; font-weight:700; letter-spacing:-.02em; }
+  h2 span { color:var(--muted); font-weight:400; }
+
+  .cols { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:26px; flex:1; min-height:0; }
+
+  .panel {
+    background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 24px 50px rgba(0,0,0,.45);
+  }
+  .bar {
+    display:flex; align-items:center; gap:9px; padding:11px 16px; flex:none;
+    background:rgba(255,255,255,.035); border-bottom:1px solid rgba(255,255,255,.07);
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted);
+  }
+  .bar .tag {
+    margin-left:auto; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:5px;
+  }
+  .tag.src  { color:var(--muted); border:1px solid rgba(255,255,255,.14); }
+  .tag.live { color:var(--green); border:1px solid rgba(46,213,115,.40); background:rgba(46,213,115,.10); }
+
+  .code { flex:1; padding:14px 0; font-family:'JetBrains Mono',monospace; font-size:13.5px; }
+  .ln { display:block; white-space:pre; line-height:1.72; padding-right:14px; }
+  .n  { display:inline-block; width:46px; text-align:right; padding-right:16px; color:var(--dim); }
+  .hl { background:rgba(255,107,53,.11); box-shadow:inset 3px 0 0 var(--accent); }
+  .ok { background:rgba(46,213,115,.09); box-shadow:inset 3px 0 0 var(--green); }
+  .kw { color:var(--kw); } .str { color:var(--str); } .cls { color:var(--cls); } .cm { color:var(--dim); }
+
+  .note { margin:0 16px 15px; padding:11px 14px; border-radius:9px; flex:none;
+           font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.55; }
+  .note.bad  { background:rgba(255,71,87,.10);  border:1px solid rgba(255,71,87,.30);  color:#FF8A94; }
+  .note.good { background:rgba(46,213,115,.09); border:1px solid rgba(46,213,115,.28); color:#8BE8B0; }
+
+  footer {
+    position:relative; z-index:2; margin-top:22px; flex:none;
+    display:flex; align-items:center; gap:16px; font-size:18.5px; color:var(--muted);
+  }
+  footer b { color:var(--ink); font-weight:600; }
+  footer .badge {
+    font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; white-space:nowrap;
+    color:var(--accent); border:1px solid rgba(255,107,53,.34); border-radius:7px; padding:7px 12px;
+  }
+</style>
+</head>
+<body>
+<div class="fig">
+
+  <header>
+    <h2>Two nodes, one tree. <span>Only one of them exists as far as Maestro is concerned.</span></h2>
+  </header>
+
+  <div class="cols">
+
+    <div class="panel">
+      <div class="bar">lib/features/main/home/view/home_view.dart<span class="tag src">source</span></div>
+      <div class="code"
+        ><span class="ln"><span class="n">141</span>    <span class="kw">return</span> <span class="cls">TextField</span>(</span
+        ><span class="ln hl"><span class="n">142</span>      key: <span class="kw">const</span> <span class="cls">Key</span>(<span class="str">'homeSearchField'</span>),</span
+        ><span class="ln"><span class="n">143</span>      onTap: () <span class="kw">async</span> {</span
+        ><span class="ln"><span class="n">144</span>        <span class="kw">await</span> showSearch&lt;<span class="cls">SearchResponse</span>&gt;(</span
+        ><span class="ln"><span class="n">145</span>          context: context,</span
+        ><span class="ln"><span class="n">146</span>          delegate: <span class="cls">PlaceSearchDelegate</span>(),</span
+        ><span class="ln"><span class="n">147</span>        );</span
+        ><span class="ln"><span class="n">148</span>      },</span
+        ><span class="ln"><span class="n"> </span></span
+        ><span class="ln"><span class="n"> </span>  <span class="cm">// …and how the bottom bar does it instead:</span></span
+        ><span class="ln ok"><span class="n"> </span>  <span class="cls">GeneralSemantic</span>(</span
+        ><span class="ln ok"><span class="n"> </span>    semanticKey: <span class="cls">GeneralSemanticKeys</span>.homeTab,</span
+        ><span class="ln ok"><span class="n"> </span>    child: …,</span
+        ><span class="ln ok"><span class="n"> </span>  )</span
+      ></div>
+      <div class="note bad">Both names live in the same <b>GeneralSemanticKeys</b> enum.<br>Seven of them are wired with <b>Key()</b> — which exists only for widget tests.</div>
+    </div>
+
+    <div class="panel">
+      <div class="bar">inspect_view_hierarchy · iPhone 17 / iOS 26.4<span class="tag live">live device</span></div>
+      <div class="code"
+        ><span class="ln"><span class="n"> </span><span class="cm">num,depth,bounds,attributes</span></span
+        ><span class="ln"><span class="n"> </span></span
+        ><span class="ln"><span class="n"> </span><span class="cm">// the search field —</span></span
+        ><span class="ln hl"><span class="n">48</span>,16,<span class="str">"[16,346][386,418]"</span>,</span
+        ><span class="ln hl"><span class="n"> </span>   <span class="str">"accessibilityText=Mekan ara;</span></span
+        ><span class="ln hl"><span class="n"> </span>    <span class="str">enabled=true"</span>  <span class="cm">← no resource-id</span></span
+        ><span class="ln"><span class="n"> </span></span
+        ><span class="ln"><span class="n"> </span><span class="cm">// a bottom-bar tab —</span></span
+        ><span class="ln ok"><span class="n">101</span>,12,<span class="str">"[0,780][100,840]"</span>,</span
+        ><span class="ln ok"><span class="n"> </span>   <span class="str">"accessibilityText=Sekme 1 / 4\nAnasayfa;</span></span
+        ><span class="ln ok"><span class="n"> </span>    <span class="str">resource-id=homeTab;</span>  <span class="cm">← there it is</span></span
+        ><span class="ln ok"><span class="n"> </span>    <span class="str">enabled=true; selected=true"</span></span
+      ></div>
+      <div class="note good"><b>Semantics(identifier:)</b> → <b>accessibilityIdentifier</b> on iOS, <b>resource-id</b> on Android.<br><b>Key() / ValueKey()</b> → nothing. Not for Maestro, not for VoiceOver.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="badge">7 dead ids</span>
+    <span>The home screen passed code review as fully instrumented — and was <b>completely opaque</b> to any external automation tool.</span>
+  </footer>
+
+</div>
+</body>
+</html>

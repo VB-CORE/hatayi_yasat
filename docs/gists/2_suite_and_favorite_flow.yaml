@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# smoke_test_auto.yaml — all eight flows, one run.
+#
+#   maestro test maestro/flows/smoke_test_auto.yaml
+#   → 8 flows · 218s · 0 failures · 13 screenshots
+#
+# Every sub-flow starts from bootstrap with clearState, so the flows are fully
+# ISOLATED: the favourite that flow 07 adds cannot leak into flow 06's
+# empty-state assertion. Costs a few seconds each, buys a red result you trust.
+# ─────────────────────────────────────────────────────────────────────────────
+appId: com.hatayiyasat.app
+tags: [smoke, tabbar, auto]
+---
+- runFlow: smoke/01_app_launch.yaml            # splash → onboarding → 4-tab shell
+- runFlow: smoke/02_home_tab.yaml              # place list, search field, no empty-state
+- runFlow: smoke/03_home_place_detail.yaml     # detail: Call / Directions → back
+- runFlow: smoke/04_community_tab.yaml         # News / Events / Jobs sub-tabs
+- runFlow: smoke/05_memories_tab.yaml          # first-visit dialog, grid, favourites sheet
+- runFlow: smoke/06_favorite_tab.yaml          # favourites empty state
+- runFlow: smoke/07_favorite_add_and_list.yaml # end-to-end favourite round trip
+- runFlow: smoke/08_tab_bar_navigation.yaml    # full tab tour, one-tab-selected invariant
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# smoke/07_favorite_add_and_list.yaml — the flow I'd show a skeptic.
+#
+# A genuine round trip through app state: add → verify → clean up after itself.
+# That last part is what most generated suites forget.
+# ─────────────────────────────────────────────────────────────────────────────
+appId: com.hatayiyasat.app
+tags: [smoke, tabbar, favorite]
+---
+- runFlow: ../core/bootstrap.yaml
+- runFlow: ../core/goto_home.yaml
+
+# Favourites start empty — clearState guarantees it, so this is deterministic.
+- runFlow: ../core/goto_favorite.yaml
+- assertVisible: "Favori listeniz boş"          # "your favourites list is empty"
+
+# Open the FIRST card. Place names come from Firestore and change, so the card is
+# selected by id REGEX + index, never by name.
+- runFlow: ../core/goto_home.yaml
+- tapOn:
+    id: "place_grid_card_.*"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: "placeDetailCallButton"
+    timeout: 30000
+
+# NEEDS-ID: FavoritePlaceButton isn't wrapped in Semantics, so the heart has no
+# id and gets tapped by position. This comment ships with the flow on purpose —
+# if `GeneralSemanticKeys.placeDetailFavoriteButton` is ever added, this becomes
+# `id:`. Coordinate taps are debt with a timer on them.
+- tapOn:
+    point: "92%,18%"
+- waitForAnimationToEnd
+- takeScreenshot: "maestro/reports/smoke/07_place_favorited"
+
+- tapOn: "Geri"                                 # "back"
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000
+
+# The place is now in the Favourites tab.
+- runFlow: ../core/goto_favorite.yaml
+- extendedWaitUntil:
+    visible: "Favorinizi arayın"                # search field only exists when non-empty
+    timeout: 30000
+- assertVisible: "Tümünü Temizle"               # "clear all"
+- assertNotVisible: "Favori listeniz boş"
+- takeScreenshot: "maestro/reports/smoke/07_favorite_filled"
+
+# Clean up: through the confirm dialog, back to the empty state.
+- tapOn: "Tümünü Temizle"
+- extendedWaitUntil:
+    visible: "Tüm favorilerinizi silmek istediğinize emin misiniz?"
+    timeout: 15000
+- tapOn: "Evet, eminim"                         # "yes, I'm sure"
+- extendedWaitUntil:
+    visible: "Favori listeniz boş"
+    timeout: 15000

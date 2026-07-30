@@ -6,38 +6,28 @@ appId: com.hatayiyasat.app
 - launchApp:
     clearState: true
 
+# Splash GEÇİCİ bir ekrandır; "göründü mü" diye beklemek yarış koşulu üretir
+# (Maestro ilk yoklamayı yapmadan kaybolabiliyor). Bunun yerine doğrudan
+# splash SONRASI gelen kalıcı duruma beklenir: clearState olduğu için onboarding kesin gelir.
 - extendedWaitUntil:
     visible:
-      id: "splashView"
-    timeout: 30000
+      id: "onboardButton"
+    timeout: 90000
+- tapOn:
+    id: "onboardButton"
+- waitForAnimationToEnd
 
+# Post-frame açılan "Yenilikler" sheet'i. Başlık sürüm numarası içerdiği için daima
+# id ile yakalanır; kapatma butonu yoktur, scrim'e dokunularak kapatılır.
 - extendedWaitUntil:
-    notVisible:
-      id: "splashView"
-    timeout: 60000
-
-# İlk kurulum onboarding'i (kapatma butonu sağ üstteki X).
-- runFlow:
-    when:
-      visible:
-        id: "onboardButton"
-    commands:
-      - tapOn:
-          id: "onboardButton"
-      - waitForAnimationToEnd
-
-# Sürüm değiştiğinde post-frame açılan sheet. Başlık sürüm numarası içerdiği için
-# daima id ile yakalanır; kapatma butonu yok, scrim'e dokunularak kapatılır.
-- runFlow:
-    when:
-      visible:
-        id: "whatsNewSheet"
-    commands:
-      - tapOn:
-          point: "50%,20%"
-      - waitForAnimationToEnd
-      - assertNotVisible:
-          id: "whatsNewSheet"
+    visible:
+      id: "whatsNewSheet"
+    timeout: 30000
+- tapOn:
+    point: "50%,20%"
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "whatsNewSheet"
 
 - extendedWaitUntil:
     visible:

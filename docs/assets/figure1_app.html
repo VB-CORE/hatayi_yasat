@@ -1,0 +1,95 @@
+<!doctype html>
+<!-- IMAGE SLOT 1 — the app itself. 1600×1120. Render: ./docs/assets/render_figures.sh -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0B0D10; --ink:#F5F7FA; --muted:#8A93A0; --accent:#FF6B35; --line:#1E2329; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1600px; height:1120px; overflow:hidden; background:var(--bg); }
+
+  .fig {
+    width:1600px; height:1120px; position:relative;
+    background: radial-gradient(1000px 600px at 50% -10%, rgba(255,107,53,.10), transparent 60%), var(--bg);
+    font-family:'Inter',system-ui,sans-serif; color:var(--ink);
+    display:flex; flex-direction:column; align-items:center;
+    padding:56px 0 44px;
+  }
+  .fig::before {
+    content:''; position:absolute; inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:52px 52px; opacity:.26;
+    mask-image:radial-gradient(1100px 700px at 50% 45%, #000 40%, transparent 80%);
+  }
+
+  .kicker {
+    position:relative; z-index:2; font-family:'JetBrains Mono',monospace;
+    font-size:13px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--accent); border:1px solid rgba(255,107,53,.32); border-radius:8px;
+    padding:8px 14px; margin-bottom:44px;
+  }
+
+  .row { position:relative; z-index:2; display:flex; gap:66px; align-items:flex-start; }
+  .item { display:flex; flex-direction:column; align-items:center; width:380px; }
+
+  .phone {
+    width:380px; height:826px; border-radius:46px; background:#14181D; padding:11px;
+    box-shadow:0 34px 80px rgba(0,0,0,.62), 0 0 0 1px rgba(255,255,255,.07);
+    position:relative;
+  }
+  .phone img { width:100%; height:100%; object-fit:cover; object-position:top; border-radius:36px; display:block; background:#fff; }
+  .notch { position:absolute; top:22px; left:50%; transform:translateX(-50%); width:112px; height:27px; border-radius:14px; background:#0B0D10; z-index:2; }
+
+  .cap { margin-top:24px; text-align:center; }
+  .cap .n {
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:700;
+    color:var(--accent); border:1px solid rgba(255,107,53,.30); border-radius:6px;
+    padding:4px 9px; margin-bottom:11px;
+  }
+  .cap .t { font-size:19px; font-weight:600; }
+  .cap .s { font-size:15.5px; color:var(--muted); margin-top:5px; }
+</style>
+</head>
+<body>
+<div class="fig">
+  <div class="kicker">Captured by the agent &nbsp;·&nbsp; not by me</div>
+  <div class="row">
+
+    <div class="item">
+      <div class="phone"><div class="notch"></div>
+        <img src="../../maestro/reports/smoke/02_home_tab.png" alt="place directory">
+      </div>
+      <div class="cap">
+        <span class="n">FLOW 02</span>
+        <div class="t">The place directory</div>
+        <div class="s">businesses across Hatay, live from Firestore</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="phone"><div class="notch"></div>
+        <img src="../../maestro/reports/smoke/03_place_detail.png" alt="place detail">
+      </div>
+      <div class="cap">
+        <span class="n">FLOW 03</span>
+        <div class="t">A place detail</div>
+        <div class="s">one tap to call or get directions</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="phone"><div class="notch"></div>
+        <img src="../../maestro/reports/smoke/05_memories_grid.png" alt="memories">
+      </div>
+      <div class="cap">
+        <span class="n">FLOW 05</span>
+        <div class="t">Memories</div>
+        <div class="s">the city as people remember it</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

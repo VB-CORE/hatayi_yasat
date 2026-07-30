@@ -20,7 +20,7 @@ tags:
 - extendedWaitUntil:
     visible: "Anladım"
     timeout: 30000
-- takeScreenshot: "../../reports/smoke/05_memories_first_visit_dialog"
+- takeScreenshot: "maestro/reports/smoke/05_memories_first_visit_dialog"
 - tapOn: "Anladım"
 - waitForAnimationToEnd
 
@@ -29,7 +29,7 @@ tags:
     selected: true
 - assertNotVisible: "Mekanlar"
 - assertNotVisible: "Haberler"
-- takeScreenshot: "../../reports/smoke/05_memories_grid"
+- takeScreenshot: "maestro/reports/smoke/05_memories_grid"
 
 # NEEDS-ID: kalp FAB'ının id'si yok, konumdan tıklanıyor (endDocked, sağ alt).
 # `GeneralSemanticKeys.memoryFavoriteButton` eklenirse burası `id:` ile değiştirilmeli.
@@ -39,7 +39,7 @@ tags:
     visible: "Favori Anılarım"
     timeout: 30000
 - assertVisible: "Henüz favori anınız yok"
-- takeScreenshot: "../../reports/smoke/05_memories_favorites_sheet"
+- takeScreenshot: "maestro/reports/smoke/05_memories_favorites_sheet"
 
 - tapOn: "Geri"
 - waitForAnimationToEnd

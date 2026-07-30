@@ -1,0 +1,146 @@
+<!doctype html>
+<!--
+  Medium cover — 1500×750.
+  Render:  ./docs/assets/render_cover.sh
+  Phone frame can be swapped for any file in maestro/reports/smoke/.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #0B0D10;
+    --ink:    #F5F7FA;
+    --muted:  #8A93A0;
+    --accent: #FF6B35;
+    --green:  #2ED573;
+    --line:   #1E2329;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1500px; height:750px; overflow:hidden; background:var(--bg); }
+
+  .cover {
+    width:1500px; height:750px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(900px 520px at 84% 14%, rgba(255,107,53,.17), transparent 62%),
+      radial-gradient(720px 500px at 6% 96%, rgba(46,213,115,.10), transparent 62%),
+      var(--bg);
+    font-family:'Inter',-apple-system,system-ui,sans-serif;
+    color:var(--ink);
+    display:grid; grid-template-columns: 470px 1fr; align-items:center;
+  }
+  .cover::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:52px 52px; opacity:.30;
+    mask-image:radial-gradient(1100px 620px at 46% 48%, #000 34%, transparent 78%);
+  }
+
+  /* ---------- left: phone ---------- */
+  .stage { position:relative; height:100%; display:flex; align-items:center; justify-content:center; }
+  .phone {
+    position:relative; width:300px; height:634px; border-radius:44px;
+    background:#14181D; padding:10px;
+    box-shadow:0 44px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08);
+    transform:rotate(-3.5deg);
+  }
+  .phone img {
+    width:100%; height:100%; object-fit:cover; object-position:top;
+    border-radius:35px; display:block; background:#fff;
+  }
+  .notch {
+    position:absolute; top:20px; left:50%; transform:translateX(-50%);
+    width:96px; height:24px; border-radius:13px; background:#0B0D10; z-index:2;
+  }
+
+  /* ---------- right: copy ---------- */
+  .copy { padding:0 82px 0 30px; position:relative; z-index:2; }
+
+  .kicker {
+    display:inline-flex; align-items:center;
+    font-family:'JetBrains Mono',monospace; font-size:13.5px; font-weight:700;
+    letter-spacing:.17em; text-transform:uppercase; color:var(--accent);
+    border:1px solid rgba(255,107,53,.34); border-radius:8px;
+    padding:8px 14px; margin-bottom:28px;
+  }
+
+  h1 { font-size:72px; line-height:1.03; font-weight:900; letter-spacing:-.032em; }
+  h1 .em   { color:var(--accent); }
+  h1 .line { display:block; }
+
+  .rule { width:64px; height:4px; background:var(--accent); border-radius:2px; margin:28px 0 22px; }
+
+  .sub { font-size:20.5px; line-height:1.5; color:var(--muted); max-width:660px; }
+  .sub b { color:var(--ink); font-weight:600; }
+
+  /* stat pills — moved off the phone so nothing gets clipped */
+  .stats { margin-top:32px; display:flex; align-items:center; gap:12px; }
+  .pill {
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:14.5px; font-weight:700;
+    padding:9px 15px; border-radius:999px; white-space:nowrap;
+  }
+  .pill.pass { background:rgba(46,213,115,.13);  color:var(--green);  border:1px solid rgba(46,213,115,.40); }
+  .pill.zero { background:rgba(255,107,53,.12);  color:var(--accent); border:1px solid rgba(255,107,53,.38); }
+  .dot { width:8px; height:8px; border-radius:50%; background:currentColor; }
+
+  .meta {
+    position:absolute; bottom:52px; left:500px;
+    display:flex; align-items:center; gap:13px;
+    font-family:'JetBrains Mono',monospace; font-size:14.5px; color:var(--muted);
+  }
+  .chip {
+    padding:6px 12px; border-radius:7px; background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.09); color:var(--ink); font-weight:700;
+  }
+  .sep { opacity:.38; }
+</style>
+</head>
+<body>
+<div class="cover">
+
+  <div class="stage">
+    <div class="phone">
+      <div class="notch"></div>
+      <img src="../../maestro/reports/smoke/02_home_tab.png" alt="app screen">
+    </div>
+  </div>
+
+  <div class="copy">
+    <div class="kicker">Claude Code &nbsp;×&nbsp; Maestro MCP</div>
+
+    <h1>
+      <span class="line">Autonomous</span>
+      <span class="line">Flutter UI testing.</span>
+      <span class="line em">No selectors by hand.</span>
+    </h1>
+
+    <div class="rule"></div>
+
+    <p class="sub">
+      An AI agent drove the simulator, read the <b>real view hierarchy</b>, and produced
+      <b>8 Maestro flows</b> — without touching a single line of <b>lib/</b>.
+    </p>
+
+    <div class="stats">
+      <span class="pill pass"><span class="dot"></span>8 flows · 218s · 0 failures</span>
+      <span class="pill zero"><span class="dot"></span>0 lines of app code</span>
+    </div>
+  </div>
+
+  <div class="meta">
+    <span class="chip">Flutter</span>
+    <span class="sep">/</span>
+    <span class="chip">Maestro</span>
+    <span class="sep">/</span>
+    <span class="chip">MCP</span>
+    <span class="sep">/</span>
+    <span>Veli Bacık</span>
+  </div>
+
+</div>
+</body>
+</html>

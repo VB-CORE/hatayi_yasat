@@ -32,7 +32,7 @@ tags:
 - assertNotVisible:
     id: "mainTabBottomNavigation"
 
-- takeScreenshot: "../../reports/smoke/03_place_detail"
+- takeScreenshot: "maestro/reports/smoke/03_place_detail"
 
 - tapOn: "Geri"
 - extendedWaitUntil:

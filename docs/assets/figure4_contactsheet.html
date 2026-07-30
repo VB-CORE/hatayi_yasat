@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- IMAGE SLOT 4 — contact sheet, all 13 frames. 1600×1030. Render: ./docs/assets/render_figures.sh -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0B0D10; --ink:#F5F7FA; --muted:#8A93A0; --accent:#FF6B35; --green:#2ED573; --line:#1E2329; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1600px; height:1030px; overflow:hidden; background:var(--bg); }
+
+  .fig {
+    width:1600px; height:1030px; position:relative;
+    background: radial-gradient(1100px 620px at 50% -8%, rgba(255,107,53,.09), transparent 62%), var(--bg);
+    font-family:'Inter',system-ui,sans-serif; color:var(--ink);
+    padding:44px 52px 40px;
+  }
+  .fig::before {
+    content:''; position:absolute; inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:52px 52px; opacity:.24;
+    mask-image:radial-gradient(1200px 760px at 50% 46%, #000 42%, transparent 82%);
+  }
+
+  header { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; margin-bottom:34px; }
+  h2 { font-size:31px; font-weight:700; letter-spacing:-.02em; }
+  h2 span { color:var(--muted); font-weight:400; }
+  .pill {
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700;
+    padding:9px 15px; border-radius:999px;
+    background:rgba(46,213,115,.12); color:var(--green); border:1px solid rgba(46,213,115,.38);
+  }
+  .dot { width:8px; height:8px; border-radius:50%; background:currentColor; }
+
+  .grid {
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:repeat(7, 1fr); gap:22px 20px;
+  }
+  .cell { display:flex; flex-direction:column; }
+  .shot {
+    width:100%; aspect-ratio:1206/2622; border-radius:12px; overflow:hidden;
+    background:#fff; border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 12px 26px rgba(0,0,0,.42);
+  }
+  .shot img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .lbl { margin-top:9px; display:flex; align-items:baseline; gap:6px; }
+  .lbl .i { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--accent); }
+  .lbl .t { font-size:12.5px; color:var(--muted); line-height:1.25; }
+</style>
+</head>
+<body>
+<div class="fig">
+
+  <header>
+    <h2>Thirteen frames, <span>one run, zero humans</span></h2>
+    <span class="pill"><span class="dot"></span>smoke_test_auto &nbsp;·&nbsp; 218s &nbsp;·&nbsp; 0 failures</span>
+  </header>
+
+  <div class="grid">
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/01_app_launch.png"></div>
+      <div class="lbl"><span class="i">01</span><span class="t">four-tab shell</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/02_home_tab.png"></div>
+      <div class="lbl"><span class="i">02</span><span class="t">place directory</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/03_place_detail.png"></div>
+      <div class="lbl"><span class="i">03</span><span class="t">place detail</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/04_community_news.png"></div>
+      <div class="lbl"><span class="i">04</span><span class="t">community · news</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/04_community_events.png"></div>
+      <div class="lbl"><span class="i">04</span><span class="t">community · events</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/04_community_jobs.png"></div>
+      <div class="lbl"><span class="i">04</span><span class="t">community · jobs</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/05_memories_first_visit_dialog.png"></div>
+      <div class="lbl"><span class="i">05</span><span class="t">first-visit dialog</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/05_memories_grid.png"></div>
+      <div class="lbl"><span class="i">05</span><span class="t">memories grid</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/05_memories_favorites_sheet.png"></div>
+      <div class="lbl"><span class="i">05</span><span class="t">favourite memories</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/06_favorite_empty.png"></div>
+      <div class="lbl"><span class="i">06</span><span class="t">favourites · empty</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/07_place_favorited.png"></div>
+      <div class="lbl"><span class="i">07</span><span class="t">just favourited</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/07_favorite_filled.png"></div>
+      <div class="lbl"><span class="i">07</span><span class="t">now in the list</span></div></div>
+
+    <div class="cell"><div class="shot"><img src="../../maestro/reports/smoke/08_tab_bar_navigation.png"></div>
+      <div class="lbl"><span class="i">08</span><span class="t">end of tab tour</span></div></div>
+  </div>
+
+</div>
+</body>
+</html>

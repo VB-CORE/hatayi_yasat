@@ -17,4 +17,4 @@ tags:
 - assertNotVisible: "Tümünü Temizle"
 - assertNotVisible: "Mekanlar"
 
-- takeScreenshot: "../../reports/smoke/06_favorite_empty"
+- takeScreenshot: "maestro/reports/smoke/06_favorite_empty"

@@ -1,0 +1,52 @@
+# bootstrap.yaml — the entry point every flow in the suite starts from.
+#
+# Repo: github.com/VB-CORE/life_client → maestro/flows/core/bootstrap.yaml
+# (the version in the repo carries the same logic with Turkish comments)
+#
+# Cold start path: launch → splash → onboarding → "What's New" sheet → home.
+# clearState makes both interstitials CERTAIN, which is what lets us assert them
+# outright instead of guarding them with `when:`.
+
+appId: com.hatayiyasat.app
+---
+- launchApp:
+    clearState: true
+
+# The splash screen is TRANSIENT. Waiting for it to *appear* is a race by
+# construction — it can come and go before Maestro's first poll, and the faster
+# the app gets the more often you lose. Anchor on the first DURABLE state after
+# it instead: with clearState, the onboarding sheet is guaranteed.
+- extendedWaitUntil:
+    visible:
+      id: "onboardButton"
+    timeout: 90000
+- tapOn:
+    id: "onboardButton"
+- waitForAnimationToEnd
+
+# Post-frame "What's New" sheet. Its title contains the version number
+# ("Yenilikler v8.1.0 🎉"), so it is ALWAYS matched by id, never by text —
+# otherwise the flow dies at the next release. There is no close button;
+# it is dismissed by tapping the scrim above it.
+- extendedWaitUntil:
+    visible:
+      id: "whatsNewSheet"
+    timeout: 30000
+- tapOn:
+    point: "50%,20%"
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: "whatsNewSheet"
+
+# The app shell is up.
+- extendedWaitUntil:
+    visible:
+      id: "mainTabView"
+    timeout: 30000
+- assertVisible:
+    id: "mainTabBottomNavigation"
+
+# …and the home Firestore query actually came back.
+- extendedWaitUntil:
+    visible: "Mekanlar"
+    timeout: 30000

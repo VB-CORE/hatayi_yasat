@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0E14"/>
+      <stop offset="55%" stop-color="#121A26"/>
+      <stop offset="100%" stop-color="#1B1207"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F0A37E"/>
+      <stop offset="100%" stop-color="#D97757"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="drop" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+    <clipPath id="phoneClip">
+      <rect x="0" y="0" width="256" height="564" rx="21"/>
+    </clipPath>
+    <clipPath id="faceClip">
+      <circle cx="1116" cy="470" r="105"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="250" cy="360" r="300" fill="#D97757" opacity="0.10" filter="url(#glow)"/>
+  <circle cx="1150" cy="640" r="220" fill="#3FB950" opacity="0.08" filter="url(#glow)"/>
+
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <path d="M0 120 H1280 M0 240 H1280 M0 360 H1280 M0 480 H1280 M0 600 H1280"/>
+  </g>
+
+  <!-- SOL: gercek uygulama ekrani (app.png, mavi kenarlari kirpildi) -->
+  <g transform="translate(80,36)" filter="url(#drop)">
+    <rect x="-11" y="-11" width="278" height="586" rx="32" fill="#D97757" opacity="0.30"/>
+    <g clip-path="url(#phoneClip)">
+      <image href="app.png" x="-8.53" y="-3.56" width="272.4" height="571" preserveAspectRatio="none"/>
+    </g>
+    <rect x="0" y="0" width="256" height="564" rx="21" fill="none" stroke="#2A3441" stroke-width="3"/>
+  </g>
+
+  <!-- SUCCESS rozeti -->
+  <g transform="translate(66,624)">
+    <rect x="0" y="0" width="284" height="64" rx="32" fill="#0E2A16" stroke="#3FB950" stroke-width="3"/>
+    <circle cx="40" cy="32" r="18" fill="#3FB950"/>
+    <path d="M31 32 l7 8 l13 -15" stroke="#0E2A16" stroke-width="5" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="70" y="41" font-family="Helvetica Neue, Helvetica, Arial" font-size="26"
+          font-weight="700" fill="#3FB950" letter-spacing="0.5">8/8 PASSED</text>
+  </g>
+
+  <!-- SAG: baslik -->
+  <g transform="translate(452,0)">
+    <rect x="0" y="62" width="472" height="46" rx="23" fill="none" stroke="url(#accent)" stroke-width="3"/>
+    <text x="24" y="94" font-family="Helvetica Neue, Helvetica, Arial" font-size="24"
+          font-weight="700" fill="#F0A37E" letter-spacing="2.2">CLAUDE CODE x MAESTRO MCP</text>
+
+    <text x="0" y="266" font-family="Arial Black, Impact, Helvetica" font-size="116"
+          font-weight="900" fill="#FFFFFF" letter-spacing="-2">AI KEND&#x130;</text>
+    <text x="0" y="396" font-family="Arial Black, Impact, Helvetica" font-size="116"
+          font-weight="900" fill="#FFFFFF" letter-spacing="-2">TEST&#x130;N&#x130;</text>
+    <text x="0" y="526" font-family="Arial Black, Impact, Helvetica" font-size="116"
+          font-weight="900" fill="#D97757" letter-spacing="-2">YAZDI</text>
+
+    <rect x="0" y="606" width="8" height="46" fill="#3FB950"/>
+    <text x="24" y="640" font-family="Helvetica Neue, Helvetica, Arial" font-size="29"
+          font-weight="700" fill="#B7C2D0" letter-spacing="0.5">Kaynak koda 0 satir dokunmadan</text>
+  </g>
+
+  <!-- Sag alt: gercek portre (me.png, daire kirpim) -->
+  <g filter="url(#drop)">
+    <circle cx="1116" cy="470" r="111" fill="#D97757" opacity="0.85"/>
+    <g clip-path="url(#faceClip)">
+      <image href="me.png" x="912.8" y="334.5" width="374.6" height="379.4" preserveAspectRatio="none"/>
+    </g>
+    <circle cx="1116" cy="470" r="105" fill="none" stroke="#F0A37E" stroke-width="4"/>
+  </g>
+</svg>

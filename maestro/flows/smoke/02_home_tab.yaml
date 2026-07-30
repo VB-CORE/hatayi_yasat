@@ -21,4 +21,4 @@ tags:
 - assertNotVisible: "Haberler"
 - assertNotVisible: "Favori listeniz boş"
 
-- takeScreenshot: "../../reports/smoke/02_home_tab"
+- takeScreenshot: "maestro/reports/smoke/02_home_tab"

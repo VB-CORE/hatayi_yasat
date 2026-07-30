@@ -46,4 +46,4 @@ tags:
     id: "homeTab"
     selected: true
 
-- takeScreenshot: "../../reports/smoke/08_tab_bar_navigation"
+- takeScreenshot: "maestro/reports/smoke/08_tab_bar_navigation"

@@ -14,19 +14,19 @@ tags:
 - assertVisible: "Etkinlikler"
 - assertVisible: "İş İlanı"
 - assertNotVisible: "Mekanlar"
-- takeScreenshot: "../../reports/smoke/04_community_news"
+- takeScreenshot: "maestro/reports/smoke/04_community_news"
 
 - tapOn: "Etkinlikler"
 - waitForAnimationToEnd
 - assertVisible: "Haberler"
 - assertVisible: "İş İlanı"
-- takeScreenshot: "../../reports/smoke/04_community_events"
+- takeScreenshot: "maestro/reports/smoke/04_community_events"
 
 - tapOn: "İş İlanı"
 - waitForAnimationToEnd
 - assertVisible: "Haberler"
 - assertVisible: "Etkinlikler"
-- takeScreenshot: "../../reports/smoke/04_community_jobs"
+- takeScreenshot: "maestro/reports/smoke/04_community_jobs"
 
 - tapOn: "Haberler"
 - waitForAnimationToEnd

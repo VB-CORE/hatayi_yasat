@@ -29,7 +29,7 @@ tags:
 - tapOn:
     point: "92%,18%"
 - waitForAnimationToEnd
-- takeScreenshot: "../../reports/smoke/07_place_favorited"
+- takeScreenshot: "maestro/reports/smoke/07_place_favorited"
 
 - tapOn: "Geri"
 - extendedWaitUntil:
@@ -42,7 +42,7 @@ tags:
     timeout: 30000
 - assertVisible: "Tümünü Temizle"
 - assertNotVisible: "Favori listeniz boş"
-- takeScreenshot: "../../reports/smoke/07_favorite_filled"
+- takeScreenshot: "maestro/reports/smoke/07_favorite_filled"
 
 # Temizlik: onay dialogundan geçip boş duruma dön.
 - tapOn: "Tümünü Temizle"

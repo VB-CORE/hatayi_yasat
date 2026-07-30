@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08111C"/>
+      <stop offset="100%" stop-color="#140A0A"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F0A37E"/>
+      <stop offset="100%" stop-color="#D97757"/>
+    </linearGradient>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="30" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="drop2" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+    <clipPath id="phoneClipB">
+      <rect x="0" y="0" width="250" height="551" rx="20"/>
+    </clipPath>
+    <clipPath id="faceClipB">
+      <circle cx="212" cy="616" r="82"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <circle cx="200" cy="300" r="300" fill="#D97757" opacity="0.12" filter="url(#glow2)"/>
+  <circle cx="1120" cy="620" r="240" fill="#3FB950" opacity="0.07" filter="url(#glow2)"/>
+
+  <!-- SOL: gercek uygulama ekrani -->
+  <g transform="translate(58,44)" filter="url(#drop2)">
+    <rect x="-11" y="-11" width="272" height="573" rx="31" fill="#D97757" opacity="0.30"/>
+    <g clip-path="url(#phoneClipB)">
+      <image href="app.png" x="-8.33" y="-3.47" width="266.0" height="557.6" preserveAspectRatio="none"/>
+    </g>
+    <rect x="0" y="0" width="250" height="551" rx="20" fill="none" stroke="#2A3441" stroke-width="3"/>
+  </g>
+
+  <!-- SOL ALT: gercek portre -->
+  <g filter="url(#drop2)">
+    <circle cx="212" cy="616" r="88" fill="#D97757" opacity="0.85"/>
+    <g clip-path="url(#faceClipB)">
+      <image href="me.png" x="53.3" y="510.2" width="292.6" height="296.3" preserveAspectRatio="none"/>
+    </g>
+    <circle cx="212" cy="616" r="82" fill="none" stroke="#F0A37E" stroke-width="4"/>
+  </g>
+
+  <!-- SAG: baslik -->
+  <g transform="translate(364,0)">
+    <rect x="0" y="56" width="472" height="46" rx="23" fill="none" stroke="url(#accent2)" stroke-width="3"/>
+    <text x="24" y="88" font-family="Helvetica Neue, Helvetica, Arial" font-size="24"
+          font-weight="700" fill="#F0A37E" letter-spacing="2.2">CLAUDE CODE x MAESTRO MCP</text>
+
+    <text x="0" y="232" font-family="Arial Black, Impact, Helvetica" font-size="98"
+          font-weight="900" fill="#FFFFFF" letter-spacing="-2">KOD YAZMADAN</text>
+    <text x="0" y="356" font-family="Arial Black, Impact, Helvetica" font-size="122"
+          font-weight="900" fill="#D97757" letter-spacing="-2">8 E2E TEST</text>
+
+    <!-- terminal serit -->
+    <g transform="translate(0,404)">
+      <rect x="0" y="0" width="856" height="176" rx="18" fill="#0B1017" stroke="#243040" stroke-width="3"/>
+      <circle cx="32" cy="30" r="8" fill="#FF5F57"/>
+      <circle cx="58" cy="30" r="8" fill="#FEBC2E"/>
+      <circle cx="84" cy="30" r="8" fill="#28C840"/>
+      <text x="32" y="88" font-family="Menlo, Courier New, monospace" font-size="25" fill="#7D8896">$ ./maestro/run.sh --build</text>
+      <text x="32" y="128" font-family="Menlo, Courier New, monospace" font-size="25" fill="#3FB950">[PASSED] 01_app_launch    18.0s</text>
+      <text x="32" y="160" font-family="Menlo, Courier New, monospace" font-size="25" fill="#3FB950">[PASSED] 07_favorite_add  22.4s</text>
+      <circle cx="782" cy="120" r="34" fill="#3FB950"/>
+      <path d="M766 120 l12 14 l24 -28" stroke="#0B1017" stroke-width="8" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text x="0" y="646" font-family="Helvetica Neue, Helvetica, Arial" font-size="28"
+          font-weight="700" fill="#96A2B2" letter-spacing="0.5">Flutter + Maestro MCP ile otonom UI test</text>
+  </g>
+</svg>
