@@ -70,7 +70,7 @@ service cloud.firestore {
     function isGroupAdmin(groupId) {
       return isGroupOwner(groupId)
         || (isGroupMember(groupId)
-            && myMembershipData(groupId).get('role', 'member') == 'admin');
+            && myMembershipData(groupId).get('role', 1) == 2);
     }
 
     // Yazma kilitleri grup dokümanında yaşar, her yüzey için bir bayrak. Alanın
@@ -162,19 +162,13 @@ service cloud.firestore {
       allow update: if request.auth.uid == uid && movesOwnCounter();
       allow update: if isAdmin();
 
-      // Kullanıcının beğendiği gönderiler. Gönderi id'si doküman id'sidir ve
-      // posts/{postId}.likeCount bundan türeyen sayaçtır.
-      match /likedPosts/{postId} {
-        allow read: if request.auth.uid == uid;
-        allow write: if request.auth.uid == uid && !isBanned();
-      }
     }
 
     match /approvedApplications/{storeId} {
       allow read: if true;
       allow write: if isAdmin();
       allow update: if resource.data.ownerId == request.auth.uid
-        && affects(['showcaseModules', 'description', 'images',
+        && affects(['description', 'images',
                     'openTime', 'closeTime', 'updatedAt']);
       allow update: if isSignedIn()
         && affects(['viewCount'])
@@ -189,7 +183,16 @@ service cloud.firestore {
           && request.resource.data.score >= 1
           && request.resource.data.score <= 5
           && !isBanned();
-        allow delete: if request.auth.uid == voterUid || isAdmin();
+        allow update: if isSoftDelete()
+          && (request.auth.uid == voterUid || isAdmin());
+        allow delete: if false;
+      }
+
+      // Vitrin kartları. Sadece mağaza sahibi yazar, herkes okur.
+      match /showcase/{moduleId} {
+        allow read: if true;
+        allow write: if isMerchantOf(storeId) && !isBanned();
+        allow write: if isAdmin();
       }
     }
 
@@ -247,6 +250,18 @@ service cloud.firestore {
         allow update: if isGroupMember(groupId) && movesCounterByOne('likeCount')
           && !isBanned();
         allow delete: if false;
+
+        // Beğeni, gönderinin altında ve beğenen kişiyle anahtarlanır. Gönderinin
+        // bir kopyasını taşımaz; hangi gönderi olduğunu yolun kendisi söyler.
+        match /likes/{likerUid} {
+          allow read: if isSignedIn();
+          allow create: if request.auth.uid == likerUid
+            && request.resource.data.uid == likerUid
+            && isGroupMember(groupId) && !isBanned();
+          allow update: if request.auth.uid == likerUid && isSoftDelete()
+            && !isBanned();
+          allow delete: if false;
+        }
       }
 
       // Tartışmalar ve cevapları, gönderilerle aynı erişim şeklini paylaşır.

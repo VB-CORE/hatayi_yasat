@@ -32,7 +32,9 @@ final class MonetizationViewModel extends _$MonetizationViewModel
 
     state = switch (result) {
       FirebaseSuccess(:final data) => state.copyWith(
-        coupons: data.where((coupon) => coupon.storeId == _storeId).toList(),
+        coupons: data
+            .where((coupon) => coupon.storeId == _storeId && !coupon.isDeleted)
+            .toList(),
         isFetching: false,
         isError: false,
       ),
@@ -89,9 +91,10 @@ final class MonetizationViewModel extends _$MonetizationViewModel
     if (state.isSubmitting || coupon.documentId.isEmpty) return false;
 
     state = state.copyWith(isSubmitting: true, isError: false);
-    final result = await firestoreService.delete<DiscountCouponModel>(
+    final result = await firestoreService.updateFields(
       path: CollectionPaths.coupons,
-      model: coupon,
+      documentId: coupon.documentId,
+      fields: SoftDelete.payload(),
     );
 
     if (result.isSuccess) {

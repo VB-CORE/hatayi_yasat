@@ -176,7 +176,7 @@ final class _LikeButton extends ConsumerWidget {
         color: context.general.colorScheme.tertiary,
       ),
       onTap: (_) =>
-          ref.read(provider.notifier).toggle(model, groupName: groupName),
+          ref.read(provider.notifier).toggle(model),
     );
   }
 }

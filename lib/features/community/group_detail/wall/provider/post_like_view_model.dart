@@ -22,28 +22,24 @@ final class PostLikeViewModel extends _$PostLikeViewModel
     return const PostLikeState(isFetching: true);
   }
 
-  Future<bool> toggle(GroupPostModel post, {required String groupName}) async {
+  Future<bool> toggle(GroupPostModel post) async {
     final uid = _currentUid;
     if (uid == null || state.isProcessing) return state.isLiked;
 
     final willLike = !state.isLiked;
     state = state.copyWith(isLiked: willLike, isProcessing: true);
 
-    final likeReference = CommunityPaths.likedPosts(
-      uid,
-    ).collection.doc(post.id);
+    final likeReference = CommunityPaths.likes(
+      groupId,
+      post.id,
+    ).collection.doc(uid);
     final postReference = CommunityPaths.posts(groupId).collection.doc(post.id);
-    final liked = LikedPostModel.fromPost(
-      post: post,
-      groupId: groupId,
-      groupName: groupName,
-    );
 
     final result = await firestoreService.batchWrite((batch) {
       if (willLike) {
-        batch.set(likeReference, liked.toJson());
+        batch.set(likeReference, PostLikeModel(uid: uid).toJson());
       } else {
-        batch.delete(likeReference);
+        batch.update(likeReference, SoftDelete.payload());
       }
       batch.update(postReference, {
         CommunityCounterFields.likeCount.name: FieldValue.increment(
@@ -69,15 +65,16 @@ final class PostLikeViewModel extends _$PostLikeViewModel
   }
 
   Future<void> _load(String uid) async {
-    final result = await firestoreService.getSingleData<LikedPostModel>(
-      model: const LikedPostModel.empty(),
-      path: CommunityPaths.likedPosts(uid),
-      id: postId,
+    final result = await firestoreService.getSingleData<PostLikeModel>(
+      model: const PostLikeModel.empty(),
+      path: CommunityPaths.likes(groupId, postId),
+      id: uid,
     );
     if (!ref.mounted) return;
 
+    final like = result.dataOrNull;
     state = state.copyWith(
-      isLiked: result.dataOrNull != null,
+      isLiked: like != null && !like.isDeleted,
       isFetching: false,
     );
   }

@@ -20,6 +20,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
     this.createdAt,
     this.updatedAt,
     this.documentId = '',
+    this.isDeleted = false,
   });
 
   final String? storeId;
@@ -53,6 +54,8 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String documentId;
 
+  final bool isDeleted;
+
   bool get isExpired =>
       expiresAt != null && expiresAt!.isBefore(DateTime.now());
 
@@ -79,6 +82,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
     createdAt,
     updatedAt,
     documentId,
+    isDeleted,
   ];
 
   DiscountCouponModel copyWith({
@@ -92,6 +96,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
     DateTime? createdAt,
     DateTime? updatedAt,
     String? documentId,
+    bool? isDeleted,
   }) {
     return DiscountCouponModel(
       storeId: storeId ?? this.storeId,
@@ -104,6 +109,7 @@ final class DiscountCouponModel extends BaseFirebaseModel<DiscountCouponModel>
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       documentId: documentId ?? this.documentId,
+      isDeleted: isDeleted ?? this.isDeleted,
     );
   }
 

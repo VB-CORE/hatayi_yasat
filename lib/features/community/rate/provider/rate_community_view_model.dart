@@ -166,7 +166,10 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     );
     final result = await firestoreService.batchWrite(
       (batch) => batch
-        ..delete(_votes.collection.doc(currentVote.voterUid))
+        ..update(
+          _votes.collection.doc(currentVote.voterUid),
+          SoftDelete.payload(),
+        )
         ..update(
           CollectionPaths.users.collection.doc(currentVote.voterUid),
           UserModel.counterStep(UserCounterFields.voteCount, by: -1),

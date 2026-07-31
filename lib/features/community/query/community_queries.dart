@@ -53,16 +53,20 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
       .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(FirestoreFields.createdAt.name);
 
-  Query<LikedPostModel?> likedPostsQuery(String uid) => firestoreService
-      .collectionReference(
-        CommunityPaths.likedPosts(uid),
-        const LikedPostModel.empty(),
-      )
+  /// Every post this user liked, across groups. The like documents live under
+  /// their post, so this is a collection group scan rather than a per-user list.
+  Query<PostLikeModel?> likedPostsQuery(String uid) => FirebaseFirestore.instance
+      .collectionGroup(SubCollectionPaths.likes.name)
+      .where(_uidField, isEqualTo: uid)
       .where(FirestoreFields.isDeleted.name, isEqualTo: false)
-      .orderBy(_likedAtField, descending: true);
+      .withConverter<PostLikeModel?>(
+        fromFirestore: (snapshot, _) =>
+            const PostLikeModel.empty().fromFirebase(snapshot),
+        toFirestore: (_, _) => throw UnimplementedError(),
+      );
 
   static const String _categoryValueField = 'categoryValue';
-  static const String _likedAtField = 'likedAt';
+  static const String _uidField = 'uid';
   static const String _roleField = 'role';
-  static final String _adminRole = GroupMemberRole.admin.name;
+  static final int _adminRole = GroupMemberRole.admin.value;
 }
