@@ -280,7 +280,8 @@
   "developers": {
     "title": "Developers",
     "seeProfileButtonText": "See Profile",
-    "thanksMessage": "Thank you to our friends who support us"
+    "thanksMessage": "Thank you to our friends who support us",
+    "veteransButtonTitle": "Veterans"
   },
   "navigationTabs": {
     "home": "Home",

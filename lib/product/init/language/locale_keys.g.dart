@@ -260,6 +260,7 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers_thanksMessage = 'developers.thanksMessage';
+  static const developers_veteransButtonTitle = 'developers.veteransButtonTitle';
   static const developers = 'developers';
   static const navigationTabs_home = 'navigationTabs.home';
   static const navigationTabs_activities = 'navigationTabs.activities';

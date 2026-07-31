@@ -280,7 +280,8 @@
   "developers": {
     "title": "Geliştiriciler",
     "seeProfileButtonText": "Profili Görüntüle",
-    "thanksMessage": "Bizimle olup destek olan arkadaşlarımıza teşekkür ediyoruz"
+    "thanksMessage": "Bizimle olup destek olan arkadaşlarımıza teşekkür ediyoruz",
+    "veteransButtonTitle": "Veteranlar"
   },
   "navigationTabs": {
     "home": "Anasayfa",
