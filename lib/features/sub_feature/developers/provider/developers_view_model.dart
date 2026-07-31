@@ -36,7 +36,7 @@ final class DevelopersViewModel extends _$DevelopersViewModel
 
       state = state.copyWith(
         activeDevelopers: _mapDocs(results[0]),
-        veteranDevelopers: _mapDocs(results[1]),
+        contributorDevelopers: _mapDocs(results[1]),
         isFetching: false,
         isError: false,
       );

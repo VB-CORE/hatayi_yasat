@@ -19,7 +19,7 @@ import 'package:lifeclient/features/monetization/form/monetization_coupon_form_v
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
-import 'package:lifeclient/features/sub_feature/developers/view/developers_veterans_view.dart';
+import 'package:lifeclient/features/sub_feature/developers/view/developers_contributors_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_view.dart';
 import 'package:lifeclient/features/sub_feature/favorite/view/favorite_view.dart';
 import 'package:lifeclient/features/sub_feature/filter_and_search/model/filter_selected_model.dart';
@@ -581,7 +581,7 @@ final class DevelopersRoute extends GoRouteData with $DevelopersRoute {
     path: 'developers',
     name: 'Developers',
     routes: [
-      DevelopersVeteransRoute.route,
+      DevelopersContributorsRoute.route,
     ],
   );
 
@@ -590,18 +590,18 @@ final class DevelopersRoute extends GoRouteData with $DevelopersRoute {
       const DevelopersView();
 }
 
-final class DevelopersVeteransRoute extends GoRouteData
-    with $DevelopersVeteransRoute {
-  const DevelopersVeteransRoute();
+final class DevelopersContributorsRoute extends GoRouteData
+    with $DevelopersContributorsRoute {
+  const DevelopersContributorsRoute();
 
-  static const route = TypedGoRoute<DevelopersVeteransRoute>(
-    path: 'veterans',
-    name: 'Developers Veterans',
+  static const route = TypedGoRoute<DevelopersContributorsRoute>(
+    path: 'contributors',
+    name: 'Developers Contributors',
   );
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const DevelopersVeteransView();
+      const DevelopersContributorsView();
 }
 
 final class ApplicationInformationRoute extends GoRouteData

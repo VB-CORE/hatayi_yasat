@@ -11,17 +11,17 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
-final class DevelopersVeteransView extends ConsumerStatefulWidget {
-  const DevelopersVeteransView({super.key});
+final class DevelopersContributorsView extends ConsumerStatefulWidget {
+  const DevelopersContributorsView({super.key});
 
   @override
-  ConsumerState<DevelopersVeteransView> createState() =>
-      _DevelopersVeteransViewState();
+  ConsumerState<DevelopersContributorsView> createState() =>
+      _DevelopersContributorsViewState();
 }
 
-final class _DevelopersVeteransViewState
-    extends ConsumerState<DevelopersVeteransView>
-    with AppProviderMixin<DevelopersVeteransView> {
+final class _DevelopersContributorsViewState
+    extends ConsumerState<DevelopersContributorsView>
+    with AppProviderMixin<DevelopersContributorsView> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(developersViewModelProvider);
@@ -32,7 +32,7 @@ final class _DevelopersVeteransViewState
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: PageAppBar(
-        pageTitle: LocaleKeys.developers_veteransButtonTitle,
+        pageTitle: LocaleKeys.developers_contributorsButtonTitle,
       ),
       body: switch (state) {
         DevelopersState(isFetching: true) => const PlaceShimmerList(),
@@ -40,13 +40,13 @@ final class _DevelopersVeteransViewState
           title: LocaleKeys.message_somethingWentWrong.tr(),
           onRefresh: onRetry,
         ),
-        DevelopersState(:final veteranDevelopers) => Stack(
+        DevelopersState(:final contributorDevelopers) => Stack(
           children: [
             const Align(
               child: IgnorePointer(child: DevelopersLogoWatermark()),
             ),
             DevelopersBubbleChart(
-              developers: veteranDevelopers,
+              developers: contributorDevelopers,
               headerText: LocaleKeys.settings_inactiveDevelopers.tr(),
             ),
           ],
