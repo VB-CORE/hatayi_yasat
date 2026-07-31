@@ -115,9 +115,6 @@ dependencies:
   like_button: ^2.1.0
 
 dependency_overrides:
-  # life_shared v6.0.0 uzak repoya push edilene kadar; sonra bu iki satir silinecek.
-  life_shared:
-    path: ../life_shared
   device_info_plus: ^12.3.0
   sqflite_android: ^2.4.2+2
 
