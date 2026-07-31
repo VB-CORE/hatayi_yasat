@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
@@ -21,6 +23,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   FirestoreCollectionPath get _votes => CollectionPaths.approvedApplications
       .sub(placeId, SubCollectionPaths.votes);
 
+  Query<VoteModel?> get _votesQuery => firestoreService
+      .collectionReference(_votes, const VoteModel())
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
+      .orderBy(FirestoreFields.createdAt.name, descending: true);
+
   @override
   RateCommunityState build(String placeId) {
     _votesStream = null;
@@ -34,20 +41,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
 
   Stream<List<VoteModel>>? _votesStream;
 
-  Stream<List<VoteModel>> votesStream() => _votesStream ??= firestoreService
-      .queryWithOrderBy<VoteModel>(
-        path: _votes,
-        model: const VoteModel(),
-        orderBy: const MapEntry(_createdAtField, true),
-      )
-      .snapshots()
-      .map(
+  Stream<List<VoteModel>> votesStream() =>
+      _votesStream ??= _votesQuery.snapshots().map(
         (snapshot) => snapshot.docs
             .map((document) => document.data())
             .whereType<VoteModel>()
-            // queryWithOrderBy takes no filter, and a place holds few enough
-            // votes that dropping the banned ones here costs nothing.
-            .where((vote) => !vote.isDeleted)
             .toList(),
       );
 
@@ -71,9 +69,10 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     );
 
     state = switch (result) {
+      FirebaseSuccess(:final data) when data == null || data.isDeleted =>
+        state.copyWith(clearVote: true, isLoading: false, isError: false),
       FirebaseSuccess(:final data) => state.copyWith(
         vote: data,
-        clearVote: data == null,
         isLoading: false,
         isError: false,
       ),
@@ -186,7 +185,6 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     }
   }
 
-  static const String _createdAtField = 'createdAt';
   static const String _commentField = 'comment';
   static const String _updatedAtField = 'updatedAt';
 }
