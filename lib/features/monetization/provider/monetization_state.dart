@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 @immutable
 final class MonetizationState extends Equatable {
@@ -11,15 +11,15 @@ final class MonetizationState extends Equatable {
     this.isError = false,
   });
 
-  final List<DiscountCouponModel> coupons;
+  final List<CouponModel> coupons;
   final bool isFetching;
   final bool isSubmitting;
   final bool isError;
 
-  List<DiscountCouponModel> get activeCoupons =>
+  List<CouponModel> get activeCoupons =>
       coupons.where((coupon) => !coupon.isInactive).toList();
 
-  List<DiscountCouponModel> get inactiveCoupons =>
+  List<CouponModel> get inactiveCoupons =>
       coupons.where((coupon) => coupon.isInactive).toList();
 
   @override
@@ -31,7 +31,7 @@ final class MonetizationState extends Equatable {
   ];
 
   MonetizationState copyWith({
-    List<DiscountCouponModel>? coupons,
+    List<CouponModel>? coupons,
     bool? isFetching,
     bool? isSubmitting,
     bool? isError,

@@ -301,7 +301,8 @@ service cloud.firestore {
         && request.resource.data.ratio >= 1
         && request.resource.data.ratio <= 100
         && request.resource.data.expiresAt is timestamp;
-      allow update, delete: if resource.data.merchantUid == request.auth.uid || isAdmin();
+      allow update: if resource.data.merchantUid == request.auth.uid || isAdmin();
+      allow delete: if false;
 
       match /redemptions/{rid} {
         allow read: if resource.data.merchantUid == request.auth.uid
