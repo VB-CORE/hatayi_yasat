@@ -675,5 +675,10 @@
     "backToGroups": "Gruplar'a dön",
     "requestAccess": "Yetki talebinde bulun",
     "requestAccessComingSoon": "Bu özellik yakında eklenecek."
+  },
+  "banned": {
+    "title": "Hesabın askıya alındı",
+    "description": "Topluluk kurallarını ihlal ettiğin için hesabın kapatıldı. Paylaşımların yayından kaldırıldı.",
+    "signOut": "Çıkış yap"
   }
 }

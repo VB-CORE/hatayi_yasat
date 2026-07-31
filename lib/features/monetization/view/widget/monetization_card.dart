@@ -6,7 +6,7 @@ final class _MonetizationCard extends StatelessWidget {
     required this.onDelete,
   });
 
-  final DiscountCouponModel coupon;
+  final CouponModel coupon;
   final VoidCallback onDelete;
 
   String get _statusLabel {

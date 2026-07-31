@@ -6,7 +6,6 @@ import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_state.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/provider/group_membership_mixin.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -53,7 +52,7 @@ final class GroupMembersViewModel extends _$GroupMembersViewModel
 
     state = state.copyWith(isProcessing: true, isError: false);
 
-    final hasLeft = await writeLeave(groupId: groupId, uid: member.id);
+    final hasLeft = await writeLeave(groupId: groupId, uid: member.uid);
     if (!ref.mounted) return hasLeft;
 
     state = state.copyWith(

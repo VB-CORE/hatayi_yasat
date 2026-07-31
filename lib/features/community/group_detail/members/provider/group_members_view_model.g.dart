@@ -59,7 +59,7 @@ final class GroupMembersViewModelProvider
 }
 
 String _$groupMembersViewModelHash() =>
-    r'33a8adbc83ad531f05ba56179f3c469b4daf0828';
+    r'953e87e341e86896bcec65851ff0a81d9356072c';
 
 final class GroupMembersViewModelFamily extends $Family
     with

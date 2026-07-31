@@ -5,7 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,14 +24,16 @@ final class MonetizationViewModel extends _$MonetizationViewModel
   Future<void> fetchCoupons() async {
     state = state.copyWith(isFetching: true, isError: false);
 
-    final result = await firestoreService.getList<DiscountCouponModel>(
-      model: DiscountCouponModel(),
+    final result = await firestoreService.getList<CouponModel>(
+      model: CouponModel(),
       path: CollectionPaths.coupons,
     );
 
     state = switch (result) {
       FirebaseSuccess(:final data) => state.copyWith(
-        coupons: data.where((coupon) => coupon.storeId == _storeId).toList(),
+        coupons: data
+            .where((coupon) => coupon.storeId == _storeId && !coupon.isDeleted)
+            .toList(),
         isFetching: false,
         isError: false,
       ),
@@ -54,7 +55,7 @@ final class MonetizationViewModel extends _$MonetizationViewModel
 
     final now = DateTime.now();
 
-    final coupon = DiscountCouponModel(
+    final coupon = CouponModel(
       storeId: _storeId,
       merchantUid: _merchantUid,
       desc: desc,
@@ -65,7 +66,7 @@ final class MonetizationViewModel extends _$MonetizationViewModel
       updatedAt: now,
     );
 
-    final result = await firestoreService.add<DiscountCouponModel>(
+    final result = await firestoreService.add<CouponModel>(
       model: coupon,
       path: CollectionPaths.coupons,
     );
@@ -85,13 +86,14 @@ final class MonetizationViewModel extends _$MonetizationViewModel
     return true;
   }
 
-  Future<bool> deleteCoupon(DiscountCouponModel coupon) async {
+  Future<bool> deleteCoupon(CouponModel coupon) async {
     if (state.isSubmitting || coupon.documentId.isEmpty) return false;
 
     state = state.copyWith(isSubmitting: true, isError: false);
-    final result = await firestoreService.delete<DiscountCouponModel>(
+    final result = await firestoreService.updateFields(
       path: CollectionPaths.coupons,
-      model: coupon,
+      documentId: coupon.documentId,
+      fields: SoftDelete.payload(),
     );
 
     if (result.isSuccess) {

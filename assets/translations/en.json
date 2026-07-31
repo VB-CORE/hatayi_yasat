@@ -675,5 +675,10 @@
     "backToGroups": "Back to Groups",
     "requestAccess": "Request access",
     "requestAccessComingSoon": "This feature is coming soon."
+  },
+  "banned": {
+    "title": "Your account is suspended",
+    "description": "Your account was closed for breaking the community rules. Your posts have been taken down.",
+    "signOut": "Sign out"
   }
 }
