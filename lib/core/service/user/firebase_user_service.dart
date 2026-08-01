@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 final class FirebaseUserService implements UserService {
   FirebaseUserService({
@@ -15,11 +13,7 @@ final class FirebaseUserService implements UserService {
   final FirebaseAuth _auth;
 
   @override
-  Future<bool> update({
-    String? displayName,
-    int? avatarType,
-    FieldValue? rates,
-  }) async {
+  Future<bool> update({String? displayName, int? avatarType}) async {
     final user = _auth.currentUser;
     if (user == null) return false;
 
@@ -29,16 +23,21 @@ final class FirebaseUserService implements UserService {
       fields: UserModel.updateFields(
         displayName: displayName?.trim(),
         avatarType: avatarType,
-        rates: rates,
       ),
     );
     return result.isSuccess;
   }
 
   @override
-  Future<bool> addRate(String id) => update(rates: FieldValue.arrayUnion([id]));
+  Future<bool> stepCounter(UserCounterFields counter, {int by = 1}) async {
+    final user = _auth.currentUser;
+    if (user == null) return false;
 
-  @override
-  Future<bool> removeRate(String id) =>
-      update(rates: FieldValue.arrayRemove([id]));
+    final result = await _firestoreService.updateFields(
+      path: CollectionPaths.users,
+      documentId: user.uid,
+      fields: UserModel.counterStep(counter, by: by),
+    );
+    return result.isSuccess;
+  }
 }

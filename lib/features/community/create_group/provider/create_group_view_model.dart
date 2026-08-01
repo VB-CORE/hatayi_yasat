@@ -3,9 +3,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/create_group/model/create_group_model.dart';
 import 'package:lifeclient/features/community/create_group/provider/create_group_state.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/provider/community_image_upload_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -48,8 +46,12 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
       (batch) => batch
         ..set(groupReference, group.toJson())
         ..set(
-          CommunityPaths.members(groupReference.id).collection.doc(creator.id),
+          CommunityPaths.members(groupReference.id).collection.doc(creator.uid),
           creator.toJson(),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(creator.uid),
+          UserModel.counterStep(UserCounterFields.groupCount),
         ),
     );
 

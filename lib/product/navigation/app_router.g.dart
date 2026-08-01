@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
   $splashRoute,
   $mainTabRoute,
   $loginRoute,
+  $bannedRoute,
   $unauthorizedRoute,
   $groupDetailRoute,
   $discussionDetailRoute,
@@ -898,6 +899,32 @@ mixin $LoginRoute on GoRouteData {
     '/login',
     queryParams: {if (_self.from != null) 'from': _self.from},
   );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $bannedRoute => GoRouteData.$route(
+  path: '/banned',
+  hasOverriddenOnExit: false,
+  factory: $BannedRoute._fromState,
+);
+
+mixin $BannedRoute on GoRouteData {
+  static BannedRoute _fromState(GoRouterState state) => const BannedRoute();
+
+  @override
+  String get location => GoRouteData.$location('/banned');
 
   @override
   void go(BuildContext context) => context.go(location);

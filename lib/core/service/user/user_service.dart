@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:life_shared/life_shared.dart';
 
 abstract interface class UserService {
-  Future<bool> update({
-    String? displayName,
-    int? avatarType,
-    FieldValue? rates,
-  });
-  Future<bool> addRate(String id);
-  Future<bool> removeRate(String id);
+  Future<bool> update({String? displayName, int? avatarType});
+
+  /// Moves one of the display counters on the caller's own user document.
+  Future<bool> stepCounter(UserCounterFields counter, {int by = 1});
 }

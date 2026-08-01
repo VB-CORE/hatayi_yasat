@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/group_detail/provider/group_detail_state.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

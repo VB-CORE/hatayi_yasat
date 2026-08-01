@@ -3,7 +3,7 @@ import 'package:lifeclient/product/feature/cache/hive_v2/hive_opeartion_manager.
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})
@@ -31,5 +31,5 @@ final class ProductCache {
       HiveOperationManager<MemoryCacheModel>();
 
   late final CacheOperation<UserModel> userCache =
-      HiveOperationManager<UserModel>();
+      HiveOperationManager<UserModel>(boxName: 'UserModel_v6');
 }

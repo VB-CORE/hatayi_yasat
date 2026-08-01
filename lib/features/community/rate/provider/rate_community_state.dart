@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 
 enum RateAction {
@@ -64,7 +64,7 @@ final class RateCommunityState extends Equatable {
     this.status = const RateActionIdle(),
   });
 
-  final RateModel? vote;
+  final VoteModel? vote;
   final bool isLoading;
   final bool isSignInRequired;
   final bool isError;
@@ -81,7 +81,7 @@ final class RateCommunityState extends Equatable {
   bool get canEditVote => hasVoted && !isBusy;
 
   RateCommunityState copyWith({
-    RateModel? vote,
+    VoteModel? vote,
     int? draftScore,
     bool? isLoading,
     bool? isSignInRequired,

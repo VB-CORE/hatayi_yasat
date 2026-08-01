@@ -1,11 +1,11 @@
 import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rate_community_view_model.g.dart';
@@ -23,6 +23,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   FirestoreCollectionPath get _votes => CollectionPaths.approvedApplications
       .sub(placeId, SubCollectionPaths.votes);
 
+  Query<VoteModel?> get _votesQuery => firestoreService
+      .collectionReference(_votes, const VoteModel())
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
+      .orderBy(FirestoreFields.createdAt.name, descending: true);
+
   @override
   RateCommunityState build(String placeId) {
     _votesStream = null;
@@ -34,19 +39,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     return const RateCommunityState(isLoading: true);
   }
 
-  Stream<List<RateModel>>? _votesStream;
+  Stream<List<VoteModel>>? _votesStream;
 
-  Stream<List<RateModel>> votesStream() => _votesStream ??= firestoreService
-      .queryWithOrderBy<RateModel>(
-        path: _votes,
-        model: const RateModel(),
-        orderBy: const MapEntry(_createdAtField, true),
-      )
-      .snapshots()
-      .map(
+  Stream<List<VoteModel>> votesStream() =>
+      _votesStream ??= _votesQuery.snapshots().map(
         (snapshot) => snapshot.docs
             .map((document) => document.data())
-            .whereType<RateModel>()
+            .whereType<VoteModel>()
             .toList(),
       );
 
@@ -63,16 +62,17 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   Future<void> _loadMyVote(String currentUid) async {
-    final result = await firestoreService.getSingleData<RateModel>(
-      model: const RateModel(),
+    final result = await firestoreService.getSingleData<VoteModel>(
+      model: const VoteModel(),
       path: _votes,
       id: currentUid,
     );
 
     state = switch (result) {
+      FirebaseSuccess(:final data) when data == null || data.isDeleted =>
+        state.copyWith(clearVote: true, isLoading: false, isError: false),
       FirebaseSuccess(:final data) => state.copyWith(
         vote: data,
-        clearVote: data == null,
         isLoading: false,
         isError: false,
       ),
@@ -98,8 +98,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       status: const RateActionProcessing(RateAction.create),
     );
     final now = DateTime.now();
-    final vote = RateModel(
-      placeId: placeId,
+    final vote = VoteModel(
+      storeId: placeId,
       voterUid: user.uid,
       score: state.draftScore,
       createdAt: now,
@@ -108,9 +108,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       avatarType: user.avatarType,
       updatedAt: now,
     );
-    final result = await firestoreService.insertWithID<RateModel>(
-      path: _votes,
-      model: vote,
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(_votes.collection.doc(vote.voterUid), vote.toJson())
+        ..update(
+          CollectionPaths.users.collection.doc(user.uid),
+          UserModel.counterStep(UserCounterFields.voteCount),
+        ),
     );
     if (result.isSuccess) {
       state = state.copyWith(
@@ -159,9 +163,16 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = state.copyWith(
       status: const RateActionProcessing(RateAction.delete),
     );
-    final result = await firestoreService.delete<RateModel>(
-      path: _votes,
-      model: currentVote,
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..update(
+          _votes.collection.doc(currentVote.voterUid),
+          SoftDelete.payload(),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(currentVote.voterUid),
+          UserModel.counterStep(UserCounterFields.voteCount, by: -1),
+        ),
     );
     if (result.isSuccess) {
       state = state.copyWith(
@@ -174,7 +185,6 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     }
   }
 
-  static const String _createdAtField = 'createdAt';
   static const String _commentField = 'comment';
   static const String _updatedAtField = 'updatedAt';
 }

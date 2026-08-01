@@ -4,8 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_state.dart';
-import 'package:lifeclient/features/community/model/group_author_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/provider/community_image_upload_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';
@@ -39,13 +38,17 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     }
 
     final post = GroupPostModel(
-      author: GroupAuthorModel.fromMember(member),
+      author: AuthorModel.fromMember(member),
       content: content,
       imageUrl: imageUrl,
     );
-    final result = await firestoreService.add<GroupPostModel>(
-      model: post,
-      path: CommunityPaths.posts(groupId),
+    final result = await firestoreService.batchWrite(
+      (batch) => batch
+        ..set(CommunityPaths.posts(groupId).collection.doc(), post.toJson())
+        ..update(
+          CollectionPaths.users.collection.doc(member.uid),
+          UserModel.counterStep(UserCounterFields.postCount),
+        ),
     );
 
     if (!result.isSuccess) {

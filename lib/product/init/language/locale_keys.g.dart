@@ -602,5 +602,9 @@ abstract class  LocaleKeys {
   static const unauthorized_requestAccess = 'unauthorized.requestAccess';
   static const unauthorized_requestAccessComingSoon = 'unauthorized.requestAccessComingSoon';
   static const unauthorized = 'unauthorized';
+  static const banned_title = 'banned.title';
+  static const banned_description = 'banned.description';
+  static const banned_signOut = 'banned.signOut';
+  static const banned = 'banned';
 
 }

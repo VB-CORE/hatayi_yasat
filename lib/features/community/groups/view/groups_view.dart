@@ -10,7 +10,6 @@ import 'package:lifeclient/features/community/create_group/view/widget/category_
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/mixin/groups_view_mixin.dart';
 import 'package:lifeclient/features/community/groups/view/widget/group_card.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/provider/group_categories_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
