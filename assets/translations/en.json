@@ -401,7 +401,11 @@
     "title": "Favorites",
     "search": "Search for your favorite",
     "clearAllButton": "Clear All",
-    "noBusinessFound": "No business found related to your search.",
+    "emptyTitle": "Your favorites list is empty",
+    "emptyDescription": "Tap the heart icon on places you like to save them here; reach them again in one tap.",
+    "emptyCta": "Explore places",
+    "searchEmptyTitle": "No results",
+    "searchEmptyDescription": "No favorites found for \"{}\". Try a different name or clear the search.",
     "clearAllDialog": {
       "content": "Are you sure you want to clear all your favorites?"
     },
