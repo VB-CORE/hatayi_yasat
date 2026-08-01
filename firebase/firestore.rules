@@ -135,12 +135,14 @@ service cloud.firestore {
 
     // Denormalize sayaçları (memberCount, entryCount, likeCount) client taşıdığı
     // için birer birer değişebilir ve asla negatife düşemez.
+    // Eksik alan 0 sayılır: eski kullanıcı/grup dokümanları ilk artışta
+    // resource.data[field] erişiminde evaluation error vermesin.
     function movesCounterByOne(field) {
       return affects([field])
         && request.resource.data[field] is int
         && request.resource.data[field] >= 0
-        && (request.resource.data[field] == resource.data[field] + 1
-            || request.resource.data[field] == resource.data[field] - 1);
+        && (request.resource.data[field] == resource.data.get(field, 0) + 1
+            || request.resource.data[field] == resource.data.get(field, 0) - 1);
     }
 
     // users/{uid} üzerindeki gösterim sayaçları. Kullanıcı içerik yazarken
@@ -213,20 +215,41 @@ service cloud.firestore {
                     'isCommentEnabled']);
       allow update: if isSignedIn()
         && affects(['visitCount'])
-        && request.resource.data.visitCount == resource.data.visitCount + 1;
+        && request.resource.data.visitCount
+           == resource.data.get('visitCount', 0) + 1;
       // Oy create/delete batch'i store sayaçlarını ±1 count / ±(1..5) sum oynatır.
       allow update: if isSignedIn()
         && (movesStoreRatingUp() || movesStoreRatingDown());
 
       match /votes/{voterUid} {
         allow read: if isSignedIn();
-        allow create, update: if isSignedIn()
+        // Yeni oy: puan 1–5, yazar = oturum; mekan yorumlara kapalıysa create yok.
+        allow create: if isSignedIn()
           && voterUid == request.auth.uid
           && request.resource.data.voterUid == request.auth.uid
           && request.resource.data.score is int
           && request.resource.data.score >= 1
           && request.resource.data.score <= 5
-          && !isBanned();
+          && !isBanned()
+          && get(/databases/$(database)/documents/approvedApplications/$(storeId))
+               .data.get('isCommentEnabled', true) == true;
+        // Soft-delete sonrası yeniden oy: set() mevcut dokümana düşer → update.
+        allow update: if isSignedIn()
+          && voterUid == request.auth.uid
+          && resource.data.get('isDeleted', false) == true
+          && request.resource.data.get('isDeleted', false) == false
+          && request.resource.data.voterUid == request.auth.uid
+          && request.resource.data.score is int
+          && request.resource.data.score >= 1
+          && request.resource.data.score <= 5
+          && !isBanned()
+          && get(/databases/$(database)/documents/approvedApplications/$(storeId))
+               .data.get('isCommentEnabled', true) == true;
+        // Oy sahibi yalnızca yorum metnini günceller; puan aggregate dışı kalır.
+        allow update: if isSignedIn()
+          && voterUid == request.auth.uid
+          && !isBanned()
+          && affects(['comment', 'updatedAt']);
         // Mekan sahibi yalnızca yanıt alanlarına dokunabilir; puan/yorum korunur.
         allow update: if isMerchantOf(storeId)
           && affects(['merchantReply', 'merchantReplyAt', 'updatedAt'])

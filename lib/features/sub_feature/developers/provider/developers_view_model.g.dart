@@ -48,7 +48,7 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
   DevelopersState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<DevelopersState, DevelopersState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

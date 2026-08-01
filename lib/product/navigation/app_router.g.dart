@@ -206,7 +206,6 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
             GoRouteData.$route(
               path: 'contributors',
               name: 'Developers Contributors',
-              hasOverriddenOnExit: false,
               factory: $DevelopersContributorsRoute._fromState,
             ),
           ],

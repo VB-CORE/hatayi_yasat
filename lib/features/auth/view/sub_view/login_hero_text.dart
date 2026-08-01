@@ -10,9 +10,10 @@ final class _LoginHeroText extends StatelessWidget {
       children: [
         Text(
           LocaleKeys.auth_hero_subtitle.tr(),
-          style: context.general.textTheme.labelSmall?.copyWith(
-            color: context.general.colorScheme.tertiary,
+          style: context.general.textTheme.labelMedium?.copyWith(
+            color: context.appColors.coral,
             letterSpacing: WidgetSizes.spacingXSSs,
+            fontWeight: .bold,
           ),
         ),
         const EmptyBox.smallHeight(),
