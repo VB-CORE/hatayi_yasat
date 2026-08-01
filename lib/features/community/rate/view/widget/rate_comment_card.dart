@@ -6,7 +6,7 @@ final class _RateCommentCard extends StatelessWidget {
     this.onEdit,
     this.onDelete,
   });
-  final RateModel rateModel;
+  final VoteModel rateModel;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 

@@ -61,7 +61,7 @@ final class MerchantShowcaseViewModelProvider
 }
 
 String _$merchantShowcaseViewModelHash() =>
-    r'162172d2d0c68b7e25ebac17124d353a33a56cef';
+    r'080396487245db6aabb9b9593c3e9aa3dfac0c82';
 
 final class MerchantShowcaseViewModelFamily extends $Family
     with

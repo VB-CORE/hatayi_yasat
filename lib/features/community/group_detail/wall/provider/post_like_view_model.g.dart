@@ -58,7 +58,7 @@ final class PostLikeViewModelProvider
   }
 }
 
-String _$postLikeViewModelHash() => r'7cc9fecedbf9f9c4d470793ba05e3ef9f7520d71';
+String _$postLikeViewModelHash() => r'95ee3bd2dcae4d51e14c5f5c4b0199ef3a59f38f';
 
 final class PostLikeViewModelFamily extends $Family
     with

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -17,7 +16,7 @@ final class MerchantReplySheet extends ConsumerStatefulWidget {
 
   static Future<String?> open(
     BuildContext context, {
-    required RateModel review,
+    required VoteModel review,
   }) {
     return showModalBottomSheet<String>(
       context: context,
@@ -29,7 +28,7 @@ final class MerchantReplySheet extends ConsumerStatefulWidget {
     );
   }
 
-  final RateModel review;
+  final VoteModel review;
 
   @override
   ConsumerState<MerchantReplySheet> createState() => _MerchantReplySheetState();

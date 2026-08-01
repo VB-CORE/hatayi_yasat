@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_review_filter.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_reviews_view_model.dart';
 import 'package:lifeclient/features/merchant_panel/view/widget/merchant_reply_sheet.dart';
@@ -17,34 +17,35 @@ mixin MerchantReviewsMixin<T extends ConsumerStatefulWidget>
     on ConsumerState<T>, AppProviderMixin<T> {
   String get storeId;
 
-  Query<RateModel?> reviewsQuery(MerchantReviewFilter filter) {
-    final collection = ProjectDependencyItems.firestoreService
+  Query<VoteModel?> reviewsQuery(MerchantReviewFilter filter) {
+    final reviews = ProjectDependencyItems.firestoreService
         .collectionReference(
           CollectionPaths.approvedApplications.sub(
             storeId,
             SubCollectionPaths.votes,
           ),
-          const RateModel(),
-        );
+          const VoteModel(),
+        )
+        .where(FirestoreFields.isDeleted.name, isEqualTo: false);
 
     return switch (filter) {
-      MerchantReviewFilter.all => collection.orderBy(
+      MerchantReviewFilter.all => reviews.orderBy(
         FirestoreFields.createdAt.name,
         descending: true,
       ),
       MerchantReviewFilter.pending =>
-        collection
-            .where(RateModel.merchantReplyField, isNull: true)
+        reviews
+            .where(VoteModelX.merchantReplyField, isNull: true)
             .orderBy(FirestoreFields.createdAt.name, descending: true),
       MerchantReviewFilter.answered =>
-        collection
-            .where(RateModel.merchantReplyField, isGreaterThan: '')
-            .orderBy(RateModel.merchantReplyField)
+        reviews
+            .where(VoteModelX.merchantReplyField, isGreaterThan: '')
+            .orderBy(VoteModelX.merchantReplyField)
             .orderBy(FirestoreFields.createdAt.name, descending: true),
     };
   }
 
-  Future<void> openReplySheet(RateModel review) async {
+  Future<void> openReplySheet(VoteModel review) async {
     final message = await MerchantReplySheet.open(context, review: review);
     if (message == null || !mounted) return;
 
@@ -60,7 +61,7 @@ mixin MerchantReviewsMixin<T extends ConsumerStatefulWidget>
     );
   }
 
-  Future<void> confirmRemoveReply(RateModel review) async {
+  Future<void> confirmRemoveReply(VoteModel review) async {
     final isConfirmed = await GeneralTextDialog.show<bool>(
       context,
       LocaleKeys.merchantPanel_reviews_removeReplyConfirmTitle.tr(),

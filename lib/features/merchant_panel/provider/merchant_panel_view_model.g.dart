@@ -42,7 +42,7 @@ final class MerchantPanelViewModelProvider
 }
 
 String _$merchantPanelViewModelHash() =>
-    r'bc25635a04beba8250e5148dee6fa0d58dff711c';
+    r'3749b2bfd906f4dc1a56008d7f4d5c232cda2b90';
 
 abstract class _$MerchantPanelViewModel extends $Notifier<MerchantPanelState> {
   MerchantPanelState build();

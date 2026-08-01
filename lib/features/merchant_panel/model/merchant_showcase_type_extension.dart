@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_type.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 

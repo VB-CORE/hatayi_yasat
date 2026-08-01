@@ -8,7 +8,7 @@ final class _MerchantReviewCard extends StatelessWidget {
     required this.onRemoveReply,
   });
 
-  final RateModel review;
+  final VoteModel review;
   final bool isSubmitting;
   final VoidCallback onReply;
   final VoidCallback onRemoveReply;

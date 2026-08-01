@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -27,6 +27,11 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   DocumentReference<Map<String, dynamic>> get _storeRef =>
       CollectionPaths.approvedApplications.collection.doc(placeId);
 
+  Query<VoteModel?> get _votesQuery => firestoreService
+      .collectionReference(_votes, const VoteModel())
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
+      .orderBy(FirestoreFields.createdAt.name, descending: true);
+
   @override
   RateCommunityState build(String placeId) {
     _votesStream = null;
@@ -38,19 +43,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     return const RateCommunityState(isLoading: true);
   }
 
-  Stream<List<RateModel>>? _votesStream;
+  Stream<List<VoteModel>>? _votesStream;
 
-  Stream<List<RateModel>> votesStream() => _votesStream ??= firestoreService
-      .queryWithOrderBy<RateModel>(
-        path: _votes,
-        model: const RateModel(),
-        orderBy: MapEntry(FirestoreFields.createdAt.name, true),
-      )
-      .snapshots()
-      .map(
+  Stream<List<VoteModel>> votesStream() =>
+      _votesStream ??= _votesQuery.snapshots().map(
         (snapshot) => snapshot.docs
             .map((document) => document.data())
-            .whereType<RateModel>()
+            .whereType<VoteModel>()
             .toList(),
       );
 
@@ -67,8 +66,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
   }
 
   Future<void> _loadMyVote(String currentUid) async {
-    final result = await firestoreService.getSingleData<RateModel>(
-      model: const RateModel(),
+    final result = await firestoreService.getSingleData<VoteModel>(
+      model: const VoteModel(),
       path: _votes,
       id: currentUid,
     );
@@ -76,7 +75,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     state = switch (result) {
       FirebaseSuccess(:final data) => state.copyWith(
         vote: data,
-        clearVote: data == null,
+        clearVote: data == null || data.isDeleted,
         isLoading: false,
         isError: false,
       ),
@@ -102,8 +101,8 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       status: const RateActionProcessing(RateAction.create),
     );
     final now = DateTime.now();
-    final vote = RateModel(
-      placeId: placeId,
+    final vote = VoteModel(
+      storeId: placeId,
       voterUid: user.uid,
       score: state.draftScore,
       createdAt: now,
@@ -117,7 +116,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         ..set(_votes.collection.doc(vote.voterUid), vote.toJson())
         ..update(
           _storeRef,
-          RateModel.ratingDelta(score: vote.score, isIncrement: true),
+          VoteModelX.ratingDelta(score: vote.score, isIncrement: true),
         )
         ..update(
           CollectionPaths.users.collection.doc(user.uid),
@@ -148,7 +147,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     final result = await firestoreService.updateFields(
       path: _votes,
       documentId: updated.voterUid,
-      fields: RateModel.updateFields(comment: updated.comment),
+      fields: VoteModelX.updateFields(comment: updated.comment),
     );
     if (result.isSuccess) {
       state = state.copyWith(
@@ -168,10 +167,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
     );
     final result = await firestoreService.batchWrite((batch) {
       batch
-        ..delete(_votes.collection.doc(currentVote.voterUid))
+        ..update(
+          _votes.collection.doc(currentVote.voterUid),
+          SoftDelete.payload(),
+        )
         ..update(
           _storeRef,
-          RateModel.ratingDelta(score: currentVote.score, isIncrement: false),
+          VoteModelX.ratingDelta(score: currentVote.score, isIncrement: false),
         )
         ..update(
           CollectionPaths.users.collection.doc(currentVote.voterUid),

@@ -1,6 +1,6 @@
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_review_filter.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_panel_view_model.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_reviews_state.dart';
@@ -23,7 +23,7 @@ final class MerchantReviewsViewModel extends _$MerchantReviewsViewModel
   }
 
   Future<bool> reply({
-    required RateModel review,
+    required VoteModel review,
     required String message,
   }) async {
     final text = message.trim();
@@ -33,7 +33,7 @@ final class MerchantReviewsViewModel extends _$MerchantReviewsViewModel
     final result = await firestoreService.updateFields(
       path: _votes,
       documentId: review.voterUid,
-      fields: RateModel.updateFields(merchantReply: text),
+      fields: VoteModelX.updateFields(merchantReply: text),
     );
 
     state = state.copyWith(
@@ -46,14 +46,14 @@ final class MerchantReviewsViewModel extends _$MerchantReviewsViewModel
     return result.isSuccess;
   }
 
-  Future<bool> removeReply(RateModel review) async {
+  Future<bool> removeReply(VoteModel review) async {
     if (!review.hasMerchantReply || state.isSubmitting) return false;
 
     state = state.copyWith(replyingVoterUid: review.voterUid);
     final result = await firestoreService.updateFields(
       path: _votes,
       documentId: review.voterUid,
-      fields: RateModel.updateFields(clearMerchantReply: true),
+      fields: VoteModelX.updateFields(clearMerchantReply: true),
     );
 
     state = state.copyWith(

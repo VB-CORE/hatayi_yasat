@@ -203,10 +203,11 @@ service cloud.firestore {
     match /approvedApplications/{storeId} {
       allow read: if true;
       allow write: if isAdmin();
-      // Onaylı esnaf kendi mekanının vitrinini ve künyesini yönetir; onay
-      // durumu (isApproved), sahiplik (ownerId) ve sayaçlar dışarıda kalır.
+      // Onaylı esnaf kendi mekanının künyesini yönetir; onay durumu
+      // (isApproved), sahiplik (ownerId) ve sayaçlar dışarıda kalır.
+      // Vitrin alt koleksiyon: approvedApplications/{id}/showcase/{id}.
       allow update: if resource.data.ownerId == request.auth.uid
-        && affects(['showcaseModules', 'description', 'images',
+        && affects(['description', 'images',
                     'openTime', 'closeTime', 'updatedAt',
                     'name', 'phone', 'address', 'category',
                     'isCommentEnabled']);
@@ -228,19 +229,21 @@ service cloud.firestore {
           && !isBanned();
         // Mekan sahibi yalnızca yanıt alanlarına dokunabilir; puan/yorum korunur.
         allow update: if isMerchantOf(storeId)
-          && affects(['merchantReply', 'merchantReplyAt'])
+          && affects(['merchantReply', 'merchantReplyAt', 'updatedAt'])
           && (request.resource.data.merchantReply is string
               || request.resource.data.merchantReply == null);
         allow update: if isSoftDelete()
           && (request.auth.uid == voterUid || isAdmin());
-        allow delete: if request.auth.uid == voterUid || isAdmin();
+        allow delete: if false;
       }
 
-      // Vitrin kartları. Sadece mağaza sahibi yazar, herkes okur.
+      // Vitrin kartları. Sadece mağaza sahibi yazar, herkes okur. Hard delete yok.
       match /showcase/{moduleId} {
         allow read: if true;
-        allow write: if isMerchantOf(storeId) && !isBanned();
-        allow write: if isAdmin();
+        allow create: if isMerchantOf(storeId) && !isBanned();
+        allow update: if isMerchantOf(storeId) && !isBanned();
+        allow update: if isAdmin();
+        allow delete: if false;
       }
     }
 

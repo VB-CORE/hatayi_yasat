@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_panel_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -33,7 +33,7 @@ final class MerchantPanelViewModel extends _$MerchantPanelViewModel
 
   UserModel? get _currentUser => ref.read(authViewModelProvider).user;
 
-  String? get _currentUserId => authService.cachedUser?.uid;
+  String? get _currentUserId => _currentUser?.uid;
 
   Future<void> refresh() async {
     final storeId = _storeIdOf(_currentUser);
@@ -87,7 +87,8 @@ final class MerchantPanelViewModel extends _$MerchantPanelViewModel
     _pendingReplySubscription = CollectionPaths.approvedApplications
         .sub(storeId, SubCollectionPaths.votes)
         .collection
-        .where(RateModel.merchantReplyField, isNull: true)
+        .where(VoteModelX.merchantReplyField, isNull: true)
+        .where(FirestoreFields.isDeleted.name, isEqualTo: false)
         .limit(1)
         .snapshots()
         .listen(

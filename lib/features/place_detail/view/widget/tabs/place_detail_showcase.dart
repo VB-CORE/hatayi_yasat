@@ -7,16 +7,18 @@ final class PlaceDetailShowcaseSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final modules = ref.watch(placeShowcaseModulesProvider(placeId));
+    final state = ref.watch(placeShowcaseViewModelProvider(placeId));
 
-    if (modules.hasError) {
+    if (state.isError) {
       return _PlaceShowcaseError(
-        onRetry: () => ref.invalidate(placeShowcaseModulesProvider(placeId)),
+        onRetry: () =>
+            ref.read(placeShowcaseViewModelProvider(placeId).notifier).retry(),
       );
     }
 
-    final items = modules.value ?? const <MerchantShowcaseModuleModel>[];
-    if (items.isEmpty) return const SizedBox.shrink();
+    if (state.isFetching || state.modules.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +29,7 @@ final class PlaceDetailShowcaseSection extends ConsumerWidget {
           color: AppColors.navy900,
           textAlign: TextAlign.start,
         ),
-        for (final module in items) MerchantShowcaseCard(module: module),
+        for (final module in state.modules) MerchantShowcaseCard(module: module),
       ],
     );
   }

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_module_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_showcase_view_model.dart';
 import 'package:lifeclient/features/merchant_panel/view/sub_view/merchant_showcase_sub_view.dart';
 import 'package:lifeclient/features/merchant_panel/view/widget/merchant_module_form_sheet.dart';

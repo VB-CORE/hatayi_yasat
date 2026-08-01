@@ -22,8 +22,6 @@ final class MerchantPanelHeader extends StatelessWidget {
 
   final StoreModel store;
 
-  static const double _overlap = AppSpacing.xl;
-
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top + kToolbarHeight;
@@ -40,7 +38,7 @@ final class MerchantPanelHeader extends StatelessWidget {
               width: double.infinity,
               child: const MosaicBackground(),
             ),
-            const SizedBox(height: _overlap),
+            const SizedBox(height: kToolbarHeight),
           ],
         ),
         Padding(
@@ -120,19 +118,24 @@ final class _MerchantPanelStoreInfo extends StatelessWidget {
                     color: context.appColors.navy500,
                   ),
                 ),
-              Row(
-                spacing: AppSpacing.xxs,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    AppIcons.star,
-                    size: AppIconSizes.xMedium,
-                    color: context.appColors.gold,
+                  Row(
+                    spacing: AppSpacing.xxs,
+                    children: [
+                      Icon(
+                        AppIcons.star,
+                        size: AppIconSizes.xMedium,
+                        color: context.appColors.gold,
+                      ),
+                      Text(
+                        store.averageRatingLabel,
+                        style: AppText.label,
+                      ),
+                    ],
                   ),
-                  Text(
-                    store.averageRatingLabel,
-                    style: AppText.label,
-                  ),
-                  Flexible(child: StatusPill(store: store)),
+                  StatusPill(store: store),
                 ],
               ),
             ],

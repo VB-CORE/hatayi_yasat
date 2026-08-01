@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_module_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 final class MerchantShowcaseState extends Equatable {
   const MerchantShowcaseState({

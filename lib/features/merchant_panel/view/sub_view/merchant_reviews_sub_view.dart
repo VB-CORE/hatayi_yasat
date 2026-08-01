@@ -8,7 +8,7 @@ import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/community/rate/model/rate_model.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_reviews_view_model.dart';
 import 'package:lifeclient/features/merchant_panel/view/mixin/merchant_reviews_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -50,7 +50,7 @@ final class _MerchantReviewsSubViewState
       ),
     );
 
-    return CustomFirestoreListView<RateModel>(
+    return CustomFirestoreListView<VoteModel>(
       query: reviewsQuery(state.filter),
       padding: const PagePadding.generalAllLow(),
       separator: const EmptyBox.smallHeight(),
