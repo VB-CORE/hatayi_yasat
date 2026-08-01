@@ -4,10 +4,14 @@ import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 final class HiveOperationManager<T extends CacheModel>
     extends CacheOperation<T> {
   HiveOperationManager() {
-    _initializeBox();
+    _ready = _initializeBox();
   }
 
   Box<T>? _box;
+  late final Future<void> _ready;
+
+  @override
+  Future<void> get ready => _ready;
 
   Future<void> _initializeBox() async {
     if (!Hive.isBoxOpen(T.toString())) {
