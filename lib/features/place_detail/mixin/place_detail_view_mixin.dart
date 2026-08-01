@@ -6,6 +6,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
+import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
+import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_sheet_factory.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_args.dart';
@@ -25,6 +27,27 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   void initState() {
     super.initState();
     args = PlaceDetailArgs(id: widget.id, store: widget.store);
+    ref.listenManual(
+      rateCommunityViewModelProvider(widget.id),
+      _onRateStatusChanged,
+    );
+  }
+
+  void _onRateStatusChanged(RateCommunityState? prev, RateCommunityState next) {
+    final vote = next.vote ?? prev?.vote;
+    final notifier = ref.read(placeDetailViewModelProvider(args).notifier);
+    switch (next.status) {
+      case RateActionSucceeded(action: RateAction.create):
+        final score = vote?.score;
+        if (score == null) return;
+        notifier.applyRatingDelta(scoreDelta: score, countDelta: 1);
+      case RateActionSucceeded(action: RateAction.delete):
+        final score = vote?.score;
+        if (score == null) return;
+        notifier.applyRatingDelta(scoreDelta: -score, countDelta: -1);
+      case _:
+        break;
+    }
   }
 
   Future<void> onCall() =>

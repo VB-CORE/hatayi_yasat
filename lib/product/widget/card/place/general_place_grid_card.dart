@@ -10,7 +10,6 @@ import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
@@ -169,7 +168,6 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final town = productProvider(ref).fetchTownFromCode(model.townCode);
-    final meta = PlaceMetaMock(model);
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.xs),
       child: Column(
@@ -206,8 +204,8 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
           ),
           const SizedBox(height: AppSpacing.xxs),
           PlaceRatingLabel(
-            rating: meta.ratingLabel,
-            reviewCount: meta.reviewCount,
+            rating: model.averageRatingLabel,
+            reviewCount: model.ratingCount,
             iconSize: 13,
           ),
         ],

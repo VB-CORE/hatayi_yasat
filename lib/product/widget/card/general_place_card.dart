@@ -158,7 +158,7 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final town = productProvider(ref).fetchTownFromCode(model.townCode);
-    final meta = PlaceMetaMock(model);
+    final distanceLabel = PlaceMetaMock(model).distanceLabel;
     final category = model.category?.displayName;
     final subtitle = [
       if (category != null && category.isNotEmpty) category,
@@ -209,11 +209,11 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
             children: [
               StatusPill(store: model),
               PlaceRatingLabel(
-                rating: meta.ratingLabel,
-                reviewCount: meta.reviewCount,
+                rating: model.averageRatingLabel,
+                reviewCount: model.ratingCount,
               ),
               Text(
-                meta.distanceLabel,
+                distanceLabel,
                 style: AppText.caption.copyWith(color: AppColors.ink400),
               ),
             ],

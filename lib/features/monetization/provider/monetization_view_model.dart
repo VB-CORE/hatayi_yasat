@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
@@ -80,6 +81,59 @@ final class MonetizationViewModel extends _$MonetizationViewModel
       coupons: [
         ...state.coupons,
         coupon.copyWith(documentId: result.dataOrNull),
+      ],
+      isSubmitting: false,
+    );
+    return true;
+  }
+
+  Future<bool> updateCoupon({
+    required CouponModel coupon,
+    required String desc,
+    required int rate,
+    required DateTime expiresAt,
+    int? usageLimit,
+  }) async {
+    if (coupon.documentId.isEmpty || state.isSubmitting) return false;
+
+    state = state.copyWith(isSubmitting: true, isError: false);
+
+    final now = DateTime.now();
+    final updated = CouponModel(
+      storeId: coupon.storeId,
+      merchantUid: coupon.merchantUid,
+      desc: desc,
+      ratio: rate,
+      expiresAt: expiresAt,
+      usageCount: coupon.usageCount,
+      usageLimit: usageLimit,
+      createdAt: coupon.createdAt,
+      updatedAt: now,
+      documentId: coupon.documentId,
+      isDeleted: coupon.isDeleted,
+    );
+
+    final result = await firestoreService.updateFields(
+      path: CollectionPaths.coupons,
+      documentId: coupon.documentId,
+      fields: {
+        'desc': desc,
+        'ratio': rate,
+        'expiresAt': FirebaseTimeParse.dateTimeToTimestamp(expiresAt),
+        'usageLimit': usageLimit,
+        'updatedAt': FieldValue.serverTimestamp(),
+      },
+    );
+
+    if (!result.isSuccess) {
+      state = state.copyWith(isSubmitting: false, isError: true);
+      return false;
+    }
+
+    state = state.copyWith(
+      coupons: [
+        for (final item in state.coupons)
+          if (item.documentId == coupon.documentId) updated else item,
       ],
       isSubmitting: false,
     );

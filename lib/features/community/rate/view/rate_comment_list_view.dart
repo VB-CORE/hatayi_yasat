@@ -7,6 +7,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_view_model.dart';
 import 'package:lifeclient/features/community/rate/view/mixin/rate_comment_list_view_mixin.dart';
 import 'package:lifeclient/features/community/rate/view/widget/rate_comment_options_sheet.dart';

@@ -82,10 +82,14 @@ final class _MonetizationViewState extends ConsumerState<MonetizationView>
                     _MonetizationBodyView(
                       coupons: state.activeCoupons,
                       onDelete: onDelete,
+                      onRedeem: onRedeem,
+                      onEdit: onEdit,
                     ),
                     _MonetizationBodyView(
                       coupons: state.inactiveCoupons,
                       onDelete: onDelete,
+                      onRedeem: onRedeem,
+                      onEdit: onEdit,
                     ),
                   ],
                 ),

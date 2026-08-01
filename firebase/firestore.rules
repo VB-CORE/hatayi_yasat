@@ -36,6 +36,12 @@ service cloud.firestore {
            == request.auth.uid;
     }
 
+    function isCouponOwner(couponId) {
+      return isSignedIn()
+        && get(/databases/$(database)/documents/coupons/$(couponId)).data.merchantUid
+           == request.auth.uid;
+    }
+
     function affects(keys) {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
     }
@@ -129,12 +135,14 @@ service cloud.firestore {
 
     // Denormalize sayaçları (memberCount, entryCount, likeCount) client taşıdığı
     // için birer birer değişebilir ve asla negatife düşemez.
+    // Eksik alan 0 sayılır: eski kullanıcı/grup dokümanları ilk artışta
+    // resource.data[field] erişiminde evaluation error vermesin.
     function movesCounterByOne(field) {
       return affects([field])
         && request.resource.data[field] is int
         && request.resource.data[field] >= 0
-        && (request.resource.data[field] == resource.data[field] + 1
-            || request.resource.data[field] == resource.data[field] - 1);
+        && (request.resource.data[field] == resource.data.get(field, 0) + 1
+            || request.resource.data[field] == resource.data.get(field, 0) - 1);
     }
 
     // users/{uid} üzerindeki gösterim sayaçları. Kullanıcı içerik yazarken
@@ -147,6 +155,36 @@ service cloud.firestore {
         || movesCounterByOne('likeCount')
         || movesCounterByOne('groupCount')
         || movesCounterByOne('voteCount');
+    }
+
+    // Store rating aggregates (ratingSum / ratingCount). Missing fields count as 0
+    // so older documents without these keys can still accept the first vote.
+    function storeRatingCount() {
+      return resource.data.get('ratingCount', 0);
+    }
+
+    function storeRatingSum() {
+      return resource.data.get('ratingSum', 0);
+    }
+
+    function movesStoreRatingUp() {
+      return affects(['ratingSum', 'ratingCount'])
+        && request.resource.data.ratingCount is int
+        && request.resource.data.ratingSum is int
+        && request.resource.data.ratingCount == storeRatingCount() + 1
+        && request.resource.data.ratingSum - storeRatingSum() >= 1
+        && request.resource.data.ratingSum - storeRatingSum() <= 5;
+    }
+
+    function movesStoreRatingDown() {
+      return affects(['ratingSum', 'ratingCount'])
+        && request.resource.data.ratingCount is int
+        && request.resource.data.ratingSum is int
+        && request.resource.data.ratingCount == storeRatingCount() - 1
+        && request.resource.data.ratingCount >= 0
+        && request.resource.data.ratingSum >= 0
+        && storeRatingSum() - request.resource.data.ratingSum >= 1
+        && storeRatingSum() - request.resource.data.ratingSum <= 5;
     }
 
     match /users/{uid} {
@@ -167,32 +205,68 @@ service cloud.firestore {
     match /approvedApplications/{storeId} {
       allow read: if true;
       allow write: if isAdmin();
+      // Onaylı esnaf kendi mekanının künyesini yönetir; onay durumu
+      // (isApproved), sahiplik (ownerId) ve sayaçlar dışarıda kalır.
+      // Vitrin alt koleksiyon: approvedApplications/{id}/showcase/{id}.
       allow update: if resource.data.ownerId == request.auth.uid
         && affects(['description', 'images',
-                    'openTime', 'closeTime', 'updatedAt']);
+                    'openTime', 'closeTime', 'updatedAt',
+                    'name', 'phone', 'address', 'category',
+                    'isCommentEnabled']);
       allow update: if isSignedIn()
-        && affects(['viewCount'])
-        && request.resource.data.viewCount == resource.data.viewCount + 1;
+        && affects(['visitCount'])
+        && request.resource.data.visitCount
+           == resource.data.get('visitCount', 0) + 1;
+      // Oy create/delete batch'i store sayaçlarını ±1 count / ±(1..5) sum oynatır.
+      allow update: if isSignedIn()
+        && (movesStoreRatingUp() || movesStoreRatingDown());
 
       match /votes/{voterUid} {
         allow read: if isSignedIn();
-        allow create, update: if isSignedIn()
+        // Yeni oy: puan 1–5, yazar = oturum; mekan yorumlara kapalıysa create yok.
+        allow create: if isSignedIn()
           && voterUid == request.auth.uid
           && request.resource.data.voterUid == request.auth.uid
           && request.resource.data.score is int
           && request.resource.data.score >= 1
           && request.resource.data.score <= 5
-          && !isBanned();
+          && !isBanned()
+          && get(/databases/$(database)/documents/approvedApplications/$(storeId))
+               .data.get('isCommentEnabled', true) == true;
+        // Soft-delete sonrası yeniden oy: set() mevcut dokümana düşer → update.
+        allow update: if isSignedIn()
+          && voterUid == request.auth.uid
+          && resource.data.get('isDeleted', false) == true
+          && request.resource.data.get('isDeleted', false) == false
+          && request.resource.data.voterUid == request.auth.uid
+          && request.resource.data.score is int
+          && request.resource.data.score >= 1
+          && request.resource.data.score <= 5
+          && !isBanned()
+          && get(/databases/$(database)/documents/approvedApplications/$(storeId))
+               .data.get('isCommentEnabled', true) == true;
+        // Oy sahibi yalnızca yorum metnini günceller; puan aggregate dışı kalır.
+        allow update: if isSignedIn()
+          && voterUid == request.auth.uid
+          && !isBanned()
+          && affects(['comment', 'updatedAt']);
+        // Mekan sahibi yalnızca yanıt alanlarına dokunabilir; puan/yorum korunur.
+        allow update: if isMerchantOf(storeId)
+          && affects(['merchantReply', 'merchantReplyAt', 'updatedAt'])
+          && (request.resource.data.merchantReply is string
+              || request.resource.data.merchantReply == null);
         allow update: if isSoftDelete()
           && (request.auth.uid == voterUid || isAdmin());
         allow delete: if false;
       }
 
-      // Vitrin kartları. Sadece mağaza sahibi yazar, herkes okur.
+      // Vitrin kartları. Sadece mağaza sahibi yazar, herkes okur. Hard delete yok.
       match /showcase/{moduleId} {
         allow read: if true;
-        allow write: if isMerchantOf(storeId) && !isBanned();
-        allow write: if isAdmin();
+        allow create: if isMerchantOf(storeId) && !isBanned();
+        allow update: if isMerchantOf(storeId) && !isBanned();
+        allow update: if isAdmin();
+        allow delete: if false;
       }
     }
 
@@ -304,11 +378,19 @@ service cloud.firestore {
       allow update: if resource.data.merchantUid == request.auth.uid || isAdmin();
       allow delete: if false;
 
-      match /redemptions/{rid} {
-        allow read: if resource.data.merchantUid == request.auth.uid
-          || resource.data.userUid == request.auth.uid
+      // Doküman kimliği kullanan uid'idir: bir kullanıcı bir kupondan yalnızca
+      // bir kez yararlanabilir, ikinci create aynı kimliğe düşer ve reddedilir.
+      match /redemptions/{userUid} {
+        allow read: if isCouponOwner(couponId)
+          || request.auth.uid == userUid
           || isAdmin();
-        allow write: if false;
+        allow create: if isCouponOwner(couponId)
+          && request.resource.data.userUid == userUid
+          && request.resource.data.merchantUid == request.auth.uid
+          && !exists(
+            /databases/$(database)/documents/coupons/$(couponId)/redemptions/$(userUid)
+          );
+        allow update, delete: if isAdmin();
       }
     }
 

@@ -102,7 +102,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v6.0.0
+      ref: v6.0.1
 
   file_picker: ^10.3.8
   sliver_tools: ^0.2.12
@@ -113,6 +113,7 @@ dependencies:
   bounceable: ^1.0.0
   grouped_list: ^6.0.0
   like_button: ^2.1.0
+  mobile_scanner: ^7.4.0
 
 dependency_overrides:
   device_info_plus: ^12.3.0

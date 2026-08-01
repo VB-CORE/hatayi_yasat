@@ -42,7 +42,7 @@ final class MonetizationViewModelProvider
 }
 
 String _$monetizationViewModelHash() =>
-    r'7d307c427d97140097dbd5bdfc2e4199fa8c7dc9';
+    r'7725315cff35c038b2dce1dc8b8af9b416c28380';
 
 abstract class _$MonetizationViewModel extends $Notifier<MonetizationState> {
   MonetizationState build();

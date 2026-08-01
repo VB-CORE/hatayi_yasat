@@ -5,9 +5,6 @@ import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 
 /// Gold star + rating value, with an optional grey `(reviewCount)`.
-///
-/// The value is passed in (currently placeholder data via `PlaceMetaMock`)
-/// so this widget stays presentation-only.
 final class PlaceRatingLabel extends StatelessWidget {
   const PlaceRatingLabel({
     required this.rating,

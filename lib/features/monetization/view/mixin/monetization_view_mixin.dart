@@ -8,6 +8,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
@@ -23,6 +24,12 @@ mixin MonetizationViewMixin
       );
     });
   }
+
+  void onRedeem(CouponModel coupon) =>
+      CouponRedeemRoute($extra: coupon).go(context);
+
+  void onEdit(CouponModel coupon) =>
+      MonetizationCouponFormRoute($extra: coupon).go(context);
 
   Future<void> onDelete(CouponModel coupon) async {
     final isConfirmed = await GeneralTextDialog.show<bool>(

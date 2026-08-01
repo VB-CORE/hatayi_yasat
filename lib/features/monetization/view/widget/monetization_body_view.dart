@@ -4,10 +4,14 @@ final class _MonetizationBodyView extends StatelessWidget {
   const _MonetizationBodyView({
     required this.coupons,
     required this.onDelete,
+    required this.onRedeem,
+    required this.onEdit,
   });
 
   final List<CouponModel> coupons;
   final ValueChanged<CouponModel> onDelete;
+  final ValueChanged<CouponModel> onRedeem;
+  final ValueChanged<CouponModel> onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,8 @@ final class _MonetizationBodyView extends StatelessWidget {
       itemBuilder: (_, index) => _MonetizationCard(
         coupon: coupons[index],
         onDelete: () => onDelete(coupons[index]),
+        onRedeem: () => onRedeem(coupons[index]),
+        onEdit: () => onEdit(coupons[index]),
       ),
     );
   }
