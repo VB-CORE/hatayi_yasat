@@ -350,7 +350,8 @@
     "image": "Image could not be loaded.",
     "chainStore": "Chain stores has not been entered yet.",
     "usefulLinks": "Useful links has not been entered yet.",
-    "memories": "No memories found yet."
+    "memories": "No memories found yet.",
+    "newsContent": "This news has no content yet."
   },
   "months": {
     "jan": "January",
@@ -525,6 +526,7 @@
   "profile": {
     "menu": {
       "favorites": "My Favorites",
+      "savedNews": "Saved News",
       "settings": "Settings",
       "rateUs": "Rate Us",
       "privacy": "Privacy Policy",
@@ -675,5 +677,10 @@
     "backToGroups": "Back to Groups",
     "requestAccess": "Request access",
     "requestAccessComingSoon": "This feature is coming soon."
+  },
+  "savedNews": {
+    "title": "Saved News",
+    "empty": "No saved news yet.",
+    "error": "Couldn't load news."
   }
 }

@@ -10,33 +10,56 @@ import 'package:lifeclient/product/widget/card/index.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
 @immutable
-final class TabNewsView extends ConsumerWidget {
+final class TabNewsView extends ConsumerStatefulWidget {
   const TabNewsView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<TabNewsView> createState() => _TabNewsViewState();
+}
+
+class _TabNewsViewState extends ConsumerState<TabNewsView> {
+  int _refreshKey = 0;
+
+  void _retry() {
+    setState(() => _refreshKey++);
+  }
+
+  Future<void> _refresh() async {
+    _retry();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final query = ref
         .read(newsJobsProviderProvider.notifier)
         .fetchNewsCollectionReference();
 
-    return GeneralFirestoreListView(
-      query: query,
-      emptyBuilder: (context) {
-        return GeneralNotFoundWidget(
-          title: LocaleKeys.notFound_news.tr(),
-        );
-      },
-      itemBuilder: (context, model) {
-        return NewsCard(
-          item: model,
-          onTap: () {
-            NewsDetailRoute(
-              $extra: NewsModelCopy.fromNewsModel(model),
-            ).push<NewsDetailRoute>(context);
+    return RefreshIndicator(
+      onRefresh: _refresh,
+      child: KeyedSubtree(
+        key: ValueKey(_refreshKey),
+        child: GeneralFirestoreListView(
+          query: query,
+          emptyBuilder: (context) {
+            return GeneralNotFoundWidget(
+              title: LocaleKeys.notFound_news.tr(),
+              onRefresh: _retry,
+            );
           },
-        );
-      },
-      onRetry: () {},
+          itemBuilder: (context, model) {
+            return NewsCard(
+              item: model,
+              onTap: () {
+                NewsDetailRoute(
+                  $extra: NewsModelCopy.fromNewsFeedModel(model),
+                  id: model.documentId,
+                ).push<NewsDetailRoute>(context);
+              },
+            );
+          },
+          onRetry: _retry,
+        ),
+      ),
     );
   }
 }

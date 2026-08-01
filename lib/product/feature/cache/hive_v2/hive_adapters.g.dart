@@ -480,3 +480,35 @@ class UserApplicationStatusAdapter extends TypeAdapter<UserApplicationStatus> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class NewsBookmarkCacheAdapter extends TypeAdapter<NewsBookmarkCache> {
+  @override
+  final typeId = 14;
+
+  @override
+  NewsBookmarkCache read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return NewsBookmarkCache(newsId: fields[0] as String);
+  }
+
+  @override
+  void write(BinaryWriter writer, NewsBookmarkCache obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.newsId);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NewsBookmarkCacheAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}

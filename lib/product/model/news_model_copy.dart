@@ -1,4 +1,5 @@
-import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/features/main/news_jobs/model/news_author_model.dart';
+import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 
 /// it's help for navigate to news detail page
 final class NewsModelCopy {
@@ -8,28 +9,31 @@ final class NewsModelCopy {
     this.content,
     this.image,
     this.createdAt,
-    this.updatedAt,
+    this.type,
+    this.author,
   });
 
-  factory NewsModelCopy.fromNewsModel(NewsModel model) {
+  factory NewsModelCopy.fromNewsFeedModel(NewsFeedModel model) {
     return NewsModelCopy(
       documentId: model.documentId,
       title: model.title,
-      content: model.content,
-      image: model.image,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
+      content: model.body,
+      image: model.photoUrl,
+      createdAt: model.date,
+      type: model.type,
+      author: model.author,
     );
   }
 
-  NewsModel toNewsModel() {
-    return NewsModel(
-      documentId: documentId,
+  NewsFeedModel toNewsFeedModel() {
+    return NewsFeedModel(
+      id: documentId,
       title: title,
-      content: content,
-      image: image,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
+      body: content,
+      photoUrl: image,
+      date: createdAt,
+      type: type,
+      author: author,
     );
   }
 
@@ -37,7 +41,8 @@ final class NewsModelCopy {
   final String? content;
   final String? image;
   final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? type;
+  final NewsAuthorModel? author;
 
   final String documentId;
 }

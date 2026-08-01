@@ -9,6 +9,7 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_count_view_model.dart';
 import 'package:lifeclient/features/main/profile/view/mixin/profile_view_mixin.dart';
 import 'package:lifeclient/features/main/profile/view/widget/header/profile_authenticated_header.dart';
 import 'package:lifeclient/features/main/profile/view/widget/header/profile_guest_header.dart';

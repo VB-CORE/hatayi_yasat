@@ -17,6 +17,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         (state) => state.favoritePlaces.length,
       ),
     );
+    final savedNewsCount = ref.watch(newsBookmarkCountViewModelProvider);
 
     return Container(
       decoration: BoxDecoration(
@@ -34,6 +35,16 @@ final class ProfileMenuCard extends ConsumerWidget {
             onTap: () => const FavoriteRoute().push<void>(context),
             trailing: Text(
               '$favoriteCount',
+              style: AppText.bodyLg.copyWith(color: AppColors.navy300),
+            ),
+          ),
+          const Divider(color: AppColors.navy50),
+          _ProfileMenuRow(
+            icon: AppIcons.bookmark,
+            label: LocaleKeys.profile_menu_savedNews.tr(),
+            onTap: () => const SavedNewsRoute().push<void>(context),
+            trailing: Text(
+              '$savedNewsCount',
               style: AppText.bodyLg.copyWith(color: AppColors.navy300),
             ),
           ),

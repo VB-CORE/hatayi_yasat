@@ -41,13 +41,13 @@ final class NewsJobsProviderProvider
   }
 }
 
-String _$newsJobsProviderHash() => r'0f49d5e776db28097b081abd3dfb047282723115';
+String _$newsJobsProviderHash() => r'd5ac67bc0550ee7e21e0f5808a8b65e37d729921';
 
 abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
   NewsJobsState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<NewsJobsState, NewsJobsState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

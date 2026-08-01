@@ -350,7 +350,8 @@
     "image": "Resim yüklenemedi.",
     "chainStore": "Zincir mağaza henüz girilmemiş.",
     "usefulLinks": "Faydalı linkler henüz girilmemiş.",
-    "memories": "Henüz hatıra bulunamadı."
+    "memories": "Henüz hatıra bulunamadı.",
+    "newsContent": "Bu haberin içeriği henüz eklenmedi."
   },
   "months": {
     "jan": "Ocak",
@@ -525,6 +526,7 @@
   "profile": {
     "menu": {
       "favorites": "Favorilerim",
+      "savedNews": "Kaydedilen Haberler",
       "settings": "Ayarlar",
       "rateUs": "Bizi Değerlendirin",
       "privacy": "Gizlilik Politikası",
@@ -675,5 +677,10 @@
     "backToGroups": "Gruplar'a dön",
     "requestAccess": "Yetki talebinde bulun",
     "requestAccessComingSoon": "Bu özellik yakında eklenecek."
+  },
+  "savedNews": {
+    "title": "Kaydedilen Haberler",
+    "empty": "Henüz kaydedilmiş haber yok.",
+    "error": "Haberler yüklenemedi."
   }
 }

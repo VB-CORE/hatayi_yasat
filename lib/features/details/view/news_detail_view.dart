@@ -3,20 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/details/mixin/news_detail_view_mixin.dart';
+import 'package:lifeclient/features/main/news_jobs/model/news_author_model.dart';
+import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
+import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_view_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
-import 'package:lifeclient/product/widget/icon/icon_with_text.dart';
 import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.dart';
-import 'package:lifeclient/product/widget/special/user_special_card.dart';
 
 part 'widget/news_detail_sub_view.dart';
 
 final class NewsDetailView extends ConsumerStatefulWidget {
   const NewsDetailView({required this.news, super.key});
-  final NewsModel news;
+  final NewsFeedModel news;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _NewsDetailViewState();
 }
@@ -25,9 +30,25 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
     with NewsDetailViewMixin {
   @override
   Widget build(BuildContext context) {
+    final hasBody = news.body?.isNotEmpty ?? false;
+    final isBookmarked = ref.watch(
+      newsBookmarkViewModelProvider(news.documentId).select(
+        (state) => state.isSaved,
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
+        title: Text(LocaleKeys.notification_typeNews.tr()),
         actions: [
+          IconButton(
+            onPressed: () => ref
+                .read(newsBookmarkViewModelProvider(news.documentId).notifier)
+                .toggle(),
+            icon: Icon(
+              isBookmarked ? AppIcons.bookmark : AppIcons.bookmarkBorder,
+            ),
+          ),
           IconButton(
             onPressed: shareNews,
             icon: const Icon(AppIcons.share),
@@ -37,44 +58,42 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
       body: SafeArea(
         top: false,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.vertical(
-                  bottom: CustomRadius.large.bottomLeft,
+          child: Padding(
+            padding: AppSpacing.screenH,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: AppSpacing.lg),
+                Text(
+                  news.title ?? '',
+                  maxLines: TextFieldMaxLengths.maxLine,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: context.general.textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.w100,
+                    height: 1.50,
+                  ),
                 ),
-                child: CustomImageWithViewDialog(image: news.image),
-              ),
-              Padding(
-                padding: const PagePadding.horizontalSymmetric(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const PagePadding.onlyTopMedium(),
-                      child: GeneralSubTitle(
-                        value: news.title ?? '',
-                        fontWeight: FontWeight.w900,
-                        maxLine: TextFieldMaxLengths.maxLine,
-                      ),
-                    ),
-                    Padding(
-                      padding: const PagePadding.onlyTopMedium(),
-                      child: _DateIconAndText(date: news.createdAt),
-                    ),
-                    const Padding(
-                      padding: PagePadding.onlyTopMedium(),
-                      child: UserSpecialCard(),
-                    ),
-                    Padding(
-                      padding: const PagePadding.onlyTopMedium(),
-                      child:
-                          _SelectableContentText(content: news.content ?? ''),
-                    ),
-                  ],
+                const SizedBox(height: AppSpacing.xs),
+                _NewsMetaRow(author: news.author, date: news.date),
+                const SizedBox(height: AppSpacing.xl),
+                Hero(
+                  tag: ValueKey(news.documentId),
+                  child: ClipRRect(
+                    borderRadius: AppRadius.card,
+                    child: CustomImageWithViewDialog(image: news.photoUrl),
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: AppSpacing.xl),
+                if (hasBody)
+                  _SelectableContentText(content: news.body!)
+                else
+                  GeneralContentSubTitle(
+                    value: LocaleKeys.notFound_newsContent.tr(),
+                  ),
+                const SizedBox(height: AppSpacing.xl),
+              ],
+            ),
           ),
         ),
       ),
