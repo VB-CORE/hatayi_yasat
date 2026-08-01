@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_state.dart';
@@ -23,32 +22,17 @@ final class DevelopersViewModel extends _$DevelopersViewModel
   }
 
   Future<void> _loadDevelopers() async {
-    try {
-      final collection = firestoreService.collectionReference<DeveloperModel>(
-        CollectionPaths.developers,
-        DeveloperModel(),
-      );
+    final result = await firestoreService.getList<DeveloperModel>(
+      model: DeveloperModel(),
+      path: CollectionPaths.developers,
+    );
 
-      final results = await Future.wait([
-        collection.where('active', isEqualTo: true).get(),
-        collection.where('active', isEqualTo: false).get(),
-      ]);
-
-      state = state.copyWith(
-        activeDevelopers: _mapDocs(results[0]),
-        contributorDevelopers: _mapDocs(results[1]),
-        isFetching: false,
-        isError: false,
-      );
-    } on Object {
-      state = state.copyWith(isFetching: false, isError: true);
-    }
-  }
-
-  List<DeveloperModel> _mapDocs(QuerySnapshot<DeveloperModel?> snapshot) {
-    return snapshot.docs
-        .map((doc) => doc.data())
-        .whereType<DeveloperModel>()
-        .toList();
+    final developers = result.dataOrNull ?? const [];
+    state = state.copyWith(
+      activeDevelopers: developers.where((d) => d.active).toList(),
+      contributorDevelopers: developers.where((d) => !d.active).toList(),
+      isFetching: false,
+      isError: !result.isSuccess,
+    );
   }
 }
