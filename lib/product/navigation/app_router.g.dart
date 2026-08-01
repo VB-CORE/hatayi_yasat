@@ -224,6 +224,14 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Developers',
           hasOverriddenOnExit: false,
           factory: $DevelopersRoute._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'contributors',
+              name: 'Developers Contributors',
+              hasOverriddenOnExit: false,
+              factory: $DevelopersContributorsRoute._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: 'appInfo',
@@ -774,6 +782,28 @@ mixin $DevelopersRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/main/settings/developers');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $DevelopersContributorsRoute on GoRouteData {
+  static DevelopersContributorsRoute _fromState(GoRouterState state) =>
+      const DevelopersContributorsRoute();
+
+  @override
+  String get location =>
+      GoRouteData.$location('/main/settings/developers/contributors');
 
   @override
   void go(BuildContext context) => context.go(location);
