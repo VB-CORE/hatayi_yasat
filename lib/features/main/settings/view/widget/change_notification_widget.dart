@@ -6,14 +6,15 @@ final class _ChangeNotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralExpansionTile(
-      key: ValueKey(context.locale),
-      pageTitle: LocaleKeys.settings_notificationTitle.tr(),
-      children: const [
-        Padding(
-          padding: PagePadding.horizontalLowSymmetric(),
-          child: NotificationPermissionView(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        GeneralGroupSectionHeader(
+          label: LocaleKeys.settings_notificationTitle
+              .tr(context: context)
+              .toUpperCase(),
         ),
+        const NotificationPermissionView(),
       ],
     );
   }

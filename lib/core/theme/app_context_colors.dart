@@ -29,7 +29,9 @@ final class AppColorTokens {
   Color get gold200 => AppColors.gold200;
   Color get gold300 => AppColors.gold300;
   Color get coral => AppColors.coral;
+  Color get coral50 => AppColors.coral50;
   Color get coral100 => AppColors.coral100;
+  Color get coral500 => AppColors.coral500;
   Color get teal50 => AppColors.teal50;
   Color get teal300 => AppColors.teal300;
   Color get white => AppColors.white;
