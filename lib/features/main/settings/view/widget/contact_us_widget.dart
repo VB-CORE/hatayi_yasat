@@ -15,7 +15,7 @@ final class _ContactUsWidget extends StatelessWidget {
               .tr(context: context)
               .toUpperCase(),
         ),
-        _ContactUsGridView(key: ValueKey(context.locale)),
+        const _ContactUsGridView(),
       ],
     );
   }
@@ -23,7 +23,7 @@ final class _ContactUsWidget extends StatelessWidget {
 
 @immutable
 final class _ContactUsGridView extends StatelessWidget {
-  const _ContactUsGridView({super.key});
+  const _ContactUsGridView();
 
   @override
   Widget build(BuildContext context) {

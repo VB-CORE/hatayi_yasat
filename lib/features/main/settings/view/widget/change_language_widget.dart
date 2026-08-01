@@ -25,7 +25,6 @@ final class _ChangeLanguageWidget extends StatelessWidget {
                 LocaleKeys.settings_currentLanguage.tr(context: context),
               ),
               GeneralSegmentedControl<String>(
-                key: ValueKey(context.locale.languageCode),
                 value: context.locale.languageCode,
                 options: context.supportedLocales
                     .map((locale) => locale.languageCode)
