@@ -27,22 +27,25 @@ final class _BottomAppBarWidget extends ConsumerWidget {
         .watch(mainTabViewModelProvider)
         .isScrolledBottom;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
-        boxShadow: AppShadows.bottomBar,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
-        child: BottomAppBar(
-          height: height,
-          padding: EdgeInsets.zero,
-          shape: const CircularNotchedRectangle(),
-          elevation: kZero,
-          color: context.general.appTheme.bottomAppBarTheme.color?.withValues(
-            alpha: isScrolledBottom ? .7 : 1,
+    return AnimatedSlide(
+      duration: Durations.medium2,
+      curve: Curves.easeOut,
+      offset: isScrolledBottom ? const Offset(0, 1) : Offset.zero,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
+          boxShadow: AppShadows.bottomBar,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(WidgetSizes.spacingXxl2),
+          child: BottomAppBar(
+            height: height,
+            padding: EdgeInsets.zero,
+            shape: const CircularNotchedRectangle(),
+            elevation: kZero,
+            color: context.general.appTheme.bottomAppBarTheme.color,
+            child: _TabBar(tabItems: tabItems),
           ),
-          child: _TabBar(tabItems: tabItems),
         ),
       ),
     );
