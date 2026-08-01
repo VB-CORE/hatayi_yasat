@@ -1,3 +1,7 @@
+import 'package:life_shared/life_shared.dart';
+
+export 'package:life_shared/life_shared.dart' show CacheModel;
+
 abstract class CacheManager {
   CacheManager({this.path});
 
@@ -5,13 +9,6 @@ abstract class CacheManager {
   void remove();
 
   final String? path;
-}
-
-mixin CacheModel {
-  String get id;
-
-  CacheModel fromDynamicJson(dynamic json);
-  Map<String, dynamic> toJson();
 }
 
 abstract class CacheOperation<T extends CacheModel> {

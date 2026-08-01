@@ -25,16 +25,31 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
   }
 
   Future<void> _fetchStoreModel(String id) async {
-    final store = await firebaseService.getSingleData<StoreModel>(
+    final result = await firestoreService.getSingleData<StoreModel>(
       model: StoreModel.empty(),
       path: CollectionPaths.approvedApplications,
       id: id,
     );
 
+    state = switch (result) {
+      FirebaseSuccess(:final data) => state.copyWith(
+        storeModel: data ?? StoreModel.empty(),
+        isFetching: false,
+        isError: data == null,
+      ),
+      FirebaseFailure() => state.copyWith(isFetching: false, isError: true),
+    };
+  }
+
+  void applyRatingDelta({required int scoreDelta, required int countDelta}) {
+    final store = state.storeModel;
+    final nextCount = store.ratingCount + countDelta;
+    if (nextCount < 0) return;
     state = state.copyWith(
-      storeModel: store ?? StoreModel.empty(),
-      isFetching: false,
-      isError: store == null,
+      storeModel: store.copyWith(
+        ratingSum: store.ratingSum + scoreDelta,
+        ratingCount: nextCount,
+      ),
     );
   }
 

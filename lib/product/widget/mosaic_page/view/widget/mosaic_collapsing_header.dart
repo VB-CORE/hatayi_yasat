@@ -6,22 +6,26 @@ final class _MosaicCollapsingHeader extends StatelessWidget {
     required this.header,
     required this.style,
     this.leading,
+    this.title,
   });
 
   final ScrollController scrollController;
   final Widget header;
   final MosaicCollapsingHeaderStyle style;
   final Widget? leading;
+  final Widget? title;
 
   static const double _overlapFactor = .25;
   static const double _expandedMargin = AppSpacing.md;
   static const double _expandedRadius = AppRadius.lg;
 
+  bool get _hasAppBar => leading != null || title != null;
+
   @override
   Widget build(BuildContext context) {
     final patternHeight = context.sized.dynamicHeight(style.heightFactor);
     final topPadding = MediaQuery.paddingOf(context).top;
-    final collapsedTop = topPadding + (leading != null ? kToolbarHeight : 0);
+    final collapsedTop = topPadding + (_hasAppBar ? kToolbarHeight : 0);
 
     return SliverResizingHeader(
       minExtentPrototype: _measure(
@@ -85,12 +89,26 @@ final class _MosaicCollapsingHeader extends StatelessWidget {
                     child: MosaicBackground(gradient: style.gradient),
                   ),
                 ),
-                if (leading != null)
+                if (_hasAppBar)
                   Positioned(
                     top: topPadding,
                     left: AppSpacing.sm,
+                    right: AppSpacing.sm,
                     height: kToolbarHeight,
-                    child: Center(child: leading),
+                    child: Row(
+                      children: [
+                        ?leading,
+                        if (title case final title?)
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: leading != null ? AppSpacing.xs : 0,
+                              ),
+                              child: title,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 Align(
                   alignment: Alignment.bottomCenter,

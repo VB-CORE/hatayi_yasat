@@ -1,10 +1,26 @@
-part of '../developers_view.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/sub_feature/developers/view/widget/soft_arc_mosaic.dart';
+import 'package:lifeclient/product/generated/assets.gen.dart';
+import 'package:lifeclient/product/utility/extension/string_extension.dart';
+import 'package:lifeclient/product/widget/bubble/bubble_chart.dart';
+import 'package:lifeclient/product/widget/bubble/bubble_data.dart';
 
 @immutable
-final class _DevelopersBubbleChart extends StatelessWidget {
-  const _DevelopersBubbleChart({required this.developers});
+final class DevelopersBubbleChart extends StatelessWidget {
+  const DevelopersBubbleChart({
+    required this.developers,
+    required this.headerText,
+    super.key,
+  });
 
   final List<DeveloperModel> developers;
+  final String headerText;
 
   void _openProfile(DeveloperModel developer) {
     if (developer.githubUrl.ext.isNullOrEmpty) return;
@@ -30,30 +46,30 @@ final class _DevelopersBubbleChart extends StatelessWidget {
           alignment: .bottomCenter,
           child: SizedBox(
             height: context.sized.dynamicHeight(.25),
-            child: const IgnorePointer(child: _SoftArcMosaic()),
+            child: const IgnorePointer(child: SoftArcMosaic()),
           ),
         ),
-        const Align(
-          child: IgnorePointer(child: _DevelopersLogoWatermark()),
-        ),
         BubbleChart(data: bubbles),
-        const Align(
+        Align(
           alignment: .topCenter,
-          child: IgnorePointer(child: _DevelopersThanksHeader()),
+          child: IgnorePointer(
+            child: _DevelopersThanksHeader(text: headerText),
+          ),
         ),
       ],
     );
   }
 }
 
-final class _DevelopersLogoWatermark extends StatelessWidget {
-  const _DevelopersLogoWatermark();
+@immutable
+final class DevelopersLogoWatermark extends StatelessWidget {
+  const DevelopersLogoWatermark({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = context.sized.dynamicWidth(0.55);
     return Opacity(
-      opacity: 0.25,
+      opacity: 0.12,
       child: Assets.icons.icApp.image(
         width: size,
         height: size,
@@ -64,7 +80,9 @@ final class _DevelopersLogoWatermark extends StatelessWidget {
 }
 
 final class _DevelopersThanksHeader extends StatelessWidget {
-  const _DevelopersThanksHeader();
+  const _DevelopersThanksHeader({required this.text});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +99,8 @@ final class _DevelopersThanksHeader extends StatelessWidget {
         },
         blendMode: .srcIn,
         child: Text(
-          LocaleKeys.developers_thanksMessage.tr(),
-          style: AppText.displayLg.copyWith(
+          text,
+          style: AppText.displayMd.copyWith(
             color: Colors.white,
             fontWeight: .w600,
           ),

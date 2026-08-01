@@ -1,7 +1,9 @@
-part of '../developers_view.dart';
+import 'package:flutter/material.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 
-final class _SoftArcMosaic extends StatelessWidget {
-  const _SoftArcMosaic();
+final class SoftArcMosaic extends StatelessWidget {
+  const SoftArcMosaic();
 
   static const double _edgeRatio = 0.1;
   static const double _centerRatio = 0.5;
@@ -26,13 +28,13 @@ final class _SoftArcClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    final edgeY = size.height * _SoftArcMosaic._edgeRatio;
+    final edgeY = size.height * SoftArcMosaic._edgeRatio;
     return Path()
       ..moveTo(0, size.height)
       ..lineTo(0, edgeY)
       ..quadraticBezierTo(
         size.width / 2,
-        size.height * _SoftArcMosaic._centerRatio,
+        size.height * SoftArcMosaic._centerRatio,
         size.width,
         edgeY,
       )
@@ -48,12 +50,12 @@ final class _SoftArcEdgePainter extends CustomPainter {
   const _SoftArcEdgePainter();
 
   Path _curve(Size size) {
-    final edgeY = size.height * _SoftArcMosaic._edgeRatio;
+    final edgeY = size.height * SoftArcMosaic._edgeRatio;
     return Path()
       ..moveTo(0, edgeY)
       ..quadraticBezierTo(
         size.width / 2,
-        size.height * _SoftArcMosaic._centerRatio,
+        size.height * SoftArcMosaic._centerRatio,
         size.width,
         edgeY,
       );

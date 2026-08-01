@@ -10,8 +10,6 @@ import 'package:lifeclient/features/community/group_detail/details/view/widget/g
 import 'package:lifeclient/features/community/group_detail/details/view/widget/group_info_row.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/provider/group_detail_view_model.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/widget/group_type_presentation.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';

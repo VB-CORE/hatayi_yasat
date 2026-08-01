@@ -21,6 +21,6 @@ final class CommunityPaths {
   static FirestoreCollectionPath entries(String groupId, String discussionId) =>
       discussions(groupId).sub(discussionId, SubCollectionPaths.entries);
 
-  static FirestoreCollectionPath likedPosts(String uid) =>
-      CollectionPaths.users.sub(uid, SubCollectionPaths.likedPosts);
+  static FirestoreCollectionPath likes(String groupId, String postId) =>
+      posts(groupId).sub(postId, SubCollectionPaths.likes);
 }

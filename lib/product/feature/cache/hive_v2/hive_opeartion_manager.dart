@@ -3,9 +3,14 @@ import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 final class HiveOperationManager<T extends CacheModel>
     extends CacheOperation<T> {
-  HiveOperationManager() {
+  /// [boxName] defaults to the type name. Pass an explicit one when a model's
+  /// stored shape changes, so entries written by an older adapter are orphaned
+  /// instead of being read back as garbage.
+  HiveOperationManager({String? boxName}) : _boxName = boxName ?? T.toString() {
     _ready = _initializeBox();
   }
+
+  final String _boxName;
 
   Box<T>? _box;
   late final Future<void> _ready;
@@ -14,10 +19,10 @@ final class HiveOperationManager<T extends CacheModel>
   Future<void> get ready => _ready;
 
   Future<void> _initializeBox() async {
-    if (!Hive.isBoxOpen(T.toString())) {
-      await Hive.openBox<T>(T.toString());
+    if (!Hive.isBoxOpen(_boxName)) {
+      await Hive.openBox<T>(_boxName);
     }
-    _box = Hive.box(T.toString());
+    _box = Hive.box(_boxName);
   }
 
   @override

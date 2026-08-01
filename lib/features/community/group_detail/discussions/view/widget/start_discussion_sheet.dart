@@ -5,7 +5,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/mixin/start_discussion_sheet_mixin.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
 import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/index.dart';

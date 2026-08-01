@@ -2,7 +2,8 @@ part of '../monetization_view.dart';
 
 enum MonetizationCouponTab {
   active,
-  inactive;
+  inactive
+  ;
 
   String title(int count) {
     switch (this) {

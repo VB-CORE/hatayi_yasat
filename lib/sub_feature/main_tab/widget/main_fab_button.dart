@@ -6,16 +6,25 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = SpeedDialChildModelList(context: context).speedDialChildItems;
-    return CustomSpeedDial(
-      children: items
-          .map(
-            (e) => CustomSpeedDialRouteChild(
-              context: context,
-              location: e.location,
-              label: e.title,
-            ),
-          )
-          .toList(),
+    final isScrolledBottom = ref
+        .watch(mainTabViewModelProvider)
+        .isScrolledBottom;
+
+    return AnimatedScale(
+      duration: Durations.medium2,
+      curve: Curves.easeOut,
+      scale: isScrolledBottom ? 0 : 1,
+      child: CustomSpeedDial(
+        children: items
+            .map(
+              (e) => CustomSpeedDialRouteChild(
+                context: context,
+                location: e.location,
+                label: e.title,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

@@ -7,7 +7,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/provider/group_detail_view_model.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/community/widget/group_cover_image.dart';
 import 'package:lifeclient/features/community/widget/group_type_presentation.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
