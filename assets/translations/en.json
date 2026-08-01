@@ -2,6 +2,9 @@
   "project": {
     "name": "Keep Hatay Alive"
   },
+  "splash": {
+    "tagline": "COMMUNITY · PLACE · MEMORY"
+  },
   "validation": {
     "fullName": "Name and surname cannot be empty.",
     "phoneNumber": "Please enter a valid phone number.",

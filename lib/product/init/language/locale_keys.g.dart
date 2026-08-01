@@ -5,6 +5,8 @@
 abstract class  LocaleKeys {
   static const project_name = 'project.name';
   static const project = 'project';
+  static const splash_tagline = 'splash.tagline';
+  static const splash = 'splash';
   static const validation_fullName = 'validation.fullName';
   static const validation_phoneNumber = 'validation.phoneNumber';
   static const validation_address = 'validation.address';

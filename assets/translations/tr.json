@@ -2,6 +2,9 @@
   "project": {
     "name": "Hatay'ı Yaşat"
   },
+  "splash": {
+    "tagline": "TOPLULUK · MEKAN · HATIRA"
+  },
   "validation": {
     "fullName": "Ad ve soyad boş bırakılamaz.",
     "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
