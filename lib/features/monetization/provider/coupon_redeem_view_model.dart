@@ -5,7 +5,6 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/monetization/data/coupon_redemption_model.dart';
 import 'package:lifeclient/features/monetization/data/coupon_redemption_path.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/provider/coupon_redeem_state.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/model/user_qr_payload.dart';
@@ -20,7 +19,7 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
 
   FirestoreCollectionPath get _redemptions => CouponRedemptionPath(couponId);
 
-  DiscountCouponModel? get _coupon {
+  CouponModel? get _coupon {
     for (final item in ref.read(monetizationViewModelProvider).coupons) {
       if (item.documentId == couponId) return item;
     }
@@ -92,7 +91,7 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
     await _grant(coupon, userUid);
   }
 
-  Future<void> _grant(DiscountCouponModel coupon, String userUid) async {
+  Future<void> _grant(CouponModel coupon, String userUid) async {
     final merchantUid = ref.read(authViewModelProvider).user?.uid ?? '';
     final redemption = CouponRedemptionModel(
       userUid: userUid,

@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService({
@@ -131,7 +131,7 @@ final class FirebaseAuthService implements AuthService {
       if (snapshot.exists) return true;
       return await _firebaseService.insertWithID(
         ref: CollectionPaths.users,
-        model: UserModel.fromFirebaseUser(user),
+        model: user.toUserModel(),
         key: user.uid,
       );
     } on Object catch (error) {

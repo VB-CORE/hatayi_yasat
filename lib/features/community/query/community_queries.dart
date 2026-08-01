@@ -1,13 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
-import 'package:lifeclient/features/community/model/group_discussion_entry_model.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
-import 'package:lifeclient/features/community/model/group_member_role.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
-import 'package:lifeclient/features/community/model/liked_post_model.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 
 mixin CommunityQueryMixin on ProjectDependencyMixin {
@@ -37,6 +30,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
         CommunityPaths.posts(groupId),
         const GroupPostModel.empty(),
       )
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(FirestoreFields.createdAt.name, descending: true);
 
   Query<GroupDiscussionModel?> discussionsQuery(String groupId) =>
@@ -45,6 +39,7 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
             CommunityPaths.discussions(groupId),
             const GroupDiscussionModel.empty(),
           )
+          .where(FirestoreFields.isDeleted.name, isEqualTo: false)
           .orderBy(FirestoreFields.createdAt.name, descending: true);
 
   Query<GroupDiscussionEntryModel?> entriesQuery(
@@ -55,17 +50,23 @@ mixin CommunityQueryMixin on ProjectDependencyMixin {
         CommunityPaths.entries(groupId, discussionId),
         const GroupDiscussionEntryModel.empty(),
       )
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
       .orderBy(FirestoreFields.createdAt.name);
 
-  Query<LikedPostModel?> likedPostsQuery(String uid) => firestoreService
-      .collectionReference(
-        CommunityPaths.likedPosts(uid),
-        const LikedPostModel.empty(),
-      )
-      .orderBy(_likedAtField, descending: true);
+  /// Every post this user liked, across groups. The like documents live under
+  /// their post, so this is a collection group scan rather than a per-user list.
+  Query<PostLikeModel?> likedPostsQuery(String uid) => FirebaseFirestore.instance
+      .collectionGroup(SubCollectionPaths.likes.name)
+      .where(_uidField, isEqualTo: uid)
+      .where(FirestoreFields.isDeleted.name, isEqualTo: false)
+      .withConverter<PostLikeModel?>(
+        fromFirestore: (snapshot, _) =>
+            const PostLikeModel.empty().fromFirebase(snapshot),
+        toFirestore: (_, _) => throw UnimplementedError(),
+      );
 
   static const String _categoryValueField = 'categoryValue';
-  static const String _likedAtField = 'likedAt';
+  static const String _uidField = 'uid';
   static const String _roleField = 'role';
-  static final String _adminRole = GroupMemberRole.admin.name;
+  static final int _adminRole = GroupMemberRole.admin.value;
 }

@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:life_shared/life_shared.dart' hide MerchantShowcaseModuleModel, MerchantShowcaseType;
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';

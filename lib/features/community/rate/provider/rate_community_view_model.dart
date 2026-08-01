@@ -7,7 +7,6 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/community/rate/provider/rate_community_state.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rate_community_view_model.g.dart';
@@ -119,6 +118,10 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         ..update(
           _storeRef,
           RateModel.ratingDelta(score: vote.score, isIncrement: true),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(user.uid),
+          UserModel.counterStep(UserCounterFields.voteCount),
         );
     });
     if (result.isSuccess) {
@@ -169,6 +172,10 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         ..update(
           _storeRef,
           RateModel.ratingDelta(score: currentVote.score, isIncrement: false),
+        )
+        ..update(
+          CollectionPaths.users.collection.doc(currentVote.voterUid),
+          UserModel.counterStep(UserCounterFields.voteCount, by: -1),
         );
     });
     if (result.isSuccess) {

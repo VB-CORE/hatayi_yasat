@@ -722,5 +722,9 @@ abstract class  LocaleKeys {
   static const merchantPanel_placeSection_title = 'merchantPanel.placeSection.title';
   static const merchantPanel_placeSection = 'merchantPanel.placeSection';
   static const merchantPanel = 'merchantPanel';
+  static const banned_title = 'banned.title';
+  static const banned_description = 'banned.description';
+  static const banned_signOut = 'banned.signOut';
+  static const banned = 'banned';
 
 }

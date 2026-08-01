@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:life_shared/life_shared.dart' hide MerchantShowcaseModuleModel, MerchantShowcaseType;
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_model.dart';
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_module_model.dart';

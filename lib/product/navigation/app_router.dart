@@ -7,7 +7,6 @@ import 'package:lifeclient/features/community/create_group/view/create_group_vie
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
 import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
 import 'package:lifeclient/features/community/group_detail/group_detail_view.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
@@ -15,7 +14,6 @@ import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
 import 'package:lifeclient/features/merchant_panel/view/merchant_panel_view.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/redeem/coupon_redeem_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
@@ -38,6 +36,7 @@ import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
+import 'package:lifeclient/sub_feature/banned/banned_view.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
@@ -350,7 +349,7 @@ final class CouponRedeemRoute extends GoRouteData with $CouponRedeemRoute {
     name: 'Coupon Redeem',
   );
 
-  final DiscountCouponModel $extra;
+  final CouponModel $extra;
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>
@@ -370,7 +369,7 @@ final class MonetizationCouponFormRoute extends GoRouteData
     name: 'Monetization Coupon Form',
   );
 
-  final DiscountCouponModel? $extra;
+  final CouponModel? $extra;
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>
@@ -488,6 +487,14 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
+}
+
+@TypedGoRoute<BannedRoute>(path: '/banned')
+final class BannedRoute extends GoRouteData with $BannedRoute {
+  const BannedRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const BannedView();
 }
 
 @TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')

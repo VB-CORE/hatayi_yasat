@@ -804,5 +804,10 @@
     "placeSection": {
       "title": "Kampanya ve duyurular"
     }
+  },
+  "banned": {
+    "title": "Hesabın askıya alındı",
+    "description": "Topluluk kurallarını ihlal ettiğin için hesabın kapatıldı. Paylaşımların yayından kaldırıldı.",
+    "signOut": "Çıkış yap"
   }
 }

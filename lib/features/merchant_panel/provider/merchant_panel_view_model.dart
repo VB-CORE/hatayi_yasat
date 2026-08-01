@@ -7,8 +7,6 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/model/rate_model.dart';
 import 'package:lifeclient/features/merchant_panel/provider/merchant_panel_state.dart';
-import 'package:lifeclient/product/model/auth/user/user_application_status.dart';
-import 'package:lifeclient/product/model/auth/user/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'merchant_panel_view_model.g.dart';

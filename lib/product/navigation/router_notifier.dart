@@ -31,6 +31,7 @@ final class RouterNotifier extends ChangeNotifier {
     if (previousUser == null && nextUser == null) return false;
     if (previousUser == null || nextUser == null) return true;
     return previousUser.roleType != nextUser.roleType ||
+        previousUser.isBanned != nextUser.isBanned ||
         !listEquals(previousUser.permissions, nextUser.permissions);
   }
 }
@@ -40,10 +41,23 @@ final Provider<RouterNotifier> routerNotifierProvider =
 
 final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
   final notifier = ref.watch(routerNotifierProvider);
+  final bannedLocation = const BannedRoute().location;
   return GoRouter(
     routes: $appRoutes,
     initialLocation: '/',
     refreshListenable: notifier,
+    // Ban tek global yonlendirme: hesap askidayken hangi rotaya gidilirse
+    // gidilsin ban ekrani gosterilir. Diger kararlar rotalarin kendi
+    // redirect'lerinde kalir.
+    redirect: (context, state) {
+      final isBanned = ProviderScope.containerOf(
+        context,
+      ).read(authViewModelProvider).isBanned;
+      if (!isBanned) {
+        return state.matchedLocation == bannedLocation ? '/' : null;
+      }
+      return state.matchedLocation == bannedLocation ? null : bannedLocation;
+    },
     observers: [
       FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
     ],

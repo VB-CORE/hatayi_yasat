@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -21,7 +21,7 @@ mixin MonetizationCouponFormMixin
 
   DateTime? expiresAt;
 
-  DiscountCouponModel? get editedCoupon => widget.coupon;
+  CouponModel? get editedCoupon => widget.coupon;
 
   bool get isEditing => editedCoupon != null;
 

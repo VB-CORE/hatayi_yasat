@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:life_shared/life_shared.dart';
+import 'package:life_shared/life_shared.dart' hide MerchantShowcaseModuleModel, MerchantShowcaseType;
 import 'package:lifeclient/features/merchant_panel/model/merchant_showcase_type.dart';
 
 part 'merchant_showcase_module_model.g.dart';

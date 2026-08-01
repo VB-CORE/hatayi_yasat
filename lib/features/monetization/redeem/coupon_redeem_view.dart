@@ -8,7 +8,6 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/provider/coupon_redeem_state.dart';
 import 'package:lifeclient/features/monetization/provider/coupon_redeem_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -25,7 +24,7 @@ part 'widget/coupon_redeem_result_card.dart';
 final class CouponRedeemView extends ConsumerStatefulWidget {
   const CouponRedeemView({required this.coupon, super.key});
 
-  final DiscountCouponModel coupon;
+  final CouponModel coupon;
 
   @override
   ConsumerState<CouponRedeemView> createState() => _CouponRedeemViewState();

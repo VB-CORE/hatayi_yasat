@@ -5,8 +5,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/widget/group_post_card.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/widget/wall_composer.dart';
-import 'package:lifeclient/features/community/model/group_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';

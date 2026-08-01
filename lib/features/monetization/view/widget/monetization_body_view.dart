@@ -8,10 +8,10 @@ final class _MonetizationBodyView extends StatelessWidget {
     required this.onEdit,
   });
 
-  final List<DiscountCouponModel> coupons;
-  final ValueChanged<DiscountCouponModel> onDelete;
-  final ValueChanged<DiscountCouponModel> onRedeem;
-  final ValueChanged<DiscountCouponModel> onEdit;
+  final List<CouponModel> coupons;
+  final ValueChanged<CouponModel> onDelete;
+  final ValueChanged<CouponModel> onRedeem;
+  final ValueChanged<CouponModel> onEdit;
 
   @override
   Widget build(BuildContext context) {

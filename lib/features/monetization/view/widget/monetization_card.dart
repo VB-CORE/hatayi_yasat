@@ -8,7 +8,7 @@ final class _MonetizationCard extends StatelessWidget {
     required this.onEdit,
   });
 
-  final DiscountCouponModel coupon;
+  final CouponModel coupon;
   final VoidCallback onDelete;
   final VoidCallback onRedeem;
   final VoidCallback onEdit;
