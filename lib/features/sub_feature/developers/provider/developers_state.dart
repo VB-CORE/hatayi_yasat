@@ -5,25 +5,35 @@ import 'package:life_shared/life_shared.dart';
 @immutable
 final class DevelopersState extends Equatable {
   const DevelopersState({
-    this.developers = const [],
+    this.activeDevelopers = const [],
+    this.contributorDevelopers = const [],
     this.isFetching = false,
     this.isError = false,
   });
 
-  final List<DeveloperModel> developers;
+  final List<DeveloperModel> activeDevelopers;
+  final List<DeveloperModel> contributorDevelopers;
   final bool isFetching;
   final bool isError;
 
   @override
-  List<Object?> get props => [developers, isFetching, isError];
+  List<Object?> get props => [
+    activeDevelopers,
+    contributorDevelopers,
+    isFetching,
+    isError,
+  ];
 
   DevelopersState copyWith({
-    List<DeveloperModel>? developers,
+    List<DeveloperModel>? activeDevelopers,
+    List<DeveloperModel>? contributorDevelopers,
     bool? isFetching,
     bool? isError,
   }) {
     return DevelopersState(
-      developers: developers ?? this.developers,
+      activeDevelopers: activeDevelopers ?? this.activeDevelopers,
+      contributorDevelopers:
+          contributorDevelopers ?? this.contributorDevelopers,
       isFetching: isFetching ?? this.isFetching,
       isError: isError ?? this.isError,
     );

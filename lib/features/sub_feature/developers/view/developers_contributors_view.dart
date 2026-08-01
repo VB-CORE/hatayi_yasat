@@ -7,20 +7,21 @@ import 'package:lifeclient/features/sub_feature/developers/provider/developers_s
 import 'package:lifeclient/features/sub_feature/developers/provider/developers_view_model.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/widget/developers_bubble_chart.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
-final class DevelopersView extends ConsumerStatefulWidget {
-  const DevelopersView({super.key});
+final class DevelopersContributorsView extends ConsumerStatefulWidget {
+  const DevelopersContributorsView({super.key});
 
   @override
-  ConsumerState<DevelopersView> createState() => _DevelopersViewState();
+  ConsumerState<DevelopersContributorsView> createState() =>
+      _DevelopersContributorsViewState();
 }
 
-final class _DevelopersViewState extends ConsumerState<DevelopersView>
-    with AppProviderMixin<DevelopersView> {
+final class _DevelopersContributorsViewState
+    extends ConsumerState<DevelopersContributorsView>
+    with AppProviderMixin<DevelopersContributorsView> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(developersViewModelProvider);
@@ -31,15 +32,7 @@ final class _DevelopersViewState extends ConsumerState<DevelopersView>
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: PageAppBar(
-        pageTitle: LocaleKeys.developers_title,
-        actions: [
-          TextButton(
-            onPressed: () => const DevelopersContributorsRoute().push<void>(
-              context,
-            ),
-            child: Text(LocaleKeys.developers_contributorsButtonTitle.tr()),
-          ),
-        ],
+        pageTitle: LocaleKeys.developers_contributorsButtonTitle,
       ),
       body: switch (state) {
         DevelopersState(isFetching: true) => const PlaceShimmerList(),
@@ -47,14 +40,14 @@ final class _DevelopersViewState extends ConsumerState<DevelopersView>
           title: LocaleKeys.message_somethingWentWrong.tr(),
           onRefresh: onRetry,
         ),
-        DevelopersState(:final activeDevelopers) => Stack(
+        DevelopersState(:final contributorDevelopers) => Stack(
           children: [
             const Align(
               child: IgnorePointer(child: DevelopersLogoWatermark()),
             ),
             DevelopersBubbleChart(
-              developers: activeDevelopers,
-              headerText: LocaleKeys.developers_thanksMessage.tr(),
+              developers: contributorDevelopers,
+              headerText: LocaleKeys.settings_inactiveDevelopers.tr(),
             ),
           ],
         ),

@@ -2,6 +2,9 @@
   "project": {
     "name": "Keep Hatay Alive"
   },
+  "splash": {
+    "tagline": "COMMUNITY · PLACE · MEMORY"
+  },
   "validation": {
     "fullName": "Name and surname cannot be empty.",
     "phoneNumber": "Please enter a valid phone number.",
@@ -99,6 +102,7 @@
     "title": "Settings",
     "languageTitle": "Language",
     "currentLanguage": "Current language",
+    "appearanceTitle": "Appearance",
     "themeTitle": "{} Theme",
     "developersTitle": "Developers",
     "inactiveDevelopers": "We would like to thank our friends who supported us yesterday ❤️ ",
@@ -281,7 +285,8 @@
   "developers": {
     "title": "Developers",
     "seeProfileButtonText": "See Profile",
-    "thanksMessage": "Thank you to our friends who support us"
+    "thanksMessage": "Thank you to our friends who support us",
+    "contributorsButtonTitle": "Contributors"
   },
   "navigationTabs": {
     "home": "Home",

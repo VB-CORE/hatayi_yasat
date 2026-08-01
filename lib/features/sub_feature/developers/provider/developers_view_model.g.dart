@@ -42,13 +42,13 @@ final class DevelopersViewModelProvider
 }
 
 String _$developersViewModelHash() =>
-    r'e88ca4fecdb4c5642e76e7c86233578ba97fd061';
+    r'1af9a8bc0cf25f93c2795c313138548b0b33a721';
 
 abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
   DevelopersState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<DevelopersState, DevelopersState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$DevelopersViewModel extends $Notifier<DevelopersState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
 import 'package:lifeclient/product/package/settings/custom_app_settings.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/dialog/approve_dialog.dart';
-import 'package:lifeclient/product/widget/general/title/general_body_title.dart';
+import 'package:lifeclient/product/widget/general/general_switch_tile.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @immutable
 final class NotificationPermissionView extends StatefulWidget {
@@ -16,11 +17,35 @@ final class NotificationPermissionView extends StatefulWidget {
 }
 
 final class _NotificationPermissionViewState
-    extends State<NotificationPermissionView> with _NotificationPermission {
+    extends State<NotificationPermissionView>
+    with WidgetsBindingObserver, _NotificationPermission {
+  late Future<PermissionStatus> _statusFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _statusFuture = Permission.notification.status;
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    setState(() {
+      _statusFuture = Permission.notification.status;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<PermissionStatus>(
-      future: Permission.notification.status,
+      future: _statusFuture,
       builder:
           (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
         final isGranted = snapshot.data == PermissionStatus.granted ||
@@ -33,15 +58,13 @@ final class _NotificationPermissionViewState
           child: AnimatedOpacity(
             duration: Durations.medium2,
             opacity: isGranted ? 0.3 : 1,
-            child: CheckboxListTile(
-              contentPadding: EdgeInsets.zero,
-              value: isGranted,
-              onChanged: (value) {
-                _controlCheckBox(value: value ?? false);
-              },
-              title: GeneralBodyTitle(
-                LocaleKeys.settings_notificationSetting.tr(context: context),
+            child: GeneralSwitchTile(
+              icon: AppIcons.notifications,
+              label: LocaleKeys.settings_notificationSetting.tr(
+                context: context,
               ),
+              value: isGranted,
+              onChanged: (value) => _controlCheckBox(value: value),
             ),
           ),
         );

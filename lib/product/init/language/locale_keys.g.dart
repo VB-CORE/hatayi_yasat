@@ -5,6 +5,8 @@
 abstract class  LocaleKeys {
   static const project_name = 'project.name';
   static const project = 'project';
+  static const splash_tagline = 'splash.tagline';
+  static const splash = 'splash';
   static const validation_fullName = 'validation.fullName';
   static const validation_phoneNumber = 'validation.phoneNumber';
   static const validation_address = 'validation.address';
@@ -93,6 +95,7 @@ abstract class  LocaleKeys {
   static const settings_title = 'settings.title';
   static const settings_languageTitle = 'settings.languageTitle';
   static const settings_currentLanguage = 'settings.currentLanguage';
+  static const settings_appearanceTitle = 'settings.appearanceTitle';
   static const settings_themeTitle = 'settings.themeTitle';
   static const settings_developersTitle = 'settings.developersTitle';
   static const settings_inactiveDevelopers = 'settings.inactiveDevelopers';
@@ -261,6 +264,7 @@ abstract class  LocaleKeys {
   static const developers_title = 'developers.title';
   static const developers_seeProfileButtonText = 'developers.seeProfileButtonText';
   static const developers_thanksMessage = 'developers.thanksMessage';
+  static const developers_contributorsButtonTitle = 'developers.contributorsButtonTitle';
   static const developers = 'developers';
   static const navigationTabs_home = 'navigationTabs.home';
   static const navigationTabs_activities = 'navigationTabs.activities';
