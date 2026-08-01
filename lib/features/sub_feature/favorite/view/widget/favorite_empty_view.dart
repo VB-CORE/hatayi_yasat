@@ -60,35 +60,32 @@ final class _FavoriteEmptyViewLayout extends StatelessWidget {
   final String description;
   final Widget? child;
 
-  static const double _iconCircleSize = 96;
-  static const int _topSpacerFlex = 3;
-  static const int _bottomSpacerFlex = 8;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.horizontalSymmetric(),
       child: Column(
         children: [
-          const Spacer(flex: _topSpacerFlex),
+          const Spacer(flex: AppConstants.kThree),
           Container(
-            width: _iconCircleSize,
-            height: _iconCircleSize,
+            width: AppIconSizes.xxLarge,
+            height: AppIconSizes.xxLarge,
             decoration: BoxDecoration(
               color: iconBackground,
               shape: BoxShape.circle,
             ),
             child: Icon(icon, size: IconSize.large.value, color: iconColor),
           ),
-          const SizedBox(height: AppSpacing.xxxl),
-          Center(child: GeneralContentTitle(value: title)),
-          const SizedBox(height: AppSpacing.md),
+          Padding(
+            padding: const PagePadding.vertical12Symmetric(),
+            child: Center(child: GeneralContentTitle(value: title)),
+          ),
           GeneralContentSubTitle(
             value: description,
             textAlign: TextAlign.center,
           ),
           ?child,
-          const Spacer(flex: _bottomSpacerFlex),
+          const Spacer(flex: AppConstants.kTen),
         ],
       ),
     );

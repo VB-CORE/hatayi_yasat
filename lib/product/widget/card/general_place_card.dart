@@ -7,6 +7,7 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -25,9 +26,6 @@ final class GeneralPlaceCard extends StatelessWidget {
     super.key,
   });
 
-  static const double _imageWidth = 104;
-  static const double _cardHeight = 104;
-
   final VoidCallback onCardTap;
   final StoreModel storeModel;
 
@@ -45,12 +43,12 @@ final class GeneralPlaceCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: SizedBox(
-            height: _cardHeight,
+            height: context.sized.dynamicHeight(0.12),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  width: _imageWidth,
+                  width: context.sized.dynamicWidth(0.27),
                   child: _PlaceImageBlock(model: storeModel),
                 ),
                 Expanded(child: _Body(model: storeModel)),
@@ -142,7 +140,7 @@ final class _CategoryGlassLabel extends StatelessWidget {
             color: context.general.colorScheme.onPrimary,
             size: IconSize.small.value,
           ),
-          const SizedBox(width: AppSpacing.xxs),
+          const EmptyBox.xxSmallHeight(),
           GeneralContentSmallTitle(
             value: name,
             color: context.general.colorScheme.onPrimary,
@@ -201,7 +199,7 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
                 color: context.general.colorScheme.onSurfaceVariant,
               ),
             ),
-          const SizedBox(height: AppSpacing.xs),
+          const EmptyBox.smallHeight(),
           Wrap(
             spacing: AppSpacing.sm,
             runSpacing: AppSpacing.xxs,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
 final class CustomSearchField extends StatelessWidget {
@@ -29,10 +28,15 @@ final class CustomSearchField extends StatelessWidget {
       onChanged: onChange,
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.ink50,
+        fillColor: context.general.colorScheme.outlineVariant,
         hintText: hint,
-        hintStyle: AppText.body.copyWith(color: AppColors.ink400),
-        prefixIcon: const Icon(AppIcons.search, color: AppColors.ink400),
+        hintStyle: context.general.textTheme.bodyMedium?.copyWith(
+          color: context.general.colorScheme.onSurfaceVariant,
+        ),
+        prefixIcon: Icon(
+          AppIcons.search,
+          color: context.general.colorScheme.onSurfaceVariant,
+        ),
         border: _searchBorder,
         enabledBorder: _searchBorder,
         focusedBorder: _searchBorder,

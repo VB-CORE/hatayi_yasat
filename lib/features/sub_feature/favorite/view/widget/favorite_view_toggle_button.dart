@@ -46,9 +46,6 @@ final class _FavoriteViewSegment extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  static const double _segmentSize = 38;
-  static const double _selectedInset = 3;
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -57,10 +54,12 @@ final class _FavoriteViewSegment extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.sm),
         onTap: onTap,
         child: SizedBox(
-          width: _segmentSize,
-          height: _segmentSize,
+          width: AppIconSizes.largeX,
+          height: AppIconSizes.largeX,
           child: Padding(
-            padding: EdgeInsets.all(isSelected ? _selectedInset : 0),
+            padding: EdgeInsets.all(
+              isSelected ? AppConstants.kThree.toDouble() : 0,
+            ),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: isSelected

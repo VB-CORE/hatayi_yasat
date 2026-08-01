@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +12,8 @@ import 'package:lifeclient/features/sub_feature/favorite/provider/displayed_favo
 import 'package:lifeclient/features/sub_feature/favorite/provider/favorite_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/keyboard_utility_mixin.dart';
@@ -37,9 +40,9 @@ final class FavoriteView extends ConsumerStatefulWidget {
 class _FavoriteViewState extends ConsumerState<FavoriteView>
     with AppProviderMixin<FavoriteView> {
   @override
-  Future<void> dispose() async {
+  void dispose() {
+    unawaited(KeyboardUtilityMixin.closeFromSystem());
     super.dispose();
-    await KeyboardUtilityMixin.closeFromSystem();
   }
 
   @override

@@ -8,6 +8,7 @@ import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -152,7 +153,7 @@ final class _CategoryGlassLabel extends StatelessWidget {
             color: context.general.colorScheme.onPrimary,
             size: IconSize.small.value,
           ),
-          const SizedBox(width: AppSpacing.xxs),
+          const EmptyBox.xsmallWidth(),
           GeneralContentSmallTitle(
             value: name,
             color: context.general.colorScheme.onPrimary,
@@ -183,7 +184,7 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
             fontWeight: FontWeight.w800,
             color: context.general.colorScheme.onSurface,
           ),
-          const SizedBox(height: AppSpacing.xxs),
+          const EmptyBox.xSmallHeight(),
           Row(
             children: [
               Icon(
@@ -191,7 +192,7 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
                 size: IconSize.small.value,
                 color: context.general.colorScheme.onSurfaceVariant,
               ),
-              const SizedBox(width: AppSpacing.xxs),
+              const EmptyBox.xsmallWidth(),
               Expanded(
                 child: GeneralContentSmallTitle(
                   value: town,
@@ -201,7 +202,7 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.xxs),
+          const EmptyBox.xSmallHeight(),
           PlaceRatingLabel(
             rating: model.averageRatingLabel,
             reviewCount: model.ratingCount,
