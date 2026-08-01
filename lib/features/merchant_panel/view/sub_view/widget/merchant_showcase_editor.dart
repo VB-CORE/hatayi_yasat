@@ -2,16 +2,16 @@ part of '../merchant_showcase_sub_view.dart';
 
 final class _MerchantShowcaseEditor extends StatelessWidget {
   const _MerchantShowcaseEditor({
+    required this.storeId,
     required this.modules,
-    required this.isSaving,
     required this.onReorder,
     required this.onEdit,
     required this.onDelete,
     required this.onToggleActive,
   });
 
+  final String storeId;
   final List<MerchantShowcaseModuleModel> modules;
-  final bool isSaving;
   final void Function(int oldIndex, int newIndex) onReorder;
   final ValueChanged<MerchantShowcaseModuleModel> onEdit;
   final ValueChanged<MerchantShowcaseModuleModel> onDelete;
@@ -26,8 +26,6 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
     }
 
     return ReorderableListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       padding: const PagePadding.generalAllLow(),
       itemCount: modules.length,
       onReorderItem: onReorder,
@@ -36,9 +34,9 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
         final module = modules[index];
         return _MerchantShowcaseModuleTile(
           key: ValueKey(module.id),
+          storeId: storeId,
           index: index,
           module: module,
-          isSaving: isSaving,
           onEdit: () => onEdit(module),
           onDelete: () => onDelete(module),
           onToggleActive: () => onToggleActive(module),
@@ -62,8 +60,6 @@ final class _MerchantShowcasePreview extends StatelessWidget {
     }
 
     return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       padding: const PagePadding.generalAllLow(),
       itemCount: modules.length,
       itemBuilder: (context, index) =>

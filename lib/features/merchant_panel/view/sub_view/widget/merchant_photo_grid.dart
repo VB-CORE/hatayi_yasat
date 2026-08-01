@@ -25,6 +25,7 @@ final class _MerchantPhotoGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: itemCount,
+      padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: _photosPerRow,
         crossAxisSpacing: AppSpacing.xs,
@@ -91,7 +92,9 @@ final class _PhotoTile extends StatelessWidget {
                 ),
                 child: Text(
                   LocaleKeys.merchantPanel_store_photoCover.tr(),
-                  style: AppText.micro.copyWith(color: context.appColors.surface),
+                  style: AppText.micro.copyWith(
+                    color: context.appColors.surface,
+                  ),
                 ),
               ),
             ),
@@ -101,7 +104,9 @@ final class _PhotoTile extends StatelessWidget {
             child: IconButton(
               onPressed: onRemove,
               style: IconButton.styleFrom(
-                backgroundColor: context.appColors.navy700.withValues(alpha: .6),
+                backgroundColor: context.appColors.navy700.withValues(
+                  alpha: .6,
+                ),
                 foregroundColor: context.appColors.surface,
               ),
               icon: const Icon(AppIcons.close, size: AppIconSizes.xMedium),

@@ -41,42 +41,38 @@ final class _MerchantShowcaseSubViewState
     final state = ref.watch(merchantShowcaseViewModelProvider(widget.storeId));
 
     if (state.isFetching) {
-      return const SliverToBoxAdapter(child: PlaceShimmerList());
+      return const PlaceShimmerList();
     }
 
     if (state.isError && state.modules.isEmpty) {
-      return SliverToBoxAdapter(
-        child: GeneralNotFoundWidget(
-          title: LocaleKeys.message_somethingWentWrong.tr(),
-          onRefresh: () => unawaited(viewModel.retry()),
-        ),
+      return GeneralNotFoundWidget(
+        title: LocaleKeys.message_somethingWentWrong.tr(),
+        onRefresh: () => unawaited(viewModel.retry()),
       );
     }
 
-    return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _MerchantShowcaseToolbar(
-            isPreview: state.isPreview,
-            onTogglePreview: viewModel.togglePreview,
-            onAdd: () => unawaited(openModuleForm()),
-          ),
-          if (state.isPreview)
-            _MerchantShowcasePreview(modules: state.publishedModules)
-          else
-            _MerchantShowcaseEditor(
-              modules: state.modules,
-              isSaving: state.isSaving,
-              onReorder: (oldIndex, newIndex) =>
-                  unawaited(viewModel.reorder(oldIndex, newIndex)),
-              onEdit: (module) => unawaited(openModuleForm(module: module)),
-              onDelete: (module) => unawaited(confirmDelete(module)),
-              onToggleActive: (module) => unawaited(toggleActive(module)),
-            ),
-          const SizedBox(height: AppSpacing.xxl),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _MerchantShowcaseToolbar(
+          isPreview: state.isPreview,
+          onTogglePreview: viewModel.togglePreview,
+          onAdd: () => unawaited(openModuleForm()),
+        ),
+        Expanded(
+          child: state.isPreview
+              ? _MerchantShowcasePreview(modules: state.publishedModules)
+              : _MerchantShowcaseEditor(
+                  storeId: widget.storeId,
+                  modules: state.modules,
+                  onReorder: (oldIndex, newIndex) =>
+                      unawaited(viewModel.reorder(oldIndex, newIndex)),
+                  onEdit: (module) => unawaited(openModuleForm(module: module)),
+                  onDelete: (module) => unawaited(confirmDelete(module)),
+                  onToggleActive: (module) => unawaited(toggleActive(module)),
+                ),
+        ),
+      ],
     );
   }
 }

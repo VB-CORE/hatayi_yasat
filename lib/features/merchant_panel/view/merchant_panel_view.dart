@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
@@ -20,7 +21,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
-import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
 
 part 'widget/merchant_panel_navigation_bar.dart';
 part 'widget/merchant_panel_pinned_header.dart';
@@ -34,12 +34,9 @@ final class MerchantPanelView extends ConsumerStatefulWidget {
 }
 
 final class _MerchantPanelViewState extends ConsumerState<MerchantPanelView> {
-  MerchantPanelTab _selectedTab = MerchantPanelTab.dashboard;
-
   MerchantPanelViewModel get _viewModel =>
       ref.read(merchantPanelViewModelProvider.notifier);
 
-  void _changeTab(MerchantPanelTab tab) => setState(() => _selectedTab = tab);
   void _refresh() => unawaited(_viewModel.refresh());
 
   @override
@@ -62,39 +59,33 @@ final class _MerchantPanelViewState extends ConsumerState<MerchantPanelView> {
       );
     }
 
-    return MosaicCollapsingPage(
-      showLoeading: true,
-      headerStyle: const MosaicCollapsingHeaderStyle(
-        heightFactor: .18,
-      ),
-      title: Text(
-        LocaleKeys.merchantPanel_title.tr().toUpperCase(),
-        style: AppText.titleLg.copyWith(
-          color: context.appColors.navy700,
-          fontWeight: FontWeight.bold,
+    return DefaultTabController(
+      length: MerchantPanelTab.values.length,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: AppColors.bg,
+        appBar: AppBar(backgroundColor: Colors.transparent),
+        bottomNavigationBar: MerchantPanelNavigationBar(
+          hasPendingReply: state.hasPendingReply,
+        ),
+        body: Column(
+          children: [
+            MerchantPanelHeader(store: store),
+            MerchantPanelPinnedHeader(storeId: store.documentId),
+            Expanded(
+              child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  MerchantDashboardSubView(state: state),
+                  MerchantReviewsSubView(storeId: store.documentId),
+                  MerchantShowcaseSubView(storeId: store.documentId),
+                  MerchantStoreEditSubView(store: store),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
-      header: MerchantPanelHeader(store: store), 
-      pinnedHeader: MerchantPanelPinnedHeader(
-        tab: _selectedTab,
-        storeId: store.documentId,
-      ),
-      bottomNavigationBar: MerchantPanelNavigationBar(
-        tab: _selectedTab,
-        hasPendingReply: state.hasPendingReply,
-        onChanged: _changeTab,
-      ),
-      slivers: [
-        switch (_selectedTab) {
-          .dashboard => MerchantDashboardSubView(
-            state: state,
-            onNavigate: _changeTab,
-          ),
-          .reviews => MerchantReviewsSubView(storeId: store.documentId),
-          .showcase => MerchantShowcaseSubView(storeId: store.documentId),
-          .store => MerchantStoreEditSubView(store: store),
-        },
-      ],
     );
   }
 }

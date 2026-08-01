@@ -46,103 +46,98 @@ final class _MerchantStoreEditSubViewState
       merchantStoreEditViewModelProvider(widget.store.documentId),
     );
 
-    return SliverToBoxAdapter(
-      child: Form(
-        key: formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Padding(
-          padding: const PagePadding.generalAllLow(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _MerchantSectionTitle(
-                icon: AppIcons.photoLibrary,
-                title: LocaleKeys.merchantPanel_store_photosTitle.tr(),
-                subtitle: LocaleKeys.merchantPanel_store_photosSubtitle.tr(),
-              ),
-              _MerchantPhotoGrid(
-                photos: state.photos,
-                onAdd: pickPhoto,
-                onReplace: (index) => pickPhoto(replaceIndex: index),
-                onRemove: viewModel.removePhotoAt,
-              ),
-              const EmptyBox.middleHeight(),
-              _MerchantSectionTitle(
-                icon: AppIcons.infoFilled,
-                title: LocaleKeys.merchantPanel_store_basicTitle.tr(),
-              ),
-              LabeledProductTextField(
-                labelText: LocaleKeys.merchantPanel_store_nameLabel.tr(),
-                controller: nameController,
-                validator: ValidatorNormalTextField().validate,
-              ),
-              const EmptyBox.smallHeight(),
-              Text(
-                LocaleKeys.merchantPanel_store_categoryLabel.tr(),
-                style: AppText.label,
-              ),
-              const EmptyBox.xSmallHeight(),
-              _MerchantCategoryPicker(
-                selected: state.category,
-                categories: productState.categoryItems,
-                onSelected: viewModel.selectCategory,
-              ),
-              const EmptyBox.smallHeight(),
-              Text(
-                LocaleKeys.merchantPanel_store_descriptionLabel.tr(),
-                style: AppText.label,
-              ),
-              const EmptyBox.xSmallHeight(),
-              CustomTextFormMultiField(
-                hint: LocaleKeys.merchantPanel_store_descriptionHint.tr(),
-                controller: descriptionController,
-                maxLength: TextFieldMaxLengths.max,
-                validator: ValidatorNormalTextField(),
-              ),
-              const EmptyBox.middleHeight(),
-              _MerchantSectionTitle(
-                icon: AppIcons.phone,
-                title: LocaleKeys.merchantPanel_store_phoneLabel.tr(),
-              ),
-              PhoneTextFormField(controller: phoneController),
-              LabeledProductTextField(
-                labelText: LocaleKeys.merchantPanel_store_addressLabel.tr(),
-                controller: addressController,
-                isMultiline: true,
-                validator: ValidatorNormalTextField().validate,
-              ),
-              const EmptyBox.middleHeight(),
-              _MerchantSectionTitle(
-                icon: AppIcons.timerOn,
-                title: LocaleKeys.merchantPanel_store_hoursTitle.tr(),
-              ),
-              OpenAndCloseTimePicker(
-                openTimeController: openTimeController,
-                closeTimeController: closeTimeController,
-              ),
-              SwitchListTile.adaptive(
-                value: state.isCommentEnabled,
-                contentPadding: EdgeInsets.zero,
-                onChanged: (value) => viewModel.setCommentEnabled(value: value),
-                title: Text(
-                  LocaleKeys.merchantPanel_store_commentEnabledLabel.tr(),
-                  style: AppText.bodyLg,
-                ),
-                subtitle: Text(
-                  LocaleKeys.merchantPanel_store_commentEnabledSubtitle.tr(),
-                  style: AppText.caption,
-                ),
-              ),
-              const EmptyBox.middleHeight(),
-              GeneralButtonV2.async(
-                action: save,
-                isEnabled: !state.isSaving,
-                label: LocaleKeys.merchantPanel_store_saveAction.tr(),
-              ),
-              const EmptyBox.largeHeight(),
-            ],
+    return Form(
+      key: formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: ListView(
+        padding: const PagePadding.generalAllLow(),
+        children: [
+          _MerchantSectionTitle(
+            icon: AppIcons.photoLibrary,
+            title: LocaleKeys.merchantPanel_store_photosTitle.tr(),
+            subtitle: LocaleKeys.merchantPanel_store_photosSubtitle.tr(),
           ),
-        ),
+          _MerchantPhotoGrid(
+            photos: state.photos,
+            onAdd: pickPhoto,
+            onReplace: (index) => pickPhoto(replaceIndex: index),
+            onRemove: viewModel.removePhotoAt,
+          ),
+          const EmptyBox.middleHeight(),
+          _MerchantSectionTitle(
+            icon: AppIcons.infoFilled,
+            title: LocaleKeys.merchantPanel_store_basicTitle.tr(),
+          ),
+          LabeledProductTextField(
+            labelText: LocaleKeys.merchantPanel_store_nameLabel.tr(),
+            controller: nameController,
+            validator: ValidatorNormalTextField().validate,
+          ),
+          const EmptyBox.smallHeight(),
+          Text(
+            LocaleKeys.merchantPanel_store_categoryLabel.tr(),
+            style: AppText.label,
+          ),
+          const EmptyBox.xSmallHeight(),
+          _MerchantCategoryPicker(
+            selected: state.category,
+            categories: productState.categoryItems,
+            onSelected: viewModel.selectCategory,
+          ),
+          const EmptyBox.smallHeight(),
+          Text(
+            LocaleKeys.merchantPanel_store_descriptionLabel.tr(),
+            style: AppText.label,
+          ),
+          const EmptyBox.xSmallHeight(),
+          CustomTextFormMultiField(
+            hint: LocaleKeys.merchantPanel_store_descriptionHint.tr(),
+            controller: descriptionController,
+            maxLength: TextFieldMaxLengths.max,
+            validator: ValidatorNormalTextField(),
+          ),
+          const EmptyBox.middleHeight(),
+          _MerchantSectionTitle(
+            icon: AppIcons.phone,
+            title: LocaleKeys.merchantPanel_store_phoneLabel.tr(),
+          ),
+          PhoneTextFormField(controller: phoneController),
+          LabeledProductTextField(
+            labelText: LocaleKeys.merchantPanel_store_addressLabel.tr(),
+            controller: addressController,
+            isMultiline: true,
+            validator: ValidatorNormalTextField().validate,
+          ),
+          const EmptyBox.middleHeight(),
+          _MerchantSectionTitle(
+            icon: AppIcons.timerOn,
+            title: LocaleKeys.merchantPanel_store_hoursTitle.tr(),
+          ),
+          OpenAndCloseTimePicker(
+            openTimeController: openTimeController,
+            closeTimeController: closeTimeController,
+          ),
+          SwitchListTile.adaptive(
+            value: state.isCommentEnabled,
+            contentPadding: EdgeInsets.zero,
+            onChanged: (value) => viewModel.setCommentEnabled(value: value),
+            title: Text(
+              LocaleKeys.merchantPanel_store_commentEnabledLabel.tr(),
+              style: AppText.bodyLg,
+            ),
+            subtitle: Text(
+              LocaleKeys.merchantPanel_store_commentEnabledSubtitle.tr(),
+              style: AppText.caption,
+            ),
+          ),
+          const EmptyBox.middleHeight(),
+          GeneralButtonV2.async(
+            action: save,
+            isEnabled: !state.isSaving,
+            label: LocaleKeys.merchantPanel_store_saveAction.tr(),
+          ),
+          const EmptyBox.largeHeight(),
+        ],
       ),
     );
   }

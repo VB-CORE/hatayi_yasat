@@ -5,8 +5,8 @@ import 'package:lifeclient/product/widget/list_view/firestore_list_state.dart';
 
 typedef FirestoreItemBuilder<T> = Widget Function(BuildContext context, T item);
 
-final class CustomFireStoreListView<T> extends StatelessWidget {
-  const CustomFireStoreListView({
+final class CustomFirestoreListView<T> extends StatelessWidget {
+  const CustomFirestoreListView({
     required this.query,
     required this.itemBuilder,
     this.onEmpty,

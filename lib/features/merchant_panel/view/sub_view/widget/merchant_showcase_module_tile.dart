@@ -1,25 +1,29 @@
 part of '../merchant_showcase_sub_view.dart';
 
-final class _MerchantShowcaseModuleTile extends StatelessWidget {
+final class _MerchantShowcaseModuleTile extends ConsumerWidget {
   const _MerchantShowcaseModuleTile({
+    required this.storeId,
     required this.index,
     required this.module,
-    required this.isSaving,
     required this.onEdit,
     required this.onDelete,
     required this.onToggleActive,
     super.key,
   });
 
+  final String storeId;
   final int index;
   final MerchantShowcaseModuleModel module;
-  final bool isSaving;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
   final VoidCallback onToggleActive;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSaving = ref.watch(
+      merchantShowcaseViewModelProvider(storeId).select((state) => state.isSaving),
+    );
+
     return Padding(
       padding: const PagePadding.verticalLowSymmetric(),
       child: Container(
