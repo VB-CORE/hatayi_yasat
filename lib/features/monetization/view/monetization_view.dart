@@ -10,7 +10,6 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/monetization/data/discount_coupon_model.dart';
 import 'package:lifeclient/features/monetization/provider/monetization_view_model.dart';
 import 'package:lifeclient/features/monetization/view/mixin/monetization_view_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -83,10 +82,14 @@ final class _MonetizationViewState extends ConsumerState<MonetizationView>
                     _MonetizationBodyView(
                       coupons: state.activeCoupons,
                       onDelete: onDelete,
+                      onRedeem: onRedeem,
+                      onEdit: onEdit,
                     ),
                     _MonetizationBodyView(
                       coupons: state.inactiveCoupons,
                       onDelete: onDelete,
+                      onRedeem: onRedeem,
+                      onEdit: onEdit,
                     ),
                   ],
                 ),

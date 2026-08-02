@@ -4,7 +4,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
-import 'package:lifeclient/product/model/auth/user/user_application_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_view_model.g.dart';
@@ -15,7 +15,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   AuthState build() {
     final subscription = authService.userStream.listen(
       (user) {
-        state = user == null ? const Unauthenticated() : Authenticated(user);
+        state = _stateFor(user);
       },
       onError: (Object error, StackTrace stackTrace) =>
           CustomLogger.showError<void>(error),
@@ -23,14 +23,19 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     ref.onDispose(subscription.cancel);
 
     final cached = authService.cachedUser;
-    return cached == null ? const AuthInitial() : Authenticated(cached);
+    return cached == null ? const AuthInitial() : _stateFor(cached);
+  }
+
+  AuthState _stateFor(UserModel? user) {
+    if (user == null) return const Unauthenticated();
+    return user.isBanned ? AuthBanned(user) : Authenticated(user);
   }
 
   Future<void> signIn(AuthProvider provider) async {
     state = const AuthLoading();
     final result = await authService.signIn(provider);
     state = switch (result) {
-      SignInSuccess(:final user) => Authenticated(user),
+      SignInSuccess(:final user) => _stateFor(user),
       SignInCancelled() => const Unauthenticated(),
       SignInFailure() => AuthError(
         LocaleKeys.auth_error_failed,
@@ -46,6 +51,6 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     if (user == null) return;
     final updatedUser = user.copyWith(application: application);
     productCache.userCache.update(updatedUser);
-    state = Authenticated(updatedUser);
+    state = _stateFor(updatedUser);
   }
 }

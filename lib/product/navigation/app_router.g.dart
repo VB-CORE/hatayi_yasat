@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
   $splashRoute,
   $mainTabRoute,
   $loginRoute,
+  $bannedRoute,
   $unauthorizedRoute,
   $groupDetailRoute,
   $discussionDetailRoute,
@@ -91,6 +92,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Monetization Coupon Form',
           hasOverriddenOnExit: false,
           factory: $MonetizationCouponFormRoute._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'redeem',
+          name: 'Coupon Redeem',
+          factory: $CouponRedeemRoute._fromState,
         ),
       ],
     ),
@@ -229,6 +235,13 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
           name: 'Developers',
           hasOverriddenOnExit: false,
           factory: $DevelopersRoute._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'contributors',
+              name: 'Developers Contributors',
+              factory: $DevelopersContributorsRoute._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: 'appInfo',
@@ -316,23 +329,52 @@ mixin $MonetizationRoute on GoRouteData {
 
 mixin $MonetizationCouponFormRoute on GoRouteData {
   static MonetizationCouponFormRoute _fromState(GoRouterState state) =>
-      const MonetizationCouponFormRoute();
+      MonetizationCouponFormRoute($extra: state.extra as CouponModel?);
+
+  MonetizationCouponFormRoute get _self => this as MonetizationCouponFormRoute;
 
   @override
   String get location => GoRouteData.$location('/main/monetization/couponForm');
 
   @override
-  void go(BuildContext context) => context.go(location);
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
   @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
   @override
   void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+      context.pushReplacement(location, extra: _self.$extra);
 
   @override
-  void replace(BuildContext context) => context.replace(location);
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
+}
+
+mixin $CouponRedeemRoute on GoRouteData {
+  static CouponRedeemRoute _fromState(GoRouterState state) =>
+      CouponRedeemRoute($extra: state.extra as CouponModel);
+
+  CouponRedeemRoute get _self => this as CouponRedeemRoute;
+
+  @override
+  String get location => GoRouteData.$location('/main/monetization/redeem');
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
 mixin $TurismRoute on GoRouteData {
@@ -818,6 +860,28 @@ mixin $DevelopersRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+mixin $DevelopersContributorsRoute on GoRouteData {
+  static DevelopersContributorsRoute _fromState(GoRouterState state) =>
+      const DevelopersContributorsRoute();
+
+  @override
+  String get location =>
+      GoRouteData.$location('/main/settings/developers/contributors');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 mixin $ApplicationInformationRoute on GoRouteData {
   static ApplicationInformationRoute _fromState(GoRouterState state) =>
       const ApplicationInformationRoute();
@@ -898,6 +962,29 @@ mixin $LoginRoute on GoRouteData {
     '/login',
     queryParams: {if (_self.from != null) 'from': _self.from},
   );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $bannedRoute =>
+    GoRouteData.$route(path: '/banned', factory: $BannedRoute._fromState);
+
+mixin $BannedRoute on GoRouteData {
+  static BannedRoute _fromState(GoRouterState state) => const BannedRoute();
+
+  @override
+  String get location => GoRouteData.$location('/banned');
 
   @override
   void go(BuildContext context) => context.go(location);

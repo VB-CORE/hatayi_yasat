@@ -42,7 +42,7 @@ final class SavedNewsViewModelProvider
 }
 
 String _$savedNewsViewModelHash() =>
-    r'a32d504a3e78a970e6e824d623740aed91de1066';
+    r'44c1b24e43a0bc4bb4a1d9af3d7d514909acc8dc';
 
 abstract class _$SavedNewsViewModel extends $Notifier<SavedNewsState> {
   SavedNewsState build();

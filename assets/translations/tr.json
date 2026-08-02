@@ -2,6 +2,9 @@
   "project": {
     "name": "Hatay'ı Yaşat"
   },
+  "splash": {
+    "tagline": "TOPLULUK · MEKAN · HATIRA"
+  },
   "validation": {
     "fullName": "Ad ve soyad boş bırakılamaz.",
     "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",
@@ -99,6 +102,7 @@
     "title": "Ayarlar",
     "languageTitle": "Dil",
     "currentLanguage": "Mevcut dil",
+    "appearanceTitle": "Görünüm",
     "themeTitle": "{} Tema",
     "developersTitle": "Geliştiriciler",
     "inactiveDevelopers": "Dün bizimle olup destek olan arkadaşlarımıza çok teşekkür ediyoruz ❤️ ",
@@ -197,7 +201,8 @@
     "deleteConfirmTitle": "Yorumun silinsin mi?",
     "deleteConfirmContent": "Bu yorumu silmek istediğine emin misin? Bu işlem geri alınamaz.",
     "signInToSeeComments": "Yorumları görmek için giriş yapmalısın.",
-    "commentsLoadFailed": "Yorumlar yüklenemedi."
+    "commentsLoadFailed": "Yorumlar yüklenemedi.",
+    "merchantReplyTitle": "İşletme yanıtı"
   },
   "date": {
     "justNow": "Az önce",
@@ -280,7 +285,8 @@
   "developers": {
     "title": "Geliştiriciler",
     "seeProfileButtonText": "Profili Görüntüle",
-    "thanksMessage": "Bizimle olup destek olan arkadaşlarımıza teşekkür ediyoruz"
+    "thanksMessage": "Bizimle olup destek olan arkadaşlarımıza teşekkür ediyoruz",
+    "contributorsButtonTitle": "Emeği Geçenler"
   },
   "navigationTabs": {
     "home": "Anasayfa",
@@ -460,7 +466,25 @@
     "addSuccess": "Kupon eklendi.",
     "deleteConfirmTitle": "Kupon silinsin mi?",
     "deleteConfirmContent": "Bu kuponu silmek istediğine emin misin? Bu işlem geri alınamaz.",
-    "deleteSuccess": "Kupon silindi."
+    "deleteSuccess": "Kupon silindi.",
+    "redeem": {
+      "title": "Kupon kullandır",
+      "scanHint": "Kullanıcının QR kodunu kameraya gösterin.",
+      "scanAgain": "Yeni QR okut",
+      "grantedTitle": "Kupon tanımlandı",
+      "grantedSubtitle": "Kullanıcı indirimden yararlanabilir.",
+      "alreadyUsedTitle": "Hakkı dolu",
+      "alreadyUsedSubtitle": "Bu kullanıcı kupondan daha önce yararlandı.",
+      "alreadyUsedAt": "Bu kullanıcı {} tarihinde yararlanmış.",
+      "failedTitle": "İşlem yapılamadı",
+      "invalidQr": "Bu QR bir kullanıcı kodu değil.",
+      "expired": "Kuponun süresi dolmuş.",
+      "usageLimitReached": "Kuponun kullanım limiti dolmuş.",
+      "redeemAction": "Kullandır"
+    },
+    "editCoupon": "Kuponu Düzenle",
+    "updateSuccess": "Kupon güncellendi.",
+    "editAction": "Düzenle"
   },
   "whatsNew": {
     "title": "Yenilikler v8.1.0 🎉",
@@ -682,5 +706,124 @@
     "title": "Kaydedilen Haberler",
     "empty": "Henüz kaydedilmiş haber yok.",
     "error": "Haberler yüklenemedi."
+  },
+  "merchantPanel": {
+    "title": "Esnaf Paneli",
+    "approvedBadge": "Onaylı",
+    "unauthorizedTitle": "Bu panele erişim yetkiniz yok",
+    "unauthorizedSubtitle": "Panel yalnızca onaylı başvurunun sahibi olan hesaba açıktır.",
+    "tabs": {
+      "dashboard": "Panel",
+      "reviews": "Yorumlar",
+      "showcase": "Vitrin",
+      "store": "Mekan"
+    },
+    "dashboard": {
+      "summaryTitle": "Özet",
+      "visitCount": "Görüntülenme",
+      "reviewCount": "Yorum",
+      "averageScore": "Puan",
+      "manageTitle": "Yönet",
+      "manageReviews": "Yorumları yönet",
+      "manageReviewsSubtitle": "Yanıt bekleyen yorumlar var",
+      "manageReviewsEmptySubtitle": "Bekleyen yanıt yok",
+      "manageShowcase": "Vitrin düzenle",
+      "manageShowcaseSubtitle": "Kampanya, duyuru ve etkinlik kartların",
+      "manageStore": "Mekan bilgisi",
+      "manageStoreSubtitle": "Fotoğraf, açıklama ve çalışma saatleri",
+      "manageCoupons": "İndirim kuponları",
+      "manageCouponsSubtitle": "Kupon oluştur ve yönet"
+    },
+    "reviews": {
+      "title": "Yorumlar",
+      "filterPending": "Yanıt bekleyen",
+      "filterAll": "Tümü",
+      "filterAnswered": "Yanıtlandı",
+      "empty": "Bu filtrede yorum yok",
+      "pendingBadge": "Yanıt bekliyor",
+      "replyAction": "Yanıtla",
+      "editReplyAction": "Yanıtı düzenle",
+      "replyTitle": "Yoruma yanıt ver",
+      "replyHint": "Ziyaretçine kısa ve nazik bir yanıt yaz",
+      "replyLabel": "Yanıtın",
+      "replyPrefix": "Senin yanıtın",
+      "replySuccess": "Yanıtın yayınlandı.",
+      "replyError": "Yanıt kaydedilemedi.",
+      "anonymous": "Ziyaretçi",
+      "removeReplyAction": "Yanıtı kaldır",
+      "removeReplyConfirmTitle": "Yanıt kaldırılsın mı?",
+      "removeReplyConfirmContent": "Yanıtın yorumun altından kalkacak, yorum yerinde kalır.",
+      "removeReplySuccess": "Yanıtın kaldırıldı."
+    },
+    "showcase": {
+      "title": "Vitrin",
+      "addAction": "Yeni",
+      "previewAction": "Önizleme",
+      "editAction": "Düzenlemeye dön",
+      "previewTitle": "Ziyaretçi görünümü",
+      "previewEmpty": "Yayında modül yok",
+      "empty": "Henüz vitrin modülü eklemedin",
+      "emptySubtitle": "Kampanya, duyuru veya etkinlik kartı ekleyerek başla",
+      "reorderHint": "Kartları sürükleyerek sıralayabilirsin",
+      "passive": "Pasif",
+      "typeCampaign": "Kampanya",
+      "typeAnnouncement": "Duyuru",
+      "typeEvent": "Etkinlik",
+      "formTitleNew": "Yeni modül",
+      "formTitleEdit": "Modülü düzenle",
+      "typeLabel": "Tür",
+      "titleLabel": "Başlık",
+      "titleHint": "Örn: Künefe Festivali İndirimi",
+      "descriptionLabel": "Açıklama",
+      "descriptionHint": "Modülün akışta görünecek kısa metni",
+      "startLabel": "Başlangıç",
+      "endLabel": "Bitiş",
+      "dateEmpty": "Seç",
+      "imageLabel": "Görsel",
+      "imageAdd": "Görsel ekle",
+      "imageRemove": "Görseli kaldır",
+      "activeLabel": "Yayında",
+      "publishAction": "Yayınla",
+      "saveAction": "Kaydet",
+      "deleteAction": "Sil",
+      "deleteConfirmTitle": "Modül silinsin mi?",
+      "deleteConfirmContent": "Bu vitrin modülü ziyaretçilere görünmeyecek.",
+      "saveError": "Vitrin kaydedilemedi.",
+      "saveSuccess": "Vitrin güncellendi."
+    },
+    "store": {
+      "title": "Mekan bilgisi",
+      "photosTitle": "Fotoğraflar",
+      "photosSubtitle": "İlk fotoğraf kapak olur",
+      "photoAdd": "Ekle",
+      "photoCover": "Kapak",
+      "basicTitle": "Temel bilgiler",
+      "nameLabel": "Mekan adı",
+      "categoryLabel": "Kategori",
+      "descriptionLabel": "Açıklama",
+      "descriptionHint": "Mekanını kısaca anlat",
+      "hoursTitle": "Çalışma saatleri",
+      "photoRequired": "En az bir fotoğraf gerekli.",
+      "saveAction": "Kaydet",
+      "saveSuccess": "Mekan bilgileri güncellendi.",
+      "saveError": "Mekan bilgileri kaydedilemedi.",
+      "categoryRequired": "Bir kategori seçmelisin.",
+      "phoneLabel": "Telefon",
+      "addressLabel": "Adres",
+      "commentEnabledLabel": "Yorumlara açık",
+      "commentEnabledSubtitle": "Kapatırsan ziyaretçiler yeni yorum bırakamaz"
+    },
+    "placeSection": {
+      "title": "Kampanya ve duyurular"
+    }
+  },
+  "banned": {
+    "title": "Hesabın askıya alındı",
+    "description": "Topluluk kurallarını ihlal ettiğin için hesabın kapatıldı. Paylaşımların yayından kaldırıldı.",
+    "signOut": "Çıkış yap"
+  },
+  "newsFeed": {
+    "badge": "Haber",
+    "readMore": "Devamı"
   }
 }

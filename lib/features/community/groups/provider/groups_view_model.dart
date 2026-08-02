@@ -3,7 +3,6 @@ import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_state.dart';
-import 'package:lifeclient/features/community/model/group_member_model.dart';
 import 'package:lifeclient/features/community/provider/group_membership_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';

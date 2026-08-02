@@ -140,13 +140,15 @@ class StoreModelAdapter extends TypeAdapter<StoreModel> {
       latLong: fields[14] as GeoPoint?,
       cityId: fields[11] == null ? '' : fields[11] as String,
       isCommentEnabled: fields[18] == null ? true : fields[18] as bool,
+      ratingSum: fields[20] == null ? 0 : (fields[20] as num).toInt(),
+      ratingCount: fields[21] == null ? 0 : (fields[21] as num).toInt(),
     );
   }
 
   @override
   void write(BinaryWriter writer, StoreModel obj) {
     writer
-      ..writeByte(20)
+      ..writeByte(22)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -186,7 +188,11 @@ class StoreModelAdapter extends TypeAdapter<StoreModel> {
       ..writeByte(18)
       ..write(obj.isCommentEnabled)
       ..writeByte(19)
-      ..write(obj.ownerId);
+      ..write(obj.ownerId)
+      ..writeByte(20)
+      ..write(obj.ratingSum)
+      ..writeByte(21)
+      ..write(obj.ratingCount);
   }
 
   @override
@@ -340,22 +346,34 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       uid: fields[0] == null ? '' : fields[0] as String,
       email: fields[1] == null ? '' : fields[1] as String,
       displayName: fields[2] == null ? '' : fields[2] as String,
-      roleType: fields[3] == null ? 2 : (fields[3] as num).toInt(),
+      roleType: fields[3] == null ? UserRole.user : fields[3] as UserRole,
       permissions: fields[4] == null
           ? const []
           : (fields[4] as List).cast<int>(),
-      rates: fields[9] == null ? const [] : (fields[9] as List).cast<String>(),
       avatarType: fields[13] == null ? 1 : (fields[13] as num).toInt(),
+      photoUrl: fields[14] as String?,
       fcmToken: fields[7] as String?,
-      updatedAt: fields[8] as DateTime?,
+      merchantStoreId: fields[15] as String?,
       application: fields[11] as UserApplicationModel?,
+      postCount: fields[16] == null ? 0 : (fields[16] as num).toInt(),
+      discussionCount: fields[17] == null ? 0 : (fields[17] as num).toInt(),
+      commentCount: fields[18] == null ? 0 : (fields[18] as num).toInt(),
+      likeCount: fields[19] == null ? 0 : (fields[19] as num).toInt(),
+      groupCount: fields[20] == null ? 0 : (fields[20] as num).toInt(),
+      voteCount: fields[21] == null ? 0 : (fields[21] as num).toInt(),
+      isBanned: fields[22] == null ? false : fields[22] as bool,
+      bannedAt: fields[25] as DateTime?,
+      bannedReason: fields[23] as String?,
+      bannedBy: fields[24] as String?,
+      createdAt: fields[26] as DateTime?,
+      updatedAt: fields[8] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(22)
       ..writeByte(0)
       ..write(obj.uid)
       ..writeByte(1)
@@ -370,12 +388,36 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..write(obj.fcmToken)
       ..writeByte(8)
       ..write(obj.updatedAt)
-      ..writeByte(9)
-      ..write(obj.rates)
       ..writeByte(11)
       ..write(obj.application)
       ..writeByte(13)
-      ..write(obj.avatarType);
+      ..write(obj.avatarType)
+      ..writeByte(14)
+      ..write(obj.photoUrl)
+      ..writeByte(15)
+      ..write(obj.merchantStoreId)
+      ..writeByte(16)
+      ..write(obj.postCount)
+      ..writeByte(17)
+      ..write(obj.discussionCount)
+      ..writeByte(18)
+      ..write(obj.commentCount)
+      ..writeByte(19)
+      ..write(obj.likeCount)
+      ..writeByte(20)
+      ..write(obj.groupCount)
+      ..writeByte(21)
+      ..write(obj.voteCount)
+      ..writeByte(22)
+      ..write(obj.isBanned)
+      ..writeByte(23)
+      ..write(obj.bannedReason)
+      ..writeByte(24)
+      ..write(obj.bannedBy)
+      ..writeByte(25)
+      ..write(obj.bannedAt)
+      ..writeByte(26)
+      ..write(obj.createdAt);
   }
 
   @override
@@ -481,9 +523,46 @@ class UserApplicationStatusAdapter extends TypeAdapter<UserApplicationStatus> {
           typeId == other.typeId;
 }
 
-class NewsBookmarkCacheAdapter extends TypeAdapter<NewsBookmarkCache> {
+class UserRoleAdapter extends TypeAdapter<UserRole> {
   @override
   final typeId = 14;
+
+  @override
+  UserRole read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return UserRole.admin;
+      case 1:
+        return UserRole.user;
+      default:
+        return UserRole.admin;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, UserRole obj) {
+    switch (obj) {
+      case UserRole.admin:
+        writer.writeByte(0);
+      case UserRole.user:
+        writer.writeByte(1);
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserRoleAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class NewsBookmarkCacheAdapter extends TypeAdapter<NewsBookmarkCache> {
+  @override
+  final typeId = 15;
 
   @override
   NewsBookmarkCache read(BinaryReader reader) {

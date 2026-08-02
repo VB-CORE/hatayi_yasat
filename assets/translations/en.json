@@ -2,6 +2,9 @@
   "project": {
     "name": "Keep Hatay Alive"
   },
+  "splash": {
+    "tagline": "COMMUNITY · PLACE · MEMORY"
+  },
   "validation": {
     "fullName": "Name and surname cannot be empty.",
     "phoneNumber": "Please enter a valid phone number.",
@@ -99,6 +102,7 @@
     "title": "Settings",
     "languageTitle": "Language",
     "currentLanguage": "Current language",
+    "appearanceTitle": "Appearance",
     "themeTitle": "{} Theme",
     "developersTitle": "Developers",
     "inactiveDevelopers": "We would like to thank our friends who supported us yesterday ❤️ ",
@@ -197,7 +201,8 @@
     "deleteConfirmTitle": "Delete your comment?",
     "deleteConfirmContent": "Are you sure you want to delete this comment? This action can't be undone.",
     "signInToSeeComments": "Sign in to see the comments.",
-    "commentsLoadFailed": "Comments could not be loaded."
+    "commentsLoadFailed": "Comments could not be loaded.",
+    "merchantReplyTitle": "Owner reply"
   },
   "date": {
     "justNow": "Just now",
@@ -280,7 +285,8 @@
   "developers": {
     "title": "Developers",
     "seeProfileButtonText": "See Profile",
-    "thanksMessage": "Thank you to our friends who support us"
+    "thanksMessage": "Thank you to our friends who support us",
+    "contributorsButtonTitle": "Contributors"
   },
   "navigationTabs": {
     "home": "Home",
@@ -460,7 +466,25 @@
     "addSuccess": "Coupon added.",
     "deleteConfirmTitle": "Delete coupon?",
     "deleteConfirmContent": "Are you sure you want to delete this coupon? This action can't be undone.",
-    "deleteSuccess": "Coupon deleted."
+    "deleteSuccess": "Coupon deleted.",
+    "redeem": {
+      "title": "Redeem coupon",
+      "scanHint": "Show the user's QR code to the camera.",
+      "scanAgain": "Scan another QR",
+      "grantedTitle": "Coupon granted",
+      "grantedSubtitle": "The user can now use the discount.",
+      "alreadyUsedTitle": "Already used",
+      "alreadyUsedSubtitle": "This user has already redeemed the coupon.",
+      "alreadyUsedAt": "This user redeemed it on {}.",
+      "failedTitle": "Could not complete",
+      "invalidQr": "This QR is not a user code.",
+      "expired": "The coupon has expired.",
+      "usageLimitReached": "The coupon usage limit is reached.",
+      "redeemAction": "Redeem"
+    },
+    "editCoupon": "Edit Coupon",
+    "updateSuccess": "Coupon updated.",
+    "editAction": "Edit"
   },
   "whatsNew": {
     "title": "New in v8.1.0 🎉",
@@ -682,5 +706,124 @@
     "title": "Saved News",
     "empty": "No saved news yet.",
     "error": "Couldn't load news."
+  },
+  "merchantPanel": {
+    "title": "Merchant Panel",
+    "approvedBadge": "Approved",
+    "unauthorizedTitle": "You cannot access this panel",
+    "unauthorizedSubtitle": "The panel is only available to the owner of the approved application.",
+    "tabs": {
+      "dashboard": "Panel",
+      "reviews": "Reviews",
+      "showcase": "Showcase",
+      "store": "Place"
+    },
+    "dashboard": {
+      "summaryTitle": "Overview",
+      "visitCount": "Views",
+      "reviewCount": "Reviews",
+      "averageScore": "Rating",
+      "manageTitle": "Manage",
+      "manageReviews": "Manage reviews",
+      "manageReviewsSubtitle": "Some reviews are waiting for a reply",
+      "manageReviewsEmptySubtitle": "No pending replies",
+      "manageShowcase": "Edit showcase",
+      "manageShowcaseSubtitle": "Your campaign, announcement and event cards",
+      "manageStore": "Place details",
+      "manageStoreSubtitle": "Photos, description and working hours",
+      "manageCoupons": "Discount coupons",
+      "manageCouponsSubtitle": "Create and manage coupons"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "filterPending": "Awaiting reply",
+      "filterAll": "All",
+      "filterAnswered": "Answered",
+      "empty": "No reviews in this filter",
+      "pendingBadge": "Awaiting reply",
+      "replyAction": "Reply",
+      "editReplyAction": "Edit reply",
+      "replyTitle": "Reply to review",
+      "replyHint": "Write a short and kind reply to your visitor",
+      "replyLabel": "Your reply",
+      "replyPrefix": "Your reply",
+      "replySuccess": "Your reply is published.",
+      "replyError": "Reply could not be saved.",
+      "anonymous": "Visitor",
+      "removeReplyAction": "Remove reply",
+      "removeReplyConfirmTitle": "Remove reply?",
+      "removeReplyConfirmContent": "Your reply will disappear from under the review; the review stays.",
+      "removeReplySuccess": "Your reply was removed."
+    },
+    "showcase": {
+      "title": "Showcase",
+      "addAction": "New",
+      "previewAction": "Preview",
+      "editAction": "Back to editing",
+      "previewTitle": "Visitor view",
+      "previewEmpty": "No published module",
+      "empty": "You have not added a showcase module yet",
+      "emptySubtitle": "Start by adding a campaign, announcement or event card",
+      "reorderHint": "Drag the cards to reorder them",
+      "passive": "Passive",
+      "typeCampaign": "Campaign",
+      "typeAnnouncement": "Announcement",
+      "typeEvent": "Event",
+      "formTitleNew": "New module",
+      "formTitleEdit": "Edit module",
+      "typeLabel": "Type",
+      "titleLabel": "Title",
+      "titleHint": "e.g. Kunefe Festival Discount",
+      "descriptionLabel": "Description",
+      "descriptionHint": "Short text shown in the feed",
+      "startLabel": "Start",
+      "endLabel": "End",
+      "dateEmpty": "Select",
+      "imageLabel": "Image",
+      "imageAdd": "Add image",
+      "imageRemove": "Remove image",
+      "activeLabel": "Published",
+      "publishAction": "Publish",
+      "saveAction": "Save",
+      "deleteAction": "Delete",
+      "deleteConfirmTitle": "Delete module?",
+      "deleteConfirmContent": "This showcase module will no longer be visible to visitors.",
+      "saveError": "Showcase could not be saved.",
+      "saveSuccess": "Showcase updated."
+    },
+    "store": {
+      "title": "Place details",
+      "photosTitle": "Photos",
+      "photosSubtitle": "The first photo becomes the cover",
+      "photoAdd": "Add",
+      "photoCover": "Cover",
+      "basicTitle": "Basic details",
+      "nameLabel": "Place name",
+      "categoryLabel": "Category",
+      "descriptionLabel": "Description",
+      "descriptionHint": "Describe your place briefly",
+      "hoursTitle": "Working hours",
+      "photoRequired": "At least one photo is required.",
+      "saveAction": "Save",
+      "saveSuccess": "Place details updated.",
+      "saveError": "Place details could not be saved.",
+      "categoryRequired": "You must pick a category.",
+      "phoneLabel": "Phone",
+      "addressLabel": "Address",
+      "commentEnabledLabel": "Open to reviews",
+      "commentEnabledSubtitle": "When off, visitors cannot leave new reviews"
+    },
+    "placeSection": {
+      "title": "Campaigns and announcements"
+    }
+  },
+  "banned": {
+    "title": "Your account is suspended",
+    "description": "Your account was closed for breaking the community rules. Your posts have been taken down.",
+    "signOut": "Sign out"
+  },
+  "newsFeed": {
+    "badge": "News",
+    "readMore": "Read more"
   }
 }

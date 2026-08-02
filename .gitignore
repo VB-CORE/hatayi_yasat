@@ -93,3 +93,6 @@ functions/.env
 *.xcuserdata/
 xcuserdata/
 ios/Pods/Pods.xcodeproj/xcuserdata/
+
+# Local emulator kit (should not be pushed)
+mobile-emulator-kit/

@@ -40,38 +40,25 @@ final class _CityPill extends ConsumerWidget {
     return Material(
       color: AppColors.coral50,
       borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-        onTap: () async {
-          final result = await RegionalCitySheet.show(context);
-          if (result == null) return;
-          ProjectDependencyItems.productProvider.saveSelectedCity(result);
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.sm,
-            vertical: AppSpacing.xs,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                AppIcons.location,
-                size: WidgetSizes.spacingMx,
-                color: AppColors.coral,
-              ),
-              const SizedBox(width: AppSpacing.xxs),
-              Text(
-                currentCity.selectedCity.description,
-                style: AppText.label.copyWith(color: AppColors.coral700),
-              ),
-              const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                size: WidgetSizes.spacingL,
-                color: AppColors.coral,
-              ),
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm,
+          vertical: AppSpacing.xs,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              AppIcons.location,
+              size: WidgetSizes.spacingMx,
+              color: AppColors.coral,
+            ),
+            const SizedBox(width: AppSpacing.xxs),
+            Text(
+              currentCity.selectedCity.description,
+              style: AppText.label.copyWith(color: AppColors.coral700),
+            ),
+          ],
         ),
       ),
     );

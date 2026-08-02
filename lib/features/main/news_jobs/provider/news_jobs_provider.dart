@@ -13,10 +13,11 @@ final class NewsJobsProvider extends _$NewsJobsProvider
   @override
   NewsJobsState build() => NewsJobsState();
 
-  CollectionReference<NewsFeedModel?> fetchNewsCollectionReference() {
-    return firestoreService.collectionReference(
-      CollectionPaths.news,
-      const NewsFeedModel.empty(),
+  Query<NewsFeedModel?> fetchNewsCollectionReference() {
+    return firestoreService.queryWithOrderBy(
+      path: CollectionPaths.news,
+      model: const NewsFeedModel.empty(),
+      orderBy: const MapEntry('createdAt', true),
     );
   }
 

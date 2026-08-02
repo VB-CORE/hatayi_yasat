@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view_mixin.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -11,8 +12,8 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
+import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/general/qr_image/qr_image_constants.dart';
 import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
@@ -27,12 +28,24 @@ final class UserQrView extends ConsumerStatefulWidget {
 }
 
 class _UserQrViewState extends ConsumerState<UserQrView>
-    with AppProviderMixin<UserQrView>, UserQrViewMixin {
+    with ProjectDependencyMixin, UserQrViewMixin {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.general.colorScheme;
-    final qrSize = context.sized.dynamicWidth(QrImageConstants.sizeFactor);
-    final embeddedSize = qrSize * QrImageConstants.embeddedSizeRatio;
+    final qrUrl = userQrUrl;
+
+    if (qrUrl == null) {
+      return GeneralScaffold(
+        appBar: PageAppBar(pageTitle: LocaleKeys.userQr_title),
+        body: GeneralNotFoundWidget(
+          title: LocaleKeys.message_somethingWentWrong.tr(),
+        ),
+      );
+    }
+
+    final placeHolderSize =
+        context.sized.dynamicWidth(QrImageConstants.sizeFactor) *
+        QrImageConstants.embeddedSizeRatio;
 
     return GeneralScaffold(
       appBar: PageAppBar(
@@ -56,15 +69,15 @@ class _UserQrViewState extends ConsumerState<UserQrView>
                         child: child,
                       );
                     },
-                    child: GeneralQrImage(data: qrData),
+                    child: GeneralQrImage(data: qrUrl),
                   ),
                   Hero(
                     tag: HeroTags.userQrFab.name,
                     child: Material(
                       type: MaterialType.transparency,
                       child: Assets.icons.icApp.image(
-                        width: embeddedSize,
-                        height: embeddedSize,
+                        width: placeHolderSize,
+                        height: placeHolderSize,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -106,7 +119,7 @@ class _UserQrViewState extends ConsumerState<UserQrView>
                 children: [
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: qrData.isEmpty ? null : shareQrData,
+                      onPressed: qrUrl.isEmpty ? null : shareQrUrl,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: colorScheme.tertiary,
                         foregroundColor: colorScheme.onTertiary,

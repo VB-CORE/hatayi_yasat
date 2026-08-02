@@ -18,6 +18,7 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(UserApplicationModelAdapter());
     registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
+    registerAdapter(UserRoleAdapter());
   }
 }
 
@@ -34,5 +35,6 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(UserApplicationModelAdapter());
     registerAdapter(UserApplicationStatusAdapter());
     registerAdapter(UserModelAdapter());
+    registerAdapter(UserRoleAdapter());
   }
 }

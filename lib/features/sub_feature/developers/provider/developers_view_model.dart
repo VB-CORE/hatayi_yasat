@@ -26,8 +26,11 @@ final class DevelopersViewModel extends _$DevelopersViewModel
       model: DeveloperModel(),
       path: CollectionPaths.developers,
     );
+
+    final developers = result.dataOrNull ?? const [];
     state = state.copyWith(
-      developers: result.dataOrNull ?? const [],
+      activeDevelopers: developers.where((d) => d.active).toList(),
+      contributorDevelopers: developers.where((d) => !d.active).toList(),
       isFetching: false,
       isError: !result.isSuccess,
     );

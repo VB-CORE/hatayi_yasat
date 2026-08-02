@@ -56,7 +56,7 @@ final class SavedNewsView extends ConsumerWidget {
                     NewsDetailRoute(
                       $extra: NewsModelCopy.fromNewsFeedModel(model),
                       id: model.documentId,
-                    ).push<NewsDetailRoute>(context);
+                    ).push<void>(context);
                   },
                 );
               },

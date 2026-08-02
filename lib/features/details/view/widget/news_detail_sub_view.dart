@@ -13,9 +13,7 @@ final class _NewsMetaRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasAuthor = author != null && author!.handle.isNotEmpty;
-    final dateText = date == null
-        ? null
-        : DateFormat.yMMMEd(context.locale.toLanguageTag()).format(date!);
+    final dateText = date?.shortDate;
 
     if (!hasAuthor && dateText == null) return const SizedBox.shrink();
 

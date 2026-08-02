@@ -4,7 +4,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/start_discussion_card.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/widget/start_discussion_sheet.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
-import 'package:lifeclient/features/community/model/group_discussion_model.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 final class DiscussionsComposer extends ConsumerWidget {

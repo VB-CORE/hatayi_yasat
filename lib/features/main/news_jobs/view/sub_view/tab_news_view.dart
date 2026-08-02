@@ -24,10 +24,6 @@ class _TabNewsViewState extends ConsumerState<TabNewsView> {
     setState(() => _refreshKey++);
   }
 
-  Future<void> _refresh() async {
-    _retry();
-  }
-
   @override
   Widget build(BuildContext context) {
     final query = ref
@@ -35,7 +31,7 @@ class _TabNewsViewState extends ConsumerState<TabNewsView> {
         .fetchNewsCollectionReference();
 
     return RefreshIndicator(
-      onRefresh: _refresh,
+      onRefresh: () async => _retry(),
       child: KeyedSubtree(
         key: ValueKey(_refreshKey),
         child: GeneralFirestoreListView(
@@ -53,7 +49,7 @@ class _TabNewsViewState extends ConsumerState<TabNewsView> {
                 NewsDetailRoute(
                   $extra: NewsModelCopy.fromNewsFeedModel(model),
                   id: model.documentId,
-                ).push<NewsDetailRoute>(context);
+                ).push<void>(context);
               },
             );
           },

@@ -16,8 +16,11 @@ final class SavedNewsViewModel extends _$SavedNewsViewModel
   @override
   SavedNewsState build() {
     final bookmarkedIds = _bookmarkedIds;
+    if (bookmarkedIds.isEmpty) {
+      return const SavedNewsState();
+    }
     unawaited(_resolve(bookmarkedIds));
-    return SavedNewsState(isFetching: bookmarkedIds.isNotEmpty);
+    return const SavedNewsState(isFetching: true);
   }
 
   void retry() {

@@ -6,11 +6,16 @@ final class _ContactUsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GeneralExpansionTile(
-      key: ValueKey(context.locale),
-      pageTitle: LocaleKeys.settings_contactTitle.tr(),
-      children: const [
-        _ContactUsGridView(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: AppSpacing.sm,
+      children: [
+        GeneralGroupSectionHeader(
+          label: LocaleKeys.settings_contactTitle
+              .tr(context: context)
+              .toUpperCase(),
+        ),
+        const _ContactUsGridView(),
       ],
     );
   }
@@ -23,7 +28,7 @@ final class _ContactUsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const PagePadding.onlyBottom(),
+      padding: const PagePadding.horizontalNormalSymmetric(),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: ContactModel.dummyModels.length,
@@ -36,6 +41,8 @@ final class _ContactUsGridView extends StatelessWidget {
   SliverGridDelegateWithFixedCrossAxisCount get _delegate =>
       const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        crossAxisSpacing: AppSpacing.sm,
+        mainAxisSpacing: AppSpacing.sm,
         mainAxisExtent: WidgetSizes.spacingXxlL13,
       );
 }
@@ -48,8 +55,9 @@ final class _ContactUsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.transparent,
-      shape: context.border.roundedRectangleAllBorderNormal
-          .copyWith(side: CustomBorderSides.maxThick),
+      shape: context.border.roundedRectangleAllBorderNormal.copyWith(
+        side: CustomBorderSides.maxThick,
+      ),
       elevation: 0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
