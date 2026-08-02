@@ -421,7 +421,7 @@ service cloud.firestore {
 
     match /unApprovedApplications/{appId} {
       allow read: if isAdmin();
-      allow create: if isSignedIn();
+      allow create: if true;
       allow update, delete: if isAdmin();
     }
 
@@ -453,7 +453,7 @@ service cloud.firestore {
     }
     match /unApprovedCampaigns/{document} {
       allow read: if isAdmin();
-      allow create: if isSignedIn();
+      allow create: if true;
       allow update, delete: if isAdmin();
     }
 
@@ -483,7 +483,8 @@ service cloud.firestore {
     }
     match /scholarship/{scholarship} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
     }
     match /chainStores/{chainStore} {
       allow read: if true;
