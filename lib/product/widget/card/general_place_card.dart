@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:lifeclient/product/widget/general/title/index.dart';
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
 
@@ -24,8 +26,6 @@ final class GeneralPlaceCard extends StatelessWidget {
     super.key,
   });
 
-  static const double _imageWidth = 104;
-
   final VoidCallback onCardTap;
   final StoreModel storeModel;
 
@@ -35,19 +35,20 @@ final class GeneralPlaceCard extends StatelessWidget {
       onTap: onCardTap,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: context.appColors.surface,
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          border: Border.all(color: AppColors.ink50),
+          border: Border.all(color: context.general.colorScheme.outlineVariant),
           boxShadow: AppShadows.card,
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: IntrinsicHeight(
+          child: SizedBox(
+            height: context.sized.dynamicHeight(0.12),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  width: _imageWidth,
+                  width: context.sized.dynamicWidth(0.27),
                   child: _PlaceImageBlock(model: storeModel),
                 ),
                 Expanded(child: _Body(model: storeModel)),
@@ -99,14 +100,14 @@ final class _MosaicPlaceholder extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [accent, AppColors.navy],
+          colors: [accent, context.general.colorScheme.primary],
         ),
       ),
       child: Center(
         child: Icon(
           CategoryVisual.iconFor(category),
-          color: AppColors.white,
-          size: 36,
+          color: context.general.colorScheme.onPrimary,
+          size: IconSize.medium.value,
         ),
       ),
     );
@@ -128,7 +129,7 @@ final class _CategoryGlassLabel extends StatelessWidget {
         vertical: AppSpacing.xxs,
       ),
       decoration: BoxDecoration(
-        color: AppColors.navy.withValues(alpha: 0.78),
+        color: context.general.colorScheme.primary.withValues(alpha: 0.78),
         borderRadius: BorderRadius.circular(AppRadius.sm),
       ),
       child: Row(
@@ -136,13 +137,13 @@ final class _CategoryGlassLabel extends StatelessWidget {
         children: [
           Icon(
             CategoryVisual.iconFor(category),
-            color: AppColors.white,
-            size: 12,
+            color: context.general.colorScheme.onPrimary,
+            size: IconSize.small.value,
           ),
-          const SizedBox(width: AppSpacing.xxs),
-          Text(
-            name,
-            style: AppText.micro.copyWith(color: AppColors.white),
+          const EmptyBox.xxSmallHeight(),
+          GeneralContentSmallTitle(
+            value: name,
+            color: context.general.colorScheme.onPrimary,
           ),
         ],
       ),
@@ -178,14 +179,12 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Text(
+                child: GeneralBodyTitle(
                   model.updatedName,
                   maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppText.bodyLg.copyWith(
-                    color: AppColors.navy,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  fontWeight: FontWeight.w700,
+                  color: context.general.colorScheme.onSurface,
+                  textAlign: TextAlign.start,
                 ),
               ),
               FavoritePlaceButton(store: model),
@@ -194,14 +193,13 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
           if (subtitle.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(top: AppSpacing.xxs),
-              child: Text(
-                subtitle,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppText.caption.copyWith(color: AppColors.ink400),
+              child: GeneralContentSmallTitle(
+                value: subtitle,
+                maxLine: 1,
+                color: context.general.colorScheme.onSurfaceVariant,
               ),
             ),
-          const SizedBox(height: AppSpacing.xs),
+          const EmptyBox.smallHeight(),
           Wrap(
             spacing: AppSpacing.sm,
             runSpacing: AppSpacing.xxs,
@@ -212,9 +210,9 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
                 rating: model.averageRatingLabel,
                 reviewCount: model.ratingCount,
               ),
-              Text(
-                distanceLabel,
-                style: AppText.caption.copyWith(color: AppColors.ink400),
+              GeneralContentSmallTitle(
+                value: distanceLabel,
+                color: context.general.colorScheme.onSurfaceVariant,
               ),
             ],
           ),

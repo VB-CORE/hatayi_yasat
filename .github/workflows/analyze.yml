@@ -24,5 +24,8 @@ jobs:
       - name: Run Build Runner
         run: dart run build_runner build --delete-conflicting-outputs
 
+      - name: Generate locale keys
+        run: flutter pub run easy_localization:generate -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
+
       - name: Run Flutter Analyze
         run: flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
