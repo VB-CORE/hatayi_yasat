@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_args.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_state.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'place_detail_view_model.g.dart';
@@ -13,6 +15,8 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     with ProjectDependencyMixin {
   @override
   PlaceDetailState build(PlaceDetailArgs args) {
+    unawaited(_incrementVisitCount(args.placeId));
+
     if (args.hasStore) return PlaceDetailState(storeModel: args.store);
 
     if (args.placeId.isEmpty) {
@@ -39,6 +43,14 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
       ),
       FirebaseFailure() => state.copyWith(isFetching: false, isError: true),
     };
+  }
+
+  Future<void> _incrementVisitCount(String id) async {
+    await firestoreService.updateFields(
+      path: CollectionPaths.approvedApplications,
+      documentId: id,
+      fields: {StoreModelExtension.visitCountField: FieldValue.increment(1)},
+    );
   }
 
   void applyRatingDelta({required int scoreDelta, required int countDelta}) {
