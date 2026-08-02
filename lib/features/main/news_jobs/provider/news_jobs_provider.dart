@@ -21,14 +21,6 @@ final class NewsJobsProvider extends _$NewsJobsProvider
     );
   }
 
-  Query<NewsFeedModel?> fetchNewsByIds(List<String> ids) {
-    assert(ids.length <= 30, 'fetchNewsByIds supports at most 30 ids');
-    return fetchNewsCollectionReference().where(
-      FieldPath.documentId,
-      whereIn: ids,
-    );
-  }
-
   CollectionReference<AdvertiseModel?> fetchJobsCollectionReference() {
     return firebaseService.collectionReference(
       CollectionPaths.approvedAdvertise,

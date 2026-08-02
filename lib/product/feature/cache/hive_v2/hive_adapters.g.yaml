@@ -189,7 +189,17 @@ types:
         index: 1
   NewsBookmarkCache:
     typeId: 15
-    nextIndex: 1
+    nextIndex: 6
     fields:
       newsId:
         index: 0
+      title:
+        index: 1
+      body:
+        index: 2
+      photoUrl:
+        index: 3
+      type:
+        index: 4
+      date:
+        index: 5

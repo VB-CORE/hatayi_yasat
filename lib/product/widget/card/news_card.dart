@@ -150,7 +150,7 @@ final class _NewsActionRow extends ConsumerWidget {
           color: isSaved ? AppColors.coral : AppColors.navy300,
           onTap: () => ref
               .read(newsBookmarkViewModelProvider(item.documentId).notifier)
-              .toggle(),
+              .toggle(item),
         ),
         const EmptyBox.smallWidth(),
         _NewsActionButton(

@@ -10,52 +10,32 @@ import 'package:lifeclient/product/widget/card/index.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
 @immutable
-final class TabNewsView extends ConsumerStatefulWidget {
+final class TabNewsView extends ConsumerWidget {
   const TabNewsView({super.key});
 
   @override
-  ConsumerState<TabNewsView> createState() => _TabNewsViewState();
-}
-
-class _TabNewsViewState extends ConsumerState<TabNewsView> {
-  int _refreshKey = 0;
-
-  void _retry() {
-    setState(() => _refreshKey++);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final query = ref
         .read(newsJobsProviderProvider.notifier)
         .fetchNewsCollectionReference();
 
-    return RefreshIndicator(
-      onRefresh: () async => _retry(),
-      child: KeyedSubtree(
-        key: ValueKey(_refreshKey),
-        child: GeneralFirestoreListView(
-          query: query,
-          emptyBuilder: (context) {
-            return GeneralNotFoundWidget(
-              title: LocaleKeys.notFound_news.tr(),
-              onRefresh: _retry,
-            );
+    return GeneralFirestoreListView(
+      query: query,
+      emptyBuilder: (context) {
+        return GeneralNotFoundWidget(title: LocaleKeys.notFound_news.tr());
+      },
+      itemBuilder: (context, model) {
+        return NewsCard(
+          item: model,
+          onTap: () {
+            NewsDetailRoute(
+              $extra: NewsModelCopy.fromNewsFeedModel(model),
+              id: model.documentId,
+            ).push<void>(context);
           },
-          itemBuilder: (context, model) {
-            return NewsCard(
-              item: model,
-              onTap: () {
-                NewsDetailRoute(
-                  $extra: NewsModelCopy.fromNewsFeedModel(model),
-                  id: model.documentId,
-                ).push<void>(context);
-              },
-            );
-          },
-          onRetry: _retry,
-        ),
-      ),
+        );
+      },
+      onRetry: () {},
     );
   }
 }

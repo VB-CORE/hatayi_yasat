@@ -59,7 +59,7 @@ final class NewsBookmarkViewModelProvider
 }
 
 String _$newsBookmarkViewModelHash() =>
-    r'c52a731d45574db5a6c7bf35327236ef63511786';
+    r'06bebb7f532048e4e72a87c748884343768b88ac';
 
 final class NewsBookmarkViewModelFamily extends $Family
     with
@@ -107,28 +107,12 @@ abstract class _$NewsBookmarkViewModel extends $Notifier<NewsBookmarkState> {
   }
 }
 
-/// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
-/// tarafından invalidate edilir. Global bir aggregate olduğu için
-/// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
-/// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
-/// üzerinde çalışıyor.
-
 @ProviderFor(NewsBookmarkCountViewModel)
 final newsBookmarkCountViewModelProvider =
     NewsBookmarkCountViewModelProvider._();
 
-/// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
-/// tarafından invalidate edilir. Global bir aggregate olduğu için
-/// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
-/// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
-/// üzerinde çalışıyor.
 final class NewsBookmarkCountViewModelProvider
     extends $NotifierProvider<NewsBookmarkCountViewModel, int> {
-  /// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
-  /// tarafından invalidate edilir. Global bir aggregate olduğu için
-  /// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
-  /// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
-  /// üzerinde çalışıyor.
   NewsBookmarkCountViewModelProvider._()
     : super(
         from: null,
@@ -158,12 +142,6 @@ final class NewsBookmarkCountViewModelProvider
 
 String _$newsBookmarkCountViewModelHash() =>
     r'940874d79a6a471e7d423fa410cdeede49d4b6de';
-
-/// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
-/// tarafından invalidate edilir. Global bir aggregate olduğu için
-/// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
-/// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
-/// üzerinde çalışıyor.
 
 abstract class _$NewsBookmarkCountViewModel extends $Notifier<int> {
   int build();

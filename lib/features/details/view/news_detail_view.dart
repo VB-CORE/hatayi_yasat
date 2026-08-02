@@ -41,7 +41,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
           IconButton(
             onPressed: () => ref
                 .read(newsBookmarkViewModelProvider(news.documentId).notifier)
-                .toggle(),
+                .toggle(news),
             icon: Icon(
               isBookmarked ? AppIcons.bookmark : AppIcons.bookmarkBorder,
             ),

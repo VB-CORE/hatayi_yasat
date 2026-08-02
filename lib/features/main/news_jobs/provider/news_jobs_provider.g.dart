@@ -41,7 +41,7 @@ final class NewsJobsProviderProvider
   }
 }
 
-String _$newsJobsProviderHash() => r'd5ac67bc0550ee7e21e0f5808a8b65e37d729921';
+String _$newsJobsProviderHash() => r'ec2bd5243cd505b9a51e7552c097876ea8663904';
 
 abstract class _$NewsJobsProvider extends $Notifier<NewsJobsState> {
   NewsJobsState build();
