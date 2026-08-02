@@ -19,7 +19,6 @@ import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/card/news/news_category_chip.dart';
 import 'package:lifeclient/product/widget/card/news/news_read_more_button.dart';
-import 'package:lifeclient/product/widget/circle_avatar/custom_user_avatar.dart';
 
 @immutable
 final class NewsCard extends StatelessWidget {
@@ -117,37 +116,14 @@ final class _NewsMetaCaption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final author = item.author;
-    final hasAuthor = author != null && author.name.isNotEmpty;
     final timeAgo = item.date?.timeAgo;
+    if (timeAgo == null) return const SizedBox.shrink();
 
-    if (!hasAuthor && timeAgo == null) return const SizedBox.shrink();
-
-    final metaText = [
-      if (hasAuthor) author.name,
-      ?timeAgo,
-    ].join(' · ');
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (hasAuthor) ...[
-          CustomUserAvatar(
-            userName: author.name,
-            imageUrl: author.avatarUrl,
-            radius: WidgetSizes.spacingS,
-          ),
-          const EmptyBox.smallWidth(),
-        ],
-        Flexible(
-          child: Text(
-            metaText,
-            maxLines: AppConstants.kOne,
-            overflow: TextOverflow.ellipsis,
-            style: AppText.caption,
-          ),
-        ),
-      ],
+    return Text(
+      timeAgo,
+      maxLines: AppConstants.kOne,
+      overflow: TextOverflow.ellipsis,
+      style: AppText.caption,
     );
   }
 }

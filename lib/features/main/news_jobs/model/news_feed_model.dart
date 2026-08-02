@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_author_model.dart';
 
 part 'news_feed_model.g.dart';
 
@@ -15,7 +14,6 @@ final class NewsFeedModel extends BaseFirebaseModel<NewsFeedModel>
     this.body,
     this.photoUrl,
     this.type,
-    this.author,
     this.date,
   });
 
@@ -33,8 +31,6 @@ final class NewsFeedModel extends BaseFirebaseModel<NewsFeedModel>
   final String? photoUrl;
 
   final String? type;
-
-  final NewsAuthorModel? author;
 
   @JsonKey(
     name: 'createdAt',
@@ -61,7 +57,7 @@ final class NewsFeedModel extends BaseFirebaseModel<NewsFeedModel>
   }
 
   @override
-  List<Object?> get props => [id, title, body, photoUrl, type, author, date];
+  List<Object?> get props => [id, title, body, photoUrl, type, date];
 
   NewsFeedModel copyWith({
     String? id,
@@ -69,7 +65,6 @@ final class NewsFeedModel extends BaseFirebaseModel<NewsFeedModel>
     String? body,
     String? photoUrl,
     String? type,
-    NewsAuthorModel? author,
     DateTime? date,
   }) {
     return NewsFeedModel(
@@ -78,7 +73,6 @@ final class NewsFeedModel extends BaseFirebaseModel<NewsFeedModel>
       body: body ?? this.body,
       photoUrl: photoUrl ?? this.photoUrl,
       type: type ?? this.type,
-      author: author ?? this.author,
       date: date ?? this.date,
     );
   }

@@ -1,4 +1,3 @@
-import 'package:lifeclient/features/main/news_jobs/model/news_author_model.dart';
 import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 
 /// it's help for navigate to news detail page
@@ -10,7 +9,6 @@ final class NewsModelCopy {
     this.image,
     this.createdAt,
     this.type,
-    this.author,
   });
 
   factory NewsModelCopy.fromNewsFeedModel(NewsFeedModel model) {
@@ -21,7 +19,6 @@ final class NewsModelCopy {
       image: model.photoUrl,
       createdAt: model.date,
       type: model.type,
-      author: model.author,
     );
   }
 
@@ -33,7 +30,6 @@ final class NewsModelCopy {
       photoUrl: image,
       date: createdAt,
       type: type,
-      author: author,
     );
   }
 
@@ -42,7 +38,6 @@ final class NewsModelCopy {
   final String? image;
   final DateTime? createdAt;
   final String? type;
-  final NewsAuthorModel? author;
 
   final String documentId;
 }

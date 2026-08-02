@@ -1,5 +1,4 @@
 import 'package:lifeclient/core/dependency/index.dart';
-import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_count_view_model.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_state.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/news_bookmark_cache.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -36,4 +35,16 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
   }
 
   bool get _isSaved => productCache.newsBookmarkCache.get(newsId) != null;
+}
+
+/// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
+/// tarafından invalidate edilir. Global bir aggregate olduğu için
+/// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
+/// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
+/// üzerinde çalışıyor.
+@riverpod
+final class NewsBookmarkCountViewModel extends _$NewsBookmarkCountViewModel
+    with ProjectDependencyMixin {
+  @override
+  int build() => productCache.newsBookmarkCache.getAll().length;
 }
