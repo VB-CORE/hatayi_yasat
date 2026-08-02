@@ -2,9 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
-/// Bookmark edilen haberin, Firestore'a tekrar gitmeden gösterilebilmesi
-/// için gerekli alanların bir snapshot'ı. Backend'e yazılmıyor, sadece
-/// bookmark anındaki haber içeriğini local'de saklıyor.
 final class NewsBookmarkCache with CacheModel, EquatableMixin {
   const NewsBookmarkCache({
     required this.newsId,
