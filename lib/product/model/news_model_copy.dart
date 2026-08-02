@@ -1,6 +1,5 @@
 import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 
-/// it's help for navigate to news detail page
 final class NewsModelCopy {
   NewsModelCopy({
     required this.documentId,

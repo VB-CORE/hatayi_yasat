@@ -37,11 +37,6 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
   bool get _isSaved => productCache.newsBookmarkCache.get(newsId) != null;
 }
 
-/// Kaydedilen haber sayısı — bookmark toggle sonrası [NewsBookmarkViewModel]
-/// tarafından invalidate edilir. Global bir aggregate olduğu için
-/// [NewsBookmarkViewModel]'in family yapısına eklenemez, ayrı bir provider
-/// olarak kalır; tek dosyada tutulur çünkü ikisi de aynı bookmark cache'i
-/// üzerinde çalışıyor.
 @riverpod
 final class NewsBookmarkCountViewModel extends _$NewsBookmarkCountViewModel
     with ProjectDependencyMixin {
