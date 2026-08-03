@@ -61,6 +61,8 @@ abstract class  LocaleKeys {
   static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
   static const component_mapPicker_updateFromMap = 'component.mapPicker.updateFromMap';
   static const component_mapPicker = 'component.mapPicker';
+  static const component_speedDial_loginRequiredHint = 'component.speedDial.loginRequiredHint';
+  static const component_speedDial = 'component.speedDial';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
   static const component_picker_cropperTitle = 'component.picker.cropperTitle';
@@ -365,7 +367,11 @@ abstract class  LocaleKeys {
   static const favorite_title = 'favorite.title';
   static const favorite_search = 'favorite.search';
   static const favorite_clearAllButton = 'favorite.clearAllButton';
-  static const favorite_noBusinessFound = 'favorite.noBusinessFound';
+  static const favorite_emptyTitle = 'favorite.emptyTitle';
+  static const favorite_emptyDescription = 'favorite.emptyDescription';
+  static const favorite_emptyCta = 'favorite.emptyCta';
+  static const favorite_searchEmptyTitle = 'favorite.searchEmptyTitle';
+  static const favorite_searchEmptyDescription = 'favorite.searchEmptyDescription';
   static const favorite_clearAllDialog_content = 'favorite.clearAllDialog.content';
   static const favorite_clearAllDialog = 'favorite.clearAllDialog';
   static const favorite_deleteDialog_content = 'favorite.deleteDialog.content';

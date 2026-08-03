@@ -63,6 +63,9 @@
       "selectedLocationSave": "Seçtiğin konumu kaydet",
       "updateFromMap": "Haritadan konum güncelle"
     },
+    "speedDial": {
+      "loginRequiredHint": "Giriş yapmak zorunlu"
+    },
     "picker": {
       "camera": "Kamera",
       "gallery": "Galeri",
@@ -400,9 +403,13 @@
   },
   "favorite": {
     "title": "Favoriler",
-    "search": "Favorinizi arayın",
+    "search": "Favorilerinde ara",
     "clearAllButton": "Tümünü Temizle",
-    "noBusinessFound": "Aradığınız değere uygun bir işletme bulunamadı.",
+    "emptyTitle": "Favori listen henüz boş",
+    "emptyDescription": "Beğendiğin mekanları kalp ikonuna dokunarak buraya kaydet; sonra tek dokunuşla ulaş.",
+    "emptyCta": "Mekanları keşfet",
+    "searchEmptyTitle": "Sonuç yok",
+    "searchEmptyDescription": "\"{}\" favorilerinde bulunamadı. Farklı bir isim dene ya da aramayı temizle.",
     "clearAllDialog": {
       "content": "Tüm favorilerinizi silmek istediğinize emin misiniz?"
     },

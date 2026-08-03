@@ -2,7 +2,9 @@ part of '../news_jobs_view.dart';
 
 @immutable
 final class _NewsEventJobsTabBar extends StatefulWidget {
-  const _NewsEventJobsTabBar();
+  const _NewsEventJobsTabBar({required this.tabs});
+
+  final List<NewsEventJobTabs> tabs;
 
   @override
   State<_NewsEventJobsTabBar> createState() => _NewsEventJobsTabBarState();
@@ -22,7 +24,7 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final tabWidth = constraints.maxWidth / 3;
+            final tabWidth = constraints.maxWidth / widget.tabs.length;
             return Stack(
               children: [
                 AnimatedPositioned(
@@ -40,30 +42,14 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: _CustomTabButton(
-                        tab: NewsEventJobTabs.news,
-                        onPressed: () =>
-                            _changeCurrentTabView(NewsEventJobTabs.news),
-                        selectedTab: _currentTab,
+                    for (final tab in widget.tabs)
+                      Expanded(
+                        child: _CustomTabButton(
+                          tab: tab,
+                          onPressed: () => _changeCurrentTabView(tab),
+                          selectedTab: _currentTab,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: _CustomTabButton(
-                        tab: NewsEventJobTabs.event,
-                        onPressed: () =>
-                            _changeCurrentTabView(NewsEventJobTabs.event),
-                        selectedTab: _currentTab,
-                      ),
-                    ),
-                    Expanded(
-                      child: _CustomTabButton(
-                        tab: NewsEventJobTabs.groups,
-                        onPressed: () =>
-                            _changeCurrentTabView(NewsEventJobTabs.groups),
-                        selectedTab: _currentTab,
-                      ),
-                    ),
                   ],
                 ),
               ],
@@ -77,7 +63,9 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
 
 mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
   void _changeCurrentTabView(NewsEventJobTabs tab) {
-    DefaultTabController.maybeOf(context)?.animateTo(tab.index);
+    final index = widget.tabs.indexOf(tab);
+    if (index == -1) return;
+    DefaultTabController.maybeOf(context)?.animateTo(index);
     setState(() {
       _currentTab = tab;
     });
@@ -87,14 +75,8 @@ mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
 
   /// Returns the left position of the selected tab indicator.
   double _leftPosition(double tabWidth) {
-    switch (_currentTab) {
-      case NewsEventJobTabs.news:
-        return WidgetSizes.spacingXxs;
-      case NewsEventJobTabs.event:
-        return tabWidth + WidgetSizes.spacingXxs;
-      case NewsEventJobTabs.groups:
-        return (tabWidth * 2) + WidgetSizes.spacingXxs;
-    }
+    final index = widget.tabs.indexOf(_currentTab).clamp(0, widget.tabs.length - 1);
+    return (tabWidth * index) + WidgetSizes.spacingXxs;
   }
 }
 

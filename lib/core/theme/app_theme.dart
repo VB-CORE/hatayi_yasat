@@ -97,9 +97,7 @@ final class ApplicationTheme {
         backgroundColor: AppColors.surface,
       ),
       appBarTheme: AppBarTheme(
-        titleTextStyle: AppText.title.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
+        titleTextStyle: AppText.titleLg.copyWith(fontWeight: .bold),
         backgroundColor: AppColors.surface,
         foregroundColor: AppColors.navy,
       ),

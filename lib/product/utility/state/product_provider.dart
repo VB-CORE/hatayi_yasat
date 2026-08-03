@@ -48,16 +48,19 @@ final class ProductProvider extends Notifier<ProductProviderState>
   }
 
   void addOrRemoveFavoritePlace(StoreModel store) {
-    if (state.favoritePlaces
-        .any((element) => element.documentId == store.documentId)) {
+    if (state.favoritePlaces.any(
+      (element) => element.documentId == store.documentId,
+    )) {
       storeModelCache.delete(StoreModelCache(storeModel: store));
     } else {
       storeModelCache.add(StoreModelCache(storeModel: store));
     }
 
     state = state.copyWith(
-      favoritePlaces:
-          storeModelCache.getAll().map((e) => e.storeModel).toList(),
+      favoritePlaces: storeModelCache
+          .getAll()
+          .map((e) => e.storeModel)
+          .toList(),
     );
   }
 

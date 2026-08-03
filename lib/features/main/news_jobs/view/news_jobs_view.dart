@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/groups_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/sub_view/tab_news_view.dart';
@@ -34,16 +37,29 @@ final class NewsEventJobsView extends StatelessWidget {
   const NewsEventJobsView({super.key});
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: NewsEventJobTabs.values.length,
-      child: const Scaffold(
-        body: Column(
-          children: [
-            _NewsEventJobsTabBar(),
-            Expanded(child: _NewsEventJobsTabView()),
-          ],
-        ),
-      ),
+    return Consumer(
+      builder: (context, ref, child) {
+        final isAuthenticated =
+            ref.watch(authViewModelProvider).isAuthenticated;
+        final visibleTabs = isAuthenticated
+            ? NewsEventJobTabs.values
+            : NewsEventJobTabs.values
+                  .where((tab) => tab != NewsEventJobTabs.groups)
+                  .toList();
+
+        return DefaultTabController(
+          key: ValueKey(visibleTabs.length),
+          length: visibleTabs.length,
+          child: Scaffold(
+            body: Column(
+              children: [
+                _NewsEventJobsTabBar(tabs: visibleTabs),
+                Expanded(child: _NewsEventJobsTabView(tabs: visibleTabs)),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
