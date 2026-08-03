@@ -6,10 +6,6 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
-/// Shared succeeded/failed handling for [ContentActionStatus] — a snackbar
-/// on success, a dialog on failure, then reset. Called from each feature's
-/// own `ref.listenManual` callback (post/entry/discussion), which still owns
-/// the concrete provider type.
 Future<void> handleContentActionStatus(
   BuildContext context, {
   required ContentActionStatus status,

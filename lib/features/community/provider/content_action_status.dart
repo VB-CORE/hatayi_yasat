@@ -1,9 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-/// Shared processing/result state for a soft-delete action on user
-/// content (post, discussion entry, discussion). Message keys are carried
-/// on the terminal states instead of a per-feature action enum, since every
-/// caller only ever has one action (delete) so far.
 sealed class ContentActionStatus extends Equatable {
   const ContentActionStatus();
 }

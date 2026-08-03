@@ -8,9 +8,6 @@ import 'package:lifeclient/features/community/widget/community_delete_confirm_di
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
-/// Wraps a piece of user content (post/entry/discussion) so its author or a
-/// group admin can swipe it away to delete. Non-owners get [child] back
-/// untouched — no swipe affordance at all.
 final class DismissibleContentCard extends ConsumerWidget {
   const DismissibleContentCard({
     required this.contentId,
