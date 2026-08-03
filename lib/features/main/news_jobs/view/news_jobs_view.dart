@@ -37,25 +37,29 @@ final class NewsEventJobsView extends StatelessWidget {
   const NewsEventJobsView({super.key});
   @override
   Widget build(BuildContext context) {
-    final isAuthenticated =
-        ProviderScope.containerOf(context).read(authViewModelProvider)
-            is Authenticated;
-    final visibleTabs = isAuthenticated
-        ? NewsEventJobTabs.values
-        : NewsEventJobTabs.values
-              .where((tab) => tab != NewsEventJobTabs.groups)
-              .toList();
+    return Consumer(
+      builder: (context, ref, child) {
+        final isAuthenticated =
+            ref.watch(authViewModelProvider).isAuthenticated;
+        final visibleTabs = isAuthenticated
+            ? NewsEventJobTabs.values
+            : NewsEventJobTabs.values
+                  .where((tab) => tab != NewsEventJobTabs.groups)
+                  .toList();
 
-    return DefaultTabController(
-      length: visibleTabs.length,
-      child: Scaffold(
-        body: Column(
-          children: [
-            _NewsEventJobsTabBar(tabs: visibleTabs),
-            Expanded(child: _NewsEventJobsTabView(tabs: visibleTabs)),
-          ],
-        ),
-      ),
+        return DefaultTabController(
+          key: ValueKey(visibleTabs.length),
+          length: visibleTabs.length,
+          child: Scaffold(
+            body: Column(
+              children: [
+                _NewsEventJobsTabBar(tabs: visibleTabs),
+                Expanded(child: _NewsEventJobsTabView(tabs: visibleTabs)),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
