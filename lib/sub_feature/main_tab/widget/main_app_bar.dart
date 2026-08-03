@@ -40,38 +40,25 @@ final class _CityPill extends ConsumerWidget {
     return Material(
       color: AppColors.coral50,
       borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-        onTap: () async {
-          final result = await RegionalCitySheet.show(context);
-          if (result == null) return;
-          ProjectDependencyItems.productProvider.saveSelectedCity(result);
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.sm,
-            vertical: AppSpacing.xs,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                AppIcons.location,
-                size: WidgetSizes.spacingMx,
-                color: AppColors.coral,
-              ),
-              const SizedBox(width: AppSpacing.xxs),
-              Text(
-                currentCity.selectedCity.description,
-                style: AppText.label.copyWith(color: AppColors.coral700),
-              ),
-              const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                size: WidgetSizes.spacingL,
-                color: AppColors.coral,
-              ),
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm,
+          vertical: AppSpacing.xs,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              AppIcons.location,
+              size: WidgetSizes.spacingMx,
+              color: AppColors.coral,
+            ),
+            const SizedBox(width: AppSpacing.xxs),
+            Text(
+              currentCity.selectedCity.description,
+              style: AppText.label.copyWith(color: AppColors.coral700),
+            ),
+          ],
         ),
       ),
     );
@@ -115,54 +102,12 @@ final class _CustomPopupMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      elevation: 0,
+    return IconButton(
+      onPressed: () => _DiscoverMenuOverlay.show(context),
       icon: Icon(
         AppIcons.moreDots,
         color: context.general.colorScheme.primary,
       ),
-      onSelected: (value) {},
-      itemBuilder: (context) {
-        return [
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.specialAgency_title,
-            destination: () {
-              const SpecialAgencyRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.chain_stores_title,
-            destination: () {
-              const ChainStoresRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.tourismView_title,
-            destination: () {
-              const TurismRoute().go(context);
-            },
-          ),
-          _CustomPopupMenuItem<void>(
-            itemLabel: LocaleKeys.usefulLink_title,
-            destination: () {
-              const UsefulLinksRoute().go(context);
-            },
-          ),
-        ];
-      },
     );
   }
-}
-
-final class _CustomPopupMenuItem<T> extends PopupMenuItem<T> {
-  _CustomPopupMenuItem({
-    required String itemLabel,
-    required VoidCallback destination,
-  }) : super(
-         child: GeneralContentSubTitle(
-           value: itemLabel.tr(),
-           fontWeight: FontWeight.bold,
-         ),
-         onTap: destination,
-       );
 }

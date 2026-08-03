@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,22 @@ mixin MonetizationCouponFormMixin
 
   DateTime? expiresAt;
 
+  CouponModel? get editedCoupon => widget.coupon;
+
+  bool get isEditing => editedCoupon != null;
+
+  @override
+  void initState() {
+    super.initState();
+    final coupon = editedCoupon;
+    if (coupon == null) return;
+    descController.text = coupon.desc ?? '';
+    usageLimitController.text = coupon.usageLimit?.toString() ?? '';
+    discountRateNotifier.value =
+        coupon.ratio ?? MonetizationDiscountRateSlider.minRate;
+    expiresAt = coupon.expiresAt;
+  }
+
   @override
   void dispose() {
     descController.dispose();
@@ -34,24 +51,37 @@ mixin MonetizationCouponFormMixin
     final usageLimitText = usageLimitController.text.trim();
     final usageLimit = int.tryParse(usageLimitText);
 
-    final isCreated = await ref
-        .read(monetizationViewModelProvider.notifier)
-        .addCoupon(
-          desc: descController.text.trim(),
-          rate: discountRateNotifier.value,
-          expiresAt: expiresAt!,
-          usageLimit: usageLimit,
-        );
+    final notifier = ref.read(monetizationViewModelProvider.notifier);
+    final coupon = editedCoupon;
+
+    final isSaved = coupon == null
+        ? await notifier.addCoupon(
+            desc: descController.text.trim(),
+            rate: discountRateNotifier.value,
+            expiresAt: expiresAt!,
+            usageLimit: usageLimit,
+          )
+        : await notifier.updateCoupon(
+            coupon: coupon,
+            desc: descController.text.trim(),
+            rate: discountRateNotifier.value,
+            expiresAt: expiresAt!,
+            usageLimit: usageLimit,
+          );
 
     if (!mounted) return;
 
-    if (!isCreated) {
+    if (!isSaved) {
       return appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
     }
 
-    appProvider.showSnackbarMessage(LocaleKeys.monetization_addSuccess.tr());
+    appProvider.showSnackbarMessage(
+      coupon == null
+          ? LocaleKeys.monetization_addSuccess.tr()
+          : LocaleKeys.monetization_updateSuccess.tr(),
+    );
     context.pop();
   }
 }

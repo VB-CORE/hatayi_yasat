@@ -7,9 +7,11 @@ final class PlaceDetailCommentsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RateCommentListView(
-      isCommentEnabled: true,
-      placeId: store.documentId,
+    return SingleChildScrollView(
+      child: RateCommentListView(
+        isCommentEnabled: store.isCommentEnabled,
+        placeId: store.documentId,
+      ),
     );
   }
 }

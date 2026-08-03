@@ -38,7 +38,7 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
           children: [
             CustomUserAvatar(
               userName: user.displayName,
-              imageUrl: user.photoUrl,
+              avatarType: user.avatarType,
               radius: avatarRadius,
             ),
             Expanded(
@@ -55,10 +55,10 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
                   ),
                   Row(
                     children: [
-                      // TODO(profile): Paylaşım alanı değişecek ve yönlendirmesi eklenecek.
+                      // TODO(profile): Paylaşımlarım listesi eklenecek.
                       ProfileStatics(
-                        count: 10,
-                        label: 'Paylaşım',
+                        count: user.postCount,
+                        label: LocaleKeys.profile_stats_posts.tr(),
                         onTap: () {},
                       ),
                       ProfileStatics(
@@ -66,9 +66,9 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
                         label: LocaleKeys.profile_stats_favorites.tr(),
                         onTap: () => const FavoriteRoute().push<void>(context),
                       ),
-                      // TODO(profile): Yorum yönlendirmesi eklenecek.
+                      // TODO(profile): Yorumlarım listesi eklenecek.
                       ProfileStatics(
-                        count: user.rates.length,
+                        count: user.commentCount,
                         label: LocaleKeys.profile_stats_comments.tr(),
                         onTap: () {},
                       ),

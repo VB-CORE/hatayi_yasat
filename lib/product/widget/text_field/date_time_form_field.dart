@@ -23,12 +23,14 @@ final class DateTimeFormField extends StatefulWidget {
     required this.onDateSelected,
     this.labelText,
     this.hintText,
+    this.initialDate,
     super.key,
   });
 
   final ValueSetter<DateTime> onDateSelected;
   final String? labelText;
   final String? hintText;
+  final DateTime? initialDate;
 
   @override
   State<DateTimeFormField> createState() => _DateTimeFormFieldState();
@@ -90,7 +92,13 @@ mixin _DateTimeFormFieldMixin on State<DateTimeFormField> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    final initialDate = widget.initialDate;
+    _selectedDate = initialDate;
+    _controller = TextEditingController(
+      text: initialDate == null
+          ? ''
+          : DateTimeFormatter.formatValueDetail(initialDate),
+    );
   }
 
   @override

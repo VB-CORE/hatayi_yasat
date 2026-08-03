@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/button/favorite_button/favorite_place_button.dart';
+import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
+import 'package:lifeclient/product/widget/general/title/index.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
 
 @immutable
@@ -34,9 +37,9 @@ final class GeneralPlaceGridCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: context.appColors.surface,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.ink50),
+        border: Border.all(color: context.general.colorScheme.outlineVariant),
         boxShadow: AppShadows.card,
       ),
       child: ClipRRect(
@@ -89,14 +92,14 @@ final class _GridImage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [accent, AppColors.navy],
+            colors: [accent, context.general.colorScheme.primary],
           ),
         ),
         child: Center(
           child: Icon(
             CategoryVisual.iconFor(model.category),
-            color: AppColors.white,
-            size: 36,
+            color: context.general.colorScheme.onPrimary,
+            size: IconSize.medium.value,
           ),
         ),
       );
@@ -115,7 +118,7 @@ final class _FavoriteCircle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.xxs),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: context.appColors.surface,
         shape: BoxShape.circle,
         boxShadow: AppShadows.card,
       ),
@@ -139,7 +142,7 @@ final class _CategoryGlassLabel extends StatelessWidget {
         vertical: AppSpacing.xxs,
       ),
       decoration: BoxDecoration(
-        color: AppColors.navy.withValues(alpha: 0.78),
+        color: context.general.colorScheme.primary.withValues(alpha: 0.78),
         borderRadius: BorderRadius.circular(AppRadius.sm),
       ),
       child: Row(
@@ -147,13 +150,13 @@ final class _CategoryGlassLabel extends StatelessWidget {
         children: [
           Icon(
             CategoryVisual.iconFor(category),
-            color: AppColors.white,
-            size: 12,
+            color: context.general.colorScheme.onPrimary,
+            size: IconSize.small.value,
           ),
-          const SizedBox(width: AppSpacing.xxs),
-          Text(
-            name,
-            style: AppText.micro.copyWith(color: AppColors.white),
+          const EmptyBox.xsmallWidth(),
+          GeneralContentSmallTitle(
+            value: name,
+            color: context.general.colorScheme.onPrimary,
           ),
         ],
       ),
@@ -169,46 +172,41 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final town = productProvider(ref).fetchTownFromCode(model.townCode);
-    final meta = PlaceMetaMock(model);
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.xs),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          GeneralBodySmallTitle(
             model.updatedName,
             maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppText.body.copyWith(
-              color: AppColors.navy,
-              fontWeight: FontWeight.w800,
-            ),
+            fontWeight: FontWeight.w800,
+            color: context.general.colorScheme.onSurface,
           ),
-          const SizedBox(height: AppSpacing.xxs),
+          const EmptyBox.xSmallHeight(),
           Row(
             children: [
-              const Icon(
-                Icons.location_on,
-                size: 12,
-                color: AppColors.ink400,
+              Icon(
+                AppIcons.location,
+                size: IconSize.small.value,
+                color: context.general.colorScheme.onSurfaceVariant,
               ),
-              const SizedBox(width: AppSpacing.xxs),
+              const EmptyBox.xsmallWidth(),
               Expanded(
-                child: Text(
-                  town,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppText.caption.copyWith(color: AppColors.ink400),
+                child: GeneralContentSmallTitle(
+                  value: town,
+                  maxLine: 1,
+                  color: context.general.colorScheme.onSurfaceVariant,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.xxs),
+          const EmptyBox.xSmallHeight(),
           PlaceRatingLabel(
-            rating: meta.ratingLabel,
-            reviewCount: meta.reviewCount,
-            iconSize: 13,
+            rating: model.averageRatingLabel,
+            reviewCount: model.ratingCount,
+            iconSize: IconSize.smallX.value,
           ),
         ],
       ),

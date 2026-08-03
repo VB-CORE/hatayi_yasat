@@ -34,6 +34,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     bool isEnabled = true,
     bool isBorderless = false,
     IconData? icon,
+    Color? backgroundColor,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -44,6 +45,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
       icon: icon,
+      backgroundColor: backgroundColor,
     );
   }
 
@@ -53,6 +55,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     bool isEnabled = true,
     bool isBorderless = false,
     IconData? icon,
+    Color? backgroundColor,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
     return GeneralButtonV2._(
@@ -63,6 +66,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
       icon: icon,
+      backgroundColor: backgroundColor,
     );
   }
   const GeneralButtonV2._({
@@ -72,6 +76,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     this.isEnabled = true,
     this.isBorderless = false,
     this.icon,
+    this.backgroundColor,
     this.buttonPadding = const PagePadding.vertical12Symmetric(),
   });
 
@@ -81,6 +86,7 @@ final class GeneralButtonV2 extends StatefulWidget {
   final bool isEnabled;
   final bool isBorderless;
   final IconData? icon;
+  final Color? backgroundColor;
   final EdgeInsets buttonPadding;
   @override
   State<GeneralButtonV2> createState() => _GeneralButtonV2State();
@@ -102,8 +108,8 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
       opacity: widget.isEnabled ? 1 : 0.3,
       child: ElevatedButton(
         style: widget.isBorderless
-            ? _BorderlessGeneralButtonStyle(context)
-            : _GeneralButtonStyle(context),
+            ? _BorderlessGeneralButtonStyle(context, widget.backgroundColor)
+            : _GeneralButtonStyle(context, widget.backgroundColor),
         onPressed: !widget.isEnabled
             ? null
             : () async {
@@ -185,11 +191,11 @@ class _LoadingWidget extends StatelessWidget {
 }
 
 final class _BorderlessGeneralButtonStyle extends ButtonStyle {
-  _BorderlessGeneralButtonStyle(BuildContext context)
+  _BorderlessGeneralButtonStyle(BuildContext context, Color? backgroundColor)
     : super(
         elevation: const WidgetStatePropertyAll(0),
         backgroundColor: WidgetStateProperty.all<Color>(
-          AppColors.coral,
+          backgroundColor ?? AppColors.coral,
         ),
         shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
           const RoundedRectangleBorder(
@@ -200,14 +206,16 @@ final class _BorderlessGeneralButtonStyle extends ButtonStyle {
 }
 
 final class _GeneralButtonStyle extends ButtonStyle {
-  _GeneralButtonStyle(BuildContext context)
+  _GeneralButtonStyle(BuildContext context, Color? backgroundColor)
     : super(
-        backgroundColor: WidgetStateProperty.all<Color>(AppColors.coral),
+        backgroundColor: WidgetStateProperty.all<Color>(
+          backgroundColor ?? AppColors.coral,
+        ),
         shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius: CustomRadius.medium,
             side: BorderSide(
-              color: AppColors.coral,
+              color: backgroundColor ?? AppColors.coral,
               width: AppConstants.kTwo.toDouble(),
             ),
           ),

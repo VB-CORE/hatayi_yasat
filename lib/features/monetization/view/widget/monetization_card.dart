@@ -4,10 +4,14 @@ final class _MonetizationCard extends StatelessWidget {
   const _MonetizationCard({
     required this.coupon,
     required this.onDelete,
+    required this.onRedeem,
+    required this.onEdit,
   });
 
-  final DiscountCouponModel coupon;
+  final CouponModel coupon;
   final VoidCallback onDelete;
+  final VoidCallback onRedeem;
+  final VoidCallback onEdit;
 
   String get _statusLabel {
     if (coupon.isExpired) return LocaleKeys.monetization_inactive.tr();
@@ -84,6 +88,17 @@ final class _MonetizationCard extends StatelessWidget {
                         ),
 
                         Bounceable(
+                          onTap: onEdit,
+                          child: const Padding(
+                            padding: PagePadding.horizontalVeryLowSymmetric(),
+                            child: Icon(
+                              AppIcons.edit,
+                              color: AppColors.ink500,
+                              size: AppIconSizes.medium,
+                            ),
+                          ),
+                        ),
+                        Bounceable(
                           onTap: onDelete,
                           child: const Icon(
                             AppIcons.delete,
@@ -111,22 +126,38 @@ final class _MonetizationCard extends StatelessWidget {
                       ),
                       style: AppText.bodySm.copyWith(fontWeight: .bold),
                     ),
-                    Container(
-                      padding:
-                          const PagePadding.horizontalLowSymmetric() +
-                          const PagePadding.verticalVeryLowSymmetric(),
-                      decoration: BoxDecoration(
-                        color: statusColor,
-                        borderRadius: AppRadius.card,
-                      ),
-                      child: Text(
-                        _statusLabel,
-                        style: AppText.bodySm.copyWith(
-                          color: onStatusColor,
-                          fontWeight: .bold,
-                          height: 1,
+                    Row(
+                      children: [
+                        Container(
+                          padding:
+                              const PagePadding.horizontalLowSymmetric() +
+                              const PagePadding.verticalVeryLowSymmetric(),
+                          decoration: BoxDecoration(
+                            color: statusColor,
+                            borderRadius: AppRadius.card,
+                          ),
+                          child: Text(
+                            _statusLabel,
+                            style: AppText.bodySm.copyWith(
+                              color: onStatusColor,
+                              fontWeight: .bold,
+                              height: 1,
+                            ),
+                          ),
                         ),
-                      ),
+                        const Spacer(),
+                        if (!isInactive)
+                          TextButton.icon(
+                            onPressed: onRedeem,
+                            icon: const Icon(
+                              AppIcons.qrCode,
+                              size: AppIconSizes.medium,
+                            ),
+                            label: Text(
+                              LocaleKeys.monetization_redeem_redeemAction.tr(),
+                            ),
+                          ),
+                      ],
                     ),
                   ],
                 ),

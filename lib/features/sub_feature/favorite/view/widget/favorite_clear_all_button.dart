@@ -23,6 +23,7 @@ final class _FavoriteClearAllButton extends StatelessWidget {
         context,
         LocaleKeys.favorite_clearAllButton.tr(),
         LocaleKeys.favorite_clearAllDialog_content.tr(),
+        backgroundColor: context.general.colorScheme.surface,
         [
           GeneralDialogButton(
             title: LocaleKeys.button_cancel,

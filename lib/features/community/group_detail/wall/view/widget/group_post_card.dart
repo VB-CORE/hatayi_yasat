@@ -4,7 +4,6 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
-import 'package:lifeclient/features/community/model/group_post_model.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -105,7 +104,7 @@ final class _PostAuthorRow extends StatelessWidget {
       children: [
         CustomUserAvatar(
           userName: model.author.displayName,
-          imageUrl: model.author.avatarUrl,
+          avatarType: model.author.avatarType,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),
         Column(
@@ -177,7 +176,7 @@ final class _LikeButton extends ConsumerWidget {
         color: context.general.colorScheme.tertiary,
       ),
       onTap: (_) =>
-          ref.read(provider.notifier).toggle(model, groupName: groupName),
+          ref.read(provider.notifier).toggle(model),
     );
   }
 }

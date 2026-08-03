@@ -9,12 +9,14 @@ final class _ChangeThemeWidget extends ConsumerWidget
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = appStateWatch(ref).theme;
 
-    return GeneralExpansionTile(
-      pageTitle: LocaleKeys.settings_themeTitle.tr(
-        args: [_themeLabel(currentTheme).tr(context: context)],
-        context: context,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        GeneralGroupSectionHeader(
+          label: LocaleKeys.settings_appearanceTitle
+              .tr(context: context)
+              .toUpperCase(),
+        ),
         RadioGroup<ThemeMode>(
           groupValue: currentTheme,
           onChanged: (value) async {

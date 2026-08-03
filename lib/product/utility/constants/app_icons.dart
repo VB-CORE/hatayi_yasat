@@ -7,7 +7,7 @@ final class AppIcons {
   static const IconData star = Icons.star;
   static const IconData close = Icons.close_outlined;
   static const IconData info = Icons.info_outlined;
-  static const IconData infoFilled = Icons.info_rounded; 
+  static const IconData infoFilled = Icons.info_rounded;
   static const IconData add = Icons.add_outlined;
   static const IconData edit = Icons.edit_outlined;
   static const IconData moreDots = Icons.more_vert_outlined;
@@ -36,6 +36,7 @@ final class AppIcons {
   static const IconData group = Icons.group_sharp;
   static const IconData event = Icons.event;
   static const IconData textSnippet = Icons.text_snippet;
+  static const IconData qrCodeRounded = Icons.qr_code_rounded;
 
   static const IconData personPin = Icons.person_pin;
   static const IconData person = Icons.person;
@@ -63,6 +64,8 @@ final class AppIcons {
   static const IconData hourglassFilled = Icons.hourglass_bottom_rounded;
   static const IconData store = Icons.storefront_outlined;
   static const IconData storeFilled = Icons.storefront_rounded;
+  static const IconData accountBalance = Icons.account_balance_outlined;
+  static const IconData link = Icons.link_rounded;
   static const IconData rate = Icons.stars_rounded;
   static const IconData privacy = Icons.shield_outlined;
   static const IconData privacyFilled = Icons.shield_rounded;
@@ -85,8 +88,18 @@ final class AppIcons {
   static const IconData personAdd = Icons.person_add_alt_1;
   static const IconData arrowBack = Icons.arrow_back;
   static const IconData gridView = Icons.grid_view_outlined;
+  static const IconData gridViewFilled = Icons.grid_view_rounded;
   static const IconData forum = Icons.forum_outlined;
   static const IconData comment = Icons.mode_comment_outlined;
+  
+  static const IconData commentFilled = Icons.mode_comment_rounded;
   static const IconData exitGroup = Icons.logout_outlined;
   static const IconData send = Icons.send_rounded;
+
+  static const IconData reply = Icons.reply_rounded;
+  static const IconData dragHandle = Icons.drag_handle_rounded;
+  static const IconData visibility = Icons.visibility_outlined;
+  static const IconData campaign = Icons.local_offer_rounded;
+  static const IconData announcement = Icons.campaign_rounded;
+  static const IconData announcementFilled = Icons.campaign_rounded;
 }

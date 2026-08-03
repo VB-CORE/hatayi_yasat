@@ -17,5 +17,5 @@ abstract final class QrImageConstants {
   static const ui.Color moduleColor = AppColors.navy;
 
   static ImageProvider get embeddedImageProvider =>
-      Assets.icons.icApp.provider();
+      Assets.icons.icAppTransparent.provider();
 }

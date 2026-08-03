@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
@@ -13,14 +12,15 @@ import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/community/rate/view/rate_comment_list_view.dart';
+import 'package:lifeclient/features/merchant_panel/view/widget/merchant_showcase_card.dart';
 import 'package:lifeclient/features/place_detail/mixin/place_detail_view_mixin.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_view_model.dart';
+import 'package:lifeclient/features/place_detail/view_model/place_showcase_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
-import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -35,6 +35,7 @@ part 'widget/place_detail_tab_content.dart';
 part 'widget/place_summary_card.dart';
 part 'widget/tabs/place_detail_about.dart';
 part 'widget/tabs/place_detail_comments.dart';
+part 'widget/tabs/place_detail_showcase.dart';
 
 enum _PlaceDetailTab { about, comments }
 
@@ -72,26 +73,27 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
     return DefaultTabController(
       length: _PlaceDetailTab.values.length,
       child: MosaicCollapsingPage(
-        leading: IconButton(
-          onPressed: context.pop,
-          style: IconButton.styleFrom(
-            foregroundColor: AppColors.surface,
-            backgroundColor: AppColors.navy.withValues(alpha: .7),
-          ),
-          icon: const Icon(AppIcons.arrowBack),
-        ),
+        showLoeading: true,
+
         header: PlaceSummaryCard(
           store: store,
           onCall: onCall,
           onComment: onComment,
         ),
         pinnedHeader: const PlaceDetailTabBar(),
-        contentPadding: const PagePadding.generalAllLow(),
-        content: PlaceDetailTabContent(
-          store: store,
-          onCall: onCall,
-          onCopyAddress: onCopyAddress,
-        ),
+
+        slivers: [
+          SliverPadding(
+            padding: const PagePadding.generalAllLow(),
+            sliver: SliverToBoxAdapter(
+              child: PlaceDetailTabContent(
+                store: store,
+                onCall: onCall,
+                onCopyAddress: onCopyAddress,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

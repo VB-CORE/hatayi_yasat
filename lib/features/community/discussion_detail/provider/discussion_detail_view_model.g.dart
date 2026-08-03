@@ -61,7 +61,7 @@ final class DiscussionDetailViewModelProvider
 }
 
 String _$discussionDetailViewModelHash() =>
-    r'5d7ca770cae56913725ead1d0fb6a19f29f720af';
+    r'999e52e3c168c98e1e1589e9460c49943a61177a';
 
 final class DiscussionDetailViewModelFamily extends $Family
     with

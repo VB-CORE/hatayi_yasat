@@ -16,16 +16,25 @@ final class TabModel extends Equatable {
     required this.title,
     required this.semanticKey,
     this.showAppBar = true,
+    this.showQr = false,
   });
 
   @override
-  List<Object?> get props => [page, icon, title, semanticKey, showAppBar];
+  List<Object?> get props => [
+    page,
+    icon,
+    title,
+    semanticKey,
+    showAppBar,
+    showQr,
+  ];
 
   final Widget page;
   final Widget icon;
   final String title;
   final GeneralSemanticKeys semanticKey;
   final bool showAppBar;
+  final bool showQr;
 }
 
 final class TabModels {
@@ -55,6 +64,7 @@ final class TabModels {
         title: LocaleKeys.navigationTabs_profile,
         semanticKey: GeneralSemanticKeys.favoriteTab,
         showAppBar: false,
+        showQr: true,
       ),
     ];
   }

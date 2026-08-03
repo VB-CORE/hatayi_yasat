@@ -1,34 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
 final class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     required this.hint,
-    required this.onChange,
+    this.onChange,
+    this.onTap,
+    this.readOnly = false,
+    this.textFieldKey,
     super.key,
   });
+
   final String hint;
-  final ValueChanged<String> onChange;
+  final ValueChanged<String>? onChange;
+  final VoidCallback? onTap;
+  final bool readOnly;
+  final Key? textFieldKey;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      key: textFieldKey,
+      readOnly: readOnly,
+      onTap: onTap,
       onChanged: onChange,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: context.general.colorScheme.outlineVariant,
         hintText: hint,
-        focusColor: context.general.colorScheme.onError,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: CustomRadius.medium,
-          borderSide: BorderSide(color: context.general.colorScheme.primary),
+        hintStyle: context.general.textTheme.bodyMedium?.copyWith(
+          color: context.general.colorScheme.onSurfaceVariant,
         ),
-        hintStyle: context.general.textTheme.titleMedium,
-        border: const OutlineInputBorder(
-          borderRadius: CustomRadius.medium,
+        prefixIcon: Icon(
+          AppIcons.search,
+          color: context.general.colorScheme.onSurfaceVariant,
         ),
-        contentPadding: const PagePadding.horizontalSymmetric(),
-        suffixIcon: const Icon(Icons.search_outlined),
+        border: _searchBorder,
+        enabledBorder: _searchBorder,
+        focusedBorder: _searchBorder,
       ),
     );
   }
+
+  OutlineInputBorder get _searchBorder => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(AppRadius.md),
+    borderSide: BorderSide.none,
+  );
 }

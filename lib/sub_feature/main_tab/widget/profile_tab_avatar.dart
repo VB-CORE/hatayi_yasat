@@ -16,7 +16,7 @@ final class ProfileTabAvatar extends ConsumerWidget {
 
     return CustomUserAvatar(
       userName: user.displayName,
-      imageUrl: user.photoUrl,
+      avatarType: user.avatarType,
     );
   }
 }

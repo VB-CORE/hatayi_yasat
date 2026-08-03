@@ -6,7 +6,7 @@ final class _RateCommentCard extends StatelessWidget {
     this.onEdit,
     this.onDelete,
   });
-  final RateModel rateModel;
+  final VoteModel rateModel;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
@@ -25,7 +25,7 @@ final class _RateCommentCard extends StatelessWidget {
         children: [
           CustomUserAvatar(
             userName: rateModel.userName,
-            imageUrl: rateModel.photoUrl,
+            avatarType: rateModel.avatarType,
           ),
           const EmptyBox.middleWidth(),
           Expanded(
@@ -82,6 +82,8 @@ final class _RateCommentCard extends StatelessWidget {
                       maxLine: 6,
                     ),
                   ),
+                if (rateModel.hasMerchantReply)
+                  _RateMerchantReply(reply: rateModel.merchantReply!),
               ],
             ),
           ),
@@ -101,5 +103,44 @@ final class _RateCommentCard extends StatelessWidget {
         onEdit?.call();
         return;
     }
+  }
+}
+
+final class _RateMerchantReply extends StatelessWidget {
+  const _RateMerchantReply({required this.reply});
+
+  final String reply;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const PagePadding.verticalVeryLowSymmetric(),
+      padding: const PagePadding.generalCardAll(),
+      decoration: BoxDecoration(
+        color: context.appColors.ink200.withValues(alpha: .25),
+        borderRadius: BorderRadius.circular(AppRadius.sm),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                AppIcons.storeFilled,
+                size: AppIconSizes.smallX,
+                color: context.appColors.ink500,
+              ),
+              const EmptyBox.smallWidth(),
+              GeneralContentSmallTitle(
+                value: LocaleKeys.rate_merchantReplyTitle.tr(),
+              ),
+            ],
+          ),
+          const EmptyBox.xSmallHeight(),
+          GeneralContentSubTitle(value: reply, maxLine: 6),
+        ],
+      ),
+    );
   }
 }

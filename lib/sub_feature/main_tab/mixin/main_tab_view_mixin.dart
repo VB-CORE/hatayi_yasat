@@ -15,14 +15,20 @@ mixin MainTabViewMixin
   late final TabController _controller;
   TabController get controller => _controller;
 
+  static const double _hideScrollDeltaThreshold = 6;
+
   void listenScrollUpdateNotification(ScrollUpdateNotification notification) {
-    if (notification.metrics.axisDirection == AxisDirection.down) {
-      ref
-          .read(mainTabViewModelProvider.notifier)
-          .updateBottomBarValue(
-            isScrolledBottom:
-                notification.metrics.pixels > context.sized.dynamicHeight(.2),
-          );
+    if (notification.dragDetails == null) return;
+
+    final delta = notification.scrollDelta;
+    if (delta == null || delta == 0) return;
+
+    final notifier = ref.read(mainTabViewModelProvider.notifier);
+    if (delta > _hideScrollDeltaThreshold &&
+        notification.metrics.pixels > context.sized.dynamicHeight(.05)) {
+      notifier.updateBottomBarValue(isScrolledBottom: true);
+    } else if (delta < 0) {
+      notifier.updateBottomBarValue(isScrolledBottom: false);
     }
   }
 

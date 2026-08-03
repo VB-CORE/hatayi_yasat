@@ -1,5 +1,6 @@
 enum HeroTags {
-  memoryFavorite;
+  memoryFavorite,
+  userQrFab;
 
   String of(String id) => '${name}_$id';
 }
