@@ -18,11 +18,13 @@ List<RouteBase> get $appRoutes => [
 
 RouteBase get $splashRoute => GoRouteData.$route(
   path: '/',
+  hasOverriddenOnExit: false,
   factory: $SplashRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'onboard',
       name: 'Onboard',
+      hasOverriddenOnExit: false,
       factory: $OnboardRoute._fromState,
     ),
   ],
@@ -70,26 +72,31 @@ mixin $OnboardRoute on GoRouteData {
 
 RouteBase get $mainTabRoute => GoRouteData.$route(
   path: '/main',
+  hasOverriddenOnExit: false,
   factory: $MainTabRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'chain_stores',
       name: 'Chain Stores',
+      hasOverriddenOnExit: false,
       factory: $ChainStoresRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'monetization',
       name: 'Monetization',
+      hasOverriddenOnExit: false,
       factory: $MonetizationRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'couponForm',
           name: 'Monetization Coupon Form',
+          hasOverriddenOnExit: false,
           factory: $MonetizationCouponFormRoute._fromState,
         ),
         GoRouteData.$route(
           path: 'redeem',
           name: 'Coupon Redeem',
+          hasOverriddenOnExit: false,
           factory: $CouponRedeemRoute._fromState,
         ),
       ],
@@ -97,36 +104,49 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
     GoRouteData.$route(
       path: 'turism',
       name: 'Turism items',
+      hasOverriddenOnExit: false,
       factory: $TurismRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'useful_links',
       name: 'Useful Links',
+      hasOverriddenOnExit: false,
       factory: $UsefulLinksRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'favorite',
       name: 'Favorite',
+      hasOverriddenOnExit: false,
       factory: $FavoriteRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'savedNews',
+      name: 'Saved News',
+      hasOverriddenOnExit: false,
+      factory: $SavedNewsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'specialAgency',
       name: 'Special Agency',
+      hasOverriddenOnExit: false,
       factory: $SpecialAgencyRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'placeDetail/:id',
       name: 'Place Detail',
+      hasOverriddenOnExit: false,
       factory: $PlaceDetailRoute._fromState,
     ),
     GoRouteData.$route(
-      path: 'newsJobs',
+      path: 'news',
       name: 'News and Jobs',
+      hasOverriddenOnExit: false,
       factory: $NewsJobsRoute._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'detail',
+          path: ':id',
           name: 'News Details',
+          hasOverriddenOnExit: false,
           factory: $NewsDetailRoute._fromState,
         ),
       ],
@@ -134,16 +154,19 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
     GoRouteData.$route(
       path: 'filter',
       name: 'Filter',
+      hasOverriddenOnExit: false,
       factory: $FilterRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'event',
       name: 'Events',
+      hasOverriddenOnExit: false,
       factory: $EventRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'details',
           name: 'Event Details',
+          hasOverriddenOnExit: false,
           factory: $EventDetailsRoute._fromState,
         ),
       ],
@@ -151,61 +174,73 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
     GoRouteData.$route(
       path: 'notifications',
       name: 'Notifications',
+      hasOverriddenOnExit: false,
       factory: $NotificationsRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'filterResult',
       name: 'Filter Result',
+      hasOverriddenOnExit: false,
       factory: $FilterResultRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'userQr',
       name: 'User QR',
+      hasOverriddenOnExit: false,
       factory: $UserQrRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'placeRequestForm',
       name: 'Place Request Form',
+      hasOverriddenOnExit: false,
       factory: $PlaceRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'merchantPanel',
       name: 'Merchant Panel',
+      hasOverriddenOnExit: false,
       factory: $_MerchantPanelRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'merchantPending',
       name: 'Merchant Pending',
+      hasOverriddenOnExit: false,
       factory: $_MerchantPendingRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'merchantApplication',
       name: 'Merchant Application',
+      hasOverriddenOnExit: false,
       factory: $_MerchantApplicationRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'projectRequestForm',
       name: 'Project Request Form',
+      hasOverriddenOnExit: false,
       factory: $ProjectRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'scholarShipRequestForm',
       name: 'ScholarShip Request Form',
+      hasOverriddenOnExit: false,
       factory: $ScholarShipRequestFormRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'settings',
       name: 'Settings',
+      hasOverriddenOnExit: false,
       factory: $SettingsRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: 'developers',
           name: 'Developers',
+          hasOverriddenOnExit: false,
           factory: $DevelopersRoute._fromState,
           routes: [
             GoRouteData.$route(
               path: 'contributors',
               name: 'Developers Contributors',
+              hasOverriddenOnExit: false,
               factory: $DevelopersContributorsRoute._fromState,
             ),
           ],
@@ -213,6 +248,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'appInfo',
           name: 'Application Information',
+          hasOverriddenOnExit: false,
           factory: $ApplicationInformationRoute._fromState,
         ),
       ],
@@ -220,10 +256,12 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
     GoRouteData.$route(
       path: 'editProfile',
       name: 'Edit Profile',
+      hasOverriddenOnExit: false,
       factory: $EditProfileRoute._fromState,
     ),
     GoRouteData.$route(
       path: 'create-group',
+      hasOverriddenOnExit: false,
       factory: $CreateGroupRoute._fromState,
     ),
   ],
@@ -402,6 +440,27 @@ mixin $FavoriteRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+mixin $SavedNewsRoute on GoRouteData {
+  static SavedNewsRoute _fromState(GoRouterState state) =>
+      const SavedNewsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/savedNews');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 mixin $SpecialAgencyRoute on GoRouteData {
   static SpecialAgencyRoute _fromState(GoRouterState state) =>
       const SpecialAgencyRoute();
@@ -456,7 +515,7 @@ mixin $NewsJobsRoute on GoRouteData {
   static NewsJobsRoute _fromState(GoRouterState state) => const NewsJobsRoute();
 
   @override
-  String get location => GoRouteData.$location('/main/newsJobs');
+  String get location => GoRouteData.$location('/main/news');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -473,13 +532,16 @@ mixin $NewsJobsRoute on GoRouteData {
 }
 
 mixin $NewsDetailRoute on GoRouteData {
-  static NewsDetailRoute _fromState(GoRouterState state) =>
-      NewsDetailRoute($extra: state.extra as NewsModelCopy);
+  static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
+    id: state.pathParameters['id']!,
+    $extra: state.extra as NewsModel,
+  );
 
   NewsDetailRoute get _self => this as NewsDetailRoute;
 
   @override
-  String get location => GoRouteData.$location('/main/newsJobs/detail');
+  String get location =>
+      GoRouteData.$location('/main/news/${Uri.encodeComponent(_self.id)}');
 
   @override
   void go(BuildContext context) => context.go(location, extra: _self.$extra);
@@ -885,8 +947,11 @@ mixin $CreateGroupRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $loginRoute =>
-    GoRouteData.$route(path: '/login', factory: $LoginRoute._fromState);
+RouteBase get $loginRoute => GoRouteData.$route(
+  path: '/login',
+  hasOverriddenOnExit: false,
+  factory: $LoginRoute._fromState,
+);
 
 mixin $LoginRoute on GoRouteData {
   static LoginRoute _fromState(GoRouterState state) =>
@@ -914,8 +979,11 @@ mixin $LoginRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $bannedRoute =>
-    GoRouteData.$route(path: '/banned', factory: $BannedRoute._fromState);
+RouteBase get $bannedRoute => GoRouteData.$route(
+  path: '/banned',
+  hasOverriddenOnExit: false,
+  factory: $BannedRoute._fromState,
+);
 
 mixin $BannedRoute on GoRouteData {
   static BannedRoute _fromState(GoRouterState state) => const BannedRoute();
@@ -939,6 +1007,7 @@ mixin $BannedRoute on GoRouteData {
 
 RouteBase get $unauthorizedRoute => GoRouteData.$route(
   path: '/unauthorized',
+  hasOverriddenOnExit: false,
   factory: $UnauthorizedRoute._fromState,
 );
 
@@ -973,6 +1042,7 @@ mixin $UnauthorizedRoute on GoRouteData {
 
 RouteBase get $groupDetailRoute => GoRouteData.$route(
   path: '/group-detail',
+  hasOverriddenOnExit: false,
   factory: $GroupDetailRoute._fromState,
 );
 
@@ -1003,6 +1073,7 @@ mixin $GroupDetailRoute on GoRouteData {
 
 RouteBase get $discussionDetailRoute => GoRouteData.$route(
   path: '/discussion-detail',
+  hasOverriddenOnExit: false,
   factory: $DiscussionDetailRoute._fromState,
 );
 

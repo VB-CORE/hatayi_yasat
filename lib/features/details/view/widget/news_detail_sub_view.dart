@@ -1,25 +1,20 @@
 part of '../news_detail_view.dart';
 
 @immutable
-final class _DateIconAndText extends StatelessWidget {
-  const _DateIconAndText({
-    required this.date,
-  });
+final class _NewsMetaRow extends StatelessWidget {
+  const _NewsMetaRow({required this.date});
 
-  final DateTime? date;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
-    if (date == null) return const SizedBox.shrink();
-
-    return IconWithText(
-      icon: AppIcons.calendar,
-      title: DateFormat.yMMMEd(
-        context.locale.toLanguageTag(),
-      ).format(
-        date!,
+    return Text(
+      date.shortDate,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.bodySmall?.copyWith(
+        color: context.general.colorScheme.onSurfaceVariant,
       ),
-      color: context.general.colorScheme.primary.withValues(alpha: 0.7),
     );
   }
 }
@@ -36,9 +31,7 @@ final class _SelectableContentText extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectableText(
       content,
-      style: context.general.textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.w600,
-      ),
+      style: context.general.textTheme.bodyLarge,
     );
   }
 }

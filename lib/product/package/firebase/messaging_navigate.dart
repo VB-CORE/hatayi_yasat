@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/link_detail_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/widget/sheet/advertise_sheet.dart';
 import 'package:lifeclient/product/widget/snackbar/error_snack_bar.dart';
@@ -97,8 +96,10 @@ final class MessagingNavigate {
     );
     if (!context.mounted) return;
     if (result != null) {
-      await NewsDetailRoute($extra: NewsModelCopy.fromNewsModel(result))
-          .push<void>(context);
+      await NewsDetailRoute(
+        $extra: result,
+        id: id,
+      ).push<void>(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
