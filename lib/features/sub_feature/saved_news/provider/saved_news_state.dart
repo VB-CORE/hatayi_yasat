@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
+import 'package:life_shared/life_shared.dart';
 
 @immutable
 final class SavedNewsState extends Equatable {
@@ -8,13 +8,13 @@ final class SavedNewsState extends Equatable {
     this.newsItems = const [],
   });
 
-  final List<NewsFeedModel> newsItems;
+  final List<NewsModel> newsItems;
 
   @override
   List<Object?> get props => [newsItems];
 
   SavedNewsState copyWith({
-    List<NewsFeedModel>? newsItems,
+    List<NewsModel>? newsItems,
   }) {
     return SavedNewsState(
       newsItems: newsItems ?? this.newsItems,

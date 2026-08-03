@@ -11,7 +11,7 @@ final class SavedNewsViewModel extends _$SavedNewsViewModel
   SavedNewsState build() {
     final newsItems = productCache.newsBookmarkCache
         .getAll()
-        .map((cache) => cache.toNewsFeedModel())
+        .map((cache) => cache.toNewsModel())
         .toList();
     return SavedNewsState(newsItems: newsItems);
   }

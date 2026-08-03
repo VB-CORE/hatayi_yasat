@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/sub_feature/saved_news/provider/saved_news_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/widget/card/index.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
@@ -39,7 +38,7 @@ final class SavedNewsView extends ConsumerWidget {
                   item: model,
                   onTap: () {
                     NewsDetailRoute(
-                      $extra: NewsModelCopy.fromNewsFeedModel(model),
+                      $extra: model,
                       id: model.documentId,
                     ).push<void>(context);
                   },

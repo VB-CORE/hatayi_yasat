@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_jobs_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,10 +12,10 @@ final class NewsJobsProvider extends _$NewsJobsProvider
   @override
   NewsJobsState build() => NewsJobsState();
 
-  Query<NewsFeedModel?> fetchNewsCollectionReference() {
+  Query<NewsModel?> fetchNewsCollectionReference() {
     return firestoreService.queryWithOrderBy(
       path: CollectionPaths.news,
-      model: const NewsFeedModel.empty(),
+      model: NewsModel(),
       orderBy: const MapEntry('createdAt', true),
     );
   }

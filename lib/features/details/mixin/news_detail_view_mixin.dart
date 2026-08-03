@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 
 mixin NewsDetailViewMixin on ConsumerState<NewsDetailView> {
-  late final NewsFeedModel news;
+  late final NewsModel news;
 
   @override
   void initState() {
@@ -19,10 +19,10 @@ mixin NewsDetailViewMixin on ConsumerState<NewsDetailView> {
   }
 
   void shareNews() {
-    if (news.body.ext.isNullOrEmpty) return;
+    if (news.content.ext.isNullOrEmpty) return;
     final bodyBuilder = StringBuffer(news.title ?? AppConstants.appName)
       ..write('\n\n')
-      ..write(news.body);
+      ..write(news.content);
     bodyBuilder.toString().ext.share();
   }
 }

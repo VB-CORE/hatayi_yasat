@@ -34,7 +34,6 @@ import 'package:lifeclient/features/sub_feature/special_agency/view/special_agen
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
-import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
@@ -484,12 +483,12 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
     name: 'News Details',
   );
 
-  final NewsModelCopy $extra;
+  final NewsModel $extra;
   final String id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      NewsDetailView(news: $extra.toNewsFeedModel());
+      NewsDetailView(news: $extra);
 }
 
 @TypedGoRoute<LoginRoute>(path: '/login')

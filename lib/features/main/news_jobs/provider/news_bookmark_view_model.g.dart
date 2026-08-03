@@ -59,7 +59,7 @@ final class NewsBookmarkViewModelProvider
 }
 
 String _$newsBookmarkViewModelHash() =>
-    r'06bebb7f532048e4e72a87c748884343768b88ac';
+    r'4e442ad831f7ab4258d85a33a62cdaaf04fc0a19';
 
 final class NewsBookmarkViewModelFamily extends $Family
     with
@@ -107,29 +107,34 @@ abstract class _$NewsBookmarkViewModel extends $Notifier<NewsBookmarkState> {
   }
 }
 
-@ProviderFor(NewsBookmarkCountViewModel)
-final newsBookmarkCountViewModelProvider =
-    NewsBookmarkCountViewModelProvider._();
+@ProviderFor(newsBookmarkCount)
+final newsBookmarkCountProvider = NewsBookmarkCountProvider._();
 
-final class NewsBookmarkCountViewModelProvider
-    extends $NotifierProvider<NewsBookmarkCountViewModel, int> {
-  NewsBookmarkCountViewModelProvider._()
+final class NewsBookmarkCountProvider extends $FunctionalProvider<int, int, int>
+    with $Provider<int> {
+  NewsBookmarkCountProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'newsBookmarkCountViewModelProvider',
+        name: r'newsBookmarkCountProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$newsBookmarkCountViewModelHash();
+  String debugGetCreateSourceHash() => _$newsBookmarkCountHash();
 
   @$internal
   @override
-  NewsBookmarkCountViewModel create() => NewsBookmarkCountViewModel();
+  $ProviderElement<int> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  int create(Ref ref) {
+    return newsBookmarkCount(ref);
+  }
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(int value) {
@@ -140,23 +145,4 @@ final class NewsBookmarkCountViewModelProvider
   }
 }
 
-String _$newsBookmarkCountViewModelHash() =>
-    r'940874d79a6a471e7d423fa410cdeede49d4b6de';
-
-abstract class _$NewsBookmarkCountViewModel extends $Notifier<int> {
-  int build();
-  @$mustCallSuper
-  @override
-  WhenComplete runBuild() {
-    final ref = this.ref as $Ref<int, int>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<int, int>,
-              int,
-              Object?,
-              Object?
-            >;
-    return element.handleCreate(ref, build);
-  }
-}
+String _$newsBookmarkCountHash() => r'd0734a1efd90706fd61a0e1fa43a71b590b695a2';

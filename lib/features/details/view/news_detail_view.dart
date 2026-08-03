@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/details/mixin/news_detail_view_mixin.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
@@ -18,7 +18,7 @@ part 'widget/news_detail_sub_view.dart';
 
 final class NewsDetailView extends ConsumerStatefulWidget {
   const NewsDetailView({required this.news, super.key});
-  final NewsFeedModel news;
+  final NewsModel news;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _NewsDetailViewState();
 }
@@ -27,7 +27,7 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
     with NewsDetailViewMixin {
   @override
   Widget build(BuildContext context) {
-    final hasBody = news.body?.isNotEmpty ?? false;
+    final hasBody = news.content?.isNotEmpty ?? false;
     final isBookmarked = ref.watch(
       newsBookmarkViewModelProvider(news.documentId).select(
         (state) => state.isSaved,
@@ -72,18 +72,18 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xs),
-                _NewsMetaRow(date: news.date),
+                if (news.createdAt case final date?) _NewsMetaRow(date: date),
                 const SizedBox(height: AppSpacing.xl),
                 Hero(
                   tag: ValueKey(news.documentId),
                   child: ClipRRect(
                     borderRadius: AppRadius.card,
-                    child: CustomImageWithViewDialog(image: news.photoUrl),
+                    child: CustomImageWithViewDialog(image: news.image),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
                 if (hasBody)
-                  _SelectableContentText(content: news.body!)
+                  _SelectableContentText(content: news.content!)
                 else
                   GeneralContentSubTitle(
                     value: LocaleKeys.notFound_newsContent.tr(),

@@ -17,7 +17,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         (state) => state.favoritePlaces.length,
       ),
     );
-    final savedNewsCount = ref.watch(newsBookmarkCountViewModelProvider);
+    final savedNewsCount = ref.watch(newsBookmarkCountProvider);
     final isAuthenticated = ref.watch(
       authViewModelProvider.select((state) => state.isAuthenticated),
     );

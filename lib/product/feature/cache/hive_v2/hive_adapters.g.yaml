@@ -199,7 +199,5 @@ types:
         index: 2
       photoUrl:
         index: 3
-      type:
-        index: 4
       date:
         index: 5

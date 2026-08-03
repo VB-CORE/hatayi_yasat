@@ -4,15 +4,12 @@ part of '../news_detail_view.dart';
 final class _NewsMetaRow extends StatelessWidget {
   const _NewsMetaRow({required this.date});
 
-  final DateTime? date;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
-    final dateText = date?.shortDate;
-    if (dateText == null) return const SizedBox.shrink();
-
     return Text(
-      dateText,
+      date.shortDate,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: context.general.textTheme.bodySmall?.copyWith(

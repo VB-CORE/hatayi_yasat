@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 final class NewsBookmarkCache with CacheModel, EquatableMixin {
@@ -8,7 +8,6 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
     this.title,
     this.body,
     this.photoUrl,
-    this.type,
     this.date,
   });
 
@@ -17,17 +16,15 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
       title = null,
       body = null,
       photoUrl = null,
-      type = null,
       date = null;
 
-  factory NewsBookmarkCache.fromNewsFeedModel(NewsFeedModel model) {
+  factory NewsBookmarkCache.fromNewsModel(NewsModel model) {
     return NewsBookmarkCache(
       newsId: model.documentId,
       title: model.title,
-      body: model.body,
-      photoUrl: model.photoUrl,
-      type: model.type,
-      date: model.date,
+      body: model.content,
+      photoUrl: model.image,
+      date: model.createdAt,
     );
   }
 
@@ -35,17 +32,15 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
   final String? title;
   final String? body;
   final String? photoUrl;
-  final String? type;
   final DateTime? date;
 
-  NewsFeedModel toNewsFeedModel() {
-    return NewsFeedModel(
-      id: newsId,
+  NewsModel toNewsModel() {
+    return NewsModel(
+      documentId: newsId,
       title: title,
-      body: body,
-      photoUrl: photoUrl,
-      type: type,
-      date: date,
+      content: body,
+      image: photoUrl,
+      createdAt: date,
     );
   }
 
@@ -60,7 +55,6 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
       title: json['title'] as String?,
       body: json['body'] as String?,
       photoUrl: json['photoUrl'] as String?,
-      type: json['type'] as String?,
       date: rawDate is String ? DateTime.tryParse(rawDate) : null,
     );
   }
@@ -72,7 +66,6 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
       'title': title,
       'body': body,
       'photoUrl': photoUrl,
-      'type': type,
       'date': date?.toIso8601String(),
     };
   }
@@ -81,5 +74,5 @@ final class NewsBookmarkCache with CacheModel, EquatableMixin {
   String get id => newsId;
 
   @override
-  List<Object?> get props => [newsId, title, body, photoUrl, type, date];
+  List<Object?> get props => [newsId, title, body, photoUrl, date];
 }

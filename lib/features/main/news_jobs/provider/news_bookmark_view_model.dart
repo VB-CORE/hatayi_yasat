@@ -1,5 +1,6 @@
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_state.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/news_bookmark_cache.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,7 +15,7 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
     return NewsBookmarkState(isSaved: _isSaved);
   }
 
-  void toggle(NewsFeedModel news) {
+  void toggle(NewsModel news) {
     if (state.isProcessing) return;
 
     final willSave = !state.isSaved;
@@ -23,7 +24,7 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
     try {
       if (willSave) {
         productCache.newsBookmarkCache.add(
-          NewsBookmarkCache.fromNewsFeedModel(news),
+          NewsBookmarkCache.fromNewsModel(news),
         );
       } else {
         productCache.newsBookmarkCache.delete(
@@ -31,7 +32,7 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
         );
       }
       state = state.copyWith(isSaved: _isSaved, isProcessing: false);
-      ref.invalidate(newsBookmarkCountViewModelProvider);
+      ref.invalidate(newsBookmarkCountProvider);
     } on Object {
       state = state.copyWith(isSaved: !willSave, isProcessing: false);
     }
@@ -41,8 +42,8 @@ final class NewsBookmarkViewModel extends _$NewsBookmarkViewModel
 }
 
 @riverpod
-final class NewsBookmarkCountViewModel extends _$NewsBookmarkCountViewModel
-    with ProjectDependencyMixin {
-  @override
-  int build() => productCache.newsBookmarkCache.getAll().length;
+int newsBookmarkCount(Ref ref) {
+  return ProjectDependencyItems.productCache.newsBookmarkCache
+      .getAll()
+      .length;
 }

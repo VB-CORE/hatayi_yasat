@@ -2,9 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/link_detail_view.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/widget/sheet/advertise_sheet.dart';
 import 'package:lifeclient/product/widget/snackbar/error_snack_bar.dart';
@@ -28,13 +26,13 @@ final class MessagingNavigate {
     return data;
   }
 
-  Future<NewsFeedModel?> _getDetailModelFromNews({
+  Future<NewsModel?> _getDetailModelFromNews({
     required BuildContext context,
     required String id,
     required CustomService customService,
   }) async {
     final data = await customService.getSingleData(
-      model: const NewsFeedModel.empty(),
+      model: NewsModel(),
       path: CollectionPaths.news,
       id: id,
     );
@@ -99,7 +97,7 @@ final class MessagingNavigate {
     if (!context.mounted) return;
     if (result != null) {
       await NewsDetailRoute(
-        $extra: NewsModelCopy.fromNewsFeedModel(result),
+        $extra: result,
         id: id,
       ).push<void>(context);
     } else {

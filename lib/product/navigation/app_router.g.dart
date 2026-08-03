@@ -96,6 +96,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'redeem',
           name: 'Coupon Redeem',
+          hasOverriddenOnExit: false,
           factory: $CouponRedeemRoute._fromState,
         ),
       ],
@@ -239,6 +240,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
             GoRouteData.$route(
               path: 'contributors',
               name: 'Developers Contributors',
+              hasOverriddenOnExit: false,
               factory: $DevelopersContributorsRoute._fromState,
             ),
           ],
@@ -532,7 +534,7 @@ mixin $NewsJobsRoute on GoRouteData {
 mixin $NewsDetailRoute on GoRouteData {
   static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
     id: state.pathParameters['id']!,
-    $extra: state.extra as NewsModelCopy,
+    $extra: state.extra as NewsModel,
   );
 
   NewsDetailRoute get _self => this as NewsDetailRoute;
@@ -977,8 +979,11 @@ mixin $LoginRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $bannedRoute =>
-    GoRouteData.$route(path: '/banned', factory: $BannedRoute._fromState);
+RouteBase get $bannedRoute => GoRouteData.$route(
+  path: '/banned',
+  hasOverriddenOnExit: false,
+  factory: $BannedRoute._fromState,
+);
 
 mixin $BannedRoute on GoRouteData {
   static BannedRoute _fromState(GoRouterState state) => const BannedRoute();

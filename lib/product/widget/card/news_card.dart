@@ -6,7 +6,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/main/news_jobs/model/news_feed_model.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
@@ -17,14 +16,13 @@ import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
-import 'package:lifeclient/product/widget/card/news/news_category_chip.dart';
 import 'package:lifeclient/product/widget/card/news/news_read_more_button.dart';
 
 @immutable
 final class NewsCard extends StatelessWidget {
   const NewsCard({required this.item, required this.onTap, super.key});
 
-  final NewsFeedModel item;
+  final NewsModel item;
   final VoidCallback onTap;
 
   @override
@@ -44,17 +42,7 @@ final class NewsCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    _NewsImage(item: item),
-                    Positioned(
-                      top: AppSpacing.xs,
-                      left: AppSpacing.xs,
-                      right: AppSpacing.xs,
-                      child: NewsCategoryBadgeRow(type: item.type),
-                    ),
-                  ],
-                ),
+                _NewsImage(item: item),
                 Padding(
                   padding: const PagePadding.generalAllLow(),
                   child: Column(
@@ -68,7 +56,7 @@ final class NewsCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: AppText.title,
                       ),
-                      if (item.body case final body? when body.isNotEmpty)
+                      if (item.content case final body? when body.isNotEmpty)
                         Text(
                           body,
                           maxLines: AppConstants.kTwo,
@@ -94,7 +82,7 @@ final class NewsCard extends StatelessWidget {
 final class _NewsImage extends StatelessWidget {
   const _NewsImage({required this.item});
 
-  final NewsFeedModel item;
+  final NewsModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +91,7 @@ final class _NewsImage extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: context.sized.dynamicHeight(0.2),
-        child: CustomNetworkImage(imageUrl: item.photoUrl, fit: BoxFit.cover),
+        child: CustomNetworkImage(imageUrl: item.image, fit: BoxFit.cover),
       ),
     );
   }
@@ -112,11 +100,11 @@ final class _NewsImage extends StatelessWidget {
 final class _NewsMetaCaption extends StatelessWidget {
   const _NewsMetaCaption({required this.item});
 
-  final NewsFeedModel item;
+  final NewsModel item;
 
   @override
   Widget build(BuildContext context) {
-    final timeAgo = item.date?.timeAgo;
+    final timeAgo = item.createdAt?.timeAgo;
     if (timeAgo == null) return const SizedBox.shrink();
 
     return Text(
@@ -131,7 +119,7 @@ final class _NewsMetaCaption extends StatelessWidget {
 final class _NewsActionRow extends ConsumerWidget {
   const _NewsActionRow({required this.item, required this.onReadMore});
 
-  final NewsFeedModel item;
+  final NewsModel item;
   final VoidCallback onReadMore;
 
   @override
@@ -166,10 +154,10 @@ final class _NewsActionRow extends ConsumerWidget {
   }
 
   void _shareNews() {
-    if (item.body.ext.isNullOrEmpty) return;
+    if (item.content.ext.isNullOrEmpty) return;
     final bodyBuilder = StringBuffer(item.title ?? AppConstants.appName)
       ..write('\n\n')
-      ..write(item.body);
+      ..write(item.content);
     bodyBuilder.toString().ext.share();
   }
 }
