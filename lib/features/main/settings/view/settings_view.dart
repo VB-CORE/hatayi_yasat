@@ -12,6 +12,7 @@ import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/checkbox/notification_permission_checkbox.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/general_group_section_header.dart';
@@ -27,12 +28,7 @@ final class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: GeneralSubTitle(
-          value: LocaleKeys.settings_title.tr(context: context),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const PageAppBar(pageTitle: LocaleKeys.settings_title),
       body: CustomScrollView(
         slivers: [
           SliverList.list(
