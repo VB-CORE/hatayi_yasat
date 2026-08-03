@@ -6,8 +6,11 @@ import 'package:lifeclient/features/community/group_detail/members/provider/grou
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_state.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/provider/community_image_upload_mixin.dart';
+import 'package:lifeclient/features/community/provider/content_action_status.dart';
+import 'package:lifeclient/features/community/provider/soft_deletable_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'group_wall_view_model.g.dart';
@@ -17,52 +20,40 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     with
         ProjectDependencyMixin,
         CommunityQueryMixin,
-        CommunityImageUploadMixin {
+        CommunityImageUploadMixin,
+        SoftDeletableMixin {
   @override
   GroupWallState build(String groupId) => const GroupWallState();
 
   Query<GroupPostModel?> get posts => postsQuery(groupId);
 
-  bool canDelete(GroupPostModel post) {
-    final member = ref.read(groupMembersViewModelProvider(groupId)).currentMember;
-    if (member == null) return false;
-    return post.author.uid == member.uid || member.isAdmin;
-  }
-
   Future<void> deletePost(GroupPostModel post) async {
     if (state.isProcessing) return;
-    state = state.copyWith(
-      status: const PostActionProcessing(PostAction.delete),
-    );
+    state = state.copyWith(status: const ContentActionProcessing());
 
     final currentUid =
         ref.read(groupMembersViewModelProvider(groupId)).currentMember?.uid;
-    final isSelfDelete = currentUid == post.author.uid;
-
-    final result = await firestoreService.batchWrite(
-      (batch) {
-        batch.update(
-          CommunityPaths.posts(groupId).collection.doc(post.id),
-          SoftDelete.payload(),
-        );
-        if (isSelfDelete) {
-          batch.update(
-            CollectionPaths.users.collection.doc(post.author.uid),
-            UserModel.counterStep(UserCounterFields.postCount, by: -1),
-          );
-        }
-      },
+    final isSuccess = await softDeleteContent(
+      contentPath: CommunityPaths.posts(groupId),
+      contentId: post.id,
+      authorUid: post.author.uid,
+      currentUid: currentUid,
+      counterField: UserCounterFields.postCount,
     );
 
     if (!ref.mounted) return;
     state = state.copyWith(
-      status: result.isSuccess
-          ? const PostActionSucceeded(PostAction.delete)
-          : const PostActionFailed(PostAction.delete),
+      status: isSuccess
+          ? const ContentActionSucceeded(
+              LocaleKeys.community_groupDetail_wall_deleteSuccessMessage,
+            )
+          : const ContentActionFailed(
+              LocaleKeys.community_groupDetail_wall_deleteFailedContent,
+            ),
     );
   }
 
-  void resetStatus() => state = state.copyWith(status: const PostActionIdle());
+  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
 
   Future<bool> addPost(String content, {File? imageFile}) async {
     final member = ref

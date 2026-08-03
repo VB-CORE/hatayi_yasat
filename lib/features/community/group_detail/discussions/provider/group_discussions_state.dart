@@ -1,65 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-
-enum DiscussionAction {
-  delete;
-
-  String get failedMessageKey => switch (this) {
-    DiscussionAction.delete =>
-      LocaleKeys.community_groupDetail_discussions_discussionDeleteFailedContent,
-  };
-
-  String get succeededMessageKey => switch (this) {
-    DiscussionAction.delete =>
-      LocaleKeys.community_groupDetail_discussions_discussionDeleteSuccessMessage,
-  };
-}
-
-sealed class DiscussionActionStatus extends Equatable {
-  const DiscussionActionStatus();
-}
-
-final class DiscussionActionIdle extends DiscussionActionStatus {
-  const DiscussionActionIdle();
-  @override
-  List<Object?> get props => [];
-}
-
-final class DiscussionActionProcessing extends DiscussionActionStatus {
-  const DiscussionActionProcessing(this.action);
-  final DiscussionAction action;
-  @override
-  List<Object?> get props => [action];
-}
-
-final class DiscussionActionSucceeded extends DiscussionActionStatus {
-  const DiscussionActionSucceeded(this.action);
-  final DiscussionAction action;
-  @override
-  List<Object?> get props => [action];
-}
-
-final class DiscussionActionFailed extends DiscussionActionStatus {
-  const DiscussionActionFailed(this.action);
-  final DiscussionAction action;
-  @override
-  List<Object?> get props => [action];
-}
+import 'package:lifeclient/features/community/provider/content_action_status.dart';
 
 @immutable
 final class GroupDiscussionsState extends Equatable {
   const GroupDiscussionsState({
     this.isSubmitting = false,
     this.isError = false,
-    this.status = const DiscussionActionIdle(),
+    this.status = const ContentActionIdle(),
   });
 
   final bool isSubmitting;
   final bool isError;
-  final DiscussionActionStatus status;
+  final ContentActionStatus status;
 
-  bool get isProcessing => status is DiscussionActionProcessing;
+  bool get isProcessing => status is ContentActionProcessing;
 
   @override
   List<Object?> get props => [isSubmitting, isError, status];
@@ -67,7 +22,7 @@ final class GroupDiscussionsState extends Equatable {
   GroupDiscussionsState copyWith({
     bool? isSubmitting,
     bool? isError,
-    DiscussionActionStatus? status,
+    ContentActionStatus? status,
   }) {
     return GroupDiscussionsState(
       isSubmitting: isSubmitting ?? this.isSubmitting,
