@@ -22,8 +22,8 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
   Query<GroupDiscussionEntryModel?> get entries =>
       entriesQuery(groupId, discussionId);
 
-  Future<void> deleteEntry(GroupDiscussionEntryModel entry) async {
-    if (state.isProcessing) return;
+  Future<bool> deleteEntry(GroupDiscussionEntryModel entry) async {
+    if (state.isProcessing) return false;
     state = state.copyWith(status: const ContentActionProcessing());
 
     final currentUid =
@@ -40,7 +40,7 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
       ),
     );
 
-    if (!ref.mounted) return;
+    if (!ref.mounted) return isSuccess;
     state = state.copyWith(
       status: isSuccess
           ? const ContentActionSucceeded(
@@ -50,6 +50,7 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
               LocaleKeys.community_groupDetail_discussions_entryDeleteFailedContent,
             ),
     );
+    return isSuccess;
   }
 
   void resetStatus() => state = state.copyWith(status: const ContentActionIdle());

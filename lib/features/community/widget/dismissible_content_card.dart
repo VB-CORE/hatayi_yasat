@@ -21,7 +21,7 @@ final class DismissibleContentCard extends ConsumerWidget {
   final String contentId;
   final String groupId;
   final String authorUid;
-  final Future<void> Function(WidgetRef ref) onDelete;
+  final Future<bool> Function(WidgetRef ref) onDelete;
   final Widget child;
 
   @override
@@ -42,8 +42,7 @@ final class DismissibleContentCard extends ConsumerWidget {
       confirmDismiss: (_) async {
         final isConfirmed = await CommunityDeleteConfirmDialog.show(context);
         if (!isConfirmed) return false;
-        await onDelete(ref);
-        return true;
+        return onDelete(ref);
       },
       child: child,
     );

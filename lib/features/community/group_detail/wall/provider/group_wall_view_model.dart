@@ -27,8 +27,8 @@ final class GroupWallViewModel extends _$GroupWallViewModel
 
   Query<GroupPostModel?> get posts => postsQuery(groupId);
 
-  Future<void> deletePost(GroupPostModel post) async {
-    if (state.isProcessing) return;
+  Future<bool> deletePost(GroupPostModel post) async {
+    if (state.isProcessing) return false;
     state = state.copyWith(status: const ContentActionProcessing());
 
     final currentUid =
@@ -41,7 +41,7 @@ final class GroupWallViewModel extends _$GroupWallViewModel
       counterField: UserCounterFields.postCount,
     );
 
-    if (!ref.mounted) return;
+    if (!ref.mounted) return isSuccess;
     state = state.copyWith(
       status: isSuccess
           ? const ContentActionSucceeded(
@@ -51,6 +51,7 @@ final class GroupWallViewModel extends _$GroupWallViewModel
               LocaleKeys.community_groupDetail_wall_deleteFailedContent,
             ),
     );
+    return isSuccess;
   }
 
   void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
