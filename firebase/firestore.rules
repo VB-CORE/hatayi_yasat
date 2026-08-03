@@ -323,6 +323,8 @@ service cloud.firestore {
           && canWriteTo(groupId, 'isPostsLocked') && !isBanned();
         allow update: if isGroupMember(groupId) && movesCounterByOne('likeCount')
           && !isBanned();
+        allow update: if isSoftDelete()
+          && (isAuthor() || isGroupAdmin(groupId) || isAdmin()) && !isBanned();
         allow delete: if false;
 
         // Beğeni, gönderinin altında ve beğenen kişiyle anahtarlanır. Gönderinin

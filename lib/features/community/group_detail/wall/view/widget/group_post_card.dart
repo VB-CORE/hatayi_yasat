@@ -3,7 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
+import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
+import 'package:lifeclient/features/community/group_detail/wall/view/widget/post_action_confirm_dialog.dart';
+import 'package:lifeclient/features/community/group_detail/wall/view/widget/post_options_sheet.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -39,7 +43,7 @@ final class GroupPostCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _PostAuthorRow(model: model),
+            _PostAuthorRow(model: model, groupId: groupId),
             if (model.content.isNotEmpty) ...[
               const EmptyBox.smallHeight(),
               GeneralContentSubTitle(value: model.content),
@@ -94,9 +98,10 @@ final class _PostImage extends StatelessWidget {
 }
 
 final class _PostAuthorRow extends StatelessWidget {
-  const _PostAuthorRow({required this.model});
+  const _PostAuthorRow({required this.model, required this.groupId});
 
   final GroupPostModel model;
+  final String groupId;
 
   @override
   Widget build(BuildContext context) {
@@ -107,21 +112,61 @@ final class _PostAuthorRow extends StatelessWidget {
           avatarType: model.author.avatarType,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GeneralContentSubTitle(
-              value: model.author.displayName,
-              fontWeight: FontWeight.w700,
-            ),
-            GeneralContentSmallTitle(
-              value: model.createdAt.timeAgoOrNow,
-              color: context.appColors.navy300,
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GeneralContentSubTitle(
+                value: model.author.displayName,
+                fontWeight: FontWeight.w700,
+              ),
+              GeneralContentSmallTitle(
+                value: model.createdAt.timeAgoOrNow,
+                color: context.appColors.navy300,
+              ),
+            ],
+          ),
         ),
+        _PostMoreButton(model: model, groupId: groupId),
       ],
     );
+  }
+}
+
+final class _PostMoreButton extends ConsumerWidget {
+  const _PostMoreButton({required this.model, required this.groupId});
+
+  final GroupPostModel model;
+  final String groupId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentMember = ref.watch(
+      groupMembersViewModelProvider(groupId).select((s) => s.currentMember),
+    );
+    final canDelete = currentMember != null &&
+        (model.author.uid == currentMember.uid || currentMember.isAdmin);
+    if (!canDelete) return const SizedBox.shrink();
+
+    return IconButton(
+      icon: Icon(AppIcons.moreDots, color: context.appColors.navy300),
+      onPressed: () => _onMorePressed(context, ref),
+    );
+  }
+
+  Future<void> _onMorePressed(BuildContext context, WidgetRef ref) async {
+    final action = await showModalBottomSheet<PostOptionAction>(
+      context: context,
+      builder: (_) => const PostOptionsSheet(),
+    );
+    if (action != PostOptionAction.delete || !context.mounted) return;
+
+    final isConfirmed = await PostActionConfirmDialog.showDelete(context);
+    if (!isConfirmed) return;
+
+    await ref
+        .read(groupWallViewModelProvider(groupId).notifier)
+        .deletePost(model);
   }
 }
 

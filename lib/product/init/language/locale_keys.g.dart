@@ -588,6 +588,11 @@ abstract class  LocaleKeys {
   static const community_groupDetail_wall_composerHint = 'community.groupDetail.wall.composerHint';
   static const community_groupDetail_wall_commentCount = 'community.groupDetail.wall.commentCount';
   static const community_groupDetail_wall_empty = 'community.groupDetail.wall.empty';
+  static const community_groupDetail_wall_deleteOption = 'community.groupDetail.wall.deleteOption';
+  static const community_groupDetail_wall_deleteConfirmTitle = 'community.groupDetail.wall.deleteConfirmTitle';
+  static const community_groupDetail_wall_deleteConfirmContent = 'community.groupDetail.wall.deleteConfirmContent';
+  static const community_groupDetail_wall_deleteFailedContent = 'community.groupDetail.wall.deleteFailedContent';
+  static const community_groupDetail_wall_deleteSuccessMessage = 'community.groupDetail.wall.deleteSuccessMessage';
   static const community_groupDetail_wall = 'community.groupDetail.wall';
   static const community_groupDetail_discussions_startTitle = 'community.groupDetail.discussions.startTitle';
   static const community_groupDetail_discussions_startSubtitle = 'community.groupDetail.discussions.startSubtitle';

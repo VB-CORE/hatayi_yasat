@@ -23,6 +23,47 @@ final class GroupWallViewModel extends _$GroupWallViewModel
 
   Query<GroupPostModel?> get posts => postsQuery(groupId);
 
+  bool canDelete(GroupPostModel post) {
+    final member = ref.read(groupMembersViewModelProvider(groupId)).currentMember;
+    if (member == null) return false;
+    return post.author.uid == member.uid || member.isAdmin;
+  }
+
+  Future<void> deletePost(GroupPostModel post) async {
+    if (state.isProcessing) return;
+    state = state.copyWith(
+      status: const PostActionProcessing(PostAction.delete),
+    );
+
+    final currentUid =
+        ref.read(groupMembersViewModelProvider(groupId)).currentMember?.uid;
+    final isSelfDelete = currentUid == post.author.uid;
+
+    final result = await firestoreService.batchWrite(
+      (batch) {
+        batch.update(
+          CommunityPaths.posts(groupId).collection.doc(post.id),
+          SoftDelete.payload(),
+        );
+        if (isSelfDelete) {
+          batch.update(
+            CollectionPaths.users.collection.doc(post.author.uid),
+            UserModel.counterStep(UserCounterFields.postCount, by: -1),
+          );
+        }
+      },
+    );
+
+    if (!ref.mounted) return;
+    state = state.copyWith(
+      status: result.isSuccess
+          ? const PostActionSucceeded(PostAction.delete)
+          : const PostActionFailed(PostAction.delete),
+    );
+  }
+
+  void resetStatus() => state = state.copyWith(status: const PostActionIdle());
+
   Future<bool> addPost(String content, {File? imageFile}) async {
     final member = ref
         .read(groupMembersViewModelProvider(groupId))

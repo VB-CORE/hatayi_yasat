@@ -662,7 +662,12 @@
       "wall": {
         "composerHint": "Grupta bir şeyler paylaş...",
         "commentCount": "{} yorum",
-        "empty": "Henüz gönderi yok."
+        "empty": "Henüz gönderi yok.",
+        "deleteOption": "Sil",
+        "deleteConfirmTitle": "Gönderi silinsin mi?",
+        "deleteConfirmContent": "Bu gönderiyi silmek istediğine emin misin? Bu işlem geri alınamaz.",
+        "deleteFailedContent": "Gönderi silinemedi. Lütfen tekrar dene.",
+        "deleteSuccessMessage": "Gönderi silindi."
       },
       "discussions": {
         "startTitle": "Tartışma aç",
