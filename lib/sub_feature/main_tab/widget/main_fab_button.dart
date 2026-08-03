@@ -9,6 +9,7 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
     final isScrolledBottom = ref
         .watch(mainTabViewModelProvider)
         .isScrolledBottom;
+    final isAuthenticated = ref.watch(authViewModelProvider).isAuthenticated;
 
     return AnimatedScale(
       duration: Durations.medium2,
@@ -21,6 +22,7 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
                 context: context,
                 location: e.location,
                 label: e.title,
+                showLoginRequiredHint: !isAuthenticated,
               ),
             )
             .toList(),

@@ -63,6 +63,9 @@
       "selectedLocationSave": "Seçtiğin konumu kaydet",
       "updateFromMap": "Haritadan konum güncelle"
     },
+    "speedDial": {
+      "loginRequiredHint": "Giriş yapmak zorunlu"
+    },
     "picker": {
       "camera": "Kamera",
       "gallery": "Galeri",
