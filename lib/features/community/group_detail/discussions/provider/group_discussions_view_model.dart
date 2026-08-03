@@ -17,6 +17,46 @@ final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
 
   Query<GroupDiscussionModel?> get discussions => discussionsQuery(groupId);
 
+  bool canDelete(GroupDiscussionModel discussion) {
+    final member = ref.read(groupMembersViewModelProvider(groupId)).currentMember;
+    if (member == null) return false;
+    return discussion.author.uid == member.uid || member.isAdmin;
+  }
+
+  Future<void> deleteDiscussion(GroupDiscussionModel discussion) async {
+    if (state.isProcessing) return;
+    state = state.copyWith(
+      status: const DiscussionActionProcessing(DiscussionAction.delete),
+    );
+
+    final currentUid =
+        ref.read(groupMembersViewModelProvider(groupId)).currentMember?.uid;
+    final isSelfDelete = currentUid == discussion.author.uid;
+
+    final result = await firestoreService.batchWrite((batch) {
+      batch.update(
+        CommunityPaths.discussions(groupId).collection.doc(discussion.id),
+        SoftDelete.payload(),
+      );
+      if (isSelfDelete) {
+        batch.update(
+          CollectionPaths.users.collection.doc(discussion.author.uid),
+          UserModel.counterStep(UserCounterFields.discussionCount, by: -1),
+        );
+      }
+    });
+
+    if (!ref.mounted) return;
+    state = state.copyWith(
+      status: result.isSuccess
+          ? const DiscussionActionSucceeded(DiscussionAction.delete)
+          : const DiscussionActionFailed(DiscussionAction.delete),
+    );
+  }
+
+  void resetStatus() =>
+      state = state.copyWith(status: const DiscussionActionIdle());
+
   Future<GroupDiscussionModel?> startDiscussion({
     required String title,
     required String message,

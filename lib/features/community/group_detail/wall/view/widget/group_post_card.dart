@@ -6,8 +6,8 @@ import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
-import 'package:lifeclient/features/community/group_detail/wall/view/widget/post_action_confirm_dialog.dart';
-import 'package:lifeclient/features/community/group_detail/wall/view/widget/post_options_sheet.dart';
+import 'package:lifeclient/features/community/widget/community_delete_confirm_dialog.dart';
+import 'package:lifeclient/features/community/widget/community_options_sheet.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -155,13 +155,13 @@ final class _PostMoreButton extends ConsumerWidget {
   }
 
   Future<void> _onMorePressed(BuildContext context, WidgetRef ref) async {
-    final action = await showModalBottomSheet<PostOptionAction>(
+    final action = await showModalBottomSheet<CommunityOptionAction>(
       context: context,
-      builder: (_) => const PostOptionsSheet(),
+      builder: (_) => const CommunityOptionsSheet(),
     );
-    if (action != PostOptionAction.delete || !context.mounted) return;
+    if (action != CommunityOptionAction.delete || !context.mounted) return;
 
-    final isConfirmed = await PostActionConfirmDialog.showDelete(context);
+    final isConfirmed = await CommunityDeleteConfirmDialog.show(context);
     if (!isConfirmed) return;
 
     await ref

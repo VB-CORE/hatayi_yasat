@@ -51,6 +51,7 @@ final class _GroupDiscussionsViewState
         onTap: () => DiscussionDetailRoute(
           $extra: DiscussionDetailArgs(group: model, discussion: discussion),
         ).push<void>(context),
+        onLongPress: () => onDiscussionLongPress(discussion),
       ),
     );
   }

@@ -6,10 +6,10 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-enum PostOptionAction { delete }
+enum CommunityOptionAction { delete }
 
-final class PostOptionsSheet extends StatelessWidget {
-  const PostOptionsSheet({super.key});
+final class CommunityOptionsSheet extends StatelessWidget {
+  const CommunityOptionsSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ final class PostOptionsSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const EmptyBox.smallHeight(),
-          _PostOptionTile(
+          _CommunityOptionTile(
             icon: AppIcons.delete,
-            label: LocaleKeys.community_groupDetail_wall_deleteOption.tr(),
+            label: LocaleKeys.community_deleteOption.tr(),
             color: context.general.colorScheme.error,
             onTap: () =>
-                Navigator.of(context).pop(PostOptionAction.delete),
+                Navigator.of(context).pop(CommunityOptionAction.delete),
           ),
           const EmptyBox.smallHeight(),
         ],
@@ -32,8 +32,8 @@ final class PostOptionsSheet extends StatelessWidget {
   }
 }
 
-final class _PostOptionTile extends StatelessWidget {
-  const _PostOptionTile({
+final class _CommunityOptionTile extends StatelessWidget {
+  const _CommunityOptionTile({
     required this.icon,
     required this.label,
     required this.onTap,

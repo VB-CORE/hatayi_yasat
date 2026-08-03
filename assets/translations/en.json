@@ -663,9 +663,6 @@
         "composerHint": "Share something with the group...",
         "commentCount": "{} comments",
         "empty": "No posts yet.",
-        "deleteOption": "Delete",
-        "deleteConfirmTitle": "Delete this post?",
-        "deleteConfirmContent": "Are you sure you want to delete this post? This action cannot be undone.",
         "deleteFailedContent": "The post could not be deleted. Please try again.",
         "deleteSuccessMessage": "Post deleted."
       },
@@ -682,7 +679,11 @@
         "startButton": "Start discussion",
         "anonymityBanner": "Names hidden · text posts only · no live chat",
         "openedByGroup": "{} started · {}",
-        "replyComposerHint": "Add an entry to this topic..."
+        "replyComposerHint": "Add an entry to this topic...",
+        "entryDeleteFailedContent": "The message could not be deleted. Please try again.",
+        "entryDeleteSuccessMessage": "Message deleted.",
+        "discussionDeleteFailedContent": "The discussion could not be deleted. Please try again.",
+        "discussionDeleteSuccessMessage": "Discussion deleted."
       },
       "details": {
         "aboutTitle": "ABOUT",
@@ -702,7 +703,10 @@
         "deleteGroupSuccess": "Group deleted.",
         "categoryLabel": "Category"
       }
-    }
+    },
+    "deleteOption": "Delete",
+    "deleteConfirmTitle": "Delete this content?",
+    "deleteConfirmContent": "Are you sure you want to delete this? This action cannot be undone."
   },
   "unauthorized": {
     "errorCode": "403 · ACCESS DENIED",

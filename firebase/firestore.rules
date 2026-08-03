@@ -349,6 +349,8 @@ service cloud.firestore {
         // tartışma kilidine değil yorum kilidine tabidir.
         allow update: if isGroupMember(groupId) && movesCounterByOne('entryCount')
           && canWriteTo(groupId, 'isCommentsLocked') && !isBanned();
+        allow update: if isSoftDelete()
+          && (isAuthor() || isGroupAdmin(groupId) || isAdmin()) && !isBanned();
         allow delete: if false;
 
         // Cevaplar. Tartışma açmak, başlığı ve ilk cevabı tek batch'te yazar;
@@ -362,7 +364,8 @@ service cloud.firestore {
             && (discussionExists(groupId, discussionId)
                 ? canWriteTo(groupId, 'isCommentsLocked')
                 : canWriteTo(groupId, 'isDiscussionsLocked'));
-          allow update: if false;
+          allow update: if isSoftDelete()
+            && (isAuthor() || isGroupAdmin(groupId) || isAdmin()) && !isBanned();
           allow delete: if false;
         }
       }

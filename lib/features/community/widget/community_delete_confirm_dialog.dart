@@ -5,14 +5,14 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
-final class PostActionConfirmDialog {
-  const PostActionConfirmDialog._();
+final class CommunityDeleteConfirmDialog {
+  const CommunityDeleteConfirmDialog._();
 
-  static Future<bool> showDelete(BuildContext context) async {
+  static Future<bool> show(BuildContext context) async {
     final isConfirmed = await GeneralTextDialog.show<bool>(
       context,
-      LocaleKeys.community_groupDetail_wall_deleteConfirmTitle.tr(),
-      LocaleKeys.community_groupDetail_wall_deleteConfirmContent.tr(),
+      LocaleKeys.community_deleteConfirmTitle.tr(),
+      LocaleKeys.community_deleteConfirmContent.tr(),
       [
         GeneralDialogButton(
           title: LocaleKeys.button_cancel,

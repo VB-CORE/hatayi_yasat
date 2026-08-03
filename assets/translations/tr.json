@@ -663,9 +663,6 @@
         "composerHint": "Grupta bir şeyler paylaş...",
         "commentCount": "{} yorum",
         "empty": "Henüz gönderi yok.",
-        "deleteOption": "Sil",
-        "deleteConfirmTitle": "Gönderi silinsin mi?",
-        "deleteConfirmContent": "Bu gönderiyi silmek istediğine emin misin? Bu işlem geri alınamaz.",
         "deleteFailedContent": "Gönderi silinemedi. Lütfen tekrar dene.",
         "deleteSuccessMessage": "Gönderi silindi."
       },
@@ -682,7 +679,11 @@
         "startButton": "Tartışmayı başlat",
         "anonymityBanner": "İsimler gizli · yalnızca metin gönderisi · sohbet yok",
         "openedByGroup": "{} açtı · {}",
-        "replyComposerHint": "Bu konuya gönderi ekle..."
+        "replyComposerHint": "Bu konuya gönderi ekle...",
+        "entryDeleteFailedContent": "Mesaj silinemedi. Lütfen tekrar dene.",
+        "entryDeleteSuccessMessage": "Mesaj silindi.",
+        "discussionDeleteFailedContent": "Tartışma silinemedi. Lütfen tekrar dene.",
+        "discussionDeleteSuccessMessage": "Tartışma silindi."
       },
       "details": {
         "aboutTitle": "HAKKINDA",
@@ -702,7 +703,10 @@
         "deleteGroupSuccess": "Grup silindi.",
         "categoryLabel": "Kategori"
       }
-    }
+    },
+    "deleteOption": "Sil",
+    "deleteConfirmTitle": "İçerik silinsin mi?",
+    "deleteConfirmContent": "Bu içeriği silmek istediğine emin misin? Bu işlem geri alınamaz."
   },
   "unauthorized": {
     "errorCode": "403 · ERİŞİM ENGELLENDİ",

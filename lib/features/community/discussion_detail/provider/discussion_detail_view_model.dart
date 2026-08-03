@@ -19,6 +19,55 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
   Query<GroupDiscussionEntryModel?> get entries =>
       entriesQuery(groupId, discussionId);
 
+  bool canDelete(GroupDiscussionEntryModel entry) {
+    final member = ref.read(groupMembersViewModelProvider(groupId)).currentMember;
+    if (member == null) return false;
+    return entry.author.uid == member.uid || member.isAdmin;
+  }
+
+  Future<void> deleteEntry(GroupDiscussionEntryModel entry) async {
+    if (state.isProcessing) return;
+    state = state.copyWith(
+      status: const EntryActionProcessing(EntryAction.delete),
+    );
+
+    final currentUid =
+        ref.read(groupMembersViewModelProvider(groupId)).currentMember?.uid;
+    final isSelfDelete = currentUid == entry.author.uid;
+
+    final result = await firestoreService.batchWrite(
+      (batch) {
+        batch
+          ..update(
+            CommunityPaths.entries(
+              groupId,
+              discussionId,
+            ).collection.doc(entry.id),
+            SoftDelete.payload(),
+          )
+          ..update(
+            CommunityPaths.discussions(groupId).collection.doc(discussionId),
+            {CommunityCounterFields.entryCount.name: FieldValue.increment(-1)},
+          );
+        if (isSelfDelete) {
+          batch.update(
+            CollectionPaths.users.collection.doc(entry.author.uid),
+            UserModel.counterStep(UserCounterFields.commentCount, by: -1),
+          );
+        }
+      },
+    );
+
+    if (!ref.mounted) return;
+    state = state.copyWith(
+      status: result.isSuccess
+          ? const EntryActionSucceeded(EntryAction.delete)
+          : const EntryActionFailed(EntryAction.delete),
+    );
+  }
+
+  void resetStatus() => state = state.copyWith(status: const EntryActionIdle());
+
   Future<bool> addEntry(String content) async {
     final member = ref
         .read(groupMembersViewModelProvider(groupId))

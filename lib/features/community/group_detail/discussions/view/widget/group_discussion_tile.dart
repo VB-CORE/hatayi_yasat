@@ -16,11 +16,13 @@ final class GroupDiscussionTile extends StatelessWidget {
   const GroupDiscussionTile({
     required this.model,
     required this.onTap,
+    this.onLongPress,
     super.key,
   });
 
   final GroupDiscussionModel model;
   final VoidCallback onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ final class GroupDiscussionTile extends StatelessWidget {
       shape: const RoundedRectangleBorder(borderRadius: CustomRadius.large),
       child: InkWell(
         onTap: onTap,
+        onLongPress: onLongPress,
         borderRadius: CustomRadius.large,
         child: Padding(
           padding: const PagePadding.generalCardAll(),
