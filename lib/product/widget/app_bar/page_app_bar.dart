@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 
 @immutable
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -14,6 +15,7 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.actionsPadding,
     this.leading,
+    this.titleTrailing,
   });
 
   final String pageTitle;
@@ -22,16 +24,28 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final EdgeInsetsGeometry? actionsPadding;
   final Widget? leading;
+  final Widget? titleTrailing;
+
   @override
   Widget build(BuildContext context) {
     final hasLeading =
         leading != null || (automaticallyImplyLeading && context.canPop());
 
     return AppBar(
-      title: Text(pageTitle.tr()),
+      title: titleTrailing == null
+          ? Text(pageTitle.tr())
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(pageTitle.tr()),
+                const EmptyBox.smallWidth(),
+                titleTrailing!,
+              ],
+            ),
       titleSpacing: hasLeading ? 0 : null,
       automaticallyImplyLeading: automaticallyImplyLeading,
       centerTitle: centerTitle,
+      actions: actions,
       actionsPadding: actionsPadding,
       leading: leading,
       bottom: PreferredSize(

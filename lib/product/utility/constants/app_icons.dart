@@ -50,7 +50,8 @@ final class AppIcons {
 
   static const FaIconData twitter = FontAwesomeIcons.xTwitter;
   static const IconData mail = Icons.mail_outline;
-  static const IconData notifications = Icons.notifications_outlined;
+  static const IconData notifications = Icons.notifications;
+  static const IconData notificationsOff = Icons.notifications_off_outlined;
 
   static const IconData menu = Icons.menu_outlined;
   static const IconData list = Icons.list_alt_outlined;
@@ -77,10 +78,12 @@ final class AppIcons {
   // History/Memory related icons
   static const IconData photoLibrary = Icons.photo_library_outlined;
   static const IconData collections = Icons.collections_outlined;
+  static const IconData historyEdu = Icons.history_edu_outlined;
+  static const IconData localActivity = Icons.local_activity_outlined;
 
   static const IconData tree = Icons.forest_outlined;
 
-  static const IconData openInNew = Icons.open_in_new_rounded;
+  static const IconData openInNew = Icons.open_in_new_outlined;
   // Community related icons
   static const IconData globe = Icons.public;
   static const IconData lockPerson = Icons.lock_person;
@@ -91,7 +94,7 @@ final class AppIcons {
   static const IconData gridViewFilled = Icons.grid_view_rounded;
   static const IconData forum = Icons.forum_outlined;
   static const IconData comment = Icons.mode_comment_outlined;
-  
+
   static const IconData commentFilled = Icons.mode_comment_rounded;
   static const IconData exitGroup = Icons.logout_outlined;
   static const IconData send = Icons.send_rounded;

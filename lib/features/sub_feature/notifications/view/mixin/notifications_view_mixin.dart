@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
-import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
-import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
-import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
+import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
 
-mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
+mixin NotificationsViewMixin on ConsumerWidget {
   static const notificationItemThreshold = 50;
 
   Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
@@ -17,24 +15,11 @@ mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
       )
       .orderBy(FirestoreFields.createdAt.name, descending: true);
 
-  DateTime notificationGroupBy(AppNotificationModel item) =>
-      (item.createdAt ?? DateTime.now()).startOfDay;
+  NotificationDateBucket notificationGroupBy(AppNotificationModel item) =>
+      (item.createdAt ?? DateTime.now()).notificationDateBucket;
 
-  int notificationCompare(DateTime a, DateTime b) => b.compareTo(a);
-
-  Future<void> openNotification(
-    BuildContext context,
-    AppNotificationModel item,
-  ) async {
-    final type = item.type;
-    if (type == null) return;
-
-    final id = type == AppNotificationType.link ? item.documentId : item.id;
-    if (id.isEmpty) return;
-
-    await NotificationNavigateParse(context).makeWithType(
-      id: id,
-      type: fromAppNotifications(type),
-    );
-  }
+  int notificationCompare(
+    NotificationDateBucket a,
+    NotificationDateBucket b,
+  ) => a.index.compareTo(b.index);
 }

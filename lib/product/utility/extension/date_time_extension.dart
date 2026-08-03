@@ -27,6 +27,12 @@ extension DateTimeExtensions on DateTime {
     return formatter.format(this);
   }
 
+  /// Yılsız kısa tarih. → `'2 Tem'`
+  String get dayMonth {
+    final formatter = DateFormat('d MMM');
+    return formatter.format(this);
+  }
+
   /// Göreceli süre. → `'2 saat önce'`, `'Az önce'`
   String get timeAgo {
     final difference = DateTime.now().difference(this);
@@ -62,19 +68,6 @@ extension DateTimeExtensions on DateTime {
 
   /// Tarih + saat. → `'27 Tem 2026 14:30'`
   String get dateTimeLabel => DateFormat('d MMM y, HH:mm').format(this);
-
-  /// Bugün/dün/tarih etiketi. → `'Bugün'`, `'Dün'`, `'20 Temmuz'`
-  String get relativeDayLabel {
-    final now = DateTime.now();
-    final days = now.startOfDay.difference(startOfDay).inDays;
-
-    return switch (days) {
-      0 => LocaleKeys.date_today.tr(),
-      1 => LocaleKeys.date_yesterday.tr(),
-      _ when year == now.year => DateFormat.MMMMd().format(this),
-      _ => DateFormat.yMMMd().format(this),
-    };
-  }
 }
 
 extension NullableDateTimeExtensions on DateTime? {

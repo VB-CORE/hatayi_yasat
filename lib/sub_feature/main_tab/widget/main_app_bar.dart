@@ -65,34 +65,48 @@ final class _CityPill extends ConsumerWidget {
   }
 }
 
-final class _NotificationButton extends StatelessWidget {
+final class _NotificationButton extends ConsumerWidget {
   const _NotificationButton();
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        IconButton(
-          onPressed: () {
-            const NotificationsRoute().go(context);
-          },
-          icon: const Icon(AppIcons.notifications),
-        ),
-        Positioned(
-          top: WidgetSizes.spacingS,
-          right: WidgetSizes.spacingS,
-          child: Container(
-            width: WidgetSizes.spacingXs,
-            height: WidgetSizes.spacingXs,
-            decoration: BoxDecoration(
-              color: AppColors.coral,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.surface, width: 1.5),
+  Widget build(BuildContext context, WidgetRef ref) {
+    // ref.watch provider'ı canlı tutar (autoDispose) — bkz. NotificationsView.
+    ref.watch(notificationsViewModelProvider);
+    final notifier = ref.read(notificationsViewModelProvider.notifier);
+
+    return StreamBuilder<List<AppNotificationModel>>(
+      stream: notifier.unreadStream(),
+      builder: (context, snapshot) {
+        final hasUnread = (snapshot.data ?? const []).isNotEmpty;
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                const NotificationsRoute().go(context);
+              },
+              icon: const Icon(AppIcons.notifications),
             ),
-          ),
-        ),
-      ],
+            if (hasUnread)
+              Positioned(
+                top: WidgetSizes.spacingS,
+                right: WidgetSizes.spacingS,
+                child: Container(
+                  width: WidgetSizes.spacingXs,
+                  height: WidgetSizes.spacingXs,
+                  decoration: BoxDecoration(
+                    color: context.general.colorScheme.tertiary,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: context.appColors.surface,
+                      width: 1.5,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
 }

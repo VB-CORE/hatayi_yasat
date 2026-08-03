@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_colors.dart';
-import 'package:lifeclient/product/widget/general/title/general_content_small_title.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/product/widget/general/title/general_content_sub_title.dart';
 
 final class GeneralGroupSectionHeader extends StatelessWidget {
   const GeneralGroupSectionHeader({required this.label, super.key});
@@ -11,15 +11,15 @@ final class GeneralGroupSectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: AppColors.ink50,
+      color: context.appColors.ink25,
       child: Padding(
         padding:
             const PagePadding.verticalLowSymmetric() +
             const PagePadding.horizontalNormalSymmetric(),
-        child: GeneralContentSmallTitle(
-          value: label,
-          fontWeight: FontWeight.w600,
-          color: AppColors.navy400,
+        child: GeneralContentSubTitle(
+          value: label.toUpperCase(),
+          fontWeight: FontWeight.w700,
+          color: context.appColors.ink500,
         ),
       ),
     );
