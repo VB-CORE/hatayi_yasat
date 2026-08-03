@@ -162,6 +162,10 @@ final class PlaceRequestFormRoute extends GoRouteData
   );
 
   @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
   Widget build(BuildContext context, GoRouterState state) =>
       const PlaceRequestForm();
 }
@@ -231,6 +235,10 @@ final class ProjectRequestFormRoute extends GoRouteData
   );
 
   @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
+
+  @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ProjectRequestForm();
 }
@@ -243,6 +251,10 @@ final class ScholarShipRequestFormRoute extends GoRouteData
     path: 'scholarShipRequestForm',
     name: 'ScholarShip Request Form',
   );
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      AuthGuard.requireLogin(context, state);
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>

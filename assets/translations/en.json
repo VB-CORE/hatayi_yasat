@@ -63,6 +63,9 @@
       "selectedLocationSave": "Save for your selection",
       "updateFromMap": "Update your location"
     },
+    "speedDial": {
+      "loginRequiredHint": "Login required"
+    },
     "picker": {
       "camera": "Camera",
       "gallery": "Gallery",
