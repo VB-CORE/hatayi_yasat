@@ -12,6 +12,7 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(GeoPointAdapter());
     registerAdapter(MemoryCacheModelAdapter());
     registerAdapter(MemoryModelAdapter());
+    registerAdapter(NewsBookmarkCacheAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
     registerAdapter(UserApplicationModelAdapter());
@@ -28,6 +29,7 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(GeoPointAdapter());
     registerAdapter(MemoryCacheModelAdapter());
     registerAdapter(MemoryModelAdapter());
+    registerAdapter(NewsBookmarkCacheAdapter());
     registerAdapter(StoreModelAdapter());
     registerAdapter(StoreModelCacheAdapter());
     registerAdapter(UserApplicationModelAdapter());

@@ -27,9 +27,7 @@ class _SpecialAgencyViewState extends ConsumerState<SpecialAgencyView> {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: PageAppBar(
-        pageTitle: LocaleKeys.specialAgency_title,
-      ),
+      appBar: const PageAppBar(pageTitle: LocaleKeys.specialAgency_title),
       body: const _SpecialAgencyListBuilder(),
     );
   }

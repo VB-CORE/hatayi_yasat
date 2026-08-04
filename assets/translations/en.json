@@ -63,6 +63,9 @@
       "selectedLocationSave": "Save for your selection",
       "updateFromMap": "Update your location"
     },
+    "speedDial": {
+      "loginRequiredHint": "Login required"
+    },
     "picker": {
       "camera": "Camera",
       "gallery": "Gallery",
@@ -356,7 +359,8 @@
     "image": "Image could not be loaded.",
     "chainStore": "Chain stores has not been entered yet.",
     "usefulLinks": "Useful links has not been entered yet.",
-    "memories": "No memories found yet."
+    "memories": "No memories found yet.",
+    "newsContent": "This news has no content yet."
   },
   "months": {
     "jan": "January",
@@ -553,6 +557,7 @@
   "profile": {
     "menu": {
       "favorites": "My Favorites",
+      "savedNews": "Saved News",
       "settings": "Settings",
       "rateUs": "Rate Us",
       "privacy": "Privacy Policy",
@@ -704,6 +709,11 @@
     "requestAccess": "Request access",
     "requestAccessComingSoon": "This feature is coming soon."
   },
+  "savedNews": {
+    "title": "Saved News",
+    "empty": "No saved news yet.",
+    "error": "Couldn't load news."
+  },
   "merchantPanel": {
     "title": "Merchant Panel",
     "approvedBadge": "Approved",
@@ -818,5 +828,9 @@
     "title": "Your account is suspended",
     "description": "Your account was closed for breaking the community rules. Your posts have been taken down.",
     "signOut": "Sign out"
+  },
+  "newsFeed": {
+    "badge": "News",
+    "readMore": "Read more"
   }
 }

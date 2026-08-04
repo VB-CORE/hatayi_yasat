@@ -5,12 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
+import 'package:lifeclient/core/security/nonce_generator.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
+import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService({
@@ -18,15 +20,20 @@ final class FirebaseAuthService implements AuthService {
     required ProductCache productCache,
     FirebaseAuth? auth,
     GoogleSignIn? googleSignIn,
+    NonceGenerator? nonceGenerator,
   }) : _firebaseService = firebaseService,
        _productCache = productCache,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleSignIn = googleSignIn ?? GoogleSignIn();
+       _googleSignIn = googleSignIn ?? GoogleSignIn(),
+       _nonceGenerator = nonceGenerator ?? const NonceGenerator();
 
   final FirebaseCustomService _firebaseService;
   final ProductCache _productCache;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+  final NonceGenerator _nonceGenerator;
+
+  static const _appleProviderId = 'apple.com';
 
   final StreamController<UserModel?> _userController =
       StreamController<UserModel?>.broadcast();
@@ -165,9 +172,7 @@ final class FirebaseAuthService implements AuthService {
   Future<AuthCredential?> _credentialFor(AuthProvider provider) =>
       switch (provider) {
         AuthProvider.google => _googleCredential(),
-        AuthProvider.apple => throw UnimplementedError(
-          'Apple Sign-In henüz bağlı değil',
-        ),
+        AuthProvider.apple => _appleCredential(),
       };
 
   Future<AuthCredential?> _googleCredential() async {
@@ -177,6 +182,34 @@ final class FirebaseAuthService implements AuthService {
     return GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
+    );
+  }
+
+  Future<AuthCredential?> _appleCredential() async {
+    // Apple, hash'lenmiş nonce'u identityToken'ın içine gömüyor; Firebase
+    // rawNonce'u kendi hash'leyip karşılaştırıyor (token replay'e karşı).
+    final rawNonce = _nonceGenerator.generate();
+    final hashedNonce = _nonceGenerator.sha256Hex(rawNonce);
+
+    final AuthorizationCredentialAppleID appleCredential;
+    try {
+      appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: hashedNonce,
+      );
+    } on SignInWithAppleAuthorizationException catch (error) {
+      if (error.code == AuthorizationErrorCode.canceled) return null;
+      rethrow;
+    }
+
+    final identityToken = appleCredential.identityToken;
+    if (identityToken == null) return null;
+    return OAuthProvider(_appleProviderId).credential(
+      idToken: identityToken,
+      rawNonce: rawNonce,
     );
   }
 }

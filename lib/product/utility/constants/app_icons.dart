@@ -45,6 +45,9 @@ final class AppIcons {
   static const IconData favorite = Icons.favorite;
   static const IconData favoriteBorder = Icons.favorite_border_outlined;
 
+  static const IconData bookmark = Icons.bookmark;
+  static const IconData bookmarkBorder = Icons.bookmark_border_outlined;
+
   static const FaIconData sendMessage = FontAwesomeIcons.whatsapp;
   static const FaIconData apple = FontAwesomeIcons.apple;
 

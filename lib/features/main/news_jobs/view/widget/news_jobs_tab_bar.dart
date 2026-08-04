@@ -63,7 +63,9 @@ class _NewsEventJobsTabBarState extends State<_NewsEventJobsTabBar>
 
 mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
   void _changeCurrentTabView(NewsEventJobTabs tab) {
-    DefaultTabController.maybeOf(context)?.animateTo(widget.tabs.indexOf(tab));
+    final index = widget.tabs.indexOf(tab);
+    if (index == -1) return;
+    DefaultTabController.maybeOf(context)?.animateTo(index);
     setState(() {
       _currentTab = tab;
     });
@@ -73,7 +75,7 @@ mixin _NewsEventJobsTabMixin on State<_NewsEventJobsTabBar> {
 
   /// Returns the left position of the selected tab indicator.
   double _leftPosition(double tabWidth) {
-    final index = widget.tabs.indexOf(_currentTab);
+    final index = widget.tabs.indexOf(_currentTab).clamp(0, widget.tabs.length - 1);
     return (tabWidth * index) + WidgetSizes.spacingXxs;
   }
 }

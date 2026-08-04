@@ -3,12 +3,14 @@ import 'package:hive_ce/hive.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/app_cache_model.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/memory_cache_model.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/model/news_bookmark_cache.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache.dart';
 
 @GenerateAdapters([
   AdapterSpec<AppCacheModel>(),
   AdapterSpec<StoreModelCache>(),
   AdapterSpec<MemoryCacheModel>(),
+  AdapterSpec<NewsBookmarkCache>(),
   AdapterSpec<StoreModel>(),
   AdapterSpec<MemoryModel>(),
   AdapterSpec<GeoPoint>(),

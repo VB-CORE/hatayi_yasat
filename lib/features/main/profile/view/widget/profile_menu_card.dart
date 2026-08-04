@@ -17,6 +17,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         (state) => state.favoritePlaces.length,
       ),
     );
+    final savedNewsCount = ref.watch(newsBookmarkCountProvider);
     final isAuthenticated = ref.watch(
       authViewModelProvider.select((state) => state.isAuthenticated),
     );
@@ -29,6 +30,15 @@ final class ProfileMenuCard extends ConsumerWidget {
           onTap: () => const FavoriteRoute().push<void>(context),
           trailing: Text(
             '$favoriteCount',
+            style: AppText.bodyLg.copyWith(color: AppColors.navy300),
+          ),
+        ),
+        ContentMenuItem(
+          icon: AppIcons.bookmark,
+          label: LocaleKeys.profile_menu_savedNews.tr(),
+          onTap: () => const SavedNewsRoute().push<void>(context),
+          trailing: Text(
+            '$savedNewsCount',
             style: AppText.bodyLg.copyWith(color: AppColors.navy300),
           ),
         ),

@@ -61,6 +61,8 @@ abstract class  LocaleKeys {
   static const component_mapPicker_selectedLocationSave = 'component.mapPicker.selectedLocationSave';
   static const component_mapPicker_updateFromMap = 'component.mapPicker.updateFromMap';
   static const component_mapPicker = 'component.mapPicker';
+  static const component_speedDial_loginRequiredHint = 'component.speedDial.loginRequiredHint';
+  static const component_speedDial = 'component.speedDial';
   static const component_picker_camera = 'component.picker.camera';
   static const component_picker_gallery = 'component.picker.gallery';
   static const component_picker_cropperTitle = 'component.picker.cropperTitle';
@@ -329,6 +331,7 @@ abstract class  LocaleKeys {
   static const notFound_chainStore = 'notFound.chainStore';
   static const notFound_usefulLinks = 'notFound.usefulLinks';
   static const notFound_memories = 'notFound.memories';
+  static const notFound_newsContent = 'notFound.newsContent';
   static const notFound = 'notFound';
   static const months_jan = 'months.jan';
   static const months_feb = 'months.feb';
@@ -490,6 +493,7 @@ abstract class  LocaleKeys {
   static const auth_editProfile = 'auth.editProfile';
   static const auth = 'auth';
   static const profile_menu_favorites = 'profile.menu.favorites';
+  static const profile_menu_savedNews = 'profile.menu.savedNews';
   static const profile_menu_settings = 'profile.menu.settings';
   static const profile_menu_rateUs = 'profile.menu.rateUs';
   static const profile_menu_privacy = 'profile.menu.privacy';
@@ -627,6 +631,10 @@ abstract class  LocaleKeys {
   static const unauthorized_requestAccess = 'unauthorized.requestAccess';
   static const unauthorized_requestAccessComingSoon = 'unauthorized.requestAccessComingSoon';
   static const unauthorized = 'unauthorized';
+  static const savedNews_title = 'savedNews.title';
+  static const savedNews_empty = 'savedNews.empty';
+  static const savedNews_error = 'savedNews.error';
+  static const savedNews = 'savedNews';
   static const merchantPanel_title = 'merchantPanel.title';
   static const merchantPanel_approvedBadge = 'merchantPanel.approvedBadge';
   static const merchantPanel_unauthorizedTitle = 'merchantPanel.unauthorizedTitle';
@@ -734,5 +742,8 @@ abstract class  LocaleKeys {
   static const banned_description = 'banned.description';
   static const banned_signOut = 'banned.signOut';
   static const banned = 'banned';
+  static const newsFeed_badge = 'newsFeed.badge';
+  static const newsFeed_readMore = 'newsFeed.readMore';
+  static const newsFeed = 'newsFeed';
 
 }

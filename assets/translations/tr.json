@@ -63,6 +63,9 @@
       "selectedLocationSave": "Seçtiğin konumu kaydet",
       "updateFromMap": "Haritadan konum güncelle"
     },
+    "speedDial": {
+      "loginRequiredHint": "Giriş yapmak zorunlu"
+    },
     "picker": {
       "camera": "Kamera",
       "gallery": "Galeri",
@@ -356,7 +359,8 @@
     "image": "Resim yüklenemedi.",
     "chainStore": "Zincir mağaza henüz girilmemiş.",
     "usefulLinks": "Faydalı linkler henüz girilmemiş.",
-    "memories": "Henüz hatıra bulunamadı."
+    "memories": "Henüz hatıra bulunamadı.",
+    "newsContent": "Bu haberin içeriği henüz eklenmedi."
   },
   "months": {
     "jan": "Ocak",
@@ -553,6 +557,7 @@
   "profile": {
     "menu": {
       "favorites": "Favorilerim",
+      "savedNews": "Kaydedilen Haberler",
       "settings": "Ayarlar",
       "rateUs": "Bizi Değerlendirin",
       "privacy": "Gizlilik Politikası",
@@ -704,6 +709,11 @@
     "requestAccess": "Yetki talebinde bulun",
     "requestAccessComingSoon": "Bu özellik yakında eklenecek."
   },
+  "savedNews": {
+    "title": "Kaydedilen Haberler",
+    "empty": "Henüz kaydedilmiş haber yok.",
+    "error": "Haberler yüklenemedi."
+  },
   "merchantPanel": {
     "title": "Esnaf Paneli",
     "approvedBadge": "Onaylı",
@@ -818,5 +828,9 @@
     "title": "Hesabın askıya alındı",
     "description": "Topluluk kurallarını ihlal ettiğin için hesabın kapatıldı. Paylaşımların yayından kaldırıldı.",
     "signOut": "Çıkış yap"
+  },
+  "newsFeed": {
+    "badge": "Haber",
+    "readMore": "Devamı"
   }
 }
