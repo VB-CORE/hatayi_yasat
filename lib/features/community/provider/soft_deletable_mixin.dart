@@ -2,14 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 
-bool canDeleteContent({
-  required String authorUid,
-  required GroupMemberModel? currentMember,
-}) {
-  if (currentMember == null) return false;
-  return authorUid == currentMember.uid || currentMember.isAdmin;
-}
-
 mixin SoftDeletableMixin on ProjectDependencyMixin {
   Future<bool> softDeleteContent({
     required FirestoreCollectionPath contentPath,

@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
-import 'package:lifeclient/features/community/provider/soft_deletable_mixin.dart';
+import 'package:lifeclient/features/community/provider/community_content_permission.dart';
 import 'package:lifeclient/features/community/widget/community_delete_confirm_dialog.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
-final class DismissibleContentCard extends ConsumerWidget {
-  const DismissibleContentCard({
+final class CommunityDismissibleContentCard extends ConsumerWidget {
+  const CommunityDismissibleContentCard({
     required this.contentId,
     required this.groupId,
     required this.authorUid,
@@ -29,7 +29,7 @@ final class DismissibleContentCard extends ConsumerWidget {
     final currentMember = ref.watch(
       groupMembersViewModelProvider(groupId).select((s) => s.currentMember),
     );
-    final canDelete = canDeleteContent(
+    final canDelete = CommunityContentPermission.canDelete(
       authorUid: authorUid,
       currentMember: currentMember,
     );

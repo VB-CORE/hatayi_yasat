@@ -29,7 +29,7 @@ mixin GroupDiscussionsViewMixin
   ) {
     final notifier = ref.read(_discussionsNotifier.notifier);
     unawaited(
-      handleContentActionStatus(
+      ContentActionResultHandler.handle(
         context,
         status: next.status,
         showSnackbar: appProvider.showSnackbarMessage,

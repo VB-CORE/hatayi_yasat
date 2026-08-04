@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/provider/group_discussions_view_model.dart';
-import 'package:lifeclient/features/community/widget/dismissible_content_card.dart';
+import 'package:lifeclient/features/community/widget/community_dismissible_content_card.dart';
 import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -29,7 +29,7 @@ final class GroupDiscussionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navy300 = context.appColors.navy300;
-    return DismissibleContentCard(
+    return CommunityDismissibleContentCard(
       contentId: model.id,
       groupId: groupId,
       authorUid: model.author.uid,

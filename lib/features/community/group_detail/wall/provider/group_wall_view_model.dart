@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_state.dart';
 import 'package:life_shared/life_shared.dart';
@@ -31,8 +33,7 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     if (state.isProcessing) return false;
     state = state.copyWith(status: const ContentActionProcessing());
 
-    final currentUid =
-        ref.read(groupMembersViewModelProvider(groupId)).currentMember?.uid;
+    final currentUid = ref.read(authViewModelProvider).user?.uid;
     final isSuccess = await softDeleteContent(
       contentPath: CommunityPaths.posts(groupId),
       contentId: post.id,

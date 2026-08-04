@@ -23,7 +23,7 @@ mixin GroupWallViewMixin
       groupWallViewModelProvider(widget.model.id).notifier,
     );
     unawaited(
-      handleContentActionStatus(
+      ContentActionResultHandler.handle(
         context,
         status: next.status,
         showSnackbar: appProvider.showSnackbarMessage,

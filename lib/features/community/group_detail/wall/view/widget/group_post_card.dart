@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
-import 'package:lifeclient/features/community/widget/dismissible_content_card.dart';
+import 'package:lifeclient/features/community/widget/community_dismissible_content_card.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -33,7 +33,7 @@ final class GroupPostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DismissibleContentCard(
+    return CommunityDismissibleContentCard(
       contentId: model.id,
       groupId: groupId,
       authorUid: model.author.uid,
