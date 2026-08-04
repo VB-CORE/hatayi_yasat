@@ -8,18 +8,22 @@ import 'package:lifeclient/product/widget/general/index.dart';
 final class PageAppBar extends AppBar {
   PageAppBar({
     required String pageTitle,
+    bool showDivider = true,
     super.actions,
     super.automaticallyImplyLeading,
     super.actionsPadding,
+    super.backgroundColor,
     super.centerTitle = false,
     super.key,
   }) : super(
-         bottom: PreferredSize(
-           preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
-           child: Divider(
-             height: AppConstants.kOne.toDouble(),
-           ),
-         ),
+         bottom: showDivider
+             ? PreferredSize(
+                 preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
+                 child: Divider(
+                   height: AppConstants.kOne.toDouble(),
+                 ),
+               )
+             : null,
          title: GeneralContentTitle(
            value: pageTitle.tr(),
            fontWeight: FontWeight.w500,

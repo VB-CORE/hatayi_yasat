@@ -4,14 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/main/settings/model/contact_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/decorations/index.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/checkbox/notification_permission_checkbox.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/general_group_section_header.dart';
@@ -37,10 +41,9 @@ final class SettingsView extends StatelessWidget {
         slivers: [
           SliverList.list(
             children: const [
-              EmptyBox.middleHeight(),
               _ChangeNotificationWidget(),
               _ChangeLanguageWidget(),
-              _ChangeThemeWidget(),
+              // _ChangeThemeWidget(),
               _ContactUsWidget(),
               EmptyBox(
                 height: WidgetSizes.spacingXxl8 + WidgetSizes.spacingXxl2,

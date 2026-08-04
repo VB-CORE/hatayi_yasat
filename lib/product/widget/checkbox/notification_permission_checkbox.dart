@@ -46,9 +46,9 @@ final class _NotificationPermissionViewState
   Widget build(BuildContext context) {
     return FutureBuilder<PermissionStatus>(
       future: _statusFuture,
-      builder:
-          (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
-        final isGranted = snapshot.data == PermissionStatus.granted ||
+      builder: (context, snapshot) {
+        final isGranted =
+            snapshot.data == PermissionStatus.granted ||
             snapshot.data == PermissionStatus.limited;
 
         /// When user is enabled to notifications we are ignoring the widget

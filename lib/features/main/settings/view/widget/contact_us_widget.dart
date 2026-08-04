@@ -15,106 +15,137 @@ final class _ContactUsWidget extends StatelessWidget {
               .tr(context: context)
               .toUpperCase(),
         ),
-        const _ContactUsGridView(),
+        const _ContactUsRow(),
       ],
     );
   }
 }
 
 @immutable
-final class _ContactUsGridView extends StatelessWidget {
-  const _ContactUsGridView();
+final class _ContactUsRow extends StatelessWidget {
+  const _ContactUsRow();
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const PagePadding.horizontalNormalSymmetric(),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: ContactModel.dummyModels.length,
-      gridDelegate: _delegate,
-      itemBuilder: (context, i) =>
-          _ContactUsCard(model: ContactModel.dummyModels[i]),
+    return Container(
+      decoration: BoxDecoration(
+        color: context.appColors.navy50,
+        borderRadius: BorderRadius.circular(
+          AppRadius.lg,
+        ),
+      ),
+      margin: const PagePadding.horizontalNormalSymmetric(),
+      padding: const PagePadding.allLow(),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        spacing: AppSpacing.md,
+        children: ContactModel.dummyModels
+            .map((model) => _ContactUsCard(model: model))
+            .toList(),
+      ),
     );
   }
-
-  SliverGridDelegateWithFixedCrossAxisCount get _delegate =>
-      const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: AppSpacing.sm,
-        mainAxisSpacing: AppSpacing.sm,
-        mainAxisExtent: WidgetSizes.spacingXxlL13,
-      );
 }
 
 @immutable
 final class _ContactUsCard extends StatelessWidget {
   const _ContactUsCard({required this.model});
+
   final ContactModel model;
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.transparent,
-      shape: context.border.roundedRectangleAllBorderNormal.copyWith(
-        side: CustomBorderSides.maxThick,
-      ),
-      elevation: 0,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const EmptyBox.smallHeight(),
-          _UserImage(imageUrl: model.imageUrl),
-          const EmptyBox.smallHeight(),
-          GeneralBodyTitle(model.name, fontWeight: FontWeight.bold),
-          const EmptyBox.smallHeight(),
-          _ContactTile(
-            title: StringConstants.twitter,
-            icon: const FaIcon(AppIcons.twitter),
-            onTap: () => model.twitterUrl.ext.launchWebsite,
+    final avatarSize = context.sized.dynamicWidth(.35);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: AppSpacing.xs,
+      children: [
+        SizedBox.square(
+          dimension: avatarSize,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              ClipOval(
+                child: CustomNetworkImage(
+                  imageUrl: model.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      context.appColors.navy900.withValues(alpha: .25),
+                      context.appColors.navy900.withValues(alpha: .40),
+                      context.appColors.navy900.withValues(alpha: .70),
+                    ],
+                    stops: const [0.28, 0.5, 0.72, 1],
+                  ),
+                ),
+              ),
+            ],
           ),
-          _ContactTile(
-            title: StringConstants.mail,
-            icon: const Icon(AppIcons.mail),
-            onTap: () => model.mail.ext.launchEmail,
+        ),
+        Text(
+          model.name,
+          style: AppText.bodyLg.copyWith(
+            color: context.appColors.navy900,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+          textAlign: TextAlign.center,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: AppSpacing.xs,
+          children: [
+            _SocialButton(
+              icon: FaIcon(
+                AppIcons.twitter,
+                size: AppIconSizes.xMedium,
+                color: context.appColors.navy700,
+              ),
+              onTap: () => model.twitterUrl.ext.launchWebsite,
+            ),
+            _SocialButton(
+              icon: Icon(
+                AppIcons.mail,
+                size: AppIconSizes.xMedium,
+                color: context.appColors.navy700,
+              ),
+              onTap: () => model.mail.ext.launchEmail,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
 
 @immutable
-final class _UserImage extends StatelessWidget {
-  const _UserImage({required this.imageUrl});
-  final String imageUrl;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: WidgetSizes.spacingXxl9,
-      child: ClipOval(
-        child: FittedBox(child: CustomNetworkImage(imageUrl: imageUrl)),
-      ),
-    );
-  }
-}
+final class _SocialButton extends StatelessWidget {
+  const _SocialButton({required this.icon, required this.onTap});
 
-@immutable
-final class _ContactTile extends StatelessWidget {
-  const _ContactTile({
-    required this.title,
-    required this.icon,
-    required this.onTap,
-  });
-  final String title;
   final Widget icon;
   final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      dense: true,
-      title: GeneralBodyTitle(title),
-      trailing: icon,
-      onTap: onTap,
+    return Material(
+      color: context.appColors.navy900.withValues(alpha: .1),
+      shape: const CircleBorder(),
+      child: CustomBounceable(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.xs),
+          child: Center(child: icon),
+        ),
+      ),
     );
   }
 }
