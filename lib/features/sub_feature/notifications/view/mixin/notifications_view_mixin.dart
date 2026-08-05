@@ -7,8 +7,11 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
+import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
-mixin NotificationsViewMixin on ConsumerState<NotificationsView> {
+mixin NotificationsViewMixin
+    on ConsumerState<NotificationsView>, NotificationTypeMixin {
   NotificationsViewModel? _notifier;
 
   @override
@@ -16,6 +19,14 @@ mixin NotificationsViewMixin on ConsumerState<NotificationsView> {
     super.didChangeDependencies();
     _notifier = ref.read(notificationsViewModelProvider.notifier);
   }
+
+  @override
+  void dispose() {
+    unawaited(_notifier?.commitLastSeenTime());
+    super.dispose();
+  }
+
+  Future<void> markAllAsRead() => _notifier!.markAllAsRead();
 
   Query<AppNotificationModel?> get notificationsQuery =>
       _notifier!.notificationsQuery;
@@ -26,23 +37,26 @@ mixin NotificationsViewMixin on ConsumerState<NotificationsView> {
   int notificationCompare(
     NotificationDateBucket a,
     NotificationDateBucket b,
-  ) => _notifier!.notificationCompare(a, b);
+  ) => a.index.compareTo(b.index);
 
-  List<AppNotificationModel> get unreadItems => _notifier!.unreadItems;
+  int get unreadCount => _notifier!.unreadCount;
 
   bool isUnread(AppNotificationModel item) => _notifier!.isUnread(item);
 
   Future<void> openNotification(
     BuildContext context,
     AppNotificationModel item,
-  ) => _notifier!.openNotification(context, item);
+  ) async {
+    _notifier!.markAsRead(item);
+    final type = item.type;
+    if (type == null || type == AppNotificationType.link) return;
 
-  Future<void> markAllAsRead(List<AppNotificationModel> unreadItems) =>
-      _notifier!.markAllAsRead(unreadItems);
+    final id = item.id;
+    if (id.isEmpty) return;
 
-  @override
-  void dispose() {
-    unawaited(_notifier?.commitLastSeenTime());
-    super.dispose();
+    await NotificationNavigateParse(context).makeWithType(
+      id: id,
+      type: fromAppNotifications(type),
+    );
   }
 }

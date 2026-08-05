@@ -13,6 +13,7 @@ import 'package:lifeclient/features/sub_feature/notifications/view/widget/notifi
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/index.dart';
@@ -25,12 +26,12 @@ final class NotificationsView extends ConsumerStatefulWidget {
 }
 
 class _NotificationsViewState extends ConsumerState<NotificationsView>
-    with NotificationsViewMixin {
+    with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
     ref.watch(notificationsViewModelProvider);
-    final unread = unreadItems;
-    final hasUnread = unread.isNotEmpty;
+    final unreadCount = this.unreadCount;
+    final hasUnread = unreadCount > 0;
     final colorScheme = context.general.colorScheme;
 
     return Scaffold(
@@ -47,7 +48,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
                   padding:
                       const PagePadding.horizontalLowVerticalVeryLowSymmetric(),
                   child: GeneralContentSmallTitle(
-                    value: '${unread.length}',
+                    value: '$unreadCount',
                     color: colorScheme.onTertiary,
                     fontWeight: FontWeight.w700,
                   ),
@@ -56,7 +57,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             : null,
         actions: [
           TextButton(
-            onPressed: hasUnread ? () => markAllAsRead(unread) : null,
+            onPressed: hasUnread ? markAllAsRead : null,
             child: Text(LocaleKeys.notification_markAllRead.tr()),
           ),
         ],

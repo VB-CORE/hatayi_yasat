@@ -70,10 +70,10 @@ final class _NotificationButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watch provider'ı canlı tutar (autoDispose) — bkz. NotificationsView.
     ref.watch(notificationsViewModelProvider);
-    final notifier = ref.read(notificationsViewModelProvider.notifier);
-    final hasUnread = notifier.unreadItems.isNotEmpty;
+    final hasUnread = ref
+        .read(notificationsViewModelProvider.notifier)
+        .hasUnread;
 
     return Stack(
       alignment: Alignment.center,
@@ -94,7 +94,10 @@ final class _NotificationButton extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: context.general.colorScheme.tertiary,
                 shape: BoxShape.circle,
-                border: Border.all(color: context.appColors.surface, width: 1.5),
+                border: Border.all(
+                  color: context.appColors.surface,
+                  width: 1.5,
+                ),
               ),
             ),
           ),

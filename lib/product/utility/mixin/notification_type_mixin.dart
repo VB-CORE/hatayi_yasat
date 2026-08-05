@@ -26,10 +26,21 @@ mixin NotificationTypeMixin {
       return (NotificationType.advertise, model.advertiseId!);
     }
 
-    if (model.memoryId.ext.isNotNullOrNoEmpty) {
-      return (NotificationType.memory, model.memoryId!);
-    }
-
     return (null, '');
+  }
+
+  NotificationType fromAppNotifications(AppNotificationType type) {
+    switch (type) {
+      case AppNotificationType.store:
+        return NotificationType.project;
+      case AppNotificationType.campaign:
+        return NotificationType.campaigns;
+      case AppNotificationType.news:
+        return NotificationType.news;
+      case AppNotificationType.advertise:
+        return NotificationType.advertise;
+      case AppNotificationType.link:
+        return NotificationType.link;
+    }
   }
 }
