@@ -23,7 +23,7 @@ final class _HomeCategoryCards extends ConsumerWidget {
         vm.categories.where((e) => e.value != _otherCategoryValue).toList()
           ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length));
     final visible = categories.take(_maxCategoryItemLength).toList();
-    final total = CategoryCountMock.total(visible.map((e) => e.value));
+    final total = vm.totalPlaceCount;
 
     return SingleChildScrollView(
       key: const Key('homeCategoriesList'),
@@ -46,7 +46,7 @@ final class _HomeCategoryCards extends ConsumerWidget {
             _CategoryCard(
               key: Key('categoryCard_${category.value}'),
               name: category.displayName,
-              count: CategoryCountMock.forValue(category.value),
+              count: vm.categoryPlaceCounts[category.value] ?? 0,
               icon: CategoryVisual.iconFor(category),
               accent: CategoryVisual.accentFor(category),
               isActive: selected.contains(category.value),

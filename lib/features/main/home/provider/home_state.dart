@@ -12,6 +12,8 @@ final class HomeState extends Equatable {
     this.townCodes = const {},
     this.openNow = false,
     this.favoritesOnly = false,
+    this.totalPlaceCount = 0,
+    this.categoryPlaceCounts = const {},
   });
 
   final List<CategoryModel> categories;
@@ -33,6 +35,9 @@ final class HomeState extends Equatable {
   /// if true, the data is loading for a new sorting/filter selection
   final bool isLoading;
 
+  final int totalPlaceCount;
+  final Map<int, int> categoryPlaceCounts;
+
   bool get hasActiveFilters =>
       categoryValues.isNotEmpty ||
       townCodes.isNotEmpty ||
@@ -52,6 +57,8 @@ final class HomeState extends Equatable {
         townCodes,
         openNow,
         favoritesOnly,
+        totalPlaceCount,
+        categoryPlaceCounts,
       ];
 
   HomeState copyWith({
@@ -63,6 +70,8 @@ final class HomeState extends Equatable {
     Set<int>? townCodes,
     bool? openNow,
     bool? favoritesOnly,
+    int? totalPlaceCount,
+    Map<int, int>? categoryPlaceCounts,
   }) {
     return HomeState(
       categories: categories ?? this.categories,
@@ -73,6 +82,8 @@ final class HomeState extends Equatable {
       townCodes: townCodes ?? this.townCodes,
       openNow: openNow ?? this.openNow,
       favoritesOnly: favoritesOnly ?? this.favoritesOnly,
+      totalPlaceCount: totalPlaceCount ?? this.totalPlaceCount,
+      categoryPlaceCounts: categoryPlaceCounts ?? this.categoryPlaceCounts,
     );
   }
 }

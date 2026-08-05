@@ -19,10 +19,39 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     final categories = ref.read(productProviderState).categoryItems;
     final isHomeViewGrid =
         ref.read(productProviderState.notifier).isHomeViewGrid;
+    unawaited(Future.microtask(_fetchTotalPlaceCount));
     return HomeState(
       categories: categories,
       isGridView: isHomeViewGrid,
     );
+  }
+
+  Future<void> _fetchTotalPlaceCount() async {
+    final selectedCity = ref.read(productProviderState).selectedCity;
+    final sortingType = state.sortingType;
+
+    Future<int> countFor(Set<int> categoryValues) async {
+      final snapshot = await buildApprovedQuery(
+        cityId: selectedCity.documentId,
+        categoryValues: categoryValues,
+        townCodes: const {},
+        sortingType: sortingType,
+      ).count().get();
+      return snapshot.count ?? 0;
+    }
+
+    final total = await countFor(const {});
+    if (ref.mounted) state = state.copyWith(totalPlaceCount: total);
+
+    final categoryCounts = await Future.wait(
+      state.categories.map(
+        (category) async =>
+            MapEntry(category.value, await countFor({category.value})),
+      ),
+    );
+
+    if (!ref.mounted) return;
+    state = state.copyWith(categoryPlaceCounts: Map.fromEntries(categoryCounts));
   }
 
   CollectionReference<StoreModel?> fetchApprovedCollectionReference() {

@@ -24,7 +24,6 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/extension/category_visual.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
-import 'package:lifeclient/product/utility/mock/place_meta_mock.dart';
 import 'package:lifeclient/product/widget/card/general_place_card.dart';
 import 'package:lifeclient/product/widget/card/place/general_place_grid_card.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
@@ -79,20 +78,13 @@ class _HomeViewState extends ConsumerState<HomeView>
 final class _HomeHeaderBlock extends ConsumerWidget {
   const _HomeHeaderBlock();
 
-  static const _otherCategoryValue = 1000;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final city = ref
         .watch(ProjectDependencyItems.productProviderState)
         .selectedCity
         .description;
-    final categoryValues = ref
-        .watch(homeViewModelProvider)
-        .categories
-        .where((e) => e.value != _otherCategoryValue)
-        .map((e) => e.value);
-    final total = CategoryCountMock.total(categoryValues);
+    final total = ref.watch(homeViewModelProvider).totalPlaceCount;
 
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
