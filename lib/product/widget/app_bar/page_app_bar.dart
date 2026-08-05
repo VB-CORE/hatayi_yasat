@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -14,6 +15,8 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.actionsPadding,
     this.leading,
+    this.backgroundColor,
+    this.showDivider = true,
   });
 
   final String pageTitle;
@@ -22,26 +25,36 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final EdgeInsetsGeometry? actionsPadding;
   final Widget? leading;
+  final Color? backgroundColor;
+  final bool showDivider;
+
   @override
   Widget build(BuildContext context) {
     final hasLeading =
         leading != null || (automaticallyImplyLeading && context.canPop());
 
     return AppBar(
-      title: Text(pageTitle.tr()),
+      title: GeneralContentTitle(
+        value: pageTitle.tr(),
+        fontWeight: FontWeight.w500,
+      ),
       titleSpacing: hasLeading ? 0 : null,
       automaticallyImplyLeading: automaticallyImplyLeading,
       centerTitle: centerTitle,
+      actions: actions,
       actionsPadding: actionsPadding,
       leading: leading,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
-        child: Divider(height: AppConstants.kOne.toDouble()),
-      ),
+      backgroundColor: backgroundColor,
+      bottom: showDivider
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
+              child: Divider(height: AppConstants.kOne.toDouble()),
+            )
+          : null,
     );
   }
 
   @override
   Size get preferredSize =>
       const Size.fromHeight(kToolbarHeight + WidgetSizes.spacingXSs);
-}
+} 
