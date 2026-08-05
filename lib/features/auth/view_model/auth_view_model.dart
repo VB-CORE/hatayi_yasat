@@ -32,7 +32,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
   }
 
   Future<void> signIn(AuthProvider provider) async {
-    state = const AuthLoading();
+    state = AuthLoading(provider);
     final result = await authService.signIn(provider);
     state = switch (result) {
       SignInSuccess(:final user) => _stateFor(user),

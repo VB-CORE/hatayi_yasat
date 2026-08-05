@@ -41,7 +41,7 @@ final class FavoriteViewModelProvider
   }
 }
 
-String _$favoriteViewModelHash() => r'057dcbe3d95a8f73c880d57eea07146941af1902';
+String _$favoriteViewModelHash() => r'd31afaaf2959b860acb637bba8ab3e155dc7fff3';
 
 abstract class _$FavoriteViewModel extends $Notifier<FavoriteState> {
   FavoriteState build();

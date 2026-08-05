@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,6 +17,8 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actionsPadding,
     this.leading,
     this.titleTrailing,
+    this.backgroundColor,
+    this.showDivider = true,
   });
 
   final String pageTitle;
@@ -25,6 +28,8 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final EdgeInsetsGeometry? actionsPadding;
   final Widget? leading;
   final Widget? titleTrailing;
+  final Color? backgroundColor;
+  final bool showDivider;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +38,17 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       title: titleTrailing == null
-          ? Text(pageTitle.tr())
+          ? GeneralContentTitle(
+              value: pageTitle.tr(),
+              fontWeight: FontWeight.w500,
+            )
           : Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(pageTitle.tr()),
+                GeneralContentTitle(
+                  value: pageTitle.tr(),
+                  fontWeight: FontWeight.w500,
+                ),
                 const EmptyBox.smallWidth(),
                 titleTrailing!,
               ],
@@ -48,10 +59,13 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       actionsPadding: actionsPadding,
       leading: leading,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
-        child: Divider(height: AppConstants.kOne.toDouble()),
-      ),
+      backgroundColor: backgroundColor,
+      bottom: showDivider
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(WidgetSizes.spacingXSs),
+              child: Divider(height: AppConstants.kOne.toDouble()),
+            )
+          : null,
     );
   }
 

@@ -110,6 +110,11 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       factory: $FavoriteRoute._fromState,
     ),
     GoRouteData.$route(
+      path: 'savedNews',
+      name: 'Saved News',
+      factory: $SavedNewsRoute._fromState,
+    ),
+    GoRouteData.$route(
       path: 'specialAgency',
       name: 'Special Agency',
       factory: $SpecialAgencyRoute._fromState,
@@ -120,12 +125,12 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
       factory: $PlaceDetailRoute._fromState,
     ),
     GoRouteData.$route(
-      path: 'newsJobs',
+      path: 'news',
       name: 'News and Jobs',
       factory: $NewsJobsRoute._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'detail',
+          path: ':id',
           name: 'News Details',
           factory: $NewsDetailRoute._fromState,
         ),
@@ -402,6 +407,27 @@ mixin $FavoriteRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+mixin $SavedNewsRoute on GoRouteData {
+  static SavedNewsRoute _fromState(GoRouterState state) =>
+      const SavedNewsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/main/savedNews');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 mixin $SpecialAgencyRoute on GoRouteData {
   static SpecialAgencyRoute _fromState(GoRouterState state) =>
       const SpecialAgencyRoute();
@@ -456,7 +482,7 @@ mixin $NewsJobsRoute on GoRouteData {
   static NewsJobsRoute _fromState(GoRouterState state) => const NewsJobsRoute();
 
   @override
-  String get location => GoRouteData.$location('/main/newsJobs');
+  String get location => GoRouteData.$location('/main/news');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -473,13 +499,16 @@ mixin $NewsJobsRoute on GoRouteData {
 }
 
 mixin $NewsDetailRoute on GoRouteData {
-  static NewsDetailRoute _fromState(GoRouterState state) =>
-      NewsDetailRoute($extra: state.extra as NewsModelCopy);
+  static NewsDetailRoute _fromState(GoRouterState state) => NewsDetailRoute(
+    id: state.pathParameters['id']!,
+    $extra: state.extra as NewsModel,
+  );
 
   NewsDetailRoute get _self => this as NewsDetailRoute;
 
   @override
-  String get location => GoRouteData.$location('/main/newsJobs/detail');
+  String get location =>
+      GoRouteData.$location('/main/news/${Uri.encodeComponent(_self.id)}');
 
   @override
   void go(BuildContext context) => context.go(location, extra: _self.$extra);

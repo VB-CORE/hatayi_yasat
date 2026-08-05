@@ -29,11 +29,11 @@ import 'package:lifeclient/features/sub_feature/forms/index.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_status_pending_view.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/view/merchant_application_view.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
+import 'package:lifeclient/features/sub_feature/saved_news/view/saved_news_view.dart';
 import 'package:lifeclient/features/sub_feature/special_agency/view/special_agency_view.dart';
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
-import 'package:lifeclient/product/model/news_model_copy.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
@@ -66,6 +66,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     TurismRoute.route,
     UsefulLinksRoute.route,
     FavoriteRoute.route,
+    SavedNewsRoute.route,
     SpecialAgencyRoute.route,
     PlaceDetailRoute.route,
     NewsJobsRoute.route,
@@ -446,10 +447,23 @@ final class FavoriteRoute extends GoRouteData with $FavoriteRoute {
       const FavoriteView();
 }
 
+final class SavedNewsRoute extends GoRouteData with $SavedNewsRoute {
+  const SavedNewsRoute();
+
+  static const route = TypedGoRoute<SavedNewsRoute>(
+    path: 'savedNews',
+    name: 'Saved News',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SavedNewsView();
+}
+
 final class NewsJobsRoute extends GoRouteData with $NewsJobsRoute {
   const NewsJobsRoute();
   static const route = TypedGoRoute<NewsJobsRoute>(
-    path: 'newsJobs',
+    path: 'news',
     name: 'News and Jobs',
     routes: [
       NewsDetailRoute.route,
@@ -462,18 +476,19 @@ final class NewsJobsRoute extends GoRouteData with $NewsJobsRoute {
 }
 
 final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
-  NewsDetailRoute({required this.$extra});
+  NewsDetailRoute({required this.$extra, required this.id});
 
   static const route = TypedGoRoute<NewsDetailRoute>(
-    path: 'detail',
+    path: ':id',
     name: 'News Details',
   );
 
-  final NewsModelCopy $extra;
+  final NewsModel $extra;
+  final String id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      NewsDetailView(news: $extra.toNewsModel());
+      NewsDetailView(news: $extra);
 }
 
 @TypedGoRoute<LoginRoute>(path: '/login')

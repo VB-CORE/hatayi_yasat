@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_view_model.dart';
 import 'package:lifeclient/features/community/discussion_detail/view/discussion_detail_view.dart';
+import 'package:lifeclient/features/community/widget/content_action_result_handler.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -21,6 +23,27 @@ mixin DiscussionDetailViewMixin
         widget.args.group.id,
         widget.args.discussion.id,
       );
+
+  @override
+  void initState() {
+    super.initState();
+    ref.listenManual(entriesNotifier, _onEntryActionResult);
+  }
+
+  void _onEntryActionResult(
+    DiscussionDetailState? previous,
+    DiscussionDetailState next,
+  ) {
+    final notifier = ref.read(entriesNotifier.notifier);
+    unawaited(
+      ContentActionResultHandler.handle(
+        context,
+        status: next.status,
+        showSnackbar: appProvider.showSnackbarMessage,
+        resetStatus: notifier.resetStatus,
+      ),
+    );
+  }
 
   @override
   void dispose() {

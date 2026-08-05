@@ -1,12 +1,22 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_view_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/widget/special/special_user.dart';
+import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
+import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
+import 'package:lifeclient/product/widget/card/news/news_read_more_button.dart';
 
 @immutable
 final class NewsCard extends StatelessWidget {
@@ -19,22 +29,49 @@ final class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.generalCardAll(),
-      child: SizedBox(
-        height: context.sized.dynamicHeight(0.3),
-        child: InkWell(
-          onTap: onTap,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: _NewsImage(item: item),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: _TransparentBox(item: item),
-              ),
-            ],
+      child: CustomBounceable(
+        onTap: onTap,
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: CustomRadius.large,
+          ),
+          child: ClipRRect(
+            borderRadius: CustomRadius.large,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _NewsImage(item: item),
+                Padding(
+                  padding: const PagePadding.generalAllLow(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppSpacing.xxs,
+                    children: [
+                      _NewsMetaCaption(item: item),
+                      Text(
+                        item.title ?? '',
+                        maxLines: AppConstants.kTwo,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppText.title,
+                      ),
+                      if (item.content case final body? when body.isNotEmpty)
+                        Text(
+                          body,
+                          maxLines: AppConstants.kTwo,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppText.bodySm,
+                        ),
+                      Padding(
+                        padding: const PagePadding.onlyTop(),
+                        child: _NewsActionRow(item: item, onReadMore: onTap),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -43,9 +80,7 @@ final class NewsCard extends StatelessWidget {
 }
 
 final class _NewsImage extends StatelessWidget {
-  const _NewsImage({
-    required this.item,
-  });
+  const _NewsImage({required this.item});
 
   final NewsModel item;
 
@@ -53,64 +88,106 @@ final class _NewsImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: ValueKey(item.documentId),
-      child: ClipRRect(
-        borderRadius: CustomRadius.large,
-        child: CustomNetworkImage(
-          imageUrl: item.image,
-          fit: BoxFit.cover,
-        ),
+      child: SizedBox(
+        width: double.infinity,
+        height: context.sized.dynamicHeight(0.2),
+        child: CustomNetworkImage(imageUrl: item.image, fit: BoxFit.cover),
       ),
     );
   }
 }
 
-class _TransparentBox extends StatelessWidget {
-  const _TransparentBox({required this.item});
+final class _NewsMetaCaption extends StatelessWidget {
+  const _NewsMetaCaption({required this.item});
 
   final NewsModel item;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: CustomRadius.large,
+    final timeAgo = item.createdAt?.timeAgo;
+    if (timeAgo == null) return const SizedBox.shrink();
+
+    return Text(
+      timeAgo,
+      maxLines: AppConstants.kOne,
+      overflow: TextOverflow.ellipsis,
+      style: AppText.caption,
+    );
+  }
+}
+
+final class _NewsActionRow extends ConsumerWidget {
+  const _NewsActionRow({required this.item, required this.onReadMore});
+
+  final NewsModel item;
+  final VoidCallback onReadMore;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSaved = ref.watch(
+      newsBookmarkViewModelProvider(item.documentId).select(
+        (state) => state.isSaved,
       ),
-      margin: EdgeInsets.zero,
+    );
+
+    return Row(
+      children: [
+        _NewsActionButton(
+          icon: isSaved ? AppIcons.bookmark : AppIcons.bookmarkBorder,
+          label: LocaleKeys.button_save.tr(),
+          color: isSaved ? AppColors.coral : AppColors.navy300,
+          onTap: () => ref
+              .read(newsBookmarkViewModelProvider(item.documentId).notifier)
+              .toggle(item),
+        ),
+        const EmptyBox.smallWidth(),
+        _NewsActionButton(
+          icon: AppIcons.share,
+          label: LocaleKeys.button_share.tr(),
+          color: AppColors.navy300,
+          onTap: _shareNews,
+        ),
+        const Spacer(),
+        NewsReadMoreButton(onTap: onReadMore),
+      ],
+    );
+  }
+
+  void _shareNews() {
+    if (item.content.ext.isNullOrEmpty) return;
+    final bodyBuilder = StringBuffer(item.title ?? AppConstants.appName)
+      ..write('\n\n')
+      ..write(item.content);
+    bodyBuilder.toString().ext.share();
+  }
+}
+
+final class _NewsActionButton extends StatelessWidget {
+  const _NewsActionButton({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: CustomRadius.small,
       child: Padding(
-        padding:
-            const PagePadding.horizontalLowSymmetric() +
-            const PagePadding.verticalLowSymmetric(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const PagePadding.generalIconAll(),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: AppSpacing.xxs,
           children: [
-            Wrap(
-              children: [
-                CircleAvatar(
-                  radius: WidgetSizes.spacingS,
-                  backgroundImage: NetworkImage(SpecialUser.creator.photoUrl),
-                ),
-                const EmptyBox.smallWidth(),
-                Text(
-                  SpecialUser.creator.name,
-                  style: context.general.textTheme.titleSmall?.copyWith(
-                    color: AppColors.surface,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const PagePadding.onlyTop(),
-              child: Text(
-                item.title ?? '',
-                maxLines: AppConstants.kTwo,
-                style: context.general.textTheme.titleLarge?.copyWith(
-                  color: AppColors.surface,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            Icon(icon, size: AppIconSizes.xMedium, color: color),
+            Text(label, style: AppText.caption.copyWith(color: color)),
           ],
         ),
       ),

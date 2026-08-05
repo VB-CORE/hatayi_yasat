@@ -70,8 +70,11 @@ final class _DiscussionDetailViewState
                   controller: entriesScrollController,
                   padding: const PagePadding.horizontal16Symmetric(),
                   separator: const EmptyBox.smallHeight(),
-                  itemBuilder: (context, entry) =>
-                      DiscussionEntryTile(model: entry),
+                  itemBuilder: (context, entry) => DiscussionEntryTile(
+                    model: entry,
+                    groupId: args.group.id,
+                    discussionId: args.discussion.id,
+                  ),
                 ),
               ),
               Padding(

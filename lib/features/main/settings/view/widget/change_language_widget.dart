@@ -6,33 +6,22 @@ final class _ChangeLanguageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        GeneralGroupSectionHeader(
-          label: LocaleKeys.settings_languageTitle
-              .tr(context: context)
-              .toUpperCase(),
-        ),
-        Padding(
-          padding:
-              const PagePadding.horizontalNormalSymmetric() +
-              const PagePadding.vertical12Symmetric(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GeneralBodyTitle(
-                LocaleKeys.settings_currentLanguage.tr(context: context),
-              ),
-              GeneralSegmentedControl<String>(
-                value: context.locale.languageCode,
-                options: context.supportedLocales
-                    .map((locale) => locale.languageCode)
-                    .toList(),
-                labelBuilder: (code) => code.toUpperCase(),
-                onChanged: (code) => _onLanguageChanged(context, code),
-              ),
-            ],
+    return ContentMenu(
+      items: [
+        ContentMenuItem(
+          icon: AppIcons.globe,
+          label: LocaleKeys.settings_currentLanguage.tr(context: context),
+          showChevron: false,
+          trailing: Transform.scale(
+            scale: 0.85,
+            child: GeneralSegmentedControl<String>(
+              value: context.locale.languageCode,
+              options: context.supportedLocales
+                  .map((locale) => locale.languageCode)
+                  .toList(),
+              labelBuilder: (code) => code.toUpperCase(),
+              onChanged: (code) => _onLanguageChanged(context, code),
+            ),
           ),
         ),
       ],

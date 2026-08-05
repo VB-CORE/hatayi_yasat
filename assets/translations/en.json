@@ -367,7 +367,8 @@
     "image": "Image could not be loaded.",
     "chainStore": "Chain stores has not been entered yet.",
     "usefulLinks": "Useful links has not been entered yet.",
-    "memories": "No memories found yet."
+    "memories": "No memories found yet.",
+    "newsContent": "This news has no content yet."
   },
   "months": {
     "jan": "January",
@@ -564,6 +565,7 @@
   "profile": {
     "menu": {
       "favorites": "My Favorites",
+      "savedNews": "Saved News",
       "settings": "Settings",
       "rateUs": "Rate Us",
       "privacy": "Privacy Policy",
@@ -670,7 +672,9 @@
       "wall": {
         "composerHint": "Share something with the group...",
         "commentCount": "{} comments",
-        "empty": "No posts yet."
+        "empty": "No posts yet.",
+        "deleteFailedContent": "The post could not be deleted. Please try again.",
+        "deleteSuccessMessage": "Post deleted."
       },
       "discussions": {
         "startTitle": "Start a discussion",
@@ -685,7 +689,11 @@
         "startButton": "Start discussion",
         "anonymityBanner": "Names hidden · text posts only · no live chat",
         "openedByGroup": "{} started · {}",
-        "replyComposerHint": "Add an entry to this topic..."
+        "replyComposerHint": "Add an entry to this topic...",
+        "entryDeleteFailedContent": "The message could not be deleted. Please try again.",
+        "entryDeleteSuccessMessage": "Message deleted.",
+        "discussionDeleteFailedContent": "The discussion could not be deleted. Please try again.",
+        "discussionDeleteSuccessMessage": "Discussion deleted."
       },
       "details": {
         "aboutTitle": "ABOUT",
@@ -705,7 +713,10 @@
         "deleteGroupSuccess": "Group deleted.",
         "categoryLabel": "Category"
       }
-    }
+    },
+    "deleteOption": "Delete",
+    "deleteConfirmTitle": "Delete this content?",
+    "deleteConfirmContent": "Are you sure you want to delete this? This action cannot be undone."
   },
   "unauthorized": {
     "errorCode": "403 · ACCESS DENIED",
@@ -714,6 +725,11 @@
     "backToGroups": "Back to Groups",
     "requestAccess": "Request access",
     "requestAccessComingSoon": "This feature is coming soon."
+  },
+  "savedNews": {
+    "title": "Saved News",
+    "empty": "No saved news yet.",
+    "error": "Couldn't load news."
   },
   "merchantPanel": {
     "title": "Merchant Panel",
@@ -829,5 +845,9 @@
     "title": "Your account is suspended",
     "description": "Your account was closed for breaking the community rules. Your posts have been taken down.",
     "signOut": "Sign out"
+  },
+  "newsFeed": {
+    "badge": "News",
+    "readMore": "Read more"
   }
 }

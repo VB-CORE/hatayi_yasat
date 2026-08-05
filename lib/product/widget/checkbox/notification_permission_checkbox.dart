@@ -1,16 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
 import 'package:lifeclient/product/package/settings/custom_app_settings.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/dialog/approve_dialog.dart';
-import 'package:lifeclient/product/widget/general/general_switch_tile.dart';
+import 'package:lifeclient/product/widget/menu/content_menu.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 @immutable
 final class NotificationPermissionView extends StatefulWidget {
   const NotificationPermissionView({super.key});
+
   @override
   State<NotificationPermissionView> createState() =>
       _NotificationPermissionViewState();
@@ -46,27 +48,33 @@ final class _NotificationPermissionViewState
   Widget build(BuildContext context) {
     return FutureBuilder<PermissionStatus>(
       future: _statusFuture,
-      builder:
-          (BuildContext context, AsyncSnapshot<PermissionStatus> snapshot) {
-        final isGranted = snapshot.data == PermissionStatus.granted ||
+      builder: (context, snapshot) {
+        final isGranted =
+            snapshot.data == PermissionStatus.granted ||
             snapshot.data == PermissionStatus.limited;
 
-        /// When user is enabled to notifications we are ignoring the widget
-        /// if u want to change it can be change manually
-        return IgnorePointer(
-          ignoring: isGranted,
-          child: AnimatedOpacity(
-            duration: Durations.medium2,
-            opacity: isGranted ? 0.3 : 1,
-            child: GeneralSwitchTile(
+        return ContentMenu(
+          items: [
+            ContentMenuItem(
               icon: AppIcons.notifications,
               label: LocaleKeys.settings_notificationSetting.tr(
                 context: context,
               ),
-              value: isGranted,
-              onChanged: (value) => _controlCheckBox(value: value),
+              showChevron: false,
+              trailing: IgnorePointer(
+                ignoring: isGranted,
+                child: AnimatedOpacity(
+                  duration: Durations.medium2,
+                  opacity: isGranted ? 0.3 : 1,
+                  child: Switch(
+                    value: isGranted,
+                    onChanged: (value) => _controlCheckBox(value: value),
+                    activeTrackColor: context.general.colorScheme.tertiary,
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         );
       },
     );
@@ -75,6 +83,7 @@ final class _NotificationPermissionViewState
 
 mixin _NotificationPermission on State<NotificationPermissionView> {
   bool _isRequestAsking = false;
+
   void _changeRequestAsking() {
     _isRequestAsking = !_isRequestAsking;
   }
