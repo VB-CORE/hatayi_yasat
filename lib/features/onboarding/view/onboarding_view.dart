@@ -12,6 +12,7 @@ import 'package:lifeclient/features/onboarding/view/widget/onboarding_card_conte
 import 'package:lifeclient/features/onboarding/view/widget/onboarding_indicator_grid.dart';
 import 'package:lifeclient/features/onboarding/view/widget/onboarding_navigation_row.dart';
 import 'package:lifeclient/features/onboarding/view/widget/onboarding_welcome_content.dart';
+import 'package:lifeclient/features/onboarding/view_model/onboarding_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -28,7 +29,7 @@ class _OnboardingViewState extends ConsumerState<OnboardingView>
     with AppProviderMixin<OnboardingView>, OnboardingViewMixin {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(onboardingProvider);
+    final state = ref.watch(onboardingViewModelProvider);
 
     return Scaffold(
       body: Stack(

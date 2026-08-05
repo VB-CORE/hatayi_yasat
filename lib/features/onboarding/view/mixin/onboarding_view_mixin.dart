@@ -9,14 +9,6 @@ mixin OnboardingViewMixin
     on AppProviderMixin<OnboardingView>, ConsumerState<OnboardingView> {
   late final OnboardingViewModelProvider _onboardingProvider;
 
-  OnboardingViewModelProvider get onboardingProvider => _onboardingProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    _onboardingProvider = onboardingViewModelProvider;
-  }
-
   Future<void> onNextPressed() async {
     final state = ref.read(_onboardingProvider);
     if (state.isLastPage) {
