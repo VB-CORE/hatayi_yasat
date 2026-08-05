@@ -27,31 +27,29 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   }
 
   Future<void> _fetchTotalPlaceCount() async {
-    final selectedCity = ref.read(productProviderState).selectedCity;
-    final sortingType = state.sortingType;
-
-    Future<int> countFor(Set<int> categoryValues) async {
-      final snapshot = await buildApprovedQuery(
-        cityId: selectedCity.documentId,
-        categoryValues: categoryValues,
-        townCodes: const {},
-        sortingType: sortingType,
-      ).count().get();
-      return snapshot.count ?? 0;
-    }
-
-    final total = await countFor(const {});
+    final total = await _countApproved(const {});
     if (ref.mounted) state = state.copyWith(totalPlaceCount: total);
 
     final categoryCounts = await Future.wait(
       state.categories.map(
         (category) async =>
-            MapEntry(category.value, await countFor({category.value})),
+            MapEntry(category.value, await _countApproved({category.value})),
       ),
     );
 
     if (!ref.mounted) return;
     state = state.copyWith(categoryPlaceCounts: Map.fromEntries(categoryCounts));
+  }
+
+  Future<int> _countApproved(Set<int> categoryValues) async {
+    final selectedCity = ref.read(productProviderState).selectedCity;
+    final snapshot = await buildApprovedQuery(
+      cityId: selectedCity.documentId,
+      categoryValues: categoryValues,
+      townCodes: const {},
+      sortingType: state.sortingType,
+    ).count().get();
+    return snapshot.count ?? 0;
   }
 
   CollectionReference<StoreModel?> fetchApprovedCollectionReference() {
