@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
@@ -501,8 +502,7 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
       AuthGuard.redirectIfSignedIn(context, state, to: from);
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const OnboardingView();
+  Widget build(BuildContext context, GoRouterState state) => const LoginView();
 }
 
 @TypedGoRoute<BannedRoute>(path: '/banned')
@@ -574,7 +574,8 @@ final class OnboardRoute extends GoRouteData with $OnboardRoute {
   );
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const OnboardingView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const OnboardingView();
 }
 
 final class SettingsRoute extends GoRouteData with $SettingsRoute {

@@ -44,7 +44,7 @@ final class OnboardingCardContent extends StatelessWidget {
         Theme(
           data: Theme.of(context).copyWith(
             chipTheme: ChipThemeData(
-              labelStyle: AppText.body.copyWith(
+              labelStyle: AppText.bodySm.copyWith(
                 fontWeight: FontWeight.bold,
                 color: context.appColors.navy500,
               ),
@@ -57,9 +57,14 @@ final class OnboardingCardContent extends StatelessWidget {
           ),
           child: Wrap(
             spacing: AppSpacing.xxs,
-            runSpacing: AppSpacing.xxs,
+            runSpacing: AppSpacing.xs,
             children: model!.chips
-                .map((chipText) => Chip(label: Text(chipText)))
+                .map(
+                  (chipText) => Chip(
+                    label: Text(chipText),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                )
                 .toList(),
           ),
         ),

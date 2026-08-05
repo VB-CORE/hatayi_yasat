@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/package/checker/network_checker.dart';
@@ -27,8 +29,7 @@ class SplashViewModel extends Notifier<SplashState> {
       return;
     }
 
-    if (_isFirstTimeCheck()) {
-      await SharedCache.instance.setFirstAppOpen();
+    if (!_isCompletedOnboardingCheck()) {
       state = state.copyWith(isNeedToOnBoard: true);
       return;
     }
@@ -40,7 +41,8 @@ class SplashViewModel extends Notifier<SplashState> {
     state = state.copyWith(isOperationStaring: false);
   }
 
-  bool _isFirstTimeCheck() => SharedCache.instance.isFirstAppOpen;
+  bool _isCompletedOnboardingCheck() =>
+      SharedCache.instance.isCompletedOnboarding;
 
   bool _isNeedToForceUpdate() => VersionValidator.check();
 

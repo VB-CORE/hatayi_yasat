@@ -21,17 +21,20 @@ class AppCacheModelAdapter extends TypeAdapter<AppCacheModel> {
       lastSearchItems: fields[1] == null
           ? const []
           : (fields[1] as List).cast<String>(),
+      isCompletedOnboarding: fields[3] == null ? false : fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppCacheModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.isHomeViewGrid)
       ..writeByte(1)
-      ..write(obj.lastSearchItems);
+      ..write(obj.lastSearchItems)
+      ..writeByte(3)
+      ..write(obj.isCompletedOnboarding);
   }
 
   @override

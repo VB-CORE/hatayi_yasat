@@ -8,15 +8,12 @@ part of 'onboarding_view_model.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// ViewModel managing the state of the Onboarding flow.
 
 @ProviderFor(OnboardingViewModel)
 final onboardingViewModelProvider = OnboardingViewModelProvider._();
 
-/// ViewModel managing the state of the Onboarding flow.
 final class OnboardingViewModelProvider
     extends $NotifierProvider<OnboardingViewModel, OnboardingState> {
-  /// ViewModel managing the state of the Onboarding flow.
   OnboardingViewModelProvider._()
     : super(
         from: null,
@@ -46,8 +43,6 @@ final class OnboardingViewModelProvider
 
 String _$onboardingViewModelHash() =>
     r'3b837ddc015ee07161f732d6c9e8812b7883bb12';
-
-/// ViewModel managing the state of the Onboarding flow.
 
 abstract class _$OnboardingViewModel extends $Notifier<OnboardingState> {
   OnboardingState build();
