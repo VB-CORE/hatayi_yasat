@@ -1,64 +1,67 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/onboarding/model/onboarding_model.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/app_icons.dart';
 
 @immutable
 final class OnboardingContents {
   const OnboardingContents._();
 
   static List<OnboardingModel> create() {
-    return const [
+    return [
       OnboardingModel(
-        category: 'MEKAN KEŞFİ',
-        title: 'Mahallenin esnafı, avucunun içinde',
-        desc:
-            'Antakya, Defne, İskenderun... Yakınındaki açık mekanları gör, kategoriye ve semte göre filtrele, aradığını anında bul.',
+        category: LocaleKeys.onboarding_pages_0_category.tr(),
+        title: LocaleKeys.onboarding_pages_0_title.tr(),
+        desc: LocaleKeys.onboarding_pages_0_desc.tr(),
         chips: [
-          'Ana sayfa akışı',
-          'Kategori & Filtre',
-          'Mekan Detayı',
-          'Favoriler',
+          LocaleKeys.onboarding_pages_0_chips_0.tr(),
+          LocaleKeys.onboarding_pages_0_chips_1.tr(),
+          LocaleKeys.onboarding_pages_0_chips_2.tr(),
+          LocaleKeys.onboarding_pages_0_chips_3.tr(),
         ],
         color: AppColors.coral,
+        icon: AppIcons.storeFilled,
       ),
       OnboardingModel(
-        category: 'TOPLULUK & DAYANIŞMA',
-        title: 'Birlikte daha güçlüyüz',
-        desc:
-            'Yardımlaşma taleplerini takip et, ihtiyaç sahiplerine destek ol ya da kendi ihtiyaçlarını toplulukla paylaş.',
+        category: LocaleKeys.onboarding_pages_1_category.tr(),
+        title: LocaleKeys.onboarding_pages_1_title.tr(),
+        desc: LocaleKeys.onboarding_pages_1_desc.tr(),
         chips: [
-          'İhtiyaç Haritası',
-          'Destek Talepleri',
-          'Gönüllü Ağı',
-          'Geri Bildirim',
-        ],
-        color: AppColors.teal,
-      ),
-      OnboardingModel(
-        category: 'ESNAF DESTEĞİ',
-        title: 'Yerel ekonomiyi kalkındıralım',
-        desc:
-            'Yerel esnafların ürünlerini ve hizmetlerini incele, sipariş vererek veya ziyaret ederek onlara destek ol.',
-        chips: [
-          'Yerel Ürünler',
-          'Esnaf Hikayeleri',
-          'Askıda Destek',
-          'Doğrudan İletişim',
+          LocaleKeys.onboarding_pages_1_chips_0.tr(),
+          LocaleKeys.onboarding_pages_1_chips_1.tr(),
+          LocaleKeys.onboarding_pages_1_chips_2.tr(),
+          LocaleKeys.onboarding_pages_1_chips_3.tr(),
         ],
         color: AppColors.gold,
+        icon: AppIcons.star,
       ),
       OnboardingModel(
-        category: 'HABERLER & DUYURULAR',
-        title: 'Şehrinden haberdar ol',
-        desc:
-            'Hatay genelindeki güncel gelişmeleri, altyapı çalışmalarını ve topluluk duyurularını anlık bildirimlerle takip et.',
+        category: LocaleKeys.onboarding_pages_2_category.tr(),
+        title: LocaleKeys.onboarding_pages_2_title.tr(),
+        desc: LocaleKeys.onboarding_pages_2_desc.tr(),
         chips: [
-          'Güncel Haberler',
-          'Duyurular',
-          'Etkinlik Takvimi',
-          'Önemli Telefonlar',
+          LocaleKeys.onboarding_pages_2_chips_0.tr(),
+          LocaleKeys.onboarding_pages_2_chips_1.tr(),
+          LocaleKeys.onboarding_pages_2_chips_2.tr(),
+          LocaleKeys.onboarding_pages_2_chips_3.tr(),
+        ],
+        color: AppColors.teal,
+        icon: AppIcons.groups,
+      ),
+      OnboardingModel(
+        category: LocaleKeys.onboarding_pages_3_category.tr(),
+        title: LocaleKeys.onboarding_pages_3_title.tr(),
+        desc: LocaleKeys.onboarding_pages_3_desc.tr(),
+        chips: [
+          LocaleKeys.onboarding_pages_3_chips_0.tr(),
+          LocaleKeys.onboarding_pages_3_chips_1.tr(),
+          LocaleKeys.onboarding_pages_3_chips_2.tr(),
+          LocaleKeys.onboarding_pages_3_chips_3.tr(),
         ],
         color: AppColors.olive,
+        icon: AppIcons.discount,
       ),
     ];
   }

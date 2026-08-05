@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 final class AppIcons {
   AppIcons._();
   static const IconData star = Icons.star;
+  static const IconData starFilled = Icons.star_rounded;
   static const IconData close = Icons.close_outlined;
   static const IconData info = Icons.info_outlined;
   static const IconData infoFilled = Icons.info_rounded;
@@ -25,6 +26,7 @@ final class AppIcons {
   static const IconData copy = Icons.copy_rounded;
   static const IconData verifiedUser = Icons.verified_user_rounded;
   static const IconData discount = Icons.discount_rounded;
+  static const IconData groups = Icons.groups;
   static const IconData home = Icons.home;
   static const IconData search = Icons.search_outlined;
   static const IconData settings = Icons.settings_outlined;

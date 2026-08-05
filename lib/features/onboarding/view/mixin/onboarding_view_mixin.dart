@@ -29,6 +29,10 @@ mixin OnboardingViewMixin
     _completeOnboarding();
   }
 
+  void onBackPressed() {
+    ref.read(_onboardingProvider.notifier).previous();
+  }
+
   void _completeOnboarding() {
     if (!mounted) return;
     const LoginRoute().go(context);
