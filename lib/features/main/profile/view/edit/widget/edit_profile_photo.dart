@@ -22,7 +22,7 @@ final class EditProfilePhoto extends StatefulWidget {
 }
 
 final class _EditProfilePhotoState extends State<EditProfilePhoto> {
-  late final CarouselSliderController _controller; // veya Controller sınıfınız
+  late final CarouselSliderController _controller; 
 
   List<AvatarTypeModel> get _types => AvatarTypes.all;
 
