@@ -84,7 +84,6 @@ final class _HomeHeaderBlock extends ConsumerWidget {
         .watch(ProjectDependencyItems.productProviderState)
         .selectedCity
         .description;
-    final total = ref.watch(homeViewModelProvider).totalPlaceCount;
 
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
@@ -97,8 +96,7 @@ final class _HomeHeaderBlock extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${city.toUpperCase()} · $total '
-                    '${LocaleKeys.home_placesUpper.tr()}',
+                    city.toUpperCase(),
                     style: AppText.eyebrow,
                   ),
                   const SizedBox(height: AppSpacing.xxs),

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,37 +17,10 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     final categories = ref.read(productProviderState).categoryItems;
     final isHomeViewGrid =
         ref.read(productProviderState.notifier).isHomeViewGrid;
-    unawaited(Future.microtask(_fetchTotalPlaceCount));
     return HomeState(
       categories: categories,
       isGridView: isHomeViewGrid,
     );
-  }
-
-  Future<void> _fetchTotalPlaceCount() async {
-    final total = await _countApproved(const {});
-    if (ref.mounted) state = state.copyWith(totalPlaceCount: total);
-
-    final categoryCounts = await Future.wait(
-      state.categories.map(
-        (category) async =>
-            MapEntry(category.value, await _countApproved({category.value})),
-      ),
-    );
-
-    if (!ref.mounted) return;
-    state = state.copyWith(categoryPlaceCounts: Map.fromEntries(categoryCounts));
-  }
-
-  Future<int> _countApproved(Set<int> categoryValues) async {
-    final selectedCity = ref.read(productProviderState).selectedCity;
-    final snapshot = await buildApprovedQuery(
-      cityId: selectedCity.documentId,
-      categoryValues: categoryValues,
-      townCodes: const {},
-      sortingType: state.sortingType,
-    ).count().get();
-    return snapshot.count ?? 0;
   }
 
   CollectionReference<StoreModel?> fetchApprovedCollectionReference() {
