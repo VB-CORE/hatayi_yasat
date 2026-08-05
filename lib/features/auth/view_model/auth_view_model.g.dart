@@ -41,13 +41,13 @@ final class AuthViewModelProvider
   }
 }
 
-String _$authViewModelHash() => r'4bd24bd8fd451ae0c6937648f226403e4ea71a7b';
+String _$authViewModelHash() => r'1b54ad3a78806650bbce38a784e4598ef4334018';
 
 abstract class _$AuthViewModel extends $Notifier<AuthState> {
   AuthState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AuthState, AuthState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$AuthViewModel extends $Notifier<AuthState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

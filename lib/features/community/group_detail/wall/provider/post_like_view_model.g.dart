@@ -93,7 +93,7 @@ abstract class _$PostLikeViewModel extends $Notifier<PostLikeState> {
   PostLikeState build(String groupId, String postId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<PostLikeState, PostLikeState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$PostLikeViewModel extends $Notifier<PostLikeState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
+    return element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
   }
 }

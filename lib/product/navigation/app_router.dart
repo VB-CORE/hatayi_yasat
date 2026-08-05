@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
@@ -17,6 +16,7 @@ import 'package:lifeclient/features/merchant_panel/view/merchant_panel_view.dart
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/redeem/coupon_redeem_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
+import 'package:lifeclient/features/onboarding/view/onboarding_view.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_contributors_view.dart';
@@ -35,9 +35,8 @@ import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_v
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
-import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
-import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 import 'package:lifeclient/sub_feature/banned/banned_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
@@ -502,7 +501,8 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
       AuthGuard.redirectIfSignedIn(context, state, to: from);
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const LoginView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const OnboardingView();
 }
 
 @TypedGoRoute<BannedRoute>(path: '/banned')
@@ -574,7 +574,7 @@ final class OnboardRoute extends GoRouteData with $OnboardRoute {
   );
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const OnBoarView();
+  Widget build(BuildContext context, GoRouterState state) => const OnboardingView();
 }
 
 final class SettingsRoute extends GoRouteData with $SettingsRoute {

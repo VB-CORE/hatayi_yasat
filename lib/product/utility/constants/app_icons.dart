@@ -90,6 +90,7 @@ final class AppIcons {
   static const IconData visibilityOff = Icons.visibility_off_outlined;
   static const IconData personAdd = Icons.person_add_alt_1;
   static const IconData arrowBack = Icons.arrow_back;
+  static const IconData arrowForward = Icons.arrow_forward;
   static const IconData gridView = Icons.grid_view_outlined;
   static const IconData gridViewFilled = Icons.grid_view_rounded;
   static const IconData forum = Icons.forum_outlined;

@@ -34,6 +34,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     bool isEnabled = true,
     bool isBorderless = false,
     IconData? icon,
+    IconAlignment? iconAlignment,
     Color? backgroundColor,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
@@ -45,6 +46,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
       icon: icon,
+      iconAlignment: iconAlignment,
       backgroundColor: backgroundColor,
     );
   }
@@ -55,6 +57,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     bool isEnabled = true,
     bool isBorderless = false,
     IconData? icon,
+    IconAlignment? iconAlignment,
     Color? backgroundColor,
     EdgeInsets buttonPadding = const PagePadding.vertical12Symmetric(),
   }) {
@@ -66,6 +69,7 @@ final class GeneralButtonV2 extends StatefulWidget {
       buttonPadding: buttonPadding,
       isBorderless: isBorderless,
       icon: icon,
+      iconAlignment: iconAlignment,
       backgroundColor: backgroundColor,
     );
   }
@@ -76,6 +80,7 @@ final class GeneralButtonV2 extends StatefulWidget {
     this.isEnabled = true,
     this.isBorderless = false,
     this.icon,
+    this.iconAlignment,
     this.backgroundColor,
     this.buttonPadding = const PagePadding.vertical12Symmetric(),
   });
@@ -86,6 +91,7 @@ final class GeneralButtonV2 extends StatefulWidget {
   final bool isEnabled;
   final bool isBorderless;
   final IconData? icon;
+  final IconAlignment? iconAlignment;
   final Color? backgroundColor;
   final EdgeInsets buttonPadding;
   @override
@@ -122,7 +128,11 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
             valueListenable: _isLoading,
             builder: (context, value, _) {
               if (!value) {
-                return _Child(label: widget.label, icon: widget.icon);
+                return _Child(
+                  label: widget.label,
+                  icon: widget.icon,
+                  iconAlignment: widget.iconAlignment,
+                );
               }
               return const _LoadingWidget();
             },
@@ -148,29 +158,45 @@ class _Child extends StatelessWidget {
   const _Child({
     required this.label,
     this.icon,
+    this.iconAlignment,
   });
 
   final String label;
   final IconData? icon;
+  final IconAlignment? iconAlignment;
 
   @override
   Widget build(BuildContext context) {
     final contentColor = context.general.colorScheme.surface;
+    final labelWidget = Text(
+      label,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: contentColor,
+        fontWeight: FontWeight.w900,
+      ),
+    );
+    if (icon == null) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [labelWidget],
+      );
+    }
+    final iconWidget = Icon(icon, color: contentColor);
+    final alignment = iconAlignment ?? IconAlignment.start;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (icon != null) ...[
-          Icon(icon, color: contentColor),
+      children: switch (alignment) {
+        IconAlignment.start => [
+          iconWidget,
           const EmptyBox.smallWidth(),
+          labelWidget,
         ],
-        Text(
-          label,
-          style: context.general.textTheme.titleMedium?.copyWith(
-            color: contentColor,
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-      ],
+        IconAlignment.end => [
+          labelWidget,
+          const EmptyBox.smallWidth(),
+          iconWidget,
+        ],
+      },
     );
   }
 }

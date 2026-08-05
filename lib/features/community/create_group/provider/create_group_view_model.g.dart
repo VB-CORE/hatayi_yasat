@@ -48,7 +48,7 @@ abstract class _$CreateGroupViewModel extends $Notifier<CreateGroupState> {
   CreateGroupState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<CreateGroupState, CreateGroupState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$CreateGroupViewModel extends $Notifier<CreateGroupState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

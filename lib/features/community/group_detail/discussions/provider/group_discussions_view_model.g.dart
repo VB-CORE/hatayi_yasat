@@ -96,7 +96,7 @@ abstract class _$GroupDiscussionsViewModel
   GroupDiscussionsState build(String groupId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<GroupDiscussionsState, GroupDiscussionsState>;
     final element =
         ref.element
@@ -106,6 +106,6 @@ abstract class _$GroupDiscussionsViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
