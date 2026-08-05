@@ -61,7 +61,7 @@ final class DiscussionDetailViewModelProvider
 }
 
 String _$discussionDetailViewModelHash() =>
-    r'999e52e3c168c98e1e1589e9460c49943a61177a';
+    r'86d564ca9033cca4eba54f58c140bf3e7595f3a7';
 
 final class DiscussionDetailViewModelFamily extends $Family
     with
@@ -100,7 +100,7 @@ abstract class _$DiscussionDetailViewModel
   DiscussionDetailState build(String groupId, String discussionId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<DiscussionDetailState, DiscussionDetailState>;
     final element =
         ref.element
@@ -110,6 +110,6 @@ abstract class _$DiscussionDetailViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
+    return element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
   }
 }

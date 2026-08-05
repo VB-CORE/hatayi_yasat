@@ -93,7 +93,7 @@ abstract class _$CouponRedeemViewModel extends $Notifier<CouponRedeemState> {
   CouponRedeemState build(String couponId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<CouponRedeemState, CouponRedeemState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$CouponRedeemViewModel extends $Notifier<CouponRedeemState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
