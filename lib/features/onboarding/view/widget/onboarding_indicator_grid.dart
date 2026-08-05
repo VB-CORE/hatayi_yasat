@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kartal/kartal.dart';
+ 
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
@@ -12,11 +14,6 @@ import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 final class OnboardingIndicatorGrid extends ConsumerWidget {
   const OnboardingIndicatorGrid({super.key});
 
-  static const _size = 200.0;
-  static const _center = 64.0;
-  static const _selectedOffset = 60.0;
-  static const _normalOffset = 50.0;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(onboardingViewModelProvider);
@@ -24,14 +21,19 @@ final class OnboardingIndicatorGrid extends ConsumerWidget {
     final currentIndex = state.currentIndex;
     final turns = _groupTurns(currentIndex);
 
+    final size = context.sized.dynamicHeight(0.24);
+    final center = size * .32;
+    final normalOffset = size * .25;
+    final selectedOffset = size * .30;
+
     return AnimatedRotation(
       turns: turns,
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeOutCubic,
       child: Center(
         child: SizedBox(
-          width: _size,
-          height: _size,
+          width: size,
+          height: size,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -39,8 +41,20 @@ final class OnboardingIndicatorGrid extends ConsumerWidget {
                 AnimatedPositioned(
                   duration: const Duration(milliseconds: 400),
                   curve: Curves.easeOutBack,
-                  top: _top(index, currentIndex),
-                  left: _left(index, currentIndex),
+                  top: _top(
+                    index,
+                    currentIndex,
+                    center,
+                    normalOffset,
+                    selectedOffset,
+                  ),
+                  left: _left(
+                    index,
+                    currentIndex,
+                    center,
+                    normalOffset,
+                    selectedOffset,
+                  ),
                   child: _OnboardingIconBox(
                     boxIndex: index,
                     currentIndex: currentIndex,
@@ -58,20 +72,37 @@ final class OnboardingIndicatorGrid extends ConsumerWidget {
   static double _groupTurns(int currentIndex) =>
       currentIndex <= 1 ? 0 : (currentIndex - 1) * .25;
 
-  static double _top(int boxIndex, int currentIndex) => switch (boxIndex) {
-    3 => _center - _offset(currentIndex, boxIndex),
-    1 => _center + _offset(currentIndex, boxIndex),
-    _ => _center,
-  };
+  static double _top(
+    int boxIndex,
+    int currentIndex,
+    double center,
+    double normalOffset,
+    double selectedOffset,
+  ) {
+    final offset = currentIndex == boxIndex ? selectedOffset : normalOffset;
 
-  static double _left(int boxIndex, int currentIndex) => switch (boxIndex) {
-    4 => _center - _offset(currentIndex, boxIndex),
-    2 => _center + _offset(currentIndex, boxIndex),
-    _ => _center,
-  };
+    return switch (boxIndex) {
+      3 => center - offset,
+      1 => center + offset,
+      _ => center,
+    };
+  }
 
-  static double _offset(int currentIndex, int boxIndex) =>
-      currentIndex == boxIndex ? _selectedOffset : _normalOffset;
+  static double _left(
+    int boxIndex,
+    int currentIndex,
+    double center,
+    double normalOffset,
+    double selectedOffset,
+  ) {
+    final offset = currentIndex == boxIndex ? selectedOffset : normalOffset;
+
+    return switch (boxIndex) {
+      4 => center - offset,
+      2 => center + offset,
+      _ => center,
+    };
+  }
 }
 
 final class _OnboardingIconBox extends StatelessWidget {

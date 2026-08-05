@@ -48,9 +48,9 @@ final class _LoginAppHeader extends StatelessWidget {
             ),
             Text(
               LocaleKeys.auth_tagline.tr(),
-              style: AppText.bodySm.copyWith(
-                color: context.appColors.white,
-                fontWeight: .bold,
+              style: AppText.body.copyWith(
+                color: context.appColors.navy,
+                fontWeight: .w900,
               ),
             ),
           ],
