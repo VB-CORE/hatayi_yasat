@@ -13,9 +13,15 @@ import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 final class NotificationTile extends StatelessWidget {
-  const NotificationTile({required this.item, required this.onTap, super.key});
+  const NotificationTile({
+    required this.item,
+    required this.isUnread,
+    required this.onTap,
+    super.key,
+  });
 
   final AppNotificationModel item;
+  final bool isUnread;
   final VoidCallback onTap;
 
   String get _content => item.body ?? item.title ?? '';
@@ -25,7 +31,6 @@ final class NotificationTile extends StatelessWidget {
     final meta = NotificationTypeMeta.of(item.type, context);
     final content = _content.trim();
     final createdAt = item.createdAt;
-    final isUnread = !item.read;
     final unreadColor = context.general.colorScheme.tertiary;
 
     return CustomBounceable(

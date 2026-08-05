@@ -51,6 +51,14 @@ final class NotificationNavigateParse with NotificationTypeMixin {
           customService: _customService,
         );
         return;
+      case NotificationType.memory:
+        if (!context.mounted) return;
+        await MessagingNavigate.instance.detailModelMemoryCheckAndShowSheet(
+          context: context,
+          id: id,
+          customService: _customService,
+        );
+        return;
     }
   }
 

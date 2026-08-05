@@ -64,10 +64,10 @@ final class SharedCache {
     );
   }
 
-  Future<void> updateNotificationLastSeenTime() async {
+  Future<void> updateNotificationLastSeenTime({DateTime? at}) async {
     await _sharedOperation.setValue<String>(
       SharedKeys.lastNotificationSeenTime,
-      DateTime.now().toIso8601String(),
+      (at ?? DateTime.now()).toIso8601String(),
     );
   }
 

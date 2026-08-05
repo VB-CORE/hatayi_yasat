@@ -26,6 +26,10 @@ mixin NotificationTypeMixin {
       return (NotificationType.advertise, model.advertiseId!);
     }
 
+    if (model.memoryId.ext.isNotNullOrNoEmpty) {
+      return (NotificationType.memory, model.memoryId!);
+    }
+
     return (null, '');
   }
 }

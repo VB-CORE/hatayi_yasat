@@ -1,25 +1,48 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
+import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 
-mixin NotificationsViewMixin on ConsumerWidget {
-  static const notificationItemThreshold = 50;
+mixin NotificationsViewMixin on ConsumerState<NotificationsView> {
+  NotificationsViewModel? _notifier;
 
-  Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
-      .firestoreService
-      .collectionReference(
-        CollectionPaths.notifications,
-        AppNotificationModel(),
-      )
-      .orderBy(FirestoreFields.createdAt.name, descending: true);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _notifier = ref.read(notificationsViewModelProvider.notifier);
+  }
+
+  Query<AppNotificationModel?> get notificationsQuery =>
+      _notifier!.notificationsQuery;
 
   NotificationDateBucket notificationGroupBy(AppNotificationModel item) =>
-      (item.createdAt ?? DateTime.now()).notificationDateBucket;
+      _notifier!.notificationGroupBy(item);
 
   int notificationCompare(
     NotificationDateBucket a,
     NotificationDateBucket b,
-  ) => a.index.compareTo(b.index);
+  ) => _notifier!.notificationCompare(a, b);
+
+  List<AppNotificationModel> get unreadItems => _notifier!.unreadItems;
+
+  bool isUnread(AppNotificationModel item) => _notifier!.isUnread(item);
+
+  Future<void> openNotification(
+    BuildContext context,
+    AppNotificationModel item,
+  ) => _notifier!.openNotification(context, item);
+
+  Future<void> markAllAsRead(List<AppNotificationModel> unreadItems) =>
+      _notifier!.markAllAsRead(unreadItems);
+
+  @override
+  void dispose() {
+    unawaited(_notifier?.commitLastSeenTime());
+    super.dispose();
+  }
 }

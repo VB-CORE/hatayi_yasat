@@ -17,75 +17,71 @@ import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/list_view/index.dart';
 
-final class NotificationsView extends ConsumerWidget
-    with NotificationsViewMixin {
+final class NotificationsView extends ConsumerStatefulWidget {
   const NotificationsView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<NotificationsView> createState() => _NotificationsViewState();
+}
+
+class _NotificationsViewState extends ConsumerState<NotificationsView>
+    with NotificationsViewMixin {
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(notificationsViewModelProvider);
+    final unread = unreadItems;
+    final hasUnread = unread.isNotEmpty;
     final colorScheme = context.general.colorScheme;
 
-    ref.watch(notificationsViewModelProvider);
-    final notifier = ref.read(notificationsViewModelProvider.notifier);
-
-    return StreamBuilder<List<AppNotificationModel>>(
-      stream: notifier.unreadStream(),
-      builder: (context, snapshot) {
-        final unreadItems = snapshot.data ?? const [];
-        final hasUnread = unreadItems.isNotEmpty;
-
-        return Scaffold(
-          backgroundColor: context.appColors.ink25,
-          appBar: PageAppBar(
-            pageTitle: LocaleKeys.home_notifications,
-            titleTrailing: hasUnread
-                ? DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: colorScheme.tertiary,
-                      borderRadius: CustomRadius.xxLarge,
-                    ),
-                    child: Padding(
-                      padding:
-                          const PagePadding.horizontalLowVerticalVeryLowSymmetric(),
-                      child: GeneralContentSmallTitle(
-                        value: '${unreadItems.length}',
-                        color: colorScheme.onTertiary,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  )
-                : null,
-            actions: [
-              TextButton(
-                onPressed: hasUnread
-                    ? () => notifier.markAllAsRead(unreadItems)
-                    : null,
-                child: Text(LocaleKeys.notification_markAllRead.tr()),
-              ),
-            ],
-          ),
-          body:
-              CustomGroupedFirestoreListView<
-                AppNotificationModel,
-                NotificationDateBucket
-              >(
-                query: notificationsQuery,
-                groupBy: notificationGroupBy,
-                groupHeaderBuilder: (bucket) =>
-                    GeneralGroupSectionHeader(label: bucket.label),
-                groupCompare: notificationCompare,
-                itemBuilder: (context, item) => NotificationTile(
-                  item: item,
-                  onTap: () => notifier.openNotification(context, item),
+    return Scaffold(
+      backgroundColor: context.appColors.ink25,
+      appBar: PageAppBar(
+        pageTitle: LocaleKeys.home_notifications,
+        titleTrailing: hasUnread
+            ? DecoratedBox(
+                decoration: BoxDecoration(
+                  color: colorScheme.tertiary,
+                  borderRadius: CustomRadius.xxLarge,
                 ),
-                itemThreshold: NotificationsViewMixin.notificationItemThreshold,
-                pageSize: AppConstants.kTwenty,
-                onEmpty: const NotificationsEmptyView(),
-                onLoading: const NotificationsSkeletonList(),
-                padding: const PagePadding.verticalVeryLowSymmetric(),
-              ),
-        );
-      },
+                child: Padding(
+                  padding:
+                      const PagePadding.horizontalLowVerticalVeryLowSymmetric(),
+                  child: GeneralContentSmallTitle(
+                    value: '${unread.length}',
+                    color: colorScheme.onTertiary,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+            : null,
+        actions: [
+          TextButton(
+            onPressed: hasUnread ? () => markAllAsRead(unread) : null,
+            child: Text(LocaleKeys.notification_markAllRead.tr()),
+          ),
+        ],
+      ),
+      body:
+          CustomGroupedFirestoreListView<
+            AppNotificationModel,
+            NotificationDateBucket
+          >(
+            query: notificationsQuery,
+            groupBy: notificationGroupBy,
+            groupHeaderBuilder: (bucket) =>
+                GeneralGroupSectionHeader(label: bucket.label),
+            groupCompare: notificationCompare,
+            itemBuilder: (context, item) => NotificationTile(
+              item: item,
+              isUnread: isUnread(item),
+              onTap: () => openNotification(context, item),
+            ),
+            itemThreshold: NotificationsViewModel.notificationItemThreshold,
+            pageSize: AppConstants.kTwenty,
+            onEmpty: const NotificationsEmptyView(),
+            onLoading: const NotificationsSkeletonList(),
+            padding: const PagePadding.verticalVeryLowSymmetric(),
+          ),
     );
   }
 }

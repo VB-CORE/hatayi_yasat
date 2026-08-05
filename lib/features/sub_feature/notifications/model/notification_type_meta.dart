@@ -19,25 +19,31 @@ final class NotificationTypeMeta extends Equatable {
     BuildContext context,
   ) {
     return switch (type) {
-      AppNotificationType.place => NotificationTypeMeta(
-        icon: AppIcons.store,
-        label: LocaleKeys.notification_typePlace.tr(),
-        color: context.appColors.coral50,
-        iconColor: context.appColors.coral,
-      ),
-      AppNotificationType.event => NotificationTypeMeta(
-        icon: AppIcons.localActivity,
-        label: LocaleKeys.notification_typeEvent.tr(),
-        color: context.appColors.teal50,
-        iconColor: context.appColors.teal,
-      ),
+      AppNotificationType.place || AppNotificationType.store =>
+        NotificationTypeMeta(
+          icon: AppIcons.store,
+          label: LocaleKeys.notification_typePlace.tr(),
+          color: context.appColors.coral50,
+          iconColor: context.appColors.coral,
+        ),
+      AppNotificationType.event || AppNotificationType.campaign =>
+        NotificationTypeMeta(
+          icon: AppIcons.localActivity,
+          label: LocaleKeys.notification_typeEvent.tr(),
+          color: context.appColors.teal50,
+          iconColor: context.appColors.teal,
+        ),
       AppNotificationType.memory => NotificationTypeMeta(
         icon: AppIcons.historyEdu,
         label: LocaleKeys.notification_typeMemory.tr(),
         color: context.appColors.gold200,
         iconColor: context.appColors.gold,
       ),
-      AppNotificationType.system || null => NotificationTypeMeta(
+      AppNotificationType.system ||
+      AppNotificationType.news ||
+      AppNotificationType.advertise ||
+      AppNotificationType.link ||
+      null => NotificationTypeMeta(
         icon: AppIcons.announcement,
         label: LocaleKeys.notification_typeSystem.tr(),
         color: context.appColors.navy50,

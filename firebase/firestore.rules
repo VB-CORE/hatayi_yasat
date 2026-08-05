@@ -427,10 +427,6 @@ service cloud.firestore {
 
     match /notifications/{document} {
       allow read: if true;
-      allow update: if isSignedIn()
-        && affects(['read'])
-        && resource.data.get('read', false) == false
-        && request.resource.data.read == true;
       allow write: if isAdmin();
     }
     match /developers/{document} {

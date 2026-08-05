@@ -73,40 +73,32 @@ final class _NotificationButton extends ConsumerWidget {
     // ref.watch provider'ı canlı tutar (autoDispose) — bkz. NotificationsView.
     ref.watch(notificationsViewModelProvider);
     final notifier = ref.read(notificationsViewModelProvider.notifier);
+    final hasUnread = notifier.unreadItems.isNotEmpty;
 
-    return StreamBuilder<List<AppNotificationModel>>(
-      stream: notifier.unreadStream(),
-      builder: (context, snapshot) {
-        final hasUnread = (snapshot.data ?? const []).isNotEmpty;
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            IconButton(
-              onPressed: () {
-                const NotificationsRoute().go(context);
-              },
-              icon: const Icon(AppIcons.notifications),
-            ),
-            if (hasUnread)
-              Positioned(
-                top: WidgetSizes.spacingS,
-                right: WidgetSizes.spacingS,
-                child: Container(
-                  width: WidgetSizes.spacingXs,
-                  height: WidgetSizes.spacingXs,
-                  decoration: BoxDecoration(
-                    color: context.general.colorScheme.tertiary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: context.appColors.surface,
-                      width: 1.5,
-                    ),
-                  ),
-                ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        IconButton(
+          onPressed: () {
+            const NotificationsRoute().go(context);
+          },
+          icon: const Icon(AppIcons.notifications),
+        ),
+        if (hasUnread)
+          Positioned(
+            top: WidgetSizes.spacingS,
+            right: WidgetSizes.spacingS,
+            child: Container(
+              width: WidgetSizes.spacingXs,
+              height: WidgetSizes.spacingXs,
+              decoration: BoxDecoration(
+                color: context.general.colorScheme.tertiary,
+                shape: BoxShape.circle,
+                border: Border.all(color: context.appColors.surface, width: 1.5),
               ),
-          ],
-        );
-      },
+            ),
+          ),
+      ],
     );
   }
 }
