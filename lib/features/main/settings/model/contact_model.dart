@@ -4,8 +4,10 @@ final class ContactModel {
     required this.imageUrl,
     required this.twitterUrl,
     required this.mail,
+    required this.role,
   });
   final String name;
+  final String role;
   final String imageUrl;
   final String twitterUrl;
   final String mail;
@@ -16,6 +18,7 @@ final class ContactModel {
       mail: 'grafikhtyapp@gmail.com',
       name: 'Veli Bacık',
       twitterUrl: 'https://twitter.com/10VBacik',
+      role: '❤️ Sevgiyle Geliştirildi',
     ),
     ContactModel(
       imageUrl:
@@ -23,6 +26,7 @@ final class ContactModel {
       mail: 'grafikhtyapp@gmail.com',
       name: 'Grafik Herif',
       twitterUrl: 'https://twitter.com/grafikherif',
+      role: '🌱 Gönülden Katkılarla',
     ),
   ];
 }

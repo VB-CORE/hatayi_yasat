@@ -93,7 +93,7 @@ abstract class _$NewsBookmarkViewModel extends $Notifier<NewsBookmarkState> {
   NewsBookmarkState build(String newsId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<NewsBookmarkState, NewsBookmarkState>;
     final element =
         ref.element
@@ -103,7 +103,7 @@ abstract class _$NewsBookmarkViewModel extends $Notifier<NewsBookmarkState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }
 
