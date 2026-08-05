@@ -590,6 +590,8 @@ abstract class  LocaleKeys {
   static const community_groupDetail_wall_composerHint = 'community.groupDetail.wall.composerHint';
   static const community_groupDetail_wall_commentCount = 'community.groupDetail.wall.commentCount';
   static const community_groupDetail_wall_empty = 'community.groupDetail.wall.empty';
+  static const community_groupDetail_wall_deleteFailedContent = 'community.groupDetail.wall.deleteFailedContent';
+  static const community_groupDetail_wall_deleteSuccessMessage = 'community.groupDetail.wall.deleteSuccessMessage';
   static const community_groupDetail_wall = 'community.groupDetail.wall';
   static const community_groupDetail_discussions_startTitle = 'community.groupDetail.discussions.startTitle';
   static const community_groupDetail_discussions_startSubtitle = 'community.groupDetail.discussions.startSubtitle';
@@ -604,6 +606,10 @@ abstract class  LocaleKeys {
   static const community_groupDetail_discussions_anonymityBanner = 'community.groupDetail.discussions.anonymityBanner';
   static const community_groupDetail_discussions_openedByGroup = 'community.groupDetail.discussions.openedByGroup';
   static const community_groupDetail_discussions_replyComposerHint = 'community.groupDetail.discussions.replyComposerHint';
+  static const community_groupDetail_discussions_entryDeleteFailedContent = 'community.groupDetail.discussions.entryDeleteFailedContent';
+  static const community_groupDetail_discussions_entryDeleteSuccessMessage = 'community.groupDetail.discussions.entryDeleteSuccessMessage';
+  static const community_groupDetail_discussions_discussionDeleteFailedContent = 'community.groupDetail.discussions.discussionDeleteFailedContent';
+  static const community_groupDetail_discussions_discussionDeleteSuccessMessage = 'community.groupDetail.discussions.discussionDeleteSuccessMessage';
   static const community_groupDetail_discussions = 'community.groupDetail.discussions';
   static const community_groupDetail_details_aboutTitle = 'community.groupDetail.details.aboutTitle';
   static const community_groupDetail_details_infoTitle = 'community.groupDetail.details.infoTitle';
@@ -623,6 +629,9 @@ abstract class  LocaleKeys {
   static const community_groupDetail_details_categoryLabel = 'community.groupDetail.details.categoryLabel';
   static const community_groupDetail_details = 'community.groupDetail.details';
   static const community_groupDetail = 'community.groupDetail';
+  static const community_deleteOption = 'community.deleteOption';
+  static const community_deleteConfirmTitle = 'community.deleteConfirmTitle';
+  static const community_deleteConfirmContent = 'community.deleteConfirmContent';
   static const community = 'community';
   static const unauthorized_errorCode = 'unauthorized.errorCode';
   static const unauthorized_title = 'unauthorized.title';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
+import 'package:lifeclient/features/community/group_detail/wall/view/mixin/group_wall_view_mixin.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/widget/group_post_card.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/widget/wall_composer.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -20,7 +21,10 @@ final class GroupWallView extends ConsumerStatefulWidget {
 }
 
 final class _GroupWallViewState extends ConsumerState<GroupWallView>
-    with AppProviderMixin<GroupWallView>, AutomaticKeepAliveClientMixin {
+    with
+        AppProviderMixin<GroupWallView>,
+        AutomaticKeepAliveClientMixin,
+        GroupWallViewMixin {
   @override
   bool get wantKeepAlive => true;
 

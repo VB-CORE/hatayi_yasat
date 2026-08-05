@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/features/community/group_detail/wall/provider/group_wall_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_view_model.dart';
+import 'package:lifeclient/features/community/widget/community_dismissible_content_card.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -31,30 +33,37 @@ final class GroupPostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      shape: const RoundedRectangleBorder(borderRadius: CustomRadius.large),
-      child: Padding(
-        padding: const PagePadding.generalCardAll(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _PostAuthorRow(model: model),
-            if (model.content.isNotEmpty) ...[
+    return CommunityDismissibleContentCard(
+      contentId: model.id,
+      groupId: groupId,
+      authorUid: model.author.uid,
+      onDelete: (ref) =>
+          ref.read(groupWallViewModelProvider(groupId).notifier).deletePost(model),
+      child: Card(
+        margin: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(borderRadius: CustomRadius.large),
+        child: Padding(
+          padding: const PagePadding.generalCardAll(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _PostAuthorRow(model: model),
+              if (model.content.isNotEmpty) ...[
+                const EmptyBox.smallHeight(),
+                GeneralContentSubTitle(value: model.content),
+              ],
+              if (model.imageUrl != null) ...[
+                const EmptyBox.smallHeight(),
+                _PostImage(model: model),
+              ],
               const EmptyBox.smallHeight(),
-              GeneralContentSubTitle(value: model.content),
+              _PostFooterRow(
+                model: model,
+                groupId: groupId,
+                groupName: groupName,
+              ),
             ],
-            if (model.imageUrl != null) ...[
-              const EmptyBox.smallHeight(),
-              _PostImage(model: model),
-            ],
-            const EmptyBox.smallHeight(),
-            _PostFooterRow(
-              model: model,
-              groupId: groupId,
-              groupName: groupName,
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -107,18 +116,20 @@ final class _PostAuthorRow extends StatelessWidget {
           avatarType: model.author.avatarType,
         ),
         const EmptyBox(width: WidgetSizes.spacingS),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GeneralContentSubTitle(
-              value: model.author.displayName,
-              fontWeight: FontWeight.w700,
-            ),
-            GeneralContentSmallTitle(
-              value: model.createdAt.timeAgoOrNow,
-              color: context.appColors.navy300,
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GeneralContentSubTitle(
+                value: model.author.displayName,
+                fontWeight: FontWeight.w700,
+              ),
+              GeneralContentSmallTitle(
+                value: model.createdAt.timeAgoOrNow,
+                color: context.appColors.navy300,
+              ),
+            ],
+          ),
         ),
       ],
     );

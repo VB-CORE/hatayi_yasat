@@ -48,6 +48,7 @@ final class _GroupDiscussionsViewState
       ),
       itemBuilder: (context, discussion) => GroupDiscussionTile(
         model: discussion,
+        groupId: model.id,
         onTap: () => DiscussionDetailRoute(
           $extra: DiscussionDetailArgs(group: model, discussion: discussion),
         ).push<void>(context),

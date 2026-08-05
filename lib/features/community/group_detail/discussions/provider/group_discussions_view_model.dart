@@ -1,21 +1,54 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/provider/group_discussions_state.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/features/community/provider/content_action_status.dart';
+import 'package:lifeclient/features/community/provider/soft_deletable_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:lifeclient/features/community/query/community_queries.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'group_discussions_view_model.g.dart';
 
 @riverpod
 final class GroupDiscussionsViewModel extends _$GroupDiscussionsViewModel
-    with ProjectDependencyMixin, CommunityQueryMixin {
+    with ProjectDependencyMixin, CommunityQueryMixin, SoftDeletableMixin {
   @override
   GroupDiscussionsState build(String groupId) => const GroupDiscussionsState();
 
   Query<GroupDiscussionModel?> get discussions => discussionsQuery(groupId);
+
+  Future<bool> deleteDiscussion(GroupDiscussionModel discussion) async {
+    if (state.isProcessing) return false;
+    state = state.copyWith(status: const ContentActionProcessing());
+
+    final currentUid = ref.read(authViewModelProvider).user?.uid;
+    final isSuccess = await softDeleteContent(
+      contentPath: CommunityPaths.discussions(groupId),
+      contentId: discussion.id,
+      authorUid: discussion.author.uid,
+      currentUid: currentUid,
+      counterField: UserCounterFields.discussionCount,
+    );
+
+    if (!ref.mounted) return isSuccess;
+    state = state.copyWith(
+      status: isSuccess
+          ? const ContentActionSucceeded(
+              LocaleKeys.community_groupDetail_discussions_discussionDeleteSuccessMessage,
+            )
+          : const ContentActionFailed(
+              LocaleKeys.community_groupDetail_discussions_discussionDeleteFailedContent,
+            ),
+    );
+    return isSuccess;
+  }
+
+  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
 
   Future<GroupDiscussionModel?> startDiscussion({
     required String title,
