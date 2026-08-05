@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/security/nonce_generator.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -18,17 +19,20 @@ final class FirebaseAuthService implements AuthService {
   FirebaseAuthService({
     required FirebaseCustomService firebaseService,
     required ProductCache productCache,
+    required AnalyticsService analyticsService,
     FirebaseAuth? auth,
     GoogleSignIn? googleSignIn,
     NonceGenerator? nonceGenerator,
   }) : _firebaseService = firebaseService,
        _productCache = productCache,
+       _analyticsService = analyticsService,
        _auth = auth ?? FirebaseAuth.instance,
        _googleSignIn = googleSignIn ?? GoogleSignIn(),
        _nonceGenerator = nonceGenerator ?? const NonceGenerator();
 
   final FirebaseCustomService _firebaseService;
   final ProductCache _productCache;
+  final AnalyticsService _analyticsService;
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final NonceGenerator _nonceGenerator;
@@ -62,9 +66,20 @@ final class FirebaseAuthService implements AuthService {
       final result = await _auth.signInWithCredential(credential);
       if (result.user == null) return const SignInFailure();
       final user = await sessionResult;
-      return user == null ? const SignInFailure() : SignInSuccess(user);
-    } on Object catch (error) {
+      if (user == null) return const SignInFailure();
+      return SignInSuccess(
+        user,
+        isNewUser: result.additionalUserInfo?.isNewUser ?? false,
+      );
+    } on Object catch (error, stackTrace) {
       CustomLogger.showError<void>(error);
+      unawaited(
+        _analyticsService.recordError(
+          error,
+          stackTrace,
+          reason: 'signIn(${provider.name})',
+        ),
+      );
       await signOut();
       return const SignInFailure();
     }

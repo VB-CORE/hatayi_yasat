@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:isolate';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +15,8 @@ import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
+import 'package:lifeclient/core/service/analytics/firebase_analytics_service.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
 import 'package:lifeclient/firebase_options.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 
@@ -46,28 +51,50 @@ final class ApplicationInit {
 
     await SharedCache.instance.init();
     // await _injectTestEnvOnDebug();
-    await _crashlyticsInitialize();
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    _bindErrorHandlers();
 
-    FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-    };
-    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-    PlatformDispatcher.instance.onError = (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      return true;
-    };
     ProjectDependency.setup();
+    await ProjectDependencyItems.analyticsService.setCollectionEnabled(
+      enabled: FirebaseAnalyticsService.isEnabled,
+    );
+    await ProjectDependencyItems.analyticsService.setUserProperty(
+      AnalyticsUserProperty.appTheme,
+      SharedCache.instance.theme.name,
+    );
     await ProjectDependencyItems.productCache.init();
     // ProjectDependencyItems.appProvider
     //     .changeAppTheme(theme: SharedCache.instance.theme);
     // await _injectTestEnvOnDebug();
   }
 
-  Future<void> _crashlyticsInitialize() async {
+  void _bindErrorHandlers() {
     FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      // Without this the console stack trace and red error screen are lost.
+      FlutterError.presentError(errorDetails);
+      unawaited(
+        FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails),
+      );
     };
+
+    PlatformDispatcher.instance.onError = (error, stack) {
+      unawaited(
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true),
+      );
+      return true;
+    };
+
+    Isolate.current.addErrorListener(
+      RawReceivePort((List<dynamic> pair) {
+        final [error as Object, stack as String] = pair;
+        unawaited(
+          FirebaseCrashlytics.instance.recordError(
+            error,
+            StackTrace.fromString(stack),
+            fatal: true,
+          ),
+        );
+      }).sendPort,
+    );
   }
 
   Future<void> _setRotation() async {

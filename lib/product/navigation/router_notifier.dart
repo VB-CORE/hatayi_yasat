@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
+import 'package:lifeclient/product/navigation/analytics_route_name.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
 /// GoRouter'ın refreshListenable'ı ChangeNotifier ister; ChangeNotifierProvider
@@ -59,7 +60,10 @@ final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
       return state.matchedLocation == bannedLocation ? null : bannedLocation;
     },
     observers: [
-      FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+      FirebaseAnalyticsObserver(
+        analytics: FirebaseAnalytics.instance,
+        nameExtractor: AnalyticsRouteName.extract,
+      ),
     ],
   );
 });

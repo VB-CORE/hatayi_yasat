@@ -41,13 +41,13 @@ final class FilterWithSearchProvider
   }
 }
 
-String _$filterWithSearchHash() => r'9259200dda6704d15bb4b0ad7f2317f8d969c4ae';
+String _$filterWithSearchHash() => r'5cd0d2f410a30d4a51ccd431513d3365af1022fa';
 
 abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
   FilterSearchState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<FilterSearchState, FilterSearchState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

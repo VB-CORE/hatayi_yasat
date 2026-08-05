@@ -42,13 +42,13 @@ final class PlaceRequestProviderProvider
 }
 
 String _$placeRequestProviderHash() =>
-    r'75461ecbd264272713ab0728d878d0b69b002bbf';
+    r'7f724220e1837f864b58d921cf57ecce2c76c991';
 
 abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
   PlaceRequestState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<PlaceRequestState, PlaceRequestState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$PlaceRequestProvider extends $Notifier<PlaceRequestState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 
 @immutable
@@ -45,9 +49,14 @@ final class MessagingUtility {
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       final messageBody = event.data;
       if (messageBody.isEmpty) return;
-      onMessageHandle.call(
-        NotificationModel.fromJson(messageBody),
+      final model = NotificationModel.fromJson(messageBody);
+      unawaited(
+        ProjectDependencyItems.analyticsService.logEvent(
+          AnalyticsEvent.notificationOpen,
+          parameters: {AnalyticsParameter.notificationType: _typeOf(model)},
+        ),
       );
+      onMessageHandle.call(model);
     });
 
     FirebaseMessaging.onMessage.listen((event) {
@@ -61,5 +70,13 @@ final class MessagingUtility {
         ),
       );
     });
+  }
+
+  static String _typeOf(NotificationModel model) {
+    if (model.campaignId != null) return 'campaign';
+    if (model.newsId != null) return 'news';
+    if (model.advertiseId != null) return 'advertise';
+    if (model.link != null) return 'link';
+    return 'general';
   }
 }

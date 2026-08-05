@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/merchant_application/model/merchant_application_model.dart';
@@ -212,6 +213,15 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
     state = state.copyWith(
       isSubmitting: false,
       isError: application == null,
+    );
+
+    await analyticsService.logEvent(
+      application == null
+          ? AnalyticsEvent.formError
+          : AnalyticsEvent.merchantApplicationSubmit,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.merchantApplication.key,
+      },
     );
     return application;
   }

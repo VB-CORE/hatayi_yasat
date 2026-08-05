@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
+import 'package:lifeclient/core/service/analytics/firebase_analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
 import 'package:lifeclient/core/service/user/firebase_user_service.dart';
@@ -34,10 +36,15 @@ final class ProjectDependency {
     );
     GetIt.I.registerLazySingleton<CustomStorageService>(StorageService.new);
 
+    GetIt.I.registerLazySingleton<AnalyticsService>(
+      FirebaseAnalyticsService.new,
+    );
+
     GetIt.I.registerLazySingleton<AuthService>(
       () => FirebaseAuthService(
         firebaseService: GetIt.I.get<FirebaseCustomService>(),
         productCache: GetIt.I.get<ProductCache>(),
+        analyticsService: GetIt.I.get<AnalyticsService>(),
       ),
     );
 

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/model/place_request_model.dart';
 import 'package:lifeclient/features/sub_feature/forms/place_request/provider/place_request_state.dart';
 import 'package:lifeclient/product/utility/extension/time_of_day_extension.dart';
@@ -10,7 +12,8 @@ import 'package:uuid/uuid.dart';
 part 'place_request_provider.g.dart';
 
 @riverpod
-final class PlaceRequestProvider extends _$PlaceRequestProvider {
+final class PlaceRequestProvider extends _$PlaceRequestProvider
+    with ProjectDependencyMixin {
   @override
   PlaceRequestState build() => const PlaceRequestState();
 
@@ -30,7 +33,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       key: uuid,
     );
 
-    if (uploadImage == null) return false;
+    if (uploadImage == null) return _failed('image_upload');
     final deviceId = await ''.ext.deviceId;
     final storage = StoreModel(
       category: placeRequestModel.placeCategory,
@@ -64,10 +67,25 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider {
       isSendingRequest: false,
     );
 
-    if (response == null) {
-      return false;
-    }
+    if (response == null) return _failed('write_failed');
 
+    await analyticsService.logEvent(
+      AnalyticsEvent.formSubmit,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,
+      },
+    );
     return true;
+  }
+
+  Future<bool> _failed(String reason) async {
+    await analyticsService.logEvent(
+      AnalyticsEvent.formError,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,
+        AnalyticsParameter.reason: reason,
+      },
+    );
+    return false;
   }
 }

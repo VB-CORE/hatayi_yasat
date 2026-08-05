@@ -90,6 +90,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
                 store: store,
                 onCall: onCall,
                 onCopyAddress: onCopyAddress,
+                onOpenMaps: onOpenMaps,
               ),
             ),
           ),

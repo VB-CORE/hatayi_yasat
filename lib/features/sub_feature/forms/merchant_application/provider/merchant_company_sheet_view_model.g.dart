@@ -54,7 +54,7 @@ abstract class _$MerchantCompanySheetViewModel
   MerchantCompanySheetState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<MerchantCompanySheetState, MerchantCompanySheetState>;
     final element =
@@ -65,6 +65,6 @@ abstract class _$MerchantCompanySheetViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

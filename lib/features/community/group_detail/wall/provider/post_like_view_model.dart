@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_state.dart';
@@ -54,6 +55,19 @@ final class PostLikeViewModel extends _$PostLikeViewModel
         ),
       );
     });
+
+    if (result.isSuccess) {
+      unawaited(
+        analyticsService.logEvent(
+          AnalyticsEvent.postLikeToggle,
+          parameters: {
+            AnalyticsParameter.groupId: groupId,
+            AnalyticsParameter.postId: post.id,
+            AnalyticsParameter.isLiked: willLike,
+          },
+        ),
+      );
+    }
 
     if (!ref.mounted) return result.isSuccess ? willLike : !willLike;
 
