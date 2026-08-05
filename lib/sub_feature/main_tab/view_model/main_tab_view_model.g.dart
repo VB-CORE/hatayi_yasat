@@ -47,7 +47,7 @@ abstract class _$MainTabViewModel extends $Notifier<MainTabState> {
   MainTabState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<MainTabState, MainTabState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$MainTabViewModel extends $Notifier<MainTabState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

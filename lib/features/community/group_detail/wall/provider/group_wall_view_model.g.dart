@@ -59,7 +59,7 @@ final class GroupWallViewModelProvider
 }
 
 String _$groupWallViewModelHash() =>
-    r'da7980a0b3a5d61bda781cfd106d8fc556becfb5';
+    r'8bedc82bd51b6ae0e8394799fef32500fcb71885';
 
 final class GroupWallViewModelFamily extends $Family
     with
@@ -93,7 +93,7 @@ abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
   GroupWallState build(String groupId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<GroupWallState, GroupWallState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$GroupWallViewModel extends $Notifier<GroupWallState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

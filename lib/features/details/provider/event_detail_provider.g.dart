@@ -48,7 +48,7 @@ abstract class _$EventDetailProvider extends $Notifier<EventDetailState> {
   EventDetailState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<EventDetailState, EventDetailState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$EventDetailProvider extends $Notifier<EventDetailState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

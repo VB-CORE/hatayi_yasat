@@ -48,7 +48,7 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
   ChainStoreState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<ChainStoreState, ChainStoreState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

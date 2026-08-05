@@ -96,7 +96,7 @@ abstract class _$MerchantShowcaseViewModel
   MerchantShowcaseState build(String storeId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<MerchantShowcaseState, MerchantShowcaseState>;
     final element =
         ref.element
@@ -106,6 +106,6 @@ abstract class _$MerchantShowcaseViewModel
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

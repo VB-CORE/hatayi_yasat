@@ -51,7 +51,7 @@ abstract class _$ScholarshipRequestProvider
   ScholarshipRequestState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref =
         this.ref as $Ref<ScholarshipRequestState, ScholarshipRequestState>;
     final element =
@@ -62,6 +62,6 @@ abstract class _$ScholarshipRequestProvider
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

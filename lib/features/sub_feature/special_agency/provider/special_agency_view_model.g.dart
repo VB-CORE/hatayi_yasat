@@ -48,7 +48,7 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
   SpecialAgencyState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<SpecialAgencyState, SpecialAgencyState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

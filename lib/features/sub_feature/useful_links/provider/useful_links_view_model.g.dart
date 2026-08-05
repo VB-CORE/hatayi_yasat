@@ -48,7 +48,7 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
   UsefulLinksState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<UsefulLinksState, UsefulLinksState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

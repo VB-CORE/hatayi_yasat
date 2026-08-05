@@ -96,7 +96,7 @@ abstract class _$MerchantStoreEditViewModel
   MerchantStoreEditState build(String storeId);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref =
         this.ref as $Ref<MerchantStoreEditState, MerchantStoreEditState>;
     final element =
@@ -107,6 +107,6 @@ abstract class _$MerchantStoreEditViewModel
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

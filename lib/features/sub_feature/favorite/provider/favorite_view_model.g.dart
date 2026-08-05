@@ -47,7 +47,7 @@ abstract class _$FavoriteViewModel extends $Notifier<FavoriteState> {
   FavoriteState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<FavoriteState, FavoriteState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$FavoriteViewModel extends $Notifier<FavoriteState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

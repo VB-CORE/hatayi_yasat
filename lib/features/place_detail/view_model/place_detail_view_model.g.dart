@@ -93,7 +93,7 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
   PlaceDetailState build(PlaceDetailArgs args);
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<PlaceDetailState, PlaceDetailState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$PlaceDetailViewModel extends $Notifier<PlaceDetailState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, () => build(_$args));
+    element.handleCreate(ref, () => build(_$args));
   }
 }

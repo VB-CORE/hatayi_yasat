@@ -47,7 +47,7 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
   FilterSearchState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<FilterSearchState, FilterSearchState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }

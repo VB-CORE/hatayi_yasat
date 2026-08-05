@@ -48,7 +48,7 @@ abstract class _$MerchantPanelViewModel extends $Notifier<MerchantPanelState> {
   MerchantPanelState build();
   @$mustCallSuper
   @override
-  WhenComplete runBuild() {
+  void runBuild() {
     final ref = this.ref as $Ref<MerchantPanelState, MerchantPanelState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$MerchantPanelViewModel extends $Notifier<MerchantPanelState> {
               Object?,
               Object?
             >;
-    return element.handleCreate(ref, build);
+    element.handleCreate(ref, build);
   }
 }
