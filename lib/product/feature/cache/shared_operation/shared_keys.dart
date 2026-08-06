@@ -1,5 +1,5 @@
 enum SharedKeys {
-  firstAppOpen,
+  isCompletedOnboarding,
   theme,
   applyScholarship,
   lastNotificationSeenTime,

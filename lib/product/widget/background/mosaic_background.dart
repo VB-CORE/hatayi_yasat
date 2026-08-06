@@ -6,12 +6,14 @@ final class MosaicBackground extends StatelessWidget {
     this.gradient,
     this.showGradient = true,
     this.tileOpacity = 0.30,
+    this.tileSize = 20,
     super.key,
   });
 
   final Gradient? gradient;
   final bool showGradient;
   final double tileOpacity;
+  final double tileSize;
 
   static const Gradient _defaultGradient = LinearGradient(
     begin: .topLeft,
@@ -27,6 +29,7 @@ final class MosaicBackground extends StatelessWidget {
           gradient: gradient ?? _defaultGradient,
           showGradient: showGradient,
           tileOpacity: tileOpacity,
+          tileSize: tileSize,
         ),
       ),
     );
@@ -38,13 +41,14 @@ final class _MosaicPatternPainter extends CustomPainter {
     required this.gradient,
     required this.showGradient,
     required this.tileOpacity,
+    required this.tileSize,
   });
 
   final Gradient gradient;
   final bool showGradient;
   final double tileOpacity;
+  final double tileSize;
 
-  static const double _tileSize = 20;
   static const double _tileGap = 7;
   static const double _tileRadius = 4;
 
@@ -79,7 +83,7 @@ final class _MosaicPatternPainter extends CustomPainter {
 
   void _paintTiles(Canvas canvas, Size size) {
     final paint = Paint();
-    const tileStep = _tileSize + _tileGap;
+    final tileStep = tileSize + _tileGap;
     const radius = Radius.circular(_tileRadius);
 
     final rowCount = (size.height / tileStep).ceil();
@@ -95,8 +99,8 @@ final class _MosaicPatternPainter extends CustomPainter {
         final rect = Rect.fromLTWH(
           column * tileStep,
           row * tileStep,
-          _tileSize,
-          _tileSize,
+          tileSize,
+          tileSize,
         );
 
         canvas.drawRRect(RRect.fromRectAndRadius(rect, radius), paint);
@@ -116,6 +120,7 @@ final class _MosaicPatternPainter extends CustomPainter {
   bool shouldRepaint(covariant _MosaicPatternPainter oldDelegate) {
     return oldDelegate.gradient != gradient ||
         oldDelegate.showGradient != showGradient ||
-        oldDelegate.tileOpacity != tileOpacity;
+        oldDelegate.tileOpacity != tileOpacity ||
+        oldDelegate.tileSize != tileSize;
   }
 }

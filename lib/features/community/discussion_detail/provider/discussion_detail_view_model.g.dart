@@ -100,7 +100,7 @@ abstract class _$DiscussionDetailViewModel
   DiscussionDetailState build(String groupId, String discussionId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<DiscussionDetailState, DiscussionDetailState>;
     final element =
         ref.element
@@ -110,6 +110,6 @@ abstract class _$DiscussionDetailViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
+    return element.handleCreate(ref, () => build(_$args.$1, _$args.$2));
   }
 }

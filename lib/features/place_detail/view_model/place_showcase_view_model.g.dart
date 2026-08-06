@@ -94,7 +94,7 @@ abstract class _$PlaceShowcaseViewModel extends $Notifier<PlaceShowcaseState> {
   PlaceShowcaseState build(String placeId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<PlaceShowcaseState, PlaceShowcaseState>;
     final element =
         ref.element
@@ -104,6 +104,6 @@ abstract class _$PlaceShowcaseViewModel extends $Notifier<PlaceShowcaseState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
