@@ -200,18 +200,18 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
               ),
             ),
           const EmptyBox.smallHeight(),
-          Wrap(
-            spacing: AppSpacing.sm,
-            runSpacing: AppSpacing.xxs,
-            crossAxisAlignment: WrapCrossAlignment.center,
+          Row(
             children: [
-              StatusPill(store: model),
+              Flexible(child: StatusPill(store: model)),
+              const SizedBox(width: AppSpacing.sm),
               PlaceRatingLabel(
                 rating: model.averageRatingLabel,
                 reviewCount: model.ratingCount,
               ),
+              const SizedBox(width: AppSpacing.sm),
               GeneralContentSmallTitle(
                 value: distanceLabel,
+                maxLine: 1,
                 color: context.general.colorScheme.onSurfaceVariant,
               ),
             ],

@@ -30,6 +30,7 @@ import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dar
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
+import 'package:lifeclient/sub_feature/main_tab/provider/main_tab_jump_provider.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/widget/qr_fab_button.dart';
 
@@ -63,9 +64,14 @@ class _MainTabViewState extends ConsumerState<MainTabView>
         },
         child: DefaultTabController(
           length: _tabItems.length,
-          child: Builder(
-            builder: (context) {
+          child: Consumer(
+            builder: (context, ref, child) {
               final tabController = DefaultTabController.of(context);
+              ref.listen(mainTabJumpProvider, (previous, next) {
+                if (next == null) return;
+                tabController.animateTo(next);
+                ref.read(mainTabJumpProvider.notifier).consume();
+              });
               return ListenableBuilder(
                 listenable: tabController,
                 builder: (context, _) {
