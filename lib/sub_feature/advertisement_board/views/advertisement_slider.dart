@@ -48,15 +48,9 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
             CarouselSlider.builder(
               itemCount: pageCount,
               itemBuilder: (context, index, realIndex) {
-                final child = index == 0
+                return index == 0
                     ? const _HouseAdCard()
-                    : _AdvertisementItem(
-                        items[index - 1],
-                      );
-                return Padding(
-                  padding: const PagePadding.horizontalLowSymmetric(),
-                  child: child,
-                );
+                    : _AdvertisementItem(items[index - 1]);
               },
               options: CustomCarouselOptions.advertisement(
                 height: _sliderHeight,
