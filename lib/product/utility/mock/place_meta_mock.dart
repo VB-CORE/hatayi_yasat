@@ -25,14 +25,3 @@ final class PlaceMetaMock {
 
   String get distanceLabel => '${distanceKm.toStringAsFixed(1)} km';
 }
-
-/// Placeholder per-category place counts for the category chips + eyebrow,
-/// until the backend exposes real aggregates. Deterministic from category value.
-final class CategoryCountMock {
-  const CategoryCountMock._();
-
-  static int forValue(int value) => 8 + value.abs() % 40;
-
-  static int total(Iterable<int> values) =>
-      values.fold(0, (sum, value) => sum + forValue(value));
-}

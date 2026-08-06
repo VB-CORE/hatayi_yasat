@@ -841,5 +841,63 @@
   "newsFeed": {
     "badge": "News",
     "readMore": "Read more"
+  },
+  "onboarding": {
+    "welcome": {
+      "desc": "The city's shopkeepers, community, and memory all in one app. Let's keep Hatay alive as it rises again together."
+    },
+    "button": {
+      "start": "Let's Start",
+      "next": "Continue",
+      "complete": "Complete",
+      "skip": "Skip"
+    },
+    "pages": {
+      "0": {
+        "category": "PLACE DISCOVERY",
+        "title": "Local shopkeepers in the palm of your hand",
+        "desc": "Antakya, Defne, Iskenderun... See open places near you, filter by category and district, find what you need instantly.",
+        "chips": {
+          "0": "Home feed",
+          "1": "Category & Filter",
+          "2": "Place Details",
+          "3": "Favorites"
+        }
+      },
+      "1": {
+        "category": "RATING & REVIEW",
+        "title": "Share your experience, give a rating",
+        "desc": "Give stars, add photos, write your review. Shopkeepers can respond - communication is two-way.",
+        "chips": {
+          "0": "1-5 stars",
+          "1": "Photo review",
+          "2": "Shopkeeper response",
+          "3": "Verified visit"
+        }
+      },
+      "2": {
+        "category": "COMMUNITY & NEWS",
+        "title": "Groups, feeds, city agenda",
+        "desc": "Create or join groups based on interests; share on the feed, participate in discussions. News and events feed is open to everyone.",
+        "chips": {
+          "0": "Create / Join group",
+          "1": "Group feed",
+          "2": "Discussion topics",
+          "3": "News & Event"
+        }
+      },
+      "3": {
+        "category": "SHOPKEEPER & COUPON",
+        "title": "If you are a merchant, your dashboard is ready",
+        "desc": "Submit your application, open your dashboard after approval: showcase, store, review responses, and exclusive coupons for customers.",
+        "chips": {
+          "0": "Application & Approval",
+          "1": "Showcase / Store",
+          "2": "Reply to reviews",
+          "3": "Create coupon"
+        }
+      }
+    }
   }
 }
+

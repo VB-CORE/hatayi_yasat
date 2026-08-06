@@ -23,7 +23,6 @@ final class _HomeCategoryCards extends ConsumerWidget {
         vm.categories.where((e) => e.value != _otherCategoryValue).toList()
           ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length));
     final visible = categories.take(_maxCategoryItemLength).toList();
-    final total = CategoryCountMock.total(visible.map((e) => e.value));
 
     return SingleChildScrollView(
       key: const Key('homeCategoriesList'),
@@ -34,7 +33,6 @@ final class _HomeCategoryCards extends ConsumerWidget {
           _CategoryCard(
             key: const Key('categoryCard_all'),
             name: LocaleKeys.home_allCategory.tr(),
-            count: total,
             icon: CategoryVisual.allIcon,
             accent: AppColors.coral,
             isActive: selected.isEmpty,
@@ -46,7 +44,6 @@ final class _HomeCategoryCards extends ConsumerWidget {
             _CategoryCard(
               key: Key('categoryCard_${category.value}'),
               name: category.displayName,
-              count: CategoryCountMock.forValue(category.value),
               icon: CategoryVisual.iconFor(category),
               accent: CategoryVisual.accentFor(category),
               isActive: selected.contains(category.value),
@@ -63,7 +60,6 @@ final class _HomeCategoryCards extends ConsumerWidget {
 final class _CategoryCard extends StatelessWidget {
   const _CategoryCard({
     required this.name,
-    required this.count,
     required this.icon,
     required this.accent,
     required this.isActive,
@@ -72,7 +68,6 @@ final class _CategoryCard extends StatelessWidget {
   });
 
   final String name;
-  final int count;
   final IconData icon;
   final Color accent;
   final bool isActive;
@@ -114,14 +109,6 @@ final class _CategoryCard extends StatelessWidget {
                   name,
                   style: AppText.body.copyWith(
                     color: foreground,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.xxs),
-                Text(
-                  '$count',
-                  style: AppText.caption.copyWith(
-                    color: isActive ? AppColors.white : AppColors.ink400,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
