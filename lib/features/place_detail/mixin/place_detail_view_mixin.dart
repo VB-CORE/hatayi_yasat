@@ -54,9 +54,7 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   }
 
   Future<void> onCall() {
-    unawaited(
-      ref.read(placeDetailViewModelProvider(args).notifier).logCallTap(),
-    );
+    ref.read(placeDetailViewModelProvider(args).notifier).logCallTap();
     return RedirectionMixin.openToPhone(
       context: context,
       phoneNumber: store.phone,
@@ -64,9 +62,7 @@ mixin PlaceDetailViewMixin on ConsumerState<PlaceDetailView> {
   }
 
   Future<void> onOpenMaps(GeoPoint latLong) {
-    unawaited(
-      ref.read(placeDetailViewModelProvider(args).notifier).logDirectionsTap(),
-    );
+    ref.read(placeDetailViewModelProvider(args).notifier).logDirectionsTap();
     return '${latLong.latitude},${latLong.longitude}'.ext.launchMaps();
   }
 

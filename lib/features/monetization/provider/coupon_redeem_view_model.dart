@@ -37,21 +37,21 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
 
     final userUid = UserQrPayload.decode(rawQrValue);
     if (userUid == null) {
-      await _fail(CouponRedeemError.invalidQr);
+      _fail(CouponRedeemError.invalidQr);
       return;
     }
 
     final coupon = _coupon;
     if (coupon == null) {
-      await _fail(CouponRedeemError.failed);
+      _fail(CouponRedeemError.failed);
       return;
     }
     if (coupon.isExpired) {
-      await _fail(CouponRedeemError.expired);
+      _fail(CouponRedeemError.expired);
       return;
     }
     if (coupon.isUsageLimitReached) {
-      await _fail(CouponRedeemError.usageLimitReached);
+      _fail(CouponRedeemError.usageLimitReached);
       return;
     }
 
@@ -66,12 +66,12 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
 
     switch (existing) {
       case FirebaseFailure(:final error):
-        await analyticsService.recordError(
+        analyticsService.recordError(
           error,
           StackTrace.current,
           reason: 'couponRedeem.lookup($couponId)',
         );
-        await _fail(CouponRedeemError.failed, isProcessing: false);
+        _fail(CouponRedeemError.failed, isProcessing: false);
         return;
       case FirebaseSuccess(:final data):
         if (data != null) {
@@ -79,7 +79,7 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
             isProcessing: false,
             result: CouponRedeemAlreadyUsed(data.redeemedAt),
           );
-          await _logFailure('already_used');
+          _logFailure('already_used');
           return;
         }
     }
@@ -116,7 +116,7 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
       result: CouponRedeemGranted(redemption),
     );
 
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.couponRedeem,
       parameters: {
         AnalyticsParameter.couponId: couponId,
@@ -144,23 +144,23 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
       ),
     };
 
-    await _logFailure(
+    _logFailure(
       state.result is CouponRedeemAlreadyUsed
           ? 'already_used'
           : CouponRedeemError.failed.name,
     );
   }
 
-  Future<void> _fail(CouponRedeemError error, {bool? isProcessing}) async {
+  void _fail(CouponRedeemError error, {bool? isProcessing}) {
     state = state.copyWith(
       isProcessing: isProcessing,
       result: CouponRedeemFailed(error),
     );
-    await _logFailure(error.name);
+    _logFailure(error.name);
   }
 
-  Future<void> _logFailure(String reason) {
-    return analyticsService.logEvent(
+  void _logFailure(String reason) {
+    analyticsService.logEvent(
       AnalyticsEvent.couponRedeemFailed,
       parameters: {
         AnalyticsParameter.couponId: couponId,

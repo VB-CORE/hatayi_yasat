@@ -46,16 +46,19 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     state = state.copyWith(
       status: isSuccess
           ? const ContentActionSucceeded(
-              LocaleKeys.community_groupDetail_discussions_entryDeleteSuccessMessage,
+              LocaleKeys
+                  .community_groupDetail_discussions_entryDeleteSuccessMessage,
             )
           : const ContentActionFailed(
-              LocaleKeys.community_groupDetail_discussions_entryDeleteFailedContent,
+              LocaleKeys
+                  .community_groupDetail_discussions_entryDeleteFailedContent,
             ),
     );
     return isSuccess;
   }
 
-  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
+  void resetStatus() =>
+      state = state.copyWith(status: const ContentActionIdle());
 
   Future<bool> addEntry(String content) async {
     final member = ref
@@ -92,7 +95,7 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
       state = state.copyWith(isSubmitting: false, isError: !result.isSuccess);
     }
     if (result.isSuccess) {
-      await analyticsService.logEvent(
+      analyticsService.logEvent(
         AnalyticsEvent.createDiscussion,
         parameters: {
           AnalyticsParameter.groupId: groupId,

@@ -27,11 +27,9 @@ mixin MonetizationViewMixin
   }
 
   void onRedeem(CouponModel coupon) {
-    unawaited(
-      analyticsService.logEvent(
-        AnalyticsEvent.viewCoupon,
-        parameters: {AnalyticsParameter.couponId: coupon.documentId},
-      ),
+    analyticsService.logEvent(
+      AnalyticsEvent.viewCoupon,
+      parameters: {AnalyticsParameter.couponId: coupon.documentId},
     );
     CouponRedeemRoute($extra: coupon).go(context);
   }

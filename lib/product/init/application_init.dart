@@ -57,7 +57,7 @@ final class ApplicationInit {
     await ProjectDependencyItems.analyticsService.setCollectionEnabled(
       enabled: FirebaseAnalyticsService.isEnabled,
     );
-    await ProjectDependencyItems.analyticsService.setUserProperty(
+    ProjectDependencyItems.analyticsService.setUserProperty(
       AnalyticsUserProperty.appTheme,
       SharedCache.instance.theme.name,
     );

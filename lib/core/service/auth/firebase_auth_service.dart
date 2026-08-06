@@ -73,12 +73,10 @@ final class FirebaseAuthService implements AuthService {
       );
     } on Object catch (error, stackTrace) {
       CustomLogger.showError<void>(error);
-      unawaited(
-        _analyticsService.recordError(
-          error,
-          stackTrace,
-          reason: 'signIn(${provider.name})',
-        ),
+      _analyticsService.recordError(
+        error,
+        stackTrace,
+        reason: 'signIn(${provider.name})',
       );
       await signOut();
       return const SignInFailure();

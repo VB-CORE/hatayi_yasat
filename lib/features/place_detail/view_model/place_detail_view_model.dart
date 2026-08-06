@@ -19,7 +19,7 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     unawaited(_incrementVisitCount(args.placeId));
 
     if (args.hasStore) {
-      unawaited(_logView(args.store));
+      _logView(args.store);
       return PlaceDetailState(storeModel: args.store);
     }
 
@@ -50,9 +50,9 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
 
     switch (result) {
       case FirebaseSuccess(:final data):
-        if (data != null) await _logView(data);
+        if (data != null) _logView(data);
       case FirebaseFailure(:final error):
-        await analyticsService.recordError(
+        analyticsService.recordError(
           error,
           StackTrace.current,
           reason: 'placeDetail.fetchStore($id)',
@@ -60,8 +60,8 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     }
   }
 
-  Future<void> _logView(StoreModel store) {
-    return analyticsService.logEvent(
+  void _logView(StoreModel store) {
+    analyticsService.logEvent(
       AnalyticsEvent.viewPlaceDetail,
       parameters: {
         AnalyticsParameter.placeId: store.documentId,
@@ -70,8 +70,8 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     );
   }
 
-  Future<void> logCallTap() {
-    return analyticsService.logEvent(
+  void logCallTap() {
+    analyticsService.logEvent(
       AnalyticsEvent.placeCallTap,
       parameters: {
         AnalyticsParameter.placeId: state.storeModel.documentId,
@@ -79,8 +79,8 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
     );
   }
 
-  Future<void> logDirectionsTap() {
-    return analyticsService.logEvent(
+  void logDirectionsTap() {
+    analyticsService.logEvent(
       AnalyticsEvent.placeDirectionsTap,
       parameters: {
         AnalyticsParameter.placeId: state.storeModel.documentId,

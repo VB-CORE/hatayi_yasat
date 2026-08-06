@@ -35,11 +35,7 @@ final class AppProvider extends Notifier<AppProviderState>
     if (state.theme == theme) return;
     state = state.copyWith(theme: theme);
     await SharedCache.instance.setTheme(theme);
-    await _reportTheme(theme);
-  }
-
-  Future<void> _reportTheme(ThemeMode theme) {
-    return ProjectDependencyItems.analyticsService.setUserProperty(
+    ProjectDependencyItems.analyticsService.setUserProperty(
       AnalyticsUserProperty.appTheme,
       theme.name,
     );

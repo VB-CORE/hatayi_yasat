@@ -57,15 +57,13 @@ final class PostLikeViewModel extends _$PostLikeViewModel
     });
 
     if (result.isSuccess) {
-      unawaited(
-        analyticsService.logEvent(
-          AnalyticsEvent.postLikeToggle,
-          parameters: {
-            AnalyticsParameter.groupId: groupId,
-            AnalyticsParameter.postId: post.id,
-            AnalyticsParameter.isLiked: willLike,
-          },
-        ),
+      analyticsService.logEvent(
+        AnalyticsEvent.postLikeToggle,
+        parameters: {
+          AnalyticsParameter.groupId: groupId,
+          AnalyticsParameter.postId: post.id,
+          AnalyticsParameter.isLiked: willLike,
+        },
       );
     }
 

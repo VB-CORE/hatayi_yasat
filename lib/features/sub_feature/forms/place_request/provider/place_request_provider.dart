@@ -69,7 +69,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
 
     if (response == null) return _failed('write_failed');
 
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.formSubmit,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,
@@ -78,8 +78,8 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
     return true;
   }
 
-  Future<bool> _failed(String reason) async {
-    await analyticsService.logEvent(
+  bool _failed(String reason) {
+    analyticsService.logEvent(
       AnalyticsEvent.formError,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,

@@ -55,7 +55,7 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider
 
     if (response == null) return _failed('write_failed');
 
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.formSubmit,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,
@@ -64,8 +64,8 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider
     return true;
   }
 
-  Future<bool> _failed(String reason) async {
-    await analyticsService.logEvent(
+  bool _failed(String reason) {
+    analyticsService.logEvent(
       AnalyticsEvent.formError,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,

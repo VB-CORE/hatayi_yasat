@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -53,11 +51,9 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
   @override
   void showResults(BuildContext context) {
     if (query.isValidSearchTerm) {
-      unawaited(
-        ProjectDependencyItems.analyticsService.logEvent(
-          AnalyticsEvent.search,
-          parameters: {AnalyticsParameter.searchTerm: query},
-        ),
+      ProjectDependencyItems.analyticsService.logEvent(
+        AnalyticsEvent.search,
+        parameters: {AnalyticsParameter.searchTerm: query},
       );
     }
     super.showResults(context);
@@ -126,14 +122,12 @@ mixin _PlaceSearchMixin on SearchDelegate<SearchResponse> {
     BuildContext context,
   ) async {
     ProjectDependencyItems.productProvider.saveLastSearch(query);
-    unawaited(
-      ProjectDependencyItems.analyticsService.logEvent(
-        AnalyticsEvent.selectContent,
-        parameters: {
-          AnalyticsParameter.contentType: 'place',
-          AnalyticsParameter.itemId: response.id,
-        },
-      ),
+    ProjectDependencyItems.analyticsService.logEvent(
+      AnalyticsEvent.selectContent,
+      parameters: {
+        AnalyticsParameter.contentType: 'place',
+        AnalyticsParameter.itemId: response.id,
+      },
     );
     await PlaceDetailRoute(
       $extra: StoreModel.empty(),

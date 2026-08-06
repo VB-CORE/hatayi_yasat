@@ -215,7 +215,7 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
       isError: application == null,
     );
 
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       application == null
           ? AnalyticsEvent.formError
           : AnalyticsEvent.merchantApplicationSubmit,

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -23,78 +25,123 @@ final class FirebaseAnalyticsService implements AnalyticsService {
 
   static bool get isEnabled => !kDebugMode || _debugOverride;
 
+  bool _isReportingFailure = false;
+
   @override
-  Future<void> logEvent(
+  void logEvent(
     AnalyticsEvent event, {
     Map<AnalyticsParameter, Object?> parameters = const {},
-  }) async {
+  }) {
     if (!isEnabled) return;
     final payload = _sanitize(parameters);
-    await _crashlytics.log(
-      payload.isEmpty ? event.key : '${event.key} $payload',
-    );
-    await _analytics.logEvent(
-      name: event.key,
-      parameters: payload.isEmpty ? null : payload,
-    );
+    _fireAndForget(event.key, () async {
+      await _crashlytics.log(
+        payload.isEmpty ? event.key : '${event.key} $payload',
+      );
+      await _analytics.logEvent(
+        name: event.key,
+        parameters: payload.isEmpty ? null : payload,
+      );
+    });
   }
 
   @override
-  Future<void> logScreenView(String screenName) async {
+  void logScreenView(String screenName) {
     if (!isEnabled) return;
-    await _crashlytics.log('screen_view $screenName');
-    await _analytics.logScreenView(screenName: screenName);
+    _fireAndForget('screen_view', () async {
+      await _crashlytics.log('screen_view $screenName');
+      await _analytics.logScreenView(screenName: screenName);
+    });
   }
 
   @override
-  Future<void> setUser(
-    UserModel? user, {
-    required AnalyticsAuthStatus status,
-  }) async {
+  void setUser(UserModel? user, {required AnalyticsAuthStatus status}) {
     if (!isEnabled) return;
     // Only the uid crosses over; GA4 forbids PII like email and displayName.
     final uid = user?.uid.isNotEmpty ?? false ? user!.uid : null;
-    await _analytics.setUserId(id: uid);
-    await _crashlytics.setUserIdentifier(uid ?? '');
+    _fireAndForget('set_user', () async {
+      await _analytics.setUserId(id: uid);
+      await _crashlytics.setUserIdentifier(uid ?? '');
+    });
 
-    await setUserProperty(AnalyticsUserProperty.authStatus, status.key);
-    await setUserProperty(AnalyticsUserProperty.userRole, user?.roleType.name);
-    await setUserProperty(
+    setUserProperty(AnalyticsUserProperty.authStatus, status.key);
+    setUserProperty(AnalyticsUserProperty.userRole, user?.roleType.name);
+    setUserProperty(
       AnalyticsUserProperty.isMerchant,
       user == null ? null : '${user.merchantStoreId != null}',
     );
   }
 
   @override
-  Future<void> setUserProperty(
-    AnalyticsUserProperty property,
-    String? value,
-  ) async {
+  void setUserProperty(AnalyticsUserProperty property, String? value) {
     if (!isEnabled) return;
-    await _analytics.setUserProperty(name: property.key, value: value);
-    await _crashlytics.setCustomKey(property.key, value ?? '');
+    _fireAndForget(property.key, () async {
+      await _analytics.setUserProperty(name: property.key, value: value);
+      await _crashlytics.setCustomKey(property.key, value ?? '');
+    });
   }
 
   @override
-  Future<void> recordError(
+  void recordError(
     Object error,
     StackTrace? stackTrace, {
     bool fatal = false,
     String? reason,
-  }) async {
+  }) {
     if (!isEnabled) return;
-    await _crashlytics.recordError(
-      error,
-      stackTrace,
-      fatal: fatal,
-      reason: reason,
-    );
+    _fireAndForget('record_error', () async {
+      await _crashlytics.recordError(
+        error,
+        stackTrace,
+        fatal: fatal,
+        reason: reason,
+      );
+    });
   }
 
   @override
   Future<void> setCollectionEnabled({required bool enabled}) async {
     await _analytics.setAnalyticsCollectionEnabled(enabled);
     await _crashlytics.setCrashlyticsCollectionEnabled(enabled);
+  }
+
+  /// Runs [action] detached from the caller.
+  ///
+  /// The catch is what makes that safe: an unhandled async error would reach
+  /// `PlatformDispatcher.onError` and be filed as a *fatal* crash, so a hiccup
+  /// in telemetry would masquerade as an app crash.
+  void _fireAndForget(String operation, Future<void> Function() action) {
+    unawaited(_run(operation, action));
+  }
+
+  Future<void> _run(String operation, Future<void> Function() action) async {
+    try {
+      await action();
+    } on Object catch (error, stackTrace) {
+      await _reportFailure(operation, error, stackTrace);
+    }
+  }
+
+  /// Reports the failure as non-fatal. Guarded against re-entry because the
+  /// failing dependency may well be Crashlytics itself.
+  Future<void> _reportFailure(
+    String operation,
+    Object error,
+    StackTrace stackTrace,
+  ) async {
+    if (_isReportingFailure) return;
+    _isReportingFailure = true;
+    try {
+      await _crashlytics.recordError(
+        error,
+        stackTrace,
+        reason: 'analytics.$operation',
+      );
+    } on Object {
+      // Nothing left to report to; losing telemetry must stay silent.
+    } finally {
+      _isReportingFailure = false;
+    }
   }
 
   /// Coerces to the `String`/`num` pair `logEvent` accepts, so call sites can

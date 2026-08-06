@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +13,21 @@ final class MessagingUtility {
   static Future<void> init() async {
     await FirebaseMessaging.instance.requestPermission();
     await Future.wait([
-      FirebaseMessaging.instance
-          .subscribeToTopic(NotificationTopics.toAll.rawValue),
-      FirebaseMessaging.instance
-          .subscribeToTopic(NotificationTopics.forCampaign.rawValue),
-      FirebaseMessaging.instance
-          .subscribeToTopic(NotificationTopics.news.rawValue),
-      FirebaseMessaging.instance
-          .subscribeToTopic(NotificationTopics.advertise.rawValue),
-      FirebaseMessaging.instance
-          .subscribeToTopic(NotificationTopics.toAllLinked.rawValue),
+      FirebaseMessaging.instance.subscribeToTopic(
+        NotificationTopics.toAll.rawValue,
+      ),
+      FirebaseMessaging.instance.subscribeToTopic(
+        NotificationTopics.forCampaign.rawValue,
+      ),
+      FirebaseMessaging.instance.subscribeToTopic(
+        NotificationTopics.news.rawValue,
+      ),
+      FirebaseMessaging.instance.subscribeToTopic(
+        NotificationTopics.advertise.rawValue,
+      ),
+      FirebaseMessaging.instance.subscribeToTopic(
+        NotificationTopics.toAllLinked.rawValue,
+      ),
     ]);
   }
 
@@ -43,18 +46,16 @@ final class MessagingUtility {
   /// This method is used to listen notification when user in app
   static void listenData({
     required ValueChanged<MapEntry<String, NotificationModel>>
-        onMessageHandleInApp,
+    onMessageHandleInApp,
     required ValueChanged<NotificationModel> onMessageHandle,
   }) {
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
       final messageBody = event.data;
       if (messageBody.isEmpty) return;
       final model = NotificationModel.fromJson(messageBody);
-      unawaited(
-        ProjectDependencyItems.analyticsService.logEvent(
-          AnalyticsEvent.notificationOpen,
-          parameters: {AnalyticsParameter.notificationType: _typeOf(model)},
-        ),
+      ProjectDependencyItems.analyticsService.logEvent(
+        AnalyticsEvent.notificationOpen,
+        parameters: {AnalyticsParameter.notificationType: _typeOf(model)},
       );
       onMessageHandle.call(model);
     });

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
@@ -31,9 +29,7 @@ final class AnalyticsUserBinder {
   }
 
   void _sync(AuthState state) {
-    unawaited(
-      _analyticsService.setUser(state.user, status: state.analyticsStatus),
-    );
+    _analyticsService.setUser(state.user, status: state.analyticsStatus);
   }
 }
 

@@ -62,7 +62,7 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
     }
 
     if (ref.mounted) state = state.copyWith(isSubmitting: false);
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.createGroup,
       parameters: {AnalyticsParameter.groupId: groupReference.id},
     );

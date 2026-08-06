@@ -62,7 +62,7 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider
         isSendingRequest: false,
       );
 
-      await _logError(errorType.name);
+      _logError(errorType.name);
       return errorType.errorMessage;
     }
 
@@ -84,11 +84,11 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider
     );
 
     if (response == null) {
-      await _logError('write_failed');
+      _logError('write_failed');
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
     await _sharedCache.saveApplyScholarshipTime();
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.formSubmit,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,
@@ -97,8 +97,8 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider
     return null;
   }
 
-  Future<void> _logError(String reason) {
-    return analyticsService.logEvent(
+  void _logError(String reason) {
+    analyticsService.logEvent(
       AnalyticsEvent.formError,
       parameters: {
         AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,

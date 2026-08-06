@@ -56,7 +56,8 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     return isSuccess;
   }
 
-  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
+  void resetStatus() =>
+      state = state.copyWith(status: const ContentActionIdle());
 
   Future<bool> addPost(String content, {File? imageFile}) async {
     final member = ref
@@ -92,7 +93,7 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     }
 
     if (ref.mounted) state = state.copyWith(isSubmitting: false);
-    await analyticsService.logEvent(
+    analyticsService.logEvent(
       AnalyticsEvent.createPost,
       parameters: {AnalyticsParameter.groupId: groupId},
     );

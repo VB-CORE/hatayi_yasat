@@ -44,7 +44,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
       ),
     };
     if (result case SignInSuccess(:final isNewUser)) {
-      await analyticsService.logEvent(
+      analyticsService.logEvent(
         isNewUser ? AnalyticsEvent.signUp : AnalyticsEvent.login,
         parameters: {AnalyticsParameter.method: provider.name},
       );
@@ -53,7 +53,7 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
 
   Future<void> signOut() async {
     await authService.signOut();
-    await analyticsService.logEvent(AnalyticsEvent.logout);
+    analyticsService.logEvent(AnalyticsEvent.logout);
   }
 
   void updateApplication(UserApplicationModel application) {

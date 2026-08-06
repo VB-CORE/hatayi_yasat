@@ -129,7 +129,7 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
         vote: vote,
         status: const RateActionSucceeded(RateAction.create),
       );
-      await analyticsService.logEvent(
+      analyticsService.logEvent(
         AnalyticsEvent.ratePlace,
         parameters: {
           AnalyticsParameter.placeId: placeId,

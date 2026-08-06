@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -49,7 +47,7 @@ mixin MainTabViewMixin
     final index = tabController.index;
     if (index == _reportedTabIndex) return;
     _reportedTabIndex = index;
-    unawaited(analyticsService.logScreenView(tabItems[index].analyticsName));
+    analyticsService.logScreenView(tabItems[index].analyticsName);
   }
 
   void listenScrollUpdateNotification(ScrollUpdateNotification notification) {

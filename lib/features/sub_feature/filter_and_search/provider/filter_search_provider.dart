@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
@@ -16,14 +14,12 @@ final class FilterWithSearch extends _$FilterWithSearch
   FilterSearchState build() => const FilterSearchState();
 
   void logFilterApplied() {
-    unawaited(
-      analyticsService.logEvent(
-        AnalyticsEvent.filterApply,
-        parameters: {
-          AnalyticsParameter.categoryCount: state.selectedCategories.length,
-          AnalyticsParameter.townCount: state.selectedTowns.length,
-        },
-      ),
+    analyticsService.logEvent(
+      AnalyticsEvent.filterApply,
+      parameters: {
+        AnalyticsParameter.categoryCount: state.selectedCategories.length,
+        AnalyticsParameter.townCount: state.selectedTowns.length,
+      },
     );
   }
 
