@@ -88,6 +88,7 @@ final class _ScholarshipRequestFormState
           ),
           UploadFileSection(
             hintText: LocaleKeys.requestScholarship_pdfHint,
+            fileValidator: validatePdfSize,
             onFilePicked: updatePdfFile,
           ),
           const _UploadSizeInfo(),
