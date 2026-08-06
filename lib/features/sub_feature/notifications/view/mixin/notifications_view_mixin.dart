@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_provider.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
@@ -39,7 +40,7 @@ mixin NotificationsViewMixin
     NotificationDateBucket b,
   ) => a.index.compareTo(b.index);
 
-  bool get hasUnread => _notifier!.hasUnread;
+  bool get hasUnread => ref.read(notificationBadgeProvider.notifier).hasUnread;
 
   bool isUnread(AppNotificationModel item) => _notifier!.isUnread(item);
 
@@ -47,8 +48,7 @@ mixin NotificationsViewMixin
     BuildContext context,
     AppNotificationModel item,
   ) async {
-    await _notifier!.markAsRead(item);
-    if (!context.mounted) return;
+    _notifier!.markAsRead(item);
     final type = item.type;
     if (type == null || type == AppNotificationType.link) return;
 

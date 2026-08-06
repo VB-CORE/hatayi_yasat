@@ -5,6 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_provider.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/mixin/notifications_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/widget/notification_tile.dart';
@@ -27,7 +28,9 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
     with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
-    ref.watch(notificationsViewModelProvider);
+    ref
+      ..watch(notificationsViewModelProvider)
+      ..watch(notificationBadgeProvider);
     final hasUnread = this.hasUnread;
     final colorScheme = context.general.colorScheme;
 

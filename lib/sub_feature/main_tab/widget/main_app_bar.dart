@@ -70,10 +70,8 @@ final class _NotificationButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(notificationsViewModelProvider);
-    final hasUnread = ref
-        .read(notificationsViewModelProvider.notifier)
-        .hasUnread;
+    ref.watch(notificationBadgeProvider);
+    final hasUnread = ref.read(notificationBadgeProvider.notifier).hasUnread;
 
     return Stack(
       alignment: Alignment.center,

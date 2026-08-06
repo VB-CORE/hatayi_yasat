@@ -2,34 +2,23 @@ import 'package:equatable/equatable.dart';
 
 final class NotificationsState extends Equatable {
   const NotificationsState({
-    required this.lastSeenTime,
     this.isMarkingAllRead = false,
-    this.latestNotificationTime,
+    this.locallyReadIds = const {},
   });
 
-  final DateTime lastSeenTime;
   final bool isMarkingAllRead;
-  final DateTime? latestNotificationTime;
-
-  bool get hasUnread => latestNotificationTime?.isAfter(lastSeenTime) ?? false;
+  final Set<String> locallyReadIds;
 
   @override
-  List<Object?> get props => [
-    lastSeenTime,
-    isMarkingAllRead,
-    latestNotificationTime,
-  ];
+  List<Object> get props => [isMarkingAllRead, locallyReadIds];
 
   NotificationsState copyWith({
-    DateTime? lastSeenTime,
     bool? isMarkingAllRead,
-    DateTime? latestNotificationTime,
+    Set<String>? locallyReadIds,
   }) {
     return NotificationsState(
-      lastSeenTime: lastSeenTime ?? this.lastSeenTime,
       isMarkingAllRead: isMarkingAllRead ?? this.isMarkingAllRead,
-      latestNotificationTime:
-          latestNotificationTime ?? this.latestNotificationTime,
+      locallyReadIds: locallyReadIds ?? this.locallyReadIds,
     );
   }
 }
