@@ -16,7 +16,7 @@ final class NotificationsViewModel extends _$NotificationsViewModel
 
   final SharedCache _sharedCache = SharedCache.instance;
 
-  StreamSubscription<QuerySnapshot<AppNotificationModel?>>? _unreadSubscription;
+  StreamSubscription<QuerySnapshot<AppNotificationModel?>>? _latestSubscription;
 
   late final Query<AppNotificationModel?> notificationsQuery = firestoreService
       .collectionReference(
@@ -27,57 +27,53 @@ final class NotificationsViewModel extends _$NotificationsViewModel
 
   @override
   NotificationsState build() {
-    _listenForUnread();
-    ref.onDispose(() => unawaited(_unreadSubscription?.cancel()));
-    return const NotificationsState();
-  }
-
-  // main app bar kısmında bildirim ikonuna bildirim olup olmadığını göstermek için kullanılıyor. Bu yüzden burada unread notificationları dinliyoruz.
-  void _listenForUnread() {
-    unawaited(_unreadSubscription?.cancel());
-    _unreadSubscription = notificationsQuery
-        .where(FirestoreFields.createdAt.name, isGreaterThan: _lastSeenTime)
-        .snapshots()
-        .listen((snapshot) {
-          state = state.copyWith(
-            unreadIds: snapshot.docs.map((document) => document.id).toSet(),
-          );
-        });
+    // main app bar'daki bildirim ikonuna rozet koymak için sadece en yeni
+    // bildirimin tarihine bakıyoruz — tüm okunmamışları çekmeye gerek yok.
+    _latestSubscription = notificationsQuery.limit(1).snapshots().listen((
+      snapshot,
+    ) {
+      state = state.copyWith(
+        latestNotificationTime: snapshot.docs.firstOrNull?.data()?.createdAt,
+      );
+    });
+    ref.onDispose(() => unawaited(_latestSubscription?.cancel()));
+    return NotificationsState(lastSeenTime: _lastSeenTime);
   }
 
   DateTime get _lastSeenTime =>
       _sharedCache.getLastNotificationSeenTime() ??
       DateTime.fromMillisecondsSinceEpoch(0);
 
-  bool get hasUnread => state.unreadIds.isNotEmpty;
-
-  int get unreadCount => state.unreadIds.length;
+  bool get hasUnread => state.hasUnread;
 
   NotificationDateBucket notificationGroupBy(AppNotificationModel item) =>
       (item.createdAt ?? DateTime.now()).notificationDateBucket;
 
   bool isUnread(AppNotificationModel item) =>
-      state.unreadIds.contains(item.documentId);
+      item.createdAt?.isAfter(state.lastSeenTime) ?? false;
 
-  void markAsRead(AppNotificationModel item) {
-    if (!isUnread(item)) return;
-    state = state.copyWith(
-      unreadIds: {...state.unreadIds}..remove(item.documentId),
-    );
+  Future<void> markAsRead(AppNotificationModel item) async {
+    final createdAt = item.createdAt;
+    if (createdAt == null || !isUnread(item)) return;
+    await _updateLastSeenTime(createdAt);
   }
 
   Future<void> commitLastSeenTime() async {
-    if (state.unreadIds.isEmpty) return;
-    await _sharedCache.updateNotificationLastSeenTime();
-    _listenForUnread();
+    if (!state.hasUnread) return;
+    await _updateLastSeenTime(DateTime.now());
   }
 
   Future<void> markAllAsRead() async {
-    if (state.unreadIds.isEmpty || state.isMarkingAllRead) return;
+    if (!state.hasUnread || state.isMarkingAllRead) return;
     state = state.copyWith(isMarkingAllRead: true);
 
-    await commitLastSeenTime();
+    await _updateLastSeenTime(DateTime.now());
 
     state = state.copyWith(isMarkingAllRead: false);
+  }
+
+  Future<void> _updateLastSeenTime(DateTime at) async {
+    await _sharedCache.updateNotificationLastSeenTime(at: at);
+    state = state.copyWith(lastSeenTime: at);
   }
 }

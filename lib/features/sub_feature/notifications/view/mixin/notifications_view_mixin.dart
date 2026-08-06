@@ -39,7 +39,7 @@ mixin NotificationsViewMixin
     NotificationDateBucket b,
   ) => a.index.compareTo(b.index);
 
-  int get unreadCount => _notifier!.unreadCount;
+  bool get hasUnread => _notifier!.hasUnread;
 
   bool isUnread(AppNotificationModel item) => _notifier!.isUnread(item);
 
@@ -47,7 +47,8 @@ mixin NotificationsViewMixin
     BuildContext context,
     AppNotificationModel item,
   ) async {
-    _notifier!.markAsRead(item);
+    await _notifier!.markAsRead(item);
+    if (!context.mounted) return;
     final type = item.type;
     if (type == null || type == AppNotificationType.link) return;
 
