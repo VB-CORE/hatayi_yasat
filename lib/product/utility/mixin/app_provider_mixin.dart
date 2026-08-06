@@ -1,11 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/product/utility/state/app_provider.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 import 'package:lifeclient/product/utility/state/product_provider.dart';
 
 mixin AppProviderMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
+  AnalyticsService get analyticsService =>
+      ProjectDependencyItems.analyticsService;
+
   AppProvider get appProvider =>
       ref.read(ProjectDependencyItems.appProviderState.notifier);
   AppProviderState get appState =>
@@ -22,6 +26,9 @@ mixin AppProviderMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 }
 
 mixin AppProviderStateMixin on ConsumerWidget {
+  AnalyticsService get analyticsService =>
+      ProjectDependencyItems.analyticsService;
+
   /// General app requries
   AppProvider appProvider(WidgetRef ref) =>
       ref.read(ProjectDependencyItems.appProviderState.notifier);

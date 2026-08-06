@@ -1,4 +1,6 @@
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/sub_feature/forms/project_request/provider/project_request_state.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/request_project_model.dart';
@@ -8,7 +10,8 @@ import 'package:uuid/uuid.dart';
 part 'project_request_provider.g.dart';
 
 @riverpod
-final class ProjectRequestProvider extends _$ProjectRequestProvider {
+final class ProjectRequestProvider extends _$ProjectRequestProvider
+    with ProjectDependencyMixin {
   @override
   ProjectRequestState build() => const ProjectRequestState();
 
@@ -28,7 +31,7 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
       key: uuid,
     );
 
-    if (uploadImage == null) return false;
+    if (uploadImage == null) return _failed('image_upload');
 
     final modelStorage = CampaignModel(
       name: requestProjectModel.projectName,
@@ -50,8 +53,25 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider {
       isSendingRequest: false,
     );
 
-    if (response == null) return false;
+    if (response == null) return _failed('write_failed');
 
+    analyticsService.logEvent(
+      AnalyticsEvent.formSubmit,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,
+      },
+    );
     return true;
+  }
+
+  bool _failed(String reason) {
+    analyticsService.logEvent(
+      AnalyticsEvent.formError,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,
+        AnalyticsParameter.reason: reason,
+      },
+    );
+    return false;
   }
 }

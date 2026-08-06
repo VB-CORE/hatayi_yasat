@@ -11,6 +11,7 @@ final class _FilterSearchButton extends ConsumerWidget {
         child: GeneralButtonV2.active(
           action: () {
             final provider = ref.read(filterWithSearchProvider);
+            ref.read(filterWithSearchProvider.notifier).logFilterApplied();
 
             FilterResultRoute(
               FilterSelected(

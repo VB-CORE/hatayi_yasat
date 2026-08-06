@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
@@ -45,16 +46,19 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
     state = state.copyWith(
       status: isSuccess
           ? const ContentActionSucceeded(
-              LocaleKeys.community_groupDetail_discussions_entryDeleteSuccessMessage,
+              LocaleKeys
+                  .community_groupDetail_discussions_entryDeleteSuccessMessage,
             )
           : const ContentActionFailed(
-              LocaleKeys.community_groupDetail_discussions_entryDeleteFailedContent,
+              LocaleKeys
+                  .community_groupDetail_discussions_entryDeleteFailedContent,
             ),
     );
     return isSuccess;
   }
 
-  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
+  void resetStatus() =>
+      state = state.copyWith(status: const ContentActionIdle());
 
   Future<bool> addEntry(String content) async {
     final member = ref
@@ -89,6 +93,15 @@ final class DiscussionDetailViewModel extends _$DiscussionDetailViewModel
 
     if (ref.mounted) {
       state = state.copyWith(isSubmitting: false, isError: !result.isSuccess);
+    }
+    if (result.isSuccess) {
+      analyticsService.logEvent(
+        AnalyticsEvent.createDiscussion,
+        parameters: {
+          AnalyticsParameter.groupId: groupId,
+          AnalyticsParameter.discussionId: discussionId,
+        },
+      );
     }
     return result.isSuccess;
   }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
@@ -55,7 +56,8 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     return isSuccess;
   }
 
-  void resetStatus() => state = state.copyWith(status: const ContentActionIdle());
+  void resetStatus() =>
+      state = state.copyWith(status: const ContentActionIdle());
 
   Future<bool> addPost(String content, {File? imageFile}) async {
     final member = ref
@@ -91,6 +93,10 @@ final class GroupWallViewModel extends _$GroupWallViewModel
     }
 
     if (ref.mounted) state = state.copyWith(isSubmitting: false);
+    analyticsService.logEvent(
+      AnalyticsEvent.createPost,
+      parameters: {AnalyticsParameter.groupId: groupId},
+    );
     return true;
   }
 

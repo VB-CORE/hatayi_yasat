@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/monetization/data/coupon_redemption_model.dart';
@@ -36,29 +37,21 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
 
     final userUid = UserQrPayload.decode(rawQrValue);
     if (userUid == null) {
-      state = state.copyWith(
-        result: const CouponRedeemFailed(CouponRedeemError.invalidQr),
-      );
+      _fail(CouponRedeemError.invalidQr);
       return;
     }
 
     final coupon = _coupon;
     if (coupon == null) {
-      state = state.copyWith(
-        result: const CouponRedeemFailed(CouponRedeemError.failed),
-      );
+      _fail(CouponRedeemError.failed);
       return;
     }
     if (coupon.isExpired) {
-      state = state.copyWith(
-        result: const CouponRedeemFailed(CouponRedeemError.expired),
-      );
+      _fail(CouponRedeemError.expired);
       return;
     }
     if (coupon.isUsageLimitReached) {
-      state = state.copyWith(
-        result: const CouponRedeemFailed(CouponRedeemError.usageLimitReached),
-      );
+      _fail(CouponRedeemError.usageLimitReached);
       return;
     }
 
@@ -72,11 +65,13 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
         );
 
     switch (existing) {
-      case FirebaseFailure():
-        state = state.copyWith(
-          isProcessing: false,
-          result: const CouponRedeemFailed(CouponRedeemError.failed),
+      case FirebaseFailure(:final error):
+        analyticsService.recordError(
+          error,
+          StackTrace.current,
+          reason: 'couponRedeem.lookup($couponId)',
         );
+        _fail(CouponRedeemError.failed, isProcessing: false);
         return;
       case FirebaseSuccess(:final data):
         if (data != null) {
@@ -84,6 +79,7 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
             isProcessing: false,
             result: CouponRedeemAlreadyUsed(data.redeemedAt),
           );
+          _logFailure('already_used');
           return;
         }
     }
@@ -119,6 +115,14 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
       isProcessing: false,
       result: CouponRedeemGranted(redemption),
     );
+
+    analyticsService.logEvent(
+      AnalyticsEvent.couponRedeem,
+      parameters: {
+        AnalyticsParameter.couponId: couponId,
+        AnalyticsParameter.storeId: redemption.storeId,
+      },
+    );
   }
 
   Future<void> _resolveFailure(String userUid) async {
@@ -139,5 +143,29 @@ final class CouponRedeemViewModel extends _$CouponRedeemViewModel
         result: const CouponRedeemFailed(CouponRedeemError.failed),
       ),
     };
+
+    _logFailure(
+      state.result is CouponRedeemAlreadyUsed
+          ? 'already_used'
+          : CouponRedeemError.failed.name,
+    );
+  }
+
+  void _fail(CouponRedeemError error, {bool? isProcessing}) {
+    state = state.copyWith(
+      isProcessing: isProcessing,
+      result: CouponRedeemFailed(error),
+    );
+    _logFailure(error.name);
+  }
+
+  void _logFailure(String reason) {
+    analyticsService.logEvent(
+      AnalyticsEvent.couponRedeemFailed,
+      parameters: {
+        AnalyticsParameter.couponId: couponId,
+        AnalyticsParameter.reason: reason,
+      },
+    );
   }
 }

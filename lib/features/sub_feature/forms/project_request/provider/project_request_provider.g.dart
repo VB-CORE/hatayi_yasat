@@ -42,7 +42,7 @@ final class ProjectRequestProviderProvider
 }
 
 String _$projectRequestProviderHash() =>
-    r'f2b27292a4306f9a51b504e94c4ffd9a5ca89be3';
+    r'c1e3a56431778e873d9d896bd6b06854d00cf622';
 
 abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
   ProjectRequestState build();

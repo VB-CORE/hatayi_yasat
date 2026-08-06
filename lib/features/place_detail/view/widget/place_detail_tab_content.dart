@@ -5,12 +5,14 @@ final class PlaceDetailTabContent extends StatelessWidget {
     required this.store,
     required this.onCall,
     required this.onCopyAddress,
+    required this.onOpenMaps,
     super.key,
   });
 
   final StoreModel store;
   final VoidCallback onCall;
   final VoidCallback onCopyAddress;
+  final Future<void> Function(GeoPoint latLong) onOpenMaps;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ final class PlaceDetailTabContent extends StatelessWidget {
             store: store,
             onCall: onCall,
             onCopyAddress: onCopyAddress,
+            onOpenMaps: onOpenMaps,
           ),
           _PlaceDetailTab.comments => PlaceDetailCommentsTab(store: store),
         };
