@@ -20,8 +20,9 @@ final class SharedCache {
   }
 
   DateTime? getLastNotificationSeenTime() {
-    final lastNotificationSeenTime =
-        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    final lastNotificationSeenTime = _sharedOperation.getValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+    );
     if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
     return DateTime.tryParse(lastNotificationSeenTime!);
   }
@@ -32,12 +33,13 @@ final class SharedCache {
     return DateTime.parse(time);
   }
 
-  Future<void> setFirstAppOpen() async {
-    await _sharedOperation.setValue(SharedKeys.firstAppOpen, false);
+  Future<void> setCompleteOnboarding() async {
+    await _sharedOperation.setValue(SharedKeys.isCompletedOnboarding, true);
   }
 
-  bool get isFirstAppOpen =>
-      _sharedOperation.getValue<bool>(SharedKeys.firstAppOpen) ?? true;
+  bool get isCompletedOnboarding =>
+      _sharedOperation.getValue<bool>(SharedKeys.isCompletedOnboarding) ??
+      false;
 
   int get version =>
       _sharedOperation.getValue<int>(SharedKeys.currentVersion) ?? -1;

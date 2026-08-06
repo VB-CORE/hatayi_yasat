@@ -93,7 +93,7 @@ abstract class _$GroupDetailViewModel extends $Notifier<GroupDetailState> {
   GroupDetailState build(String groupId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<GroupDetailState, GroupDetailState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$GroupDetailViewModel extends $Notifier<GroupDetailState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

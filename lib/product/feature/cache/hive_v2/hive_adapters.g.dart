@@ -18,9 +18,9 @@ class AppCacheModelAdapter extends TypeAdapter<AppCacheModel> {
     };
     return AppCacheModel(
       isHomeViewGrid: fields[0] == null ? false : fields[0] as bool,
-      lastSearchItems: fields[1] == null
+      lastSearchItems: fields[4] == null
           ? const []
-          : (fields[1] as List).cast<String>(),
+          : (fields[4] as List).cast<String>(),
     );
   }
 
@@ -30,7 +30,7 @@ class AppCacheModelAdapter extends TypeAdapter<AppCacheModel> {
       ..writeByte(2)
       ..writeByte(0)
       ..write(obj.isHomeViewGrid)
-      ..writeByte(1)
+      ..writeByte(4)
       ..write(obj.lastSearchItems);
   }
 
