@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/forms/request_form.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_provider.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/view/scholarship_request_form.dart';
@@ -64,6 +65,16 @@ mixin ScholarshipRequestFormMixin
 
   void updatePdfFile(File? file) {
     selectedPdfFile = file;
+  }
+
+  /// Rejects the picked document before it reaches the form when it exceeds
+  /// the same limit [ScholarshipRequestProvider] uploads with.
+  bool validatePdfSize(File file) {
+    if (file.lengthSync() <= FileSizes.small.toByte) return true;
+    appProvider.showSnackbarMessage(
+      LocaleKeys.requestScholarship_error_fileSizeError.tr(),
+    );
+    return false;
   }
 
   void updateKVKK({required bool value}) {
