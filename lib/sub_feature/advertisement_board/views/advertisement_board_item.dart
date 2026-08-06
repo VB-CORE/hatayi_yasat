@@ -11,24 +11,11 @@ final class _AdvertisementItem extends StatelessWidget {
       onTap: () async => _onPressed(context),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            ImageFiltered(
-              imageFilter: ImageFilter.blur(
-                sigmaX: WidgetSizes.spacingXs,
-                sigmaY: WidgetSizes.spacingXs,
-              ),
-              child: CustomNetworkImage(
-                imageUrl: item.image,
-                fit: BoxFit.cover,
-              ),
-            ),
-            CustomNetworkImage(
-              imageUrl: item.image,
-              fit: BoxFit.contain,
-            ),
-          ],
+        child: SizedBox.expand(
+          child: CustomNetworkImage(
+            imageUrl: item.image,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

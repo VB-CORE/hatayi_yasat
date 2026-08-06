@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +46,14 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
             CarouselSlider.builder(
               itemCount: pageCount,
               itemBuilder: (context, index, realIndex) {
-                return index == 0
-                    ? const _HouseAdCard()
-                    : _AdvertisementItem(items[index - 1]);
+                final child =
+                    index == 0 ? const _HouseAdCard() : _AdvertisementItem(
+                        items[index - 1],
+                      );
+                return Padding(
+                  padding: const PagePadding.horizontalLowSymmetric(),
+                  child: child,
+                );
               },
               options: CustomCarouselOptions.advertisement(
                 height: _sliderHeight,
