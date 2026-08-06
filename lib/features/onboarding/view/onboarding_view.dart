@@ -71,7 +71,7 @@ class _OnboardingViewState extends ConsumerState<OnboardingView>
               child: IgnorePointer(
                 ignoring: state.isWelcomePage,
                 child: TextButton(
-                  onPressed: onSkipPressed,
+                  onPressed: onSkip,
                   child: Text(
                     LocaleKeys.onboarding_button_skip.tr(),
                     style: AppText.bodyLg.copyWith(
@@ -167,8 +167,8 @@ class _OnboardingViewState extends ConsumerState<OnboardingView>
             right: const PagePadding.all().right,
             child: OnboardingNavigationRow(
               state: state,
-              onNextPressed: onNextPressed,
-              onBackPressed: onBackPressed,
+              onNext: onNext,
+              onBack: onBack,
             ),
           ),
         ],

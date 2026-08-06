@@ -9,7 +9,7 @@ mixin OnboardingViewMixin
     on AppProviderMixin<OnboardingView>, ConsumerState<OnboardingView> {
   late final OnboardingViewModelProvider _onboardingProvider;
 
-  Future<void> onNextPressed() async {
+  Future<void> onNext() async {
     final state = ref.read(_onboardingProvider);
     if (state.isLastPage) {
       await _completeOnboarding();
@@ -18,11 +18,11 @@ mixin OnboardingViewMixin
     }
   }
 
-  Future<void> onSkipPressed() async {
+  Future<void> onSkip() async {
     await _completeOnboarding();
   }
 
-  void onBackPressed() {
+  void onBack() {
     ref.read(_onboardingProvider.notifier).previous();
   }
 

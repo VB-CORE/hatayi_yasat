@@ -11,14 +11,14 @@ import 'package:lifeclient/product/widget/general/general_button.dart';
 final class OnboardingNavigationRow extends StatelessWidget {
   const OnboardingNavigationRow({
     required this.state,
-    required this.onNextPressed,
-    required this.onBackPressed,
+    required this.onNext,
+    required this.onBack,
     super.key,
   });
 
   final OnboardingState state;
-  final VoidCallback onNextPressed;
-  final VoidCallback onBackPressed;
+  final VoidCallback onNext;
+  final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ final class OnboardingNavigationRow extends StatelessWidget {
       return SizedBox(
         width: double.infinity,
         child: GeneralButtonV2.active(
-          action: onNextPressed,
+          action: onNext,
           label: LocaleKeys.onboarding_button_start.tr(),
           icon: AppIcons.arrowForward,
           iconAlignment: IconAlignment.end,
@@ -37,7 +37,7 @@ final class OnboardingNavigationRow extends StatelessWidget {
     return Row(
       children: [
         InkWell(
-          onTap: onBackPressed,
+          onTap: onBack,
           child: SizedBox(
             width: AppIconSizes.xLarge,
             height: AppIconSizes.xLarge,
@@ -51,7 +51,7 @@ final class OnboardingNavigationRow extends StatelessWidget {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: GeneralButtonV2.active(
-            action: onNextPressed,
+            action: onNext,
             label: state.isLastPage
                 ? LocaleKeys.onboarding_button_complete.tr()
                 : LocaleKeys.onboarding_button_next.tr(),
