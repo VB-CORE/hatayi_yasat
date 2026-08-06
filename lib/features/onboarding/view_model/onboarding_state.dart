@@ -1,35 +1,26 @@
 import 'package:equatable/equatable.dart';
-import 'package:lifeclient/features/onboarding/model/onboarding_model.dart';
+import 'package:lifeclient/features/onboarding/models/onboarding_step.dart';
 
 final class OnboardingState extends Equatable {
-  const OnboardingState({
-    this.currentIndex = 0,
-    this.onboardingList = const [],
-  });
+  const OnboardingState({this.pageIndex = 0});
 
-  final int currentIndex;
+  final int pageIndex;
 
-  final List<OnboardingModel> onboardingList;
+  bool get isWelcome => pageIndex == 0;
 
-  bool get isWelcomePage => currentIndex == 0;
+  int get step => pageIndex - 1;
 
-  bool get isLastPage => currentIndex == onboardingList.length;
+  bool get isLast => pageIndex == OnboardingStep.pages.length;
 
-  OnboardingModel? get currentModel {
-    if (isWelcomePage || currentIndex > onboardingList.length) return null;
-    return onboardingList[currentIndex - 1];
-  }
+  OnboardingStep? get currentStep =>
+      isWelcome ? null : OnboardingStep.pages[step];
 
   @override
-  List<Object?> get props => [currentIndex, onboardingList];
+  List<Object?> get props => [pageIndex];
 
-  OnboardingState copyWith({
-    int? currentIndex,
-    List<OnboardingModel>? onboardingList,
-  }) {
+  OnboardingState copyWith({int? pageIndex}) {
     return OnboardingState(
-      currentIndex: currentIndex ?? this.currentIndex,
-      onboardingList: onboardingList ?? this.onboardingList,
+      pageIndex: pageIndex ?? this.pageIndex,
     );
   }
 }

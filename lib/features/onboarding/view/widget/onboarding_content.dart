@@ -1,41 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_context_colors.dart';
-import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/features/onboarding/model/onboarding_model.dart';
+part of '../onboarding_view.dart';
 
-final class OnboardingCardContent extends StatelessWidget {
-  const OnboardingCardContent({required this.model, super.key});
+final class OnboardingContentView extends StatelessWidget {
+  const OnboardingContentView({required this.model, super.key});
 
-  final OnboardingModel? model;
+  final OnboardingStep model;
 
   @override
   Widget build(BuildContext context) {
-    if (model == null) return const SizedBox.shrink();
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: WidgetSizes.spacingL,
       children: [
         Text(
-          model!.category,
+          model.category.tr(),
           style: AppText.bodyLg.copyWith(
             fontWeight: FontWeight.bold,
-            color: model!.color,
+            color: model.color,
           ),
         ),
         Text(
-          model!.title,
+          model.title.tr(),
           style: AppText.displayLg.copyWith(
             fontWeight: FontWeight.bold,
             color: context.appColors.navy,
           ),
         ),
         Text(
-          model!.desc,
+          model.description.tr(),
           style: AppText.bodyLg.copyWith(
             fontWeight: FontWeight.bold,
             color: context.appColors.ink500,
@@ -58,10 +50,10 @@ final class OnboardingCardContent extends StatelessWidget {
           child: Wrap(
             spacing: AppSpacing.xxs,
             runSpacing: AppSpacing.xs,
-            children: model!.chips
+            children: model.chips
                 .map(
                   (chipText) => Chip(
-                    label: Text(chipText),
+                    label: Text(chipText.tr()),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 )

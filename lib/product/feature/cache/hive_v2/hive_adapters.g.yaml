@@ -5,14 +5,12 @@ nextTypeId: 16
 types:
   AppCacheModel:
     typeId: 0
-    nextIndex: 4
+    nextIndex: 5
     fields:
       isHomeViewGrid:
         index: 0
       lastSearchItems:
-        index: 1
-      isCompletedOnboarding:
-        index: 3
+        index: 4
   StoreModelCache:
     typeId: 1
     nextIndex: 1

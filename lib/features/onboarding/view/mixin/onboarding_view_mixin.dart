@@ -9,20 +9,16 @@ mixin OnboardingViewMixin
     on AppProviderMixin<OnboardingView>, ConsumerState<OnboardingView> {
   Future<void> onNext() async {
     final state = ref.read(onboardingViewModelProvider);
-    if (state.isLastPage) {
+    if (state.isLast) {
       await _completeOnboarding();
     } else {
       ref.read(onboardingViewModelProvider.notifier).next();
     }
   }
 
-  Future<void> onSkip() async {
-    await _completeOnboarding();
-  }
+  Future<void> onSkip() => _completeOnboarding();
 
-  void onBack() {
-    ref.read(onboardingViewModelProvider.notifier).previous();
-  }
+  void onBack() => ref.read(onboardingViewModelProvider.notifier).previous();
 
   Future<void> _completeOnboarding() async {
     await SharedCache.instance.setCompleteOnboarding();

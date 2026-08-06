@@ -9,7 +9,6 @@ final class AppCacheModel with CacheModel, EquatableMixin {
   const AppCacheModel({
     this.isHomeViewGrid = false,
     this.lastSearchItems = const [],
-    this.isCompletedOnboarding = false,
   });
 
   factory AppCacheModel.fromJson(Map<String, dynamic> json) {
@@ -20,10 +19,9 @@ final class AppCacheModel with CacheModel, EquatableMixin {
 
   final bool isHomeViewGrid;
   final List<String> lastSearchItems;
-  final bool isCompletedOnboarding;
 
   @override
-  List<Object> get props => [isHomeViewGrid, lastSearchItems, isCompletedOnboarding];
+  List<Object> get props => [isHomeViewGrid, lastSearchItems];
 
   @override
   AppCacheModel fromDynamicJson(json) {

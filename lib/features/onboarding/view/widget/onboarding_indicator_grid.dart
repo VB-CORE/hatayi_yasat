@@ -1,30 +1,27 @@
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
- 
-import 'package:lifeclient/core/theme/app_context_colors.dart';
-import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/features/onboarding/model/onboarding_model.dart';
-import 'package:lifeclient/features/onboarding/view_model/onboarding_view_model.dart';
-import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+part of '../onboarding_view.dart';
 
 final class OnboardingIndicatorGrid extends ConsumerWidget {
   const OnboardingIndicatorGrid({super.key});
 
+  static const _containerHeightRatio = 0.24;
+  static const _centerRatio = 0.32;
+  static const _normalOffsetRatio = 0.25;
+  static const _selectedOffsetRatio = 0.30;
+  static const _turnStep = 0.25;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(onboardingViewModelProvider);
+    final activeFeatureIndex = state.step;
+    final turns = _calculateTurns(activeFeatureIndex);
 
-    final currentIndex = state.currentIndex;
-    final turns = _groupTurns(currentIndex);
+    final containerSize = context.sized.dynamicHeight(_containerHeightRatio);
+    final center = containerSize * _centerRatio;
+    final normalOffset = containerSize * _normalOffsetRatio;
+    final selectedOffset = containerSize * _selectedOffsetRatio;
 
-    final size = context.sized.dynamicHeight(0.24);
-    final center = size * .32;
-    final normalOffset = size * .25;
-    final selectedOffset = size * .30;
+    const features = OnboardingStep.pages;
+    final angleStep = (2 * math.pi) / features.length;
 
     return AnimatedRotation(
       turns: turns,
@@ -32,100 +29,60 @@ final class OnboardingIndicatorGrid extends ConsumerWidget {
       curve: Curves.easeOutCubic,
       child: Center(
         child: SizedBox(
-          width: size,
-          height: size,
+          width: containerSize,
+          height: containerSize,
           child: Stack(
             clipBehavior: Clip.none,
-            children: [
-              for (final index in const [3, 4, 2, 1])
-                AnimatedPositioned(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeOutBack,
-                  top: _top(
-                    index,
-                    currentIndex,
-                    center,
-                    normalOffset,
-                    selectedOffset,
-                  ),
-                  left: _left(
-                    index,
-                    currentIndex,
-                    center,
-                    normalOffset,
-                    selectedOffset,
-                  ),
-                  child: _OnboardingIconBox(
-                    boxIndex: index,
-                    currentIndex: currentIndex,
-                    turns: turns,
-                    model: state.onboardingList[index - 1],
-                  ),
+            children: List.generate(features.length, (index) {
+              final isSelected = activeFeatureIndex == index;
+              final offset = isSelected ? selectedOffset : normalOffset;
+
+              final angle = (math.pi / 2) - (index * angleStep);
+              final dx = math.cos(angle).roundToDouble();
+              final dy = math.sin(angle).roundToDouble();
+
+              return AnimatedPositioned(
+                key: ValueKey(features[index].category),
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeOutBack,
+                top: center + (dy * offset),
+                left: center + (dx * offset),
+                child: _OnboardingIconBox(
+                  model: features[index],
+                  isSelected: isSelected,
+                  turns: turns,
                 ),
-            ],
+              );
+            }),
           ),
         ),
       ),
     );
   }
 
-  static double _groupTurns(int currentIndex) =>
-      currentIndex <= 1 ? 0 : (currentIndex - 1) * .25;
-
-  static double _top(
-    int boxIndex,
-    int currentIndex,
-    double center,
-    double normalOffset,
-    double selectedOffset,
-  ) {
-    final offset = currentIndex == boxIndex ? selectedOffset : normalOffset;
-
-    return switch (boxIndex) {
-      3 => center - offset,
-      1 => center + offset,
-      _ => center,
-    };
-  }
-
-  static double _left(
-    int boxIndex,
-    int currentIndex,
-    double center,
-    double normalOffset,
-    double selectedOffset,
-  ) {
-    final offset = currentIndex == boxIndex ? selectedOffset : normalOffset;
-
-    return switch (boxIndex) {
-      4 => center - offset,
-      2 => center + offset,
-      _ => center,
-    };
+  double _calculateTurns(int featureIndex) {
+    if (featureIndex <= 0) return 0;
+    return featureIndex * _turnStep;
   }
 }
 
 final class _OnboardingIconBox extends StatelessWidget {
   const _OnboardingIconBox({
-    required this.boxIndex,
-    required this.currentIndex,
-    required this.turns,
     required this.model,
+    required this.isSelected,
+    required this.turns,
   });
 
-  final int boxIndex;
-  final int currentIndex;
+  final OnboardingStep model;
+  final bool isSelected;
   final double turns;
-  final OnboardingModel model;
-
-  bool get isSelected => currentIndex == boxIndex;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedScale(
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeOutBack,
-      scale: isSelected ? 1 : .85,
+      scale: isSelected ? 1.0 : 0.85,
       child: Transform.rotate(
         angle: math.pi / 4,
         child: AnimatedContainer(
@@ -135,14 +92,15 @@ final class _OnboardingIconBox extends StatelessWidget {
           decoration: BoxDecoration(
             color: isSelected
                 ? model.color
-                : context.appColors.navy100.withValues(alpha: .15),
+                : context.appColors.navy100.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(AppRadius.sm),
             boxShadow: [
-              BoxShadow(
-                color: model.color.withValues(alpha: isSelected ? .55 : 0),
-                blurRadius: isSelected ? 20 : 0,
-                offset: Offset(0, isSelected ? 8 : 0),
-              ),
+              if (isSelected)
+                BoxShadow(
+                  color: model.color.withValues(alpha: 0.55),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
             ],
           ),
           child: Transform.rotate(
@@ -156,7 +114,7 @@ final class _OnboardingIconBox extends StatelessWidget {
                 size: AppIconSizes.largeX,
                 color: isSelected
                     ? context.appColors.white
-                    : context.appColors.white.withValues(alpha: .5),
+                    : context.appColors.white.withValues(alpha: 0.5),
               ),
             ),
           ),

@@ -14,12 +14,10 @@ AppCacheModel _$AppCacheModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      isCompletedOnboarding: json['isCompletedOnboarding'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$AppCacheModelToJson(AppCacheModel instance) =>
     <String, dynamic>{
       'isHomeViewGrid': instance.isHomeViewGrid,
       'lastSearchItems': instance.lastSearchItems,
-      'isCompletedOnboarding': instance.isCompletedOnboarding,
     };

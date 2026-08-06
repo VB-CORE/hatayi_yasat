@@ -1,16 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/theme/app_context_colors.dart';
-import 'package:lifeclient/core/theme/app_radius.dart';
-import 'package:lifeclient/core/theme/app_text.dart';
-import 'package:lifeclient/product/generated/assets.gen.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/widget/shimmer/shimmer.dart';
+part of '../onboarding_view.dart';
 
-final class OnboardingWelcomeContent extends StatelessWidget {
-  const OnboardingWelcomeContent({super.key});
+final class OnboardingWelcomeView extends StatelessWidget {
+  const OnboardingWelcomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +47,7 @@ final class OnboardingWelcomeContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: context.sized.dynamicHeight(.12),
-          ),
+          SizedBox(height: context.sized.dynamicHeight(.12)),
         ],
       ),
     );

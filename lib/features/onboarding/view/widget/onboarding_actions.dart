@@ -1,15 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:lifeclient/core/theme/app_context_colors.dart';
-import 'package:lifeclient/core/theme/app_spacing.dart';
-import 'package:lifeclient/features/onboarding/view_model/onboarding_state.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/widget/general/general_button.dart';
+part of '../onboarding_view.dart';
 
-final class OnboardingNavigationRow extends StatelessWidget {
-  const OnboardingNavigationRow({
+final class OnboardingActions extends StatelessWidget {
+  const OnboardingActions({
     required this.state,
     required this.onNext,
     required this.onBack,
@@ -22,7 +14,7 @@ final class OnboardingNavigationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.isWelcomePage) {
+    if (state.isWelcome) {
       return SizedBox(
         width: double.infinity,
         child: GeneralButtonV2.active(
@@ -52,7 +44,7 @@ final class OnboardingNavigationRow extends StatelessWidget {
         Expanded(
           child: GeneralButtonV2.active(
             action: onNext,
-            label: state.isLastPage
+            label: state.isLast
                 ? LocaleKeys.onboarding_button_complete.tr()
                 : LocaleKeys.onboarding_button_next.tr(),
             iconAlignment: IconAlignment.end,
