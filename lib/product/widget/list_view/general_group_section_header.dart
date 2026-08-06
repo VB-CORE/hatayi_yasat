@@ -17,7 +17,7 @@ final class GeneralGroupSectionHeader extends StatelessWidget {
             const PagePadding.verticalLowSymmetric() +
             const PagePadding.horizontalNormalSymmetric(),
         child: GeneralContentSubTitle(
-          value: label.toUpperCase(),
+          value: label,
           fontWeight: FontWeight.w700,
           color: context.appColors.ink500,
         ),

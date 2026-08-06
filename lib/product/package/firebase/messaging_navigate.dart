@@ -135,7 +135,6 @@ final class MessagingNavigate {
   }
 
   Future<MemoryModel?> _getDetailModelFromMemory({
-    required BuildContext context,
     required String id,
     required CustomService customService,
   }) async {
@@ -154,7 +153,6 @@ final class MessagingNavigate {
     required CustomService customService,
   }) async {
     final result = await _getDetailModelFromMemory(
-      context: context,
       id: id,
       customService: customService,
     );
