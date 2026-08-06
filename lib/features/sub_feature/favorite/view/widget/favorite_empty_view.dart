@@ -1,12 +1,10 @@
 part of '../favorite_view.dart';
 
-final class _FavoriteEmptyView extends ConsumerWidget {
+final class _FavoriteEmptyView extends StatelessWidget {
   const _FavoriteEmptyView();
 
-  static const _homeTabIndex = 0;
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return _FavoriteEmptyViewLayout(
       icon: AppIcons.favoriteBorder,
       iconBackground: context.appColors.coral100,
@@ -16,10 +14,7 @@ final class _FavoriteEmptyView extends ConsumerWidget {
       child: Padding(
         padding: const PagePadding.onlyTopNormal(),
         child: GeneralButtonV2.active(
-          action: () {
-            ref.read(mainTabJumpProvider.notifier).requestTab(_homeTabIndex);
-            const MainTabRoute().go(context);
-          },
+          action: () => const MainTabRoute(tab: MainTab.places).go(context),
           label: LocaleKeys.favorite_emptyCta.tr(),
           icon: AppIcons.store,
           backgroundColor: context.general.colorScheme.primary,

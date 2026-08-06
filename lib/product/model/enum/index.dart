@@ -5,6 +5,5 @@ export 'firebase_query_items.dart';
 export 'firebase_remote_enums.dart';
 export 'notification_type.dart';
 export 'platform_exception_enum.dart';
-export 'redirect_tabs.dart';
 export 'sorting_types.dart';
 export 'video_resource_path.dart';

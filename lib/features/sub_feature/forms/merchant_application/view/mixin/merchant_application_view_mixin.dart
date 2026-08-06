@@ -30,8 +30,6 @@ mixin MerchantApplicationViewMixin
   MerchantApplicationViewModel get viewModel =>
       ref.read(merchantApplicationViewModelProvider.notifier);
 
-  bool _isSubmitted = false;
-
   @override
   void initState() {
     super.initState();
@@ -167,12 +165,11 @@ mixin MerchantApplicationViewMixin
     appProvider.showSnackbarMessage(
       LocaleKeys.merchantApplication_status_submitted.tr(),
     );
-    _isSubmitted = true;
-    MerchantGuard.pushReplacement(context);
+    MerchantGuard.go(context);
   }
 
   void onPopInvoked(bool didPop, Object? result) {
-    if (didPop || _isSubmitted) return;
+    if (didPop) return;
     unawaited(_confirmAndClose());
   }
 

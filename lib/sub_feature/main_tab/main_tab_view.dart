@@ -28,9 +28,9 @@ import 'package:lifeclient/product/widget/general/title/general_content_sub_titl
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
-import 'package:lifeclient/sub_feature/main_tab/provider/main_tab_jump_provider.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/widget/qr_fab_button.dart';
 
@@ -40,7 +40,9 @@ part 'widget/main_bottom_app_bar.dart';
 part 'widget/main_fab_button.dart';
 
 final class MainTabView extends ConsumerStatefulWidget {
-  const MainTabView({super.key});
+  const MainTabView({this.tab, super.key});
+
+  final MainTab? tab;
 
   @override
   ConsumerState<MainTabView> createState() => _MainTabViewState();
@@ -62,43 +64,36 @@ class _MainTabViewState extends ConsumerState<MainTabView>
           listenScrollUpdateNotification(notification);
           return true;
         },
-        child: DefaultTabController(
-          length: _tabItems.length,
-          child: Consumer(
-            builder: (context, ref, child) {
-              final tabController = DefaultTabController.of(context);
-              ref.listen(mainTabJumpProvider, (previous, next) {
-                if (next == null) return;
-                tabController.animateTo(next);
-                ref.read(mainTabJumpProvider.notifier).consume();
-              });
-              return ListenableBuilder(
-                listenable: tabController,
-                builder: (context, _) {
-                  final showAppBar = _tabItems[tabController.index].showAppBar;
-                  final showQr = _tabItems[tabController.index].showQr;
-                  return Scaffold(
-                    extendBody: true,
-                    appBar: showAppBar ? _MainAppBar() : null,
-                    floatingActionButtonLocation:
-                        FloatingActionButtonLocation.centerDocked,
-                    body: Stack(
-                      children: [
-                        _BodyTabBarViewWidget(tabItems: _tabItems),
-                        if (showQr) QrFabButton(bottom: bottomSafePadding),
-                      ],
-                    ),
-                    resizeToAvoidBottomInset: false,
-                    bottomNavigationBar: GeneralSemantic(
-                      semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
-                      child: _BottomAppBarWidget(tabItems: _tabItems),
-                    ),
-                    floatingActionButton: const _SpeedDialFabWidget(),
-                  );
-                },
-              );
-            },
-          ),
+        child: ListenableBuilder(
+          listenable: controller,
+          builder: (context, _) {
+            final showAppBar = _tabItems[controller.index].showAppBar;
+            final showQr = _tabItems[controller.index].showQr;
+            return Scaffold(
+              extendBody: true,
+              appBar: showAppBar ? _MainAppBar() : null,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              body: Stack(
+                children: [
+                  _BodyTabBarViewWidget(
+                    tabItems: _tabItems,
+                    controller: controller,
+                  ),
+                  if (showQr) QrFabButton(bottom: bottomSafePadding),
+                ],
+              ),
+              resizeToAvoidBottomInset: false,
+              bottomNavigationBar: GeneralSemantic(
+                semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
+                child: _BottomAppBarWidget(
+                  tabItems: _tabItems,
+                  controller: controller,
+                ),
+              ),
+              floatingActionButton: const _SpeedDialFabWidget(),
+            );
+          },
         ),
       ),
     );

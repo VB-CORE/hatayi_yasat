@@ -36,6 +36,7 @@ import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 import 'package:lifeclient/sub_feature/banned/banned_view.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
@@ -93,11 +94,14 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
-  const MainTabRoute();
+  const MainTabRoute({this.tab});
+
+  /// Acilacak alt sekme; URL'de `?tab=` parametresi olarak tasinir.
+  final MainTab? tab;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const MainTabView();
+      MainTabView(tab: tab);
 }
 
 /// You can use this route for home and favorite place cards
