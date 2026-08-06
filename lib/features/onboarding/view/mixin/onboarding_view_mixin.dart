@@ -7,14 +7,12 @@ import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin OnboardingViewMixin
     on AppProviderMixin<OnboardingView>, ConsumerState<OnboardingView> {
-  late final OnboardingViewModelProvider _onboardingProvider;
-
   Future<void> onNext() async {
-    final state = ref.read(_onboardingProvider);
+    final state = ref.read(onboardingViewModelProvider);
     if (state.isLastPage) {
       await _completeOnboarding();
     } else {
-      ref.read(_onboardingProvider.notifier).next();
+      ref.read(onboardingViewModelProvider.notifier).next();
     }
   }
 
@@ -23,7 +21,7 @@ mixin OnboardingViewMixin
   }
 
   void onBack() {
-    ref.read(_onboardingProvider.notifier).previous();
+    ref.read(onboardingViewModelProvider.notifier).previous();
   }
 
   Future<void> _completeOnboarding() async {
