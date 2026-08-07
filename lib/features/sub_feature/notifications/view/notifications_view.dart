@@ -28,10 +28,8 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
     with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
-    ref.watch(notificationsViewModelProvider);
     final hasUnread = ref.watch(notificationBadgeProvider);
     final colorScheme = context.general.colorScheme;
-
     return Scaffold(
       backgroundColor: context.appColors.ink25,
       appBar: PageAppBar(
@@ -50,7 +48,11 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             : null,
         actions: [
           TextButton(
-            onPressed: hasUnread ? markAllAsRead : null,
+            onPressed: hasUnread
+                ? () => ref
+                      .read(notificationsViewModelProvider.notifier)
+                      .markAllAsRead()
+                : null,
             child: Text(LocaleKeys.notification_markAllRead.tr()),
           ),
         ],
@@ -67,7 +69,6 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             groupCompare: notificationCompare,
             itemBuilder: (context, item) => NotificationTile(
               item: item,
-              isUnread: isUnread(item),
               onTap: () => openNotification(context, item),
             ),
             itemThreshold: NotificationsViewModel.notificationItemThreshold,

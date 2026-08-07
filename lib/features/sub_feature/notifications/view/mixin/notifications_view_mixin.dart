@@ -12,40 +12,37 @@ import 'package:lifeclient/sub_feature/notification_navigate/notification_naviga
 
 mixin NotificationsViewMixin
     on ConsumerState<NotificationsView>, NotificationTypeMixin {
-  late final NotificationsViewModel _notifier;
+  late final NotificationsViewModel _disposeNotifier;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _notifier = ref.read(notificationsViewModelProvider.notifier);
+  void initState() {
+    super.initState();
+    _disposeNotifier = ref.read(notificationsViewModelProvider.notifier);
   }
 
   @override
   void dispose() {
-    unawaited(_notifier.commitLastSeenTime());
+    unawaited(_disposeNotifier.commitLastSeenTime());
     super.dispose();
   }
 
-  Future<void> markAllAsRead() => _notifier.markAllAsRead();
-
   Query<AppNotificationModel?> get notificationsQuery =>
-      _notifier.notificationsQuery;
+      ref.read(notificationsViewModelProvider.notifier).notificationsQuery;
 
-  NotificationDateBucket notificationGroupBy(AppNotificationModel item) =>
-      _notifier.notificationGroupBy(item);
+  NotificationDateBucket notificationGroupBy(AppNotificationModel item) => ref
+      .read(notificationsViewModelProvider.notifier)
+      .notificationGroupBy(item);
 
   int notificationCompare(
     NotificationDateBucket a,
     NotificationDateBucket b,
   ) => a.index.compareTo(b.index);
 
-  bool isUnread(AppNotificationModel item) => _notifier.isUnread(item);
-
   Future<void> openNotification(
     BuildContext context,
     AppNotificationModel item,
   ) async {
-    _notifier.markAsRead(item);
+    ref.read(notificationsViewModelProvider.notifier).markAsRead(item);
     final type = item.type;
     if (type == null || type == AppNotificationType.link) return;
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_type_meta.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
@@ -12,22 +14,21 @@ import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 import 'package:lifeclient/product/widget/bounceable/bounceable.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-final class NotificationTile extends StatelessWidget {
-  const NotificationTile({
-    required this.item,
-    required this.isUnread,
-    required this.onTap,
-    super.key,
-  });
+final class NotificationTile extends ConsumerWidget {
+  const NotificationTile({required this.item, required this.onTap, super.key});
 
   final AppNotificationModel item;
-  final bool isUnread;
   final VoidCallback onTap;
 
   String get _content => item.body ?? item.title ?? '';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isUnread = ref.watch(
+      notificationsViewModelProvider.select(
+        (state) => state.isUnread(item),
+      ),
+    );
     final meta = NotificationTypeMeta.of(item.type, context);
     final content = _content.trim();
     final createdAt = item.createdAt;
