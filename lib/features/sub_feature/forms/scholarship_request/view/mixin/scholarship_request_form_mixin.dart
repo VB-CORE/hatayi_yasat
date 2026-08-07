@@ -1,9 +1,3 @@
-// ignore_for_file: use_setters_to_change_properties, avoid_positional_boolean_parameters
-
-/// Mixin for scholarship request form functionality
-/// Provides form validation, file handling, and KVKK checkbox management
-library;
-
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';

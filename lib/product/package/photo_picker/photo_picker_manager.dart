@@ -17,7 +17,7 @@ enum PhotoPickType {
   camera,
 }
 
-/// TODO: PhotoPickerManager
+// TODO(photo-picker): PhotoPickerManager
 final class PhotoPickerManager {
   PhotoPickerManager({required this.context});
 
@@ -60,8 +60,9 @@ final class PhotoPickerManager {
     );
     if (croppedFile == null) return null;
     final latestFile = File(croppedFile.path);
-    final latestFileCompress =
-        await FileCompress(await latestFile.readAsBytes()).compressByteFile();
+    final latestFileCompress = await FileCompress(
+      await latestFile.readAsBytes(),
+    ).compressByteFile();
     if (latestFileCompress == null) return null;
     await latestFile.writeAsBytes(latestFileCompress);
     return latestFile;
@@ -69,7 +70,7 @@ final class PhotoPickerManager {
 
   Future<File> createFile(String path) async {
     final file = File(path);
-    if ((file.existsSync()) == false) {
+    if (!file.existsSync()) {
       await file.create(recursive: true);
     }
     return file;
@@ -87,6 +88,8 @@ final class PhotoPickerManager {
     );
 
     if (!response) return;
-    CustomAppSettings.open(type: CustomAppSettingsType.library_permission);
+    await CustomAppSettings.open(
+      type: CustomAppSettingsType.libraryPermission,
+    );
   }
 }

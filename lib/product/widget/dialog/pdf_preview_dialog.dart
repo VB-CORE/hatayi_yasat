@@ -4,10 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/dialog/force_update_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 /// PdfPreviewDialogV2 is a dialog used for
 /// - showing a pdf file

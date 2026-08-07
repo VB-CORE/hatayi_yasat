@@ -20,7 +20,7 @@ final class _TourismPlacesSlider extends StatelessWidget
       items: locations.mapIndexed((index, location) {
         return _TourismPlaceCard(
           location: location,
-          onItemTap: (LatLng latlng) {
+          onItemTap: (latlng) {
             _animateToCard(index: index);
             onItemTap.call(location);
           },

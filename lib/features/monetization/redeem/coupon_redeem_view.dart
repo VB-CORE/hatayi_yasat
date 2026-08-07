@@ -65,7 +65,7 @@ final class _CouponRedeemViewState extends ConsumerState<CouponRedeemView> {
     );
 
     return Scaffold(
-      appBar: PageAppBar(pageTitle: LocaleKeys.monetization_redeem_title),
+      appBar: const PageAppBar(pageTitle: LocaleKeys.monetization_redeem_title),
       body: Column(
         children: [
           Expanded(

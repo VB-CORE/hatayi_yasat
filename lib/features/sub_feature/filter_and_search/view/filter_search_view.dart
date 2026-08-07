@@ -15,12 +15,12 @@ import 'package:lifeclient/product/widget/button/multiple_select_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
 
-part './widget/filter_search_button.dart';
-part './widget/filter_search_categories.dart';
-part './widget/filter_search_category_header.dart';
-part './widget/filter_search_clear_all.dart';
-part './widget/filter_search_towns.dart';
-part './widget/filter_search_towns_header.dart';
+part 'widget/filter_search_button.dart';
+part 'widget/filter_search_categories.dart';
+part 'widget/filter_search_category_header.dart';
+part 'widget/filter_search_clear_all.dart';
+part 'widget/filter_search_towns.dart';
+part 'widget/filter_search_towns_header.dart';
 
 final class FilterSearchView extends ConsumerStatefulWidget {
   const FilterSearchView({

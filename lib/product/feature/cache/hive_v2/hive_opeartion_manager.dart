@@ -26,14 +26,10 @@ final class HiveOperationManager<T extends CacheModel>
   }
 
   @override
-  void add(T data) {
-    _box?.put(data.id, data);
-  }
+  void add(T data) => _box?.put(data.id, data);
 
   @override
-  void delete(T data) {
-    _box?.delete(data.id);
-  }
+  void delete(T data) => _box?.delete(data.id);
 
   @override
   T? get(String id) {
@@ -48,9 +44,7 @@ final class HiveOperationManager<T extends CacheModel>
   }
 
   @override
-  void update(T data) {
-    _box?.put(data.id, data);
-  }
+  void update(T data) => _box?.put(data.id, data);
 
   @override
   Future<bool> removeAll() async {

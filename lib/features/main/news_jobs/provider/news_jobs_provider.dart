@@ -21,7 +21,7 @@ final class NewsJobsProvider extends _$NewsJobsProvider
   }
 
   CollectionReference<AdvertiseModel?> fetchJobsCollectionReference() {
-    return firebaseService.collectionReference(
+    return firestoreService.collectionReference(
       CollectionPaths.approvedAdvertise,
       AdvertiseModel(),
     );

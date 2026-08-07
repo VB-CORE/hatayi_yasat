@@ -114,8 +114,8 @@ final class _GeneralButtonV2State extends State<GeneralButtonV2> {
       opacity: widget.isEnabled ? 1 : 0.3,
       child: ElevatedButton(
         style: widget.isBorderless
-            ? _BorderlessGeneralButtonStyle(context, widget.backgroundColor)
-            : _GeneralButtonStyle(context, widget.backgroundColor),
+            ? _BorderlessGeneralButtonStyle(widget.backgroundColor)
+            : _GeneralButtonStyle(widget.backgroundColor),
         onPressed: !widget.isEnabled
             ? null
             : () async {
@@ -217,7 +217,7 @@ class _LoadingWidget extends StatelessWidget {
 }
 
 final class _BorderlessGeneralButtonStyle extends ButtonStyle {
-  _BorderlessGeneralButtonStyle(BuildContext context, Color? backgroundColor)
+  _BorderlessGeneralButtonStyle(Color? backgroundColor)
     : super(
         elevation: const WidgetStatePropertyAll(0),
         backgroundColor: WidgetStateProperty.all<Color>(
@@ -232,7 +232,7 @@ final class _BorderlessGeneralButtonStyle extends ButtonStyle {
 }
 
 final class _GeneralButtonStyle extends ButtonStyle {
-  _GeneralButtonStyle(BuildContext context, Color? backgroundColor)
+  _GeneralButtonStyle(Color? backgroundColor)
     : super(
         backgroundColor: WidgetStateProperty.all<Color>(
           backgroundColor ?? AppColors.coral,

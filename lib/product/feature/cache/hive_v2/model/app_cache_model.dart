@@ -5,7 +5,7 @@ import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 part 'app_cache_model.g.dart';
 
 @JsonSerializable()
-final class AppCacheModel with CacheModel, EquatableMixin {
+final class AppCacheModel with CacheModel, Equatable {
   const AppCacheModel({
     this.isHomeViewGrid = false,
     this.lastSearchItems = const [],
@@ -24,7 +24,7 @@ final class AppCacheModel with CacheModel, EquatableMixin {
   List<Object> get props => [isHomeViewGrid, lastSearchItems];
 
   @override
-  AppCacheModel fromDynamicJson(json) {
+  AppCacheModel fromDynamicJson(dynamic json) {
     if (json is! Map<String, dynamic>) throw Exception('Invalid json type');
     return AppCacheModel.fromJson(json);
   }

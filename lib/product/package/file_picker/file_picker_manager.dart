@@ -23,7 +23,7 @@ final class FilePickerManager {
       if (result.files.isEmpty) return null;
       if (result.files.single.path.ext.isNullOrEmpty) return null;
       return File(result.files.single.path!);
-    } catch (e) {
+    } on Object catch (_) {
       // File picking failed, return null
       return null;
     }

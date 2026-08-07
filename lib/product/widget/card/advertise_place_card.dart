@@ -6,6 +6,7 @@ import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/extension/color_extension.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 import 'package:lifeclient/product/widget/button/icon_title_button.dart';
 import 'package:share_plus/share_plus.dart';
@@ -27,7 +28,7 @@ final class AdvertisePlaceCard extends StatelessWidget {
         color: context.general.colorScheme.secondary,
         borderRadius: BorderRadius.circular(WidgetSizes.spacingS),
         border: Border.all(
-          color: context.general.colorScheme.onSecondaryFixed.withOpacity(.3),
+          color: context.general.colorScheme.onSecondaryFixed.withOp(.3),
         ),
       ),
       child: ExpansionTile(
@@ -90,7 +91,8 @@ final class _ActionButtons extends StatelessWidget {
             if (item.title.ext.isNullOrEmpty) return;
             await SharePlus.instance.share(
               ShareParams(
-                text: '${LocaleKeys.advertise_message.tr()}'
+                text:
+                    '${LocaleKeys.advertise_message.tr()}'
                     ' ${item.title}',
               ),
             );
@@ -132,7 +134,7 @@ class _TitleExpension extends StatelessWidget {
             ),
           ),
           Divider(
-            color: context.general.colorScheme.onSecondaryFixed.withOpacity(.3),
+            color: context.general.colorScheme.onSecondaryFixed.withOp(.3),
           ),
           _Subtitle(item.role ?? '-'),
         ],

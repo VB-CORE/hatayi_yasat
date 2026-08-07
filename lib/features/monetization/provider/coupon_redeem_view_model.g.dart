@@ -59,7 +59,7 @@ final class CouponRedeemViewModelProvider
 }
 
 String _$couponRedeemViewModelHash() =>
-    r'1de4d9cac8b4d520b77fde7bb3378e59c7e87e69';
+    r'4cdd9ecab0f4ab0237d7e43f63f2c4696d6ad797';
 
 final class CouponRedeemViewModelFamily extends $Family
     with

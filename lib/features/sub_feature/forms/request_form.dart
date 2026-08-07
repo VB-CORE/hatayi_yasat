@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:lifeclient/product/widget/dialog/form_latest_data_dialog.dart';
 
 abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
-    extends ConsumerState<T> with AutomaticKeepAliveClientMixin<T> {
+    extends ConsumerState<T>
+    with AutomaticKeepAliveClientMixin<T> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final ValueNotifier<bool> _isFirstValidateNotifier = ValueNotifier(false);
 
@@ -13,7 +14,7 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
   /// if user has any data and try to go back it will show dialog
   bool _isLatestDataCompleted = false;
 
-  set latestDataCompleted(bool isCompleted) {
+  void latestDataCompleted(bool isCompleted) {
     _isLatestDataCompleted = isCompleted;
   }
 
@@ -54,12 +55,12 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
             /// manage to on pop logic
             if (_isLatestDataCompleted) return;
             if (!isHasAnyData) {
-              latestDataCompleted = true;
+              latestDataCompleted(true);
               context.pop();
               return;
             }
             final response = await FormLatestDataDialog.show(context);
-            latestDataCompleted = response;
+            latestDataCompleted(response);
             if (!context.mounted) return;
             if (response) context.pop();
           },

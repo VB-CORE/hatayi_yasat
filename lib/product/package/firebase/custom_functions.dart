@@ -4,7 +4,7 @@ import 'package:lifeclient/product/model/search_response_model.dart';
 
 final class CustomFunctions {
   static const String _search = 'search';
-  final _searchCallable = FirebaseFunctions.instance.httpsCallable(
+  final HttpsCallable _searchCallable = FirebaseFunctions.instance.httpsCallable(
     _search,
   );
 

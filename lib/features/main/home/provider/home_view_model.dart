@@ -15,8 +15,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   @override
   HomeState build() {
     final categories = ref.read(productProviderState).categoryItems;
-    final isHomeViewGrid =
-        ref.read(productProviderState.notifier).isHomeViewGrid;
+    final isHomeViewGrid = ref
+        .read(productProviderState.notifier)
+        .isHomeViewGrid;
     return HomeState(
       categories: categories,
       isGridView: isHomeViewGrid,
@@ -24,7 +25,7 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   }
 
   CollectionReference<StoreModel?> fetchApprovedCollectionReference() {
-    return firebaseService.collectionReference(
+    return firestoreService.collectionReference(
       CollectionPaths.approvedApplications,
       StoreModel.empty(),
     );
@@ -49,7 +50,7 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     required Set<int> townCodes,
     required SortingTypes sortingType,
   }) {
-    final reference = firebaseService.collectionReference(
+    final reference = firestoreService.collectionReference(
       CollectionPaths.approvedApplications,
       StoreModel.empty(),
     );
@@ -68,7 +69,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
       _ => Filter.and(filters[0], filters[1], filters[2]),
     };
 
-    return reference.where(combined).orderBy(
+    return reference
+        .where(combined)
+        .orderBy(
           sortingType.field,
           descending: sortingType.descending,
         );
@@ -76,7 +79,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 
   void changeHomeViewCardType() {
     state = state.copyWith(isGridView: !state.isGridView);
-    ref.read(productProviderState.notifier).saveLatestGridViewType(
+    ref
+        .read(productProviderState.notifier)
+        .saveLatestGridViewType(
           isSelected: state.isGridView,
         );
   }
@@ -161,10 +166,10 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   }) {
     final favoriteIds = favoritesOnly
         ? ref
-            .read(productProviderState)
-            .favoritePlaces
-            .map((e) => e.documentId)
-            .toSet()
+              .read(productProviderState)
+              .favoritePlaces
+              .map((e) => e.documentId)
+              .toSet()
         : const <String>{};
 
     return models.where((model) {

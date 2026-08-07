@@ -41,7 +41,7 @@ final class EventViewModelProvider
   }
 }
 
-String _$eventViewModelHash() => r'dfbc07ac4d777a180ad5b44dd1d66875697be576';
+String _$eventViewModelHash() => r'eca468d61577798fee52c3c2e59690483d7487e3';
 
 abstract class _$EventViewModel extends $Notifier<EventState> {
   EventState build();

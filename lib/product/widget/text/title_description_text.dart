@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
 
 final class TitleDescription extends StatelessWidget {
   const TitleDescription({
@@ -28,7 +29,7 @@ final class TitleDescription extends StatelessWidget {
               description,
               style: context.general.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w400,
-                color: context.general.colorScheme.primary.withOpacity(.5),
+                color: context.general.colorScheme.primary.withOp(.5),
               ),
             ),
           ),

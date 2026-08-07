@@ -64,7 +64,8 @@ class _EventDetailViewState extends ConsumerState<EventDetailView>
                 backButtonAction: goBackAction,
               ),
               Padding(
-                padding: const PagePadding.defaultPadding() +
+                padding:
+                    const PagePadding.defaultPadding() +
                     const PagePadding.onlyTopMedium(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +111,8 @@ class _BottomButton extends StatelessWidget {
       constrainedAxis: Axis.horizontal,
       child: SafeArea(
         child: Padding(
-          padding: const PagePadding.horizontalSymmetric() +
+          padding:
+              const PagePadding.horizontalSymmetric() +
               const PagePadding.vertical6Symmetric(),
           child: GeneralButtonV2.async(
             label: LocaleKeys.campaignDetailsView_addReminderButton.tr(),
@@ -134,9 +136,8 @@ final class _ShareAddressButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        '${model.name} ${model.description} ${model.expireDate}'.ext.share();
-      },
+      onPressed: () =>
+          '${model.name} ${model.description} ${model.expireDate}'.ext.share(),
       icon: Icon(
         AppIcons.share,
         color: context.general.colorScheme.primary,

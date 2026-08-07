@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/discussion_detail/provider/discussion_detail_state.dart';
 import 'package:lifeclient/features/community/group_detail/members/provider/group_members_view_model.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/provider/content_action_status.dart';
 import 'package:lifeclient/features/community/provider/soft_deletable_mixin.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';

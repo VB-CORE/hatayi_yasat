@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
 import 'package:lifeclient/product/widget/icon/icon_with_text.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -38,8 +39,9 @@ final class CustomCircleNetworkImage extends StatelessWidget {
       placeholder: (context, url) {
         return Shimmer.fromColors(
           baseColor: context.general.colorScheme.onPrimaryContainer,
-          highlightColor:
-              context.general.colorScheme.onPrimaryContainer.withOpacity(0.2),
+          highlightColor: context.general.colorScheme.onPrimaryContainer.withOp(
+            0.2,
+          ),
           child: Container(
             alignment: Alignment.center,
             height: radius,

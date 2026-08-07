@@ -66,8 +66,8 @@ Widget _listItem(BuildContext context, StoreModel model) {
   );
 }
 
-void _openDetail(BuildContext context, StoreModel model) {
-  PlaceDetailRoute(
+Future<void> _openDetail(BuildContext context, StoreModel model) async {
+  await PlaceDetailRoute(
     $extra: model,
     id: model.documentId,
   ).push<PlaceDetailRoute>(context);
@@ -160,7 +160,8 @@ mixin _HomePlaceAreaMixin
   }
 
   void _updateFetchQuery() {
-    query =
-        ref.read(homeViewModelProvider.notifier).fetchApprovedCollectionQuery();
+    query = ref
+        .read(homeViewModelProvider.notifier)
+        .fetchApprovedCollectionQuery();
   }
 }

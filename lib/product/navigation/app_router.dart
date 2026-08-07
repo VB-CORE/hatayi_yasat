@@ -673,7 +673,7 @@ final class ApplicationInformationRoute extends GoRouteData
   );
 
   @override
-  // TODO: Bu sayfa yapılacak.
+  // TODO(application-information): Bu sayfa yapılacak.
   Widget build(BuildContext context, GoRouterState state) =>
       const Text('Bu sayfa yapılacak.');
 }

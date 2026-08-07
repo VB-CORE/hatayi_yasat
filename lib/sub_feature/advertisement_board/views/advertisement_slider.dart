@@ -46,8 +46,9 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
             CarouselSlider.builder(
               itemCount: pageCount,
               itemBuilder: (context, index, realIndex) {
-                final child =
-                    index == 0 ? const _HouseAdCard() : _AdvertisementItem(
+                final child = index == 0
+                    ? const _HouseAdCard()
+                    : _AdvertisementItem(
                         items[index - 1],
                       );
                 return Padding(
@@ -102,7 +103,7 @@ mixin _AdvertisementSliderStateMixin on ConsumerState<AdvertisementSlider> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref
           .read(advertisementBoardViewModelProvider.notifier)
           .fetchAdvertisements();

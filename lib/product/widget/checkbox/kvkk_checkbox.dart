@@ -27,9 +27,7 @@ class KvkkCheckBox extends StatelessWidget {
                 decoration: TextDecoration.underline,
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  navigate(context);
-                },
+                ..onTap = () async => navigate(context),
             ),
             TextSpan(
               text: LocaleKeys.general_kvkkReadApproved.tr(),
@@ -46,18 +44,16 @@ class KvkkCheckBox extends StatelessWidget {
         onChanged.call(value);
       },
       validator: (value) {
-        return value != null && value == true
-            ? null
-            : LocaleKeys.validation_kvkk.tr();
+        return value != null && value ? null : LocaleKeys.validation_kvkk.tr();
       },
     );
   }
 
-  static void navigate(BuildContext context) {
-    Navigator.push(
+  static Future<void> navigate(BuildContext context) async {
+    await Navigator.push(
       context,
       CupertinoPageRoute<void>(
-        builder: (BuildContext context) {
+        builder: (context) {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: context.general.colorScheme.secondary,

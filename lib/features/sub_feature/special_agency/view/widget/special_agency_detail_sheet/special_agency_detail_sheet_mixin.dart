@@ -1,4 +1,4 @@
-part of './special_agency_detail_sheet.dart';
+part of 'special_agency_detail_sheet.dart';
 
 mixin _SpecialAgencyDetailSheetMixin {
   Future<void> onPhoneClick(BuildContext context, String? phone) async {

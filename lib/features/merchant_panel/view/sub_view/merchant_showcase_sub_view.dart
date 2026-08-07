@@ -64,7 +64,7 @@ final class _MerchantShowcaseSubViewState
               : _MerchantShowcaseEditor(
                   storeId: widget.storeId,
                   modules: state.modules,
-                  onReorder: (oldIndex, newIndex) =>
+                  onReorderItem: (oldIndex, newIndex) =>
                       unawaited(viewModel.reorder(oldIndex, newIndex)),
                   onEdit: (module) => unawaited(openModuleForm(module: module)),
                   onDelete: (module) => unawaited(confirmDelete(module)),

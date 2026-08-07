@@ -45,9 +45,8 @@ class _HistoryViewState extends ConsumerState<HistoryView>
           children: [
             FloatingActionButton(
               heroTag: HeroTags.memoryFavorite.name,
-              onPressed: () {
-                context.route.navigateToPage(const HistoryFavoriteSheet());
-              },
+              onPressed: () =>
+                  context.route.navigateToPage(const HistoryFavoriteSheet()),
               child: const Icon(AppIcons.favorite),
             ),
             FloatingActionButton(

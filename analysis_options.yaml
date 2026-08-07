@@ -4,9 +4,9 @@ analyzer:
   exclude:
     - lib/product/init/language/
     - lib/product/init/generation/
-    - "/*.g.dart"
-    - "/*.gen.dart"
-    - "/*.freezed.dart"
+    - "**.g.dart"
+    - "**.gen.dart"
+    - "**.freezed.dart"
     - app_router.g.dart
     - "test/.test_coverage.dart"
     - "bin/cache/**"
@@ -25,3 +25,6 @@ linter:
     sort_constructors_first: true
     prefer_const_constructors: true
     lines_longer_than_80_chars: false
+    sort_pub_dependencies: false
+    use_setters_to_change_properties: false
+    avoid_positional_boolean_parameters: false

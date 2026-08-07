@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,7 @@ class _RegionalCitySheetState extends State<RegionalCitySheet>
             itemCount: _cities.length,
             padding: const PagePadding.onlyBottom(),
             shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
+            itemBuilder: (context, index) {
               return CheckboxListTile(
                 contentPadding: EdgeInsets.zero,
                 value: _cities[index].documentId == _selectedCity.documentId,
@@ -57,7 +59,7 @@ class _RegionalCitySheetState extends State<RegionalCitySheet>
                 },
               );
             },
-            separatorBuilder: (BuildContext context, int index) {
+            separatorBuilder: (context, index) {
               return const Divider();
             },
           ),
@@ -111,7 +113,7 @@ mixin _RegionalCitySheetMixin on State<RegionalCitySheet> {
     _initialCityId =
         ProjectDependencyItems.productProvider.selectedCity.documentId;
     _selectedCityId = _initialCityId;
-    _changeRelationalCity();
+    unawaited(_changeRelationalCity());
   }
 
   Future<void> _changeRelationalCity() async {

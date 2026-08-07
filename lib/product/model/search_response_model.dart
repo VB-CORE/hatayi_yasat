@@ -25,4 +25,3 @@ final class SearchResponse extends Equatable {
   @override
   List<Object> get props => [name, id, image];
 }
-

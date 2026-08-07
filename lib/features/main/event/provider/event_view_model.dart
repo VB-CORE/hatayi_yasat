@@ -17,7 +17,7 @@ final class EventViewModel extends _$EventViewModel
   }
 
   Query<CampaignModel?> fetchCampaignQuery() {
-    return firebaseService
+    return firestoreService
         .collectionReference(
           CollectionPaths.approvedCampaigns,
           CampaignEmptyModel.empty,

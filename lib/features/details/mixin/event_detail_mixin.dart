@@ -25,7 +25,7 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
   }
 
   Future<void> addReminderAction() async {
-    CalendarUtility.saveCalendar(
+    await CalendarUtility.saveCalendar(
       model: CalendarModel.fromCampaignModel(
         campaignModel: eventModel,
       ),
@@ -34,19 +34,19 @@ mixin EventDetailMixin on ConsumerState<EventDetailView> {
 
   String get _phoneNumber => PhoneFormatter.format(eventModel.phone);
 
-  void callUser() {
+  Future<void> callUser() async {
     if (_phoneNumber.isEmpty) return;
-
-    _phoneNumber.ext.launchPhone;
+    await _phoneNumber.ext.launchPhone;
   }
 
-  void sendAMessageWithPhone() {
+  Future<void> sendAMessageWithPhone() async {
     if (_phoneNumber.isEmpty) return;
-    launchUrl(
+    await launchUrl(
       WhatsAppUnilink(
         phoneNumber: _phoneNumber,
-        text: LocaleKeys.advertise_openEventDetailPhone
-            .tr(args: [eventModel.name ?? '']),
+        text: LocaleKeys.advertise_openEventDetailPhone.tr(
+          args: [eventModel.name ?? ''],
+        ),
       ).asUri(),
       mode: LaunchMode.externalApplication,
     );

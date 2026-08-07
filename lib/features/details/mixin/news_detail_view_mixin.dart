@@ -18,11 +18,11 @@ mixin NewsDetailViewMixin on ConsumerState<NewsDetailView> {
     context.pop();
   }
 
-  void shareNews() {
+  Future<void> shareNews() async {
     if (news.content.ext.isNullOrEmpty) return;
     final bodyBuilder = StringBuffer(news.title ?? AppConstants.appName)
       ..write('\n\n')
       ..write(news.content);
-    bodyBuilder.toString().ext.share();
+    await bodyBuilder.toString().ext.share();
   }
 }

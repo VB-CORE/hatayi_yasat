@@ -28,16 +28,12 @@ class MediaOrPhoto extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.camera_alt_outlined),
               title: const Text(LocaleKeys.component_picker_camera).tr(),
-              onTap: () {
-                context.route.pop(PhotoPickType.camera);
-              },
+              onTap: () => context.route.pop(PhotoPickType.camera),
             ),
             ListTile(
               leading: const Icon(Icons.image_outlined),
               title: const Text(LocaleKeys.component_picker_gallery).tr(),
-              onTap: () {
-                context.route.pop(PhotoPickType.gallery);
-              },
+              onTap: () => context.route.pop(PhotoPickType.gallery),
             ),
           ],
         ),

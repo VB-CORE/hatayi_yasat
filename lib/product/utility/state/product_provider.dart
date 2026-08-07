@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
@@ -81,7 +83,7 @@ final class ProductProvider extends Notifier<ProductProviderState>
   void clearLastSearch() {
     final appCacheModel = appModelCache.get(AppCacheModel.appModelId);
     if (appCacheModel == null) return;
-    appModelCache.removeAll();
+    unawaited(appModelCache.removeAll());
   }
 
   @override

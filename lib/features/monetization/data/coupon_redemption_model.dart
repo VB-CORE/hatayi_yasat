@@ -8,7 +8,7 @@ part 'coupon_redemption_model.g.dart';
 @JsonSerializable(includeIfNull: false)
 final class CouponRedemptionModel
     extends BaseFirebaseModel<CouponRedemptionModel>
-    with EquatableMixin {
+    with Equatable {
   const CouponRedemptionModel({
     this.userUid = '',
     this.merchantUid = '',

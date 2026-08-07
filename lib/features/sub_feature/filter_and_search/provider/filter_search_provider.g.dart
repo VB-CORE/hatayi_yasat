@@ -41,7 +41,7 @@ final class FilterWithSearchProvider
   }
 }
 
-String _$filterWithSearchHash() => r'5cd0d2f410a30d4a51ccd431513d3365af1022fa';
+String _$filterWithSearchHash() => r'1fc4993af7031c37ccfc1786a5f3815df9d993a0';
 
 abstract class _$FilterWithSearch extends $Notifier<FilterSearchState> {
   FilterSearchState build();

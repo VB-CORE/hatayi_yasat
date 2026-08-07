@@ -15,43 +15,43 @@ final class MessagingNavigate {
   Future<CampaignModel?> _getDetailModelFromCampaign({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
-    final data = await customService.getSingleData(
+    final result = await firestoreService.getSingleData(
       model: CampaignModel(),
       path: CollectionPaths.approvedCampaigns,
       id: id,
     );
 
-    return data;
+    return result.dataOrNull;
   }
 
   Future<NewsModel?> _getDetailModelFromNews({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
-    final data = await customService.getSingleData(
+    final result = await firestoreService.getSingleData(
       model: NewsModel(),
       path: CollectionPaths.news,
       id: id,
     );
 
-    return data;
+    return result.dataOrNull;
   }
 
   Future<AdvertiseModel?> _getDetailModelFromAdvertise({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
-    final data = await customService.getSingleData(
+    final result = await firestoreService.getSingleData(
       model: AdvertiseModel(),
       path: CollectionPaths.approvedAdvertise,
       id: id,
     );
 
-    return data;
+    return result.dataOrNull;
   }
 
   Future<void> detailModelCheckAndNavigate({
@@ -65,12 +65,12 @@ final class MessagingNavigate {
   Future<void> detailModelCampaignCheckAndNavigate({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
     final result = await _getDetailModelFromCampaign(
       context: context,
       id: id,
-      customService: customService,
+      firestoreService: firestoreService,
     );
     if (!context.mounted) return;
     if (result != null) {
@@ -87,12 +87,12 @@ final class MessagingNavigate {
   Future<void> detailModelNewsCheckAndNavigate({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
     final result = await _getDetailModelFromNews(
       context: context,
       id: id,
-      customService: customService,
+      firestoreService: firestoreService,
     );
     if (!context.mounted) return;
     if (result != null) {
@@ -112,12 +112,12 @@ final class MessagingNavigate {
   Future<void> detailModelLinkCheckAndBottomSheet({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
     final result = await _getDetailModelFromLink(
       context: context,
       id: id,
-      customService: customService,
+      firestoreService: firestoreService,
     );
     if (!context.mounted) return;
     if (result != null) {
@@ -134,26 +134,26 @@ final class MessagingNavigate {
   Future<AppNotificationModel?> _getDetailModelFromLink({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
-    final data = await customService.getSingleData(
+    final result = await firestoreService.getSingleData(
       model: AppNotificationModel(),
       path: CollectionPaths.notifications,
       id: id,
     );
 
-    return data;
+    return result.dataOrNull;
   }
 
   Future<void> detailModelAdvertiseCheckAndShowBottomSheet({
     required BuildContext context,
     required String id,
-    required CustomService customService,
+    required CustomFirestoreService firestoreService,
   }) async {
     final result = await _getDetailModelFromAdvertise(
       context: context,
       id: id,
-      customService: customService,
+      firestoreService: firestoreService,
     );
     if (!context.mounted) return;
     if (result != null) {

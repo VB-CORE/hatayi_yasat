@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
-final class StoreModelCache with CacheModel, EquatableMixin {
+final class StoreModelCache with CacheModel, Equatable {
   StoreModelCache({required this.storeModel});
 
   StoreModelCache.empty() : storeModel = StoreModel.empty();
@@ -14,7 +13,9 @@ final class StoreModelCache with CacheModel, EquatableMixin {
     final id = json['id'];
     if (id is! String) throw Exception('Invalid id type');
     return StoreModelCache(
-      storeModel: storeModel.fromJson(json).copyWith(
+      storeModel: storeModel
+          .fromJson(json)
+          .copyWith(
             documentId: id,
           ),
     );
