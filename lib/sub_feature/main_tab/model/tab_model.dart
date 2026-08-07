@@ -15,6 +15,7 @@ final class TabModel extends Equatable {
     required this.icon,
     required this.title,
     required this.semanticKey,
+    required this.analyticsName,
     this.showAppBar = true,
     this.showQr = false,
   });
@@ -25,6 +26,7 @@ final class TabModel extends Equatable {
     icon,
     title,
     semanticKey,
+    analyticsName,
     showAppBar,
     showQr,
   ];
@@ -33,6 +35,9 @@ final class TabModel extends Equatable {
   final Widget icon;
   final String title;
   final GeneralSemanticKeys semanticKey;
+
+  final String analyticsName;
+
   final bool showAppBar;
   final bool showQr;
 }
@@ -45,24 +50,28 @@ final class TabModels {
         icon: HugeIcon(icon: HugeIcons.strokeRoundedStore01),
         title: LocaleKeys.navigationTabs_places,
         semanticKey: GeneralSemanticKeys.homeTab,
+        analyticsName: 'home',
       ),
       const TabModel(
         page: NewsEventJobsView(),
         icon: HugeIcon(icon: HugeIcons.strokeRoundedHome01),
         title: LocaleKeys.navigationTabs_feed,
         semanticKey: GeneralSemanticKeys.communityTab,
+        analyticsName: 'feed',
       ),
       const TabModel(
         page: HistoryView(),
         icon: HugeIcon(icon: HugeIcons.strokeRoundedCompass01),
         title: LocaleKeys.navigationTabs_explore,
         semanticKey: GeneralSemanticKeys.memoriesTab,
+        analyticsName: 'explore',
       ),
       const TabModel(
         page: ProfileView(),
         icon: ProfileTabAvatar(),
         title: LocaleKeys.navigationTabs_profile,
         semanticKey: GeneralSemanticKeys.favoriteTab,
+        analyticsName: 'profile',
         showAppBar: false,
         showQr: true,
       ),

@@ -18,6 +18,7 @@ List<RouteBase> get $appRoutes => [
 
 RouteBase get $splashRoute => GoRouteData.$route(
   path: '/',
+  name: 'Splash',
   hasOverriddenOnExit: false,
   factory: $SplashRoute._fromState,
   routes: [
@@ -72,6 +73,7 @@ mixin $OnboardRoute on GoRouteData {
 
 RouteBase get $mainTabRoute => GoRouteData.$route(
   path: '/main',
+  name: 'Main Tab',
   hasOverriddenOnExit: false,
   factory: $MainTabRoute._fromState,
   routes: [
@@ -261,6 +263,7 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
     ),
     GoRouteData.$route(
       path: 'create-group',
+      name: 'Create Group',
       hasOverriddenOnExit: false,
       factory: $CreateGroupRoute._fromState,
     ),
@@ -981,6 +984,7 @@ extension<T extends Enum> on Map<T, String> {
 
 RouteBase get $loginRoute => GoRouteData.$route(
   path: '/login',
+  name: 'Login',
   hasOverriddenOnExit: false,
   factory: $LoginRoute._fromState,
 );
@@ -1013,6 +1017,7 @@ mixin $LoginRoute on GoRouteData {
 
 RouteBase get $bannedRoute => GoRouteData.$route(
   path: '/banned',
+  name: 'Banned',
   hasOverriddenOnExit: false,
   factory: $BannedRoute._fromState,
 );
@@ -1039,6 +1044,7 @@ mixin $BannedRoute on GoRouteData {
 
 RouteBase get $unauthorizedRoute => GoRouteData.$route(
   path: '/unauthorized',
+  name: 'Unauthorized',
   hasOverriddenOnExit: false,
   factory: $UnauthorizedRoute._fromState,
 );
@@ -1074,6 +1080,7 @@ mixin $UnauthorizedRoute on GoRouteData {
 
 RouteBase get $groupDetailRoute => GoRouteData.$route(
   path: '/group-detail',
+  name: 'Group Detail',
   hasOverriddenOnExit: false,
   factory: $GroupDetailRoute._fromState,
 );
@@ -1105,6 +1112,7 @@ mixin $GroupDetailRoute on GoRouteData {
 
 RouteBase get $discussionDetailRoute => GoRouteData.$route(
   path: '/discussion-detail',
+  name: 'Discussion Detail',
   hasOverriddenOnExit: false,
   factory: $DiscussionDetailRoute._fromState,
 );

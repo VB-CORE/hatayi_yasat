@@ -1,5 +1,6 @@
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
@@ -42,9 +43,18 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
         provider: provider,
       ),
     };
+    if (result case SignInSuccess(:final isNewUser)) {
+      analyticsService.logEvent(
+        isNewUser ? AnalyticsEvent.signUp : AnalyticsEvent.login,
+        parameters: {AnalyticsParameter.method: provider.name},
+      );
+    }
   }
 
-  Future<void> signOut() => authService.signOut();
+  Future<void> signOut() async {
+    await authService.signOut();
+    analyticsService.logEvent(AnalyticsEvent.logout);
+  }
 
   void updateApplication(UserApplicationModel application) {
     final user = state.user;

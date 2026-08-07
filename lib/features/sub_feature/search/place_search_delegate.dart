@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -43,6 +44,19 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
   @override
   Widget buildResults(BuildContext context) {
     return _buildResultsOrSuggestions(context);
+  }
+
+  /// Commit point for a query; `buildResults` would over-report, it runs on
+  /// every rebuild.
+  @override
+  void showResults(BuildContext context) {
+    if (query.isValidSearchTerm) {
+      ProjectDependencyItems.analyticsService.logEvent(
+        AnalyticsEvent.search,
+        parameters: {AnalyticsParameter.searchTerm: query},
+      );
+    }
+    super.showResults(context);
   }
 
   @override
@@ -108,6 +122,13 @@ mixin _PlaceSearchMixin on SearchDelegate<SearchResponse> {
     BuildContext context,
   ) async {
     ProjectDependencyItems.productProvider.saveLastSearch(query);
+    ProjectDependencyItems.analyticsService.logEvent(
+      AnalyticsEvent.selectContent,
+      parameters: {
+        AnalyticsParameter.contentType: 'place',
+        AnalyticsParameter.itemId: response.id,
+      },
+    );
     await PlaceDetailRoute(
       $extra: StoreModel.empty(),
       id: response.id,

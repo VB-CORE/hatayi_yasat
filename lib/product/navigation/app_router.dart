@@ -48,6 +48,7 @@ part 'merchant_guard.dart';
 
 @TypedGoRoute<SplashRoute>(
   path: '/',
+  name: SplashRoute.routeName,
   routes: [
     OnboardRoute.route,
   ],
@@ -55,12 +56,17 @@ part 'merchant_guard.dart';
 final class SplashRoute extends GoRouteData with $SplashRoute {
   const SplashRoute();
 
+  /// Root path, so it is also the fallback screen name analytics falls back to
+  /// when a route pattern normalises to nothing.
+  static const String routeName = 'Splash';
+
   @override
   Widget build(BuildContext context, GoRouterState state) => const SplashView();
 }
 
 @TypedGoRoute<MainTabRoute>(
   path: '/main',
+  name: 'Main Tab',
   routes: [
     ChainStoresRoute.route,
     MonetizationRoute.route,
@@ -495,7 +501,7 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
       NewsDetailView(news: $extra);
 }
 
-@TypedGoRoute<LoginRoute>(path: '/login')
+@TypedGoRoute<LoginRoute>(path: '/login', name: 'Login')
 final class LoginRoute extends GoRouteData with $LoginRoute {
   const LoginRoute({this.from});
 
@@ -509,7 +515,7 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
 }
 
-@TypedGoRoute<BannedRoute>(path: '/banned')
+@TypedGoRoute<BannedRoute>(path: '/banned', name: 'Banned')
 final class BannedRoute extends GoRouteData with $BannedRoute {
   const BannedRoute();
 
@@ -517,7 +523,7 @@ final class BannedRoute extends GoRouteData with $BannedRoute {
   Widget build(BuildContext context, GoRouterState state) => const BannedView();
 }
 
-@TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')
+@TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized', name: 'Unauthorized')
 final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
   const UnauthorizedRoute({this.attemptedPath});
 
@@ -531,7 +537,10 @@ final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
 final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
   const CreateGroupRoute();
 
-  static const route = TypedGoRoute<CreateGroupRoute>(path: 'create-group');
+  static const route = TypedGoRoute<CreateGroupRoute>(
+    path: 'create-group',
+    name: 'Create Group',
+  );
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>
@@ -546,7 +555,7 @@ final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
       const CreateGroupView();
 }
 
-@TypedGoRoute<GroupDetailRoute>(path: '/group-detail')
+@TypedGoRoute<GroupDetailRoute>(path: '/group-detail', name: 'Group Detail')
 final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
   GroupDetailRoute({required this.$extra});
 
@@ -557,7 +566,10 @@ final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
       GroupDetailView(model: $extra);
 }
 
-@TypedGoRoute<DiscussionDetailRoute>(path: '/discussion-detail')
+@TypedGoRoute<DiscussionDetailRoute>(
+  path: '/discussion-detail',
+  name: 'Discussion Detail',
+)
 final class DiscussionDetailRoute extends GoRouteData
     with $DiscussionDetailRoute {
   DiscussionDetailRoute({required this.$extra});

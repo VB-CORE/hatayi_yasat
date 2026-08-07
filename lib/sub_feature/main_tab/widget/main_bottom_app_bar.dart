@@ -20,7 +20,10 @@ class _BodyTabBarViewWidget extends StatelessWidget {
 }
 
 final class _BottomAppBarWidget extends ConsumerWidget {
-  const _BottomAppBarWidget({required this.tabItems, required this.controller});
+  const _BottomAppBarWidget({
+    required this.tabItems,
+    required this.controller,
+  });
 
   final List<TabModel> tabItems;
   final TabController controller;

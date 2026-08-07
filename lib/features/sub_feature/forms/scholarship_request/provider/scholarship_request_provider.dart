@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_state.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -11,7 +13,8 @@ import 'package:uuid/uuid.dart';
 part 'scholarship_request_provider.g.dart';
 
 @riverpod
-final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
+final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider
+    with ProjectDependencyMixin {
   @override
   ScholarshipRequestState build() => const ScholarshipRequestState();
 
@@ -59,6 +62,7 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
         isSendingRequest: false,
       );
 
+      _logError(errorType.name);
       return errorType.errorMessage;
     }
 
@@ -80,10 +84,27 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
     );
 
     if (response == null) {
+      _logError('write_failed');
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
     await _sharedCache.saveApplyScholarshipTime();
+    analyticsService.logEvent(
+      AnalyticsEvent.formSubmit,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,
+      },
+    );
     return null;
+  }
+
+  void _logError(String reason) {
+    analyticsService.logEvent(
+      AnalyticsEvent.formError,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,
+        AnalyticsParameter.reason: reason,
+      },
+    );
   }
 }
 

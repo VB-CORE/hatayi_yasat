@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_args.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_detail_state.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
@@ -17,7 +18,10 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
   PlaceDetailState build(PlaceDetailArgs args) {
     unawaited(_incrementVisitCount(args.placeId));
 
-    if (args.hasStore) return PlaceDetailState(storeModel: args.store);
+    if (args.hasStore) {
+      _logView(args.store);
+      return PlaceDetailState(storeModel: args.store);
+    }
 
     if (args.placeId.isEmpty) {
       return PlaceDetailState(storeModel: StoreModel.empty(), isError: true);
@@ -43,6 +47,45 @@ final class PlaceDetailViewModel extends _$PlaceDetailViewModel
       ),
       FirebaseFailure() => state.copyWith(isFetching: false, isError: true),
     };
+
+    switch (result) {
+      case FirebaseSuccess(:final data):
+        if (data != null) _logView(data);
+      case FirebaseFailure(:final error):
+        analyticsService.recordError(
+          error,
+          StackTrace.current,
+          reason: 'placeDetail.fetchStore($id)',
+        );
+    }
+  }
+
+  void _logView(StoreModel store) {
+    analyticsService.logEvent(
+      AnalyticsEvent.viewPlaceDetail,
+      parameters: {
+        AnalyticsParameter.placeId: store.documentId,
+        AnalyticsParameter.category: store.category?.name,
+      },
+    );
+  }
+
+  void logCallTap() {
+    analyticsService.logEvent(
+      AnalyticsEvent.placeCallTap,
+      parameters: {
+        AnalyticsParameter.placeId: state.storeModel.documentId,
+      },
+    );
+  }
+
+  void logDirectionsTap() {
+    analyticsService.logEvent(
+      AnalyticsEvent.placeDirectionsTap,
+      parameters: {
+        AnalyticsParameter.placeId: state.storeModel.documentId,
+      },
+    );
   }
 
   Future<void> _incrementVisitCount(String id) async {

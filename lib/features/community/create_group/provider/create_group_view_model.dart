@@ -1,4 +1,5 @@
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/create_group/model/create_group_model.dart';
@@ -61,6 +62,10 @@ final class CreateGroupViewModel extends _$CreateGroupViewModel
     }
 
     if (ref.mounted) state = state.copyWith(isSubmitting: false);
+    analyticsService.logEvent(
+      AnalyticsEvent.createGroup,
+      parameters: {AnalyticsParameter.groupId: groupReference.id},
+    );
     return true;
   }
 

@@ -1,5 +1,6 @@
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
@@ -35,6 +36,9 @@ mixin ProjectDependencyMixin {
       ProjectDependencyItems.productProvider;
 
   final ProductCache productCache = ProjectDependencyItems.productCache;
+
+  final AnalyticsService analyticsService =
+      ProjectDependencyItems.analyticsService;
 
   final AuthService authService = ProjectDependencyItems.authService;
 

@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
@@ -33,6 +35,10 @@ final class AppProvider extends Notifier<AppProviderState>
     if (state.theme == theme) return;
     state = state.copyWith(theme: theme);
     await SharedCache.instance.setTheme(theme);
+    ProjectDependencyItems.analyticsService.setUserProperty(
+      AnalyticsUserProperty.appTheme,
+      theme.name,
+    );
   }
 
   @override

@@ -49,9 +49,7 @@ final class MainTabView extends ConsumerStatefulWidget {
 }
 
 class _MainTabViewState extends ConsumerState<MainTabView>
-    with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
-  final List<TabModel> _tabItems = TabModels.create().tabItems;
-
+    with SingleTickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
   double get bottomSafePadding =>
       _BottomAppBarWidget.height + context.general.mediaQuery.padding.bottom;
 
@@ -65,30 +63,29 @@ class _MainTabViewState extends ConsumerState<MainTabView>
           return true;
         },
         child: ListenableBuilder(
-          listenable: controller,
+          listenable: tabController,
           builder: (context, _) {
-            final showAppBar = _tabItems[controller.index].showAppBar;
-            final showQr = _tabItems[controller.index].showQr;
+            final currentTab = tabItems[tabController.index];
             return Scaffold(
               extendBody: true,
-              appBar: showAppBar ? _MainAppBar() : null,
+              appBar: currentTab.showAppBar ? _MainAppBar() : null,
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               body: Stack(
                 children: [
                   _BodyTabBarViewWidget(
-                    tabItems: _tabItems,
-                    controller: controller,
+                    tabItems: tabItems,
+                    controller: tabController,
                   ),
-                  if (showQr) QrFabButton(bottom: bottomSafePadding),
+                  if (currentTab.showQr) QrFabButton(bottom: bottomSafePadding),
                 ],
               ),
               resizeToAvoidBottomInset: false,
               bottomNavigationBar: GeneralSemantic(
                 semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
                 child: _BottomAppBarWidget(
-                  tabItems: _tabItems,
-                  controller: controller,
+                  tabItems: tabItems,
+                  controller: tabController,
                 ),
               ),
               floatingActionButton: const _SpeedDialFabWidget(),
