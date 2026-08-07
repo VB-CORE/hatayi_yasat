@@ -5,16 +5,17 @@ import 'package:life_shared/life_shared.dart';
 final class GeneralScaffold extends Scaffold {
   GeneralScaffold({
     required Widget body,
+    EdgeInsetsGeometry? padding,
     super.appBar,
     super.key,
     super.floatingActionButton,
     super.floatingActionButtonLocation,
     super.backgroundColor,
   }) : super(
-          extendBody: true,
-          body: Padding(
-            padding: const PagePadding.horizontal16Symmetric(),
-            child: body,
-          ),
-        );
+         extendBody: true,
+         body: Padding(
+           padding: padding ?? const PagePadding.horizontal16Symmetric(),
+           child: body,
+         ),
+       );
 }
