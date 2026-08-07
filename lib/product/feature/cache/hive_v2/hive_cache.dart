@@ -20,7 +20,5 @@ final class HiveCacheManager extends CacheManager {
   }
 
   @override
-  void remove() {
-    Hive.deleteFromDisk();
-  }
+  void remove() => Hive.deleteFromDisk();
 }

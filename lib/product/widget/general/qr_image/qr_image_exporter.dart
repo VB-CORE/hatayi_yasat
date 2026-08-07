@@ -41,7 +41,7 @@ final class QrImageExporter {
 
       final byteData = await painter.toImageData(exportSize);
       return byteData?.buffer.asUint8List();
-    } catch (e) {
+    } on Object catch (e) {
       CustomLogger.showError<dynamic>(e);
       return null;
     }
@@ -69,7 +69,7 @@ final class QrImageExporter {
 
       stream.addListener(listener);
       return completer.future;
-    } catch (e) {
+    } on Object catch (e) {
       CustomLogger.showError<dynamic>(e);
       return null;
     }

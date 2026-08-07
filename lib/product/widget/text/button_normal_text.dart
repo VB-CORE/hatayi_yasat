@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ButtonNormalText extends StatelessWidget {
   const ButtonNormalText({

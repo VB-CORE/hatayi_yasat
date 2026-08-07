@@ -48,9 +48,8 @@ final class _TourismPlaceCard extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: InkWell(
-                        onTap: () {
-                          ToursimPlaceDetailSheet.show(context, location);
-                        },
+                        onTap: () =>
+                            ToursimPlaceDetailSheet.show(context, location),
                         child: Text(
                           LocaleKeys.button_more.tr(),
                           style: context.general.textTheme.bodySmall?.copyWith(

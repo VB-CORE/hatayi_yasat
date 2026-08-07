@@ -60,7 +60,9 @@ mixin _SpecialAgencyListBuilderMixin
   @override
   void initState() {
     super.initState();
-    Future<void>.microtask(_init);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _init();
+    });
   }
 
   Future<void> _init() async {

@@ -3,7 +3,7 @@ import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/base_shared_operation.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 
-// TODO: It's need to generic
+// TODO(tech-debt): It's need to generic
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();

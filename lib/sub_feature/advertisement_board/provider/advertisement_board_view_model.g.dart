@@ -47,7 +47,7 @@ final class AdvertisementBoardViewModelProvider
 }
 
 String _$advertisementBoardViewModelHash() =>
-    r'ef4bfc41b7665277edc2e031416c181f846e4cfa';
+    r'df34d921b526a4d388ebbf1e5827d2211934444b';
 
 abstract class _$AdvertisementBoardViewModel
     extends $Notifier<AdvertisementBoardState> {

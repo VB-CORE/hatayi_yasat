@@ -15,7 +15,7 @@ final class UsefulLinksViewModel extends _$UsefulLinksViewModel
   }
 
   CollectionReference<UsefulLinksModel?> fetchLinksCollectionReference() {
-    return firebaseService.collectionReference(
+    return firestoreService.collectionReference(
       CollectionPaths.usefulLinks,
       UsefulLinksModel(),
     );

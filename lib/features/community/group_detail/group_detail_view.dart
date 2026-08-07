@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/group_detail/details/view/group_details_view.dart';
 import 'package:lifeclient/features/community/group_detail/discussions/view/group_discussions_view.dart';
 import 'package:lifeclient/features/community/group_detail/wall/view/group_wall_view.dart';
 import 'package:lifeclient/features/community/group_detail/widget/group_detail_sliver_header.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 
 final class GroupDetailView extends StatelessWidget {

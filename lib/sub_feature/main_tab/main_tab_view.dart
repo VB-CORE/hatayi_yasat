@@ -28,6 +28,7 @@ import 'package:lifeclient/product/widget/general/title/general_content_sub_titl
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
@@ -39,7 +40,9 @@ part 'widget/main_bottom_app_bar.dart';
 part 'widget/main_fab_button.dart';
 
 final class MainTabView extends ConsumerStatefulWidget {
-  const MainTabView({super.key});
+  const MainTabView({this.tab, super.key});
+
+  final MainTab? tab;
 
   @override
   ConsumerState<MainTabView> createState() => _MainTabViewState();

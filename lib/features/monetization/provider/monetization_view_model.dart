@@ -26,7 +26,7 @@ final class MonetizationViewModel extends _$MonetizationViewModel
     state = state.copyWith(isFetching: true, isError: false);
 
     final result = await firestoreService.getList<CouponModel>(
-      model: CouponModel(),
+      model: const CouponModel(),
       path: CollectionPaths.coupons,
     );
 

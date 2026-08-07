@@ -9,7 +9,7 @@ class ProductCheckbox extends FormField<bool> {
     super.autovalidateMode,
     bool super.initialValue = false,
   }) : super(
-          builder: (FormFieldState<bool> state) {
+          builder: (state) {
             return ListTile(
               minLeadingWidth: 0,
               leading: Checkbox(
@@ -25,7 +25,7 @@ class ProductCheckbox extends FormField<bool> {
               title: title,
               subtitle: state.hasError
                   ? Builder(
-                      builder: (BuildContext context) => Text(
+                      builder: (context) => Text(
                         '**${state.errorText ?? ''}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,

@@ -7,7 +7,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
 
-part './special_agency_detail_sheet_mixin.dart';
+part 'special_agency_detail_sheet_mixin.dart';
 
 final class SpecialAgencyDetailSheet extends StatelessWidget
     with _SpecialAgencyDetailSheetMixin {
@@ -50,13 +50,13 @@ final class SpecialAgencyDetailSheet extends StatelessWidget
             iconData: Icons.phone_outlined,
             mainTitle: LocaleKeys.specialAgency_agencyNumber,
             subTitle: model.phone ?? '',
-            onTapEvent: () async => onPhoneClick(context, model.phone),
+            onTapEvent: () => onPhoneClick(context, model.phone),
           ),
           _ListTileWidget(
             iconData: Icons.location_on_outlined,
             mainTitle: LocaleKeys.specialAgency_agencyAddress,
             subTitle: model.address ?? '',
-            onTapEvent: () async => onLocationClick(context, model.latLong),
+            onTapEvent: () => onLocationClick(context, model.latLong),
           ),
           const EmptyBox.largeHeight(),
         ],

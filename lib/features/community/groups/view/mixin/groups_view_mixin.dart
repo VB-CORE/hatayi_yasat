@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/groups/provider/groups_view_model.dart';
 import 'package:lifeclient/features/community/groups/view/groups_view.dart';
 import 'package:lifeclient/features/community/groups/view/widget/join_group_confirm_sheet.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';

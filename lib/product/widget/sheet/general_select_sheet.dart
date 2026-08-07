@@ -5,7 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/divider/sheet_gap_divider.dart';
 
-part './widget/select_sheet/select_sheet_sub_card.dart';
+part 'widget/select_sheet/select_sheet_sub_card.dart';
 
 final class SelectSheetModel extends Equatable {
   const SelectSheetModel({required this.title, required this.id});
@@ -91,13 +91,11 @@ class _GeneralSelectSheetState extends State<GeneralSelectSheet> {
                   thickness: .3,
                 );
               },
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (context, index) {
                 return _SelectSheetSubCard(
                   isSelectedInitial: widget.initialItem == _items[index],
                   item: _items[index],
-                  onSelected: (value) {
-                    context.route.pop(value);
-                  },
+                  onSelected: (value) => context.route.pop(value),
                 );
               },
             ),

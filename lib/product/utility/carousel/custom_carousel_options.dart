@@ -11,14 +11,14 @@ final class CustomCarouselOptions extends CarouselOptions {
   /// * curve: easeOut
   /// * autoPlay: true
   CustomCarouselOptions.advertisement({
-    double height = 150,
+    super.height,
+    super.viewportFraction,
     super.onPageChanged,
   }) : super(
-          autoPlayAnimationDuration: DurationConstant.durationNormal,
-          height: height,
-          autoPlayCurve: Curves.easeOut,
-          autoPlay: true,
-          padEnds: true,
-          pageSnapping: false,
-        );
+         autoPlayAnimationDuration: DurationConstant.durationNormal,
+         autoPlayCurve: Curves.easeOut,
+         autoPlay: true,
+         padEnds: true,
+         pageSnapping: false,
+       );
 }

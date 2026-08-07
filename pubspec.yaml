@@ -167,6 +167,11 @@ scripts:
 flutter:
   uses-material-design: true
 
+  # image_cropper (TOCropViewController) has no SPM support; SPM + CocoaPods
+  # both linking it produces duplicate symbols at link time.
+  config:
+    enable-swift-package-manager: false
+
   assets:
     - assets/translations/
     - assets/icons/

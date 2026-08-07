@@ -269,23 +269,23 @@ abstract final class AppShadows {
 
   /// Kart — çok hafif
   static List<BoxShadow> card = [
-    BoxShadow(color: _navy.withOpacity(0.05), blurRadius: 8, offset: const Offset(0, 2)),
+    BoxShadow(color: _navy.withOp(0.05), blurRadius: 8, offset: const Offset(0, 2)),
   ];
   /// Yükseltilmiş (buton/logo/floating)
   static List<BoxShadow> raised = [
-    BoxShadow(color: _navy.withOpacity(0.10), blurRadius: 30, offset: const Offset(0, 10)),
+    BoxShadow(color: _navy.withOp(0.10), blurRadius: 30, offset: const Offset(0, 10)),
   ];
   /// Hero / büyük float
   static List<BoxShadow> hero = [
-    BoxShadow(color: _navy.withOpacity(0.12), blurRadius: 40, offset: const Offset(0, 16)),
+    BoxShadow(color: _navy.withOp(0.12), blurRadius: 40, offset: const Offset(0, 16)),
   ];
   /// Popover / menü
   static List<BoxShadow> popover = [
-    BoxShadow(color: _navy.withOpacity(0.18), blurRadius: 30, offset: const Offset(0, 12)),
+    BoxShadow(color: _navy.withOp(0.18), blurRadius: 30, offset: const Offset(0, 12)),
   ];
   /// Toast (navy zemin üstünde koyu)
   static List<BoxShadow> toast = [
-    BoxShadow(color: _navy.withOpacity(0.35), blurRadius: 40, offset: const Offset(0, 16)),
+    BoxShadow(color: _navy.withOp(0.35), blurRadius: 40, offset: const Offset(0, 16)),
   ];
 }
 ```

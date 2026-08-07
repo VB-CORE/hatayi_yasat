@@ -4,7 +4,7 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
   const _MerchantShowcaseEditor({
     required this.storeId,
     required this.modules,
-    required this.onReorder,
+    required this.onReorderItem,
     required this.onEdit,
     required this.onDelete,
     required this.onToggleActive,
@@ -12,7 +12,7 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
 
   final String storeId;
   final List<MerchantShowcaseModuleModel> modules;
-  final void Function(int oldIndex, int newIndex) onReorder;
+  final ReorderCallback onReorderItem;
   final ValueChanged<MerchantShowcaseModuleModel> onEdit;
   final ValueChanged<MerchantShowcaseModuleModel> onDelete;
   final ValueChanged<MerchantShowcaseModuleModel> onToggleActive;
@@ -28,7 +28,7 @@ final class _MerchantShowcaseEditor extends StatelessWidget {
     return ReorderableListView.builder(
       padding: const PagePadding.generalAllLow(),
       itemCount: modules.length,
-      onReorderItem: onReorder,
+      onReorderItem: onReorderItem,
       buildDefaultDragHandles: false,
       itemBuilder: (context, index) {
         final module = modules[index];

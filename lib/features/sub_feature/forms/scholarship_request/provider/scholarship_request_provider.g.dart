@@ -44,7 +44,7 @@ final class ScholarshipRequestProviderProvider
 }
 
 String _$scholarshipRequestProviderHash() =>
-    r'14fd05aba9b119f7e89adb62bb60c9421440bab7';
+    r'bfd673ea5b9a9f5df96390f3c0f7fdd463850a4e';
 
 abstract class _$ScholarshipRequestProvider
     extends $Notifier<ScholarshipRequestState> {

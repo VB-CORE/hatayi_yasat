@@ -1,13 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/init/firebase_custom_service.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/model/enum/notification_type.dart';
 import 'package:lifeclient/product/package/firebase/messaging_navigate.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 
 final class NotificationNavigateParse with NotificationTypeMixin {
   NotificationNavigateParse(this.context);
-  final _customService = FirebaseCustomService();
+  final CustomFirestoreService _firestoreService =
+      ProjectDependencyItems.firestoreService;
   final BuildContext context;
   Future<void> _make(String id, NotificationType type) async {
     switch (type) {
@@ -22,7 +23,7 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         await MessagingNavigate.instance.detailModelCampaignCheckAndNavigate(
           context: context,
           id: id,
-          customService: _customService,
+          firestoreService: _firestoreService,
         );
         return;
 
@@ -31,7 +32,7 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         await MessagingNavigate.instance.detailModelNewsCheckAndNavigate(
           context: context,
           id: id,
-          customService: _customService,
+          firestoreService: _firestoreService,
         );
         return;
       case NotificationType.advertise:
@@ -40,7 +41,7 @@ final class NotificationNavigateParse with NotificationTypeMixin {
             .detailModelAdvertiseCheckAndShowBottomSheet(
           context: context,
           id: id,
-          customService: _customService,
+          firestoreService: _firestoreService,
         );
         return;
       case NotificationType.link:
@@ -48,7 +49,7 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         await MessagingNavigate.instance.detailModelLinkCheckAndBottomSheet(
           context: context,
           id: id,
-          customService: _customService,
+          firestoreService: _firestoreService,
         );
         return;
     }

@@ -5,10 +5,9 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-
 import 'package:lifeclient/product/widget/general/index.dart';
 
-part './item/jobs_card_sheet_item.dart';
+part 'item/jobs_card_sheet_item.dart';
 
 @immutable
 final class JobsCard extends StatelessWidget {
@@ -19,12 +18,10 @@ final class JobsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        onTap: () {
-          showModalBottomSheet<void>(
-            context: context,
-            builder: (context) => _JobsSheetView(item: item),
-          );
-        },
+        onTap: () async => showModalBottomSheet<void>(
+          context: context,
+          builder: (context) => _JobsSheetView(item: item),
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -42,7 +42,7 @@ final class ChainStoreProviderProvider
 }
 
 String _$chainStoreProviderHash() =>
-    r'41e52a50d0f5a57c68a677a182884514002805cf';
+    r'758093512510dbdfcb6765169c7b7db231896cea';
 
 abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
   ChainStoreState build();

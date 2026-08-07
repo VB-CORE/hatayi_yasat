@@ -59,7 +59,7 @@ final class GroupWallViewModelProvider
 }
 
 String _$groupWallViewModelHash() =>
-    r'155a191696309fecf7c81493e3125000b4795fe9';
+    r'50bfec882ad455fc658c6256d8d5bcf5ec8c6db1';
 
 final class GroupWallViewModelFamily extends $Family
     with

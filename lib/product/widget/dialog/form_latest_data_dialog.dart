@@ -32,15 +32,11 @@ class FormLatestDataDialog extends StatelessWidget {
       ).tr(),
       actions: [
         TextButton(
-          onPressed: () {
-            context.route.pop(false);
-          },
+          onPressed: () => context.route.pop(false),
           child: const Text(LocaleKeys.button_close).tr(),
         ),
         ElevatedButton(
-          onPressed: () {
-            context.route.pop(true);
-          },
+          onPressed: () => context.route.pop(true),
           child: const Text(LocaleKeys.button_ok).tr(),
         ),
       ],

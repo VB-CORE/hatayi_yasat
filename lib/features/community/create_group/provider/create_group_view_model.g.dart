@@ -42,7 +42,7 @@ final class CreateGroupViewModelProvider
 }
 
 String _$createGroupViewModelHash() =>
-    r'2b7f8bf2e6aff6606afcd04481785029b61a63c0';
+    r'3eee79c84d1e51ab7248128c1fbe939a7ae32092';
 
 abstract class _$CreateGroupViewModel extends $Notifier<CreateGroupState> {
   CreateGroupState build();
