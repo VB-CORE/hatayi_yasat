@@ -614,6 +614,7 @@
     "searchDistrict": "İlçe ara",
     "selectedCount": "{}/{} seçili",
     "showResults": "{} sonucu göster",
+    "showResultsPlain": "Sonuçları göster",
     "noResults": "Sonuç yok, filtreyi gevşet",
     "categoryCountLabel": "{} kategori",
     "districtCountLabel": "{} ilçe",

@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/features/main/home/provider/approved_place_query.dart';
 import 'package:lifeclient/features/main/home/provider/home_state.dart';
-import 'package:lifeclient/product/model/enum/firebase_query_items.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -33,48 +33,24 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 
   Query<StoreModel?> fetchApprovedCollectionQuery() {
     final selectedCity = ref.watch(productProviderState).selectedCity;
-    return buildApprovedQuery(
+    return ApprovedPlaceQuery(
       cityId: selectedCity.documentId,
       categoryValues: state.categoryValues,
       townCodes: state.townCodes,
       sortingType: state.sortingType,
-    );
+    ).build(fetchApprovedCollectionReference());
   }
 
-  /// Builds the approved-places query for the given axes. Category and town are
-  /// server-side (`whereIn`); open-now/favorites are applied in memory by the
-  /// view because they have no Firestore field.
-  Query<StoreModel?> buildApprovedQuery({
-    required String cityId,
+  ApprovedPlaceQuery draftQuery({
     required Set<int> categoryValues,
     required Set<int> townCodes,
-    required SortingTypes sortingType,
   }) {
-    final reference = firestoreService.collectionReference(
-      CollectionPaths.approvedApplications,
-      StoreModel.empty(),
+    return ApprovedPlaceQuery(
+      cityId: ref.read(productProviderState).selectedCity.documentId,
+      categoryValues: categoryValues,
+      townCodes: townCodes,
+      sortingType: state.sortingType,
     );
-
-    final filters = <Filter>[
-      Filter(FirebaseQueryItems.cityId.name, isEqualTo: cityId),
-      if (categoryValues.isNotEmpty)
-        Filter(_categoryValueField, whereIn: categoryValues.toList()),
-      if (townCodes.isNotEmpty)
-        Filter(_townCodeField, whereIn: townCodes.toList()),
-    ];
-
-    final combined = switch (filters.length) {
-      1 => filters[0],
-      2 => Filter.and(filters[0], filters[1]),
-      _ => Filter.and(filters[0], filters[1], filters[2]),
-    };
-
-    return reference
-        .where(combined)
-        .orderBy(
-          sortingType.field,
-          descending: sortingType.descending,
-        );
   }
 
   void changeHomeViewCardType() {
@@ -130,32 +106,33 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   /// Live result count for the filter sheet CTA. Uses the cheap aggregate count
   /// when there are no client-side axes; otherwise loads a bounded page and
   /// filters in memory.
-  Future<int> countResults({
-    required Set<int> categoryValues,
-    required Set<int> townCodes,
+  Future<FirestoreResult<int>> countResults(
+    ApprovedPlaceQuery placeQuery, {
     required bool openNow,
     required bool favoritesOnly,
   }) async {
-    final selectedCity = ref.read(productProviderState).selectedCity;
-    final query = buildApprovedQuery(
-      cityId: selectedCity.documentId,
-      categoryValues: categoryValues,
-      townCodes: townCodes,
-      sortingType: state.sortingType,
-    );
+    final query = placeQuery.build(fetchApprovedCollectionReference());
 
     if (!openNow && !favoritesOnly) {
-      final snapshot = await query.count().get();
-      return snapshot.count ?? 0;
+      return firestoreService.countQuery(query);
     }
 
-    final snapshot = await query.limit(_clientFilterLimit).get();
-    final models = snapshot.docs.map((e) => e.data()).whereType<StoreModel>();
-    return filterClientSide(
-      models,
-      openNow: openNow,
-      favoritesOnly: favoritesOnly,
-    ).length;
+    final result = await firestoreService.getListFromQuery(
+      query.limit(_clientFilterLimit),
+    );
+    return switch (result) {
+      FirebaseSuccess(:final data) => FirebaseSuccess(
+        filterClientSide(
+          data,
+          openNow: openNow,
+          favoritesOnly: favoritesOnly,
+        ).length,
+      ),
+      FirebaseFailure(:final error, :final message) => FirebaseFailure(
+        error,
+        message: message,
+      ),
+    };
   }
 
   /// Applies open-now / favorites predicates in memory.
@@ -189,7 +166,5 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
     state = state.copyWith(isLoading: false);
   }
 
-  static const String _categoryValueField = 'category.value';
-  static const String _townCodeField = 'townCode';
   static const int _clientFilterLimit = 300;
 }

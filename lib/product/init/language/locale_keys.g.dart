@@ -544,6 +544,7 @@ abstract class  LocaleKeys {
   static const filter_searchDistrict = 'filter.searchDistrict';
   static const filter_selectedCount = 'filter.selectedCount';
   static const filter_showResults = 'filter.showResults';
+  static const filter_showResultsPlain = 'filter.showResultsPlain';
   static const filter_noResults = 'filter.noResults';
   static const filter_categoryCountLabel = 'filter.categoryCountLabel';
   static const filter_districtCountLabel = 'filter.districtCountLabel';

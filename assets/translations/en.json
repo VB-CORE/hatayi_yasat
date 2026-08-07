@@ -614,6 +614,7 @@
     "searchDistrict": "Search district",
     "selectedCount": "{}/{} selected",
     "showResults": "Show {} results",
+    "showResultsPlain": "Show results",
     "noResults": "No results, loosen filters",
     "categoryCountLabel": "{} categories",
     "districtCountLabel": "{} districts",

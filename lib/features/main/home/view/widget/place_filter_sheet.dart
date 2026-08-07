@@ -8,6 +8,7 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/core/theme/app_text.dart';
+import 'package:lifeclient/features/main/home/provider/approved_place_query.dart';
 import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -46,27 +47,16 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   String _townQuery = '';
   Timer? _debounce;
   int _countToken = 0;
+
   int? _resultCount;
   bool _countLoading = false;
 
-  // Firestore, kategori × ilçe kombinasyonunu 30 disjunction ile sınırlıyor.
-  // https://firebase.google.com/docs/firestore/query-data/queries#standard_edition_limitations_2
-  static const int _maxDisjunctions = 30;
-
-  int get _maxSelectableTowns => _categoryValues.isEmpty
-      ? _maxDisjunctions
-      : _maxDisjunctions ~/ _categoryValues.length;
-
-  int get _maxSelectableCategories => _townCodes.isEmpty
-      ? _maxDisjunctions
-      : _maxDisjunctions ~/ _townCodes.length;
-
-  bool get _isTownLimitExceeded => _townCodes.length > _maxSelectableTowns;
-
-  bool get _isCategoryLimitExceeded =>
-      _categoryValues.length > _maxSelectableCategories;
-
-  bool get _isLimitExceeded => _isTownLimitExceeded || _isCategoryLimitExceeded;
+  ApprovedPlaceQuery get _draftQuery => ref
+      .read(homeViewModelProvider.notifier)
+      .draftQuery(
+        categoryValues: _categoryValues,
+        townCodes: _townCodes,
+      );
 
   @override
   void initState() {
@@ -95,37 +85,31 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
     _debounce = Timer(const Duration(milliseconds: 300), _recount);
   }
 
-  Future<int?> _fetchCount() async {
-    if (_isLimitExceeded) return null;
-    try {
-      return await ref
-          .read(homeViewModelProvider.notifier)
-          .countResults(
-            categoryValues: _categoryValues,
-            townCodes: _townCodes,
-            openNow: _openNow,
-            favoritesOnly: _favoritesOnly,
-          );
-    } on Exception {
-      return null;
-    }
-  }
-
   Future<void> _recount() async {
     final token = ++_countToken;
-    setState(() => _countLoading = true);
-
-    int? count;
-    try {
-      count = await _fetchCount();
-    } finally {
-      if (mounted && token == _countToken) {
-        setState(() {
-          _resultCount = count;
-          _countLoading = false;
-        });
-      }
+    final query = _draftQuery;
+    if (!query.isWithinLimit) {
+      setState(() {
+        _resultCount = null;
+        _countLoading = false;
+      });
+      return;
     }
+
+    setState(() => _countLoading = true);
+    final result = await ref
+        .read(homeViewModelProvider.notifier)
+        .countResults(
+          query,
+          openNow: _openNow,
+          favoritesOnly: _favoritesOnly,
+        );
+    if (!mounted || token != _countToken) return;
+
+    setState(() {
+      _resultCount = result.dataOrNull;
+      _countLoading = false;
+    });
   }
 
   void _toggleCategory(int value) {
@@ -163,6 +147,7 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
 
   @override
   Widget build(BuildContext context) {
+    final draftQuery = _draftQuery;
     final categories = productState.categoryItems
         .where((e) => e.value != PlaceFilterSheet._otherCategoryValue)
         .toList();
@@ -198,10 +183,10 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
                       categories.length,
                     ),
                   ),
-                  if (_isCategoryLimitExceeded)
+                  if (draftQuery.isCategoryLimitExceeded)
                     _LimitWarning(
                       LocaleKeys.filter_categoryLimitWarning.tr(
-                        args: ['$_maxSelectableCategories'],
+                        args: ['${draftQuery.maxSelectableCategories}'],
                       ),
                     ),
                   const SizedBox(height: AppSpacing.sm),
@@ -243,10 +228,10 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
                     title: LocaleKeys.filter_districts.tr(),
                     trailing: _countLabel(_townCodes.length, towns.length),
                   ),
-                  if (_isTownLimitExceeded)
+                  if (draftQuery.isTownLimitExceeded)
                     _LimitWarning(
                       LocaleKeys.filter_townLimitWarning.tr(
-                        args: ['$_maxSelectableTowns'],
+                        args: ['${draftQuery.maxSelectableTowns}'],
                       ),
                     ),
                   const SizedBox(height: AppSpacing.sm),
@@ -270,6 +255,7 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
             _CtaFooter(
               count: _resultCount,
               loading: _countLoading,
+              isLimitExceeded: !draftQuery.isWithinLimit,
               onApply: _apply,
             ),
           ],
@@ -655,20 +641,25 @@ final class _CtaFooter extends StatelessWidget {
   const _CtaFooter({
     required this.count,
     required this.loading,
+    required this.isLimitExceeded,
     required this.onApply,
   });
 
+  /// `null` when the result count could not be loaded; the CTA then promises
+  /// no number instead of showing a zero it does not know.
   final int? count;
   final bool loading;
+  final bool isLimitExceeded;
   final VoidCallback onApply;
 
   @override
   Widget build(BuildContext context) {
-    final resolved = count ?? 0;
-    final enabled = !loading && resolved > 0;
-    final label = resolved == 0 && !loading
-        ? LocaleKeys.filter_noResults.tr()
-        : LocaleKeys.filter_showResults.tr(args: ['$resolved']);
+    final enabled = !loading && !isLimitExceeded && count != 0;
+    final label = switch (count) {
+      null => LocaleKeys.filter_showResultsPlain.tr(),
+      0 => LocaleKeys.filter_noResults.tr(),
+      final resolved => LocaleKeys.filter_showResults.tr(args: ['$resolved']),
+    };
 
     return Container(
       padding: const EdgeInsets.fromLTRB(
