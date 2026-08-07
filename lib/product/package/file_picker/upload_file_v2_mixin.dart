@@ -19,7 +19,7 @@ mixin UploadFileMixin on State<UploadFileSection> {
       file != null && getNameOfFile(file).ext.isNotNullOrNoEmpty;
 
   Future<void> pickFile() async {
-    FocusScope.of(context).unfocus();
+    context.general.unfocus();
     final allowedExtension =
         widget.allowedExtension ?? DefaultFileExtension.documentExtensionList;
     final result = await FilePickerManager.pickFile(

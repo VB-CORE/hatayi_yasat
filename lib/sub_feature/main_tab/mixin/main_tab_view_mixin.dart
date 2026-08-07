@@ -58,7 +58,6 @@ mixin MainTabViewMixin
     _clearTabQuery();
   }
 
-  /// Uygulanan `?tab=` parametresini URL'den silerek istegi tuketir.
   void _clearTabQuery() {
     if (widget.tab == null) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
