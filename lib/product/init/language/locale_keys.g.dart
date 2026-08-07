@@ -549,6 +549,8 @@ abstract class  LocaleKeys {
   static const filter_districtCountLabel = 'filter.districtCountLabel';
   static const filter_openShort = 'filter.openShort';
   static const filter_favoritesShort = 'filter.favoritesShort';
+  static const filter_townLimitWarning = 'filter.townLimitWarning';
+  static const filter_categoryLimitWarning = 'filter.categoryLimitWarning';
   static const filter = 'filter';
   static const community_tagline = 'community.tagline';
   static const community_groups_title = 'community.groups.title';

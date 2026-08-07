@@ -618,7 +618,9 @@
     "categoryCountLabel": "{} kategori",
     "districtCountLabel": "{} ilçe",
     "openShort": "açık",
-    "favoritesShort": "favori"
+    "favoritesShort": "favori",
+    "townLimitWarning": "Seçtiğiniz kategorilerle en fazla {} ilçe seçebilirsiniz",
+    "categoryLimitWarning": "Seçtiğiniz ilçelerle en fazla {} kategori seçebilirsiniz"
   },
   "community": {
     "tagline": "TOPLULUK",

@@ -618,7 +618,9 @@
     "categoryCountLabel": "{} categories",
     "districtCountLabel": "{} districts",
     "openShort": "open",
-    "favoritesShort": "favorites"
+    "favoritesShort": "favorites",
+    "townLimitWarning": "With the selected categories you can choose at most {} districts",
+    "categoryLimitWarning": "With the selected districts you can choose at most {} categories"
   },
   "community": {
     "tagline": "COMMUNITY",

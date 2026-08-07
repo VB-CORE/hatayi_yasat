@@ -49,6 +49,23 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   int? _resultCount;
   bool _countLoading = false;
 
+  static const int _maxDisjunctions = 30;
+
+  int get _maxSelectableTowns => _categoryValues.isEmpty
+      ? _maxDisjunctions
+      : _maxDisjunctions ~/ _categoryValues.length;
+
+  int get _maxSelectableCategories => _townCodes.isEmpty
+      ? _maxDisjunctions
+      : _maxDisjunctions ~/ _townCodes.length;
+
+  bool get _isTownLimitExceeded => _townCodes.length > _maxSelectableTowns;
+
+  bool get _isCategoryLimitExceeded =>
+      _categoryValues.length > _maxSelectableCategories;
+
+  bool get _isLimitExceeded => _isTownLimitExceeded || _isCategoryLimitExceeded;
+
   @override
   void initState() {
     super.initState();
@@ -76,15 +93,24 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
     _debounce = Timer(const Duration(milliseconds: 300), _recount);
   }
 
+  Future<int?> _fetchCount() async {
+    if (_isLimitExceeded) return null;
+    try {
+      return await ref.read(homeViewModelProvider.notifier).countResults(
+            categoryValues: _categoryValues,
+            townCodes: _townCodes,
+            openNow: _openNow,
+            favoritesOnly: _favoritesOnly,
+          );
+    } on Exception {
+      return null;
+    }
+  }
+
   Future<void> _recount() async {
     final token = ++_countToken;
     setState(() => _countLoading = true);
-    final count = await ref.read(homeViewModelProvider.notifier).countResults(
-          categoryValues: _categoryValues,
-          townCodes: _townCodes,
-          openNow: _openNow,
-          favoritesOnly: _favoritesOnly,
-        );
+    final count = await _fetchCount();
     if (!mounted || token != _countToken) return;
     setState(() {
       _resultCount = count;
@@ -157,6 +183,12 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
                     title: LocaleKeys.filter_categories.tr(),
                     trailing: _countLabel(_categoryValues.length, categories.length),
                   ),
+                  if (_isCategoryLimitExceeded)
+                    _LimitWarning(
+                      LocaleKeys.filter_categoryLimitWarning.tr(
+                        args: ['$_maxSelectableCategories'],
+                      ),
+                    ),
                   const SizedBox(height: AppSpacing.sm),
                   Wrap(
                     spacing: AppSpacing.xs,
@@ -196,6 +228,12 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
                     title: LocaleKeys.filter_districts.tr(),
                     trailing: _countLabel(_townCodes.length, towns.length),
                   ),
+                  if (_isTownLimitExceeded)
+                    _LimitWarning(
+                      LocaleKeys.filter_townLimitWarning.tr(
+                        args: ['$_maxSelectableTowns'],
+                      ),
+                    ),
                   const SizedBox(height: AppSpacing.sm),
                   _TownSearchField(controller: _searchController),
                   const SizedBox(height: AppSpacing.sm),
@@ -316,6 +354,23 @@ final class _SectionHeader extends StatelessWidget {
           style: AppText.label.copyWith(color: AppColors.coral),
         ),
       ],
+    );
+  }
+}
+
+final class _LimitWarning extends StatelessWidget {
+  const _LimitWarning(this.message);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.xxs),
+      child: Text(
+        message,
+        style: AppText.caption.copyWith(color: AppColors.coral),
+      ),
     );
   }
 }
