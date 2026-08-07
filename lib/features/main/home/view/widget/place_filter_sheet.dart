@@ -110,12 +110,18 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   Future<void> _recount() async {
     final token = ++_countToken;
     setState(() => _countLoading = true);
-    final count = await _fetchCount();
-    if (!mounted || token != _countToken) return;
-    setState(() {
-      _resultCount = count;
-      _countLoading = false;
-    });
+
+    int? count;
+    try {
+      count = await _fetchCount();
+    } finally {
+      if (mounted && token == _countToken) {
+        setState(() {
+          _resultCount = count;
+          _countLoading = false;
+        });
+      }
+    }
   }
 
   void _toggleCategory(int value) {
