@@ -43,12 +43,12 @@ final class GeneralPlaceCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: SizedBox(
-            height: context.sized.dynamicHeight(0.12),
+            height: context.sized.dynamicHeight(0.12) + WidgetSizes.spacingM,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  width: context.sized.dynamicWidth(0.27),
+                  width: context.sized.dynamicWidth(0.24),
                   child: _PlaceImageBlock(model: storeModel),
                 ),
                 Expanded(child: _Body(model: storeModel)),
@@ -200,19 +200,23 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
               ),
             ),
           const EmptyBox.smallHeight(),
-          Wrap(
-            spacing: AppSpacing.sm,
-            runSpacing: AppSpacing.xxs,
-            crossAxisAlignment: WrapCrossAlignment.center,
+          Row(
+            children: [Flexible(child: StatusPill(store: model))],
+          ),
+          const EmptyBox.xxSmallHeight(),
+          Row(
             children: [
-              StatusPill(store: model),
               PlaceRatingLabel(
                 rating: model.averageRatingLabel,
                 reviewCount: model.ratingCount,
               ),
-              GeneralContentSmallTitle(
-                value: distanceLabel,
-                color: context.general.colorScheme.onSurfaceVariant,
+              const SizedBox(width: AppSpacing.sm),
+              Flexible(
+                child: GeneralContentSmallTitle(
+                  value: distanceLabel,
+                  maxLine: 1,
+                  color: context.general.colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),
