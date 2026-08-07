@@ -49,7 +49,8 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   int? _resultCount;
   bool _countLoading = false;
 
-  /// Firestore, kategori × ilçe kombinasyonunu 30 disjunction ile sınırlıyor.
+  // Firestore, kategori × ilçe kombinasyonunu 30 disjunction ile sınırlıyor.
+  // https://firebase.google.com/docs/firestore/query-data/queries#standard_edition_limitations_2
   static const int _maxDisjunctions = 30;
 
   int get _maxSelectableTowns => _categoryValues.isEmpty
@@ -97,7 +98,9 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   Future<int?> _fetchCount() async {
     if (_isLimitExceeded) return null;
     try {
-      return await ref.read(homeViewModelProvider.notifier).countResults(
+      return await ref
+          .read(homeViewModelProvider.notifier)
+          .countResults(
             categoryValues: _categoryValues,
             townCodes: _townCodes,
             openNow: _openNow,
@@ -146,7 +149,9 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
 
   void _apply() {
     unawaited(
-      ref.read(homeViewModelProvider.notifier).applyFilters(
+      ref
+          .read(homeViewModelProvider.notifier)
+          .applyFilters(
             categoryValues: _categoryValues,
             townCodes: _townCodes,
             openNow: _openNow,
@@ -165,8 +170,8 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
     final filteredTowns = _townQuery.isEmpty
         ? towns
         : towns
-            .where((t) => t.displayName.toLowerCase().contains(_townQuery))
-            .toList();
+              .where((t) => t.displayName.toLowerCase().contains(_townQuery))
+              .toList();
 
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.92,
@@ -188,7 +193,10 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
                 children: [
                   _SectionHeader(
                     title: LocaleKeys.filter_categories.tr(),
-                    trailing: _countLabel(_categoryValues.length, categories.length),
+                    trailing: _countLabel(
+                      _categoryValues.length,
+                      categories.length,
+                    ),
                   ),
                   if (_isCategoryLimitExceeded)
                     _LimitWarning(
