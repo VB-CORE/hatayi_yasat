@@ -12,8 +12,8 @@ mixin HistoryViewMixin on ConsumerState<HistoryView>, ProjectDependencyMixin {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkFirstVisit();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _checkFirstVisit();
     });
   }
 

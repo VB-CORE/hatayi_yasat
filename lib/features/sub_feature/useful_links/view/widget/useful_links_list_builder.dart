@@ -19,7 +19,7 @@ final class _UsefulLinksListBuilder extends ConsumerWidget {
         );
       },
       onRetry: () {},
-      emptyBuilder: (BuildContext context) {
+      emptyBuilder: (context) {
         return GeneralNotFoundWidget(
           title: LocaleKeys.notFound_usefulLinks.tr(),
         );

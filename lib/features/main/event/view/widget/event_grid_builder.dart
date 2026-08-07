@@ -6,12 +6,14 @@ final class _EventGridBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final query =
-        ref.read(eventViewModelProvider.notifier).fetchCampaignQuery();
+    final query = ref
+        .read(eventViewModelProvider.notifier)
+        .fetchCampaignQuery();
 
     return FirestoreGridView(
       query: query,
-      padding: const PagePadding.onlyTopMedium() +
+      padding:
+          const PagePadding.onlyTopMedium() +
           const PagePadding.onlyBottomHigh(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -27,9 +29,8 @@ final class _EventGridBuilder extends ConsumerWidget {
         final model = doc.data();
         if (model == null) return const SizedBox.shrink();
         return EventCard(
-          onTap: () {
-            EventDetailsRoute($extra: model).push<EventDetailsRoute>(context);
-          },
+          onTap: () =>
+              EventDetailsRoute($extra: model).push<EventDetailsRoute>(context),
           campaignModel: model,
         );
       },

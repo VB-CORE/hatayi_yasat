@@ -35,17 +35,18 @@ final class GeneralDottedPhotoAddProviderState
 
     _photoFileNotifier.value = file;
     setState(() {});
-    Future.microtask(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       widget.onSelected(file);
-      KeyboardUtilityMixin.closeFromSystem();
+      await KeyboardUtilityMixin.closeFromSystem();
     });
   }
 
   Future<void> selectAndUpdatePhotoByPhotoPickType(
     PhotoPickType photoPickType,
   ) async {
-    final file = await PhotoPickerManager(context: context)
-        .pickPhoto(type: photoPickType);
+    final file = await PhotoPickerManager(
+      context: context,
+    ).pickPhoto(type: photoPickType);
     _updatePhoto(file);
   }
 

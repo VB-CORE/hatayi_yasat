@@ -17,13 +17,12 @@ class DeveloperProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        model.githubUrl.ext.launchWebsite;
-      },
+      onTap: () async => model.githubUrl.ext.launchWebsite,
       child: Card(
         color: Colors.transparent,
-        shape: context.border.roundedRectangleAllBorderNormal
-            .copyWith(side: CustomBorderSides.maxThick),
+        shape: context.border.roundedRectangleAllBorderNormal.copyWith(
+          side: CustomBorderSides.maxThick,
+        ),
         elevation: 0,
         child: Padding(
           padding: context.padding.verticalLow,

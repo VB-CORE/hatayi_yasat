@@ -7,8 +7,11 @@ final class ToursimPlaceDetailSheet extends StatelessWidget {
   const ToursimPlaceDetailSheet({required this.model, super.key});
   final TouristicPlaceModel model;
 
-  static void show(BuildContext context, TouristicPlaceModel model) {
-    showModalBottomSheet<void>(
+  static Future<void> show(
+    BuildContext context,
+    TouristicPlaceModel model,
+  ) async {
+    await showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(

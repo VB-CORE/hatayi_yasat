@@ -17,13 +17,13 @@ final class SpecialAgencyViewModel extends _$SpecialAgencyViewModel
   Future<void> fetchAgencyCollectionReference(
     List<RegionalTownSubItem> townList,
   ) async {
-    final specialAgencyList = await firebaseService.getList<SpecialAgencyModel>(
+    final result = await firestoreService.getList<SpecialAgencyModel>(
       model: SpecialAgencyModel(),
       path: CollectionPaths.specialAgency,
     );
 
     final townNamesAndAgency = _populateTownNamesAndAgency(
-      specialAgencyList,
+      result.dataOrNull ?? [],
       townList,
     );
 

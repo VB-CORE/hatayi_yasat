@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,9 +24,8 @@ mixin SplashViewMixin
   AnimationController get lottieController => _controller;
 
   void onLoadedLottie(LottieComposition composition) {
-    _controller
-      ..duration = composition.duration
-      ..repeat(min: 0.6, max: 1);
+    _controller.duration = composition.duration;
+    unawaited(_controller.repeat(min: 0.6, max: 1));
   }
 
   @override

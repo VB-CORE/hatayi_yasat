@@ -27,7 +27,7 @@ class _UsefulLinksViewState extends ConsumerState<UsefulLinksView> {
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: PageAppBar(
+      appBar: const PageAppBar(
         pageTitle: LocaleKeys.usefulLink_title,
       ),
       body: const _UsefulLinksListBuilder(),

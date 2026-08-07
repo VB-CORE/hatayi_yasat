@@ -23,9 +23,7 @@ final class CustomImageWithViewDialog extends StatelessWidget {
 
     return CustomBounceable(
       onTap: hasImage
-          ? () {
-              PhotoViewDialog(imageUrl: image!).show(context);
-            }
+          ? () => PhotoViewDialog(imageUrl: image!).show(context)
           : null,
       child: SizedBox(
         width: width ?? context.sized.width,

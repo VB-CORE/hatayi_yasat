@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -15,8 +17,8 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-part './view/place_build_response_result.dart';
-part './view/place_search_empty_result.dart';
+part 'view/place_build_response_result.dart';
+part 'view/place_search_empty_result.dart';
 
 final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
     with _PlaceSearchMixin {
@@ -65,9 +67,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
       return _PlaceSearchResponseResult(
         query: query,
         items: _history,
-        onSelected: (value) {
-          _navigateDetail(value, context);
-        },
+        onSelected: (value) => _navigateDetail(value, context),
       );
     }
 
@@ -98,9 +98,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
           return _PlaceSearchResponseResult(
             query: query,
             items: snapshot.data!,
-            onSelected: (value) {
-              _navigateDetail(value, context);
-            },
+            onSelected: (value) => _navigateDetail(value, context),
           );
         }
 

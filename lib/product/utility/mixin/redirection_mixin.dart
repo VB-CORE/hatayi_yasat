@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+// ignore: implementation_imports -
 import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:lifeclient/product/utility/constants/regex_types.dart';
 
@@ -12,7 +13,7 @@ mixin RedirectionMixin {
     if (query.ext.isNullOrEmpty) return;
 
     /// first of all check if google maps is installed
-    /// TODO: add kartal
+    // TODO(kartal): add kartal
     final encodedQuery = Uri.encodeComponent(query);
     final result = await MapsUtility.openGoogleMapsWithQuery(encodedQuery);
     if (result) return;
@@ -23,8 +24,10 @@ mixin RedirectionMixin {
     required BuildContext context,
     required String phoneNumber,
   }) async {
-    var cleanPhoneNumber =
-        phoneNumber.replaceAll(RegexTypes.phoneNumberRegex, '');
+    var cleanPhoneNumber = phoneNumber.replaceAll(
+      RegexTypes.phoneNumberRegex,
+      '',
+    );
 
     if (!cleanPhoneNumber.startsWith('0')) {
       cleanPhoneNumber = '0$cleanPhoneNumber';

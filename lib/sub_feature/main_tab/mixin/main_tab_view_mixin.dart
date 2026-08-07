@@ -27,8 +27,8 @@ mixin MainTabViewMixin
       ..addListener(_reportCurrentTab);
     _reportCurrentTab();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      WhatsNewSheetManager(context: context).show();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await WhatsNewSheetManager(context: context).show();
     });
   }
 

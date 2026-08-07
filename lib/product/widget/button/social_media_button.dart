@@ -1,12 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:lifeclient/product/widget/spacer/dynamic_horizontal_spacer.dart';
 
-class SocialMediaButton extends StatefulWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
+final class SocialMediaButton extends StatelessWidget {
   const SocialMediaButton({
     required this.icon,
     required this.title,
@@ -14,22 +9,21 @@ class SocialMediaButton extends StatefulWidget {
     super.key,
   });
 
-  @override
-  State<SocialMediaButton> createState() => _SocialMediaButtonState();
-}
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
 
-class _SocialMediaButtonState extends State<SocialMediaButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onTap,
+      onTap: onTap,
       hoverColor: Colors.transparent,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(widget.icon),
+          Icon(icon),
           const HorizontalSpace.xxxSmall(),
-          Text(widget.title),
+          Text(title),
         ],
       ),
     );

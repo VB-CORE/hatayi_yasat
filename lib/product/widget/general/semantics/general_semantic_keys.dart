@@ -22,9 +22,10 @@ enum GeneralSemanticKeys {
   homeTab('homeTab'),
   communityTab('communityTab'),
   memoriesTab('memoriesTab'),
-  favoriteTab('favoriteTab');
-
-  final String key;
+  favoriteTab('favoriteTab')
+  ;
 
   const GeneralSemanticKeys(this.key);
+
+  final String key;
 }

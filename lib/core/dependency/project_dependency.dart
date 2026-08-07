@@ -29,6 +29,9 @@ final class ProjectDependency {
       ProductCache(cacheManager: HiveCacheManager()),
     );
 
+    // ProjectDependencyMixin.firebaseService hâlâ bu kaydı çözüyor; geçiş
+    // dönemi bitip o alan silinene kadar kayıt kalmalı.
+    // ignore: deprecated_member_use_from_same_package
     GetIt.I.registerFactory(FirebaseCustomService.new);
 
     GetIt.I.registerLazySingleton<CustomFirestoreService>(
@@ -42,7 +45,7 @@ final class ProjectDependency {
 
     GetIt.I.registerLazySingleton<AuthService>(
       () => FirebaseAuthService(
-        firebaseService: GetIt.I.get<FirebaseCustomService>(),
+        firestoreService: GetIt.I.get<CustomFirestoreService>(),
         productCache: GetIt.I.get<ProductCache>(),
         analyticsService: GetIt.I.get<AnalyticsService>(),
       ),

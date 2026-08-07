@@ -41,13 +41,11 @@ class _SubItemBranch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        ChainSubSheet.show(
-          context: context,
-          storeList: safeBranches,
-          chainName: model.name,
-        );
-      },
+      onTap: () => ChainSubSheet.show(
+        context: context,
+        storeList: safeBranches,
+        chainName: model.name,
+      ),
       shape: UnderlineInputBorder(
         borderSide: BorderSide(
           color: context.general.colorScheme.primary.withValues(alpha: 0.4),

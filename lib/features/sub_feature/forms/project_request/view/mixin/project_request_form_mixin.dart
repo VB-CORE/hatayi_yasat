@@ -68,8 +68,9 @@ mixin ProjectRequestFormMixin
     if (!formResult) return false;
     if (!_isKvkkChecked) return false;
     if (_imageFile == null) {
-      appProvider
-          .showSnackbarMessage(LocaleKeys.validation_pleaseAddImage.tr());
+      appProvider.showSnackbarMessage(
+        LocaleKeys.validation_pleaseAddImage.tr(),
+      );
       return false;
     }
     return true;
@@ -83,7 +84,7 @@ mixin ProjectRequestFormMixin
     expireDate = value;
   }
 
-  // TODO: This method should be updated with the new checkbox widget
+  // TODO(checkbox): This method should be updated with the new checkbox widget
   void updateKVKK({required bool value}) => _isKvkkChecked = value;
 
   void clear() {

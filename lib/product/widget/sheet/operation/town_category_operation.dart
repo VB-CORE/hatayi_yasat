@@ -43,20 +43,20 @@ mixin TownCategoryOperation on ConsumerState<TownCategorySelectSheet> {
   }
 
   TownCategoryModel get selectedTownCategory => TownCategoryModel(
-        town: _selectedTown ?? CategoryExtension.emptyAllTown,
-        category: _selectedCategory ?? CategoryExtension.emptyAll,
-      );
+    town: _selectedTown ?? CategoryExtension.emptyAllTown,
+    category: _selectedCategory ?? CategoryExtension.emptyAll,
+  );
 
   final _emptyTownCategory = const TownCategoryModel(
     town: null,
     category: null,
   );
 
-  void clear() {
+  Future<void> clear() async {
     _selectedTown = null;
     _selectedCategory = null;
     validationOperate.value = false;
-    context.route.pop(_emptyTownCategory);
+    await context.route.pop(_emptyTownCategory);
   }
 
   void updateCategory(CategoryModel category) {

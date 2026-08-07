@@ -36,12 +36,10 @@ final class SavedNewsView extends ConsumerWidget {
                 final model = state.newsItems[index];
                 return NewsCard(
                   item: model,
-                  onTap: () {
-                    NewsDetailRoute(
-                      $extra: model,
-                      id: model.documentId,
-                    ).push<void>(context);
-                  },
+                  onTap: () => NewsDetailRoute(
+                    $extra: model,
+                    id: model.documentId,
+                  ).push<void>(context),
                 );
               },
             ),

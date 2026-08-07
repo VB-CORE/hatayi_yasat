@@ -12,7 +12,7 @@ enum AppLocale {
 @immutable
 class CoreLocalize {
   final initialPath = 'assets/translations';
-  final startLocale = AppLocale.tr.locale;
+  final Locale startLocale = AppLocale.tr.locale;
   final List<Locale> supportedItems =
       AppLocale.values.map((e) => e.locale).toList();
 }

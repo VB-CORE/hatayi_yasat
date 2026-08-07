@@ -4,6 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/extension/color_extension.dart';
 import 'package:lifeclient/product/widget/divider/sheet_gap_divider.dart';
 
 class TownSelectSheet extends StatefulWidget {
@@ -70,7 +71,7 @@ class _TownSelectSheetState extends State<TownSelectSheet> {
                         .withValues(alpha: .2),
                   );
                 },
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (context, index) {
                   return _FilterCard(
                     item: _townItems[index],
                     isSelected: _isSelectedTown(index),
@@ -104,7 +105,7 @@ class _SelectListButton extends StatelessWidget {
       padding: const PagePadding.horizontalLowSymmetric(),
       child: ValueListenableBuilder<TownModel?>(
         valueListenable: _selectedTownNotifier,
-        builder: (BuildContext context, TownModel? value, Widget? child) {
+        builder: (context, value, child) {
           return ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: context.general.colorScheme.inversePrimary,
@@ -112,9 +113,7 @@ class _SelectListButton extends StatelessWidget {
             ),
             onPressed: value == null
                 ? null
-                : () {
-                    context.route.pop<TownModel>(value);
-                  },
+                : () => context.route.pop<TownModel>(value),
             child: Center(
               child: const Text(LocaleKeys.button_selectedList).tr(),
             ),
@@ -147,7 +146,7 @@ class _FilterCard extends StatelessWidget {
         Icons.check,
         color: isSelected
             ? context.general.colorScheme.onError
-            : context.general.colorScheme.onError.withOpacity(0.2),
+            : context.general.colorScheme.onError.withOp(0.2),
       ),
     );
   }
@@ -164,14 +163,12 @@ class _FilterSheetHeader extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
           ),
-          onPressed: () {
-            context.route.pop<TownModel>(
-              TownModel(
-                code: kErrorNumber.toInt(),
-                name: LocaleKeys.button_allFilter.tr(),
-              ),
-            );
-          },
+          onPressed: () => context.route.pop<TownModel>(
+            TownModel(
+              code: kErrorNumber.toInt(),
+              name: LocaleKeys.button_allFilter.tr(),
+            ),
+          ),
           child: Padding(
             padding: const PagePadding.horizontalLowSymmetric(),
             child: const Text(LocaleKeys.button_clean).tr(),
@@ -182,9 +179,7 @@ class _FilterSheetHeader extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
           ),
-          onPressed: () {
-            context.route.pop();
-          },
+          onPressed: () => context.route.pop(),
           child: const Icon(Icons.close),
         ),
       ],

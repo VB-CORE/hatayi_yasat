@@ -10,7 +10,7 @@ import 'package:riverpod/riverpod.dart';
 
 class SplashViewModel extends Notifier<SplashState> {
   SplashViewModel({required this.productProvider, required this.appProvider}) {
-    _controlApplication();
+    unawaited(_controlApplication());
   }
   final ProductProvider productProvider;
   final AppProvider appProvider;

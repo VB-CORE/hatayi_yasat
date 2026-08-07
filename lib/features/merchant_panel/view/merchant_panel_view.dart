@@ -104,7 +104,7 @@ final class _MerchantPanelMessageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PageAppBar(
+      appBar: const PageAppBar(
         pageTitle: LocaleKeys.merchantPanel_title,
       ),
       body: isLoading

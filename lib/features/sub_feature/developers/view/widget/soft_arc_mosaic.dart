@@ -3,7 +3,7 @@ import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 
 final class SoftArcMosaic extends StatelessWidget {
-  const SoftArcMosaic();
+  const SoftArcMosaic({super.key});
 
   static const double _edgeRatio = 0.1;
   static const double _centerRatio = 0.5;

@@ -1,8 +1,7 @@
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/dependency/index.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/sub_feature/forms/project_request/provider/project_request_state.dart';
-import 'package:lifeclient/product/init/firebase_custom_service.dart';
 import 'package:lifeclient/product/model/request_project_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -25,12 +24,12 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider
 
     final uuid = const Uuid().v4();
     final bytes = await requestProjectModel.imageFile.readAsBytes();
-    final uploadImage = await FirebaseStorageService().uploadImage(
+    final uploadResponse = await storageService.uploadImage(
       fileBytes: bytes,
       root: RootStorageName.pending,
       key: uuid,
     );
-
+    final uploadImage = uploadResponse.dataOrNull;
     if (uploadImage == null) return _failed('image_upload');
 
     final modelStorage = CampaignModel(
@@ -44,7 +43,7 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider
       isApproved: false,
     );
 
-    final response = await FirebaseCustomService().add<CampaignModel>(
+    final response = await firestoreService.add<CampaignModel>(
       model: modelStorage,
       path: CollectionPaths.unApprovedCampaigns,
     );
@@ -53,15 +52,18 @@ final class ProjectRequestProvider extends _$ProjectRequestProvider
       isSendingRequest: false,
     );
 
-    if (response == null) return _failed('write_failed');
-
-    analyticsService.logEvent(
-      AnalyticsEvent.formSubmit,
-      parameters: {
-        AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,
-      },
-    );
-    return true;
+    switch (response) {
+      case FirebaseSuccess<String, FirestoreError>():
+        analyticsService.logEvent(
+          AnalyticsEvent.formSubmit,
+          parameters: {
+            AnalyticsParameter.formType: AnalyticsFormType.projectRequest.key,
+          },
+        );
+        return true;
+      case FirebaseFailure<String, FirestoreError>():
+        return _failed('write_failed');
+    }
   }
 
   bool _failed(String reason) {

@@ -19,19 +19,19 @@ final class RequestProjectModel extends Equatable {
   final String publisher;
   final String phone;
   final DateTime expireDate;
-  // TODO: replace file to String for image url instead of file
+  // TODO(tech-debt): replace file to String for image url instead of file
   final File imageFile;
 
   @override
   List<Object> get props => [
-        projectName,
-        projectTopic,
-        projectDescription,
-        publisher,
-        expireDate,
-        imageFile,
-        phone,
-      ];
+    projectName,
+    projectTopic,
+    projectDescription,
+    publisher,
+    expireDate,
+    imageFile,
+    phone,
+  ];
 
   static RequestProjectModel dummyData = RequestProjectModel(
     projectName: 'Yazılım Kursu',

@@ -52,10 +52,10 @@ final class _CallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         final phoneNumber = item.phoneNumber ?? '';
         if (phoneNumber.isEmpty) return;
-        phoneNumber.ext.launchPhone;
+        await phoneNumber.ext.launchPhone;
       },
       child: Row(
         children: [
@@ -83,9 +83,7 @@ final class _ShareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        item.toString().ext.share();
-      },
+      onPressed: () async => item.toString().ext.share(),
       child: Row(
         children: [
           const Icon(AppIcons.share),

@@ -41,7 +41,7 @@ final class TourismViewModelProvider
   }
 }
 
-String _$tourismViewModelHash() => r'1a3aa1c912b0648a782d9fd81c718ed8292a09ff';
+String _$tourismViewModelHash() => r'9d01502143b0a1e21559d69d6cda63593c8d81d2';
 
 abstract class _$TourismViewModel extends $Notifier<TourismState> {
   TourismState build();

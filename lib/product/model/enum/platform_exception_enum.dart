@@ -1,6 +1,3 @@
-// ignore_for_file: sort_constructors_first
-// This file ignores constructor sorting for better readability
-
 import 'package:collection/collection.dart';
 
 enum PlatformExceptionEnum {
@@ -8,8 +5,8 @@ enum PlatformExceptionEnum {
   cameraAccessDenied('camera_access_denied'),
   ;
 
-  final String value;
   const PlatformExceptionEnum(this.value);
+  final String value;
 
   static PlatformExceptionEnum? fromValue(String? value) {
     if (value == null) return null;

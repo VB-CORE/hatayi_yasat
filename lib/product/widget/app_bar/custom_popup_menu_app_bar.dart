@@ -14,21 +14,21 @@ final class CustomPopupMenuAppbar extends AppBar {
     required BuildContext context,
     super.key,
   }) : super(
-          centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
-            child: Divider(
-              height: AppConstants.kOne.toDouble(),
-            ),
-          ),
-          title: GeneralSubTitle(
-            value: LocaleKeys.project_name.tr(context: context),
-            fontWeight: FontWeight.bold,
-          ),
-          actions: [
-            const _CustomPopupMenu(),
-          ],
-        );
+         centerTitle: true,
+         bottom: PreferredSize(
+           preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
+           child: Divider(
+             height: AppConstants.kOne.toDouble(),
+           ),
+         ),
+         title: GeneralSubTitle(
+           value: LocaleKeys.project_name.tr(context: context),
+           fontWeight: FontWeight.bold,
+         ),
+         actions: [
+           const _CustomPopupMenu(),
+         ],
+       );
 }
 
 final class _CustomPopupMenu extends StatelessWidget {
@@ -42,19 +42,17 @@ final class _CustomPopupMenu extends StatelessWidget {
         color: context.general.colorScheme.primary,
       ),
       onSelected: (value) {},
-      itemBuilder: (BuildContext context) {
+      itemBuilder: (context) {
         return [
           _CustomPopupMenuItem(
             itemLabel: LocaleKeys.specialAgency_title,
-            destination: () {
-              const SpecialAgencyRoute().push<SpecialAgencyRoute>(context);
-            },
+            destination: () =>
+                const SpecialAgencyRoute().push<SpecialAgencyRoute>(context),
           ),
           _CustomPopupMenuItem(
             itemLabel: LocaleKeys.favorite_title,
-            destination: () {
-              const FavoriteRoute().push<FavoriteRoute>(context);
-            },
+            destination: () =>
+                const FavoriteRoute().push<FavoriteRoute>(context),
           ),
         ];
       },

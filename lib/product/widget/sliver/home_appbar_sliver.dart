@@ -4,6 +4,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
 
 class HomeAppBarSliver extends StatelessWidget {
@@ -81,9 +82,7 @@ class HomeAppBarSliver extends StatelessWidget {
             ? Container(
                 color: isPinned
                     ? null
-                    : ColorCommon(context)
-                        .whiteAndBlackForTheme
-                        .withOpacity(0.5),
+                    : ColorCommon(context).whiteAndBlackForTheme.withOp(.5),
                 width: context.sized.width,
                 child: Padding(
                   padding: const PagePadding.onlyLeft(),
@@ -123,8 +122,7 @@ class _LeftCloseButton extends StatelessWidget {
       padding: const PagePadding.allVeryLow(),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              context.general.colorScheme.background.withOpacity(0.5),
+          backgroundColor: context.general.colorScheme.surface.withOp(.5),
           shape: const CircleBorder(),
           padding: EdgeInsets.zero,
         ),
@@ -133,7 +131,7 @@ class _LeftCloseButton extends StatelessWidget {
         },
         child: Icon(
           Icons.arrow_back,
-          color: context.general.colorScheme.onBackground,
+          color: context.general.colorScheme.onSurface,
         ),
       ),
     );

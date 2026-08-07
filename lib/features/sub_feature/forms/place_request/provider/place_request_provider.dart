@@ -27,11 +27,12 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
 
     final uuid = const Uuid().v4();
     final bytes = await placeRequestModel.imageFile.readAsBytes();
-    final uploadImage = await FirebaseStorageService().uploadImage(
+    final uploadResponse = await storageService.uploadImage(
       fileBytes: bytes,
       root: RootStorageName.pending,
       key: uuid,
     );
+    final uploadImage = uploadResponse.dataOrNull;
 
     if (uploadImage == null) return _failed('image_upload');
     final deviceId = await ''.ext.deviceId;
@@ -58,7 +59,7 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
       // GeoPoint(latitude, longitude)
     );
 
-    final response = await FirebaseService().add<StoreModel>(
+    final response = await firestoreService.add<StoreModel>(
       model: storage,
       path: CollectionPaths.unApprovedApplications,
     );
@@ -67,15 +68,18 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
       isSendingRequest: false,
     );
 
-    if (response == null) return _failed('write_failed');
-
-    analyticsService.logEvent(
-      AnalyticsEvent.formSubmit,
-      parameters: {
-        AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,
-      },
-    );
-    return true;
+    switch (response) {
+      case FirebaseSuccess<String, FirestoreError>():
+        analyticsService.logEvent(
+          AnalyticsEvent.formSubmit,
+          parameters: {
+            AnalyticsParameter.formType: AnalyticsFormType.placeRequest.key,
+          },
+        );
+        return true;
+      case FirebaseFailure<String, FirestoreError>():
+        return _failed('write_failed');
+    }
   }
 
   bool _failed(String reason) {

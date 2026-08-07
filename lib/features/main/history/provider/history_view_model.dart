@@ -16,7 +16,7 @@ final class HistoryViewModel extends _$HistoryViewModel
   }
 
   Query<MemoryModel?> fetchMemoriesQuery() {
-    return firebaseService.collectionReference(
+    return firestoreService.collectionReference(
       CollectionPaths.memories, // Temporary - should be memories
       MemoryModel.empty(),
     );

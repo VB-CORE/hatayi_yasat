@@ -18,7 +18,7 @@ final class NotificationsView extends StatelessWidget
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: PageAppBar(pageTitle: LocaleKeys.home_notifications),
+      appBar: const PageAppBar(pageTitle: LocaleKeys.home_notifications),
       body: CustomGroupedFirestoreListView<AppNotificationModel, DateTime>(
         query: notificationsQuery,
         groupBy: notificationGroupBy,

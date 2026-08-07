@@ -33,10 +33,9 @@ class _GeneralCheckBoxState extends State<GeneralCheckBox>
   void didUpdateWidget(covariant GeneralCheckBox oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.value != _value) {
-      Future.microtask(() {
-        setState(() {
-          _value = widget.value;
-        });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        setState(() => _value = widget.value);
       });
     }
   }
