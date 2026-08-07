@@ -49,6 +49,7 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
   int? _resultCount;
   bool _countLoading = false;
 
+  /// Firestore, kategori × ilçe kombinasyonunu 30 disjunction ile sınırlıyor.
   static const int _maxDisjunctions = 30;
 
   int get _maxSelectableTowns => _categoryValues.isEmpty
