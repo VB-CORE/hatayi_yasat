@@ -40,9 +40,6 @@ final class NotificationsViewModel extends _$NotificationsViewModel
     state = state.copyWith(isMarkingAllRead: false, locallyReadIds: const {});
   }
 
-  /// Ekrandan çıkarken çağrılır. `dispose()` sırasında provider'a senkron
-  /// yazmak yasak olduğundan, ilk satır bilinçli olarak bir `await` — state
-  /// güncellemesi frame bittikten sonra yapılıyor.
   Future<void> commitLastSeenTime() async {
     await ref.read(notificationBadgeProvider.notifier).markAllAsRead();
     state = state.copyWith(locallyReadIds: const {});
