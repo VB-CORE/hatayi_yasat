@@ -16,7 +16,7 @@ final class NotificationBadge extends _$NotificationBadge
   StreamSubscription<QuerySnapshot<AppNotificationModel?>>? _latestSubscription;
 
   @override
-  DateTime? build() {
+  bool build() {
     _latestSubscription = firestoreService
         .collectionReference(
           CollectionPaths.notifications,
@@ -26,21 +26,20 @@ final class NotificationBadge extends _$NotificationBadge
         .limit(1)
         .snapshots()
         .listen((snapshot) {
-          state = snapshot.docs.firstOrNull?.data()?.createdAt;
+          final latest = snapshot.docs.firstOrNull?.data()?.createdAt;
+          state = latest?.isAfter(_lastSeenTime) ?? false;
         });
     ref.onDispose(() => unawaited(_latestSubscription?.cancel()));
-    return null;
+    return false;
   }
 
   DateTime get _lastSeenTime =>
       _sharedCache.getLastNotificationSeenTime() ??
       DateTime.fromMillisecondsSinceEpoch(0);
 
-  bool get hasUnread => state?.isAfter(_lastSeenTime) ?? false;
-
   Future<void> markAllAsRead() async {
-    if (!hasUnread) return;
+    if (!state) return;
     await _sharedCache.updateNotificationLastSeenTime();
-    ref.invalidateSelf();
+    state = false;
   }
 }

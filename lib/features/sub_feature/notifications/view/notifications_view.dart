@@ -28,10 +28,8 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
     with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
-    ref
-      ..watch(notificationsViewModelProvider)
-      ..watch(notificationBadgeProvider);
-    final hasUnread = this.hasUnread;
+    ref.watch(notificationsViewModelProvider);
+    final hasUnread = ref.watch(notificationBadgeProvider);
     final colorScheme = context.general.colorScheme;
 
     return Scaffold(
@@ -65,7 +63,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             query: notificationsQuery,
             groupBy: notificationGroupBy,
             groupHeaderBuilder: (bucket) =>
-                GeneralGroupSectionHeader(label: bucket.label),
+                GeneralGroupSectionHeader(label: bucket.labelKey.tr()),
             groupCompare: notificationCompare,
             itemBuilder: (context, item) => NotificationTile(
               item: item,

@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
@@ -21,13 +20,13 @@ final class NotificationTypeMeta extends Equatable {
     return switch (type) {
       AppNotificationType.store => NotificationTypeMeta(
         icon: AppIcons.store,
-        label: LocaleKeys.notification_typePlace.tr(),
+        label: LocaleKeys.notification_typePlace,
         color: context.appColors.coral50,
         iconColor: context.appColors.coral,
       ),
       AppNotificationType.campaign => NotificationTypeMeta(
         icon: AppIcons.localActivity,
-        label: LocaleKeys.notification_typeEvent.tr(),
+        label: LocaleKeys.notification_typeEvent,
         color: context.appColors.teal50,
         iconColor: context.appColors.teal,
       ),
@@ -36,7 +35,7 @@ final class NotificationTypeMeta extends Equatable {
       AppNotificationType.link ||
       null => NotificationTypeMeta(
         icon: AppIcons.announcement,
-        label: LocaleKeys.notification_typeSystem.tr(),
+        label: LocaleKeys.notification_typeSystem,
         color: context.appColors.navy50,
         iconColor: context.appColors.navy,
       ),

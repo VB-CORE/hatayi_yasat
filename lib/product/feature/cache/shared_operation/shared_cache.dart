@@ -20,8 +20,9 @@ final class SharedCache {
   }
 
   DateTime? getLastNotificationSeenTime() {
-    final lastNotificationSeenTime =
-        _sharedOperation.getValue<String>(SharedKeys.lastNotificationSeenTime);
+    final lastNotificationSeenTime = _sharedOperation.getValue<String>(
+      SharedKeys.lastNotificationSeenTime,
+    );
     if (lastNotificationSeenTime.ext.isNullOrEmpty) return null;
     return DateTime.tryParse(lastNotificationSeenTime!);
   }
@@ -64,10 +65,10 @@ final class SharedCache {
     );
   }
 
-  Future<void> updateNotificationLastSeenTime({DateTime? at}) async {
+  Future<void> updateNotificationLastSeenTime() async {
     await _sharedOperation.setValue<String>(
       SharedKeys.lastNotificationSeenTime,
-      (at ?? DateTime.now()).toIso8601String(),
+      DateTime.now().toIso8601String(),
     );
   }
 

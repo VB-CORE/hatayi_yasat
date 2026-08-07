@@ -16,7 +16,7 @@ final class NotificationsViewModel extends _$NotificationsViewModel
 
   final SharedCache _sharedCache = SharedCache.instance;
 
-  Query<AppNotificationModel?> get notificationsQuery => firestoreService
+  late final Query<AppNotificationModel?> notificationsQuery = firestoreService
       .collectionReference(
         CollectionPaths.notifications,
         AppNotificationModel(),

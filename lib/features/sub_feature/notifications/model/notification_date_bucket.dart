@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
 
@@ -16,9 +15,9 @@ extension NotificationDateBucketOf on DateTime {
 }
 
 extension NotificationDateBucketLabel on NotificationDateBucket {
-  String get label => switch (this) {
-    NotificationDateBucket.today => LocaleKeys.date_today.tr(),
-    NotificationDateBucket.yesterday => LocaleKeys.date_yesterday.tr(),
-    NotificationDateBucket.older => LocaleKeys.date_earlier.tr(),
+  String get labelKey => switch (this) {
+    NotificationDateBucket.today => LocaleKeys.date_today,
+    NotificationDateBucket.yesterday => LocaleKeys.date_yesterday,
+    NotificationDateBucket.older => LocaleKeys.date_earlier,
   };
 }
