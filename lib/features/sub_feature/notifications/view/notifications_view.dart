@@ -5,7 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/sub_feature/notifications/model/notification_date_bucket.dart';
-import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_provider.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/mixin/notifications_view_mixin.dart';
 import 'package:lifeclient/features/sub_feature/notifications/view/widget/notification_tile.dart';
@@ -28,7 +28,10 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
     with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
-    final hasUnread = ref.watch(notificationBadgeProvider);
+    final viewModel = ref.watch(notificationsViewModelProvider.notifier);
+    final hasUnread = ref.watch(
+      notificationBadgeViewModelProvider.select((state) => state.hasUnread),
+    );
     final colorScheme = context.general.colorScheme;
     return Scaffold(
       backgroundColor: context.appColors.ink25,
@@ -48,11 +51,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             : null,
         actions: [
           TextButton(
-            onPressed: hasUnread
-                ? () => ref
-                      .read(notificationsViewModelProvider.notifier)
-                      .markAllAsRead()
-                : null,
+            onPressed: hasUnread ? viewModel.markAllAsRead : null,
             child: Text(LocaleKeys.notification_markAllRead.tr()),
           ),
         ],
@@ -62,14 +61,14 @@ class _NotificationsViewState extends ConsumerState<NotificationsView>
             AppNotificationModel,
             NotificationDateBucket
           >(
-            query: notificationsQuery,
-            groupBy: notificationGroupBy,
+            query: viewModel.notificationsQuery,
+            groupBy: (item) => item.createdAt.notificationDateBucketOrNow,
             groupHeaderBuilder: (bucket) =>
                 GeneralGroupSectionHeader(label: bucket.labelKey.tr()),
-            groupCompare: notificationCompare,
-            itemBuilder: (context, item) => NotificationTile(
+            groupCompare: Enum.compareByIndex,
+            itemBuilder: (_, item) => NotificationTile(
               item: item,
-              onTap: () => openNotification(context, item),
+              onTap: () => openNotification(item),
             ),
             itemThreshold: NotificationsViewModel.notificationItemThreshold,
             pageSize: AppConstants.kTwenty,

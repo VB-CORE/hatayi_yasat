@@ -70,7 +70,9 @@ final class _NotificationButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final hasUnread = ref.watch(notificationBadgeProvider);
+    final hasUnread = ref.watch(
+      notificationBadgeViewModelProvider.select((state) => state.hasUnread),
+    );
 
     return Stack(
       alignment: Alignment.center,

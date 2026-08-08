@@ -20,7 +20,7 @@ final class NotificationsViewModelProvider
         argument: null,
         retry: null,
         name: r'notificationsViewModelProvider',
-        isAutoDispose: false,
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -42,7 +42,7 @@ final class NotificationsViewModelProvider
 }
 
 String _$notificationsViewModelHash() =>
-    r'ec0beaeb3ced7176eb530ac799f10da775410820';
+    r'd91aa30b40efabe329742833cbb2f3b4871f413b';
 
 abstract class _$NotificationsViewModel extends $Notifier<NotificationsState> {
   NotificationsState build();

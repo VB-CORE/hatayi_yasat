@@ -25,9 +25,7 @@ final class NotificationTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isUnread = ref.watch(
-      notificationsViewModelProvider.select(
-        (state) => state.isUnread(item),
-      ),
+      notificationsViewModelProvider.select((state) => state.isUnread(item)),
     );
     final meta = NotificationTypeMeta.of(item.type, context);
     final content = _content.trim();
@@ -85,11 +83,11 @@ final class NotificationTile extends ConsumerWidget {
                     ),
                     if (createdAt != null)
                       GeneralContentSmallTitle(
-                        value:
-                            createdAt.notificationDateBucket ==
-                                NotificationDateBucket.older
-                            ? createdAt.dayMonth
-                            : createdAt.hm,
+                        value: switch (createdAt.notificationDateBucket) {
+                          NotificationDateBucket.older => createdAt.dayMonth,
+                          NotificationDateBucket.today ||
+                          NotificationDateBucket.yesterday => createdAt.hm,
+                        },
                         color: context.appColors.navy300,
                       ),
                   ],

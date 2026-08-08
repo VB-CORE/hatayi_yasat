@@ -14,6 +14,11 @@ extension NotificationDateBucketOf on DateTime {
   }
 }
 
+extension NullableNotificationDateBucketOf on DateTime? {
+  NotificationDateBucket get notificationDateBucketOrNow =>
+      (this ?? DateTime.now()).notificationDateBucket;
+}
+
 extension NotificationDateBucketLabel on NotificationDateBucket {
   String get labelKey => switch (this) {
     NotificationDateBucket.today => LocaleKeys.date_today,
