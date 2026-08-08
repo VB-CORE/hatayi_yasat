@@ -1,4 +1,5 @@
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 
 sealed class SignInResult {
   const SignInResult();
@@ -16,5 +17,7 @@ final class SignInCancelled extends SignInResult {
 }
 
 final class SignInFailure extends SignInResult {
-  const SignInFailure();
+  const SignInFailure(this.reason);
+
+  final SignInError reason;
 }

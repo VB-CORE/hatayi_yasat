@@ -44,7 +44,7 @@ final class NotificationBadgeViewModelProvider
 }
 
 String _$notificationBadgeViewModelHash() =>
-    r'55c0b5547a843daf8de62004144e02b0b6e963e5';
+    r'648becc194867a11f2947a1d9d25bb2f3c8ff155';
 
 abstract class _$NotificationBadgeViewModel
     extends $Notifier<NotificationBadgeState> {

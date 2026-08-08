@@ -50,7 +50,11 @@ final class MainTabView extends ConsumerStatefulWidget {
 }
 
 class _MainTabViewState extends ConsumerState<MainTabView>
-    with SingleTickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
+    with
+        SingleTickerProviderStateMixin,
+        AppProviderMixin,
+        WidgetsBindingObserver,
+        MainTabViewMixin {
   double get bottomSafePadding =>
       _BottomAppBarWidget.height + context.general.mediaQuery.padding.bottom;
 

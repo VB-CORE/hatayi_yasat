@@ -488,6 +488,12 @@ abstract class  LocaleKeys {
   static const auth_legal = 'auth.legal';
   static const auth_error_generic = 'auth.error.generic';
   static const auth_error_failed = 'auth.error.failed';
+  static const auth_error_accountExists = 'auth.error.accountExists';
+  static const auth_error_invalidCredential = 'auth.error.invalidCredential';
+  static const auth_error_providerDisabled = 'auth.error.providerDisabled';
+  static const auth_error_userDisabled = 'auth.error.userDisabled';
+  static const auth_error_network = 'auth.error.network';
+  static const auth_error_unsupported = 'auth.error.unsupported';
   static const auth_error = 'auth.error';
   static const auth_signOut_title = 'auth.signOut.title';
   static const auth_signOut_content = 'auth.signOut.content';
