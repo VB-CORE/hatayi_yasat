@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/link_detail_view.dart';
+import 'package:lifeclient/features/main/history/widget/history_photo_detail_sheet.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/widget/sheet/advertise_sheet.dart';
@@ -58,8 +59,10 @@ final class MessagingNavigate {
     required BuildContext context,
     required String id,
   }) async {
-    await PlaceDetailRoute($extra: StoreModel.empty(), id: id)
-        .push<void>(context);
+    await PlaceDetailRoute(
+      $extra: StoreModel.empty(),
+      id: id,
+    ).push<void>(context);
   }
 
   Future<void> detailModelCampaignCheckAndNavigate({
@@ -126,6 +129,45 @@ final class MessagingNavigate {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
           message: LocaleKeys.notification_newsNotFoundErrorMessage.tr(),
+        ),
+      );
+    }
+  }
+
+  Future<MemoryModel?> _getDetailModelFromMemory({
+    required String id,
+    required CustomFirestoreService firestoreService,
+  }) async {
+    final result = await firestoreService.getSingleData(
+      model: const MemoryModel(),
+      path: CollectionPaths.memories,
+      id: id,
+    );
+
+    return result.dataOrNull;
+  }
+
+  Future<void> detailModelMemoryCheckAndShowSheet({
+    required BuildContext context,
+    required String id,
+    required CustomFirestoreService firestoreService,
+  }) async {
+    final result = await _getDetailModelFromMemory(
+      id: id,
+      firestoreService: firestoreService,
+    );
+    if (!context.mounted) return;
+    if (result != null) {
+      await showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) => HistoryPhotoDetailSheet(memory: result),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        ErrorSnackBar(
+          message: LocaleKeys.notification_memoryNotFoundErrorMessage.tr(),
         ),
       );
     }

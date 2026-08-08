@@ -15,6 +15,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/widget/soft_icon_box.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';

@@ -39,14 +39,22 @@ final class NotificationNavigateParse with NotificationTypeMixin {
         if (!context.mounted) return;
         await MessagingNavigate.instance
             .detailModelAdvertiseCheckAndShowBottomSheet(
+              context: context,
+              id: id,
+              firestoreService: _firestoreService,
+            );
+        return;
+      case NotificationType.link:
+        if (!context.mounted) return;
+        await MessagingNavigate.instance.detailModelLinkCheckAndBottomSheet(
           context: context,
           id: id,
           firestoreService: _firestoreService,
         );
         return;
-      case NotificationType.link:
+      case NotificationType.memory:
         if (!context.mounted) return;
-        await MessagingNavigate.instance.detailModelLinkCheckAndBottomSheet(
+        await MessagingNavigate.instance.detailModelMemoryCheckAndShowSheet(
           context: context,
           id: id,
           firestoreService: _firestoreService,

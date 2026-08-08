@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 @immutable
@@ -15,6 +16,7 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.actionsPadding,
     this.leading,
+    this.titleTrailing,
     this.backgroundColor,
     this.showDivider = true,
   });
@@ -25,6 +27,7 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final EdgeInsetsGeometry? actionsPadding;
   final Widget? leading;
+  final Widget? titleTrailing;
   final Color? backgroundColor;
   final bool showDivider;
 
@@ -34,10 +37,22 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading != null || (automaticallyImplyLeading && context.canPop());
 
     return AppBar(
-      title: GeneralContentTitle(
-        value: pageTitle.tr(),
-        fontWeight: FontWeight.w500,
-      ),
+      title: titleTrailing == null
+          ? GeneralContentTitle(
+              value: pageTitle.tr(),
+              fontWeight: FontWeight.w500,
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GeneralContentTitle(
+                  value: pageTitle.tr(),
+                  fontWeight: FontWeight.w500,
+                ),
+                const EmptyBox.smallWidth(),
+                titleTrailing!,
+              ],
+            ),
       titleSpacing: hasLeading ? 0 : null,
       automaticallyImplyLeading: automaticallyImplyLeading,
       centerTitle: centerTitle,

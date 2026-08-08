@@ -65,11 +65,15 @@ final class _CityPill extends ConsumerWidget {
   }
 }
 
-final class _NotificationButton extends StatelessWidget {
+final class _NotificationButton extends ConsumerWidget {
   const _NotificationButton();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasUnread = ref.watch(
+      notificationBadgeViewModelProvider.select((state) => state.hasUnread),
+    );
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -79,19 +83,23 @@ final class _NotificationButton extends StatelessWidget {
           },
           icon: const Icon(AppIcons.notifications),
         ),
-        Positioned(
-          top: WidgetSizes.spacingS,
-          right: WidgetSizes.spacingS,
-          child: Container(
-            width: WidgetSizes.spacingXs,
-            height: WidgetSizes.spacingXs,
-            decoration: BoxDecoration(
-              color: AppColors.coral,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.surface, width: 1.5),
+        if (hasUnread)
+          Positioned(
+            top: WidgetSizes.spacingS,
+            right: WidgetSizes.spacingS,
+            child: Container(
+              width: WidgetSizes.spacingXs,
+              height: WidgetSizes.spacingXs,
+              decoration: BoxDecoration(
+                color: context.general.colorScheme.tertiary,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: context.appColors.surface,
+                  width: 1.5,
+                ),
+              ),
             ),
           ),
-        ),
       ],
     );
   }

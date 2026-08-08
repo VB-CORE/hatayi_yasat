@@ -1,35 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/dependency/project_dependency_items.dart';
-import 'package:lifeclient/product/utility/extension/date_time_extension.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notifications_view_model.dart';
+import 'package:lifeclient/features/sub_feature/notifications/view/notifications_view.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/sub_feature/notification_navigate/notification_navigate_parse.dart';
 
-mixin NotificationsViewMixin on StatelessWidget, NotificationTypeMixin {
-  static const notificationItemThreshold = 50;
+mixin NotificationsViewMixin
+    on ConsumerState<NotificationsView>, NotificationTypeMixin {
+  late final NotificationBadgeViewModel _badgeNotifier;
 
-  Query<AppNotificationModel?> get notificationsQuery => ProjectDependencyItems
-      .firestoreService
-      .collectionReference(
-        CollectionPaths.notifications,
-        AppNotificationModel(),
-      )
-      .orderBy(FirestoreFields.createdAt.name, descending: true);
+  @override
+  void initState() {
+    super.initState();
+    _badgeNotifier = ref.read(notificationBadgeViewModelProvider.notifier);
+  }
 
-  DateTime notificationGroupBy(AppNotificationModel item) =>
-      (item.createdAt ?? DateTime.now()).startOfDay;
+  @override
+  void dispose() {
+    unawaited(_badgeNotifier.markAllAsRead());
+    super.dispose();
+  }
 
-  int notificationCompare(DateTime a, DateTime b) => b.compareTo(a);
-
-  Future<void> openNotification(
-    BuildContext context,
-    AppNotificationModel item,
-  ) async {
+  Future<void> openNotification(AppNotificationModel item) async {
+    ref.read(notificationsViewModelProvider.notifier).markAsRead(item);
     final type = item.type;
-    if (type == null) return;
+    if (type == null || type == AppNotificationType.link) return;
 
-    final id = type == AppNotificationType.link ? item.documentId : item.id;
+    final id = item.id;
     if (id.isEmpty) return;
 
     await NotificationNavigateParse(context).makeWithType(
