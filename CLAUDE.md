@@ -84,7 +84,7 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 - İstisnayı yutma; hata flag'ine çevir (`isError: true`).
 
 Referans: [home_view_model.dart](lib/features/main/home/provider/home_view_model.dart),
-[place_detail_view_model.dart](lib/features/details/view_model/place_detail_view_model.dart).
+[place_detail_view_model.dart](lib/features/place_detail/view_model/place_detail_view_model.dart).
 
 ### State
 
@@ -221,7 +221,9 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   `small`(8) / `medium`(12) / `large`(16) / `extraLarge`(24) / `xxLarge`(32). Ham `BorderRadius.circular(<int>)` yerine bunlar.
 
 ### Tipografi
-- Roboto, `GoogleFonts.robotoTextTheme` tema üstünden ([application_theme.dart](lib/product/init/application_theme.dart)).
+- Bundle'lanmış aileler: gövde `PlusJakartaSans`, başlık `DMSerifDisplay` — tema üstünden
+  ([app_theme.dart](lib/core/theme/app_theme.dart), [app_text.dart](lib/core/theme/app_text.dart)).
+  `google_fonts` kullanılmıyor.
 - Ham `Text` + manuel `TextStyle` yerine semantic widget'lar: `GeneralBodyTitle`,
   `GeneralContentTitle`, `GeneralContentSubTitle`, `GeneralContentSmallTitle`.
 

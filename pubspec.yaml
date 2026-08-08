@@ -25,7 +25,7 @@ dependencies:
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
-  syncfusion_flutter_pdfviewer: ^34.2.2
+  syncfusion_flutter_pdfviewer: ^33.2.13
   webview_flutter: ^4.0.2
 
   #third-party
@@ -117,8 +117,9 @@ dependencies:
   mobile_scanner: ^7.4.0
 
 dependency_overrides:
+  # kartal 4.2.0 caps device_info_plus at ^11.3.1 while syncfusion needs
+  # ^12.1.0. Pre-existing; drop once kartal relaxes its constraint.
   device_info_plus: ^12.3.0
-  sqflite_android: ^2.4.2+2
   # kartal 4.2.0 caps share_plus at ^11.0.0 but only calls the deprecated
   # Share.share(), which still exists in 12.x.
   # 12.0.2 is the ceiling, not 13.3.0: share_plus >=13 needs win32 ^6 while
