@@ -68,12 +68,22 @@ version — but it is also the only 12.x that could have satisfied
 DKImagePickerController's 2.x range. Worth reporting so nobody else loses time
 on it.
 
-### google_maps_flutter_ios — no Swift Package Manager support
+### google_maps_flutter_ios — resolved, not an upstream item
 
-2.18.4 ships only `ios/google_maps_flutter_ios.podspec`, no `Package.swift`.
-It is the last plugin in this app without SPM support, so `pod install` still
-runs for it. Harmless today (it produces no duplicate symbols), but Flutter
-has said the fallback will eventually become an error.
+`google_maps_flutter_ios` ships no `Package.swift` and never will: its README
+states SPM cannot pick the Google Maps SDK version from the deployment target,
+so the endorsed package stays on CocoaPods by design. The documented answer is
+to depend on an SDK-specific implementation instead, which does support SPM:
+
+- `google_maps_flutter_ios_sdk9` — iOS 15+
+- `google_maps_flutter_ios_sdk10` — iOS 16+
+
+This app declares `google_maps_flutter_ios_sdk9`, matching our iOS 15.0
+deployment target. Adding it to `pubspec.yaml` is the whole mechanism — it
+automatically replaces the endorsed implementation.
+
+Result: every iOS plugin is now a Swift Package, and `ios/Podfile.lock`
+contains nothing but Flutter itself.
 
 ### cloud_firestore 6 — `Type` leaks from the public barrel
 
@@ -82,6 +92,36 @@ class named `Type`, which shadows `dart:core`'s `Type` in every file importing
 the barrel. In life_shared this broke a `Map<Type, Function>` converter cache
 and required `import ... hide Type`. Any consumer using `Type` in a
 Firestore-importing file hits this.
+
+## Open follow-ups
+
+### CocoaPods can now be removed entirely
+
+With every plugin on SPM, the build reports:
+
+> All plugins found for ios are Swift Packages, but your project still has
+> CocoaPods integration. Your project uses a non-standard Podfile and will need
+> to be migrated to Swift Package Manager manually.
+
+Deintegrating would mean `pod deintegrate`, porting the custom Podfile logic,
+and dropping the `Pods-Runner.*.xcconfig` includes from
+`ios/Flutter/Debug.xcconfig` and `Release.xcconfig`. Not done here — it is a
+separate change with its own verification.
+
+### UIScene lifecycle not adopted
+
+`ios/Runner/Info.plist` has no `UIApplicationSceneManifest`, so the build warns
+on every launch. `AppDelegate.swift` already does its half (it implements
+`FlutterImplicitEngineDelegate` and registers plugins in
+`didInitializeImplicitFlutterEngine`); Flutter's automatic migration skipped
+the app because the AppDelegate is customised with `GMSServices.provideAPIKey`.
+
+Deliberately left out of the dependency upgrade: after adopting UIScene, UIKit
+stops calling UI-related AppDelegate methods, so plugins that are not
+scene-aware lose `application:openURL:` and launch options. That would put
+Google/Apple sign-in callbacks, `firebase_messaging` notification navigation,
+`flutter_inappwebview` and `url_launcher` at risk — none of which the analyzer
+can catch. Needs its own branch and manual testing of those flows.
 
 ## Local decisions worth remembering
 
