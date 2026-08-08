@@ -26,7 +26,7 @@ final class FirebaseAuthService implements AuthService {
        _productCache = productCache,
        _analyticsService = analyticsService,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleSignIn = googleSignIn ?? GoogleSignIn(),
+       _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
        _nonceGenerator = nonceGenerator ?? const NonceGenerator();
 
   final CustomFirestoreService _firestoreService;
@@ -42,6 +42,7 @@ final class FirebaseAuthService implements AuthService {
       StreamController<UserModel?>.broadcast();
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _docSubscription;
+  Future<void>? _googleInitialization;
 
   @override
   Stream<UserModel?> get userStream {
@@ -188,13 +189,30 @@ final class FirebaseAuthService implements AuthService {
         AuthProvider.apple => _appleCredential(),
       };
 
+  /// google_sign_in 7 requires a one-time initialize() before authenticate().
+  /// A failed attempt is discarded so the next sign-in can retry.
+  Future<void> _ensureGoogleInitialized() async {
+    final pending = _googleInitialization ??= _googleSignIn.initialize();
+    try {
+      await pending;
+    } on Object {
+      _googleInitialization = null;
+      rethrow;
+    }
+  }
+
   Future<AuthCredential?> _googleCredential() async {
-    final googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) return null;
-    final googleAuth = await googleUser.authentication;
+    await _ensureGoogleInitialized();
+
+    final GoogleSignInAccount googleUser;
+    try {
+      googleUser = await _googleSignIn.authenticate();
+    } on GoogleSignInException catch (error) {
+      if (error.code == GoogleSignInExceptionCode.canceled) return null;
+      rethrow;
+    }
     return GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
+      idToken: googleUser.authentication.idToken,
     );
   }
 

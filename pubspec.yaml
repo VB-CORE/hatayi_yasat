@@ -54,7 +54,7 @@ dependencies:
   firebase_ui_firestore: ^1.7.1
   cloud_functions: ^5.0.2
   firebase_auth: ^5.3.4
-  google_sign_in: ^6.2.2
+  google_sign_in: ^7.2.0
   sign_in_with_apple: ^6.1.4
   crypto: ^3.0.6
 
