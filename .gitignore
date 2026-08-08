@@ -16,10 +16,6 @@ package-lock.json
 
 firebase-export-*
 
-# Generated code — never committed. Run codegen after clone:
-#   dart run build_runner build --delete-conflicting-outputs
-#   flutter pub run easy_localization:generate -O lib/product/init/language \
-#     -f keys -o locale_keys.g.dart --source-dir assets/translations
 *.g.dart
 *.gen.dart
 *.freezed.dart
