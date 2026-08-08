@@ -187,7 +187,10 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
                   textAlign: TextAlign.start,
                 ),
               ),
-              FavoritePlaceButton(store: model),
+              FavoritePlaceButton(
+                key: ValueKey(model.documentId),
+                store: model,
+              ),
             ],
           ),
           if (subtitle.isNotEmpty)
