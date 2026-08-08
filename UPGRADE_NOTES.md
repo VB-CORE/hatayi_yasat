@@ -93,35 +93,49 @@ the barrel. In life_shared this broke a `Map<Type, Function>` converter cache
 and required `import ... hide Type`. Any consumer using `Type` in a
 Firestore-importing file hits this.
 
-## Open follow-ups
+## iOS build is now warning-free
 
-### CocoaPods can now be removed entirely
+Two things were cleared after the dependency work, in this order.
 
-With every plugin on SPM, the build reports:
+### CocoaPods removed
 
-> All plugins found for ios are Swift Packages, but your project still has
-> CocoaPods integration. Your project uses a non-standard Podfile and will need
-> to be migrated to Swift Package Manager manually.
+Once every plugin was a Swift Package, CocoaPods was pure overhead. Two pieces
+of Podfile logic had to be dealt with rather than deleted:
 
-Deintegrating would mean `pod deintegrate`, porting the custom Podfile logic,
-and dropping the `Pods-Runner.*.xcconfig` includes from
-`ios/Flutter/Debug.xcconfig` and `Release.xcconfig`. Not done here — it is a
-separate change with its own verification.
+- **permission_handler macros.** The Podfile set `PERMISSION_CAMERA`,
+  `PERMISSION_PHOTOS` and `PERMISSION_NOTIFICATIONS` via
+  `GCC_PREPROCESSOR_DEFINITIONS`. Under SPM this is obsolete:
+  `permission_handler_apple` 9.5.0 computes them in its own `Package.swift`
+  from the app's `Info.plist`. Camera and photos resolve from their usage
+  description keys, notifications defaults to enabled.
+- **Crashlytics dSYM upload.** The build phase called
+  `$PODS_ROOT/FirebaseCrashlytics/upload-symbols`. It now points at
+  `${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols`.
 
-### UIScene lifecycle not adopted
+The `DT_TOOLCHAIN_DIR` rewrite in `post_install` only patched generated Pods
+xcconfigs, so it left with them.
 
-`ios/Runner/Info.plist` has no `UIApplicationSceneManifest`, so the build warns
-on every launch. `AppDelegate.swift` already does its half (it implements
+### UIScene lifecycle adopted
+
+`AppDelegate.swift` was already half-migrated — it implements
 `FlutterImplicitEngineDelegate` and registers plugins in
-`didInitializeImplicitFlutterEngine`); Flutter's automatic migration skipped
+`didInitializeImplicitFlutterEngine`. Flutter's automatic migration had skipped
 the app because the AppDelegate is customised with `GMSServices.provideAPIKey`.
+What was missing was `UIApplicationSceneManifest` in `Info.plist`, pointing at
+`FlutterSceneDelegate`. No `SceneDelegate` subclass was added — there is no
+custom scene logic to put in one.
 
-Deliberately left out of the dependency upgrade: after adopting UIScene, UIKit
-stops calling UI-related AppDelegate methods, so plugins that are not
-scene-aware lose `application:openURL:` and launch options. That would put
-Google/Apple sign-in callbacks, `firebase_messaging` notification navigation,
-`flutter_inappwebview` and `url_launcher` at risk — none of which the analyzer
-can catch. Needs its own branch and manual testing of those flows.
+**This is the change in this upgrade with the least static coverage.** After
+adopting UIScene, UIKit stops calling UI-related `AppDelegate` methods, and
+plugins that have not adopted `FlutterSceneLifeCycleDelegate` can lose
+`application:openURL:` and launch options. Nothing in the analyzer or the build
+catches that. Re-test after any Flutter or plugin upgrade:
+
+- Google sign-in and Apple sign-in (OAuth callback returns to the app)
+- Notification tap navigation from a cold start (`getInitialMessage`) and from
+  background (`onMessageOpenedApp`)
+- `url_launcher` external links and `flutter_inappwebview` pages
+- Google Maps screens, which additionally changed implementation package
 
 ## Local decisions worth remembering
 
