@@ -246,7 +246,9 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 
 - Lint: `very_good_analysis` ([analysis_options.yaml](analysis_options.yaml)) —
   `prefer_single_quotes`, `sort_constructors_first`, `always_declare_return_types`,
-  `prefer_const_constructors`, `avoid_print`. Üretilen dosyalar exclude.
+  `prefer_const_constructors`, `avoid_print`. **Üretilen dosyalar exclude DEĞİL** — commit
+  edilmedikleri için `flutter analyze` onların generator'ıyla uyumsuz kalmasını yakalayan
+  tek kapı. Lint gürültüsü `--no-fatal-infos --no-fatal-warnings` ile CI'ı düşürmez.
 - `final class` tercih edilir; `const` mümkün olan her yerde; trailing comma çok satırlı literallerde.
 - **Yorum politikası**: narration/bölüm-ayracı yorum yok. Sadece public API'de `///`, ve yalnızca aşikar
   olmayan mantıkta satır içi yorum. Kod isimlendirmeyle kendini anlatır.

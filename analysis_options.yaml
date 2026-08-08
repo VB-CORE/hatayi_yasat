@@ -1,13 +1,13 @@
 include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
+  # Generated files are deliberately NOT excluded: they are no longer committed,
+  # so `flutter analyze` is the only gate that catches generated output going
+  # stale against its generator. Lint noise from them stays non-fatal via
+  # --no-fatal-infos --no-fatal-warnings in CI.
   exclude:
-    - lib/product/init/language/
     - lib/product/init/generation/
-    - "**.g.dart"
-    - "**.gen.dart"
-    - "**.freezed.dart"
-    - app_router.g.dart
+    - "build/**"
     - "test/.test_coverage.dart"
     - "bin/cache/**"
     - "lib/generated_plugin_registrant.dart"
