@@ -55,7 +55,7 @@ dependencies:
   cloud_functions: ^5.0.2
   firebase_auth: ^5.3.4
   google_sign_in: ^7.2.0
-  sign_in_with_apple: ^6.1.4
+  sign_in_with_apple: ^8.1.0
   crypto: ^3.0.6
 
   #database
