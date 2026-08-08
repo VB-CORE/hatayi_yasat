@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
@@ -10,10 +11,15 @@ import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/list_view/index.dart';
 
-final class NotificationsView extends StatelessWidget
-    with NotificationTypeMixin, NotificationsViewMixin {
+final class NotificationsView extends ConsumerStatefulWidget {
   const NotificationsView({super.key});
 
+  @override
+  ConsumerState<NotificationsView> createState() => _NotificationsViewState();
+}
+
+final class _NotificationsViewState extends ConsumerState<NotificationsView>
+    with NotificationTypeMixin, NotificationsViewMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

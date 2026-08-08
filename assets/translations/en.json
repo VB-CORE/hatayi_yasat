@@ -539,7 +539,13 @@
     "legal": "By continuing, you accept the terms of use and KVKK.",
     "error": {
       "generic": "Something went wrong while signing in, please try again.",
-      "failed": "{provider} sign-in failed, please try again."
+      "failed": "{provider} sign-in failed, please try again.",
+      "accountExists": "This email is already registered with a different sign-in method. Use the one you signed up with.",
+      "invalidCredential": "{provider} could not verify you, please try again.",
+      "providerDisabled": "Signing in with {provider} is currently unavailable.",
+      "userDisabled": "This account has been disabled.",
+      "network": "Check your internet connection and try again.",
+      "unsupported": "Signing in with {provider} is not supported on this device."
     },
     "signOut": {
       "title": "Sign Out",
@@ -903,4 +909,3 @@
     }
   }
 }
-

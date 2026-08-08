@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
 import 'package:lifeclient/features/sub_feature/whats_new/whats_new_sheet_manager.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
@@ -13,7 +16,8 @@ mixin MainTabViewMixin
     on
         AppProviderMixin<MainTabView>,
         SingleTickerProviderStateMixin<MainTabView>,
-        ConsumerState<MainTabView> {
+        ConsumerState<MainTabView>,
+        WidgetsBindingObserver {
   static const double _hideScrollDeltaThreshold = 6;
 
   late final List<TabModel> tabItems;
@@ -33,7 +37,13 @@ mixin MainTabViewMixin
     _reportCurrentTab();
     _clearTabQuery();
 
+    WidgetsBinding.instance.addObserver(this);
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      // Riverpod refuses provider writes from initState; the first badge read
+      // has to wait until the frame that mounted this widget is done.
+      unawaited(ref.read(notificationBadgeViewModelProvider.notifier).refresh());
       await WhatsNewSheetManager(context: context).show();
     });
   }
@@ -50,10 +60,19 @@ mixin MainTabViewMixin
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     tabController
       ..removeListener(_reportCurrentTab)
       ..dispose();
     super.dispose();
+  }
+
+  /// The badge is a server-pushed number while the app sleeps; coming back to
+  /// the foreground is the first chance to replace it with the real one.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    unawaited(ref.read(notificationBadgeViewModelProvider.notifier).refresh());
   }
 
   /// The tabs are not routes, so the router observer never reports them; each
