@@ -64,7 +64,7 @@ dependencies:
   # isar_flutter_libs: ^4.0.0-dev.13
   #package
   image_picker: ^1.0.4
-  image_cropper: ^12.2.1
+  image_cropper: ^11.0.0
   share_plus: ^12.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
@@ -170,11 +170,6 @@ scripts:
   updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true
-
-  # image_cropper (TOCropViewController) has no SPM support; SPM + CocoaPods
-  # both linking it produces duplicate symbols at link time.
-  config:
-    enable-swift-package-manager: false
 
   assets:
     - assets/translations/
