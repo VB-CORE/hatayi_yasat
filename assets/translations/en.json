@@ -215,7 +215,8 @@
     "monthsAgo": "{} months ago",
     "yearsAgo": "{} years ago",
     "today": "Today",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "earlier": "Earlier"
   },
   "search": {
     "latestSearch": "Latest Searches",
@@ -278,12 +279,18 @@
     "newsNotFoundErrorMessage": "No news found",
     "placeNotFoundErrorMessage": "Place not found",
     "advertiseNotFoundErrorMessage": "Advertise not found",
+    "memoryNotFoundErrorMessage": "Memory not found",
     "typeStore": "Place",
     "typeCampaign": "Campaign",
     "typeNews": "News",
     "typeAdvertise": "Announcement",
     "typeLink": "Link",
-    "typeGeneral": "General"
+    "typeGeneral": "General",
+    "markAllRead": "Mark all as read",
+    "typePlace": "Place",
+    "typeEvent": "Event",
+    "typeMemory": "Memory",
+    "typeSystem": "System"
   },
   "developers": {
     "title": "Developers",
@@ -349,6 +356,7 @@
   "notFound": {
     "forRefresh": "Click here to refresh.",
     "notification": "No notifications",
+    "notificationDescription": "You'll see new place, event, or memory activity here.",
     "specialAgency": "Special Agencies has not been entered yet.",
     "campaign": "Events has not been entered yet.",
     "developers": "Developers has not been entered yet.",
@@ -620,11 +628,14 @@
     "searchDistrict": "Search district",
     "selectedCount": "{}/{} selected",
     "showResults": "Show {} results",
+    "showResultsPlain": "Show results",
     "noResults": "No results, loosen filters",
     "categoryCountLabel": "{} categories",
     "districtCountLabel": "{} districts",
     "openShort": "open",
-    "favoritesShort": "favorites"
+    "favoritesShort": "favorites",
+    "townLimitWarning": "With the selected categories you can choose at most {} districts",
+    "categoryLimitWarning": "With the selected districts you can choose at most {} categories"
   },
   "community": {
     "tagline": "COMMUNITY",

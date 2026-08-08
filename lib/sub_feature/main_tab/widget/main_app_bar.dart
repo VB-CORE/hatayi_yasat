@@ -91,9 +91,12 @@ final class _NotificationButton extends ConsumerWidget {
               width: WidgetSizes.spacingXs,
               height: WidgetSizes.spacingXs,
               decoration: BoxDecoration(
-                color: AppColors.coral,
+                color: context.general.colorScheme.tertiary,
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.surface, width: 1.5),
+                border: Border.all(
+                  color: context.appColors.surface,
+                  width: 1.5,
+                ),
               ),
             ),
           ),

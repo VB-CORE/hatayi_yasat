@@ -8,27 +8,21 @@ part of 'notification_badge_view_model.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Kept alive so the app bar bell and the OS badge never disagree: the count is
-/// refreshed from lifecycle and push events that outlive any single screen.
 
 @ProviderFor(NotificationBadgeViewModel)
 final notificationBadgeViewModelProvider =
     NotificationBadgeViewModelProvider._();
 
-/// Kept alive so the app bar bell and the OS badge never disagree: the count is
-/// refreshed from lifecycle and push events that outlive any single screen.
 final class NotificationBadgeViewModelProvider
     extends
         $NotifierProvider<NotificationBadgeViewModel, NotificationBadgeState> {
-  /// Kept alive so the app bar bell and the OS badge never disagree: the count is
-  /// refreshed from lifecycle and push events that outlive any single screen.
   NotificationBadgeViewModelProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'notificationBadgeViewModelProvider',
-        isAutoDispose: false,
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -50,10 +44,7 @@ final class NotificationBadgeViewModelProvider
 }
 
 String _$notificationBadgeViewModelHash() =>
-    r'd233f7026a888fc811dab04b98755f39d49e85da';
-
-/// Kept alive so the app bar bell and the OS badge never disagree: the count is
-/// refreshed from lifecycle and push events that outlive any single screen.
+    r'648becc194867a11f2947a1d9d25bb2f3c8ff155';
 
 abstract class _$NotificationBadgeViewModel
     extends $Notifier<NotificationBadgeState> {

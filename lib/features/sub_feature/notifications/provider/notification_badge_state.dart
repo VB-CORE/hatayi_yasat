@@ -1,20 +1,33 @@
 import 'package:equatable/equatable.dart';
 
 final class NotificationBadgeState extends Equatable {
-  const NotificationBadgeState({this.unreadCount = 0, this.isFetching = false});
+  const NotificationBadgeState({
+    required this.lastSeenTime,
+    this.latestCreatedAt,
+    this.unreadCount = 0,
+  });
 
+  final DateTime lastSeenTime;
+  final DateTime? latestCreatedAt;
+
+  /// Drives the OS app icon badge, which needs a number rather than the
+  /// boolean the in-app dot is happy with.
   final int unreadCount;
-  final bool isFetching;
 
-  bool get hasUnread => unreadCount > 0;
+  bool get hasUnread => latestCreatedAt?.isAfter(lastSeenTime) ?? false;
 
   @override
-  List<Object> get props => [unreadCount, isFetching];
+  List<Object?> get props => [lastSeenTime, latestCreatedAt, unreadCount];
 
-  NotificationBadgeState copyWith({int? unreadCount, bool? isFetching}) {
+  NotificationBadgeState copyWith({
+    DateTime? lastSeenTime,
+    DateTime? latestCreatedAt,
+    int? unreadCount,
+  }) {
     return NotificationBadgeState(
+      lastSeenTime: lastSeenTime ?? this.lastSeenTime,
+      latestCreatedAt: latestCreatedAt ?? this.latestCreatedAt,
       unreadCount: unreadCount ?? this.unreadCount,
-      isFetching: isFetching ?? this.isFetching,
     );
   }
 }

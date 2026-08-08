@@ -271,10 +271,21 @@ RouteBase get $mainTabRoute => GoRouteData.$route(
 );
 
 mixin $MainTabRoute on GoRouteData {
-  static MainTabRoute _fromState(GoRouterState state) => const MainTabRoute();
+  static MainTabRoute _fromState(GoRouterState state) => MainTabRoute(
+    tab: _$convertMapValue(
+      'tab',
+      state.uri.queryParameters,
+      _$MainTabEnumMap._$fromName,
+    ),
+  );
+
+  MainTabRoute get _self => this as MainTabRoute;
 
   @override
-  String get location => GoRouteData.$location('/main');
+  String get location => GoRouteData.$location(
+    '/main',
+    queryParams: {if (_self.tab != null) 'tab': _$MainTabEnumMap[_self.tab!]},
+  );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -289,6 +300,13 @@ mixin $MainTabRoute on GoRouteData {
   @override
   void replace(BuildContext context) => context.replace(location);
 }
+
+const _$MainTabEnumMap = {
+  MainTab.places: 'places',
+  MainTab.feed: 'feed',
+  MainTab.explore: 'explore',
+  MainTab.profile: 'profile',
+};
 
 mixin $ChainStoresRoute on GoRouteData {
   static ChainStoresRoute _fromState(GoRouterState state) =>
@@ -948,6 +966,20 @@ mixin $CreateGroupRoute on GoRouteData {
 
   @override
   void replace(BuildContext context) => context.replace(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T? Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+extension<T extends Enum> on Map<T, String> {
+  T? _$fromName(String? value) =>
+      entries.where((element) => element.value == value).firstOrNull?.key;
 }
 
 RouteBase get $loginRoute => GoRouteData.$route(

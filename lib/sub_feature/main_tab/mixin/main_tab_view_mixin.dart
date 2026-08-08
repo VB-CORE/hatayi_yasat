@@ -5,8 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
 import 'package:lifeclient/features/sub_feature/whats_new/whats_new_sheet_manager.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
 
@@ -27,9 +29,13 @@ mixin MainTabViewMixin
   void initState() {
     super.initState();
     tabItems = TabModels.create().tabItems;
-    tabController = TabController(length: tabItems.length, vsync: this)
-      ..addListener(_reportCurrentTab);
+    tabController = TabController(
+      length: tabItems.length,
+      initialIndex: widget.tab?.index ?? MainTab.places.index,
+      vsync: this,
+    )..addListener(_reportCurrentTab);
     _reportCurrentTab();
+    _clearTabQuery();
 
     WidgetsBinding.instance.addObserver(this);
 
@@ -40,6 +46,16 @@ mixin MainTabViewMixin
       unawaited(ref.read(notificationBadgeViewModelProvider.notifier).refresh());
       await WhatsNewSheetManager(context: context).show();
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant MainTabView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    final tab = widget.tab;
+    if (tab == null) return;
+    tabController.animateTo(tab.index);
+    _clearTabQuery();
   }
 
   @override
@@ -82,5 +98,12 @@ mixin MainTabViewMixin
     } else if (delta < 0) {
       notifier.updateBottomBarValue(isScrolledBottom: false);
     }
+  }
+
+  void _clearTabQuery() {
+    if (widget.tab == null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) const MainTabRoute().go(context);
+    });
   }
 }

@@ -165,7 +165,7 @@ mixin MerchantApplicationViewMixin
     appProvider.showSnackbarMessage(
       LocaleKeys.merchantApplication_status_submitted.tr(),
     );
-    MerchantGuard.pushReplacement(context);
+    MerchantGuard.go(context);
   }
 
   void onPopInvoked(bool didPop, Object? result) {

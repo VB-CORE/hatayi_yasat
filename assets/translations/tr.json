@@ -215,7 +215,8 @@
     "monthsAgo": "{} ay önce",
     "yearsAgo": "{} yıl önce",
     "today": "Bugün",
-    "yesterday": "Dün"
+    "yesterday": "Dün",
+    "earlier": "Daha önce"
   },
   "search": {
     "latestSearch": "Son Aramalar",
@@ -278,12 +279,18 @@
     "newsNotFoundErrorMessage": "Haber bulunamadı",
     "placeNotFoundErrorMessage": "Mekan bulunamadı",
     "advertiseNotFoundErrorMessage": "İlan bulunamadı",
+    "memoryNotFoundErrorMessage": "Anı bulunamadı",
     "typeStore": "Mekan",
     "typeCampaign": "Kampanya",
     "typeNews": "Haber",
     "typeAdvertise": "Duyuru",
     "typeLink": "Bağlantı",
-    "typeGeneral": "Genel"
+    "typeGeneral": "Genel",
+    "markAllRead": "Tümü okundu",
+    "typePlace": "Mekan",
+    "typeEvent": "Etkinlik",
+    "typeMemory": "Anı",
+    "typeSystem": "Sistem"
   },
   "developers": {
     "title": "Geliştiriciler",
@@ -349,6 +356,7 @@
   "notFound": {
     "forRefresh": "Yenilemek için buraya dokunun.",
     "notification": "Bildirim yok",
+    "notificationDescription": "Yeni mekan, etkinlik ya da hatıra hareketi olduğunda burada göreceksin.",
     "specialAgency": "Özel Kurumlar henüz girilmemiş.",
     "campaign": "Etkinlik bulunamadı",
     "developers": "Geliştiriciler henüz girilmemiş.",
@@ -620,11 +628,14 @@
     "searchDistrict": "İlçe ara",
     "selectedCount": "{}/{} seçili",
     "showResults": "{} sonucu göster",
+    "showResultsPlain": "Sonuçları göster",
     "noResults": "Sonuç yok, filtreyi gevşet",
     "categoryCountLabel": "{} kategori",
     "districtCountLabel": "{} ilçe",
     "openShort": "açık",
-    "favoritesShort": "favori"
+    "favoritesShort": "favori",
+    "townLimitWarning": "Seçtiğiniz kategorilerle en fazla {} ilçe seçebilirsiniz",
+    "categoryLimitWarning": "Seçtiğiniz ilçelerle en fazla {} kategori seçebilirsiniz"
   },
   "community": {
     "tagline": "TOPLULUK",

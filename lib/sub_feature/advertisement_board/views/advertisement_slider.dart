@@ -31,13 +31,18 @@ final class AdvertisementSlider extends ConsumerStatefulWidget {
 
 final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
     with _AdvertisementSliderStateMixin {
-  static const double _sliderHeight = 178;
+  static const double _aspectRatio = 16 / 9;
+  static const double _viewportFraction = 0.8;
+
   int _current = 0;
 
   @override
   Widget build(BuildContext context) {
     final items = ref.watch(advertisementBoardViewModelProvider).advertisements;
     final pageCount = items.length + 1;
+    final sliderWidth = context.sized.width * _viewportFraction;
+    final sliderHeight = sliderWidth / _aspectRatio;
+
     return SliverPadding(
       padding: const PagePadding.onlyTop(),
       sliver: SliverToBoxAdapter(
@@ -52,12 +57,12 @@ final class _AdvertisementSliderState extends ConsumerState<AdvertisementSlider>
                         items[index - 1],
                       );
                 return Padding(
-                  padding: const PagePadding.horizontalLowSymmetric(),
+                  padding: const PagePadding.horizontalLowXss(),
                   child: child,
                 );
               },
               options: CustomCarouselOptions.advertisement(
-                height: _sliderHeight,
+                height: sliderHeight,
                 onPageChanged: (index, reason) {
                   setState(() => _current = index);
                 },
