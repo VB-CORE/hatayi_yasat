@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/security/nonce_generator.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/auth/google_sign_in_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/credential_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -20,20 +21,20 @@ final class FirebaseAuthService implements AuthService {
     required ProductCache productCache,
     required AnalyticsService analyticsService,
     FirebaseAuth? auth,
-    GoogleSignIn? googleSignIn,
+    GoogleSignInService? googleSignInService,
     NonceGenerator? nonceGenerator,
   }) : _firestoreService = firestoreService,
        _productCache = productCache,
        _analyticsService = analyticsService,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
+       _googleSignInService = googleSignInService ?? GoogleSignInService(),
        _nonceGenerator = nonceGenerator ?? const NonceGenerator();
 
   final CustomFirestoreService _firestoreService;
   final ProductCache _productCache;
   final AnalyticsService _analyticsService;
   final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
+  final GoogleSignInService _googleSignInService;
   final NonceGenerator _nonceGenerator;
 
   static const _appleProviderId = 'apple.com';
@@ -42,7 +43,6 @@ final class FirebaseAuthService implements AuthService {
       StreamController<UserModel?>.broadcast();
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _docSubscription;
-  Future<void>? _googleInitialization;
 
   @override
   Stream<UserModel?> get userStream {
@@ -59,9 +59,17 @@ final class FirebaseAuthService implements AuthService {
 
   @override
   Future<SignInResult> signIn(AuthProvider provider) async {
+    final AuthCredential credential;
+    switch (await _credentialFor(provider)) {
+      case CredentialCancelled():
+        return const SignInCancelled();
+      case CredentialFailed(:final error, :final stackTrace):
+        return _failure(provider, error, stackTrace);
+      case CredentialReady(credential: final ready):
+        credential = ready;
+    }
+
     try {
-      final credential = await _credentialFor(provider);
-      if (credential == null) return const SignInCancelled();
       final sessionResult = userStream.first;
       final result = await _auth.signInWithCredential(credential);
       if (result.user == null) return const SignInFailure();
@@ -72,15 +80,23 @@ final class FirebaseAuthService implements AuthService {
         isNewUser: result.additionalUserInfo?.isNewUser ?? false,
       );
     } on Object catch (error, stackTrace) {
-      CustomLogger.showError<void>(error);
-      _analyticsService.recordError(
-        error,
-        stackTrace,
-        reason: 'signIn(${provider.name})',
-      );
-      await signOut();
-      return const SignInFailure();
+      return _failure(provider, error, stackTrace);
     }
+  }
+
+  Future<SignInResult> _failure(
+    AuthProvider provider,
+    Object error,
+    StackTrace stackTrace,
+  ) async {
+    CustomLogger.showError<void>(error);
+    _analyticsService.recordError(
+      error,
+      stackTrace,
+      reason: 'signIn(${provider.name})',
+    );
+    await signOut();
+    return const SignInFailure();
   }
 
   @override
@@ -88,7 +104,7 @@ final class FirebaseAuthService implements AuthService {
     await _stopWatchingUserDoc();
     final uid = _auth.currentUser?.uid;
     try {
-      await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
+      await Future.wait([_googleSignInService.signOut(), _auth.signOut()]);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
     }
@@ -183,40 +199,13 @@ final class FirebaseAuthService implements AuthService {
     return a.every(other.contains);
   }
 
-  Future<AuthCredential?> _credentialFor(AuthProvider provider) =>
+  Future<CredentialResult> _credentialFor(AuthProvider provider) =>
       switch (provider) {
-        AuthProvider.google => _googleCredential(),
+        AuthProvider.google => _googleSignInService.credential(),
         AuthProvider.apple => _appleCredential(),
       };
 
-  /// google_sign_in 7 requires a one-time initialize() before authenticate().
-  /// A failed attempt is discarded so the next sign-in can retry.
-  Future<void> _ensureGoogleInitialized() async {
-    final pending = _googleInitialization ??= _googleSignIn.initialize();
-    try {
-      await pending;
-    } on Object {
-      _googleInitialization = null;
-      rethrow;
-    }
-  }
-
-  Future<AuthCredential?> _googleCredential() async {
-    await _ensureGoogleInitialized();
-
-    final GoogleSignInAccount googleUser;
-    try {
-      googleUser = await _googleSignIn.authenticate();
-    } on GoogleSignInException catch (error) {
-      if (error.code == GoogleSignInExceptionCode.canceled) return null;
-      rethrow;
-    }
-    return GoogleAuthProvider.credential(
-      idToken: googleUser.authentication.idToken,
-    );
-  }
-
-  Future<AuthCredential?> _appleCredential() async {
+  Future<CredentialResult> _appleCredential() async {
     // Apple, hash'lenmiş nonce'u identityToken'ın içine gömüyor; Firebase
     // rawNonce'u kendi hash'leyip karşılaştırıyor (token replay'e karşı).
     final rawNonce = _nonceGenerator.generate();
@@ -231,16 +220,27 @@ final class FirebaseAuthService implements AuthService {
         ],
         nonce: hashedNonce,
       );
-    } on SignInWithAppleAuthorizationException catch (error) {
-      if (error.code == AuthorizationErrorCode.canceled) return null;
-      rethrow;
+    } on SignInWithAppleAuthorizationException catch (error, stackTrace) {
+      if (error.code == AuthorizationErrorCode.canceled) {
+        return const CredentialCancelled();
+      }
+      return CredentialFailed(error, stackTrace);
+    } on Object catch (error, stackTrace) {
+      return CredentialFailed(error, stackTrace);
     }
 
     final identityToken = appleCredential.identityToken;
-    if (identityToken == null) return null;
-    return OAuthProvider(_appleProviderId).credential(
-      idToken: identityToken,
-      rawNonce: rawNonce,
+    if (identityToken == null) {
+      return CredentialFailed(
+        StateError('Apple returned no identityToken'),
+        StackTrace.current,
+      );
+    }
+    return CredentialReady(
+      OAuthProvider(_appleProviderId).credential(
+        idToken: identityToken,
+        rawNonce: rawNonce,
+      ),
     );
   }
 }
