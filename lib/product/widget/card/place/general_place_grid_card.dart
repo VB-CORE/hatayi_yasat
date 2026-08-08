@@ -122,7 +122,10 @@ final class _FavoriteCircle extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: AppShadows.card,
       ),
-      child: FavoritePlaceButton(store: store),
+      child: FavoritePlaceButton(
+        key: ValueKey(store.documentId),
+        store: store,
+      ),
     );
   }
 }

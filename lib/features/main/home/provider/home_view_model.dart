@@ -32,7 +32,9 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
   }
 
   Query<StoreModel?> fetchApprovedCollectionQuery() {
-    final selectedCity = ref.watch(productProviderState).selectedCity;
+    // read: watch olursa favori degisimi bu provider'i yeniden kurar ve
+    // secili filtreler sifirlanir. Sehir degisimini view zaten dinliyor.
+    final selectedCity = ref.read(productProviderState).selectedCity;
     return ApprovedPlaceQuery(
       cityId: selectedCity.documentId,
       categoryValues: state.categoryValues,

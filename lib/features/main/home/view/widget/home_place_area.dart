@@ -45,6 +45,7 @@ class __HomePlaceAreaState extends ConsumerState<_HomePlaceArea>
 
 Widget _gridItem(BuildContext context, StoreModel model) {
   return Semantics(
+    key: ValueKey(model.documentId),
     identifier: 'place_grid_card_${model.name}',
     child: Padding(
       padding: const PagePadding.onlyBottom(),
@@ -58,6 +59,7 @@ Widget _gridItem(BuildContext context, StoreModel model) {
 
 Widget _listItem(BuildContext context, StoreModel model) {
   return Padding(
+    key: ValueKey(model.documentId),
     padding: const PagePadding.onlyBottom(),
     child: GeneralPlaceCard(
       onCardTap: () => _openDetail(context, model),
@@ -92,6 +94,13 @@ final class _ClientFilteredPlaceArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Favori listesi degisince liste yeniden suzulsun diye izleniyor.
+    ref.watch(
+      ProjectDependencyItems.productProviderState.select(
+        (state) => state.favoritePlaces,
+      ),
+    );
+
     return StreamBuilder<QuerySnapshot<StoreModel?>>(
       stream: query.limit(_limit).snapshots(),
       builder: (context, snapshot) {
