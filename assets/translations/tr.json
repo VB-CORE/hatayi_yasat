@@ -539,7 +539,13 @@
     "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
     "error": {
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
-      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin."
+      "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin.",
+      "accountExists": "Bu e-posta adresi başka bir giriş yöntemiyle kayıtlı. Daha önce kullandığın seçenekle giriş yap.",
+      "invalidCredential": "{provider} doğrulaması kabul edilmedi, lütfen tekrar deneyin.",
+      "providerDisabled": "{provider} ile giriş şu anda kullanılamıyor.",
+      "userDisabled": "Bu hesap devre dışı bırakılmış.",
+      "network": "İnternet bağlantını kontrol edip tekrar dene.",
+      "unsupported": "{provider} ile giriş bu cihazda desteklenmiyor."
     },
     "signOut": {
       "title": "Çıkış Yap",

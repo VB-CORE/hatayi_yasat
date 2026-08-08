@@ -7,6 +7,7 @@ import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/analytics/firebase_analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
+import 'package:lifeclient/core/service/notification/notification_badge_service.dart';
 import 'package:lifeclient/core/service/user/firebase_user_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/hive_cache.dart';
@@ -53,6 +54,12 @@ final class ProjectDependency {
 
     GetIt.I.registerLazySingleton<UserService>(
       () => FirebaseUserService(
+        firestoreService: GetIt.I.get<CustomFirestoreService>(),
+      ),
+    );
+
+    GetIt.I.registerLazySingleton<NotificationBadgeService>(
+      () => FirestoreNotificationBadgeService(
         firestoreService: GetIt.I.get<CustomFirestoreService>(),
       ),
     );

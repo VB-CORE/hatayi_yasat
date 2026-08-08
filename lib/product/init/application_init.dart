@@ -37,14 +37,14 @@ final class ApplicationInit {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
-    if (kDebugMode) {
-      FirebaseFirestore.instance.settings = const Settings(
-        persistenceEnabled: false,
-      );
-      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 3004);
-      await FirebaseAuth.instance.useAuthEmulator('localhost', 3000);
-      await FirebaseStorage.instance.useStorageEmulator('localhost', 3005);
-    }
+    // if (kDebugMode) {
+    //   FirebaseFirestore.instance.settings = const Settings(
+    //     persistenceEnabled: false,
+    //   );
+    //   FirebaseFirestore.instance.useFirestoreEmulator('localhost', 3004);
+    //   await FirebaseAuth.instance.useAuthEmulator('localhost', 3000);
+    //   await FirebaseStorage.instance.useStorageEmulator('localhost', 3005);
+    // }
 
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();

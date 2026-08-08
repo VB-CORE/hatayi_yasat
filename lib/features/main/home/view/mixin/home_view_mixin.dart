@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
+import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
 import 'package:lifeclient/product/package/firebase/messaging_utility.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/mixin/notification_type_mixin.dart';
@@ -40,6 +41,8 @@ mixin HomeViewMixin
   Future<void> _openSnackbarMessage(
     MapEntry<String, NotificationModel> model,
   ) async {
+    unawaited(ref.read(notificationBadgeViewModelProvider.notifier).refresh());
+
     final (type, id) = modelConvertToType(model.value);
     if (type == null) return;
 
