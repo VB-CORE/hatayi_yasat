@@ -15,10 +15,14 @@ package-lock.json
 .metadata
 
 firebase-export-*
+
+# Generated code — never committed. Run codegen after clone:
+#   dart run build_runner build --delete-conflicting-outputs
+#   flutter pub run easy_localization:generate -O lib/product/init/language \
+#     -f keys -o locale_keys.g.dart --source-dir assets/translations
 *.g.dart
-!**/*_view_model.g.dart
-!**/app_router.g.dart
-!**/locale_keys.g.dart
+*.gen.dart
+*.freezed.dart
 
 emulator-data/
 

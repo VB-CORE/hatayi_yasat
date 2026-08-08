@@ -31,7 +31,7 @@ Bir feature'ın iç yapısı:
 lib/features/<feature>/
 ├── provider/                 # (veya view_model/) state mantığı
 │   ├── <feature>_view_model.dart
-│   ├── <feature>_view_model.g.dart    # üretilen (commit edilir)
+│   ├── <feature>_view_model.g.dart    # üretilen (commit EDİLMEZ)
 │   └── <feature>_state.dart
 ├── view/
 │   ├── <feature>_view.dart
@@ -184,7 +184,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 
 `@TypedGoRoute<XRoute>` + `final class XRoute extends GoRouteData with $XRoute`,
 `build()` widget'ı döner. Karmaşık nesne geçişi `$extra` ile. Codegen sonrası
-`app_router.g.dart` (commit edilir). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
+`app_router.g.dart` üretilir (commit edilmez). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
 
 ### `go` vs `push` (sert kural)
 
@@ -252,6 +252,10 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   olmayan mantıkta satır içi yorum. Kod isimlendirmeyle kendini anlatır.
 - Codegen: `flutter pub run build_runner build --delete-conflicting-outputs`
   (veya pubspec script'leri: `dartBuild`, `watch`, `general`). l10n: `lang` script'i.
+- **Üretilen dosyalar commit edilmez** (`*.g.dart`, `*.gen.dart`, `*.freezed.dart`) — gitignore'da.
+  Klonladıktan sonra codegen çalıştırmak zorunludur, aksi halde proje derlenmez.
+  Otorite `pubspec.lock`'tur: o da commit edilir, böylece üretilen kod ile paket sürümü
+  hiçbir makinede ayrışmaz.
 
 ---
 
