@@ -44,16 +44,16 @@ dependencies:
   flutter_svg: ^2.0.9
 
   #firebase
-  firebase_core: ^3.9.0
-  firebase_storage: ^12.3.7
-  firebase_remote_config: ^5.0.2
-  firebase_analytics: ^11.3.6
-  firebase_messaging: ^15.0.2
-  cloud_firestore: ^5.6.0
-  firebase_crashlytics: ^4.0.2
-  firebase_ui_firestore: ^1.7.1
-  cloud_functions: ^5.0.2
-  firebase_auth: ^5.3.4
+  firebase_core: ^4.13.0
+  firebase_storage: ^13.4.6
+  firebase_remote_config: ^6.5.6
+  firebase_analytics: ^12.4.6
+  firebase_messaging: ^16.5.0
+  cloud_firestore: ^6.8.0
+  firebase_crashlytics: ^5.2.7
+  firebase_ui_firestore: ^2.1.0
+  cloud_functions: ^6.3.6
+  firebase_auth: ^6.5.7
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^8.1.0
   crypto: ^3.0.6
@@ -64,7 +64,7 @@ dependencies:
   # isar_flutter_libs: ^4.0.0-dev.13
   #package
   image_picker: ^1.0.4
-  image_cropper: ^8.0.2
+  image_cropper: ^12.2.1
   share_plus: ^12.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
@@ -100,10 +100,10 @@ dependencies:
   # JSON
   json_annotation: ^4.8.0
 
+  # TEMPORARY: local path while life_shared 7.0.0 is prepared.
+  # Restored to `git: ref: v7.0.0` before this branch merges.
   life_shared:
-    git:
-      url: https://github.com/VB-CORE/life_shared.git
-      ref: v6.1.0
+    path: ../life_shared
 
   file_picker: ^11.0.3
   sliver_tools: ^0.2.12
