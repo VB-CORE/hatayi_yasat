@@ -1393,9 +1393,11 @@ packages:
   life_shared:
     dependency: "direct main"
     description:
-      path: "../life_shared"
-      relative: true
-    source: path
+      path: "."
+      ref: "v7.0.0"
+      resolved-ref: ef03cbeaeac68170fa53f6d3388503946c25594f
+      url: "https://github.com/VB-CORE/life_shared.git"
+    source: git
     version: "0.0.1"
   like_button:
     dependency: "direct main"

@@ -95,20 +95,16 @@ dependencies:
 
   #Location
   google_maps_flutter: ^2.18.0
-  # Selects the SDK-9 iOS implementation instead of the endorsed
-  # google_maps_flutter_ios, which cannot support Swift Package Manager because
-  # SPM cannot pick the Maps SDK by deployment target. Requires iOS 15+, which
-  # matches our target. See google_maps_flutter_ios README.
   google_maps_flutter_ios_sdk9: ^2.18.6
   intl: ^0.20.2
 
   # JSON
   json_annotation: ^4.8.0
 
-  # TEMPORARY: local path while life_shared 7.0.0 is prepared.
-  # Restored to `git: ref: v7.0.0` before this branch merges.
   life_shared:
-    path: ../life_shared
+    git:
+      url: https://github.com/VB-CORE/life_shared.git
+      ref: v7.0.0
 
   file_picker: ^11.0.3
   sliver_tools: ^0.2.12
@@ -122,13 +118,7 @@ dependencies:
   mobile_scanner: ^7.4.0
 
 dependency_overrides:
-  # kartal 4.2.0 caps device_info_plus at ^11.3.1 while syncfusion needs
-  # ^12.1.0. Pre-existing; drop once kartal relaxes its constraint.
   device_info_plus: ^12.3.0
-  # kartal 4.2.0 caps share_plus at ^11.0.0 but only calls the deprecated
-  # Share.share(), which still exists in 12.x.
-  # 12.0.2 is the ceiling, not 13.3.0: share_plus >=13 needs win32 ^6 while
-  # file_picker (all stable releases) still needs win32 ^5.
   share_plus: ^12.0.2
 
 dev_dependencies:
