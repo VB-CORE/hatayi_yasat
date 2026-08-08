@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
@@ -295,8 +293,6 @@ final class FirebaseAuthService implements AuthService {
       );
     }
 
-    if (kDebugMode) _logAppleTokenClaims(identityToken, hashedNonce);
-
     _pendingDisplayName = _appleDisplayName(appleCredential);
     // AppleAuthProvider rather than OAuthProvider on purpose: the iOS plugin
     // switches on signInMethod, and OAuthProvider stamps `oauth`, which misses
@@ -312,36 +308,6 @@ final class FirebaseAuthService implements AuthService {
         familyName: appleCredential.familyName,
       ),
     );
-  }
-
-  /// `invalid-credential` from Firebase says only that the token was refused,
-  /// never which claim was wrong. These three answer it: `aud` must equal the
-  /// bundle id Firebase knows, `iss` must be Apple, and the embedded nonce must
-  /// be the hash that was sent. Debug builds only — a JWT payload is not
-  /// something to write to a release log.
-  void _logAppleTokenClaims(String identityToken, String hashedNonce) {
-    try {
-      final parts = identityToken.split('.');
-      if (parts.length != 3) return;
-      final payload =
-          jsonDecode(
-                utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
-              )
-              as Map<String, dynamic>;
-      final nonce = payload['nonce'];
-      final exp = payload['exp'];
-      final skew = exp is int
-          ? DateTime.fromMillisecondsSinceEpoch(
-              exp * 1000,
-            ).difference(DateTime.now())
-          : null;
-      debugPrint(
-        'Apple identity token: aud=${payload['aud']} iss=${payload['iss']} '
-        'nonceMatches=${nonce == hashedNonce} expiresIn=$skew',
-      );
-    } on Object catch (error) {
-      CustomLogger.showError<void>(error);
-    }
   }
 
   String? _appleDisplayName(AuthorizationCredentialAppleID credential) {
