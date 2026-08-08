@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/group_detail/wall/provider/post_like_state.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/query/community_paths.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -41,19 +42,31 @@ final class PostLikeViewModel extends _$PostLikeViewModel
       } else {
         batch.update(likeReference, SoftDelete.payload());
       }
-      batch.update(postReference, {
-        CommunityCounterFields.likeCount.name: FieldValue.increment(
-          willLike ? 1 : -1,
-        ),
-      });
-      batch.update(
-        CollectionPaths.users.collection.doc(uid),
-        UserModel.counterStep(
-          UserCounterFields.likeCount,
-          by: willLike ? 1 : -1,
-        ),
-      );
+      batch
+        ..update(postReference, {
+          CommunityCounterFields.likeCount.name: FieldValue.increment(
+            willLike ? 1 : -1,
+          ),
+        })
+        ..update(
+          CollectionPaths.users.collection.doc(uid),
+          UserModel.counterStep(
+            UserCounterFields.likeCount,
+            by: willLike ? 1 : -1,
+          ),
+        );
     });
+
+    if (result.isSuccess) {
+      analyticsService.logEvent(
+        AnalyticsEvent.postLikeToggle,
+        parameters: {
+          AnalyticsParameter.groupId: groupId,
+          AnalyticsParameter.postId: post.id,
+          AnalyticsParameter.isLiked: willLike,
+        },
+      );
+    }
 
     if (!ref.mounted) return result.isSuccess ? willLike : !willLike;
 

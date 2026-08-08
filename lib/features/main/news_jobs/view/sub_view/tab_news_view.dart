@@ -26,12 +26,10 @@ final class TabNewsView extends ConsumerWidget {
       itemBuilder: (context, model) {
         return NewsCard(
           item: model,
-          onTap: () {
-            NewsDetailRoute(
-              $extra: model,
-              id: model.documentId,
-            ).push<void>(context);
-          },
+          onTap: () => NewsDetailRoute(
+            $extra: model,
+            id: model.documentId,
+          ).push<void>(context),
         );
       },
       onRetry: () {},

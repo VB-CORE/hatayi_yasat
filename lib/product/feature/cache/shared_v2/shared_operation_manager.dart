@@ -57,7 +57,7 @@ final class SharedPrefsOperationManager<T extends CacheModel>
   Future<bool> removeAll() async {
     final keys = _preferences.getKeys();
 
-    // TODO: it will update
+    // TODO(tech-debt): it will update
     await Future.forEach(keys, (element) async {
       await _preferences.remove(element);
     });

@@ -5,6 +5,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
+import 'package:lifeclient/product/utility/extension/index.dart';
 
 final class ApproveDialog extends StatelessWidget {
   const ApproveDialog({required this.title, super.key});
@@ -28,8 +29,7 @@ final class ApproveDialog extends StatelessWidget {
   static Future<bool> showWithKey({
     required BuildContext context,
     required ApproveDialogType type,
-  }) async =>
-      await show(context: context, title: type.key) ?? false;
+  }) async => await show(context: context, title: type.key) ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ final class ApproveDialog extends StatelessWidget {
           SizedBox.square(
             dimension: WidgetSizes.spacingL,
             child: CircularProgressIndicator(
-              color: ColorCommon(context).whiteAndBlackForTheme.withOpacity(.4),
+              color: ColorCommon(context).whiteAndBlackForTheme.withOp(.4),
             ),
           ),
           Expanded(
@@ -59,15 +59,11 @@ final class ApproveDialog extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            context.route.pop(false);
-          },
+          onPressed: () => context.route.pop(false),
           child: const Text(LocaleKeys.button_close).tr(),
         ),
         ElevatedButton(
-          onPressed: () {
-            context.route.pop(true);
-          },
+          onPressed: () => context.route.pop(true),
           child: const Text(LocaleKeys.button_ok).tr(),
         ),
       ],

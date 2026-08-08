@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
@@ -14,8 +16,8 @@ mixin HomeViewMixin
   @override
   void initState() {
     super.initState();
-    MessagingUtility.init();
-    listenToNotification();
+    unawaited(MessagingUtility.init());
+    unawaited(listenToNotification());
   }
 
   Future<void> listenToNotification() async {

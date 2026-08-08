@@ -3,10 +3,12 @@ part of '../place_detail_view.dart';
 final class PlaceAddressCard extends StatelessWidget {
   const PlaceAddressCard({
     required this.latLong,
+    required this.onTap,
     super.key,
   });
 
   final GeoPoint latLong;
+  final Future<void> Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ final class PlaceAddressCard extends StatelessWidget {
     };
 
     return CustomBounceable(
-      onTap: _openMaps,
+      onTap: onTap,
       scaleFactorOnTap: .98,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -70,9 +72,5 @@ final class PlaceAddressCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _openMaps() {
-    return '${latLong.latitude},${latLong.longitude}'.ext.launchMaps();
   }
 }

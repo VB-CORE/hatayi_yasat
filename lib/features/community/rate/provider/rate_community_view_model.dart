@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/community/rate/model/vote_model_extension.dart';
@@ -127,6 +128,13 @@ final class RateCommunityViewModel extends _$RateCommunityViewModel
       state = state.copyWith(
         vote: vote,
         status: const RateActionSucceeded(RateAction.create),
+      );
+      analyticsService.logEvent(
+        AnalyticsEvent.ratePlace,
+        parameters: {
+          AnalyticsParameter.placeId: placeId,
+          AnalyticsParameter.score: vote.score,
+        },
       );
     } else {
       state = state.copyWith(status: const RateActionFailed(RateAction.create));

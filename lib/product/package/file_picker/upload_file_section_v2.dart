@@ -69,7 +69,7 @@ class UploadFileSectionV2State extends State<UploadFileSection>
                 const EmptyBox.smallWidth(),
                 ValueListenableBuilder<File?>(
                   valueListenable: documentFileNotifier,
-                  builder: (BuildContext context, File? file, Widget? _) =>
+                  builder: (context, file, _) =>
                       Expanded(
                         child: isFilePicked(file)
                             ? _UploadedFileText(
@@ -82,7 +82,7 @@ class UploadFileSectionV2State extends State<UploadFileSection>
                 const EmptyBox.smallWidth(),
                 ValueListenableBuilder(
                   valueListenable: documentFileNotifier,
-                  builder: (BuildContext context, File? value, Widget? child) {
+                  builder: (context, value, child) {
                     return _UploadButton(
                       isFileNotNull: isFilePicked(value),
                       uploadPressed: pickFile,

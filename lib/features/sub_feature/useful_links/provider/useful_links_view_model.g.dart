@@ -42,13 +42,13 @@ final class UsefulLinksViewModelProvider
 }
 
 String _$usefulLinksViewModelHash() =>
-    r'02a7869d452e770c783e3a8daaf71c2173a1965c';
+    r'7fa1e23ecb890c55a05fa938e3defa14af795834';
 
 abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
   UsefulLinksState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<UsefulLinksState, UsefulLinksState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$UsefulLinksViewModel extends $Notifier<UsefulLinksState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

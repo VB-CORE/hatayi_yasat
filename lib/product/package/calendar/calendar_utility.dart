@@ -6,7 +6,7 @@ import 'package:lifeclient/product/package/calendar/calendar_model.dart';
 final class CalendarUtility {
   const CalendarUtility._();
 
-  static void saveCalendar({required CalendarModel model}) {
+  static Future<void> saveCalendar({required CalendarModel model}) async {
     final event = Event(
       title: model.title,
       description: model.description,
@@ -14,6 +14,6 @@ final class CalendarUtility {
       endDate: model.expireDate,
       iosParams: const IOSParams(reminder: Duration(minutes: 30)),
     );
-    Add2Calendar.addEvent2Cal(event);
+    await Add2Calendar.addEvent2Cal(event);
   }
 }

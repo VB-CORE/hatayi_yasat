@@ -118,10 +118,10 @@ final class _MonetizationCard extends StatelessWidget {
                     Text(
                       LocaleKeys.monetization_usageCountSummary.tr(
                         args: [
-                          if (coupon.usageLimit != null)
-                            '${(coupon.usageCount ?? 0).decimalPattern(context)}/${coupon.usageLimit!.decimalPattern(context)}'
+                          if (coupon.usageLimit case final limit?)
+                            '${coupon.usageCount.decimalPattern(context)}/${limit.decimalPattern(context)}'
                           else
-                            (coupon.usageCount ?? 0).decimalPattern(context),
+                            coupon.usageCount.decimalPattern(context),
                         ],
                       ),
                       style: AppText.bodySm.copyWith(fontWeight: .bold),

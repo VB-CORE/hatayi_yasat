@@ -159,9 +159,9 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
   }
 
   /// Handles memory item tap
-  void _handleMemoryTap(MemoryModel memory) {
+  Future<void> _handleMemoryTap(MemoryModel memory) async {
     Navigator.of(context).pop(); // Close bottom sheet first
-    _showMemoryDetail(memory);
+    await _showMemoryDetail(memory);
   }
 
   /// Shows memory detail bottom sheet

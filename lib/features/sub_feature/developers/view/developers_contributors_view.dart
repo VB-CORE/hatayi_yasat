@@ -31,7 +31,7 @@ final class _DevelopersContributorsViewState
 
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: PageAppBar(
+      appBar: const PageAppBar(
         pageTitle: LocaleKeys.developers_contributorsButtonTitle,
       ),
       body: switch (state) {

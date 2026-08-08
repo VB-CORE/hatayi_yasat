@@ -42,13 +42,13 @@ final class ChainStoreProviderProvider
 }
 
 String _$chainStoreProviderHash() =>
-    r'41e52a50d0f5a57c68a677a182884514002805cf';
+    r'758093512510dbdfcb6765169c7b7db231896cea';
 
 abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
   ChainStoreState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ChainStoreState, ChainStoreState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$ChainStoreProvider extends $Notifier<ChainStoreState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

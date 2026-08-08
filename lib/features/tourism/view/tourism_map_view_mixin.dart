@@ -1,4 +1,4 @@
-part of './tourism_map_view.dart';
+part of 'tourism_map_view.dart';
 
 mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   late GoogleMapController _mapController;
@@ -45,8 +45,8 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
 
   Future<void> showMarkerInfo(TouristicPlaceModel model) async {
     /// it is necessary to wait for the marker to be created
-    await Future.delayed(Durations.short4, () {
-      _mapController.showMarkerInfoWindow(MarkerId(model.documentId));
+    await Future.delayed(Durations.short4, () async {
+      await _mapController.showMarkerInfoWindow(MarkerId(model.documentId));
     });
   }
 
@@ -57,7 +57,9 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   }
 
   void changeSelectedPlace(TouristicPlaceModel model) {
-    ref.read(tourismViewModelProvider.notifier).changeSelectedPlace(
+    ref
+        .read(tourismViewModelProvider.notifier)
+        .changeSelectedPlace(
           model,
         );
   }

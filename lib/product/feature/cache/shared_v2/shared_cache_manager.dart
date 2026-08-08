@@ -14,7 +14,5 @@ final class SharedCacheManager extends CacheManager {
   }
 
   @override
-  void remove() {
-    _preferences.clear();
-  }
+  void remove() => _preferences.clear();
 }

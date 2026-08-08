@@ -42,13 +42,13 @@ final class SpecialAgencyViewModelProvider
 }
 
 String _$specialAgencyViewModelHash() =>
-    r'71abdd0c7be2646c260103a85b835a331996e70a';
+    r'd672297acc1d2eb4b72eb950e006b947e4662489';
 
 abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
   SpecialAgencyState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<SpecialAgencyState, SpecialAgencyState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$SpecialAgencyViewModel extends $Notifier<SpecialAgencyState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

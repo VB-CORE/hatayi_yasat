@@ -54,17 +54,25 @@ class _HomeViewState extends ConsumerState<HomeView>
     super.build(context);
     return GeneralScaffold(
       key: const Key('homeView'),
+      padding: .zero,
       body: CustomScrollView(
         key: const Key('homeScrollView'),
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         slivers: [
           const AdvertisementSlider(),
-          const _HomeHeaderBlock(),
-          const _SearchFilterRow(),
-          const _ActiveFilterBar(),
-          const _CategoriesItems(),
-          const _HomePlaceArea(),
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverMainAxisGroup(
+              slivers: [
+                _HomeHeaderBlock(),
+                _SearchFilterRow(),
+                _ActiveFilterBar(),
+                _CategoriesItems(),
+                _HomePlaceArea(),
+              ],
+            ),
+          ),
           const EmptyBox.largeXxHeight().ext.sliver,
         ],
       ),
@@ -211,9 +219,9 @@ final class _CustomSearchField extends StatelessWidget {
   }
 
   OutlineInputBorder get _searchBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        borderSide: BorderSide.none,
-      );
+    borderRadius: BorderRadius.circular(AppRadius.md),
+    borderSide: BorderSide.none,
+  );
 }
 
 final class _CategoriesItems extends ConsumerWidget {

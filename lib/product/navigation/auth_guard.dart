@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
-import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 
 abstract final class AuthGuard {

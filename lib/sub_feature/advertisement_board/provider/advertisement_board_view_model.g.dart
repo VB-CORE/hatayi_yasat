@@ -47,14 +47,14 @@ final class AdvertisementBoardViewModelProvider
 }
 
 String _$advertisementBoardViewModelHash() =>
-    r'ef4bfc41b7665277edc2e031416c181f846e4cfa';
+    r'df34d921b526a4d388ebbf1e5827d2211934444b';
 
 abstract class _$AdvertisementBoardViewModel
     extends $Notifier<AdvertisementBoardState> {
   AdvertisementBoardState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<AdvertisementBoardState, AdvertisementBoardState>;
     final element =
@@ -65,6 +65,6 @@ abstract class _$AdvertisementBoardViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -23,10 +23,10 @@ final class UriUtility {
     return address.contains(_httpScheme) || address.contains(_httpsScheme);
   }
 
-  void launch() {
+  Future<void> launch() async {
     try {
-      launchUrl(toUri);
-    } catch (e) {
+      await launchUrl(toUri);
+    } on Object catch (e) {
       CustomLogger.showError<dynamic>(e);
     }
   }

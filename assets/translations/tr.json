@@ -622,11 +622,14 @@
     "searchDistrict": "İlçe ara",
     "selectedCount": "{}/{} seçili",
     "showResults": "{} sonucu göster",
+    "showResultsPlain": "Sonuçları göster",
     "noResults": "Sonuç yok, filtreyi gevşet",
     "categoryCountLabel": "{} kategori",
     "districtCountLabel": "{} ilçe",
     "openShort": "açık",
-    "favoritesShort": "favori"
+    "favoritesShort": "favori",
+    "townLimitWarning": "Seçtiğiniz kategorilerle en fazla {} ilçe seçebilirsiniz",
+    "categoryLimitWarning": "Seçtiğiniz ilçelerle en fazla {} kategori seçebilirsiniz"
   },
   "community": {
     "tagline": "TOPLULUK",
@@ -849,5 +852,62 @@
   "newsFeed": {
     "badge": "Haber",
     "readMore": "Devamı"
+  },
+  "onboarding": {
+    "welcome": {
+      "desc": "Şehrin esnafı, topluluğu ve hafızası tek uygulamada. Yeniden ayağa kalkan Hatay'ı birlikte yaşatalım."
+    },
+    "button": {
+      "start": "Başlayalım",
+      "next": "Devam Et",
+      "complete": "Tamamla",
+      "skip": "Atla"
+    },
+    "pages": {
+      "0": {
+        "category": "MEKAN KEŞFİ",
+        "title": "Mahallenin esnafı, avucunun içinde",
+        "desc": "Antakya, Defne, İskenderun... Yakınındaki açık mekanları gör, kategoriye ve semte göre filtrele, aradığını anında bul.",
+        "chips": {
+          "0": "Ana sayfa akışı",
+          "1": "Kategori & Filtre",
+          "2": "Mekan Detayı",
+          "3": "Favoriler"
+        }
+      },
+      "1": {
+        "category": "PUANLAMA & YORUM",
+        "title": "Gittigin yeri anlat, oy ver",
+        "desc": "Yıldız ver, fotoğraf ekle, deneyimini yaz. Esnaf yorumuna cevap verebilir - konuşma tek yönlü değil.",
+        "chips": {
+          "0": "1-5 yıldız",
+          "1": "Fotoğraflı yorum",
+          "2": "Esnaf yanıtı",
+          "3": "Doğrulanmış ziyaret"
+        }
+      },
+      "2": {
+        "category": "TOPLULUK & HABERLER",
+        "title": "Gruplar, duvarlar, şehrin gündemi",
+        "desc": "ilgi alanına göre grup kur ya da katıl; duvarda paylaş, tartışmaya gir. Haberler ve etkinlikler akışı herkese açık.",
+        "chips": {
+          "0": "Grup oluştur / katıl",
+          "1": "Grup duvarı",
+          "2": "Tartışma başlıkları",
+          "3": "Haber & etkinlik"
+        }
+      },
+      "3": {
+        "category": "ESNAF & KUPON",
+        "title": "Esnafsan panelin hazır",
+        "desc": "Başvurunu gönder, onaydan sonra panelini aç: vitrin, mağaza, yorum yanıtları ve müşteriye özel kuponlar.",
+        "chips": {
+          "0": "Başvuru & onay",
+          "1": "Vitrin / mağaza",
+          "2": "Yorum yanıtla",
+          "3": "Kupon oluştur"
+        }
+      }
+    }
   }
 }

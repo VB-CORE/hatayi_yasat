@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/product/common/color_common.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -14,8 +17,8 @@ import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/extension/string_extension.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
-part './view/place_build_response_result.dart';
-part './view/place_search_empty_result.dart';
+part 'view/place_build_response_result.dart';
+part 'view/place_search_empty_result.dart';
 
 final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
     with _PlaceSearchMixin {
@@ -45,15 +48,26 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
     return _buildResultsOrSuggestions(context);
   }
 
+  /// Commit point for a query; `buildResults` would over-report, it runs on
+  /// every rebuild.
+  @override
+  void showResults(BuildContext context) {
+    if (query.isValidSearchTerm) {
+      ProjectDependencyItems.analyticsService.logEvent(
+        AnalyticsEvent.search,
+        parameters: {AnalyticsParameter.searchTerm: query},
+      );
+    }
+    super.showResults(context);
+  }
+
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isNotEmpty && _history.isNotEmpty) {
       return _PlaceSearchResponseResult(
         query: query,
         items: _history,
-        onSelected: (value) {
-          _navigateDetail(value, context);
-        },
+        onSelected: (value) => _navigateDetail(value, context),
       );
     }
 
@@ -84,9 +98,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
           return _PlaceSearchResponseResult(
             query: query,
             items: snapshot.data!,
-            onSelected: (value) {
-              _navigateDetail(value, context);
-            },
+            onSelected: (value) => _navigateDetail(value, context),
           );
         }
 
@@ -108,6 +120,13 @@ mixin _PlaceSearchMixin on SearchDelegate<SearchResponse> {
     BuildContext context,
   ) async {
     ProjectDependencyItems.productProvider.saveLastSearch(query);
+    ProjectDependencyItems.analyticsService.logEvent(
+      AnalyticsEvent.selectContent,
+      parameters: {
+        AnalyticsParameter.contentType: 'place',
+        AnalyticsParameter.itemId: response.id,
+      },
+    );
     await PlaceDetailRoute(
       $extra: StoreModel.empty(),
       id: response.id,

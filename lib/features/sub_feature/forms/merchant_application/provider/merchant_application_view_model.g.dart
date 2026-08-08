@@ -47,14 +47,14 @@ final class MerchantApplicationViewModelProvider
 }
 
 String _$merchantApplicationViewModelHash() =>
-    r'd978955ca83b9dfb1980bf412d8dd951b37a5c9a';
+    r'ca32a60aa53a790c9a410f9d9cd2403e1c08ae3f';
 
 abstract class _$MerchantApplicationViewModel
     extends $Notifier<MerchantApplicationState> {
   MerchantApplicationState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<MerchantApplicationState, MerchantApplicationState>;
     final element =
@@ -65,6 +65,6 @@ abstract class _$MerchantApplicationViewModel
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

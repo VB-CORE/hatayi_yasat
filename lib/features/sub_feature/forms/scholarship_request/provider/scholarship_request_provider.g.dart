@@ -44,14 +44,14 @@ final class ScholarshipRequestProviderProvider
 }
 
 String _$scholarshipRequestProviderHash() =>
-    r'b11fdbd64f8bed6cdf46a96d3366d89ae4b68788';
+    r'bfd673ea5b9a9f5df96390f3c0f7fdd463850a4e';
 
 abstract class _$ScholarshipRequestProvider
     extends $Notifier<ScholarshipRequestState> {
   ScholarshipRequestState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<ScholarshipRequestState, ScholarshipRequestState>;
     final element =
@@ -62,6 +62,6 @@ abstract class _$ScholarshipRequestProvider
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

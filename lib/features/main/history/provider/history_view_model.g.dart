@@ -41,13 +41,13 @@ final class HistoryViewModelProvider
   }
 }
 
-String _$historyViewModelHash() => r'70a24569cf3c85e08e500b47c73b64bce533013d';
+String _$historyViewModelHash() => r'748e3ebcf084a1b49ecf3c4effd2ae53a02edb56';
 
 abstract class _$HistoryViewModel extends $Notifier<HistoryState> {
   HistoryState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<HistoryState, HistoryState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$HistoryViewModel extends $Notifier<HistoryState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

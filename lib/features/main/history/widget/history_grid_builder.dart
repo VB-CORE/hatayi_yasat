@@ -6,12 +6,14 @@ final class _HistoryGridBuilder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final query =
-        ref.read(historyViewModelProvider.notifier).fetchMemoriesQuery();
+    final query = ref
+        .read(historyViewModelProvider.notifier)
+        .fetchMemoriesQuery();
 
     return FirestoreGridView(
       query: query,
-      padding: const PagePadding.onlyTopMedium() +
+      padding:
+          const PagePadding.onlyTopMedium() +
           const PagePadding.onlyBottomHigh(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3, // Instagram-like 3 columns
@@ -33,12 +35,12 @@ final class _HistoryGridBuilder extends ConsumerWidget {
     );
   }
 
-  void _showPhotoDetailSheet(
+  Future<void> _showPhotoDetailSheet(
     BuildContext context,
     WidgetRef ref,
     MemoryModel model,
-  ) {
-    showModalBottomSheet<void>(
+  ) async {
+    await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,

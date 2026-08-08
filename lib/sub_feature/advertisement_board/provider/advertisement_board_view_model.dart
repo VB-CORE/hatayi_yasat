@@ -15,12 +15,12 @@ final class AdvertisementBoardViewModel extends _$AdvertisementBoardViewModel
   }
 
   Future<void> fetchAdvertisements() async {
-    final items = await firebaseService.getList<AdBoardModel>(
+    final result = await firestoreService.getList<AdBoardModel>(
       model: AdBoardModel(),
       path: CollectionPaths.adBoard,
     );
-
-    items.sort((a, b) => (a.adIndex ?? kZero).compareTo(b.adIndex ?? kZero));
+    final items = (result.dataOrNull ?? <AdBoardModel>[])
+      ..sort((a, b) => (a.adIndex ?? kZero).compareTo(b.adIndex ?? kZero));
 
     state = state.copyWith(advertisements: items);
   }

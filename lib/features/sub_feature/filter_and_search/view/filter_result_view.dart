@@ -24,7 +24,7 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
     with AppProviderMixin {
   @override
   Widget build(BuildContext context) {
-    final query = appProvider.customService
+    final query = appProvider.firestoreService
         .collectionReference(
           CollectionPaths.approvedApplications,
           StoreModel.empty(),
@@ -58,16 +58,16 @@ class _FilterResultViewState extends ConsumerState<FilterResultView>
               },
               isGridDesign: true,
               onRetry: () {},
-              itemGridBuilder: (BuildContext context, StoreModel model) {
+              itemGridBuilder: (context, model) {
                 return Padding(
                   padding: const PagePadding.onlyBottom(),
                   child: GeneralPlaceGridCard(
                     elevation: kZero,
                     isEnabledToFavorite: false,
-                    onCardTap: () {
-                      PlaceDetailRoute($extra: model, id: model.documentId)
-                          .push<void>(this.context);
-                    },
+                    onCardTap: () => PlaceDetailRoute(
+                      $extra: model,
+                      id: model.documentId,
+                    ).push<void>(this.context),
                     storeModel: model,
                   ),
                 );

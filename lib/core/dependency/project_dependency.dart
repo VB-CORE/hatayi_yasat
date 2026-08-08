@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
+import 'package:lifeclient/core/service/analytics/firebase_analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/auth/firebase_auth_service.dart';
 import 'package:lifeclient/core/service/user/firebase_user_service.dart';
@@ -27,6 +29,9 @@ final class ProjectDependency {
       ProductCache(cacheManager: HiveCacheManager()),
     );
 
+    // ProjectDependencyMixin.firebaseService hâlâ bu kaydı çözüyor; geçiş
+    // dönemi bitip o alan silinene kadar kayıt kalmalı.
+    // ignore: deprecated_member_use_from_same_package
     GetIt.I.registerFactory(FirebaseCustomService.new);
 
     GetIt.I.registerLazySingleton<CustomFirestoreService>(
@@ -34,10 +39,15 @@ final class ProjectDependency {
     );
     GetIt.I.registerLazySingleton<CustomStorageService>(StorageService.new);
 
+    GetIt.I.registerLazySingleton<AnalyticsService>(
+      FirebaseAnalyticsService.new,
+    );
+
     GetIt.I.registerLazySingleton<AuthService>(
       () => FirebaseAuthService(
-        firebaseService: GetIt.I.get<FirebaseCustomService>(),
+        firestoreService: GetIt.I.get<CustomFirestoreService>(),
         productCache: GetIt.I.get<ProductCache>(),
+        analyticsService: GetIt.I.get<AnalyticsService>(),
       ),
     );
 

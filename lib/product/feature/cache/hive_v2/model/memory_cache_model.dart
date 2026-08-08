@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
 /// Memory model cache implementation for favorite memories
-final class MemoryCacheModel with CacheModel, EquatableMixin {
+final class MemoryCacheModel with CacheModel, Equatable {
   const MemoryCacheModel({required this.memoryModel});
 
   const MemoryCacheModel.empty() : memoryModel = const MemoryModel();

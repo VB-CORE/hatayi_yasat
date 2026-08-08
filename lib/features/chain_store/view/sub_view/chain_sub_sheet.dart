@@ -18,12 +18,12 @@ final class ChainSubSheet extends StatelessWidget {
     super.key,
   });
 
-  static void show({
+  static Future<void> show({
     required BuildContext context,
     required List<StoreModel> storeList,
     required String chainName,
-  }) {
-    showModalBottomSheet<void>(
+  }) async {
+    await showModalBottomSheet<void>(
       context: context,
       builder: (context) {
         return ChainSubSheet(
@@ -53,7 +53,7 @@ final class ChainSubSheet extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               itemCount: storeList.length,
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (context, index) {
                 return _ChainStoreBranchWidget(
                   store: storeList[index],
                 );
@@ -116,9 +116,7 @@ class _PhoneIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(AppIcons.phone),
-      onPressed: () {
-        launchPhoneWithPhoneNumber(context, branch.phone);
-      },
+      onPressed: () => launchPhoneWithPhoneNumber(context, branch.phone),
     );
   }
 }
@@ -148,9 +146,7 @@ class _LocationIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(AppIcons.location),
-      onPressed: () {
-        launchMapWithLatLong(context, branch.latLong);
-      },
+      onPressed: () => launchMapWithLatLong(context, branch.latLong),
     );
   }
 }

@@ -9,10 +9,11 @@ final class _FilterSearchButton extends ConsumerWidget {
       padding: const PagePadding.onlyTop(),
       child: SafeArea(
         child: GeneralButtonV2.active(
-          action: () {
+          action: () async {
             final provider = ref.read(filterWithSearchProvider);
+            ref.read(filterWithSearchProvider.notifier).logFilterApplied();
 
-            FilterResultRoute(
+            await FilterResultRoute(
               FilterSelected(
                 selectedCategories: provider.selectedCategories,
                 selectedTowns: provider.selectedTowns,

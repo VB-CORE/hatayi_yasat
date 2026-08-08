@@ -85,11 +85,8 @@ class _TownSelectSheetState extends ConsumerState<TownCategorySelectSheet>
             child: _SelectListButton(
               onResetWithComplete: clear,
               validationNotifier: validationOperate,
-              onComplete: () {
-                context.route.pop<TownCategoryModel>(
-                  selectedTownCategory,
-                );
-              },
+              onComplete: () =>
+                  context.route.pop<TownCategoryModel>(selectedTownCategory),
             ),
           ),
         ),
@@ -112,11 +109,12 @@ class _SelectListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const PagePadding.horizontalLowSymmetric() +
+      padding:
+          const PagePadding.horizontalLowSymmetric() +
           const PagePadding.onlyBottom(),
       child: ValueListenableBuilder<bool>(
         valueListenable: _validationNotifier,
-        builder: (BuildContext context, bool value, Widget? child) {
+        builder: (context, value, child) {
           return Column(
             children: [
               TextButton(
@@ -157,9 +155,7 @@ class _FilterSheetHeader extends StatelessWidget {
       child: Padding(
         padding: const PagePadding.onlyRight(),
         child: InkWell(
-          onTap: () {
-            context.route.pop();
-          },
+          onTap: () => context.route.pop(),
           child: const Icon(Icons.close),
         ),
       ),

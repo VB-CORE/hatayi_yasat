@@ -6,8 +6,8 @@ final class _PlacePickerFormField extends FormField<LatLng?> {
     required LatLng initialPosition,
     super.initialValue,
   }) : super(
-          validator: (LatLng? value) => value != null ? null : '',
-          builder: (FormFieldState<LatLng?> state) {
+          validator: (value) => value != null ? null : '',
+          builder: (state) {
             final context = state.context;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

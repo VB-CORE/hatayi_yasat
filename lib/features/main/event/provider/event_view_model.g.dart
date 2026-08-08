@@ -41,13 +41,13 @@ final class EventViewModelProvider
   }
 }
 
-String _$eventViewModelHash() => r'dfbc07ac4d777a180ad5b44dd1d66875697be576';
+String _$eventViewModelHash() => r'eca468d61577798fee52c3c2e59690483d7487e3';
 
 abstract class _$EventViewModel extends $Notifier<EventState> {
   EventState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<EventState, EventState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$EventViewModel extends $Notifier<EventState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

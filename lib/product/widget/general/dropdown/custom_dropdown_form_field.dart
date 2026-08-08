@@ -51,7 +51,7 @@ final class _CustomDistrictSelectionFormFieldState<T extends BaseDropDownModel>
       decoration: CustomDropdownDecoration(context: context),
       dropdownColor: context.general.colorScheme.onPrimaryFixed,
       menuMaxHeight: context.sized.dynamicHeight(.6),
-      value: widget.initialValue,
+      initialValue: widget.initialValue,
       items: widget.items
           .map(
             (e) => DropdownMenuItem<T>(

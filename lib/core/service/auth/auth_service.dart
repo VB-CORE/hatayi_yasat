@@ -1,6 +1,6 @@
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
-import 'package:life_shared/life_shared.dart';
 
 abstract interface class AuthService {
   Stream<UserModel?> get userStream;

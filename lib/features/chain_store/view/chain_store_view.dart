@@ -37,7 +37,7 @@ final class _ChainStoreViewState extends ConsumerState<ChainStoreView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: PageAppBar(pageTitle: LocaleKeys.chain_stores_title),
+      appBar: const PageAppBar(pageTitle: LocaleKeys.chain_stores_title),
       body: Padding(
         padding: AppSpacing.screenV,
         child: _ChainStoreListWidget(

@@ -98,8 +98,6 @@ mixin _NotificationPermission on State<NotificationPermissionView> {
     );
     _changeRequestAsking();
     if (!response) return;
-    CustomAppSettings.open(
-      type: CustomAppSettingsType.notification,
-    );
+    await CustomAppSettings.open(type: CustomAppSettingsType.notification);
   }
 }

@@ -38,9 +38,7 @@ class _FilterSheetHeader extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.zero,
           ),
-          onPressed: () {
-            context.route.pop();
-          },
+          onPressed: () => context.route.pop(),
           child: const Icon(AppIcons.close),
         ),
       ],

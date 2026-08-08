@@ -12,7 +12,7 @@ final class _FilterSearchTowns extends ConsumerWidget
     return ProductScrollBar(
       child: ListView.builder(
         itemCount: towns.length,
-        itemBuilder: (BuildContext context, int index) {
+        itemBuilder: (context, index) {
           return GeneralCheckBox(
             value: selectedItems.contains(towns[index].toTownModel),
             title: towns[index].displayName,

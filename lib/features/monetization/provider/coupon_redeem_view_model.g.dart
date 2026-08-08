@@ -59,7 +59,7 @@ final class CouponRedeemViewModelProvider
 }
 
 String _$couponRedeemViewModelHash() =>
-    r'c056c3c15543376ab872d98e102e8dfa922813d6';
+    r'4cdd9ecab0f4ab0237d7e43f63f2c4696d6ad797';
 
 final class CouponRedeemViewModelFamily extends $Family
     with
@@ -93,7 +93,7 @@ abstract class _$CouponRedeemViewModel extends $Notifier<CouponRedeemState> {
   CouponRedeemState build(String couponId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<CouponRedeemState, CouponRedeemState>;
     final element =
         ref.element
@@ -103,6 +103,6 @@ abstract class _$CouponRedeemViewModel extends $Notifier<CouponRedeemState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

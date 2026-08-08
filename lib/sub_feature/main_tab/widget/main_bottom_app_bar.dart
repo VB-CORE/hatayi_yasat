@@ -1,13 +1,18 @@
 part of '../main_tab_view.dart';
 
 class _BodyTabBarViewWidget extends StatelessWidget {
-  const _BodyTabBarViewWidget({required this.tabItems});
+  const _BodyTabBarViewWidget({
+    required this.tabItems,
+    required this.controller,
+  });
 
   final List<TabModel> tabItems;
+  final TabController controller;
 
   @override
   Widget build(BuildContext context) {
     return TabBarView(
+      controller: controller,
       physics: const NeverScrollableScrollPhysics(),
       children: tabItems.map((e) => e.page).toList(),
     );
@@ -15,9 +20,13 @@ class _BodyTabBarViewWidget extends StatelessWidget {
 }
 
 final class _BottomAppBarWidget extends ConsumerWidget {
-  const _BottomAppBarWidget({required this.tabItems});
+  const _BottomAppBarWidget({
+    required this.tabItems,
+    required this.controller,
+  });
 
   final List<TabModel> tabItems;
+  final TabController controller;
 
   static const double height = WidgetSizes.spacingXxl8;
 
@@ -44,7 +53,7 @@ final class _BottomAppBarWidget extends ConsumerWidget {
             shape: const CircularNotchedRectangle(),
             elevation: kZero,
             color: context.general.appTheme.bottomAppBarTheme.color,
-            child: _TabBar(tabItems: tabItems),
+            child: _TabBar(tabItems: tabItems, controller: controller),
           ),
         ),
       ),
@@ -53,13 +62,15 @@ final class _BottomAppBarWidget extends ConsumerWidget {
 }
 
 class _TabBar extends StatelessWidget {
-  const _TabBar({required this.tabItems});
+  const _TabBar({required this.tabItems, required this.controller});
 
   final List<TabModel> tabItems;
+  final TabController controller;
 
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      controller: controller,
       padding: EdgeInsets.zero,
       dividerColor: Colors.transparent,
       labelPadding: EdgeInsets.zero,

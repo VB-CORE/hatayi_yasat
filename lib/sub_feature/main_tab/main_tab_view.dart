@@ -29,6 +29,7 @@ import 'package:lifeclient/product/widget/general/title/general_content_sub_titl
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial_child.dart';
 import 'package:lifeclient/sub_feature/main_tab/mixin/main_tab_view_mixin.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/speed_dial_child_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/model/tab_model.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_view_model.dart';
@@ -40,16 +41,16 @@ part 'widget/main_bottom_app_bar.dart';
 part 'widget/main_fab_button.dart';
 
 final class MainTabView extends ConsumerStatefulWidget {
-  const MainTabView({super.key});
+  const MainTabView({this.tab, super.key});
+
+  final MainTab? tab;
 
   @override
   ConsumerState<MainTabView> createState() => _MainTabViewState();
 }
 
 class _MainTabViewState extends ConsumerState<MainTabView>
-    with TickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
-  final List<TabModel> _tabItems = TabModels.create().tabItems;
-
+    with SingleTickerProviderStateMixin, AppProviderMixin, MainTabViewMixin {
   double get bottomSafePadding =>
       _BottomAppBarWidget.height + context.general.mediaQuery.padding.bottom;
 
@@ -62,38 +63,35 @@ class _MainTabViewState extends ConsumerState<MainTabView>
           listenScrollUpdateNotification(notification);
           return true;
         },
-        child: DefaultTabController(
-          length: _tabItems.length,
-          child: Builder(
-            builder: (context) {
-              final tabController = DefaultTabController.of(context);
-              return ListenableBuilder(
-                listenable: tabController,
-                builder: (context, _) {
-                  final showAppBar = _tabItems[tabController.index].showAppBar;
-                  final showQr = _tabItems[tabController.index].showQr;
-                  return Scaffold(
-                    extendBody: true,
-                    appBar: showAppBar ? _MainAppBar() : null,
-                    floatingActionButtonLocation:
-                        FloatingActionButtonLocation.centerDocked,
-                    body: Stack(
-                      children: [
-                        _BodyTabBarViewWidget(tabItems: _tabItems),
-                        if (showQr) QrFabButton(bottom: bottomSafePadding),
-                      ],
-                    ),
-                    resizeToAvoidBottomInset: false,
-                    bottomNavigationBar: GeneralSemantic(
-                      semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
-                      child: _BottomAppBarWidget(tabItems: _tabItems),
-                    ),
-                    floatingActionButton: const _SpeedDialFabWidget(),
-                  );
-                },
-              );
-            },
-          ),
+        child: ListenableBuilder(
+          listenable: tabController,
+          builder: (context, _) {
+            final currentTab = tabItems[tabController.index];
+            return Scaffold(
+              extendBody: true,
+              appBar: currentTab.showAppBar ? _MainAppBar() : null,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              body: Stack(
+                children: [
+                  _BodyTabBarViewWidget(
+                    tabItems: tabItems,
+                    controller: tabController,
+                  ),
+                  if (currentTab.showQr) QrFabButton(bottom: bottomSafePadding),
+                ],
+              ),
+              resizeToAvoidBottomInset: false,
+              bottomNavigationBar: GeneralSemantic(
+                semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
+                child: _BottomAppBarWidget(
+                  tabItems: tabItems,
+                  controller: tabController,
+                ),
+              ),
+              floatingActionButton: const _SpeedDialFabWidget(),
+            );
+          },
         ),
       ),
     );

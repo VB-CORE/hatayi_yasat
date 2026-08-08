@@ -5,8 +5,10 @@ sealed class SignInResult {
 }
 
 final class SignInSuccess extends SignInResult {
-  const SignInSuccess(this.user);
+  const SignInSuccess(this.user, {this.isNewUser = false});
   final UserModel user;
+
+  final bool isNewUser;
 }
 
 final class SignInCancelled extends SignInResult {

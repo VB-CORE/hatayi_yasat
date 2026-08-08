@@ -48,7 +48,7 @@ abstract class _$SavedNewsViewModel extends $Notifier<SavedNewsState> {
   SavedNewsState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<SavedNewsState, SavedNewsState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$SavedNewsViewModel extends $Notifier<SavedNewsState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

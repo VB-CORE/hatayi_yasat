@@ -1,5 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
@@ -8,7 +10,6 @@ import 'package:lifeclient/product/utility/state/app_provider.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
 import 'package:lifeclient/product/utility/state/items/product_provider_state.dart';
 import 'package:lifeclient/product/utility/state/product_provider.dart';
-import 'package:riverpod/src/providers/notifier.dart';
 
 mixin ProjectDependencyMixin {
   @Deprecated(
@@ -35,6 +36,9 @@ mixin ProjectDependencyMixin {
       ProjectDependencyItems.productProvider;
 
   final ProductCache productCache = ProjectDependencyItems.productCache;
+
+  final AnalyticsService analyticsService =
+      ProjectDependencyItems.analyticsService;
 
   final AuthService authService = ProjectDependencyItems.authService;
 

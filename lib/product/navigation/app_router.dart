@@ -17,6 +17,7 @@ import 'package:lifeclient/features/merchant_panel/view/merchant_panel_view.dart
 import 'package:lifeclient/features/monetization/form/monetization_coupon_form_view.dart';
 import 'package:lifeclient/features/monetization/redeem/coupon_redeem_view.dart';
 import 'package:lifeclient/features/monetization/view/monetization_view.dart';
+import 'package:lifeclient/features/onboarding/view/onboarding_view.dart';
 import 'package:lifeclient/features/place_detail/view/place_detail_view.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/sub_feature/developers/view/developers_contributors_view.dart';
@@ -35,9 +36,9 @@ import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_v
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
-import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
-import 'package:lifeclient/sub_feature/onboard/on_board_view.dart';
 import 'package:lifeclient/sub_feature/banned/banned_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/unauthorized/unauthorized_view.dart';
 
 export 'package:life_shared/life_shared.dart' show NewsModel;
@@ -47,6 +48,7 @@ part 'merchant_guard.dart';
 
 @TypedGoRoute<SplashRoute>(
   path: '/',
+  name: SplashRoute.routeName,
   routes: [
     OnboardRoute.route,
   ],
@@ -54,12 +56,17 @@ part 'merchant_guard.dart';
 final class SplashRoute extends GoRouteData with $SplashRoute {
   const SplashRoute();
 
+  /// Root path, so it is also the fallback screen name analytics falls back to
+  /// when a route pattern normalises to nothing.
+  static const String routeName = 'Splash';
+
   @override
   Widget build(BuildContext context, GoRouterState state) => const SplashView();
 }
 
 @TypedGoRoute<MainTabRoute>(
   path: '/main',
+  name: 'Main Tab',
   routes: [
     ChainStoresRoute.route,
     MonetizationRoute.route,
@@ -93,11 +100,14 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
-  const MainTabRoute();
+  const MainTabRoute({this.tab});
+
+  /// Acilacak alt sekme; URL'de `?tab=` parametresi olarak tasinir.
+  final MainTab? tab;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const MainTabView();
+      MainTabView(tab: tab);
 }
 
 /// You can use this route for home and favorite place cards
@@ -491,7 +501,7 @@ final class NewsDetailRoute extends GoRouteData with $NewsDetailRoute {
       NewsDetailView(news: $extra);
 }
 
-@TypedGoRoute<LoginRoute>(path: '/login')
+@TypedGoRoute<LoginRoute>(path: '/login', name: 'Login')
 final class LoginRoute extends GoRouteData with $LoginRoute {
   const LoginRoute({this.from});
 
@@ -505,7 +515,7 @@ final class LoginRoute extends GoRouteData with $LoginRoute {
   Widget build(BuildContext context, GoRouterState state) => const LoginView();
 }
 
-@TypedGoRoute<BannedRoute>(path: '/banned')
+@TypedGoRoute<BannedRoute>(path: '/banned', name: 'Banned')
 final class BannedRoute extends GoRouteData with $BannedRoute {
   const BannedRoute();
 
@@ -513,7 +523,7 @@ final class BannedRoute extends GoRouteData with $BannedRoute {
   Widget build(BuildContext context, GoRouterState state) => const BannedView();
 }
 
-@TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized')
+@TypedGoRoute<UnauthorizedRoute>(path: '/unauthorized', name: 'Unauthorized')
 final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
   const UnauthorizedRoute({this.attemptedPath});
 
@@ -527,7 +537,10 @@ final class UnauthorizedRoute extends GoRouteData with $UnauthorizedRoute {
 final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
   const CreateGroupRoute();
 
-  static const route = TypedGoRoute<CreateGroupRoute>(path: 'create-group');
+  static const route = TypedGoRoute<CreateGroupRoute>(
+    path: 'create-group',
+    name: 'Create Group',
+  );
 
   @override
   String? redirect(BuildContext context, GoRouterState state) =>
@@ -542,7 +555,7 @@ final class CreateGroupRoute extends GoRouteData with $CreateGroupRoute {
       const CreateGroupView();
 }
 
-@TypedGoRoute<GroupDetailRoute>(path: '/group-detail')
+@TypedGoRoute<GroupDetailRoute>(path: '/group-detail', name: 'Group Detail')
 final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
   GroupDetailRoute({required this.$extra});
 
@@ -553,7 +566,10 @@ final class GroupDetailRoute extends GoRouteData with $GroupDetailRoute {
       GroupDetailView(model: $extra);
 }
 
-@TypedGoRoute<DiscussionDetailRoute>(path: '/discussion-detail')
+@TypedGoRoute<DiscussionDetailRoute>(
+  path: '/discussion-detail',
+  name: 'Discussion Detail',
+)
 final class DiscussionDetailRoute extends GoRouteData
     with $DiscussionDetailRoute {
   DiscussionDetailRoute({required this.$extra});
@@ -574,7 +590,8 @@ final class OnboardRoute extends GoRouteData with $OnboardRoute {
   );
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const OnBoarView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const OnboardingView();
 }
 
 final class SettingsRoute extends GoRouteData with $SettingsRoute {
@@ -660,7 +677,7 @@ final class ApplicationInformationRoute extends GoRouteData
   );
 
   @override
-  // TODO: Bu sayfa yapılacak.
+  // TODO(application-information): Bu sayfa yapılacak.
   Widget build(BuildContext context, GoRouterState state) =>
       const Text('Bu sayfa yapılacak.');
 }

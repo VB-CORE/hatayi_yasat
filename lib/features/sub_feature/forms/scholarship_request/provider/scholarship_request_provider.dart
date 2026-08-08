@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/sub_feature/forms/scholarship_request/provider/scholarship_request_state.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
@@ -11,7 +13,8 @@ import 'package:uuid/uuid.dart';
 part 'scholarship_request_provider.g.dart';
 
 @riverpod
-final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
+final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider
+    with ProjectDependencyMixin {
   @override
   ScholarshipRequestState build() => const ScholarshipRequestState();
 
@@ -27,18 +30,20 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
     }
   }
 
-  Future<(String?, UploadErrors?)> uploadStudentDocumentPDF() async {
+  Future<StorageResult<String>> uploadStudentDocumentPDF() {
     final file = state.scholarshipModel?.studentDocument;
-    if (file == null) return (null, UploadErrors.noFile);
-    final uuid = const Uuid().v4();
+    if (file == null) {
+      return Future.value(
+        const FirebaseFailure<String, StorageError>(StorageError.noFile),
+      );
+    }
 
-    final resultFileLink = await FirebaseStorageService().uploadFile(
+    return storageService.uploadFile(
       root: RootStorageName.scholarship,
-      key: uuid,
+      key: const Uuid().v4(),
       file: file,
       size: FileSizes.small,
     );
-    return resultFileLink;
   }
 
   Future<String?> uploadScholarship(
@@ -53,13 +58,17 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
 
-    final (pdfLinkKey, errorType) = await uploadStudentDocumentPDF();
-    if (pdfLinkKey == null && errorType != null) {
-      state = state.copyWith(
-        isSendingRequest: false,
-      );
+    final String documentFileRef;
+    switch (await uploadStudentDocumentPDF()) {
+      case FirebaseFailure(:final error):
+        state = state.copyWith(
+          isSendingRequest: false,
+        );
 
-      return errorType.errorMessage;
+        _logError(error.name);
+        return error.errorMessage;
+      case FirebaseSuccess(:final data):
+        documentFileRef = data;
     }
 
     final scholarshipModel = ScholarshipModel(
@@ -67,10 +76,10 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
       phoneNumber: model.phoneNumber,
       story: model.story,
       studentDocument: '',
-      documentFileRef: pdfLinkKey!,
+      documentFileRef: documentFileRef,
     );
 
-    final response = await FirebaseService().add<ScholarshipModel>(
+    final response = await firestoreService.add<ScholarshipModel>(
       model: scholarshipModel,
       path: CollectionPaths.scholarship,
     );
@@ -79,23 +88,36 @@ final class ScholarshipRequestProvider extends _$ScholarshipRequestProvider {
       isSendingRequest: false,
     );
 
-    if (response == null) {
+    if (!response.isSuccess) {
+      _logError('write_failed');
       return LocaleKeys.requestScholarship_error_undefinedError.tr();
     }
     await _sharedCache.saveApplyScholarshipTime();
+    analyticsService.logEvent(
+      AnalyticsEvent.formSubmit,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,
+      },
+    );
     return null;
+  }
+
+  void _logError(String reason) {
+    analyticsService.logEvent(
+      AnalyticsEvent.formError,
+      parameters: {
+        AnalyticsParameter.formType: AnalyticsFormType.scholarshipRequest.key,
+        AnalyticsParameter.reason: reason,
+      },
+    );
   }
 }
 
-extension UploadErrorsExtension on UploadErrors {
-  String get errorMessage {
-    switch (this) {
-      case UploadErrors.sizeLimit:
-        return LocaleKeys.requestScholarship_error_fileSizeError.tr();
-      case UploadErrors.service:
-        return LocaleKeys.requestScholarship_error_undefinedError.tr();
-      case UploadErrors.noFile:
-        return LocaleKeys.requestScholarship_error_noFileError.tr();
-    }
-  }
+extension on StorageError {
+  String get errorMessage => switch (this) {
+    StorageError.sizeLimit =>
+      LocaleKeys.requestScholarship_error_fileSizeError.tr(),
+    StorageError.noFile => LocaleKeys.requestScholarship_error_noFileError.tr(),
+    _ => LocaleKeys.requestScholarship_error_undefinedError.tr(),
+  };
 }

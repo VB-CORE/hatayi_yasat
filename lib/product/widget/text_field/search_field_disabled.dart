@@ -32,13 +32,13 @@ class SearchFieldDisabled extends StatelessWidget {
           disabledBorder: OutlineInputBorder(
             borderRadius: CustomRadius.extraLarge,
             borderSide: BorderSide(
-              color: context.general.appTheme.colorScheme.onBackground,
+              color: context.general.appTheme.colorScheme.onSurface,
             ),
           ),
           border: OutlineInputBorder(
             borderRadius: CustomRadius.extraLarge,
             borderSide: BorderSide(
-              color: context.general.appTheme.colorScheme.onBackground,
+              color: context.general.appTheme.colorScheme.onSurface,
             ),
           ),
         ),

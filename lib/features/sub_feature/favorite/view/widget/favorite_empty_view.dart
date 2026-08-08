@@ -14,7 +14,7 @@ final class _FavoriteEmptyView extends StatelessWidget {
       child: Padding(
         padding: const PagePadding.onlyTopNormal(),
         child: GeneralButtonV2.active(
-          action: () => const MainTabRoute().go(context),
+          action: () => const MainTabRoute(tab: MainTab.places).go(context),
           label: LocaleKeys.favorite_emptyCta.tr(),
           icon: AppIcons.store,
           backgroundColor: context.general.colorScheme.primary,

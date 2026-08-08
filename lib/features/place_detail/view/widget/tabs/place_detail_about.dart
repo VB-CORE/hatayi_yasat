@@ -5,12 +5,14 @@ final class PlaceDetailAboutTab extends StatelessWidget {
     required this.store,
     required this.onCall,
     required this.onCopyAddress,
+    required this.onOpenMaps,
     super.key,
   });
 
   final StoreModel store;
   final VoidCallback onCall;
   final VoidCallback onCopyAddress;
+  final Future<void> Function(GeoPoint latLong) onOpenMaps;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,11 @@ final class PlaceDetailAboutTab extends StatelessWidget {
                       tooltip: LocaleKeys.button_copy.tr(),
                     ),
                   ),
-                if (store.hasMap) PlaceAddressCard(latLong: store.latLong!),
+                if (store.hasMap)
+                  PlaceAddressCard(
+                    latLong: store.latLong!,
+                    onTap: () => onOpenMaps(store.latLong!),
+                  ),
               ],
             ),
         ],

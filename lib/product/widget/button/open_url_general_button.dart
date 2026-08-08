@@ -24,7 +24,7 @@ final class OpenUrlGeneralButton extends StatelessWidget {
 
     try {
       isLaunched = await url.ext.launchWebsite;
-    } catch (_) {
+    } on Object catch (_) {
       isLaunched = false;
     }
 

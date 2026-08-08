@@ -10,7 +10,7 @@ import 'package:lifeclient/product/widget/general/semantics/general_semantic_key
 final class WhatsNewSheet extends StatelessWidget {
   const WhatsNewSheet({super.key});
 
-  static const _newVersionChanges = [
+  static const List<String> _newVersionChanges = [
     LocaleKeys.whatsNew_features_favoritePlaces,
     LocaleKeys.whatsNew_features_memories,
     LocaleKeys.whatsNew_bugFixes,
@@ -35,10 +35,10 @@ final class WhatsNewSheet extends StatelessWidget {
               Expanded(
                 child: ListView.separated(
                   itemCount: _newVersionChanges.length,
-                  separatorBuilder: (BuildContext context, int index) {
+                  separatorBuilder: (context, index) {
                     return const EmptyBox.smallHeight();
                   },
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (context, index) {
                     return Text(_newVersionChanges[index].tr());
                   },
                 ),

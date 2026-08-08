@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/core/theme/app_theme.dart';
 import 'package:lifeclient/product/app_builder.dart';
+import 'package:lifeclient/product/init/analytics_user_binder.dart';
 import 'package:lifeclient/product/navigation/router_notifier.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/product/widget/builder/keyboard_focus_control_widget.dart';
@@ -14,6 +15,7 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
   Widget build(BuildContext context, WidgetRef ref) {
     final applicationTheme = ApplicationTheme.build();
     final router = ref.read(goRouterProvider);
+    ref.read(analyticsUserBinderProvider);
 
     return KeyboardFocusControlWidget(
       child: MaterialApp.router(

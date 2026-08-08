@@ -42,13 +42,13 @@ final class ProjectRequestProviderProvider
 }
 
 String _$projectRequestProviderHash() =>
-    r'f2b27292a4306f9a51b504e94c4ffd9a5ca89be3';
+    r'32e01c325182d5bb954b40ddfd41e260d883ec4d';
 
 abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
   ProjectRequestState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ProjectRequestState, ProjectRequestState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$ProjectRequestProvider extends $Notifier<ProjectRequestState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

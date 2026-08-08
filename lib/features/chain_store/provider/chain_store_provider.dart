@@ -13,7 +13,7 @@ final class ChainStoreProvider extends _$ChainStoreProvider
   ChainStoreState build() => const ChainStoreState();
 
   CollectionReference<ChainStoreModel?> fetchChainStoreCollectionReference() {
-    return firebaseService.collectionReference(
+    return firestoreService.collectionReference(
       CollectionPaths.chainStores,
       ChainStoreModel.empty(),
     );

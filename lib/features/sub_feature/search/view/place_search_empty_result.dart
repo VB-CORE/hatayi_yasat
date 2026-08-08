@@ -85,7 +85,7 @@ final class _LastSearchItemBody extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             itemCount: lastSearchItems.length,
-            itemBuilder: (BuildContext context, int index) {
+            itemBuilder: (context, index) {
               return TextButton.icon(
                 onPressed: () {
                   onSelected.call(lastSearchItems[index]);

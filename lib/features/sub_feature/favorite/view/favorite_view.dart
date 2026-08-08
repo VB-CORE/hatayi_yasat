@@ -23,6 +23,7 @@ import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/text_field/custom_search_field.dart';
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 
 part 'widget/favorite_clear_all_button.dart';
 part 'widget/favorite_empty_view.dart';

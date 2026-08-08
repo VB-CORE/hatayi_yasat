@@ -8,7 +8,7 @@ mixin FavoritePlaceButtonMixin
     on
         AppProviderMixin<FavoritePlaceButton>,
         ConsumerState<FavoritePlaceButton> {
-  /// Todo: Update to better manager
+  // TODO(tech-debt): Update to better manager
   late final NotifierProvider<FavoritePlaceProvider, FavoritePlaceState>
   _favoritePlaceProvider = NotifierProvider(
     () => FavoritePlaceProvider(

@@ -36,7 +36,7 @@ class _UserQrViewState extends ConsumerState<UserQrView>
 
     if (qrUrl == null) {
       return GeneralScaffold(
-        appBar: PageAppBar(pageTitle: LocaleKeys.userQr_title),
+        appBar: const PageAppBar(pageTitle: LocaleKeys.userQr_title),
         body: GeneralNotFoundWidget(
           title: LocaleKeys.message_somethingWentWrong.tr(),
         ),
@@ -48,7 +48,7 @@ class _UserQrViewState extends ConsumerState<UserQrView>
         QrImageConstants.embeddedSizeRatio;
 
     return GeneralScaffold(
-      appBar: PageAppBar(
+      appBar: const PageAppBar(
         pageTitle: LocaleKeys.userQr_title,
         centerTitle: true,
       ),

@@ -60,7 +60,7 @@ final class RateCommunityViewModelProvider
 }
 
 String _$rateCommunityViewModelHash() =>
-    r'8f4c5c7520e08918053072409c670c36533dbbf7';
+    r'8666ba007a1b83a113d3320052e3b274be195557';
 
 final class RateCommunityViewModelFamily extends $Family
     with
@@ -94,7 +94,7 @@ abstract class _$RateCommunityViewModel extends $Notifier<RateCommunityState> {
   RateCommunityState build(String placeId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<RateCommunityState, RateCommunityState>;
     final element =
         ref.element
@@ -104,6 +104,6 @@ abstract class _$RateCommunityViewModel extends $Notifier<RateCommunityState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

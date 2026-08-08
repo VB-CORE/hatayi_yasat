@@ -153,12 +153,12 @@ final class _NewsActionRow extends ConsumerWidget {
     );
   }
 
-  void _shareNews() {
+  Future<void> _shareNews() async {
     if (item.content.ext.isNullOrEmpty) return;
     final bodyBuilder = StringBuffer(item.title ?? AppConstants.appName)
       ..write('\n\n')
       ..write(item.content);
-    bodyBuilder.toString().ext.share();
+    await bodyBuilder.toString().ext.share();
   }
 }
 

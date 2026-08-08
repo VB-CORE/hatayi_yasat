@@ -3,7 +3,7 @@ import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/base_shared_operation.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_keys.dart';
 
-// TODO: It's need to generic
+// TODO(tech-debt): It's need to generic
 final class SharedCache {
   SharedCache._internal();
   static final SharedCache instance = SharedCache._internal();
@@ -33,12 +33,13 @@ final class SharedCache {
     return DateTime.parse(time);
   }
 
-  Future<void> setFirstAppOpen() async {
-    await _sharedOperation.setValue(SharedKeys.firstAppOpen, false);
+  Future<void> setCompleteOnboarding() async {
+    await _sharedOperation.setValue(SharedKeys.isCompletedOnboarding, true);
   }
 
-  bool get isFirstAppOpen =>
-      _sharedOperation.getValue<bool>(SharedKeys.firstAppOpen) ?? true;
+  bool get isCompletedOnboarding =>
+      _sharedOperation.getValue<bool>(SharedKeys.isCompletedOnboarding) ??
+      false;
 
   int get version =>
       _sharedOperation.getValue<int>(SharedKeys.currentVersion) ?? -1;

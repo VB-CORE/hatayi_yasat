@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 
-final class NewsBookmarkCache with CacheModel, EquatableMixin {
+final class NewsBookmarkCache with CacheModel, Equatable {
   const NewsBookmarkCache({
     required this.newsId,
     this.title,
