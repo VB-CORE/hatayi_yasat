@@ -11,7 +11,7 @@ final class MosaicBackground extends StatefulWidget {
     this.tileOpacity = 0.30,
     this.tileSize = 20,
     this.animate = false,
-    this.animationDuration = const Duration(milliseconds: 500),
+    this.animationDuration = const Duration(milliseconds: 700),
     super.key,
   });
 
@@ -158,7 +158,7 @@ final class _MosaicPatternPainter extends CustomPainter {
           pow(row - centerRow, 2) + pow(column - centerColumn, 2),
         );
 
-        final delay = distance / maxDistance;
+        final delay = 1 - (distance / maxDistance);
 
         final progress = Curves.easeOut.transform(
           ((animationValue - delay) / (1 - delay)).clamp(0.0, 1.0),
