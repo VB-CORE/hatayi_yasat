@@ -25,7 +25,6 @@ final class _MainAppBar extends AppBar {
         ),
         actions: const [
           _NotificationButton(),
-          _CustomPopupMenu(),
           SizedBox(width: AppSpacing.xxs),
         ],
       );
@@ -101,21 +100,6 @@ final class _NotificationButton extends ConsumerWidget {
             ),
           ),
       ],
-    );
-  }
-}
-
-final class _CustomPopupMenu extends StatelessWidget {
-  const _CustomPopupMenu();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => _DiscoverMenuOverlay.show(context),
-      icon: Icon(
-        AppIcons.moreDots,
-        color: context.general.colorScheme.primary,
-      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/index.dart';
@@ -11,6 +13,8 @@ final class UsefulLinksViewModel extends _$UsefulLinksViewModel
     with ProjectDependencyMixin {
   @override
   UsefulLinksState build() {
+    unawaited(_fetchCount());
+
     return const UsefulLinksState();
   }
 
@@ -19,5 +23,15 @@ final class UsefulLinksViewModel extends _$UsefulLinksViewModel
       CollectionPaths.usefulLinks,
       UsefulLinksModel(),
     );
+  }
+
+  Future<void> _fetchCount() async {
+    final result = await firestoreService.countQuery(
+      fetchLinksCollectionReference(),
+    );
+
+    if (result case FirebaseSuccess(:final data)) {
+      state = state.copyWith(count: data);
+    }
   }
 }

@@ -1,50 +1,87 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/chain_store/provider/chain_store_provider.dart';
-import 'package:lifeclient/features/chain_store/view/sub_view/chain_sub_sheet.dart';
-import 'package:lifeclient/features/chain_store/view_model/chain_store_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
-import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
+import 'package:lifeclient/product/utility/working_hours.dart';
+import 'package:lifeclient/product/widget/app_bar/discover_section_app_bar.dart';
+import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
-import 'package:lifeclient/product/widget/general/general_scaffold.dart';
-import 'package:lifeclient/product/widget/general/title/general_body_title.dart';
-import 'package:lifeclient/product/widget/general/title/general_content_small_title.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
-part 'sub_view/chain_store_sub_view.dart';
+part 'widget/market_card.dart';
 
-typedef AsyncValueGetterWithContext<T> =
-    Future<void> Function(
-      BuildContext context,
-      T model,
-    );
-
-final class ChainStoreView extends ConsumerStatefulWidget {
+@immutable
+final class ChainStoreView extends StatelessWidget {
   const ChainStoreView({super.key});
 
   @override
-  ConsumerState<ChainStoreView> createState() => _ChainStoreViewState();
-}
-
-final class _ChainStoreViewState extends ConsumerState<ChainStoreView>
-    with ChainStoreViewModel {
-  @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: const PageAppBar(pageTitle: LocaleKeys.chain_stores_title),
-      body: Padding(
-        padding: AppSpacing.screenV,
-        child: _ChainStoreListWidget(
-          onLocationTap: launchMapWithLatLong,
-          onCallTap: launchPhoneWithPhoneNumber,
-        ),
+      appBar: const _ChainStoreAppBar(),
+      body: const _ChainStoreListWidget(),
+    );
+  }
+}
+
+final class _ChainStoreAppBar extends ConsumerWidget
+    implements PreferredSizeWidget {
+  const _ChainStoreAppBar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final (marketCount, shopCount) = ref.watch(
+      chainStoreProviderProvider.select(
+        (state) => (state.chainStores.length, state.totalShopCount),
       ),
+    );
+
+    return DiscoverSectionAppBar(
+      title: LocaleKeys.chain_stores_title,
+      subtitle: LocaleKeys.chain_stores_subtitle.tr(
+        args: [marketCount.toString(), shopCount.toString()],
+      ),
+      accentColor: context.appColors.coral,
+    );
+  }
+
+  @override
+  Size get preferredSize => DiscoverSectionAppBar.preferredAppBarSize;
+}
+
+final class _ChainStoreListWidget extends ConsumerWidget {
+  const _ChainStoreListWidget();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final query = ref
+        .read(chainStoreProviderProvider.notifier)
+        .fetchChainStoreCollectionReference();
+
+    return GeneralFirestoreListView<ChainStoreModel>(
+      query: query,
+      onRetry: () => ref.invalidate(chainStoreProviderProvider),
+      emptyBuilder: (context) => GeneralNotFoundWidget(
+        title: LocaleKeys.notFound_chainStore.tr(),
+      ),
+      itemBuilder: (context, model) {
+        return Padding(
+          padding:
+              const PagePadding.horizontal16Symmetric() +
+              const PagePadding.vertical8Symmetric(),
+          child: _MarketCard(market: model),
+        );
+      },
     );
   }
 }

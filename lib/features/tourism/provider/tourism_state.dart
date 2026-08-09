@@ -7,13 +7,7 @@ final class TourismState extends Equatable {
     this.selectedPlace,
   });
 
-  /// [placeList] is the list of touristic places that will be shown on the map.
-  ///
-  /// It fills from service response
   final List<TouristicPlaceModel> placeList;
-
-  /// [selectedPlace] is the selected place that will be shown on the map.
-  ///
   final TouristicPlaceModel? selectedPlace;
 
   @override

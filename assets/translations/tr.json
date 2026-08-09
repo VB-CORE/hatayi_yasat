@@ -99,7 +99,20 @@
   "general": {
     "kvkk": "KVKK",
     "kvkkReadApproved": "'yı okudum, onaylıyorum.",
-    "confirmationText": "Onay metnini kabul ediniz"
+    "confirmationText": "Onay metnini kabul ediniz",
+    "action": {
+      "call": "Ara",
+      "directions": "Yol tarifi",
+      "copy": "Kopyala"
+    },
+    "toast": {
+      "copied": "Kopyalandı"
+    },
+    "error": {
+      "title": "Bir şeyler ters gitti",
+      "description": "İçerik yüklenemedi. Tekrar dener misin?",
+      "retry": "Tekrar dene"
+    }
   },
   "settings": {
     "title": "Ayarlar",
@@ -311,7 +324,16 @@
     "places": "Mekanlar",
     "feed": "Akış",
     "explore": "Keşfet",
-    "profile": "Profil"
+    "profile": "Profil",
+    "exploreMenu": {
+      "eyebrow": "KEŞFET",
+      "title": "Hatay'ı tanı",
+      "description": "Kurumlar, konteyner çarşılar, turistik noktalar ve faydalı linkler — hepsi tek yerden; ara, kopyala, yol tarifi al.",
+      "institutionsDescription": "Belediye · hastane · okul · kargo",
+      "marketsDescription": "Palladium · Serinyol · Defne · Samandağ",
+      "touristDescription": "Titus Tüneli · müzeler · antik kentler",
+      "linksDescription": "Acil hatlar · yerel üreticiler · e-devlet"
+    }
   },
   "projectRequest": {
     "title": "Yeni Proje Talebi",
@@ -337,7 +359,9 @@
   "specialAgency": {
     "title": "Özel Kurumlar",
     "agencyNumber": "Kurum Numarası",
-    "agencyAddress": "Kurum Adresi"
+    "agencyAddress": "Kurum Adresi",
+    "subtitle": "{} kurum · {} ilçe",
+    "groupCount": "{} kurum"
   },
   "advertise": {
     "title": "İş adı:",
@@ -454,7 +478,16 @@
   "chain_stores": {
     "title": "Konteyner Çarşılar",
     "showAllSubBranches": "Tüm şubeleri göster {}",
-    "subBranchesTitle": "{} Şubeleri ({})"
+    "subBranchesTitle": "{} Şubeleri ({})",
+    "subtitle": "{} çarşı · {} işletme",
+    "shopCount": "{} işletme",
+    "detailSubtitle": "{} işletme",
+    "shopPhoneLabel": "İşletme numarası",
+    "shopAddressLabel": "Konteyner konumu",
+    "emptyTitle": "İşletme bulunamadı",
+    "emptyDescription": "Bu çarşıya henüz işletme eklenmemiş.",
+    "notFoundTitle": "Çarşı bulunamadı",
+    "notFoundDescription": "Bu çarşı kaldırılmış olabilir."
   },
   "monetization": {
     "title": "İndirim Kuponları",
@@ -511,10 +544,14 @@
   },
   "tourismView": {
     "onTapMarkerWindow": "Yol tarifi almak için tıklayın",
-    "title": "Turistik Yerler"
+    "title": "Turistik Yerler",
+    "subtitle": "{} nokta · haritada gez",
+    "detail": "Detay"
   },
   "usefulLink": {
-    "title": "Faydalı Linkler"
+    "title": "Faydalı Linkler",
+    "subtitle": "{} link",
+    "openSite": "Siteyi aç"
   },
   "sheet": {
     "changeCity": {

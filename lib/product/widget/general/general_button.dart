@@ -168,11 +168,16 @@ class _Child extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contentColor = context.general.colorScheme.surface;
-    final labelWidget = Text(
-      label,
-      style: context.general.textTheme.titleMedium?.copyWith(
-        color: contentColor,
-        fontWeight: FontWeight.w900,
+
+    final labelWidget = Flexible(
+      child: Text(
+        label,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: context.general.textTheme.titleMedium?.copyWith(
+          color: contentColor,
+          fontWeight: FontWeight.w900,
+        ),
       ),
     );
     if (icon == null) {

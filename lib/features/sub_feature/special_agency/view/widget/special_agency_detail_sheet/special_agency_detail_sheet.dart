@@ -1,91 +1,114 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
-import 'package:lifeclient/product/utility/mixin/redirection_mixin.dart';
+part of '../../special_agency_view.dart';
 
-part 'special_agency_detail_sheet_mixin.dart';
-
-final class SpecialAgencyDetailSheet extends StatelessWidget
-    with _SpecialAgencyDetailSheetMixin {
-  const SpecialAgencyDetailSheet({required this.model, super.key});
-  final SpecialAgencyModel model;
-
-  /// Show the special agency detail sheet as a modal bottom sheet
+abstract final class _InstitutionSheet {
   static Future<void> show(
     BuildContext context,
-    SpecialAgencyModel specialAgencyModel,
+    SpecialAgencyModel institution,
+    String district,
   ) async {
-    await showModalBottomSheet<void>(
+    await DetailSheet.show(
       context: context,
-      backgroundColor: context.general.colorScheme.secondary,
-      elevation: 0,
-      builder: (context) => SpecialAgencyDetailSheet(model: specialAgencyModel),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const PagePadding.generalAllNormal(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            model.name ?? '',
-            style: context.general.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const EmptyBox.smallHeight(),
-          const Divider(
-            height: WidgetSizes.spacingXxs,
-            thickness: WidgetSizes.spacingXSSs,
-          ),
-          _ListTileWidget(
-            iconData: Icons.phone_outlined,
-            mainTitle: LocaleKeys.specialAgency_agencyNumber,
-            subTitle: model.phone ?? '',
-            onTapEvent: () => onPhoneClick(context, model.phone),
-          ),
-          _ListTileWidget(
-            iconData: Icons.location_on_outlined,
-            mainTitle: LocaleKeys.specialAgency_agencyAddress,
-            subTitle: model.address ?? '',
-            onTapEvent: () => onLocationClick(context, model.latLong),
-          ),
-          const EmptyBox.largeHeight(),
-        ],
-      ),
+      children: [
+        _SheetHeader(institution: institution, district: district),
+        _SheetDetails(institution: institution),
+        _SheetActions(institution: institution),
+      ],
     );
   }
 }
 
-@immutable
-final class _ListTileWidget extends StatelessWidget {
-  const _ListTileWidget({
-    required this.iconData,
-    required this.mainTitle,
-    required this.subTitle,
-    required this.onTapEvent,
-  });
+final class _SheetHeader extends StatelessWidget {
+  const _SheetHeader({required this.institution, required this.district});
 
-  final String mainTitle;
-  final String subTitle;
-  final IconData iconData;
-  final VoidCallback onTapEvent;
+  final SpecialAgencyModel institution;
+  final String district;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      trailing: Icon(iconData),
-      title: Text(mainTitle).tr(),
-      subtitle: Text(subTitle),
-      onTap: onTapEvent.call,
+    final name = institution.name;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: AppSpacing.xs,
+      children: [
+        if (name != null && name.isNotEmpty) GeneralContentTitle(value: name),
+        if (district.isNotEmpty) GeneralContentSmallTitle(value: district),
+      ],
+    );
+  }
+}
+
+final class _SheetDetails extends StatelessWidget {
+  const _SheetDetails({required this.institution});
+
+  final SpecialAgencyModel institution;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: AppSpacing.sm,
+      children: [
+        if (institution.phone != null)
+          DetailActionRow(
+            labelKey: LocaleKeys.specialAgency_agencyNumber,
+            value: institution.phone!,
+            icon: AppIcons.phone,
+            primaryIcon: AppIcons.phone,
+            primaryTooltipKey: LocaleKeys.general_action_call,
+            onPrimary: () => LinkActions.call(context, institution.phone),
+            accent: context.appColors.navy,
+          ),
+        if (institution.address != null)
+          DetailActionRow(
+            labelKey: LocaleKeys.specialAgency_agencyAddress,
+            value: institution.address!,
+            icon: AppIcons.location,
+            primaryIcon: AppIcons.directions,
+            primaryTooltipKey: LocaleKeys.general_action_directions,
+            onPrimary: () => LinkActions.directions(
+              context,
+              institution.latLong.coordinates,
+            ),
+            accent: context.appColors.navy,
+          ),
+      ],
+    );
+  }
+}
+
+final class _SheetActions extends StatelessWidget {
+  const _SheetActions({required this.institution});
+
+  final SpecialAgencyModel institution;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const PagePadding.onlyTopLow(),
+      child: Row(
+        spacing: AppSpacing.sm,
+        children: [
+          Expanded(
+            child: GeneralButtonV2.active(
+              action: () => LinkActions.call(context, institution.phone),
+              label: LocaleKeys.general_action_call.tr(),
+              icon: AppIcons.phone,
+              backgroundColor: context.appColors.navy,
+            ),
+          ),
+          Expanded(
+            child: OutlineActionButton(
+              labelKey: LocaleKeys.general_action_directions,
+              icon: AppIcons.directions,
+              onPressed: () => LinkActions.directions(
+                context,
+                institution.latLong.coordinates,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

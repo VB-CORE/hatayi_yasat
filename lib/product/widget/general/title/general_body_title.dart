@@ -19,6 +19,7 @@ final class GeneralBodyTitle extends StatelessWidget {
     this.textDecoration,
     this.color,
     this.textAlign,
+    this.fontFeatures,
   });
 
   final String value;
@@ -27,15 +28,17 @@ final class GeneralBodyTitle extends StatelessWidget {
   final TextDecoration? textDecoration;
   final Color? color;
   final TextAlign? textAlign;
+  final List<FontFeature>? fontFeatures;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      value, 
+      value,
       style: AppText.bodyLg.copyWith(
         fontWeight: fontWeight ?? FontWeight.w600,
         decoration: textDecoration,
         color: color,
+        fontFeatures: fontFeatures,
       ),
       maxLines: maxLines,
       overflow: maxLines != null ? TextOverflow.ellipsis : null,

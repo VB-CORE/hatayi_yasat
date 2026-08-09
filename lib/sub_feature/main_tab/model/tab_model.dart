@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/home/view/home_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/profile/view/profile_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
+import 'package:lifeclient/sub_feature/main_tab/widget/discover_tab_view.dart';
 import 'package:lifeclient/sub_feature/main_tab/widget/profile_tab_avatar.dart';
 
 final class TabModel extends Equatable {
@@ -60,7 +60,7 @@ final class TabModels {
         analyticsName: 'feed',
       ),
       const TabModel(
-        page: HistoryView(),
+        page: DiscoverTabView(),
         icon: HugeIcon(icon: HugeIcons.strokeRoundedCompass01),
         title: LocaleKeys.navigationTabs_explore,
         semanticKey: GeneralSemanticKeys.memoriesTab,

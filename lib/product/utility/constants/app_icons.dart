@@ -80,6 +80,10 @@ final class AppIcons {
   static const IconData filter = Icons.tune_outlined;
   static const IconData community = Icons.people;
 
+  // Discover / Kesfet
+  static const IconData backIos = Icons.arrow_back_ios_new;
+  static const IconData directions = Icons.directions_outlined;
+
   // History/Memory related icons
   static const IconData photoLibrary = Icons.photo_library_outlined;
   static const IconData collections = Icons.collections_outlined;
