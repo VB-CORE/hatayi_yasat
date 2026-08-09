@@ -16,6 +16,7 @@ import 'package:lifeclient/features/onboarding/view_model/onboarding_state.dart'
 import 'package:lifeclient/features/onboarding/view_model/onboarding_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/model/enum/hero_tags.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -50,8 +51,8 @@ class _OnboardingViewState extends ConsumerState<OnboardingView>
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                context.appColors.navy800,
                 context.appColors.navy500,
+                context.appColors.navy900,
               ],
             ),
           ),
@@ -71,7 +72,6 @@ class _OnboardingViewState extends ConsumerState<OnboardingView>
               ),
             ),
           ),
-
           Positioned(
             top: MediaQuery.of(context).viewPadding.top + WidgetSizes.spacingM,
             right: const PagePadding.all().right,

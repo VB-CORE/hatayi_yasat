@@ -136,6 +136,7 @@ dev_dependencies:
 
   riverpod_generator: ^4.0.0+1
   go_router_builder: ^4.1.3
+  flutter_native_splash: ^2.4.8
 
 flutter_gen:
   output: lib/product/generated/
@@ -165,6 +166,8 @@ scripts:
   emulatorImport: node scripts/import_example_data.js
   mt: sh maestro/run_tests.sh
   updateIcon: sh ./scripts/update_icon.sh
+  splash: dart run flutter_native_splash:create --path=native_splash.yaml
+
 flutter:
   uses-material-design: true
 

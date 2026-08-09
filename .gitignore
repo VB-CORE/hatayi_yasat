@@ -103,3 +103,7 @@ mobile-emulator-kit/
 /macos/
 /windows/
 /web/
+
+# FVM Version 
+.fvm/ 
+.fvmrc
