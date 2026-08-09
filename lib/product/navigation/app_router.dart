@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
+import 'package:lifeclient/features/chain_store/view/chain_store_detail_view.dart';
 import 'package:lifeclient/features/chain_store/view/chain_store_view.dart';
 import 'package:lifeclient/features/community/create_group/view/create_group_view.dart';
 import 'package:lifeclient/features/community/discussion_detail/model/discussion_detail_args.dart';
@@ -329,11 +330,31 @@ final class ChainStoresRoute extends GoRouteData with $ChainStoresRoute {
   static const route = TypedGoRoute<ChainStoresRoute>(
     path: 'chain_stores',
     name: 'Chain Stores',
+    routes: [
+      ChainStoreDetailRoute.route,
+    ],
   );
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ChainStoreView();
+}
+
+final class ChainStoreDetailRoute extends GoRouteData
+    with $ChainStoreDetailRoute {
+  const ChainStoreDetailRoute({required this.marketId});
+
+  static const route = TypedGoRoute<ChainStoreDetailRoute>(
+    path: ':marketId',
+    name: 'Chain Store Detail',
+  );
+
+  /// Soğuk deep link'in çarşıyı çözebilmesi için `$extra` yerine path'te durur.
+  final String marketId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      ChainStoreDetailView(marketId: marketId);
 }
 
 final class MonetizationRoute extends GoRouteData with $MonetizationRoute {
