@@ -1,95 +1,116 @@
 part of '../view/tourism_map_view.dart';
 
 final class _TourismPlaceCard extends StatelessWidget {
-  const _TourismPlaceCard({
-    required this.location,
-    required this.onItemTap,
-  });
+  const _TourismPlaceCard({required this.location, required this.onItemTap});
 
   final TouristicPlaceModel location;
   final void Function(LatLng position) onItemTap;
 
+  static const double _imageHeight = WidgetSizes.spacingXxl12;
+  static const int _descriptionLines = 2;
+  static const double _placeholderTileSize = WidgetSizes.spacingXs;
+  static const double _placeholderTileOpacity = 0.22;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onItemTap(
-        LatLng(location.latLong.latitude, location.latLong.longitude),
-      ),
-      child: Container(
-        width: WidgetSizes.spacingXxlL12,
-        decoration: BoxDecorations.tourismPlaceCard(
-          color: context.general.colorScheme.secondary,
+    return Padding(
+      padding: const PagePadding.horizontalVeryLowSymmetric(),
+      child: InkWell(
+        onTap: () => onItemTap(
+          GeoPointConverterMixin.geoPointToLatLng(location.latLong),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(WidgetSizes.spacingXl),
-              ),
-              child: SizedBox.square(
-                dimension: WidgetSizes.spacingXxl12,
-                child: CustomNetworkImage(
-                  imageUrl: location.photo,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const EmptyBox.xSmallHeight(),
-            Expanded(
-              child: Padding(
-                padding: const PagePadding.allLow(),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: Container(
+          decoration: BoxDecoration(
+            color: context.appColors.surface,
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            boxShadow: AppShadows.raised,
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _CardImage(location: location),
+              Padding(
+                padding: const PagePadding.generalAllLow(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppSpacing.xxs,
                   children: [
-                    _buildTitle(context),
-                    const EmptyBox.smallHeight(),
-                    Expanded(child: _buildDescription(context)),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: InkWell(
-                        onTap: () =>
-                            ToursimPlaceDetailSheet.show(context, location),
-                        child: Text(
-                          LocaleKeys.button_more.tr(),
-                          style: context.general.textTheme.bodySmall?.copyWith(
-                            color: context.general.colorScheme.primary,
-                            fontWeight: FontWeight.w200,
-                            decoration: TextDecoration.underline,
-                            decorationThickness: .5,
-                          ),
-                        ),
-                      ),
+                    GeneralBodyTitle(
+                      location.title ?? '',
+                      fontWeight: FontWeight.w800,
+                      maxLines: 1,
+                      textAlign: TextAlign.start,
                     ),
+                    GeneralContentSubTitle(
+                      value: location.description ?? '',
+                      maxLine: _descriptionLines,
+                    ),
+                    _CardActions(location: location),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+}
 
-  Text _buildDescription(BuildContext context) {
-    return Text(
-      location.description ?? '',
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.bodySmall?.copyWith(
-        fontWeight: FontWeight.w400,
-      ),
+final class _CardImage extends StatelessWidget {
+  const _CardImage({required this.location});
+
+  final TouristicPlaceModel location;
+
+  @override
+  Widget build(BuildContext context) {
+    final photo = location.photo;
+
+    return SizedBox(
+      height: _TourismPlaceCard._imageHeight,
+      width: double.infinity,
+      child: photo == null || photo.isEmpty
+          ? ColoredBox(
+              color: context.appColors.navy,
+              child: const MosaicBackground(
+                showGradient: false,
+                tileSize: _TourismPlaceCard._placeholderTileSize,
+                tileOpacity: _TourismPlaceCard._placeholderTileOpacity,
+              ),
+            )
+          : CustomNetworkImage(imageUrl: photo, fit: BoxFit.cover),
     );
   }
+}
 
-  Text _buildTitle(BuildContext context) {
-    return Text(
-      location.title ?? '',
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: context.general.textTheme.titleSmall?.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
+final class _CardActions extends StatelessWidget {
+  const _CardActions({required this.location});
+
+  final TouristicPlaceModel location;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: AppSpacing.xs,
+      children: [
+        Expanded(
+          child: GeneralButtonV2.active(
+            action: () => LinkActions.directions(context, location.title),
+            label: LocaleKeys.general_action_directions.tr(),
+            icon: AppIcons.directions,
+            backgroundColor: context.appColors.navy,
+          ),
+        ),
+        Expanded(
+          child: OutlineActionButton(
+            labelKey: LocaleKeys.tourismView_detail,
+            icon: AppIcons.info,
+            onPressed: () => ToursimPlaceDetailSheet.show(context, location),
+          ),
+        ),
+      ],
     );
   }
 }

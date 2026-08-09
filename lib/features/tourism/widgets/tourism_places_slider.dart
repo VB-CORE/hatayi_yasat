@@ -32,11 +32,18 @@ final class _TourismPlacesSlider extends StatelessWidget
   void _animateToCard({required int index}) =>
       carouselController.animateToPage(index);
 
+  static const double _railHeight = WidgetSizes.spacingXxlL13;
+
+  /// Kartta yan yana iki aksiyon butonu var; daha dar bir orana inildiğinde
+  /// etiketler sığmıyor.
+  static const double _viewportFraction = .72;
+
   CarouselOptions _buildOptions() {
     return CarouselOptions(
+      height: _railHeight,
       enableInfiniteScroll: false,
       padEnds: false,
-      viewportFraction: .6,
+      viewportFraction: _viewportFraction,
       onPageChanged: (index, reason) => onItemTap(
         locations[index],
       ),

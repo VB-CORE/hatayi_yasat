@@ -3,9 +3,13 @@ import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
+import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/core/theme/app_shadows.dart';
+import 'package:lifeclient/core/theme/app_spacing.dart';
 import 'package:lifeclient/features/tourism/mixin/geo_point_converter_mixin.dart';
 import 'package:lifeclient/features/tourism/provider/tourism_view_model.dart';
 import 'package:lifeclient/features/tourism/widgets/toursim_custom_marker.dart';
@@ -14,11 +18,14 @@ import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
-import 'package:lifeclient/product/utility/decorations/box_decorations.dart';
-import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/link_actions.dart';
+import 'package:lifeclient/product/widget/background/mosaic_background.dart';
+import 'package:lifeclient/product/widget/button/outline_action_button.dart';
+import 'package:lifeclient/product/widget/general/index.dart';
 
 part '../widgets/tourism_place_card.dart';
 part '../widgets/tourism_places_slider.dart';
+part '../widgets/tourist_top_bar.dart';
 part 'tourism_map_view_mixin.dart';
 
 final class TourismMapView extends ConsumerStatefulWidget {
@@ -44,13 +51,8 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             myLocationEnabled: true,
             initialCameraPosition: AppConstants.initialLocation,
           ),
-          Positioned(
-            left: WidgetSizes.spacingXl,
-            top: WidgetSizes.spacingXxl4,
-            child: CircleAvatar(
-              backgroundColor: context.general.colorScheme.onTertiary,
-              child: const BackButton(),
-            ),
+          _TouristTopBar(
+            spotCount: ref.watch(tourismViewModelProvider).placeList.length,
           ),
           Positioned(
             bottom: WidgetSizes.spacingXsMid,
