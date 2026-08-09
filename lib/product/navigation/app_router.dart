@@ -590,8 +590,14 @@ final class OnboardRoute extends GoRouteData with $OnboardRoute {
   );
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const OnboardingView();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CustomTransitionPage<void>(
+      key: state.pageKey,
+      child: const OnboardingView(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          child,
+    );
+  }
 }
 
 final class SettingsRoute extends GoRouteData with $SettingsRoute {

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
+import 'package:lifeclient/features/onboarding/view/onboarding_view.dart';
 import 'package:lifeclient/features/splash/splash_view_mixin.dart';
-import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
@@ -35,34 +37,24 @@ class _SplashViewState extends ConsumerState<SplashView>
         body: Stack(
           fit: StackFit.expand,
           children: [
-            const MosaicBackground(showGradient: false),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  radius: 0.85,
-                  colors: [
-                    colorScheme.surface.withValues(alpha: 0.88),
-                    colorScheme.surface.withValues(alpha: 0.6),
-                  ],
-                ),
+            MosaicBackground(
+              animate: true,
+              tileSize: AppIconSizes.large,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  context.appColors.navy500,
+                  context.appColors.navy900,
+                ],
               ),
             ),
+
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppRadius.xxl),
-                    child: Assets.icons.icApp.image(
-                      height: context.sized.dynamicHeight(.16),
-                    ),
-                  ),
-                  const EmptyBox.middleHeight(),
-                  Text(
-                    LocaleKeys.project_name.tr(),
-                    style: context.general.textTheme.displayMedium,
-                    textAlign: TextAlign.center,
-                  ),
+                  const WelcomeHeader(crossAxisAlignment: .center),
                   const EmptyBox.smallHeight(),
                   Text(
                     LocaleKeys.splash_tagline.tr(),

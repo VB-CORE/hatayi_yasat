@@ -12,31 +12,7 @@ final class OnboardingWelcomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Spacer(flex: 6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppRadius.xxl),
-            child: CustomShimmer(
-              duration: const Duration(seconds: 5),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: context.appColors.navy700.withValues(alpha: 0.7),
-                  borderRadius: BorderRadius.circular(AppRadius.xxl),
-                ),
-                child: Padding(
-                  padding: const PagePadding.allVeryLow(),
-                  child: Assets.icons.icAppTransparent.image(
-                    height: context.sized.dynamicWidth(.25),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Text(
-            LocaleKeys.project_name.tr(),
-            style: AppText.displayLg.copyWith(
-              fontWeight: FontWeight.bold,
-              color: context.appColors.navy100,
-            ),
-          ),
+          const WelcomeHeader(),
           SizedBox(
             width: context.sized.dynamicWidth(.75),
             child: Text(
@@ -49,6 +25,50 @@ final class OnboardingWelcomeView extends StatelessWidget {
           ),
           SizedBox(height: context.sized.dynamicHeight(.12)),
         ],
+      ),
+    );
+  }
+}
+
+final class WelcomeHeader extends StatelessWidget {
+  const WelcomeHeader({super.key, this.crossAxisAlignment = .start});
+  final CrossAxisAlignment crossAxisAlignment;
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: HeroTags.welcomeHeader,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Column(
+          crossAxisAlignment: crossAxisAlignment,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppRadius.xxl),
+              child: CustomShimmer(
+                duration: const Duration(seconds: 5),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: context.appColors.navy700.withValues(alpha: 0.7),
+                    borderRadius: BorderRadius.circular(AppRadius.xxl),
+                  ),
+                  child: Padding(
+                    padding: const PagePadding.allVeryLow(),
+                    child: Assets.icons.icAppTransparent.image(
+                      height: context.sized.dynamicWidth(.25),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Text(
+              LocaleKeys.project_name.tr(),
+              style: AppText.displayLg.copyWith(
+                fontWeight: FontWeight.bold,
+                color: context.appColors.navy100,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
