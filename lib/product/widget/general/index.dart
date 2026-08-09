@@ -1,4 +1,5 @@
 export 'dotted/general_dotted_rectangle.dart';
+export 'empty_state_view.dart';
 export 'general_button.dart';
 export 'general_check_box.dart';
 export 'general_expansion_tile.dart';

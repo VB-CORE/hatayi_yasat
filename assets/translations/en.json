@@ -99,7 +99,20 @@
   "general": {
     "kvkk": "KVKK",
     "kvkkReadApproved": " I have read and approved.",
-    "confirmationText": "Please accept the confirmation text."
+    "confirmationText": "Please accept the confirmation text.",
+    "action": {
+      "call": "Call",
+      "directions": "Directions",
+      "copy": "Copy"
+    },
+    "toast": {
+      "copied": "Copied"
+    },
+    "error": {
+      "title": "Something went wrong",
+      "description": "Content could not be loaded. Try again?",
+      "retry": "Try again"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -311,7 +324,16 @@
     "places": "Places",
     "feed": "Feed",
     "explore": "Explore",
-    "profile": "Profile"
+    "profile": "Profile",
+    "exploreMenu": {
+      "eyebrow": "DISCOVER",
+      "title": "Get to know Hatay",
+      "description": "Institutions, container bazaars, tourist spots and useful links — all in one place; call, copy, get directions.",
+      "institutionsDescription": "Municipality · hospital · school · cargo",
+      "marketsDescription": "Palladium · Serinyol · Defne · Samandağ",
+      "touristDescription": "Titus Tunnel · museums · ancient cities",
+      "linksDescription": "Emergency lines · local producers · e-government"
+    }
   },
   "projectRequest": {
     "title": "New Project Request",
@@ -337,7 +359,9 @@
   "specialAgency": {
     "title": "Special Agency",
     "agencyNumber": "Agency Number",
-    "agencyAddress": "Agency Address"
+    "agencyAddress": "Agency Address",
+    "subtitle": "{} institutions · {} districts",
+    "groupCount": "{} institutions"
   },
   "advertise": {
     "title": "Job name:",
@@ -454,7 +478,16 @@
   "chain_stores": {
     "title": "Container Bazaars",
     "showAllSubBranches": "Show all sub-store {}",
-    "subBranchesTitle": "{} Store ({})"
+    "subBranchesTitle": "{} Store ({})",
+    "subtitle": "{} bazaars · {} shops",
+    "shopCount": "{} shops",
+    "detailSubtitle": "{} shops",
+    "shopPhoneLabel": "Shop phone",
+    "shopAddressLabel": "Container location",
+    "emptyTitle": "No shops found",
+    "emptyDescription": "No shops have been added yet.",
+    "notFoundTitle": "Bazaar not found",
+    "notFoundDescription": "This bazaar may have been removed."
   },
   "monetization": {
     "title": "Discount Coupons",
@@ -511,10 +544,14 @@
   },
   "tourismView": {
     "onTapMarkerWindow": "Tap to get directions",
-    "title": "Tourism Places"
+    "title": "Tourism Places",
+    "subtitle": "{} spots · explore on the map",
+    "detail": "Details"
   },
   "usefulLink": {
-    "title": "Useful Links"
+    "title": "Useful Links",
+    "subtitle": "{} links",
+    "openSite": "Open site"
   },
   "sheet": {
     "changeCity": {
