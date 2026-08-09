@@ -1,9 +1,7 @@
 part of '../view/tourism_map_view.dart';
 
 final class _TouristTopBar extends StatelessWidget {
-  const _TouristTopBar({required this.spotCount});
-
-  final int spotCount;
+  const _TouristTopBar();
 
   static const double _cardOpacity = 0.96;
 
@@ -37,11 +35,7 @@ final class _TouristTopBar extends StatelessWidget {
                       GeneralContentTitle(
                         value: LocaleKeys.tourismView_title.tr(),
                       ),
-                      GeneralContentSmallTitle(
-                        value: LocaleKeys.tourismView_subtitle.tr(
-                          args: [spotCount.toString()],
-                        ),
-                      ),
+                      const _TopBarSubtitle(),
                     ],
                   ),
                 ),
@@ -50,6 +44,21 @@ final class _TouristTopBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+final class _TopBarSubtitle extends ConsumerWidget {
+  const _TopBarSubtitle();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final spotCount = ref.watch(
+      tourismViewModelProvider.select((state) => state.placeList.length),
+    );
+
+    return GeneralContentSmallTitle(
+      value: LocaleKeys.tourismView_subtitle.tr(args: [spotCount.toString()]),
     );
   }
 }

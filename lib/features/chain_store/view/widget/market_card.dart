@@ -10,15 +10,19 @@ final class _MarketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hours = WorkingHours.format(market.openHour, market.closeHour);
+
     return Padding(
       padding: const PagePadding.onlyBottomLow(),
       child: Semantics(
         button: true,
         label: market.name,
         child: InkWell(
-          onTap: () => ChainStoreDetailRoute(
-            marketId: market.documentId,
-          ).go(context),
+          onTap: () => unawaited(
+            ChainStoreDetailRoute(
+              marketId: market.documentId,
+            ).push<void>(context),
+          ),
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: Container(
             decoration: BoxDecoration(
@@ -70,7 +74,12 @@ final class _MarketCard extends StatelessWidget {
                       color: context.appColors.coral,
                       icon: AppIcons.store,
                     ),
-                    ?_hoursChip(context),
+                    if (hours != null)
+                      _MarketChip(
+                        label: hours,
+                        color: context.appColors.ink500,
+                        icon: AppIcons.timerOn,
+                      ),
                   ],
                 ),
               ],
@@ -78,17 +87,6 @@ final class _MarketCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget? _hoursChip(BuildContext context) {
-    final hours = WorkingHours.format(market.openHour, market.closeHour);
-    if (hours == null) return null;
-
-    return _MarketChip(
-      label: hours,
-      color: context.appColors.ink500,
-      icon: AppIcons.timerOn,
     );
   }
 }

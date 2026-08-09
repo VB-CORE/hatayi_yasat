@@ -28,9 +28,6 @@ final class GeneralBodyTitle extends StatelessWidget {
   final TextDecoration? textDecoration;
   final Color? color;
   final TextAlign? textAlign;
-
-  /// For values that read as a code — container codes, phone numbers —
-  /// where digits need equal width to stay aligned.
   final List<FontFeature>? fontFeatures;
 
   @override

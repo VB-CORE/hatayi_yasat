@@ -19,8 +19,21 @@ import 'package:lifeclient/product/widget/general/index.dart';
 part 'widget/useful_link_card.dart';
 
 @immutable
-final class UsefulLinksView extends ConsumerWidget {
+final class UsefulLinksView extends StatelessWidget {
   const UsefulLinksView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GeneralScaffold(
+      appBar: const _UsefulLinksAppBar(),
+      body: const _UsefulLinksListBuilder(),
+    );
+  }
+}
+
+final class _UsefulLinksAppBar extends ConsumerWidget
+    implements PreferredSizeWidget {
+  const _UsefulLinksAppBar();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,15 +41,15 @@ final class UsefulLinksView extends ConsumerWidget {
       usefulLinksViewModelProvider.select((state) => state.count),
     );
 
-    return GeneralScaffold(
-      appBar: DiscoverSectionAppBar(
-        title: LocaleKeys.usefulLink_title,
-        subtitle: LocaleKeys.usefulLink_subtitle.tr(args: [count.toString()]),
-        accentColor: context.appColors.olive,
-      ),
-      body: const _UsefulLinksListBuilder(),
+    return DiscoverSectionAppBar(
+      title: LocaleKeys.usefulLink_title,
+      subtitle: LocaleKeys.usefulLink_subtitle.tr(args: [count.toString()]),
+      accentColor: context.appColors.olive,
     );
   }
+
+  @override
+  Size get preferredSize => DiscoverSectionAppBar.preferredAppBarSize;
 }
 
 @immutable
@@ -59,7 +72,7 @@ final class _UsefulLinksListBuilder extends ConsumerWidget {
           child: _LinkCard(link: model),
         );
       },
-      onRetry: () {},
+      onRetry: () => ref.invalidate(usefulLinksViewModelProvider),
       emptyBuilder: (context) {
         return GeneralNotFoundWidget(
           title: LocaleKeys.notFound_usefulLinks.tr(),

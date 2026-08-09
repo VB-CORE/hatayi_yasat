@@ -25,6 +25,10 @@ final class DiscoverSectionAppBar extends StatelessWidget
 
   static const double _stripHeight = AppSpacing.xxs;
 
+  static const Size preferredAppBarSize = Size.fromHeight(
+    kToolbarHeight + _stripHeight,
+  );
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -63,6 +67,5 @@ final class DiscoverSectionAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize =>
-      const Size.fromHeight(kToolbarHeight + _stripHeight);
+  Size get preferredSize => preferredAppBarSize;
 }

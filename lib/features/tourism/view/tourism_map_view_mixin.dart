@@ -9,11 +9,12 @@ mixin _TourismMapStateHelper on ConsumerState<TourismMapView> {
   late BitmapDescriptor _markerIcon;
 
   Set<Marker> get markers {
+    final placeList = ref.watch(
+      tourismViewModelProvider.select((state) => state.placeList),
+    );
+
     return Set.from(
-      ref
-          .watch(tourismViewModelProvider)
-          .placeList
-          .map((e) => ToursimCustomMarker(model: e, icon: _markerIcon)),
+      placeList.map((e) => ToursimCustomMarker(model: e, icon: _markerIcon)),
     );
   }
 

@@ -169,8 +169,6 @@ class _Child extends StatelessWidget {
   Widget build(BuildContext context) {
     final contentColor = context.general.colorScheme.surface;
 
-    /// Dar bir kapsayıcıda (yan yana iki buton, küçük kart) etiket sığmazsa
-    /// taşmak yerine kısalsın.
     final labelWidget = Flexible(
       child: Text(
         label,

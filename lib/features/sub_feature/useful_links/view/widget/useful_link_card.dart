@@ -11,6 +11,10 @@ final class _LinkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = link.title;
+    final content = link.content;
+    final url = link.link;
+
     return Padding(
       padding: const PagePadding.onlyBottomLow(),
       child: Container(
@@ -30,14 +34,15 @@ final class _LinkCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppSpacing.xxs,
                 children: [
-                  GeneralBodyTitle(
-                    link.title ?? '',
-                    fontWeight: FontWeight.w800,
-                    textAlign: TextAlign.start,
-                  ),
-                  if (link.content != null)
-                    GeneralContentSubTitle(value: link.content!),
-                  if (link.link != null) _UrlLine(url: link.link!),
+                  if (title != null && title.isNotEmpty)
+                    GeneralBodyTitle(
+                      title,
+                      fontWeight: FontWeight.w800,
+                      textAlign: TextAlign.start,
+                    ),
+                  if (content != null && content.isNotEmpty)
+                    GeneralContentSubTitle(value: content),
+                  if (url != null && url.isNotEmpty) _UrlLine(url: url),
                   _LinkActionsRow(link: link),
                 ],
               ),

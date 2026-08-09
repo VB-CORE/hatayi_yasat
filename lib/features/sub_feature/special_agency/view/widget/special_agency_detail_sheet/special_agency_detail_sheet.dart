@@ -1,9 +1,5 @@
 part of '../../special_agency_view.dart';
 
-
-String _coordinatesOf(SpecialAgencyModel institution) =>
-    '${institution.latLong.latitude},${institution.latLong.longitude}';
-
 abstract final class _InstitutionSheet {
   static Future<void> show(
     BuildContext context,
@@ -29,11 +25,13 @@ final class _SheetHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final name = institution.name;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.xs,
       children: [
-        GeneralContentTitle(value: institution.name ?? ''),
+        if (name != null && name.isNotEmpty) GeneralContentTitle(value: name),
         if (district.isNotEmpty) GeneralContentSmallTitle(value: district),
       ],
     );
@@ -68,8 +66,10 @@ final class _SheetDetails extends StatelessWidget {
             icon: AppIcons.location,
             primaryIcon: AppIcons.directions,
             primaryTooltipKey: LocaleKeys.general_action_directions,
-            onPrimary: () =>
-                LinkActions.directions(context, _coordinatesOf(institution)),
+            onPrimary: () => LinkActions.directions(
+              context,
+              institution.latLong.coordinates,
+            ),
             accent: context.appColors.navy,
           ),
       ],
@@ -101,8 +101,10 @@ final class _SheetActions extends StatelessWidget {
             child: OutlineActionButton(
               labelKey: LocaleKeys.general_action_directions,
               icon: AppIcons.directions,
-              onPressed: () =>
-                  LinkActions.directions(context, _coordinatesOf(institution)),
+              onPressed: () => LinkActions.directions(
+                context,
+                institution.latLong.coordinates,
+              ),
             ),
           ),
         ],

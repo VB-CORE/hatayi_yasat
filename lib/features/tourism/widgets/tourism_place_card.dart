@@ -13,6 +13,9 @@ final class _TourismPlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = location.title;
+    final description = location.description;
+
     return Padding(
       padding: const PagePadding.horizontalVeryLowSymmetric(),
       child: InkWell(
@@ -37,16 +40,18 @@ final class _TourismPlaceCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: AppSpacing.xxs,
                   children: [
-                    GeneralBodyTitle(
-                      location.title ?? '',
-                      fontWeight: FontWeight.w800,
-                      maxLines: 1,
-                      textAlign: TextAlign.start,
-                    ),
-                    GeneralContentSubTitle(
-                      value: location.description ?? '',
-                      maxLine: _descriptionLines,
-                    ),
+                    if (title != null && title.isNotEmpty)
+                      GeneralBodyTitle(
+                        title,
+                        fontWeight: FontWeight.w800,
+                        maxLines: 1,
+                        textAlign: TextAlign.start,
+                      ),
+                    if (description != null && description.isNotEmpty)
+                      GeneralContentSubTitle(
+                        value: description,
+                        maxLine: _descriptionLines,
+                      ),
                     _CardActions(location: location),
                   ],
                 ),

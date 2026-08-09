@@ -349,7 +349,6 @@ final class ChainStoreDetailRoute extends GoRouteData
     name: 'Chain Store Detail',
   );
 
-  /// Soğuk deep link'in çarşıyı çözebilmesi için `$extra` yerine path'te durur.
   final String marketId;
 
   @override

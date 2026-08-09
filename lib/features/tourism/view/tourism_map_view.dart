@@ -51,9 +51,7 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             myLocationEnabled: true,
             initialCameraPosition: AppConstants.initialLocation,
           ),
-          _TouristTopBar(
-            spotCount: ref.watch(tourismViewModelProvider).placeList.length,
-          ),
+          const _TouristTopBar(),
           Positioned(
             bottom: WidgetSizes.spacingXsMid,
             left: kZero,
@@ -61,7 +59,6 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             child: SafeArea(
               child: _TourismPlacesSlider(
                 carouselController: carouselController,
-                locations: ref.watch(tourismViewModelProvider).placeList,
                 onItemTap: changeSelectedPlace,
               ),
             ),

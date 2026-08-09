@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,27 +22,41 @@ import 'package:lifeclient/product/widget/general/index.dart';
 part 'widget/market_card.dart';
 
 @immutable
-final class ChainStoreView extends ConsumerWidget {
+final class ChainStoreView extends StatelessWidget {
   const ChainStoreView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(chainStoreProviderProvider);
-
+  Widget build(BuildContext context) {
     return GeneralScaffold(
-      appBar: DiscoverSectionAppBar(
-        title: LocaleKeys.chain_stores_title,
-        subtitle: LocaleKeys.chain_stores_subtitle.tr(
-          args: [
-            state.chainStores.length.toString(),
-            state.totalShopCount.toString(),
-          ],
-        ),
-        accentColor: context.appColors.coral,
-      ),
+      appBar: const _ChainStoreAppBar(),
       body: const _ChainStoreListWidget(),
     );
   }
+}
+
+final class _ChainStoreAppBar extends ConsumerWidget
+    implements PreferredSizeWidget {
+  const _ChainStoreAppBar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final (marketCount, shopCount) = ref.watch(
+      chainStoreProviderProvider.select(
+        (state) => (state.chainStores.length, state.totalShopCount),
+      ),
+    );
+
+    return DiscoverSectionAppBar(
+      title: LocaleKeys.chain_stores_title,
+      subtitle: LocaleKeys.chain_stores_subtitle.tr(
+        args: [marketCount.toString(), shopCount.toString()],
+      ),
+      accentColor: context.appColors.coral,
+    );
+  }
+
+  @override
+  Size get preferredSize => DiscoverSectionAppBar.preferredAppBarSize;
 }
 
 final class _ChainStoreListWidget extends ConsumerWidget {
@@ -55,7 +70,7 @@ final class _ChainStoreListWidget extends ConsumerWidget {
 
     return GeneralFirestoreListView<ChainStoreModel>(
       query: query,
-      onRetry: () {},
+      onRetry: () => ref.invalidate(chainStoreProviderProvider),
       emptyBuilder: (context) => GeneralNotFoundWidget(
         title: LocaleKeys.notFound_chainStore.tr(),
       ),

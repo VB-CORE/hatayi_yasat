@@ -10,6 +10,9 @@ final class _InstitutionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final name = institution.name;
+    final address = institution.address;
+
     return Semantics(
       button: true,
       label: institution.name,
@@ -35,13 +38,14 @@ final class _InstitutionRow extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GeneralContentSubTitle(
-                      value: institution.name ?? '',
-                      fontWeight: FontWeight.w700,
-                      color: context.appColors.ink800,
-                    ),
-                    if (institution.address != null)
-                      GeneralContentSmallTitle(value: institution.address!),
+                    if (name != null && name.isNotEmpty)
+                      GeneralContentSubTitle(
+                        value: name,
+                        fontWeight: FontWeight.w700,
+                        color: context.appColors.ink800,
+                      ),
+                    if (address != null && address.isNotEmpty)
+                      GeneralContentSmallTitle(value: address),
                   ],
                 ),
               ),

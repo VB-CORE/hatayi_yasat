@@ -24,8 +24,19 @@ part 'widget/shop_row.dart';
 part 'widget/shop_sheet.dart';
 
 @immutable
-final class ChainStoreDetailView extends ConsumerWidget {
+final class ChainStoreDetailView extends StatelessWidget {
   const ChainStoreDetailView({required this.marketId, super.key});
+
+  final String marketId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: _Body(marketId: marketId));
+  }
+}
+
+final class _Body extends ConsumerWidget {
+  const _Body({required this.marketId});
 
   final String marketId;
 
@@ -34,76 +45,80 @@ final class ChainStoreDetailView extends ConsumerWidget {
     final state = ref.watch(chainStoreProviderProvider);
 
     if (state.isError) {
-      return GeneralScaffold(
-        body: SafeArea(
-          child: ErrorRetryView(
-            onRetry: ref.read(chainStoreProviderProvider.notifier).fetchMarkets,
-          ),
+      return SafeArea(
+        child: ErrorRetryView(
+          onRetry: ref.read(chainStoreProviderProvider.notifier).fetchMarkets,
         ),
       );
     }
 
     if (state.isFetching) {
-      return GeneralScaffold(body: const SafeArea(child: SkeletonList()));
+      return const SafeArea(child: SkeletonList());
     }
 
     final market = state.marketById(marketId);
     if (market == null) {
-      return GeneralScaffold(
-        body: SafeArea(
-          child: EmptyStateView(
-            icon: AppIcons.store,
-            title: LocaleKeys.chain_stores_notFoundTitle.tr(),
-            description: LocaleKeys.chain_stores_notFoundDescription.tr(),
-            iconBackgroundColor: context.appColors.ink25,
-            iconColor: context.appColors.ink400,
-          ),
+      return SafeArea(
+        child: EmptyStateView(
+          icon: AppIcons.store,
+          title: LocaleKeys.chain_stores_notFoundTitle.tr(),
+          description: LocaleKeys.chain_stores_notFoundDescription.tr(),
+          iconBackgroundColor: context.appColors.ink25,
+          iconColor: context.appColors.ink400,
         ),
       );
     }
 
-    return Scaffold(
-      body: Column(
-        children: [
-          _MarketHero(market: market),
-          Expanded(child: _ShopList(shops: market.branches ?? const [])),
-        ],
-      ),
-    );
+    return _MarketDetail(market: market);
   }
 }
 
-final class _ShopList extends StatelessWidget {
-  const _ShopList({required this.shops});
+final class _MarketDetail extends StatelessWidget {
+  const _MarketDetail({required this.market});
 
-  final List<StoreModel> shops;
+  final ChainStoreModel market;
 
   @override
   Widget build(BuildContext context) {
+    final shops = market.branches ?? const <StoreModel>[];
+
     if (shops.isEmpty) {
-      return EmptyStateView(
-        icon: AppIcons.search,
-        title: LocaleKeys.chain_stores_emptyTitle.tr(),
-        description: LocaleKeys.chain_stores_emptyDescription.tr(),
-        iconBackgroundColor: context.appColors.ink25,
-        iconColor: context.appColors.ink400,
+      return Column(
+        children: [
+          _MarketHero(market: market),
+          Expanded(
+            child: EmptyStateView(
+              icon: AppIcons.search,
+              title: LocaleKeys.chain_stores_emptyTitle.tr(),
+              description: LocaleKeys.chain_stores_emptyDescription.tr(),
+              iconBackgroundColor: context.appColors.ink25,
+              iconColor: context.appColors.ink400,
+            ),
+          ),
+        ],
       );
     }
 
-    return ListView.builder(
-      padding:
-          const PagePadding.horizontal16Symmetric() +
-          const PagePadding.onlyTopLow(),
-      itemCount: shops.length + _headerOnly,
-      itemBuilder: (context, index) {
-        if (index == 0) return _ShopListHeader(count: shops.length);
-
-        return _ShopRow(shop: shops[index - 1]);
-      },
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(child: _MarketHero(market: market)),
+        SliverPadding(
+          padding:
+              const PagePadding.horizontal16Symmetric() +
+              const PagePadding.onlyTopLow(),
+          sliver: SliverMainAxisGroup(
+            slivers: [
+              SliverToBoxAdapter(child: _ShopListHeader(count: shops.length)),
+              SliverList.builder(
+                itemCount: shops.length,
+                itemBuilder: (context, index) => _ShopRow(shop: shops[index]),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
-
-  static const int _headerOnly = 1;
 }
 
 final class _ShopListHeader extends StatelessWidget {
