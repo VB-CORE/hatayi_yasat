@@ -5,11 +5,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
+import 'package:lifeclient/core/service/analytics/analytics_service.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
+import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
-import 'package:lifeclient/product/model/auth/user_model.dart';
+import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/product/navigation/router_notifier.dart';
@@ -25,7 +30,8 @@ final class _FakeAuthService implements AuthService {
   UserModel? get cachedUser => null;
 
   @override
-  Future<UserModel?> signIn(AuthProvider provider) async => null;
+  Future<SignInResult> signIn(AuthProvider provider) async =>
+      const SignInCancelled();
 
   @override
   Future<void> signOut() async {}
@@ -33,14 +39,63 @@ final class _FakeAuthService implements AuthService {
   void emit(UserModel? user) => _controller.add(user);
 }
 
+/// The real one reaches for `FirebaseAnalytics.instance` in its constructor,
+/// which needs a live Firebase app the test binding has no way to provide.
+final class _FakeAnalyticsService implements AnalyticsService {
+  @override
+  void logEvent(
+    AnalyticsEvent event, {
+    Map<AnalyticsParameter, Object?> parameters = const {},
+  }) {}
+
+  @override
+  void logScreenView(String screenName) {}
+
+  @override
+  void setUser(UserModel? user, {required AnalyticsAuthStatus status}) {}
+
+  @override
+  void setUserProperty(AnalyticsUserProperty property, String? value) {}
+
+  @override
+  void recordError(
+    Object error,
+    StackTrace? stackTrace, {
+    bool fatal = false,
+    String? reason,
+  }) {}
+
+  @override
+  Future<void> setCollectionEnabled({required bool enabled}) async {}
+}
+
+/// Same reason as [_FakeAnalyticsService]: the real one reaches for
+/// `FirebaseAuth.instance` while being constructed.
+final class _FakeUserService implements UserService {
+  @override
+  Future<bool> update({String? displayName, int? avatarType}) async => true;
+
+  @override
+  Future<bool> stepCounter(UserCounterFields counter, {int by = 1}) async =>
+      true;
+}
+
 void main() {
   late _FakeAuthService fakeAuth;
 
   setUpAll(() {
     ProjectDependency.setup();
-    GetIt.I.unregister<AuthService>();
     fakeAuth = _FakeAuthService();
-    GetIt.I.registerSingleton<AuthService>(fakeAuth);
+    // ProjectDependencyMixin resolves every service the moment a ViewModel is
+    // constructed, so each Firebase-backed one has to be swapped out — not
+    // just the auth service under test.
+    GetIt.I
+      ..unregister<AnalyticsService>()
+      ..registerSingleton<AnalyticsService>(_FakeAnalyticsService())
+      ..unregister<UserService>()
+      ..registerSingleton<UserService>(_FakeUserService())
+      ..unregister<AuthService>()
+      ..registerSingleton<AuthService>(fakeAuth);
   });
 
   testWidgets('auth emission bounces login route via refreshListenable', (

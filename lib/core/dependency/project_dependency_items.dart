@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/notification/notification_badge_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/init/firebase_custom_service.dart';
@@ -46,4 +47,7 @@ final class ProjectDependencyItems {
 
   static final AuthService authService = GetIt.I.get<AuthService>();
   static final UserService userService = GetIt.I.get<UserService>();
+
+  static final NotificationBadgeService notificationBadgeService = GetIt.I
+      .get<NotificationBadgeService>();
 }

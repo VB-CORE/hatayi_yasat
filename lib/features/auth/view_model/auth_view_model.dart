@@ -5,6 +5,7 @@ import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -38,8 +39,8 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     state = switch (result) {
       SignInSuccess(:final user) => _stateFor(user),
       SignInCancelled() => const Unauthenticated(),
-      SignInFailure() => AuthError(
-        LocaleKeys.auth_error_failed,
+      SignInFailure(:final reason) => AuthError(
+        _messageFor(reason),
         provider: provider,
       ),
     };
@@ -50,6 +51,17 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
       );
     }
   }
+
+  String _messageFor(SignInError reason) => switch (reason) {
+    SignInError.accountExistsWithDifferentCredential =>
+      LocaleKeys.auth_error_accountExists,
+    SignInError.invalidCredential => LocaleKeys.auth_error_invalidCredential,
+    SignInError.providerDisabled => LocaleKeys.auth_error_providerDisabled,
+    SignInError.userDisabled => LocaleKeys.auth_error_userDisabled,
+    SignInError.network => LocaleKeys.auth_error_network,
+    SignInError.unsupported => LocaleKeys.auth_error_unsupported,
+    SignInError.unknown => LocaleKeys.auth_error_failed,
+  };
 
   Future<void> signOut() async {
     await authService.signOut();

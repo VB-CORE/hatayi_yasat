@@ -27,10 +27,11 @@ final class NotificationBadgeViewModel extends _$NotificationBadgeViewModel
         .limit(1)
         .snapshots()
         .listen((snapshot) {
-          state = NotificationBadgeState(
+          state = state.copyWith(
             lastSeenTime: _lastSeenTime,
             latestCreatedAt: snapshot.docs.firstOrNull?.data()?.createdAt,
           );
+          unawaited(_syncBadge());
         });
     ref.onDispose(() => unawaited(_latestSubscription?.cancel()));
     return NotificationBadgeState(lastSeenTime: _lastSeenTime);
@@ -40,10 +41,25 @@ final class NotificationBadgeViewModel extends _$NotificationBadgeViewModel
       _sharedCache.getLastNotificationSeenTime() ??
       DateTime.fromMillisecondsSinceEpoch(0);
 
+  /// Re-reads the count from scratch. The stream only fires when the feed
+  /// itself changes, but the OS badge is also written by APNs while the app is
+  /// asleep — coming back to the foreground has to correct that number.
+  Future<void> refresh() => _syncBadge();
+
   Future<void> markAllAsRead() async {
     if (!ref.mounted || !state.hasUnread) return;
     await _sharedCache.updateNotificationLastSeenTime();
     if (!ref.mounted) return;
-    state = state.copyWith(lastSeenTime: _lastSeenTime);
+    state = state.copyWith(lastSeenTime: _lastSeenTime, unreadCount: 0);
+    await notificationBadgeService.setBadge(0);
+  }
+
+  Future<void> _syncBadge() async {
+    final count = await notificationBadgeService.unreadCountSince(
+      state.lastSeenTime,
+    );
+    if (!ref.mounted) return;
+    state = state.copyWith(unreadCount: count);
+    await notificationBadgeService.setBadge(count);
   }
 }
