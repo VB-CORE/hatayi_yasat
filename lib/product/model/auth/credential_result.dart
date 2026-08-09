@@ -1,17 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 
-/// Outcome of asking a provider for a Firebase [AuthCredential].
-///
-/// Providers return this instead of throwing so the caller cannot mistake a
-/// user who backed out for one whose sign-in genuinely broke.
 sealed class CredentialResult {
   const CredentialResult();
 }
 
 final class CredentialReady extends CredentialResult {
-  const CredentialReady(this.credential);
+  const CredentialReady(this.credential, {this.displayName});
 
   final AuthCredential credential;
+  final String? displayName;
 }
 
 final class CredentialCancelled extends CredentialResult {
@@ -19,8 +17,15 @@ final class CredentialCancelled extends CredentialResult {
 }
 
 final class CredentialFailed extends CredentialResult {
-  const CredentialFailed(this.error, this.stackTrace);
+  const CredentialFailed(
+    this.error,
+    this.stackTrace, {
+    required this.reason,
+    required this.code,
+  });
 
   final Object error;
   final StackTrace stackTrace;
+  final SignInError reason;
+  final String code;
 }
