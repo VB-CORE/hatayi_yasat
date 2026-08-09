@@ -2,17 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lifeclient/product/model/auth/credential_result.dart';
 
-/// Owns everything google_sign_in: no other file imports the package.
 final class GoogleSignInService {
   GoogleSignInService({GoogleSignIn? client})
     : _client = client ?? GoogleSignIn.instance;
 
   final GoogleSignIn _client;
-
-  /// google_sign_in 7 requires initialize() before authenticate(). It runs on
-  /// the first sign-in attempt rather than at startup, so a user who never
-  /// signs in never pays for it. Only a success flips the flag, so a failed
-  /// attempt is retried instead of poisoning every later one.
   bool _initialized = false;
 
   Future<CredentialResult> credential() async {
