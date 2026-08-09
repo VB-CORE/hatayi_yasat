@@ -1,4 +1,5 @@
 enum HeroTags {
+  welcomeHeader,
   memoryFavorite,
   userQrFab;
 

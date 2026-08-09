@@ -1,12 +1,17 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 
-final class MosaicBackground extends StatelessWidget {
+final class MosaicBackground extends StatefulWidget {
   const MosaicBackground({
     this.gradient,
     this.showGradient = true,
     this.tileOpacity = 0.30,
     this.tileSize = 20,
+    this.animate = false,
+    this.animationDuration = const Duration(milliseconds: 500),
     super.key,
   });
 
@@ -14,6 +19,8 @@ final class MosaicBackground extends StatelessWidget {
   final bool showGradient;
   final double tileOpacity;
   final double tileSize;
+  final bool animate;
+  final Duration animationDuration;
 
   static const Gradient _defaultGradient = LinearGradient(
     begin: .topLeft,
@@ -22,15 +29,65 @@ final class MosaicBackground extends StatelessWidget {
   );
 
   @override
+  State<MosaicBackground> createState() => _MosaicBackgroundState();
+}
+
+final class _MosaicBackgroundState extends State<MosaicBackground>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    );
+
+    if (widget.animate) {
+      unawaited(_controller.forward());
+    } else {
+      _controller.value = 1;
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant MosaicBackground oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.animate != widget.animate) {
+      if (widget.animate) {
+        _controller.reset();
+        unawaited(_controller.forward());
+      } else {
+        _controller.value = 1;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: CustomPaint(
-        painter: _MosaicPatternPainter(
-          gradient: gradient ?? _defaultGradient,
-          showGradient: showGradient,
-          tileOpacity: tileOpacity,
-          tileSize: tileSize,
-        ),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, _) {
+          return CustomPaint(
+            painter: _MosaicPatternPainter(
+              gradient: widget.gradient ?? MosaicBackground._defaultGradient,
+              showGradient: widget.showGradient,
+              tileOpacity: widget.tileOpacity,
+              tileSize: widget.tileSize,
+              animationValue: _controller.value,
+            ),
+          );
+        },
       ),
     );
   }
@@ -42,12 +99,14 @@ final class _MosaicPatternPainter extends CustomPainter {
     required this.showGradient,
     required this.tileOpacity,
     required this.tileSize,
+    required this.animationValue,
   });
 
   final Gradient gradient;
   final bool showGradient;
   final double tileOpacity;
   final double tileSize;
+  final double animationValue;
 
   static const double _tileGap = 7;
   static const double _tileRadius = 4;
@@ -67,9 +126,8 @@ final class _MosaicPatternPainter extends CustomPainter {
       ..save()
       ..clipRect(bounds);
 
-    if (showGradient) {
-      _paintGradient(canvas, bounds);
-    }
+    if (showGradient) _paintGradient(canvas, bounds);
+
     _paintTiles(canvas, size);
 
     canvas.restore();
@@ -89,12 +147,27 @@ final class _MosaicPatternPainter extends CustomPainter {
     final rowCount = (size.height / tileStep).ceil();
     final columnCount = (size.width / tileStep).ceil();
 
+    final centerRow = (rowCount - 1) / 2;
+    final centerColumn = (columnCount - 1) / 2;
+
+    final maxDistance = sqrt(pow(centerRow, 2) + pow(centerColumn, 2));
+
     for (var row = 0; row < rowCount; row++) {
       for (var column = 0; column < columnCount; column++) {
+        final distance = sqrt(
+          pow(row - centerRow, 2) + pow(column - centerColumn, 2),
+        );
+
+        final delay = distance / maxDistance;
+
+        final progress = Curves.easeOut.transform(
+          ((animationValue - delay) / (1 - delay)).clamp(0.0, 1.0),
+        );
+
         paint.color = _resolveColor(
           row: row,
           column: column,
-        ).withValues(alpha: tileOpacity);
+        ).withValues(alpha: tileOpacity * progress);
 
         final rect = Rect.fromLTWH(
           column * tileStep,
@@ -108,10 +181,7 @@ final class _MosaicPatternPainter extends CustomPainter {
     }
   }
 
-  Color _resolveColor({
-    required int row,
-    required int column,
-  }) {
+  Color _resolveColor({required int row, required int column}) {
     final colorIndex = (column - row) % _colors.length;
     return _colors[colorIndex];
   }
@@ -121,6 +191,7 @@ final class _MosaicPatternPainter extends CustomPainter {
     return oldDelegate.gradient != gradient ||
         oldDelegate.showGradient != showGradient ||
         oldDelegate.tileOpacity != tileOpacity ||
-        oldDelegate.tileSize != tileSize;
+        oldDelegate.tileSize != tileSize ||
+        oldDelegate.animationValue != animationValue;
   }
 }
