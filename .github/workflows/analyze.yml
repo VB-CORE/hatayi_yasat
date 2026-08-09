@@ -30,4 +30,4 @@ jobs:
         run: flutter pub run easy_localization:generate -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
 
       - name: Run Flutter Analyze
-        run: sh ./scripts/analyze_ci.sh
+        run: bash ./scripts/analyze_ci.sh
