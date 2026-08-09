@@ -1,10 +1,15 @@
 default_platform(:ios)
 
-VERSION_NUMBER = "8.2.0"
+VERSION_NUMBER = "8.3.0"
 
 platform :ios do
   before_all do
-  ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD']= ''
+    if ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'].to_s.empty?
+      UI.user_error!(
+        'FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD tanimli degil. ' \
+        'ios/fastlane/.env.example dosyasini .env olarak kopyalayip doldurun.'
+      )
+    end
   end
   desc "Push a new beta build to TestFlight"
   lane :beta do
@@ -20,7 +25,7 @@ platform :ios do
 
   gym(
     scheme: "Runner",
-    configuration: "Release",  # Bu satırı ekleyin
+    configuration: "Release",
     xcargs: "-allowProvisioningUpdates"
   )
 
