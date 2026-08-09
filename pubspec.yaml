@@ -25,12 +25,12 @@ dependencies:
 
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
-  syncfusion_flutter_pdfviewer: ^32.1.23
+  syncfusion_flutter_pdfviewer: ^33.2.13
   webview_flutter: ^4.0.2
 
   #third-party
-  app_settings: ^7.0.0
-  permission_handler: ^12.0.1
+  app_settings: ^8.0.3
+  permission_handler: ^13.0.0
   flutter_inappwebview: ^6.2.0-beta.2
 
   #core
@@ -40,23 +40,22 @@ dependencies:
   #util
 
   flutter_image_compress: ^2.0.4
-  google_fonts: ^7.0.2
   lottie: ^3.1.2
   flutter_svg: ^2.0.9
 
   #firebase
-  firebase_core: ^3.9.0
-  firebase_storage: ^12.3.7
-  firebase_remote_config: ^5.0.2
-  firebase_analytics: ^11.3.6
-  firebase_messaging: ^15.0.2
-  cloud_firestore: ^5.6.0
-  firebase_crashlytics: ^4.0.2
-  firebase_ui_firestore: ^1.7.1
-  cloud_functions: ^5.0.2
-  firebase_auth: ^5.3.4
-  google_sign_in: ^6.2.2
-  sign_in_with_apple: ^6.1.4
+  firebase_core: ^4.13.0
+  firebase_storage: ^13.4.6
+  firebase_remote_config: ^6.5.6
+  firebase_analytics: ^12.4.6
+  firebase_messaging: ^16.5.0
+  cloud_firestore: ^6.8.0
+  firebase_crashlytics: ^5.2.7
+  firebase_ui_firestore: ^2.1.0
+  cloud_functions: ^6.3.6
+  firebase_auth: ^6.5.7
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^8.1.0
   crypto: ^3.0.6
 
   #database
@@ -65,11 +64,11 @@ dependencies:
   # isar_flutter_libs: ^4.0.0-dev.13
   #package
   image_picker: ^1.0.4
-  image_cropper: ^8.0.2
-  share_plus: ^11.1.0
+  image_cropper: ^11.0.0
+  share_plus: ^12.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
-  add_2_calendar: 3.0.1
+  add_2_calendar: ^3.1.1
   in_app_review:
     git:
       url: https://github.com/robport/in_app_review
@@ -95,7 +94,8 @@ dependencies:
   video_player: ^2.7.2
 
   #Location
-  google_maps_flutter: ^2.6.1
+  google_maps_flutter: ^2.18.0
+  google_maps_flutter_ios_sdk9: ^2.18.6
   intl: ^0.20.2
 
   # JSON
@@ -104,9 +104,9 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v6.1.0
+      ref: v7.0.0
 
-  file_picker: ^10.3.8
+  file_picker: ^11.0.3
   sliver_tools: ^0.2.12
   hugeicons: ^1.1.5
   material_symbols_icons: ^4.2951.0
@@ -120,9 +120,6 @@ dependencies:
 
 dependency_overrides:
   device_info_plus: ^12.3.0
-  sqflite_android: ^2.4.2+2
-  # kartal ^11.0.0'a kilitliyor; 12.0.1 iOS 26 paylasim cokmesini duzeltiyor.
-  # kartal share_plus kisitini yukseltince bu override kaldirilacak.
   share_plus: ^12.0.2
 
 dev_dependencies:
@@ -170,11 +167,6 @@ scripts:
   updateIcon: sh ./scripts/update_icon.sh
 flutter:
   uses-material-design: true
-
-  # image_cropper (TOCropViewController) has no SPM support; SPM + CocoaPods
-  # both linking it produces duplicate symbols at link time.
-  config:
-    enable-swift-package-manager: false
 
   assets:
     - assets/translations/

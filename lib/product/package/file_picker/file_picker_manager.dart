@@ -15,7 +15,7 @@ final class FilePickerManager {
         DefaultFileExtension.documentExtensionList,
   }) async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: allowedExtensions.map((e) => e.name).toList(),
       );

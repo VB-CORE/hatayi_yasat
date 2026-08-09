@@ -11,15 +11,14 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-*.lock
 package-lock.json
 .metadata
 
 firebase-export-*
+
 *.g.dart
-!**/*_view_model.g.dart
-!**/app_router.g.dart
-!**/locale_keys.g.dart
+*.gen.dart
+*.freezed.dart
 
 emulator-data/
 

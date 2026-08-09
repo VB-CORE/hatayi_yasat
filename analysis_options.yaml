@@ -2,12 +2,11 @@ include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
-    - lib/product/init/language/
-    - lib/product/init/generation/
     - "**.g.dart"
     - "**.gen.dart"
     - "**.freezed.dart"
-    - app_router.g.dart
+    - lib/product/init/generation/
+    - "build/**"
     - "test/.test_coverage.dart"
     - "bin/cache/**"
     - "lib/generated_plugin_registrant.dart"

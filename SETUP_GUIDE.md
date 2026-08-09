@@ -90,6 +90,24 @@ cd life_client
 flutter pub get
 ```
 
+### 1.4 Generate Code (required)
+
+Generated files (`*.g.dart`, `*.gen.dart`) are not committed. A fresh clone will
+not compile until you generate them:
+
+```bash
+# Riverpod providers, JSON models, routes, Hive adapters, asset references
+dart run build_runner build --delete-conflicting-outputs
+
+# Localization keys
+flutter pub run easy_localization:generate \
+  -O lib/product/init/language -f keys -o locale_keys.g.dart \
+  --source-dir assets/translations
+```
+
+Re-run these whenever you change a provider, model, route, Hive table or
+translation key.
+
 ---
 
 ## 2. Firebase Configuration

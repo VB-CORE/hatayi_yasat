@@ -31,7 +31,7 @@ Bir feature'ın iç yapısı:
 lib/features/<feature>/
 ├── provider/                 # (veya view_model/) state mantığı
 │   ├── <feature>_view_model.dart
-│   ├── <feature>_view_model.g.dart    # üretilen (commit edilir)
+│   ├── <feature>_view_model.g.dart    # üretilen (commit EDİLMEZ)
 │   └── <feature>_state.dart
 ├── view/
 │   ├── <feature>_view.dart
@@ -84,7 +84,7 @@ final class HomeViewModel extends _$HomeViewModel with ProjectDependencyMixin {
 - İstisnayı yutma; hata flag'ine çevir (`isError: true`).
 
 Referans: [home_view_model.dart](lib/features/main/home/provider/home_view_model.dart),
-[place_detail_view_model.dart](lib/features/details/view_model/place_detail_view_model.dart).
+[place_detail_view_model.dart](lib/features/place_detail/view_model/place_detail_view_model.dart).
 
 ### State
 
@@ -184,7 +184,7 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 
 `@TypedGoRoute<XRoute>` + `final class XRoute extends GoRouteData with $XRoute`,
 `build()` widget'ı döner. Karmaşık nesne geçişi `$extra` ile. Codegen sonrası
-`app_router.g.dart` (commit edilir). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
+`app_router.g.dart` üretilir (commit edilmez). Referans: [app_router.dart](lib/product/navigation/app_router.dart).
 
 ### `go` vs `push` (sert kural)
 
@@ -221,7 +221,9 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
   `small`(8) / `medium`(12) / `large`(16) / `extraLarge`(24) / `xxLarge`(32). Ham `BorderRadius.circular(<int>)` yerine bunlar.
 
 ### Tipografi
-- Roboto, `GoogleFonts.robotoTextTheme` tema üstünden ([application_theme.dart](lib/product/init/application_theme.dart)).
+- Bundle'lanmış aileler: gövde `PlusJakartaSans`, başlık `DMSerifDisplay` — tema üstünden
+  ([app_theme.dart](lib/core/theme/app_theme.dart), [app_text.dart](lib/core/theme/app_text.dart)).
+  `google_fonts` kullanılmıyor.
 - Ham `Text` + manuel `TextStyle` yerine semantic widget'lar: `GeneralBodyTitle`,
   `GeneralContentTitle`, `GeneralContentSubTitle`, `GeneralContentSmallTitle`.
 
@@ -246,12 +248,18 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
 
 - Lint: `very_good_analysis` ([analysis_options.yaml](analysis_options.yaml)) —
   `prefer_single_quotes`, `sort_constructors_first`, `always_declare_return_types`,
-  `prefer_const_constructors`, `avoid_print`. Üretilen dosyalar exclude.
+  `prefer_const_constructors`, `avoid_print`. **Üretilen dosyalar exclude DEĞİL** — commit
+  edilmedikleri için `flutter analyze` onların generator'ıyla uyumsuz kalmasını yakalayan
+  tek kapı. Lint gürültüsü `--no-fatal-infos --no-fatal-warnings` ile CI'ı düşürmez.
 - `final class` tercih edilir; `const` mümkün olan her yerde; trailing comma çok satırlı literallerde.
 - **Yorum politikası**: narration/bölüm-ayracı yorum yok. Sadece public API'de `///`, ve yalnızca aşikar
   olmayan mantıkta satır içi yorum. Kod isimlendirmeyle kendini anlatır.
 - Codegen: `flutter pub run build_runner build --delete-conflicting-outputs`
   (veya pubspec script'leri: `dartBuild`, `watch`, `general`). l10n: `lang` script'i.
+- **Üretilen dosyalar commit edilmez** (`*.g.dart`, `*.gen.dart`, `*.freezed.dart`) — gitignore'da.
+  Klonladıktan sonra codegen çalıştırmak zorunludur, aksi halde proje derlenmez.
+  Otorite `pubspec.lock`'tur: o da commit edilir, böylece üretilen kod ile paket sürümü
+  hiçbir makinede ayrışmaz.
 
 ---
 

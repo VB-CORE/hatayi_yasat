@@ -4,18 +4,19 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/services.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
-import 'package:lifeclient/core/security/nonce_generator.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
+import 'package:lifeclient/core/service/auth/apple_sign_in_service.dart';
+import 'package:lifeclient/core/service/auth/auth_credential_provider.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
+import 'package:lifeclient/core/service/auth/google_sign_in_service.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/credential_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseAuthService implements AuthService {
   FirebaseAuthService({
@@ -23,21 +24,21 @@ final class FirebaseAuthService implements AuthService {
     required ProductCache productCache,
     required AnalyticsService analyticsService,
     FirebaseAuth? auth,
-    GoogleSignIn? googleSignIn,
-    NonceGenerator? nonceGenerator,
+    AuthCredentialProvider? googleProvider,
+    AuthCredentialProvider? appleProvider,
   }) : _firestoreService = firestoreService,
        _productCache = productCache,
        _analyticsService = analyticsService,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleSignIn = googleSignIn ?? GoogleSignIn(),
-       _nonceGenerator = nonceGenerator ?? const NonceGenerator();
+       _googleProvider = googleProvider ?? GoogleSignInService(),
+       _appleProvider = appleProvider ?? AppleSignInService();
 
   final CustomFirestoreService _firestoreService;
   final ProductCache _productCache;
   final AnalyticsService _analyticsService;
   final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
-  final NonceGenerator _nonceGenerator;
+  final AuthCredentialProvider _googleProvider;
+  final AuthCredentialProvider _appleProvider;
 
   /// The user doc is written by the auth-state listener, not by [signIn], so
   /// the sign-in call has to wait for it. Without a ceiling that wait is
@@ -49,9 +50,9 @@ final class FirebaseAuthService implements AuthService {
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _docSubscription;
 
-  /// Apple hands the person's name back only on the very first authorization,
-  /// and never puts it on the Firebase user. It is parked here so the doc
-  /// created moments later by [_ensureUserDoc] can still pick it up.
+  /// Written by [signIn] from the credential result and read by
+  /// [_ensureUserDoc], which the auth-state listener reaches on its own — the
+  /// name cannot simply be returned down the call stack.
   String? _pendingDisplayName;
 
   @override
@@ -70,35 +71,76 @@ final class FirebaseAuthService implements AuthService {
   @override
   Future<SignInResult> signIn(AuthProvider provider) async {
     try {
-      final credential = await _credentialFor(provider);
-      if (credential == null) return const SignInCancelled();
+      final AuthCredential credential;
+      switch (await _providerFor(provider).credential()) {
+        case CredentialCancelled():
+          return const SignInCancelled();
+        case CredentialFailed(:final error, :final stackTrace, :final reason,
+            :final code):
+          return await _fail(
+            provider,
+            error,
+            stackTrace,
+            reason: reason,
+            code: code,
+          );
+        case CredentialReady(credential: final ready, :final displayName):
+          credential = ready;
+          _pendingDisplayName = displayName;
+      }
+
       final sessionResult = userStream.first.timeout(_sessionTimeout);
       final result = await _auth.signInWithCredential(credential);
       if (result.user == null) {
-        return const SignInFailure(SignInError.unknown);
+        return await _defect(provider, 'signInWithCredential returned no user');
       }
       final user = await sessionResult;
-      if (user == null) return const SignInFailure(SignInError.unknown);
+      if (user == null) {
+        return await _defect(provider, 'auth session produced no user');
+      }
       return SignInSuccess(
         user,
         isNewUser: result.additionalUserInfo?.isNewUser ?? false,
       );
-    } on _SignInCancelled {
-      return const SignInCancelled();
     } on Object catch (error, stackTrace) {
-      final reason = _reasonFor(error);
-      CustomLogger.showError<void>(error);
-      _analyticsService.recordError(
+      return _fail(
+        provider,
         error,
         stackTrace,
-        reason: 'signIn(${provider.name}) -> ${reason.name}: ${_codeOf(error)}',
+        reason: _reasonFor(error),
+        code: _codeOf(error),
       );
-      await signOut();
-      return SignInFailure(reason);
     } finally {
       _pendingDisplayName = null;
     }
   }
+
+  Future<SignInResult> _fail(
+    AuthProvider provider,
+    Object error,
+    StackTrace stackTrace, {
+    required SignInError reason,
+    required String code,
+  }) async {
+    CustomLogger.showError<void>(error);
+    _analyticsService.recordError(
+      error,
+      stackTrace,
+      reason: 'signIn(${provider.name}) -> ${reason.name}: $code',
+    );
+    await signOut();
+    return SignInFailure(reason);
+  }
+
+  /// Firebase accepted the credential but produced no user. Nothing the person
+  /// did causes this, so it is reported rather than shown as a plain failure.
+  Future<SignInResult> _defect(AuthProvider provider, String message) => _fail(
+    provider,
+    StateError(message),
+    StackTrace.current,
+    reason: SignInError.unknown,
+    code: message,
+  );
 
   SignInError _reasonFor(Object error) => switch (error) {
     FirebaseAuthException(:final code) => switch (code) {
@@ -112,26 +154,14 @@ final class FirebaseAuthService implements AuthService {
       'network-request-failed' => SignInError.network,
       _ => SignInError.unknown,
     },
-    SignInWithAppleNotSupportedException() => SignInError.unsupported,
-    SignInWithAppleCredentialsException() => SignInError.invalidCredential,
-    SignInWithAppleAuthorizationException(:final code) => switch (code) {
-      AuthorizationErrorCode.invalidResponse ||
-      AuthorizationErrorCode.failed => SignInError.invalidCredential,
-      _ => SignInError.unknown,
-    },
     TimeoutException() || SocketException() => SignInError.network,
     PlatformException(:final code) when code == 'network_error' =>
       SignInError.network,
     _ => SignInError.unknown,
   };
 
-  /// The provider-specific code, kept verbatim for Crashlytics — the mapped
-  /// [SignInError] is deliberately coarse and loses the detail needed to tell
-  /// two failures apart after the fact.
   String _codeOf(Object error) => switch (error) {
     FirebaseAuthException(:final code) => code,
-    SignInWithAppleAuthorizationException(:final code, :final message) =>
-      '${code.name} / $message',
     PlatformException(:final code) => code,
     _ => error.runtimeType.toString(),
   };
@@ -141,7 +171,10 @@ final class FirebaseAuthService implements AuthService {
     await _stopWatchingUserDoc();
     final uid = _auth.currentUser?.uid;
     try {
-      await Future.wait([_googleSignIn.signOut(), _auth.signOut()]);
+      await Future.wait([
+        ..._providers.map((provider) => provider.signOut()),
+        _auth.signOut(),
+      ]);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
     }
@@ -248,79 +281,15 @@ final class FirebaseAuthService implements AuthService {
     return a.every(other.contains);
   }
 
-  Future<AuthCredential?> _credentialFor(AuthProvider provider) =>
+  AuthCredentialProvider _providerFor(AuthProvider provider) =>
       switch (provider) {
-        AuthProvider.google => _googleCredential(),
-        AuthProvider.apple => _appleCredential(),
+        AuthProvider.google => _googleProvider,
+        AuthProvider.apple => _appleProvider,
       };
 
-  Future<AuthCredential?> _googleCredential() async {
-    final googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) return null;
-    final googleAuth = await googleUser.authentication;
-    return GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-  }
-
-  Future<AuthCredential?> _appleCredential() async {
-    // Apple, hash'lenmiş nonce'u identityToken'ın içine gömüyor; Firebase
-    // rawNonce'u kendi hash'leyip karşılaştırıyor (token replay'e karşı).
-    final rawNonce = _nonceGenerator.generate();
-    final hashedNonce = _nonceGenerator.sha256Hex(rawNonce);
-
-    final AuthorizationCredentialAppleID appleCredential;
-    try {
-      appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: hashedNonce,
-      );
-    } on SignInWithAppleAuthorizationException catch (error) {
-      if (error.code == AuthorizationErrorCode.canceled) {
-        throw const _SignInCancelled();
-      }
-      rethrow;
-    }
-
-    final identityToken = appleCredential.identityToken;
-    if (identityToken == null) {
-      throw const SignInWithAppleCredentialsException(
-        message: 'Apple returned no identity token',
-      );
-    }
-
-    _pendingDisplayName = _appleDisplayName(appleCredential);
-    // AppleAuthProvider rather than OAuthProvider on purpose: the iOS plugin
-    // switches on signInMethod, and OAuthProvider stamps `oauth`, which misses
-    // the apple.com branch and builds the credential through the generic
-    // `credentialWithProviderID:` instead of Apple's own
-    // `appleCredentialWithIDToken:rawNonce:fullName:`. This path also carries
-    // the name natively, so Firebase fills the auth profile itself.
-    return AppleAuthProvider.credentialWithIDToken(
-      identityToken,
-      rawNonce,
-      AppleFullPersonName(
-        givenName: appleCredential.givenName,
-        familyName: appleCredential.familyName,
-      ),
-    );
-  }
-
-  String? _appleDisplayName(AuthorizationCredentialAppleID credential) {
-    final parts = [credential.givenName, credential.familyName]
-        .whereType<String>()
-        .map((part) => part.trim())
-        .where((part) => part.isNotEmpty);
-    return parts.isEmpty ? null : parts.join(' ');
-  }
-}
-
-/// Raised when the person backs out of the provider sheet. It is a control
-/// signal rather than a failure, so it never reaches the error mapping.
-final class _SignInCancelled implements Exception {
-  const _SignInCancelled();
+  /// Derived from [AuthProvider] rather than listed by hand, so a new provider
+  /// cannot be added without [_providerFor] failing to compile — and once it
+  /// compiles, [signOut] already covers it.
+  Iterable<AuthCredentialProvider> get _providers =>
+      AuthProvider.values.map(_providerFor);
 }

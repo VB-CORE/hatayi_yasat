@@ -16,6 +16,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.44.9
+          cache: true
       - run: flutter --version
 
       - name: Install dependencies
@@ -28,4 +30,4 @@ jobs:
         run: flutter pub run easy_localization:generate -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations
 
       - name: Run Flutter Analyze
-        run: flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings
+        run: bash ./scripts/analyze_ci.sh
