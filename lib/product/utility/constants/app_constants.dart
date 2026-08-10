@@ -26,6 +26,7 @@ final class AppConstants {
   static const double defaultMapZoom = 14;
 
   static const String homeWebsiteUrl = 'https://www.hatayiyasat.com/';
+  static const String githubRepoUrl = 'https://github.com/VB-CORE/hatayi_yasat';
 
   static const String appStoreId = 'id6465691080';
   static const String kiloByte = 'kb';
