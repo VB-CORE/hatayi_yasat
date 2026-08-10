@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/features/sub_feature/notifications/provider/notification_badge_view_model.dart';
-import 'package:lifeclient/features/sub_feature/whats_new/whats_new_sheet_manager.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
 import 'package:lifeclient/sub_feature/main_tab/main_tab_view.dart';
@@ -44,7 +43,6 @@ mixin MainTabViewMixin
       // Riverpod refuses provider writes from initState; the first badge read
       // has to wait until the frame that mounted this widget is done.
       unawaited(ref.read(notificationBadgeViewModelProvider.notifier).refresh());
-      await WhatsNewSheetManager(context: context).show();
     });
   }
 
