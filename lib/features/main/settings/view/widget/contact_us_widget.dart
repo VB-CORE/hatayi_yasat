@@ -45,6 +45,18 @@ final class _ContactUsWidget extends StatelessWidget {
               ],
             ),
           ),
+        ContentMenuItem(
+          leading: FaIcon(
+            AppIcons.github,
+            size: AppIconSizes.xMedium,
+            color: context.appColors.navy700,
+          ),
+          label: LocaleKeys.settings_githubTitle.tr(),
+          onTap: () => LinkActions.openUrl(
+            context,
+            AppConstants.githubRepoUrl,
+          ),
+        ),
       ],
     );
   }

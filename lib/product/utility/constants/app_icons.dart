@@ -54,6 +54,7 @@ final class AppIcons {
   static const FaIconData apple = FontAwesomeIcons.apple;
 
   static const FaIconData twitter = FontAwesomeIcons.xTwitter;
+  static const FaIconData github = FontAwesomeIcons.github;
   static const IconData mail = Icons.mail_outline;
   static const IconData notifications = Icons.notifications;
   static const IconData notificationsOff = Icons.notifications_off_outlined;
