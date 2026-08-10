@@ -149,6 +149,18 @@ life_shared v5.4.17 ile Firebase erişimi ikiye ayrıldı; **iki servis bir sür
   enum'ıyla geliyor. `switch` ile ayrıştır; `dataOrNull` sadece hatayı gerçekten önemsemediğin
   yerde kullanılır.
 - Toplu migrasyon **yapılmıyor**; bir dosyaya zaten dokunuyorsan o dosyayı çevirmek serbest.
+
+### Firestore rules ve index'ler bu repoda değil
+
+`firestore.rules` ve `firestore.indexes.json` **life_admin** reposunda yaşar
+(`firebase/` altında) ve oradan deploy edilir; iki uygulama aynı `savehatay`
+projesini paylaştığı için tek kaynak olmak zorundalar. Bu repodaki kopyalar
+bilerek silindi.
+
+Client'ta yeni bir yazma yolu açan her değişiklik (yeni koleksiyon, soft-delete,
+sayaç, alan) **aynı PR'da life_admin'deki rules'a taşınmalı**, `firebase/test/`
+altına testi eklenmeli ve deploy edilmeli. Aksi halde kod prod'da
+permission-denied alır.
 - **Widget içinde** global state erişimi → `AppProviderMixin<T>` (ConsumerStatefulWidget) /
   `AppProviderStateMixin` (ConsumerWidget)
   ([app_provider_mixin.dart](lib/product/utility/mixin/app_provider_mixin.dart)):
