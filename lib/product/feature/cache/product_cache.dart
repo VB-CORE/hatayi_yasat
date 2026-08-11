@@ -20,6 +20,13 @@ final class ProductCache {
       const NewsBookmarkCache.empty(),
       const UserModel.empty(),
     ]);
+    await Future.wait([
+      storeModelCache.ready,
+      appModelCache.ready,
+      memoryCacheModel.ready,
+      newsBookmarkCache.ready,
+      userCache.ready,
+    ]);
   }
 
   /// hive

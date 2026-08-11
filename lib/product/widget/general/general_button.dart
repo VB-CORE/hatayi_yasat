@@ -182,6 +182,7 @@ class _Child extends StatelessWidget {
     );
     if (icon == null) {
       return Row(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [labelWidget],
       );
