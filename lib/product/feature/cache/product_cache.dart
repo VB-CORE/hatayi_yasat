@@ -8,24 +8,18 @@ import 'package:lifeclient/product/feature/cache/hive_v2/model/store_model_cache
 
 final class ProductCache {
   ProductCache({required CacheManager cacheManager})
-      : _cacheManager = cacheManager;
+    : _cacheManager = cacheManager;
 
   final CacheManager _cacheManager;
 
   Future<void> init() async {
-    await _cacheManager.init([
-      StoreModelCache.empty(),
-      const AppCacheModel(),
-      const MemoryCacheModel.empty(),
-      const NewsBookmarkCache.empty(),
-      const UserModel.empty(),
-    ]);
+    await _cacheManager.init();
     await Future.wait([
-      storeModelCache.ready,
-      appModelCache.ready,
-      memoryCacheModel.ready,
-      newsBookmarkCache.ready,
-      userCache.ready,
+      storeModelCache.init(),
+      appModelCache.init(),
+      memoryCacheModel.init(),
+      newsBookmarkCache.init(),
+      userCache.init(),
     ]);
   }
 
