@@ -7,7 +7,7 @@ final class HiveCacheManager extends CacheManager {
   HiveCacheManager({super.path});
 
   @override
-  Future<void> init(List<CacheModel> cacheItems) async {
+  Future<void> init() async {
     final directoryPath =
         path ?? (await getApplicationDocumentsDirectory()).path;
     Hive.init(directoryPath);

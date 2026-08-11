@@ -6,19 +6,14 @@ final class HiveOperationManager<T extends CacheModel>
   /// [boxName] defaults to the type name. Pass an explicit one when a model's
   /// stored shape changes, so entries written by an older adapter are orphaned
   /// instead of being read back as garbage.
-  HiveOperationManager({String? boxName}) : _boxName = boxName ?? T.toString() {
-    _ready = _initializeBox();
-  }
+  HiveOperationManager({String? boxName}) : _boxName = boxName ?? T.toString();
 
   final String _boxName;
 
   Box<T>? _box;
-  late final Future<void> _ready;
 
   @override
-  Future<void> get ready => _ready;
-
-  Future<void> _initializeBox() async {
+  Future<void> init() async {
     if (!Hive.isBoxOpen(_boxName)) {
       await Hive.openBox<T>(_boxName);
     }

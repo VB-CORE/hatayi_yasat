@@ -46,7 +46,6 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
 
       storeModelCache = productCache.storeModelCache;
       appModelCache = productCache.appModelCache;
-      await Future.wait([storeModelCache.ready, appModelCache.ready]);
       state = state.copyWith(
         favoritePlaces: storeModelCache
             .getAll()

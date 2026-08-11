@@ -9,7 +9,7 @@ final class SharedCacheManager extends CacheManager {
   static SharedPreferences get preferences => _preferences;
 
   @override
-  Future<void> init(List<CacheModel> cacheItems) async {
+  Future<void> init() async {
     _preferences = await SharedPreferences.getInstance();
   }
 
