@@ -6,7 +6,7 @@ final class _LoginLegalText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
+      child: InkWell(
         onTap: () => unawaited(KvkkCheckBox.navigate(context)),
         child: Text(
           LocaleKeys.auth_legal.tr(),
