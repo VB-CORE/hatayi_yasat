@@ -1,7 +1,9 @@
 part of '../place_detail_view.dart';
 
-final class PlaceDetailTabBar extends StatelessWidget {
-  const PlaceDetailTabBar({super.key});
+final class _PlaceDetailTabBar extends StatelessWidget {
+  const _PlaceDetailTabBar({required this.tabs});
+
+  final List<_PlaceDetailTab> tabs;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,7 @@ final class PlaceDetailTabBar extends StatelessWidget {
           fontWeight: FontWeight.normal,
         ),
         tabs: [
-          Tab(text: LocaleKeys.placeDetailView_tabAbout.tr()),
-          Tab(text: LocaleKeys.placeDetailView_tabComments.tr()),
+          for (final tab in tabs) Tab(text: tab.labelKey.tr()),
         ],
       ),
     );

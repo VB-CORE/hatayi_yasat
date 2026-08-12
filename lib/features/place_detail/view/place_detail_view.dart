@@ -37,7 +37,19 @@ part 'widget/tabs/place_detail_about.dart';
 part 'widget/tabs/place_detail_comments.dart';
 part 'widget/tabs/place_detail_showcase.dart';
 
-enum _PlaceDetailTab { about, comments }
+enum _PlaceDetailTab {
+  about(LocaleKeys.placeDetailView_tabAbout),
+  comments(LocaleKeys.placeDetailView_tabComments);
+
+  const _PlaceDetailTab(this.labelKey);
+
+  final String labelKey;
+
+  static List<_PlaceDetailTab> visibleFor(StoreModel store) => [
+    about,
+    if (store.isCommentEnabled) comments,
+  ];
+}
 
 final class PlaceDetailView extends ConsumerStatefulWidget {
   const PlaceDetailView({required this.store, required this.id, super.key});
@@ -70,8 +82,10 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
       );
     }
 
+    final tabs = _PlaceDetailTab.visibleFor(store);
+
     return DefaultTabController(
-      length: _PlaceDetailTab.values.length,
+      length: tabs.length,
       child: MosaicCollapsingPage(
         showLoeading: true,
 
@@ -80,14 +94,17 @@ final class _PlaceDetailViewState extends ConsumerState<PlaceDetailView>
           onCall: onCall,
           onComment: onComment,
         ),
-        pinnedHeader: const PlaceDetailTabBar(),
+        pinnedHeader: tabs.length > AppConstants.kOne
+            ? _PlaceDetailTabBar(tabs: tabs)
+            : null,
 
         slivers: [
           SliverPadding(
             padding: const PagePadding.generalAllLow(),
             sliver: SliverToBoxAdapter(
-              child: PlaceDetailTabContent(
+              child: _PlaceDetailTabContent(
                 store: store,
+                tabs: tabs,
                 onCall: onCall,
                 onCopyAddress: onCopyAddress,
                 onOpenMaps: onOpenMaps,

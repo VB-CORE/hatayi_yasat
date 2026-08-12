@@ -139,6 +139,10 @@ final class _SummaryActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!store.hasPhone && !store.isCommentEnabled) {
+      return const SizedBox.shrink();
+    }
+
     return Row(
       spacing: AppSpacing.xs,
       children: [
@@ -155,19 +159,20 @@ final class _SummaryActions extends StatelessWidget {
               ),
             ),
           ),
-        Expanded(
-          child: CustomBounceable(
-            child: ElevatedButton.icon(
-              onPressed: onComment,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.coral100,
-                foregroundColor: AppColors.coral700,
+        if (store.isCommentEnabled)
+          Expanded(
+            child: CustomBounceable(
+              child: ElevatedButton.icon(
+                onPressed: onComment,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.coral100,
+                  foregroundColor: AppColors.coral700,
+                ),
+                label: Text(LocaleKeys.placeDetailView_makeComment.tr()),
+                icon: const Icon(AppIcons.comment),
               ),
-              label: Text(LocaleKeys.placeDetailView_makeComment.tr()),
-              icon: const Icon(AppIcons.comment),
             ),
           ),
-        ),
       ],
     );
   }
