@@ -31,7 +31,7 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
       ref.read(authViewModelProvider.notifier).signIn(AuthProvider.apple);
 
   Future<void> onGuestTap() async {
-    await SharedCache.instance.setGuest();
+    await SharedCache.instance.setContinueAsGuest(value: true);
     if (!mounted) return;
     const MainTabRoute().go(context);
   }
