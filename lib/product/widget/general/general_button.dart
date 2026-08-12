@@ -168,12 +168,31 @@ class _Child extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) =>
-          _buildRow(context, canFlex: constraints.hasBoundedWidth),
+      builder: (context, constraints) => _ChildRow(
+        label: label,
+        icon: icon,
+        iconAlignment: iconAlignment,
+        canFlex: constraints.hasBoundedWidth,
+      ),
     );
   }
+}
 
-  Widget _buildRow(BuildContext context, {required bool canFlex}) {
+final class _ChildRow extends StatelessWidget {
+  const _ChildRow({
+    required this.label,
+    required this.canFlex,
+    this.icon,
+    this.iconAlignment,
+  });
+
+  final String label;
+  final bool canFlex;
+  final IconData? icon;
+  final IconAlignment? iconAlignment;
+
+  @override
+  Widget build(BuildContext context) {
     final contentColor = context.general.colorScheme.surface;
 
     final text = Text(
