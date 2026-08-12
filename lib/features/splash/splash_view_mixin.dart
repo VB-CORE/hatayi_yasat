@@ -80,7 +80,7 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
-        if (SharedCache.instance.isContinuedAsGuest) {
+        if (SharedCache.instance.isLoginSeen) {
           const MainTabRoute().go(context);
           return;
         }

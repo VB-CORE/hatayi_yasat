@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
@@ -12,6 +14,7 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
   @override
   void initState() {
     super.initState();
+    unawaited(SharedCache.instance.setLoginSeen());
     ref.listenManual<AuthState>(authViewModelProvider, (previous, next) {
       if (next is! AuthError) return;
       final provider = next.provider;
@@ -30,9 +33,5 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
   Future<void> onAppleSignIn() =>
       ref.read(authViewModelProvider.notifier).signIn(AuthProvider.apple);
 
-  Future<void> onGuestTap() async {
-    await SharedCache.instance.setContinueAsGuest(value: true);
-    if (!mounted) return;
-    const MainTabRoute().go(context);
-  }
+  void onGuestTap() => const MainTabRoute().go(context);
 }

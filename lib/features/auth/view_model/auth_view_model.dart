@@ -3,7 +3,6 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
-import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/model/auth/sign_in_error.dart';
@@ -66,7 +65,6 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
 
   Future<void> signOut() async {
     await authService.signOut();
-    await SharedCache.instance.setContinueAsGuest(value: false);
     analyticsService.logEvent(AnalyticsEvent.logout);
   }
 
