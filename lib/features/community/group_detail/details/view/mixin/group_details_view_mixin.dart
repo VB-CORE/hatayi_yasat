@@ -41,11 +41,6 @@ mixin GroupDetailsViewMixin
       appProvider.showSnackbarMessage(
         LocaleKeys.message_somethingWentWrong.tr(),
       );
-      return;
     }
-    appProvider.showSnackbarMessage(
-      LocaleKeys.community_groupDetail_details_deleteGroupSuccess.tr(),
-    );
-    context.pop();
   }
 }
