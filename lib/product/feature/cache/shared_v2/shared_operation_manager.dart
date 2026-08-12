@@ -15,7 +15,7 @@ final class SharedPrefsOperationManager<T extends CacheModel>
   final T _cacheModel;
 
   @override
-  Future<void> get ready => Future.value();
+  Future<void> init() async {}
 
   @override
   Future<void> add(T data) async {
