@@ -167,21 +167,30 @@ class _Child extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) =>
+          _buildRow(context, canFlex: constraints.hasBoundedWidth),
+    );
+  }
+
+  Widget _buildRow(BuildContext context, {required bool canFlex}) {
     final contentColor = context.general.colorScheme.surface;
 
-    final labelWidget = Flexible(
-      child: Text(
-        label,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: context.general.textTheme.titleMedium?.copyWith(
-          color: contentColor,
-          fontWeight: FontWeight.w900,
-        ),
+    final text = Text(
+      label,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: contentColor,
+        fontWeight: FontWeight.w900,
       ),
     );
+    final labelWidget = canFlex ? Flexible(child: text) : text;
+    final mainAxisSize = canFlex ? MainAxisSize.max : MainAxisSize.min;
+
     if (icon == null) {
       return Row(
+        mainAxisSize: mainAxisSize,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [labelWidget],
       );
@@ -189,6 +198,7 @@ class _Child extends StatelessWidget {
     final iconWidget = Icon(icon, color: contentColor);
     final alignment = iconAlignment ?? IconAlignment.start;
     return Row(
+      mainAxisSize: mainAxisSize,
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (alignment) {
         IconAlignment.start => [

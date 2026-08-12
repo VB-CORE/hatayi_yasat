@@ -42,8 +42,7 @@ final class GeneralPlaceCard extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: SizedBox(
-            height: context.sized.dynamicHeight(0.12) + WidgetSizes.spacingM,
+          child: IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -74,9 +73,10 @@ final class _PlaceImageBlock extends StatelessWidget {
       return _MosaicPlaceholder(accent: accent, category: model.category);
     }
     return Stack(
-      fit: StackFit.expand,
       children: [
-        CustomNetworkImage(imageUrl: image, fit: BoxFit.cover),
+        Positioned.fill(
+          child: CustomNetworkImage(imageUrl: image, fit: BoxFit.cover),
+        ),
         Positioned(
           left: AppSpacing.xs,
           bottom: AppSpacing.xs,
