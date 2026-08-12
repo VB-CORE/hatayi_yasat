@@ -582,7 +582,8 @@
       "continueWith": "Continue with {provider}",
       "guest": "Continue as Guest"
     },
-    "legal": "By continuing, you accept the terms of use and KVKK.",
+    "legalPrefix": "By continuing, you accept the terms of use and ",
+    "legalSuffix": ".",
     "error": {
       "generic": "Something went wrong while signing in, please try again.",
       "failed": "{provider} sign-in failed, please try again.",

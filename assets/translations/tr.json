@@ -582,7 +582,8 @@
       "continueWith": "{provider} ile devam et",
       "guest": "Misafir olarak devam et"
     },
-    "legal": "Devam ederek kullanım koşullarını ve KVKK kabul etmiş olursun.",
+    "legalPrefix": "Devam ederek kullanım koşullarını ve ",
+    "legalSuffix": " kabul etmiş olursun.",
     "error": {
       "generic": "Giriş sırasında bir sorun oluştu, lütfen tekrar deneyin.",
       "failed": "{provider} ile giriş yapılamadı, lütfen tekrar deneyin.",
