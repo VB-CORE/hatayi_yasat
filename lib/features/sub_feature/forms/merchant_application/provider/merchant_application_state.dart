@@ -11,7 +11,7 @@ final class MerchantApplicationState extends Equatable {
   const MerchantApplicationState({
     this.selectedCompany,
     this.currentStep = MerchantApplicationStep.company,
-    this.isNewCompanyMode = false,
+    this.isNewCompanyMode = true,
     this.companyName = '',
     this.companyDescription = '',
     this.selectedCategory,
