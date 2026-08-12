@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/features/splash/view_model/splash_view_model.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -79,7 +80,10 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
-        // context.route.navigateToPage(const DemoView());
+        if (SharedCache.instance.isGuest) {
+          const MainTabRoute().go(context);
+          return;
+        }
         const LoginRoute().go(context);
       }
     });

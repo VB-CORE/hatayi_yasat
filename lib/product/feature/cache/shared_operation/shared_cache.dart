@@ -41,6 +41,13 @@ final class SharedCache {
       _sharedOperation.getValue<bool>(SharedKeys.isCompletedOnboarding) ??
       false;
 
+  Future<void> setGuest() async {
+    await _sharedOperation.setValue(SharedKeys.isGuest, true);
+  }
+
+  bool get isGuest =>
+      _sharedOperation.getValue<bool>(SharedKeys.isGuest) ?? false;
+
   int get version =>
       _sharedOperation.getValue<int>(SharedKeys.currentVersion) ?? -1;
 

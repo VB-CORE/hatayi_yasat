@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
+import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
@@ -29,5 +30,9 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
   Future<void> onAppleSignIn() =>
       ref.read(authViewModelProvider.notifier).signIn(AuthProvider.apple);
 
-  void onGuestTap() => const MainTabRoute().go(context);
+  Future<void> onGuestTap() async {
+    await SharedCache.instance.setGuest();
+    if (!mounted) return;
+    const MainTabRoute().go(context);
+  }
 }

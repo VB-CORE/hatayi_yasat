@@ -6,4 +6,5 @@ enum SharedKeys {
   favoritePlaces,
   currentVersion,
   firstHistoryPageVisit,
+  isGuest,
 }
