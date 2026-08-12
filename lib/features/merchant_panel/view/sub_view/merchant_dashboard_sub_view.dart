@@ -108,7 +108,7 @@ final class MerchantDashboardSubView extends StatelessWidget {
                 subtitle: LocaleKeys
                     .merchantPanel_dashboard_manageCouponsSubtitle
                     .tr(),
-                onTap: () => const MonetizationRoute().go(context),
+                onTap: () => const MonetizationRoute().push<void>(context),
               ),
             ],
           ),

@@ -7,16 +7,16 @@ abstract final class MerchantGuard {
     final loginRedirect = AuthGuard.requireLogin(context, state);
     if (loginRedirect != null) return loginRedirect;
 
-    final target = _location(context);
+    final target = location(context);
     return state.matchedLocation == target ? null : target;
   }
 
-  static void go(BuildContext context) => context.go(_location(context));
+  static void go(BuildContext context) => context.go(location(context));
 
   static void pushReplacement(BuildContext context) =>
-      context.pushReplacement(_location(context));
+      context.pushReplacement(location(context));
 
-  static String _location(BuildContext context) =>
+  static String location(BuildContext context) =>
       switch (AuthGuard.application(context)?.status) {
         .approved => const _MerchantPanelRoute().location,
         .pending => const _MerchantPendingRoute().location,

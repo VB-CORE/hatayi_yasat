@@ -27,7 +27,7 @@ final class MosaicCollapsingPage extends StatefulWidget {
     this.showLoeading = false,
     this.title,
     this.pinnedHeader,
-    this.bottomNavigationBar, 
+    this.bottomNavigationBar,
     super.key,
   });
 
@@ -37,7 +37,7 @@ final class MosaicCollapsingPage extends StatefulWidget {
   final bool showLoeading;
   final Widget? title;
   final Widget? pinnedHeader;
-  final Widget? bottomNavigationBar; 
+  final Widget? bottomNavigationBar;
 
   @override
   State<MosaicCollapsingPage> createState() => _MosaicCollapsingPageState();
@@ -46,7 +46,7 @@ final class MosaicCollapsingPage extends StatefulWidget {
 final class _MosaicCollapsingPageState extends State<MosaicCollapsingPage>
     with MosaicCollapsingPageMixin {
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bg,
       bottomNavigationBar: widget.bottomNavigationBar,

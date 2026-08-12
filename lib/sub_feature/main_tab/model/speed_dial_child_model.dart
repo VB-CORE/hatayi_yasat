@@ -18,18 +18,22 @@ final class SpeedDialChildModel {
 }
 
 final class SpeedDialChildModelList {
-  SpeedDialChildModelList({required BuildContext context}) {
+  SpeedDialChildModelList({
+    required BuildContext context,
+    required bool hasApplication,
+  }) {
     _context = context;
-    _fillItems(_context);
+    _fillItems(_context, hasApplication);
   }
 
   late BuildContext _context;
 
-  void _fillItems(BuildContext context) {
+  void _fillItems(BuildContext context, bool hasApplication) {
     _speedDialChildItems = [
       SpeedDialChildModel(
-        location: const PlaceRequestFormRoute().location,
+        location: MerchantGuard.location(context),
         title: LocaleKeys.requestCompany_title.tr(context: context),
+        isVisible: !hasApplication,
       ),
       SpeedDialChildModel(
         location: const ProjectRequestFormRoute().location,

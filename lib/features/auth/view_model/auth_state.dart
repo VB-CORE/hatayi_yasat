@@ -63,4 +63,6 @@ extension AuthStateX on AuthState {
   bool get isBanned => this is AuthBanned;
 
   bool get canCreateGroup => user?.canCreateGroup ?? false;
+
+  bool get hasApplication => user?.application?.isApproved ?? false;
 }
