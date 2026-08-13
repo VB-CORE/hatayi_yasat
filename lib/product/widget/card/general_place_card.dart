@@ -209,11 +209,13 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
           const EmptyBox.xxSmallHeight(),
           Row(
             children: [
-              PlaceRatingLabel(
-                rating: model.averageRatingLabel,
-                reviewCount: model.ratingCount,
-              ),
-              const SizedBox(width: AppSpacing.sm),
+              if (model.isCommentEnabled) ...[
+                PlaceRatingLabel(
+                  rating: model.averageRatingLabel,
+                  reviewCount: model.ratingCount,
+                ),
+                const SizedBox(width: AppSpacing.sm),
+              ],
               Flexible(
                 child: GeneralContentSmallTitle(
                   value: distanceLabel,

@@ -205,12 +205,14 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
               ),
             ],
           ),
-          const EmptyBox.xSmallHeight(),
-          PlaceRatingLabel(
-            rating: model.averageRatingLabel,
-            reviewCount: model.ratingCount,
-            iconSize: IconSize.smallX.value,
-          ),
+          if (model.isCommentEnabled) ...[
+            const EmptyBox.xSmallHeight(),
+            PlaceRatingLabel(
+              rating: model.averageRatingLabel,
+              reviewCount: model.ratingCount,
+              iconSize: IconSize.smallX.value,
+            ),
+          ],
         ],
       ),
     );
