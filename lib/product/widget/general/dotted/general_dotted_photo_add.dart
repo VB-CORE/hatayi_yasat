@@ -50,9 +50,14 @@ class _GeneralDottedPhotoAddState extends State<GeneralDottedPhotoAdd> {
                       .selectAndUpdatePhotoFromMediaSheet
                 : null,
             child: GeneralDottedRectangle(
-              child: SizedBox(
-                height: context.sized.dynamicHeight(
-                  file != null ? .3 : .15,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: context.sized.dynamicHeight(
+                    file != null ? .3 : .15,
+                  ),
+                  maxHeight: file != null
+                      ? context.sized.dynamicHeight(.3)
+                      : double.infinity,
                 ),
                 child: Center(
                   child: _BodyImage(file: file),
@@ -115,8 +120,7 @@ final class _ImageTypeContainer extends StatelessWidget {
         await context.generalDottedPhotoAddContext
             .selectAndUpdatePhotoByPhotoPickType(_photoPickType);
       },
-      child: Container(
-        width: context.sized.dynamicWidth(.25),
+      child: DecoratedBox(
         decoration: const BoxDecoration(
           borderRadius: CustomRadius.large,
         ),
@@ -142,18 +146,23 @@ final class _ImageTypeIconAndText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
           _icon,
           color: context.general.colorScheme.onSecondaryFixed,
         ),
         const EmptyBox.smallWidth(),
-        Text(
-          _text,
-          textAlign: TextAlign.start,
-          style: context.general.textTheme.labelMedium?.copyWith(
-            color: context.general.colorScheme.onSecondaryFixed,
-            fontWeight: FontWeight.w400,
+        Flexible(
+          child: Text(
+            _text,
+            textAlign: TextAlign.start,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: context.general.textTheme.labelMedium?.copyWith(
+              color: context.general.colorScheme.onSecondaryFixed,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],

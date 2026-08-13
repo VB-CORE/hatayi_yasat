@@ -758,6 +758,7 @@
         "deleteGroupConfirmMessage": "This removes the group for all members.",
         "deleteGroupConfirmCancel": "Cancel",
         "deleteGroupSuccess": "Group deleted.",
+        "groupRemoved": "This group has been deleted.",
         "categoryLabel": "Category"
       }
     },

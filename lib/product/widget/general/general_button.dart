@@ -167,22 +167,49 @@ class _Child extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contentColor = context.general.colorScheme.surface;
-
-    final labelWidget = Flexible(
-      child: Text(
-        label,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: context.general.textTheme.titleMedium?.copyWith(
-          color: contentColor,
-          fontWeight: FontWeight.w900,
-        ),
+    return LayoutBuilder(
+      builder: (context, constraints) => _ChildRow(
+        label: label,
+        icon: icon,
+        iconAlignment: iconAlignment,
+        canFlex: constraints.hasBoundedWidth,
       ),
     );
+  }
+}
+
+final class _ChildRow extends StatelessWidget {
+  const _ChildRow({
+    required this.label,
+    required this.canFlex,
+    this.icon,
+    this.iconAlignment,
+  });
+
+  final String label;
+  final bool canFlex;
+  final IconData? icon;
+  final IconAlignment? iconAlignment;
+
+  @override
+  Widget build(BuildContext context) {
+    final contentColor = context.general.colorScheme.surface;
+
+    final text = Text(
+      label,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: context.general.textTheme.titleMedium?.copyWith(
+        color: contentColor,
+        fontWeight: FontWeight.w900,
+      ),
+    );
+    final labelWidget = canFlex ? Flexible(child: text) : text;
+    final mainAxisSize = canFlex ? MainAxisSize.max : MainAxisSize.min;
+
     if (icon == null) {
       return Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: mainAxisSize,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [labelWidget],
       );
@@ -190,6 +217,7 @@ class _Child extends StatelessWidget {
     final iconWidget = Icon(icon, color: contentColor);
     final alignment = iconAlignment ?? IconAlignment.start;
     return Row(
+      mainAxisSize: mainAxisSize,
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (alignment) {
         IconAlignment.start => [

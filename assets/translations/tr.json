@@ -758,6 +758,7 @@
         "deleteGroupConfirmMessage": "Bu işlem grubu tüm üyeler için kaldırır.",
         "deleteGroupConfirmCancel": "Vazgeç",
         "deleteGroupSuccess": "Grup silindi.",
+        "groupRemoved": "Bu grup silindi.",
         "categoryLabel": "Kategori"
       }
     },
