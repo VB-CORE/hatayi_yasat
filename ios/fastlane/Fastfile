@@ -4,6 +4,8 @@ VERSION_NUMBER = "8.3.0"
 
 platform :ios do
   before_all do
+
+    ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD']= "nizi-zvmw-zkhy-qtac"
     if ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'].to_s.empty?
       UI.user_error!(
         'FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD tanimli degil. ' \
@@ -14,7 +16,6 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
   enable_automatic_code_signing
-
   increment_version_number(
     version_number: VERSION_NUMBER
   )
@@ -22,6 +23,8 @@ platform :ios do
   increment_build_number({
       build_number: latest_testflight_build_number + 1
   })
+
+
 
   gym(
     scheme: "Runner",
