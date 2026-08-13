@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
@@ -19,6 +20,7 @@ import 'package:lifeclient/features/merchant_panel/view/sub_view/merchant_store_
 import 'package:lifeclient/features/merchant_panel/view/widget/merchant_panel_header.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 
@@ -64,7 +66,17 @@ final class _MerchantPanelViewState extends ConsumerState<MerchantPanelView> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: AppColors.bg,
-        appBar: AppBar(backgroundColor: Colors.transparent),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: context.pop,
+            style: IconButton.styleFrom(
+              foregroundColor: context.appColors.surface,
+              backgroundColor: context.appColors.navy.withValues(alpha: .7),
+            ),
+            icon: const Icon(AppIcons.arrowBack),
+          ),
+        ),
         bottomNavigationBar: MerchantPanelNavigationBar(
           hasPendingReply: state.hasPendingReply,
         ),

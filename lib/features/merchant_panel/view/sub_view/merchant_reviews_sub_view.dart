@@ -54,6 +54,7 @@ final class _MerchantReviewsSubViewState
       query: reviewsQuery(state.filter),
       padding: const PagePadding.generalAllLow(),
       separator: const EmptyBox.smallHeight(),
+      onEmpty: Center(child: Text(LocaleKeys.message_emptyList.tr())),
       itemBuilder: (context, review) => _MerchantReviewCard(
         review: review,
         isSubmitting: state.replyingVoterUid == review.voterUid,

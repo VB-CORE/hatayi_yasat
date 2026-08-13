@@ -5,11 +5,17 @@ final class _SpeedDialFabWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = SpeedDialChildModelList(context: context).speedDialChildItems;
+    final authState = ref.watch(authViewModelProvider);
+    final hasApplication = authState.hasApplication;
+    final isAuthenticated = authState.isAuthenticated;
+
+    final items = SpeedDialChildModelList(
+      context: context,
+      hasApplication: hasApplication,
+    ).speedDialChildItems;
     final isScrolledBottom = ref
         .watch(mainTabViewModelProvider)
         .isScrolledBottom;
-    final isAuthenticated = ref.watch(authViewModelProvider).isAuthenticated;
 
     return AnimatedScale(
       duration: Durations.medium2,

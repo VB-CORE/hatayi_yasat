@@ -192,17 +192,17 @@ final class _CompanyModeSelector extends StatelessWidget {
       children: [
         Expanded(
           child: _ModeChip(
-            label: LocaleKeys.merchantApplication_modeExisting.tr(),
-            isSelected: !isNewMode,
-            onTap: () => onChanged(false),
+            label: LocaleKeys.merchantApplication_modeNew.tr(),
+            isSelected: isNewMode,
+            onTap: () => onChanged(true),
           ),
         ),
         const EmptyBox.smallWidth(),
         Expanded(
           child: _ModeChip(
-            label: LocaleKeys.merchantApplication_modeNew.tr(),
-            isSelected: isNewMode,
-            onTap: () => onChanged(true),
+            label: LocaleKeys.merchantApplication_modeExisting.tr(),
+            isSelected: !isNewMode,
+            onTap: () => onChanged(false),
           ),
         ),
       ],
