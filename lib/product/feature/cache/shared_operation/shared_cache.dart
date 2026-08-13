@@ -41,6 +41,13 @@ final class SharedCache {
       _sharedOperation.getValue<bool>(SharedKeys.isCompletedOnboarding) ??
       false;
 
+  Future<void> setLoginSeen() async {
+    await _sharedOperation.setValue(SharedKeys.isLoginSeen, true);
+  }
+
+  bool get isLoginSeen =>
+      _sharedOperation.getValue<bool>(SharedKeys.isLoginSeen) ?? false;
+
   int get version =>
       _sharedOperation.getValue<int>(SharedKeys.currentVersion) ?? -1;
 

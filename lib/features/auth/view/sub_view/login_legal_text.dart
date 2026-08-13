@@ -6,11 +6,15 @@ final class _LoginLegalText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        LocaleKeys.auth_legal.tr(),
-        textAlign: TextAlign.center,
-        style: context.general.textTheme.bodySmall?.copyWith(
-          color: context.general.colorScheme.onSurfaceVariant,
+      child: InkWell(
+        onTap: () => unawaited(KvkkCheckBox.navigate(context)),
+        child: Text(
+          LocaleKeys.auth_legal.tr(),
+          textAlign: TextAlign.center,
+          style: context.general.textTheme.bodySmall?.copyWith(
+            color: context.general.colorScheme.onSurfaceVariant,
+            decoration: TextDecoration.underline,
+          ),
         ),
       ),
     );
