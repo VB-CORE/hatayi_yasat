@@ -83,7 +83,7 @@ final class _EditProfilePhotoState extends State<EditProfilePhoto> {
                 child: SizedBox(
                   width: maxRadius * 2,
                   height: maxRadius * 2,
-                  child: Image.asset(type.path, fit: .cover),
+                  child: ClipOval(child: Image.asset(type.path, fit: .cover)),
                 ),
               ),
             ),
