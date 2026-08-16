@@ -12,6 +12,12 @@ analyzer:
     - "lib/generated_plugin_registrant.dart"
     - test
     - assets/translations/
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
 linter:
   rules:

@@ -14,7 +14,6 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
   enable_automatic_code_signing
-
   increment_version_number(
     version_number: VERSION_NUMBER
   )
