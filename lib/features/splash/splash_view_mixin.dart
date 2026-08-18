@@ -65,7 +65,7 @@ mixin SplashViewMixin
       }
 
       if (next.isNeedToOnBoard) {
-        const OnboardRoute().pushReplacement(context);
+        const OnboardRoute().go(context);
         return;
       }
       if (next.isNeedToForceUpdate) {
