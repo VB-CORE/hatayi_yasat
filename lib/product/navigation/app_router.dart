@@ -50,9 +50,6 @@ part 'merchant_guard.dart';
 @TypedGoRoute<SplashRoute>(
   path: '/',
   name: SplashRoute.routeName,
-  routes: [
-    OnboardRoute.route,
-  ],
 )
 final class SplashRoute extends GoRouteData with $SplashRoute {
   const SplashRoute();
@@ -601,13 +598,9 @@ final class DiscussionDetailRoute extends GoRouteData
       DiscussionDetailView(args: $extra);
 }
 
+@TypedGoRoute<OnboardRoute>(path: '/onboard', name: 'Onboard')
 final class OnboardRoute extends GoRouteData with $OnboardRoute {
   const OnboardRoute();
-
-  static const route = TypedGoRoute<OnboardRoute>(
-    path: 'onboard',
-    name: 'Onboard',
-  );
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
