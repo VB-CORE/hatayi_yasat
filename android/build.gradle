@@ -10,6 +10,19 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 
+// Plugins pinned to an old compileSdk (e.g. the in_app_review fork on 33) fail
+// AAR metadata checks against androidx artifacts that require 34+. Raise only
+// those below the floor; plugins already higher (permission_handler on 37) stay.
+// Must be registered before evaluationDependsOn below, which evaluates :app.
+subprojects {
+    afterEvaluate {
+        if (project.hasProperty('android') && project.android.compileSdk != null
+                && project.android.compileSdk < 36) {
+            project.android.compileSdk = 36
+        }
+    }
+}
+
 subprojects {
     project.evaluationDependsOn(':app')
 }
