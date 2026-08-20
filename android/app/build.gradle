@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'dev.flutter.flutter-gradle-plugin'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -28,7 +29,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace 'com.hatayiyasat.appp'
+    namespace 'com.hatayiyasat.app'
     compileSdk 37
     buildToolsVersion '36.0.0'
     ndkVersion '28.2.13676358'
