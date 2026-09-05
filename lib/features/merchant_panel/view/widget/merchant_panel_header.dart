@@ -56,7 +56,6 @@ final class MerchantPanelHeader extends StatelessWidget {
             ),
           ),
         ),
-        
       ],
     );
   }
@@ -136,20 +135,21 @@ final class _MerchantPanelStoreInfo extends StatelessWidget {
                       color: context.appColors.navy500,
                     ),
                   ),
-                Row(
-                  spacing: AppSpacing.xxs,
-                  children: [
-                    Icon(
-                      AppIcons.star,
-                      size: AppIconSizes.xMedium,
-                      color: context.appColors.gold,
-                    ),
-                    Text(
-                      store.averageRatingLabel,
-                      style: AppText.label,
-                    ),
-                  ],
-                ),
+                if (store.hasRating)
+                  Row(
+                    spacing: AppSpacing.xxs,
+                    children: [
+                      Icon(
+                        AppIcons.star,
+                        size: AppIconSizes.xMedium,
+                        color: context.appColors.gold,
+                      ),
+                      Text(
+                        store.averageRatingLabel,
+                        style: AppText.label,
+                      ),
+                    ],
+                  ),
                 StatusPill(store: store),
               ],
             ),

@@ -209,7 +209,7 @@ class _Body extends ConsumerWidget with AppProviderStateMixin {
           const EmptyBox.xxSmallHeight(),
           Row(
             children: [
-              if (model.isCommentEnabled) ...[
+              if (model.isCommentEnabled && model.hasRating) ...[
                 PlaceRatingLabel(
                   rating: model.averageRatingLabel,
                   reviewCount: model.ratingCount,

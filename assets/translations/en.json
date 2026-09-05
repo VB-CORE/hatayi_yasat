@@ -795,6 +795,7 @@
       "visitCount": "Views",
       "reviewCount": "Reviews",
       "averageScore": "Rating",
+      "emptyValue": "—",
       "manageTitle": "Manage",
       "manageReviews": "Manage reviews",
       "manageReviewsSubtitle": "Some reviews are waiting for a reply",

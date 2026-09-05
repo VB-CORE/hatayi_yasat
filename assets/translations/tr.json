@@ -795,6 +795,7 @@
       "visitCount": "Görüntülenme",
       "reviewCount": "Yorum",
       "averageScore": "Puan",
+      "emptyValue": "—",
       "manageTitle": "Yönet",
       "manageReviews": "Yorumları yönet",
       "manageReviewsSubtitle": "Yanıt bekleyen yorumlar var",

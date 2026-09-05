@@ -13,6 +13,7 @@ import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/utility/extension/store_etension.dart';
 import 'package:lifeclient/product/widget/menu/content_menu.dart';
 
 part 'widget/merchant_stat_card.dart';
@@ -27,6 +28,8 @@ final class MerchantDashboardSubView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = state.store;
+
     return Padding(
       padding:
           const PagePadding.horizontalNormalSymmetric() +
@@ -52,7 +55,9 @@ final class MerchantDashboardSubView extends StatelessWidget {
               Expanded(
                 child: _MerchantStatCard(
                   icon: AppIcons.rate,
-                  value: state.store?.averageRatingLabel ?? '0',
+                  value: store != null && store.hasRating
+                      ? store.averageRatingLabel
+                      : LocaleKeys.merchantPanel_dashboard_emptyValue.tr(),
                   label: LocaleKeys.merchantPanel_dashboard_averageScore.tr(),
                 ),
               ),

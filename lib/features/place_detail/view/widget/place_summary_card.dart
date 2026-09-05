@@ -23,7 +23,8 @@ final class PlaceSummaryCard extends ConsumerWidget with AppProviderStateMixin {
       children: [
         _SummaryHeader(store: store, town: town),
         StatusPill(store: store),
-        if (store.isCommentEnabled) _SummaryRatingRow(store: store),
+        if (store.isCommentEnabled && store.hasRating)
+          _SummaryRatingRow(store: store),
         _SummaryActions(store: store, onCall: onCall, onComment: onComment),
       ],
     );
