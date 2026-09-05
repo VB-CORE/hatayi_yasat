@@ -18,12 +18,14 @@ final class GeneralMediaSheet extends StatelessWidget {
   const GeneralMediaSheet({super.key});
 
   static Future<File?> open(BuildContext context) async {
-    return showModalBottomSheet<File?>(
+    final type = await showModalBottomSheet<PhotoPickType>(
       context: context,
       builder: (context) {
         return const GeneralMediaSheet();
       },
     );
+    if (type == null || !context.mounted) return null;
+    return PhotoPickerManager(context: context).pickPhoto(type: type);
   }
 
   @override
@@ -37,26 +39,12 @@ final class GeneralMediaSheet extends StatelessWidget {
             ListTile(
               leading: const Icon(AppIcons.camera),
               title: const Text(LocaleKeys.component_picker_camera).tr(),
-              onTap: () async {
-                final file = await PhotoPickerManager(context: context)
-                    .pickPhoto(type: PhotoPickType.camera);
-
-                if (file == null) return;
-                if (!context.mounted) return;
-                await context.route.pop(file);
-              },
+              onTap: () => context.route.pop(PhotoPickType.camera),
             ),
             ListTile(
               leading: const Icon(AppIcons.gallery),
               title: const Text(LocaleKeys.component_picker_gallery).tr(),
-              onTap: () async {
-                final file = await PhotoPickerManager(context: context)
-                    .pickPhoto(type: PhotoPickType.gallery);
-
-                if (file == null) return;
-                if (!context.mounted) return;
-                await context.route.pop(file);
-              },
+              onTap: () => context.route.pop(PhotoPickType.gallery),
             ),
           ],
         ),

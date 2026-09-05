@@ -41,6 +41,7 @@ final class PhotoPickerManager {
     } on PlatformException catch (e) {
       await _handlePickerError(e.code);
     }
+    if (type == PhotoPickType.camera) mediaFile ??= await _retrieveLostFile();
     if (mediaFile == null) return null;
 
     final croppedFile = await ImageCropper().cropImage(
@@ -68,6 +69,18 @@ final class PhotoPickerManager {
     return latestFile;
   }
 
+  Future<XFile?> _retrieveLostFile() async {
+    if (!Platform.isAndroid) return null;
+    final response = await _picker.retrieveLostData();
+    if (response.isEmpty) return null;
+    final exception = response.exception;
+    if (exception != null) {
+      await _handlePickerError(exception.code);
+      return null;
+    }
+    return response.file;
+  }
+
   Future<File> createFile(String path) async {
     final file = File(path);
     if (!file.existsSync()) {
@@ -79,7 +92,7 @@ final class PhotoPickerManager {
   Future<void> _handlePickerError(String message) async {
     final type = PlatformExceptionEnum.fromValue(message);
 
-    if (type == null) return;
+    if (type == null || !context.mounted) return;
 
     /// now only support access denied
     final response = await ApproveDialog.showWithKey(
