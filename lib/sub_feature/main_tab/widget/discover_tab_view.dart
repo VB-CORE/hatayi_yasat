@@ -55,6 +55,14 @@ final class DiscoverTabView extends StatelessWidget {
                   LocaleKeys.navigationTabs_exploreMenu_linksDescription,
               destination: () => const UsefulLinksRoute().go(context),
             ),
+            _DiscoverTabItem(
+              icon: AppIcons.photoLibrary,
+              iconBackgroundColor: context.appColors.gold,
+              itemLabel: LocaleKeys.navigationTabs_memories,
+              descriptionLabel:
+                  LocaleKeys.navigationTabs_exploreMenu_memoriesDescription,
+              destination: () => const MemoriesRoute().go(context),
+            ),
           ],
         ),
       ),

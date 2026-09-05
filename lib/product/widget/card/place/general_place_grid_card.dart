@@ -205,7 +205,7 @@ class _GridBody extends ConsumerWidget with AppProviderStateMixin {
               ),
             ],
           ),
-          if (model.isCommentEnabled) ...[
+          if (model.isCommentEnabled && model.hasRating) ...[
             const EmptyBox.xSmallHeight(),
             PlaceRatingLabel(
               rating: model.averageRatingLabel,

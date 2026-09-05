@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_mixin.dart';
+import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/features/main/history/history_view_mixin.dart';
 import 'package:lifeclient/features/main/history/provider/history_view_model.dart';
 import 'package:lifeclient/features/main/history/widget/history_favorite_view.dart';
@@ -14,6 +15,7 @@ import 'package:lifeclient/product/package/image/custom_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/widget/app_bar/discover_section_app_bar.dart';
 import 'package:lifeclient/product/widget/builder/firestore_grid_view.dart';
 import 'package:lifeclient/product/widget/general/general_not_found_widget.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
@@ -32,29 +34,29 @@ class _HistoryViewState extends ConsumerState<HistoryView>
   @override
   Widget build(BuildContext context) {
     return GeneralScaffold(
+      appBar: DiscoverSectionAppBar(
+        title: LocaleKeys.navigationTabs_memories,
+        subtitle: LocaleKeys.navigationTabs_exploreMenu_memoriesDescription
+            .tr(),
+        accentColor: context.appColors.gold,
+      ),
       body: const _HistoryGridBuilder(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
-          bottom: AppIconSizes.xLarge * 2.5,
-        ),
-        child: Column(
-          spacing: AppIconSizes.smallX,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              heroTag: HeroTags.memoryFavorite.name,
-              onPressed: () =>
-                  context.route.navigateToPage(const HistoryFavoriteSheet()),
-              child: const Icon(AppIcons.favorite),
-            ),
-            FloatingActionButton(
-              onPressed: openGoogleForm,
-              child: const Icon(Icons.add_a_photo_outlined),
-            ),
-          ],
-        ),
+      floatingActionButton: Column(
+        spacing: AppIconSizes.smallX,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: HeroTags.memoryFavorite.name,
+            onPressed: () =>
+                context.route.navigateToPage(const HistoryFavoriteSheet()),
+            child: const Icon(AppIcons.favorite),
+          ),
+          FloatingActionButton(
+            onPressed: openGoogleForm,
+            child: const Icon(Icons.add_a_photo_outlined),
+          ),
+        ],
       ),
     );
   }
