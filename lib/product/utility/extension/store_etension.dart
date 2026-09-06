@@ -22,7 +22,8 @@ extension StoreModelExtension on StoreModel {
   bool get hasMap => hasAddress && latLong != null;
 
   bool get hasContactInfo => hasPhone || hasAddress || hasMap;
- 
+
+  bool get hasRating => ratingCount > 0;
 
   static Map<String, Object?> updateFields({
     String? name,

@@ -11,6 +11,7 @@ import 'package:lifeclient/features/community/group_detail/group_detail_view.dar
 import 'package:lifeclient/features/details/view/event_detail_view.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
 import 'package:lifeclient/features/main/event/view/event_view.dart';
+import 'package:lifeclient/features/main/history/history_view.dart';
 import 'package:lifeclient/features/main/news_jobs/view/news_jobs_view.dart';
 import 'package:lifeclient/features/main/profile/view/edit/edit_profile_view.dart';
 import 'package:lifeclient/features/main/settings/view/settings_view.dart';
@@ -75,6 +76,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     SavedNewsRoute.route,
     SpecialAgencyRoute.route,
     AdvertisementsRoute.route,
+    MemoriesRoute.route,
     PlaceDetailRoute.route,
     NewsJobsRoute.route,
     FilterRoute.route,
@@ -334,6 +336,19 @@ final class AdvertisementsRoute extends GoRouteData with $AdvertisementsRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const AdvertisementBoardView();
+}
+
+final class MemoriesRoute extends GoRouteData with $MemoriesRoute {
+  const MemoriesRoute();
+
+  static const route = TypedGoRoute<MemoriesRoute>(
+    path: 'memories',
+    name: 'Memories',
+  );
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const HistoryView();
 }
 
 final class ChainStoresRoute extends GoRouteData with $ChainStoresRoute {

@@ -64,77 +64,99 @@ final class _MerchantApplicationViewState
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: onPopInvoked,
-      child: IgnorePointer(
-        ignoring: state.isSubmitting,
-        child: Scaffold(
-          body: SafeArea(
-            child: Column(
-              children: [
-                MerchantStepIndicator(
-                  currentStep: state.currentStep.index,
-                  stepCount: MerchantApplicationState.stepCount,
-                  title: state.currentStep.titleKey.tr(),
-                  onClose: onClosePressed,
-                ),
-                Expanded(
-                  child: PageView(
-                    controller: pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      _MerchantCompanyStep(
-                        formKey: companyFormKey,
-                        nameController: placeNameController,
-                        descriptionController: placeDescriptionController,
-                      ),
-                      _MerchantMediaStep(
-                        formKey: mediaFormKey,
-                        addressController: addressController,
-                        openTimeController: openTimeController,
-                        closeTimeController: closeTimeController,
-                      ),
-                      _MerchantOwnerStep(
-                        formKey: ownerFormKey,
-                        nameController: placeOwnerNameController,
-                        phoneController: phoneNumberController,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          bottomNavigationBar: SafeArea(
-            child: Padding(
-              padding: const PagePadding.defaultPadding(),
-              child: IntrinsicHeight(
-                child: Row(
+      child: Stack(
+        children: [
+          IgnorePointer(
+            ignoring: state.isSubmitting,
+            child: Scaffold(
+              body: SafeArea(
+                child: Column(
                   children: [
-                    if (!state.isFirstStep) ...[
-                      Expanded(
-                        child: GeneralButtonV2.active(
-                          label: LocaleKeys.merchantApplication_back.tr(),
-                          isBorderless: true,
-                          action: onBackPressed,
-                        ),
-                      ),
-                      const SizedBox(width: WidgetSizes.spacingM),
-                    ],
+                    MerchantStepIndicator(
+                      currentStep: state.currentStep.index,
+                      stepCount: MerchantApplicationState.stepCount,
+                      title: state.currentStep.titleKey.tr(),
+                      onClose: onClosePressed,
+                    ),
                     Expanded(
-                      flex: 2,
-                      child: GeneralButtonV2.active(
-                        label: state.isLastStep
-                            ? LocaleKeys.merchantApplication_submit.tr()
-                            : LocaleKeys.merchantApplication_next.tr(),
-                        action: onNextPressed,
+                      child: PageView(
+                        controller: pageController,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          _MerchantCompanyStep(
+                            formKey: companyFormKey,
+                            nameController: placeNameController,
+                            descriptionController: placeDescriptionController,
+                          ),
+                          _MerchantMediaStep(
+                            formKey: mediaFormKey,
+                            addressController: addressController,
+                            openTimeController: openTimeController,
+                            closeTimeController: closeTimeController,
+                          ),
+                          _MerchantOwnerStep(
+                            formKey: ownerFormKey,
+                            nameController: placeOwnerNameController,
+                            phoneController: phoneNumberController,
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ).ext.toDisabled(disable: state.isSubmitting, opacity: 0.5),
+              ),
+              bottomNavigationBar: SafeArea(
+                child: Padding(
+                  padding: const PagePadding.defaultPadding(),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        if (!state.isFirstStep) ...[
+                          Expanded(
+                            child: GeneralButtonV2.active(
+                              label: LocaleKeys.merchantApplication_back.tr(),
+                              isBorderless: true,
+                              action: onBackPressed,
+                            ),
+                          ),
+                          const SizedBox(width: WidgetSizes.spacingM),
+                        ],
+                        Expanded(
+                          flex: 2,
+                          child: GeneralButtonV2.active(
+                            label: state.isLastStep
+                                ? LocaleKeys.merchantApplication_submit.tr()
+                                : LocaleKeys.merchantApplication_next.tr(),
+                            action: onNextPressed,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ).ext.toDisabled(disable: state.isSubmitting, opacity: 0.5),
+                ),
+              ),
             ),
           ),
-        ),
+          if (state.isSubmitting)
+            const Positioned.fill(child: _MerchantSubmitOverlay()),
+        ],
       ),
+    );
+  }
+}
+
+final class _MerchantSubmitOverlay extends StatelessWidget {
+  const _MerchantSubmitOverlay();
+
+  static const double _scrimOpacity = 0.4;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: context.general.colorScheme.scrim.withValues(
+        alpha: _scrimOpacity,
+      ),
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }
