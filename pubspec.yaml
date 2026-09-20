@@ -26,7 +26,6 @@ dependencies:
   responsive_builder: ^0.7.0
   responsive_framework: ^1.1.0
   syncfusion_flutter_pdfviewer: ^33.2.13
-  webview_flutter: ^4.0.2
 
   #third-party
   app_settings: ^8.0.3
@@ -68,6 +67,7 @@ dependencies:
   share_plus: ^12.0.2
   screenshot: ^3.0.0
   path_provider: ^2.1.1
+  package_info_plus: ^8.3.1
   add_2_calendar: ^3.1.1
   in_app_review:
     git:
@@ -150,6 +150,11 @@ flutter_launcher_icons:
   image_path: "assets/app/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/app/app_icon.png"
+    background_color: "#0F2A47"
+    theme_color: "#0F2A47"
 
 scripts:
   lang: flutter pub run easy_localization:generate  -O lib/product/init/language -f keys -o locale_keys.g.dart --source-dir assets/translations

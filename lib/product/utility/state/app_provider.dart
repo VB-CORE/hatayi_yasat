@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,20 +15,19 @@ final class AppProvider extends Notifier<AppProviderState>
     with AppProviderOperationMixin {
   AppProvider();
 
-  Future<void> init() async => {
-    await _checkDeviceId(),
-  };
-
   ThemeMode get currentThemeMode => state.theme;
 
   Future<void> _checkDeviceId() async {
+    final deviceID = await _readDeviceId();
+    state = state.copyWith(deviceID: deviceID);
+  }
+
+  Future<String> _readDeviceId() async {
+    if (kIsWeb) return kWeb;
     try {
-      final deviceID = kIsWeb
-          ? kWeb
-          : await DeviceUtility.instance.getUniqueDeviceId();
-      state = state.copyWith(deviceID: deviceID);
+      return await DeviceUtility.instance.getUniqueDeviceId();
     } on Object {
-      state = state.copyWith(deviceID: kWeb);
+      return kWeb;
     }
   }
 
@@ -43,6 +44,7 @@ final class AppProvider extends Notifier<AppProviderState>
 
   @override
   AppProviderState build() {
+    unawaited(_checkDeviceId());
     return AppProviderState(
       theme: SharedCache.instance.theme,
     );

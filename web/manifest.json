@@ -1,0 +1,35 @@
+{
+    "name": "Hatayı Yaşat",
+    "short_name": "Hatayı Yaşat",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0F2A47",
+    "theme_color": "#0F2A47",
+    "description": "Şehrin esnafı, topluluğu ve hafızası tek uygulamada. Yeniden ayağa kalkan Hatay'ı birlikte yaşatalım.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

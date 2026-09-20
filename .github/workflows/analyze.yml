@@ -31,3 +31,6 @@ jobs:
 
       - name: Run Flutter Analyze
         run: bash ./scripts/analyze_ci.sh
+
+      - name: Build Web
+        run: flutter build web --release

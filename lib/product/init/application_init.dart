@@ -8,7 +8,6 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
@@ -29,7 +28,6 @@ final class ApplicationInit {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
     await _setRotation();
-    await DeviceUtility.instance.initPackageInfo();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -65,6 +63,9 @@ final class ApplicationInit {
   }
 
   void _bindErrorHandlers() {
+    // firebase_crashlytics ve dart:isolate web'de yok; WEB-35 (#516).
+    if (kIsWeb) return;
+
     FlutterError.onError = (errorDetails) {
       // Without this the console stack trace and red error screen are lost.
       FlutterError.presentError(errorDetails);
