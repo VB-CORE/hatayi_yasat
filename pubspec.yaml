@@ -2,7 +2,7 @@ name: lifeclient
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 8.3.1
+version: 8.3.5
 
 environment:
   sdk: ^3.10.7
@@ -44,16 +44,17 @@ dependencies:
   flutter_svg: ^2.0.9
 
   #firebase
-  firebase_core: ^4.13.0
-  firebase_storage: ^13.4.6
-  firebase_remote_config: ^6.5.6
-  firebase_analytics: ^12.4.6
-  firebase_messaging: ^16.5.0
-  cloud_firestore: ^6.8.0
-  firebase_crashlytics: ^5.2.7
+  firebase_core: ^4.14.0
+  firebase_storage: ^13.5.0
+  firebase_remote_config: ^6.6.0
+  firebase_analytics: ^12.5.0
+  firebase_messaging: ^16.6.0
+  cloud_firestore: ^6.9.0
+  firebase_crashlytics: ^5.3.0
   firebase_ui_firestore: ^2.1.0
-  cloud_functions: ^6.3.6
-  firebase_auth: ^6.5.7
+  cloud_functions: ^6.4.0
+  firebase_auth: ^6.6.1
+  firebase_app_check: ^0.4.7
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^8.1.0
   crypto: ^3.0.6
