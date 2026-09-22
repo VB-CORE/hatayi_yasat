@@ -96,14 +96,17 @@ ios/Pods/Pods.xcodeproj/xcuserdata/
 # Local emulator kit (should not be pushed)
 mobile-emulator-kit/
 
-# Unused platforms — this app ships android + ios only. `flutter run` and
+# Unused platforms — this app ships android, ios and web. `flutter run` and
 # `flutter create` regenerate these folders locally; they are not part of the
 # project and must stay out of every diff.
 /linux/
 /macos/
 /windows/
-/web/
 
 # FVM Version 
 .fvm/ 
 .fvmrc
+
+# Firebase CLI runtime leftovers
+firepit-log.txt
+firestore-debug.log

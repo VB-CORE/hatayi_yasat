@@ -1,10 +1,21 @@
 {
-  "storage": {
-    "rules": "firebase/fire_storage.rules"
-  },
-  "firestore": {
-    "rules": "firebase/firestore.rules"
-  },
+  "hosting": [
+    {
+      "target": "app",
+      "public": "build/web",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ],
   "emulators": {
     "auth": {
       "port": 3000,
@@ -23,5 +34,34 @@
     },
     "exportOnExit": "./emulator-data",
     "importOnStart": "./emulator-data"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "savehatay",
+          "appId": "1:128619632572:android:deb8dc72bddd03c8c6bdb9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "savehatay",
+          "appId": "1:128619632572:ios:38588d72e15e331cc6bdb9",
+          "uploadDebugSymbols": true,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "savehatay",
+          "configurations": {
+            "android": "1:128619632572:android:deb8dc72bddd03c8c6bdb9",
+            "ios": "1:128619632572:ios:38588d72e15e331cc6bdb9",
+            "web": "1:128619632572:web:2c62de8037f21ea0c6bdb9"
+          }
+        }
+      }
+    }
   }
 }

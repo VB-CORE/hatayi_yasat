@@ -1,11 +1,13 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
-import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/utility/device/device_id_reader_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/utility/device/device_id_reader_web.dart';
+import 'package:lifeclient/product/utility/generator/uuid_generator.dart';
 import 'package:lifeclient/product/utility/state/items/app_provider_state.dart';
 import 'package:lifeclient/product/utility/state/mixin/app_provider_mixin.dart';
 
@@ -13,21 +15,25 @@ final class AppProvider extends Notifier<AppProviderState>
     with AppProviderOperationMixin {
   AppProvider();
 
-  Future<void> init() async => {
-    await _checkDeviceId(),
-  };
-
   ThemeMode get currentThemeMode => state.theme;
 
   Future<void> _checkDeviceId() async {
+    final deviceID = await _readDeviceId();
+    state = state.copyWith(deviceID: deviceID);
+  }
+
+  Future<String> _readDeviceId() async {
     try {
-      final deviceID = kIsWeb
-          ? kWeb
-          : await DeviceUtility.instance.getUniqueDeviceId();
-      state = state.copyWith(deviceID: deviceID);
-    } on Object {
-      state = state.copyWith(deviceID: kWeb);
+      final platformId = await const PlatformDeviceIdReader().read();
+      if (platformId != null && platformId.isNotEmpty) return platformId;
+    } on Object catch (error, stackTrace) {
+      ProjectDependencyItems.analyticsService.recordError(
+        error,
+        stackTrace,
+        reason: 'device_id.platform_read',
+      );
     }
+    return UuidGenerator.generate();
   }
 
   /// change app theme for light and dark mode
@@ -43,6 +49,7 @@ final class AppProvider extends Notifier<AppProviderState>
 
   @override
   AppProviderState build() {
+    unawaited(_checkDeviceId());
     return AppProviderState(
       theme: SharedCache.instance.theme,
     );

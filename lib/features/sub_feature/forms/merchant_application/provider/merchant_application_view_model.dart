@@ -229,12 +229,14 @@ final class MerchantApplicationViewModel extends _$MerchantApplicationViewModel
   Future<UserApplicationModel?> _sendApplication(
     MerchantApplicationModel model,
   ) async {
+    final deviceId = ref.read(appProviderState).deviceID;
+    if (deviceId.isEmpty) return null;
+
     final images = await _uploadImages(model);
     if (images == null) return null;
     final documentUrl = await _uploadDocument(model.documentFile);
     if (documentUrl == null) return null;
 
-    final deviceId = await ''.ext.deviceId;
     final now = DateTime.now();
     final storeReference = CollectionPaths.unApprovedApplications.collection
         .doc();

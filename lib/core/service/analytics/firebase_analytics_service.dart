@@ -13,10 +13,13 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     FirebaseAnalytics? analytics,
     FirebaseCrashlytics? crashlytics,
   }) : _analytics = analytics ?? FirebaseAnalytics.instance,
-       _crashlytics = crashlytics ?? FirebaseCrashlytics.instance;
+       _crashlytics =
+           crashlytics ?? (kIsWeb ? null : FirebaseCrashlytics.instance);
 
   final FirebaseAnalytics _analytics;
-  final FirebaseCrashlytics _crashlytics;
+
+  /// firebase_crashlytics web'i desteklemez; web kanalı WEB-35 (#516) ile.
+  final FirebaseCrashlytics? _crashlytics;
 
   /// Debug builds share the single production Firebase project, so collection
   /// stays off unless a developer opts in with
@@ -35,7 +38,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     if (!isEnabled) return;
     final payload = _sanitize(parameters);
     _fireAndForget(event.key, () async {
-      await _crashlytics.log(
+      await _crashlytics?.log(
         payload.isEmpty ? event.key : '${event.key} $payload',
       );
       await _analytics.logEvent(
@@ -49,7 +52,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
   void logScreenView(String screenName) {
     if (!isEnabled) return;
     _fireAndForget('screen_view', () async {
-      await _crashlytics.log('screen_view $screenName');
+      await _crashlytics?.log('screen_view $screenName');
       await _analytics.logScreenView(screenName: screenName);
     });
   }
@@ -61,7 +64,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     final uid = user?.uid.isNotEmpty ?? false ? user!.uid : null;
     _fireAndForget('set_user', () async {
       await _analytics.setUserId(id: uid);
-      await _crashlytics.setUserIdentifier(uid ?? '');
+      await _crashlytics?.setUserIdentifier(uid ?? '');
     });
 
     setUserProperty(AnalyticsUserProperty.authStatus, status.key);
@@ -77,7 +80,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     if (!isEnabled) return;
     _fireAndForget(property.key, () async {
       await _analytics.setUserProperty(name: property.key, value: value);
-      await _crashlytics.setCustomKey(property.key, value ?? '');
+      await _crashlytics?.setCustomKey(property.key, value ?? '');
     });
   }
 
@@ -90,7 +93,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
   }) {
     if (!isEnabled) return;
     _fireAndForget('record_error', () async {
-      await _crashlytics.recordError(
+      await _crashlytics?.recordError(
         error,
         stackTrace,
         fatal: fatal,
@@ -102,7 +105,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
   @override
   Future<void> setCollectionEnabled({required bool enabled}) async {
     await _analytics.setAnalyticsCollectionEnabled(enabled);
-    await _crashlytics.setCrashlyticsCollectionEnabled(enabled);
+    await _crashlytics?.setCrashlyticsCollectionEnabled(enabled);
   }
 
   /// Runs [action] detached from the caller.
@@ -132,7 +135,7 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     if (_isReportingFailure) return;
     _isReportingFailure = true;
     try {
-      await _crashlytics.recordError(
+      await _crashlytics?.recordError(
         error,
         stackTrace,
         reason: 'analytics.$operation',

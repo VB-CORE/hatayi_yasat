@@ -41,10 +41,7 @@ mixin SplashViewMixin
     _controller = AnimationController(vsync: this);
 
     _homeProvider = NotifierProvider(
-      () => SplashViewModel(
-        appProvider: appProvider,
-        productProvider: productProvider,
-      ),
+      () => SplashViewModel(productProvider: productProvider),
     );
 
     ref.listenManual(_homeProvider, (previous, next) async {

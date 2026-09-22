@@ -141,6 +141,12 @@ The app is live on [Google Play](https://play.google.com/store/apps/details?id=c
 - **cloud_functions**: ^6.3.6 — the client calls callable functions (search); the function
   source is not hosted in this repository
 
+> **Firestore/Storage rules and indexes live in the `life_admin` repository** (under
+> `firebase/`) and are deployed from there, because both apps share the same `savehatay`
+> project. `firebase.json` in this repo therefore declares no `firestore`/`storage` block.
+> Any change that opens a new write path from this client must ship with the matching rules
+> change in `life_admin` in the same PR. See CLAUDE.md § 3.
+
 ### Navigation & Routing
 - **go_router**: ^17.0.1 with **go_router_builder**: ^4.1.3 — typed routes via code generation
 
@@ -585,6 +591,11 @@ cd ios
 rm -rf Pods Podfile.lock
 pod install
 cd ..
+```
+
+**For Web**:
+```bash
+flutter run -d chrome
 ```
 
 **For a specific device**:

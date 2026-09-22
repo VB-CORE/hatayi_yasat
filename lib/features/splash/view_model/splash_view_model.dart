@@ -3,21 +3,15 @@ import 'dart:async';
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
 import 'package:lifeclient/product/package/checker/network_checker.dart';
-import 'package:lifeclient/product/utility/state/app_provider.dart';
 import 'package:lifeclient/product/utility/state/product_provider.dart';
 import 'package:lifeclient/product/utility/validator/version_validator.dart';
 import 'package:riverpod/riverpod.dart';
 
 class SplashViewModel extends Notifier<SplashState> {
-  SplashViewModel({required this.productProvider, required this.appProvider}) {
-    unawaited(_controlApplication());
-  }
+  SplashViewModel({required this.productProvider});
   final ProductProvider productProvider;
-  final AppProvider appProvider;
 
   Future<void> _controlApplication() async {
-    await appProvider.init();
-
     if (!await _isConnectedToInternet()) {
       state = state.copyWith(isConnectedToInternet: false);
       return;
@@ -33,7 +27,7 @@ class SplashViewModel extends Notifier<SplashState> {
       state = state.copyWith(isNeedToOnBoard: true);
       return;
     }
-    if (_isNeedToForceUpdate()) {
+    if (await _isNeedToForceUpdate()) {
       state = state.copyWith(isNeedToForceUpdate: true);
       return;
     }
@@ -44,7 +38,7 @@ class SplashViewModel extends Notifier<SplashState> {
   bool _isCompletedOnboardingCheck() =>
       SharedCache.instance.isCompletedOnboarding;
 
-  bool _isNeedToForceUpdate() => VersionValidator.check();
+  Future<bool> _isNeedToForceUpdate() => VersionValidator.check();
 
   Future<bool> _isConnectedToInternet() => NetworkChecker.checkConnection();
 
@@ -55,6 +49,7 @@ class SplashViewModel extends Notifier<SplashState> {
 
   @override
   SplashState build() {
+    unawaited(_controlApplication());
     return const SplashState(isOperationStaring: true);
   }
 }

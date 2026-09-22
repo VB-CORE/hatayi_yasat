@@ -16,10 +16,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -57,7 +54,6 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
     storageBucket: 'savehatay.appspot.com',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDy0ND6I8WABYRgWmoqkSgHKV9dZ_r1FOE',
     appId: '1:128619632572:ios:38588d72e15e331cc6bdb9',
@@ -68,7 +64,17 @@ class DefaultFirebaseOptions {
     androidClientId:
         '128619632572-50nc245ghr0emi8dadr8a5leril7dodi.apps.googleusercontent.com',
     iosClientId:
-        '128619632572-rc594ocdb393i2000je814298sqr623d.apps.googleusercontent.com',
+        '128619632572-csqikuhpsmfs6clp871l2ve1d7vqp6hf.apps.googleusercontent.com',
     iosBundleId: 'com.hatayiyasat.app',
+  );
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA9UTPIr0tMhd3Tjuc7LT0eFZ94PEUrIxE',
+    appId: '1:128619632572:web:2c62de8037f21ea0c6bdb9',
+    messagingSenderId: '128619632572',
+    projectId: 'savehatay',
+    authDomain: 'savehatay.firebaseapp.com',
+    databaseURL: 'https://savehatay-default-rtdb.firebaseio.com',
+    storageBucket: 'savehatay.appspot.com',
+    measurementId: 'G-866ZZMXD84',
   );
 }

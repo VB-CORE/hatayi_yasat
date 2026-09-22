@@ -1,16 +1,15 @@
 import 'package:hive_ce/hive.dart';
 import 'package:lifeclient/product/feature/cache/cache_manager.dart';
 import 'package:lifeclient/product/feature/cache/hive_v2/hive_registrar.g.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:lifeclient/product/feature/cache/hive_v2/home_path/hive_home_path_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/feature/cache/hive_v2/home_path/hive_home_path_web.dart';
 
 final class HiveCacheManager extends CacheManager {
   HiveCacheManager({super.path});
 
   @override
   Future<void> init() async {
-    final directoryPath =
-        path ?? (await getApplicationDocumentsDirectory()).path;
-    Hive.init(directoryPath);
+    Hive.init(path ?? await const PlatformHiveHomePath().resolve());
 
     _register();
   }
