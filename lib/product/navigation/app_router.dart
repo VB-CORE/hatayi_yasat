@@ -54,14 +54,17 @@ part 'merchant_guard.dart';
   name: SplashRoute.routeName,
 )
 final class SplashRoute extends GoRouteData with $SplashRoute {
-  const SplashRoute();
+  const SplashRoute({this.from});
 
   /// Root path, so it is also the fallback screen name analytics falls back to
   /// when a route pattern normalises to nothing.
   static const String routeName = 'Splash';
 
+  final String? from;
+
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SplashView();
+  Widget build(BuildContext context, GoRouterState state) =>
+      SplashView(from: from);
 }
 
 @TypedGoRoute<MainTabRoute>(

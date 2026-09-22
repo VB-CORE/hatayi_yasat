@@ -16,7 +16,9 @@ import 'package:lifeclient/product/widget/general/semantics/general_semantic.dar
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 
 class SplashView extends ConsumerStatefulWidget {
-  const SplashView({super.key});
+  const SplashView({super.key, this.from});
+
+  final String? from;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SplashViewState();

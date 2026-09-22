@@ -12,6 +12,9 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
   late CacheOperation<StoreModelCache> storeModelCache;
   late CacheOperation<AppCacheModel> appModelCache;
 
+  bool _isInitialized = false;
+  bool get isInitialized => _isInitialized;
+
   List<RegionalCityModel> get regionalCities => state.regionalCityItems;
   List<RegionalTownSubItem> get regionalTowns {
     final selectedCity = state.selectedCity;
@@ -52,6 +55,7 @@ mixin ProductProviderOperationMixin on Notifier<ProductProviderState> {
             .map((e) => e.storeModel)
             .toList(),
       );
+      _isInitialized = true;
       return true;
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
