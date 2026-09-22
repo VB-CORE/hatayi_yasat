@@ -21,3 +21,7 @@ final class SignInFailure extends SignInResult {
 
   final SignInError reason;
 }
+
+final class SignInRedirecting extends SignInResult {
+  const SignInRedirecting();
+}

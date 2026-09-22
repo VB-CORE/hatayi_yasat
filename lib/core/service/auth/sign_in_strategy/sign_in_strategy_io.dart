@@ -74,6 +74,9 @@ final class PlatformSignInStrategy implements SignInStrategy {
     AuthProvider.apple => defaultTargetPlatform == TargetPlatform.iOS,
   };
 
+  @override
+  Future<SignInAttempt?> completeRedirect() async => null;
+
   SignInError _reasonFor(Object error) =>
       error is SocketException ? SignInError.network : _errors.reasonFor(error);
 

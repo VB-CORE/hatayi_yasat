@@ -17,7 +17,12 @@ final class PlatformSignInStrategy implements SignInStrategy {
     'popup-closed-by-user',
     'cancelled-popup-request',
     'user-cancelled',
+    'redirect-cancelled-by-user',
   };
+
+  static const _popupBlocked = 'popup-blocked';
+
+  static const _redirectGrace = Duration(seconds: 5);
 
   static const _errors = SignInErrorMapper();
 
@@ -35,6 +40,7 @@ final class PlatformSignInStrategy implements SignInStrategy {
       if (_cancelCodes.contains(error.code)) {
         return const SignInAttemptCancelled();
       }
+      if (error.code == _popupBlocked) return _redirect(identityProvider);
       return _failed(error, stackTrace);
     } on Object catch (error, stackTrace) {
       return _failed(error, stackTrace);
@@ -46,6 +52,48 @@ final class PlatformSignInStrategy implements SignInStrategy {
 
   @override
   bool supports(AuthProvider provider) => true;
+
+  @override
+  Future<SignInAttempt?> completeRedirect() async {
+    try {
+      final result = await _auth.getRedirectResult();
+      if (result.user == null) return null;
+      return SignInAttemptSucceeded(
+        result,
+        provider: _providerOf(
+          result.additionalUserInfo?.providerId ??
+              result.credential?.providerId,
+        ),
+      );
+    } on FirebaseAuthException catch (error, stackTrace) {
+      final provider = _providerOf(error.credential?.providerId);
+      if (_cancelCodes.contains(error.code)) {
+        return SignInAttemptCancelled(provider: provider);
+      }
+      return _failed(error, stackTrace, provider: provider);
+    } on Object catch (error, stackTrace) {
+      return _failed(error, stackTrace);
+    }
+  }
+
+  Future<SignInAttempt> _redirect(
+    firebase.AuthProvider identityProvider,
+  ) async {
+    try {
+      await _auth
+          .signInWithRedirect(identityProvider)
+          .timeout(_redirectGrace, onTimeout: () {});
+      return const SignInAttemptRedirecting();
+    } on Object catch (error, stackTrace) {
+      return _failed(error, stackTrace);
+    }
+  }
+
+  AuthProvider? _providerOf(String? providerId) => switch (providerId) {
+    'google.com' => AuthProvider.google,
+    'apple.com' => AuthProvider.apple,
+    _ => null,
+  };
 
   firebase.AuthProvider _identityProviderFor(AuthProvider provider) =>
       switch (provider) {
@@ -69,11 +117,15 @@ final class PlatformSignInStrategy implements SignInStrategy {
     _ => _errors.reasonFor(error),
   };
 
-  SignInAttemptFailed _failed(Object error, StackTrace stackTrace) =>
-      SignInAttemptFailed(
-        error,
-        stackTrace,
-        reason: _reasonFor(error),
-        code: _errors.codeOf(error),
-      );
+  SignInAttemptFailed _failed(
+    Object error,
+    StackTrace stackTrace, {
+    AuthProvider? provider,
+  }) => SignInAttemptFailed(
+    error,
+    stackTrace,
+    reason: _reasonFor(error),
+    code: _errors.codeOf(error),
+    provider: provider,
+  );
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
@@ -22,13 +21,7 @@ mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
     unawaited(SharedCache.instance.setLoginSeen());
     ref.listenManual<AuthState>(authViewModelProvider, (previous, next) {
       if (next is! AuthError) return;
-      final provider = next.provider;
-      final message = provider == null
-          ? next.message.tr()
-          : next.message.tr(
-              namedArgs: {AuthProvider.argKey: provider.displayName},
-            );
-      appProvider.showSnackbarMessage(message);
+      appProvider.showSnackbarMessage(next.localizedMessage);
     });
   }
 

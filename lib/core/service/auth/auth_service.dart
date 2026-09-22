@@ -1,5 +1,6 @@
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/redirect_sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 
 abstract interface class AuthService {
@@ -8,4 +9,5 @@ abstract interface class AuthService {
   Future<SignInResult> signIn(AuthProvider provider);
   Future<void> signOut();
   bool supports(AuthProvider provider);
+  Future<RedirectSignInResult?> completeRedirectSignIn();
 }

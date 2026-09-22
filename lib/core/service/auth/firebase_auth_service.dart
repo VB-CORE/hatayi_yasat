@@ -12,6 +12,7 @@ import 'package:lifeclient/core/service/auth/sign_in_strategy/sign_in_strategy_i
     if (dart.library.js_interop) 'package:lifeclient/core/service/auth/sign_in_strategy/sign_in_strategy_web.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/redirect_sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_attempt.dart';
 import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
@@ -79,6 +80,8 @@ final class FirebaseAuthService implements AuthService {
       )) {
         case SignInAttemptCancelled():
           return const SignInCancelled();
+        case SignInAttemptRedirecting():
+          return const SignInRedirecting();
         case SignInAttemptFailed(
           :final error,
           :final stackTrace,
@@ -128,14 +131,30 @@ final class FirebaseAuthService implements AuthService {
     required SignInError reason,
     required String code,
   }) async {
+    _report(
+      'signIn(${provider.name})',
+      error,
+      stackTrace,
+      reason: reason,
+      code: code,
+    );
+    await signOut();
+    return SignInFailure(reason);
+  }
+
+  void _report(
+    String operation,
+    Object error,
+    StackTrace stackTrace, {
+    required SignInError reason,
+    required String code,
+  }) {
     CustomLogger.showError<void>(error);
     _analyticsService.recordError(
       error,
       stackTrace,
-      reason: 'signIn(${provider.name}) -> ${reason.name}: $code',
+      reason: '$operation -> ${reason.name}: $code',
     );
-    await signOut();
-    return SignInFailure(reason);
   }
 
   /// Firebase accepted the credential but produced no user. Nothing the person
@@ -162,6 +181,59 @@ final class FirebaseAuthService implements AuthService {
 
   @override
   bool supports(AuthProvider provider) => _strategy.supports(provider);
+
+  @override
+  Future<RedirectSignInResult?> completeRedirectSignIn() async {
+    try {
+      return switch (await _strategy.completeRedirect()) {
+        SignInAttemptSucceeded(:final credential, :final provider) =>
+          RedirectSignInSuccess(
+            provider,
+            isNewUser: credential.additionalUserInfo?.isNewUser ?? false,
+          ),
+        SignInAttemptFailed(
+          :final error,
+          :final stackTrace,
+          :final reason,
+          :final code,
+          :final provider,
+        ) =>
+          _redirectFailed(
+            provider,
+            error,
+            stackTrace,
+            reason: reason,
+            code: code,
+          ),
+        SignInAttemptCancelled() || SignInAttemptRedirecting() || null => null,
+      };
+    } on Object catch (error, stackTrace) {
+      return _redirectFailed(
+        null,
+        error,
+        stackTrace,
+        reason: _errors.reasonFor(error),
+        code: _errors.codeOf(error),
+      );
+    }
+  }
+
+  RedirectSignInFailure _redirectFailed(
+    AuthProvider? provider,
+    Object error,
+    StackTrace stackTrace, {
+    required SignInError reason,
+    required String code,
+  }) {
+    _report(
+      'completeRedirect(${provider?.name})',
+      error,
+      stackTrace,
+      reason: reason,
+      code: code,
+    );
+    return RedirectSignInFailure(provider, reason);
+  }
 
   Future<void> dispose() async {
     await _stopWatchingUserDoc();

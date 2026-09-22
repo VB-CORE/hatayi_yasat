@@ -5,6 +5,7 @@ import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/redirect_sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -39,29 +40,52 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     state = switch (result) {
       SignInSuccess(:final user) => _stateFor(user),
       SignInCancelled() => const Unauthenticated(),
+      SignInRedirecting() => const Unauthenticated(),
       SignInFailure(:final reason) => AuthError(
-        _messageFor(reason),
+        _messageFor(reason, provider),
         provider: provider,
       ),
     };
     if (result case SignInSuccess(:final isNewUser)) {
-      analyticsService.logEvent(
-        isNewUser ? AnalyticsEvent.signUp : AnalyticsEvent.login,
-        parameters: {AnalyticsParameter.method: provider.name},
-      );
+      _logSignIn(provider, isNewUser: isNewUser);
     }
   }
 
-  String _messageFor(SignInError reason) => switch (reason) {
-    SignInError.accountExistsWithDifferentCredential =>
-      LocaleKeys.auth_error_accountExists,
-    SignInError.invalidCredential => LocaleKeys.auth_error_invalidCredential,
-    SignInError.providerDisabled => LocaleKeys.auth_error_providerDisabled,
-    SignInError.userDisabled => LocaleKeys.auth_error_userDisabled,
-    SignInError.network => LocaleKeys.auth_error_network,
-    SignInError.unsupported => LocaleKeys.auth_error_unsupported,
-    SignInError.unknown => LocaleKeys.auth_error_failed,
-  };
+  Future<AuthError?> completeRedirectSignIn() async {
+    final redirect = await authService.completeRedirectSignIn();
+    if (!ref.mounted) return null;
+    switch (redirect) {
+      case RedirectSignInSuccess(:final provider, :final isNewUser)
+          when state.user != null:
+        _logSignIn(provider, isNewUser: isNewUser);
+        return null;
+      case RedirectSignInFailure(:final provider, :final reason)
+          when state.user == null:
+        return AuthError(_messageFor(reason, provider), provider: provider);
+      default:
+        return null;
+    }
+  }
+
+  void _logSignIn(AuthProvider? provider, {required bool isNewUser}) =>
+      analyticsService.logEvent(
+        isNewUser ? AnalyticsEvent.signUp : AnalyticsEvent.login,
+        parameters: {AnalyticsParameter.method: provider?.name},
+      );
+
+  String _messageFor(SignInError reason, AuthProvider? provider) =>
+      switch (reason) {
+        SignInError.accountExistsWithDifferentCredential =>
+          LocaleKeys.auth_error_accountExists,
+        SignInError.userDisabled => LocaleKeys.auth_error_userDisabled,
+        SignInError.network => LocaleKeys.auth_error_network,
+        _ when provider == null => LocaleKeys.auth_error_generic,
+        SignInError.invalidCredential =>
+          LocaleKeys.auth_error_invalidCredential,
+        SignInError.providerDisabled => LocaleKeys.auth_error_providerDisabled,
+        SignInError.unsupported => LocaleKeys.auth_error_unsupported,
+        SignInError.unknown => LocaleKeys.auth_error_failed,
+      };
 
   bool supports(AuthProvider provider) => authService.supports(provider);
 

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
@@ -65,4 +66,13 @@ extension AuthStateX on AuthState {
   bool get canCreateGroup => user?.canCreateGroup ?? false;
 
   bool get hasApplication => user?.application?.isApproved ?? false;
+}
+
+extension AuthErrorX on AuthError {
+  String get localizedMessage {
+    final provider = this.provider;
+    return provider == null
+        ? message.tr()
+        : message.tr(namedArgs: {AuthProvider.argKey: provider.displayName});
+  }
 }

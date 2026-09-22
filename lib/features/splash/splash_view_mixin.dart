@@ -109,6 +109,14 @@ mixin SplashViewMixin
   Future<void> _resume(String location) async {
     await _waitForAuth();
     if (!mounted) return;
+    final redirectError = await ref
+        .read(authViewModelProvider.notifier)
+        .completeRedirectSignIn()
+        .timeout(_authResolveTimeout, onTimeout: () => null);
+    if (!mounted) return;
+    if (redirectError != null) {
+      appProvider.showSnackbarMessage(redirectError.localizedMessage);
+    }
     Router.neglect(context, () => context.go(location));
   }
 
