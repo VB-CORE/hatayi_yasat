@@ -63,6 +63,8 @@ final class AuthViewModel extends _$AuthViewModel with ProjectDependencyMixin {
     SignInError.unknown => LocaleKeys.auth_error_failed,
   };
 
+  bool supports(AuthProvider provider) => authService.supports(provider);
+
   Future<void> signOut() async {
     await authService.signOut();
     analyticsService.logEvent(AnalyticsEvent.logout);

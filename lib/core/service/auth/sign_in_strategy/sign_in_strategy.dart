@@ -9,4 +9,6 @@ abstract interface class SignInStrategy {
   });
 
   Future<void> signOut();
+
+  bool supports(AuthProvider provider);
 }

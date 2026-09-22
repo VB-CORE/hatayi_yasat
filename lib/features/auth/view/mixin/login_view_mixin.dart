@@ -11,9 +11,14 @@ import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 
 mixin LoginViewMixin on ConsumerState<LoginView>, AppProviderMixin<LoginView> {
+  late final bool isAppleSignInAvailable;
+
   @override
   void initState() {
     super.initState();
+    isAppleSignInAvailable = ref
+        .read(authViewModelProvider.notifier)
+        .supports(AuthProvider.apple);
     unawaited(SharedCache.instance.setLoginSeen());
     ref.listenManual<AuthState>(authViewModelProvider, (previous, next) {
       if (next is! AuthError) return;

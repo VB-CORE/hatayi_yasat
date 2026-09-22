@@ -36,6 +36,9 @@ final class _FakeAuthService implements AuthService {
   @override
   Future<void> signOut() async {}
 
+  @override
+  bool supports(AuthProvider provider) => provider == AuthProvider.google;
+
   void emit(UserModel? user) => _controller.add(user);
 }
 

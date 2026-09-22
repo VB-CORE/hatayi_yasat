@@ -160,6 +160,9 @@ final class FirebaseAuthService implements AuthService {
     if (uid != null) _productCache.userCache.delete(UserModel(uid: uid));
   }
 
+  @override
+  bool supports(AuthProvider provider) => _strategy.supports(provider);
+
   Future<void> dispose() async {
     await _stopWatchingUserDoc();
     await _authSubscription?.cancel();

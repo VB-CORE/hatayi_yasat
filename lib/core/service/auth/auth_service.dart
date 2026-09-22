@@ -7,4 +7,5 @@ abstract interface class AuthService {
   UserModel? get cachedUser;
   Future<SignInResult> signIn(AuthProvider provider);
   Future<void> signOut();
+  bool supports(AuthProvider provider);
 }

@@ -68,6 +68,12 @@ final class PlatformSignInStrategy implements SignInStrategy {
   Future<void> signOut() =>
       Future.wait(_providers.map((provider) => provider.signOut()));
 
+  @override
+  bool supports(AuthProvider provider) => switch (provider) {
+    AuthProvider.google => true,
+    AuthProvider.apple => defaultTargetPlatform == TargetPlatform.iOS,
+  };
+
   SignInError _reasonFor(Object error) =>
       error is SocketException ? SignInError.network : _errors.reasonFor(error);
 
