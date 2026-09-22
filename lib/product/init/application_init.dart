@@ -10,7 +10,8 @@ import 'package:lifeclient/core/service/analytics/firebase_analytics_service.dar
 import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
 import 'package:lifeclient/firebase_options.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
-import 'package:lifeclient/product/init/app_check_initialize.dart';
+import 'package:lifeclient/product/init/app_check/app_check_initialize_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/init/app_check/app_check_initialize_web.dart';
 import 'package:lifeclient/product/init/error_handler/error_handler_binder_io.dart'
     if (dart.library.js_interop) 'package:lifeclient/product/init/error_handler/error_handler_binder_web.dart';
 
@@ -27,7 +28,7 @@ final class ApplicationInit {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    await AppCheckInitialize.activate();
+    await const PlatformAppCheckInitialize().activate();
 
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();
