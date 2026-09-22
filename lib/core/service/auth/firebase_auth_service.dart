@@ -1,19 +1,18 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
-import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
-import 'package:lifeclient/core/service/auth/apple_sign_in_service.dart';
-import 'package:lifeclient/core/service/auth/auth_credential_provider.dart';
 import 'package:lifeclient/core/service/auth/auth_service.dart';
-import 'package:lifeclient/core/service/auth/google_sign_in_service.dart';
+import 'package:lifeclient/core/service/auth/sign_in_error_mapper.dart';
+import 'package:lifeclient/core/service/auth/sign_in_strategy/sign_in_strategy.dart';
+import 'package:lifeclient/core/service/auth/sign_in_strategy/sign_in_strategy_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/core/service/auth/sign_in_strategy/sign_in_strategy_web.dart';
 import 'package:lifeclient/product/feature/cache/product_cache.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
-import 'package:lifeclient/product/model/auth/credential_result.dart';
+import 'package:lifeclient/product/model/auth/sign_in_attempt.dart';
 import 'package:lifeclient/product/model/auth/sign_in_error.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/user/firebase_user_extension.dart';
@@ -24,21 +23,20 @@ final class FirebaseAuthService implements AuthService {
     required ProductCache productCache,
     required AnalyticsService analyticsService,
     FirebaseAuth? auth,
-    AuthCredentialProvider? googleProvider,
-    AuthCredentialProvider? appleProvider,
+    SignInStrategy? strategy,
   }) : _firestoreService = firestoreService,
        _productCache = productCache,
        _analyticsService = analyticsService,
        _auth = auth ?? FirebaseAuth.instance,
-       _googleProvider = googleProvider ?? GoogleSignInService(),
-       _appleProvider = appleProvider ?? AppleSignInService();
+       _strategy = strategy ?? PlatformSignInStrategy();
 
   final CustomFirestoreService _firestoreService;
   final ProductCache _productCache;
   final AnalyticsService _analyticsService;
   final FirebaseAuth _auth;
-  final AuthCredentialProvider _googleProvider;
-  final AuthCredentialProvider _appleProvider;
+  final SignInStrategy _strategy;
+
+  static const _errors = SignInErrorMapper();
 
   /// The user doc is written by the auth-state listener, not by [signIn], so
   /// the sign-in call has to wait for it. Without a ceiling that wait is
@@ -70,13 +68,23 @@ final class FirebaseAuthService implements AuthService {
 
   @override
   Future<SignInResult> signIn(AuthProvider provider) async {
+    Future<UserModel?>? session;
     try {
-      final AuthCredential credential;
-      switch (await _providerFor(provider).credential()) {
-        case CredentialCancelled():
+      switch (await _strategy.signIn(
+        provider,
+        onAuthorized: (displayName) {
+          _pendingDisplayName = displayName;
+          session = userStream.first.timeout(_sessionTimeout);
+        },
+      )) {
+        case SignInAttemptCancelled():
           return const SignInCancelled();
-        case CredentialFailed(:final error, :final stackTrace, :final reason,
-            :final code):
+        case SignInAttemptFailed(
+          :final error,
+          :final stackTrace,
+          :final reason,
+          :final code,
+        ):
           return await _fail(
             provider,
             error,
@@ -84,31 +92,29 @@ final class FirebaseAuthService implements AuthService {
             reason: reason,
             code: code,
           );
-        case CredentialReady(credential: final ready, :final displayName):
-          credential = ready;
-          _pendingDisplayName = displayName;
+        case SignInAttemptSucceeded(:final credential):
+          if (credential.user == null) {
+            return await _defect(
+              provider,
+              'signInWithCredential returned no user',
+            );
+          }
+          final user = await session;
+          if (user == null) {
+            return await _defect(provider, 'auth session produced no user');
+          }
+          return SignInSuccess(
+            user,
+            isNewUser: credential.additionalUserInfo?.isNewUser ?? false,
+          );
       }
-
-      final sessionResult = userStream.first.timeout(_sessionTimeout);
-      final result = await _auth.signInWithCredential(credential);
-      if (result.user == null) {
-        return await _defect(provider, 'signInWithCredential returned no user');
-      }
-      final user = await sessionResult;
-      if (user == null) {
-        return await _defect(provider, 'auth session produced no user');
-      }
-      return SignInSuccess(
-        user,
-        isNewUser: result.additionalUserInfo?.isNewUser ?? false,
-      );
     } on Object catch (error, stackTrace) {
       return _fail(
         provider,
         error,
         stackTrace,
-        reason: _reasonFor(error),
-        code: _codeOf(error),
+        reason: _errors.reasonFor(error),
+        code: _errors.codeOf(error),
       );
     } finally {
       _pendingDisplayName = null;
@@ -142,39 +148,12 @@ final class FirebaseAuthService implements AuthService {
     code: message,
   );
 
-  SignInError _reasonFor(Object error) => switch (error) {
-    FirebaseAuthException(:final code) => switch (code) {
-      'account-exists-with-different-credential' =>
-        SignInError.accountExistsWithDifferentCredential,
-      'invalid-credential' ||
-      'invalid-verification-code' ||
-      'invalid-verification-id' => SignInError.invalidCredential,
-      'operation-not-allowed' => SignInError.providerDisabled,
-      'user-disabled' => SignInError.userDisabled,
-      'network-request-failed' => SignInError.network,
-      _ => SignInError.unknown,
-    },
-    TimeoutException() || SocketException() => SignInError.network,
-    PlatformException(:final code) when code == 'network_error' =>
-      SignInError.network,
-    _ => SignInError.unknown,
-  };
-
-  String _codeOf(Object error) => switch (error) {
-    FirebaseAuthException(:final code) => code,
-    PlatformException(:final code) => code,
-    _ => error.runtimeType.toString(),
-  };
-
   @override
   Future<void> signOut() async {
     await _stopWatchingUserDoc();
     final uid = _auth.currentUser?.uid;
     try {
-      await Future.wait([
-        ..._providers.map((provider) => provider.signOut()),
-        _auth.signOut(),
-      ]);
+      await Future.wait([_strategy.signOut(), _auth.signOut()]);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
     }
@@ -280,16 +259,4 @@ final class FirebaseAuthService implements AuthService {
     final other = b.toSet();
     return a.every(other.contains);
   }
-
-  AuthCredentialProvider _providerFor(AuthProvider provider) =>
-      switch (provider) {
-        AuthProvider.google => _googleProvider,
-        AuthProvider.apple => _appleProvider,
-      };
-
-  /// Derived from [AuthProvider] rather than listed by hand, so a new provider
-  /// cannot be added without [_providerFor] failing to compile — and once it
-  /// compiles, [signOut] already covers it.
-  Iterable<AuthCredentialProvider> get _providers =>
-      AuthProvider.values.map(_providerFor);
 }
