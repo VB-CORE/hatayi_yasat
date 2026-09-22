@@ -81,6 +81,7 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   kartal: ^4.2.0
   collection: ^1.18.0
+  uuid: ^4.6.0
 
   # ui
   dotted_border: ^3.1.0

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-const String kWeb = 'kWeb';
 const double kZero = 0;
 const double kErrorNumber = -1;
 

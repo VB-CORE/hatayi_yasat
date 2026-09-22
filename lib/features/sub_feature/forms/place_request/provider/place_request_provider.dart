@@ -20,6 +20,9 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
   Future<bool> addNewDataToService(
     PlaceRequestModel placeRequestModel,
   ) async {
+    final deviceId = ref.read(appProviderState).deviceID;
+    if (deviceId.isEmpty) return _failed('device_id_missing');
+
     state = state.copyWith(
       placeRequestModel: placeRequestModel,
       isSendingRequest: true,
@@ -35,7 +38,6 @@ final class PlaceRequestProvider extends _$PlaceRequestProvider
     final uploadImage = uploadResponse.dataOrNull;
 
     if (uploadImage == null) return _failed('image_upload');
-    final deviceId = await ''.ext.deviceId;
     final storage = StoreModel(
       category: placeRequestModel.placeCategory,
       name: placeRequestModel.placeName,
