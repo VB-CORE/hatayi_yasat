@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:lifeclient/core/dependency/project_dependency.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/core/init/core_localize.dart';
@@ -22,6 +23,7 @@ final class ApplicationInit {
   final CoreLocalize localize = CoreLocalize();
 
   Future<void> start() async {
+    usePathUrlStrategy();
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
     await _setRotation();
