@@ -7,6 +7,7 @@ First off, thank you for considering contributing to Life Client! It's people li
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Development Workflow](#development-workflow)
+- [Web Development](#web-development)
 - [Code Style Guidelines](#code-style-guidelines)
 - [Commit Message Guidelines](#commit-message-guidelines)
 - [Pull Request Process](#pull-request-process)
@@ -161,6 +162,48 @@ git push origin feature/your-feature-name
 3. Select your branch
 4. Fill out the PR template (see below)
 5. Submit the PR
+
+---
+
+## Web Development
+
+### Prerequisites
+
+- Chrome (used for `flutter run -d chrome` and for `flutter test --platform chrome`)
+
+### Running
+
+```bash
+flutter run -d chrome
+```
+
+A fixed `--web-port` is not defined yet — pending WEB-30. Once a port is chosen it
+also needs to be added to the Google OAuth JS origin and Storage CORS allowlists.
+
+### Building
+
+```bash
+flutter build web --release
+```
+
+This also runs in CI on every pull request targeting `main` (see
+[analyze.yml](.github/workflows/analyze.yml)).
+
+### Testing in the browser
+
+```bash
+flutter test --platform chrome
+```
+
+### Deploy
+
+Hosting deploy is not automated yet — pending WEB-04.
+
+### Rules
+
+The web-specific architecture rules (the `_io`/`_web` platform split, unsupported
+or no-op flows, routing and layout constraints) live in
+[CLAUDE.md → Web](CLAUDE.md#9-web). They are not repeated here.
 
 ---
 
@@ -438,6 +481,7 @@ Brief description of what this PR does.
 ## Testing
 - [ ] Tested on Android
 - [ ] Tested on iOS
+- [ ] Tested on Web (Chrome)
 - [ ] Added unit tests
 - [ ] All tests pass
 
@@ -483,7 +527,12 @@ Always test your changes on:
    - Different iPhone models
    - Different iOS versions (13+)
 
-3. **Edge cases**:
+3. **Web browsers** (see [Web Development](#web-development)):
+   - Chrome
+   - Safari
+   - Firefox
+
+4. **Edge cases**:
    - No internet connection
    - Empty states
    - Error scenarios
