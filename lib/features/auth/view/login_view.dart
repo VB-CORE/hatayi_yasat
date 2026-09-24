@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -66,7 +65,7 @@ final class _LoginViewState extends ConsumerState<LoginView>
                   const EmptyBox(height: WidgetSizes.spacingXxl3),
                   _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
                   const EmptyBox.middleHeight(),
-                  if (defaultTargetPlatform == TargetPlatform.iOS) ...[
+                  if (isAppleSignInAvailable) ...[
                     _AppleSignInButtonConsumer(onTap: onAppleSignIn),
                     const EmptyBox.middleHeight(),
                   ],

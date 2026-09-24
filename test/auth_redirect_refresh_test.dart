@@ -14,6 +14,7 @@ import 'package:lifeclient/core/service/auth/auth_service.dart';
 import 'package:lifeclient/core/service/user/user_service.dart';
 import 'package:lifeclient/features/auth/view/login_view.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/model/auth/redirect_sign_in_result.dart';
 import 'package:lifeclient/product/model/auth/sign_in_result.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
@@ -35,6 +36,12 @@ final class _FakeAuthService implements AuthService {
 
   @override
   Future<void> signOut() async {}
+
+  @override
+  bool supports(AuthProvider provider) => provider == AuthProvider.google;
+
+  @override
+  Future<RedirectSignInResult?> completeRedirectSignIn() async => null;
 
   void emit(UserModel? user) => _controller.add(user);
 }

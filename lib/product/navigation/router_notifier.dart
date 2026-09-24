@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/navigation/analytics_route_name.dart';
@@ -47,15 +48,13 @@ final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
     routes: $appRoutes,
     initialLocation: '/',
     refreshListenable: notifier,
-    // Ban tek global yonlendirme: hesap askidayken hangi rotaya gidilirse
-    // gidilsin ban ekrani gosterilir. Diger kararlar rotalarin kendi
-    // redirect'lerinde kalir.
     redirect: (context, state) {
       final isBanned = ProviderScope.containerOf(
         context,
       ).read(authViewModelProvider).isBanned;
       if (!isBanned) {
-        return state.matchedLocation == bannedLocation ? '/' : null;
+        if (state.matchedLocation == bannedLocation) return '/';
+        return _bootRedirect(state);
       }
       return state.matchedLocation == bannedLocation ? null : bannedLocation;
     },
@@ -67,3 +66,9 @@ final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
+
+String? _bootRedirect(GoRouterState state) {
+  if (state.matchedLocation == const SplashRoute().location) return null;
+  if (ProjectDependencyItems.productProvider.isInitialized) return null;
+  return SplashRoute(from: state.uri.toString()).location;
+}
