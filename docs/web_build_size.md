@@ -47,13 +47,13 @@ CDN'den gelenler bu toplama dahil değil: CanvasKit `chromium/canvaskit.wasm` (a
 | `assets/images/img_welcome.png` | 1,1 MB | Referans yok |
 | `assets/icons/ic_car_help.png` | 16 KB | Referans yok |
 | `assets/icons/ic_map_help.png` | 16 KB | Referans yok |
-| `assets/fonts/DMSerifDisplay-Italic.ttf` | 70 KB | `FontStyle.italic` kodda hiç geçmiyor. Font açılışta indiriliyor. |
 
 Notlar:
 - `assets/app/` (1,4 MB) pubspec `assets:` listesinde değil, sadece `native_splash.yaml` kullanıyor. Web bundle'ına zaten girmiyor.
 - PlusJakartaSans'ın 5 ağırlığının hepsi kullanılıyor (w400–w800).
+- `DMSerifDisplay-Italic.ttf` ilk raporda kullanılmıyor diye listelenmişti, bu yanlıştı. `login_hero_text.dart` `displayLarge` (DMSerifDisplay) üstünde `fontStyle: .italic` kullanıyor. Arama `FontStyle.italic` ile yapıldığı için dot-shorthand yazımı kaçmıştı. Font kalıyor.
 
-Bu bölüm sadece rapor. Silme kararı ayrı bir iş.
+Tablodaki paket ve üç görsel kaldırıldı.
 
 ## 4. Cache politikası (`firebase.json` → `hosting[0].headers`)
 
