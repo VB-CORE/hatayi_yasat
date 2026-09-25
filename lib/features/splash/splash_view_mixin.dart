@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lifeclient/features/auth/view_model/auth_state.dart';
+import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/splash/splash_view.dart';
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/features/splash/view_model/splash_view_model.dart';
@@ -19,6 +22,8 @@ mixin SplashViewMixin
         AppProviderMixin<SplashView>,
         ConsumerState<SplashView>,
         SingleTickerProviderStateMixin<SplashView> {
+  static const Duration _authResolveTimeout = Duration(seconds: 20);
+
   late final NotifierProvider<SplashViewModel, SplashState> _homeProvider;
 
   late final AnimationController _controller;
@@ -77,6 +82,11 @@ mixin SplashViewMixin
         return;
       }
       if (!next.isOperationStaring) {
+        final resumeLocation = _resumeLocation;
+        if (resumeLocation != null) {
+          await _resume(resumeLocation);
+          return;
+        }
         if (SharedCache.instance.isLoginSeen) {
           const MainTabRoute().go(context);
           return;
@@ -84,5 +94,39 @@ mixin SplashViewMixin
         const LoginRoute().go(context);
       }
     });
+  }
+
+  String? get _resumeLocation {
+    final from = widget.from;
+    if (from == null || !from.startsWith('/')) return null;
+    final uri = Uri.tryParse(from);
+    if (uri == null || uri.hasScheme || uri.hasAuthority) return null;
+    final path = uri.path.replaceFirst(RegExp(r'/+$'), '');
+    if (path.isEmpty || path == const BannedRoute().location) return null;
+    return from;
+  }
+
+  Future<void> _resume(String location) async {
+    await _waitForAuth();
+    if (!mounted) return;
+    final redirectError = await ref
+        .read(authViewModelProvider.notifier)
+        .completeRedirectSignIn()
+        .timeout(_authResolveTimeout, onTimeout: () => null);
+    if (!mounted) return;
+    if (redirectError != null) {
+      appProvider.showSnackbarMessage(redirectError.localizedMessage);
+    }
+    Router.neglect(context, () => context.go(location));
+  }
+
+  Future<void> _waitForAuth() async {
+    if (ref.read(authViewModelProvider) is! AuthInitial) return;
+    final resolved = Completer<void>();
+    final subscription = ref.listenManual(authViewModelProvider, (_, next) {
+      if (next is! AuthInitial && !resolved.isCompleted) resolved.complete();
+    });
+    await resolved.future.timeout(_authResolveTimeout, onTimeout: () {});
+    subscription.close();
   }
 }
