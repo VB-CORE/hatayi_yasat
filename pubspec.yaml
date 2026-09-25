@@ -24,7 +24,6 @@ dependencies:
   riverpod_annotation: ^4.0.0
 
   responsive_builder: ^0.7.0
-  responsive_framework: ^1.1.0
   syncfusion_flutter_pdfviewer: ^33.2.13
 
   #third-party
