@@ -15,6 +15,7 @@ import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/auth/auth_provider.dart';
+import 'package:lifeclient/product/package/responsive/app_responsive.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
@@ -54,27 +55,37 @@ final class _LoginViewState extends ConsumerState<LoginView>
           const _LoginBackground(),
 
           SafeArea(
-            child: Padding(
-              padding: const PagePadding.horizontalSymmetric(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const EmptyBox.largeXHeight(),
-                  const _LoginAppHeader(),
-                  const Spacer(),
-                  const _LoginHeroText(),
-                  const EmptyBox(height: WidgetSizes.spacingXxl3),
-                  _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
-                  const EmptyBox.middleHeight(),
-                  if (defaultTargetPlatform == TargetPlatform.iOS) ...[
-                    _AppleSignInButtonConsumer(onTap: onAppleSignIn),
-                    const EmptyBox.middleHeight(),
-                  ],
-                  _LoginGuestButton(onTap: onGuestTap),
-                  const EmptyBox.middleHeight(),
-                  const _LoginLegalText(),
-                  const EmptyBox.largeHeight(),
-                ],
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: context.responsive.value(
+                    mobile: double.infinity,
+                    tablet: AppSpacing.contentMaxWidth,
+                  ),
+                ),
+                child: Padding(
+                  padding: const PagePadding.horizontalSymmetric(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const EmptyBox.largeXHeight(),
+                      const _LoginAppHeader(),
+                      const Spacer(),
+                      const _LoginHeroText(),
+                      const EmptyBox(height: WidgetSizes.spacingXxl3),
+                      _GoogleSignInButtonConsumer(onTap: onGoogleSignIn),
+                      const EmptyBox.middleHeight(),
+                      if (defaultTargetPlatform == TargetPlatform.iOS) ...[
+                        _AppleSignInButtonConsumer(onTap: onAppleSignIn),
+                        const EmptyBox.middleHeight(),
+                      ],
+                      _LoginGuestButton(onTap: onGuestTap),
+                      const EmptyBox.middleHeight(),
+                      const _LoginLegalText(),
+                      const EmptyBox.largeHeight(),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
