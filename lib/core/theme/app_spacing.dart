@@ -15,4 +15,5 @@ abstract final class AppSpacing {
   static const screen = EdgeInsets.all(16);
   static const cardPad = EdgeInsets.all(14);
   static const listGap = 11.0;
+  static const contentMaxWidth = 480.0;
 }
