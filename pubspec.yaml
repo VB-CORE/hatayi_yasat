@@ -113,7 +113,6 @@ dependencies:
   file_picker: ^11.0.3
   sliver_tools: ^0.2.12
   hugeicons: ^1.1.5
-  material_symbols_icons: ^4.2951.0
   qr_flutter: ^4.1.0
   shimmer_animation: ^2.2.2+1
   bounceable: ^1.0.0
@@ -185,7 +184,6 @@ flutter:
     - assets/icons/
     - assets/docs/
     - assets/lottie/
-    - assets/images/
     - assets/svg/
     - assets/avatars/
 

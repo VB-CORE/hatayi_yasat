@@ -156,7 +156,7 @@ The app is live on [Google Play](https://play.google.com/store/apps/details?id=c
   `DMSerifDisplay` for headings. `google_fonts` is intentionally **not** used
 - **responsive_framework**: ^1.1.0 / **responsive_builder**: ^0.7.0
 - **lottie**: ^3.1.2 / **shimmer_animation**: ^2.2.2+1 / **carousel_slider**: ^5.0.0
-- **flutter_svg**: ^2.0.9 / **hugeicons** / **material_symbols_icons**
+- **flutter_svg**: ^2.0.9 / **hugeicons**
 - **qr_flutter**: ^4.1.0 — coupon redemption QR codes
 
 ### Maps & Location
