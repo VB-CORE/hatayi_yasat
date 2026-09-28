@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
@@ -8,6 +9,7 @@ import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_shadows.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
 import 'package:lifeclient/product/widget/mosaic_page/mixin/mosaic_collapsing_page_mixin.dart';
@@ -78,6 +80,7 @@ final class _BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      tooltip: LocaleKeys.button_back.tr(),
       onPressed: context.pop,
       style: IconButton.styleFrom(
         foregroundColor: context.appColors.surface,

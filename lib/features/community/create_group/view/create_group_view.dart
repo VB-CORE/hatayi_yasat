@@ -17,6 +17,7 @@ import 'package:lifeclient/product/utility/decorations/empty_box.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/utility/validator/index.dart';
 import 'package:lifeclient/product/widget/app_bar/page_app_bar.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 import 'package:lifeclient/product/widget/text_field/custom_text_form_field.dart';
@@ -41,10 +42,7 @@ final class _CreateGroupViewState extends ConsumerState<CreateGroupView>
   Widget build(BuildContext context) {
     return GeneralScaffold(
       appBar: PageAppBar(
-        leading: IconButton(
-          icon: const Icon(AppIcons.close),
-          onPressed: closeView,
-        ),
+        leading: CloseIconButton(onPressed: closeView),
         pageTitle: LocaleKeys.community_createGroup_title,
         actions: [
           Padding(

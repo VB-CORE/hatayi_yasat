@@ -8,6 +8,7 @@ import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 @immutable
@@ -97,7 +98,10 @@ final class _SheetHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _CounterText(currentIndex: currentIndex, totalCount: totalCount),
-          const _CloseButton(),
+          const CloseIconButton(
+            color: ColorsCustom.white,
+            size: AppIconSizes.large,
+          ),
         ],
       ),
     );
@@ -124,23 +128,6 @@ final class _CounterText extends StatelessWidget {
       style: context.general.textTheme.titleMedium?.copyWith(
         color: ColorsCustom.white,
         fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-}
-
-/// Close button for the sheet
-final class _CloseButton extends StatelessWidget {
-  const _CloseButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => Navigator.of(context).pop(),
-      icon: const Icon(
-        AppIcons.close,
-        color: ColorsCustom.white,
-        size: AppIconSizes.large,
       ),
     );
   }

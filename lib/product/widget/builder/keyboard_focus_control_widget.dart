@@ -12,8 +12,14 @@ final class KeyboardFocusControlWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: _unfocus,
       child: child,
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     );
+  }
+
+  void _unfocus() {
+    final focused = FocusManager.instance.primaryFocus;
+    if (focused is FocusScopeNode) return;
+    focused?.unfocus();
   }
 }

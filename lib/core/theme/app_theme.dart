@@ -119,12 +119,18 @@ final class ApplicationTheme {
           backgroundColor: AppColors.coral,
           foregroundColor: AppColors.white,
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
-        ),
+        ).copyWith(side: _focusRing),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: .circular(AppRadius.md)),
-        ),
+        ).copyWith(side: _focusRing),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(side: _focusRing),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: ButtonStyle(side: _focusRing),
       ),
 
       expansionTileTheme: const ExpansionTileThemeData(
@@ -160,6 +166,13 @@ final class ApplicationTheme {
       ),
     );
   }
+
+  static final WidgetStateProperty<BorderSide?> _focusRing =
+      WidgetStateProperty.resolveWith(
+        (states) => states.contains(WidgetState.focused)
+            ? const BorderSide(color: AppColors.navy, width: 2)
+            : null,
+      );
 
   static OutlineInputBorder _inputBorder(Color color) {
     return OutlineInputBorder(

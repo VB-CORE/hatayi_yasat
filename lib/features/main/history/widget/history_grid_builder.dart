@@ -67,19 +67,20 @@ final class _MemoryGridItem extends StatelessWidget {
     if (firstImageUrl.isEmpty) {
       return const SizedBox.shrink();
     }
-    return GestureDetector(
-      onTap: onTap,
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          borderRadius: CustomRadius.small,
-        ),
-        child: ClipRRect(
-          borderRadius: CustomRadius.small,
-          child: CustomNetworkImage(
+    return ClipRRect(
+      borderRadius: CustomRadius.small,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          CustomNetworkImage(
             imageUrl: firstImageUrl,
             fit: BoxFit.cover,
           ),
-        ),
+          Material(
+            type: MaterialType.transparency,
+            child: InkWell(onTap: onTap),
+          ),
+        ],
       ),
     );
   }

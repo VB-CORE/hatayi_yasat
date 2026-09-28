@@ -61,29 +61,39 @@ final class _EditProfilePhotoState extends State<EditProfilePhoto> {
           final type = _types[index];
           final isSelected = type.id == widget.avatarType;
 
-          return GestureDetector(
-            onTap: () => _controller.animateToPage(
-              index,
-              duration: DurationConstant.durationLow,
-              curve: Curves.easeOutCubic,
-            ),
-            child: Center(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  shape: .circle,
-                  boxShadow: [
-                    if (isSelected)
-                      BoxShadow(
-                        color: AppColors.coral.withValues(alpha: 0.45),
-                        blurRadius: WidgetSizes.spacingL,
-                        spreadRadius: WidgetSizes.spacingXSs,
+          return Center(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: .circle,
+                boxShadow: [
+                  if (isSelected)
+                    BoxShadow(
+                      color: AppColors.coral.withValues(alpha: 0.45),
+                      blurRadius: WidgetSizes.spacingL,
+                      spreadRadius: WidgetSizes.spacingXSs,
+                    ),
+                ],
+              ),
+              child: SizedBox(
+                width: maxRadius * 2,
+                height: maxRadius * 2,
+                child: ClipOval(
+                  child: Stack(
+                    fit: .expand,
+                    children: [
+                      Image.asset(type.path, fit: .cover),
+                      Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () => _controller.animateToPage(
+                            index,
+                            duration: DurationConstant.durationLow,
+                            curve: Curves.easeOutCubic,
+                          ),
+                        ),
                       ),
-                  ],
-                ),
-                child: SizedBox(
-                  width: maxRadius * 2,
-                  height: maxRadius * 2,
-                  child: ClipOval(child: Image.asset(type.path, fit: .cover)),
+                    ],
+                  ),
                 ),
               ),
             ),

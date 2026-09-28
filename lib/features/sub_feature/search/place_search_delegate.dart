@@ -28,6 +28,7 @@ final class PlaceSearchDelegate extends SearchDelegate<SearchResponse>
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
+        tooltip: LocaleKeys.button_clean.tr(),
         onPressed: () {
           query = '';
         },

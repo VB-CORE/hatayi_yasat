@@ -6,6 +6,7 @@ import 'package:lifeclient/product/app_builder.dart';
 import 'package:lifeclient/product/init/analytics_user_binder.dart';
 import 'package:lifeclient/product/navigation/router_notifier.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/utility/scroll/app_scroll_behavior.dart';
 import 'package:lifeclient/product/widget/builder/keyboard_focus_control_widget.dart';
 
 final class App extends ConsumerWidget with AppProviderStateMixin {
@@ -21,6 +22,7 @@ final class App extends ConsumerWidget with AppProviderStateMixin {
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
+        scrollBehavior: const AppScrollBehavior(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

@@ -69,6 +69,7 @@ final class _MerchantPanelViewState extends ConsumerState<MerchantPanelView> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
+            tooltip: LocaleKeys.button_back.tr(),
             onPressed: context.pop,
             style: IconButton.styleFrom(
               foregroundColor: context.appColors.surface,

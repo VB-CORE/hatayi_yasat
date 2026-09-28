@@ -6,6 +6,11 @@ mixin MerchantApplicationViewMixin
         AppProviderMixin<MerchantApplicationView> {
   final PageController pageController = PageController();
 
+  final FocusScopeNode stepAreaFocusNode = FocusScopeNode(
+    debugLabel: 'merchantApplicationSteps',
+    traversalEdgeBehavior: TraversalEdgeBehavior.parentScope,
+  );
+
   final GlobalKey<FormState> companyFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> mediaFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> ownerFormKey = GlobalKey<FormState>();
@@ -55,6 +60,7 @@ mixin MerchantApplicationViewMixin
   @override
   void dispose() {
     pageController.dispose();
+    stepAreaFocusNode.dispose();
     placeNameController.dispose();
     placeDescriptionController.dispose();
     addressController.dispose();
@@ -90,6 +96,28 @@ mixin MerchantApplicationViewMixin
   }
 
   void onBackPressed() => viewModel.previousStep();
+
+  KeyEventResult onStepAreaKeyEvent(FocusNode node, KeyEvent event) {
+    final isEnter =
+        event.logicalKey == LogicalKeyboardKey.enter ||
+        event.logicalKey == LogicalKeyboardKey.numpadEnter;
+    if (event is! KeyDownEvent || !isEnter) return KeyEventResult.ignored;
+    final focused = FocusManager.instance.primaryFocus;
+    if (focused != node && !_isInDropdown(focused?.context)) {
+      return KeyEventResult.ignored;
+    }
+    onNextPressed();
+    return KeyEventResult.handled;
+  }
+
+  bool _isInDropdown(BuildContext? context) {
+    var isInDropdown = false;
+    context?.visitAncestorElements((element) {
+      isInDropdown = element.widget is DropdownButton;
+      return !isInDropdown;
+    });
+    return isInDropdown;
+  }
 
   bool _validateStep(MerchantApplicationStep step) {
     final isFormValid = _formKeyFor(step).currentState?.validate() ?? false;

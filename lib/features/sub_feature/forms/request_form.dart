@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 import 'package:lifeclient/product/widget/dialog/form_latest_data_dialog.dart';
 
 abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
@@ -24,10 +27,24 @@ abstract class RequestFormConsumerState<T extends ConsumerStatefulWidget>
   bool validateAndSave() {
     final form = formKey.currentState;
     if (form == null) return false;
-    final isValid = form.validate();
-    if (isValid) form.save();
+    final invalidFields = form.validateGranularly();
+    final isValid = invalidFields.isEmpty;
+    if (isValid) {
+      form.save();
+    } else {
+      _revealField(invalidFields.first);
+    }
     _updateFirstValidate();
     return isValid;
+  }
+
+  void _revealField(FormFieldState<Object?> field) {
+    unawaited(
+      Scrollable.ensureVisible(
+        field.context,
+        duration: DurationConstant.durationVeryLow,
+      ),
+    );
   }
 
   /// when user make a mistake first time it is not show validation error

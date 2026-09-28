@@ -7,6 +7,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/dependency/project_dependency_items.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 
 /// City DropDown for regional Hatay,Mersin
 final class RegionalCitySheet extends StatefulWidget {
@@ -39,10 +40,7 @@ class _RegionalCitySheetState extends State<RegionalCitySheet>
         children: [
           Align(
             alignment: Alignment.centerRight,
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close),
-            ),
+            child: const CloseIconButton(),
           ),
           ListView.separated(
             itemCount: _cities.length,
