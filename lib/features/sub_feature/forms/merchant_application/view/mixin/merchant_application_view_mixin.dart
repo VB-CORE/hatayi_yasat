@@ -87,6 +87,7 @@ mixin MerchantApplicationViewMixin
 
   void onNextPressed() {
     final state = ref.read(merchantApplicationViewModelProvider);
+    if (state.isSubmitting) return;
     if (state.isLastStep) {
       unawaited(_submit());
       return;
@@ -95,7 +96,10 @@ mixin MerchantApplicationViewMixin
     viewModel.nextStep();
   }
 
-  void onBackPressed() => viewModel.previousStep();
+  void onBackPressed() {
+    if (ref.read(merchantApplicationViewModelProvider).isSubmitting) return;
+    viewModel.previousStep();
+  }
 
   KeyEventResult onStepAreaKeyEvent(FocusNode node, KeyEvent event) {
     final isEnter =
