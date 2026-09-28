@@ -10,6 +10,7 @@ import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/colors_custom.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 import 'package:lifeclient/product/widget/button/memory_favorite_button.dart';
 
 /// History favorites sheet widget that displays user's favorite memories
@@ -39,10 +40,7 @@ final class _HistoryFavoriteSheetState extends State<HistoryFavoriteSheet> {
       appBar: AppBar(
         title: Text(LocaleKeys.historyPage_favorites_title.tr()),
         actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(AppIcons.close),
-          ),
+          const CloseIconButton(),
         ],
       ),
       body: Container(

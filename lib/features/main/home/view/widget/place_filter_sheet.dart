@@ -13,6 +13,7 @@ import 'package:lifeclient/features/main/home/provider/home_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 
 /// Full-height "Filtre" sheet with a draft state that is only committed to the
 /// home list when the CTA is pressed. Category + district filter server-side;
@@ -315,10 +316,7 @@ final class _Header extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(AppIcons.close, color: AppColors.ink500),
-              ),
+              child: const CloseIconButton(color: AppColors.ink500),
             ),
           ),
         ],

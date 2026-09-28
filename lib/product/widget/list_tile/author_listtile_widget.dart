@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_circle_network_image.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/decorations/custom_circle_radius.dart';
@@ -42,6 +44,7 @@ final class AuthorListTileWidget extends StatelessWidget {
               trailing: onDeleteTapped == null
                   ? null
                   : IconButton(
+                      tooltip: LocaleKeys.button_delete.tr(),
                       onPressed: onDeleteTapped,
                       icon: const Icon(AppIcons.delete),
                     ),

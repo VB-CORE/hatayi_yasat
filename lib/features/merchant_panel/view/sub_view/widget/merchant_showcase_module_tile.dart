@@ -88,6 +88,7 @@ final class _MerchantShowcaseModuleTile extends ConsumerWidget {
               icon: const Icon(AppIcons.edit, size: AppIconSizes.medium),
             ),
             IconButton(
+              tooltip: LocaleKeys.button_delete.tr(),
               onPressed: isSaving ? null : onDelete,
               color: context.appColors.coral,
               icon: const Icon(AppIcons.delete, size: AppIconSizes.medium),

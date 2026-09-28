@@ -7,6 +7,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 
 /// Single-select "Sırala" bottom sheet. Returns the chosen [SortingTypes] or
 /// null when dismissed.
@@ -48,10 +49,7 @@ final class PlaceSortSheet extends StatelessWidget {
                   LocaleKeys.sorting_title.tr(),
                   style: AppText.title.copyWith(fontSize: 18),
                 ),
-                IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(AppIcons.close, color: AppColors.ink500),
-                ),
+                const CloseIconButton(color: AppColors.ink500),
               ],
             ),
           ),

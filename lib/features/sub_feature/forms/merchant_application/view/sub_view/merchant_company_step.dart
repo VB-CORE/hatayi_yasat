@@ -5,11 +5,13 @@ final class _MerchantCompanyStep extends ConsumerStatefulWidget {
     required this.formKey,
     required this.nameController,
     required this.descriptionController,
+    required this.onSubmitted,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
   final TextEditingController descriptionController;
+  final VoidCallback onSubmitted;
 
   @override
   ConsumerState<_MerchantCompanyStep> createState() =>
@@ -58,6 +60,7 @@ final class _MerchantCompanyStepState
             labelText: LocaleKeys.requestCompany_name.tr(),
             hintText: LocaleKeys.requestCompany_name.tr(),
             validator: ValidatorNormalTextField().validate,
+            textInputAction: TextInputAction.next,
           ),
           LabeledProductTextField(
             isMultiline: true,
@@ -68,6 +71,7 @@ final class _MerchantCompanyStepState
             labelText: LocaleKeys.requestCompany_description.tr(),
             hintText: LocaleKeys.requestCompany_description.tr(),
             validator: ValidatorNormalTextField().validate,
+            onFieldSubmitted: (_) => widget.onSubmitted(),
           ),
           Padding(
             padding: const PagePadding.vertical12Symmetric(),

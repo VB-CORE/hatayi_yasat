@@ -19,6 +19,8 @@ class LabeledProductTextField extends StatelessWidget {
     this.enabled = true,
     this.onTap,
     this.suffixIcon,
+    this.textInputAction,
+    this.onFieldSubmitted,
   });
   final String labelText;
   final bool isRequired;
@@ -32,6 +34,8 @@ class LabeledProductTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData? suffixIcon;
   final bool enabled;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,6 +54,8 @@ class LabeledProductTextField extends StatelessWidget {
           onTap: onTap,
           suffixIcon: suffixIcon,
           enabled: enabled,
+          textInputAction: textInputAction,
+          onFieldSubmitted: onFieldSubmitted,
         ),
       ],
     );

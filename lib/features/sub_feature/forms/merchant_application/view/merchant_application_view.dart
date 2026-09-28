@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -79,27 +80,51 @@ final class _MerchantApplicationViewState
                       onClose: onClosePressed,
                     ),
                     Expanded(
-                      child: PageView(
-                        controller: pageController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          _MerchantCompanyStep(
-                            formKey: companyFormKey,
-                            nameController: placeNameController,
-                            descriptionController: placeDescriptionController,
-                          ),
-                          _MerchantMediaStep(
-                            formKey: mediaFormKey,
-                            addressController: addressController,
-                            openTimeController: openTimeController,
-                            closeTimeController: closeTimeController,
-                          ),
-                          _MerchantOwnerStep(
-                            formKey: ownerFormKey,
-                            nameController: placeOwnerNameController,
-                            phoneController: phoneNumberController,
-                          ),
-                        ],
+                      child: FocusScope(
+                        node: stepAreaFocusNode,
+                        autofocus: true,
+                        onKeyEvent: onStepAreaKeyEvent,
+                        child: PageView(
+                          controller: pageController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            ExcludeFocus(
+                              excluding:
+                                  state.currentStep !=
+                                  MerchantApplicationStep.company,
+                              child: _MerchantCompanyStep(
+                                formKey: companyFormKey,
+                                nameController: placeNameController,
+                                descriptionController:
+                                    placeDescriptionController,
+                                onSubmitted: onNextPressed,
+                              ),
+                            ),
+                            ExcludeFocus(
+                              excluding:
+                                  state.currentStep !=
+                                  MerchantApplicationStep.media,
+                              child: _MerchantMediaStep(
+                                formKey: mediaFormKey,
+                                addressController: addressController,
+                                openTimeController: openTimeController,
+                                closeTimeController: closeTimeController,
+                                onSubmitted: onNextPressed,
+                              ),
+                            ),
+                            ExcludeFocus(
+                              excluding:
+                                  state.currentStep !=
+                                  MerchantApplicationStep.owner,
+                              child: _MerchantOwnerStep(
+                                formKey: ownerFormKey,
+                                nameController: placeOwnerNameController,
+                                phoneController: phoneNumberController,
+                                onSubmitted: onNextPressed,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 
 /// Bir görseli Hero animasyonuyla tam ekran açar; zoom destekler.
 ///
@@ -68,10 +68,7 @@ final class HeroPhotoViewPage extends StatelessWidget {
           SafeArea(
             child: Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(AppIcons.close, color: AppColors.white),
-              ),
+              child: const CloseIconButton(color: AppColors.white),
             ),
           ),
         ],

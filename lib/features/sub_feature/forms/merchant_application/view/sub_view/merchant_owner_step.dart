@@ -5,11 +5,13 @@ final class _MerchantOwnerStep extends ConsumerStatefulWidget {
     required this.formKey,
     required this.nameController,
     required this.phoneController,
+    required this.onSubmitted,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
   final TextEditingController phoneController;
+  final VoidCallback onSubmitted;
 
   @override
   ConsumerState<_MerchantOwnerStep> createState() => _MerchantOwnerStepState();
@@ -60,6 +62,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
                   labelText: LocaleKeys.requestCompany_ownerName.tr(),
                   hintText: LocaleKeys.requestCompany_ownerName.tr(),
                   validator: ValidatorNormalTextField().validate,
+                  textInputAction: TextInputAction.next,
                 ),
                 Padding(
                   padding: const PagePadding.vertical12Symmetric(),
@@ -72,6 +75,7 @@ final class _MerchantOwnerStepState extends ConsumerState<_MerchantOwnerStep>
                     labelText: LocaleKeys.requestCompany_phoneNumber.tr(),
                     hintText: LocaleKeys.requestCompany_phoneNumber.tr(),
                     validator: ValidatorPhoneTextField().validate,
+                    onFieldSubmitted: (_) => widget.onSubmitted(),
                   ),
                 ),
                 UploadFileSection(

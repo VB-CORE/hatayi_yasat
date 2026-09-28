@@ -43,15 +43,21 @@ final class _RateCommentCard extends StatelessWidget {
                       ),
                     ),
                     if (_hasActions)
-                      GestureDetector(
-                        onTap: () => _showCommentOptions(context),
-                        behavior: HitTestBehavior.opaque,
-                        child: Padding(
-                          padding: const PagePadding.generalIconLowAll(),
-                          child: Icon(
-                            AppIcons.moreDots,
-                            color: context.general.colorScheme.onSurface,
-                            size: AppIconSizes.medium,
+                      Tooltip(
+                        message: LocaleKeys.button_more.tr(),
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: InkWell(
+                            onTap: () => _showCommentOptions(context),
+                            customBorder: const CircleBorder(),
+                            child: Padding(
+                              padding: const PagePadding.generalIconLowAll(),
+                              child: Icon(
+                                AppIcons.moreDots,
+                                color: context.general.colorScheme.onSurface,
+                                size: AppIconSizes.medium,
+                              ),
+                            ),
                           ),
                         ),
                       ),

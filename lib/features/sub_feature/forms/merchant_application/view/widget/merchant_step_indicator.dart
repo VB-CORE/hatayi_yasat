@@ -4,9 +4,9 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/constants/duration_constant.dart';
 import 'package:lifeclient/product/utility/decorations/empty_box.dart';
+import 'package:lifeclient/product/widget/button/close_icon_button.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_small_title.dart';
 import 'package:lifeclient/product/widget/general/title/general_body_title.dart';
 
@@ -32,10 +32,7 @@ final class MerchantStepIndicator extends StatelessWidget {
         children: [
           Row(
             children: [
-              IconButton(
-                onPressed: onClose,
-                icon: const Icon(AppIcons.close),
-              ),
+              CloseIconButton(onPressed: onClose),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

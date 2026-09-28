@@ -20,6 +20,8 @@ class ProductTextField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength = TextFieldMaxLengths.none,
     this.enabled = true,
+    this.textInputAction,
+    this.onFieldSubmitted,
   });
   final bool isMultiline;
   final String? Function(String?) validator;
@@ -32,6 +34,8 @@ class ProductTextField extends StatelessWidget {
   final IconData? suffixIcon;
   final TextFieldMaxLengths maxLength;
   final bool enabled;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     final decoration =
@@ -56,6 +60,8 @@ class ProductTextField extends StatelessWidget {
       readOnly: readOnly,
       enabled: enabled,
       onTap: onTap,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 }

@@ -9,12 +9,14 @@ final class _MerchantMediaStep extends ConsumerStatefulWidget {
     required this.addressController,
     required this.openTimeController,
     required this.closeTimeController,
+    required this.onSubmitted,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController addressController;
   final TimePickerController openTimeController;
   final TimePickerController closeTimeController;
+  final VoidCallback onSubmitted;
 
   @override
   ConsumerState<_MerchantMediaStep> createState() => _MerchantMediaStepState();
@@ -69,6 +71,7 @@ final class _MerchantMediaStepState extends ConsumerState<_MerchantMediaStep>
             labelText: LocaleKeys.requestCompany_address.tr(),
             hintText: LocaleKeys.requestCompany_address.tr(),
             validator: ValidatorNormalTextField().validate,
+            onFieldSubmitted: (_) => widget.onSubmitted(),
           ),
           Padding(
             padding: const PagePadding.vertical12Symmetric(),
