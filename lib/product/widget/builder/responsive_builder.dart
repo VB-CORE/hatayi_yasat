@@ -1,44 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:lifeclient/product/package/responsive/app_responsive.dart';
 
-enum WindowsSize {
-  mobile,
-  tablet,
-  desktop;
-
-  bool get isMobile => this == WindowsSize.mobile;
-  bool get isTablet => this == WindowsSize.tablet;
-  bool get isDesktop => this == WindowsSize.desktop;
-}
-
-class ResponsiveWindowBuilder extends StatelessWidget {
-  const ResponsiveWindowBuilder({
-    required this.builder,
+@immutable
+final class ResponsiveBuilder extends StatelessWidget {
+  const ResponsiveBuilder({
+    required this.mobile,
     super.key,
-    this.mobileBreakpoint = 500,
-    this.tabletBreakpoint = 800,
-    this.desktopBreakpoint = 1200,
+    this.tablet,
+    this.web,
   });
 
-  final double mobileBreakpoint;
-  final double tabletBreakpoint;
-  final double desktopBreakpoint;
-
-  final Widget Function(WindowsSize) builder;
+  final WidgetBuilder mobile;
+  final WidgetBuilder? tablet;
+  final WidgetBuilder? web;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth <= mobileBreakpoint) {
-          return builder(WindowsSize.mobile);
-        } else if (constraints.maxWidth > mobileBreakpoint &&
-            constraints.maxWidth <= tabletBreakpoint) {
-          return builder(WindowsSize.tablet);
-        } else if (constraints.maxWidth > tabletBreakpoint) {
-          return builder(WindowsSize.desktop);
-        }
-        return builder(WindowsSize.desktop);
-      },
+    final builder = context.responsive.value(
+      mobile: mobile,
+      tablet: tablet,
+      web: web,
     );
+    return builder(context);
   }
 }

@@ -1,21 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:lifeclient/product/widget/builder/web_shell.dart';
 
-class AppBuilder {
+final class AppBuilder {
   AppBuilder._();
 
   static Widget build(BuildContext context, Widget? child) {
+    final content = child ?? const SizedBox();
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
-      child: ResponsiveBreakpoints.builder(
-        child: child ?? const SizedBox(),
-        breakpoints: [
-          const Breakpoint(start: 0, end: 450, name: MOBILE),
-          const Breakpoint(start: 451, end: 800, name: TABLET),
-          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-        ],
-      ),
+      child: kIsWeb ? WebShell(child: content) : content,
     );
   }
 }
