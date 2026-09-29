@@ -7,7 +7,6 @@ import 'package:web/web.dart' as web;
 final class PlatformMapsSupport implements MapsSupport {
   const PlatformMapsSupport();
 
-  /// Repoya girmez; `--dart-define-from-file=.env` ile verilir.
   static const String _apiKey = String.fromEnvironment('MAPS_WEB_API_KEY');
 
   @override

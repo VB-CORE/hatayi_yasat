@@ -51,7 +51,6 @@ final class PlaceAddressCard extends StatelessWidget {
                   ),
                 ),
               ),
-              // Web'de IgnorePointer HTML haritaya işlemez; tıklama karta gitsin.
               const MapOverlay(child: SizedBox.expand()),
               Positioned(
                 right: AppSpacing.sm,
