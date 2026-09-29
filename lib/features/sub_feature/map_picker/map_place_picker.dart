@@ -6,6 +6,7 @@ import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker_mixi
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 class MapPlacePicker extends StatefulWidget {
   const MapPlacePicker({required this.initialPosition, super.key});
@@ -47,11 +48,13 @@ class _MapPlacePickerState extends State<MapPlacePicker>
                 bottom: WidgetSizes.spacingMx,
                 right: WidgetSizes.spacingMx,
                 left: WidgetSizes.spacingMx,
-                child: GeneralButtonV2.active(
-                  label:
-                      LocaleKeys.component_mapPicker_selectedLocationSave.tr(),
-                  action: completeSelection,
-                  isEnabled: state.selectedLocation != null,
+                child: PointerInterceptor(
+                  child: GeneralButtonV2.active(
+                    label: LocaleKeys.component_mapPicker_selectedLocationSave
+                        .tr(),
+                    action: completeSelection,
+                    isEnabled: state.selectedLocation != null,
+                  ),
                 ),
               ),
               if (!state.isMapCreated)

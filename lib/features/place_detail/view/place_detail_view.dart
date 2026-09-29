@@ -28,6 +28,7 @@ import 'package:lifeclient/product/widget/image/custom_image_with_view_dialog.da
 import 'package:lifeclient/product/widget/mosaic_page/view/mosaic_collapsing_page.dart';
 import 'package:lifeclient/product/widget/pill/status_pill.dart';
 import 'package:lifeclient/product/widget/rating/place_rating_label.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 part 'widget/place_address_card.dart';
 part 'widget/place_detail_tab_bar.dart';
