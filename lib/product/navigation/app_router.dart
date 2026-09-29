@@ -72,7 +72,6 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
   name: 'Main Tab',
   routes: [
     ChainStoresRoute.route,
-    MonetizationRoute.route,
     TurismRoute.route,
     UsefulLinksRoute.route,
     FavoriteRoute.route,
@@ -98,6 +97,7 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
 
     // Settings
     SettingsRoute.route,
+    DevelopersRoute.route,
     EditProfileRoute.route,
 
     // Community
@@ -117,19 +117,20 @@ final class MainTabRoute extends GoRouteData with $MainTabRoute {
 
 /// You can use this route for home and favorite place cards
 final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
-  PlaceDetailRoute({required this.$extra, required this.id});
+  PlaceDetailRoute({required this.id, this.$extra});
 
   static const route = TypedGoRoute<PlaceDetailRoute>(
     path: 'placeDetail/:id',
     name: 'Place Detail',
   );
 
-  final StoreModel $extra;
+  /// Tarayıcı geçmişinden/yenilemeden açılışta `null`; detay id ile çekilir.
+  final StoreModel? $extra;
   final String id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) => PlaceDetailView(
-    store: $extra,
+    store: $extra ?? StoreModel.empty(),
     id: id,
   );
 }
@@ -192,6 +193,9 @@ final class _MerchantPanelRoute extends GoRouteData with $_MerchantPanelRoute {
   static const route = TypedGoRoute<_MerchantPanelRoute>(
     path: 'merchantPanel',
     name: 'Merchant Panel',
+    routes: [
+      MonetizationRoute.route,
+    ],
   );
 
   @override
@@ -653,7 +657,6 @@ final class SettingsRoute extends GoRouteData with $SettingsRoute {
     path: 'settings',
     name: 'Settings',
     routes: [
-      DevelopersRoute.route,
       ApplicationInformationRoute.route,
     ],
   );

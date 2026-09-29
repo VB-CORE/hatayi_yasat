@@ -13,9 +13,6 @@ abstract final class MerchantGuard {
 
   static void go(BuildContext context) => context.go(location(context));
 
-  static void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location(context));
-
   static String location(BuildContext context) =>
       switch (AuthGuard.application(context)?.status) {
         .approved => const _MerchantPanelRoute().location,

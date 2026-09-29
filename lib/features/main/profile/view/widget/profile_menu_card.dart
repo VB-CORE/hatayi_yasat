@@ -27,7 +27,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         ContentMenuItem(
           icon: AppIcons.favorite,
           label: LocaleKeys.profile_menu_favorites.tr(),
-          onTap: () => const FavoriteRoute().push<void>(context),
+          onTap: () => const FavoriteRoute().go(context),
           trailing: Text(
             '$favoriteCount',
             style: AppText.bodyLg.copyWith(color: AppColors.navy300),
@@ -36,7 +36,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         ContentMenuItem(
           icon: AppIcons.bookmark,
           label: LocaleKeys.profile_menu_savedNews.tr(),
-          onTap: () => const SavedNewsRoute().push<void>(context),
+          onTap: () => const SavedNewsRoute().go(context),
           trailing: Text(
             '$savedNewsCount',
             style: AppText.bodyLg.copyWith(color: AppColors.navy300),
@@ -45,12 +45,12 @@ final class ProfileMenuCard extends ConsumerWidget {
         ContentMenuItem(
           icon: AppIcons.announcement,
           label: LocaleKeys.profile_menu_advertisements.tr(),
-          onTap: () => const AdvertisementsRoute().push<void>(context),
+          onTap: () => const AdvertisementsRoute().go(context),
         ),
         ContentMenuItem(
           icon: AppIcons.settingsFilled,
           label: LocaleKeys.profile_menu_settings.tr(),
-          onTap: () => const SettingsRoute().push<void>(context),
+          onTap: () => const SettingsRoute().go(context),
         ),
         ContentMenuItem(
           icon: AppIcons.rate,
@@ -70,7 +70,7 @@ final class ProfileMenuCard extends ConsumerWidget {
         ContentMenuItem(
           icon: AppIcons.code,
           label: LocaleKeys.profile_menu_developers.tr(),
-          onTap: () => const DevelopersRoute().push<void>(context),
+          onTap: () => const DevelopersRoute().go(context),
         ),
         if (isAuthenticated)
           ContentMenuItem(

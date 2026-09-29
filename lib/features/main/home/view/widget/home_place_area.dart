@@ -68,11 +68,11 @@ Widget _listItem(BuildContext context, StoreModel model) {
   );
 }
 
-Future<void> _openDetail(BuildContext context, StoreModel model) async {
-  await PlaceDetailRoute(
+void _openDetail(BuildContext context, StoreModel model) {
+  PlaceDetailRoute(
     $extra: model,
     id: model.documentId,
-  ).push<PlaceDetailRoute>(context);
+  ).go(context);
 }
 
 /// In-memory filtered list for the open-now / favorites axes, which have no

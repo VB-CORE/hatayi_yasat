@@ -7,6 +7,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/navigation/analytics_route_name.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/route_extra_codec.dart';
 
 /// GoRouter'ın refreshListenable'ı ChangeNotifier ister; ChangeNotifierProvider
 /// flutter_riverpod v3'te kaldırıldığı için auth değişimini notifyListeners'a
@@ -48,6 +49,7 @@ final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
     routes: $appRoutes,
     initialLocation: '/',
     refreshListenable: notifier,
+    extraCodec: const RouteExtraCodec(),
     redirect: (context, state) {
       final isBanned = ProviderScope.containerOf(
         context,
