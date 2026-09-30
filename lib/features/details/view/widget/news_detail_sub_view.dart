@@ -20,8 +20,8 @@ final class _NewsMetaRow extends StatelessWidget {
 }
 
 @immutable
-final class _SelectableContentText extends StatelessWidget {
-  const _SelectableContentText({
+final class _NewsContentText extends StatelessWidget {
+  const _NewsContentText({
     required this.content,
   });
 
@@ -29,7 +29,7 @@ final class _SelectableContentText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
+    return Text(
       content,
       style: context.general.textTheme.bodyLarge,
     );
