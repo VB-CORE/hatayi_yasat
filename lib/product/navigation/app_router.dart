@@ -124,7 +124,6 @@ final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
     name: 'Place Detail',
   );
 
-  /// Tarayıcı geçmişinden/yenilemeden açılışta `null`; detay id ile çekilir.
   final StoreModel? $extra;
   final String id;
 

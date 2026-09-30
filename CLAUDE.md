@@ -345,6 +345,10 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 - `go` ile açılan rota tarayıcı geçmişine girer; ileri/yenilemede `$extra` gelmez.
   Bu yüzden `go` ile açılan rotanın `$extra`'sı opsiyonel olmalı ve sayfa veriyi
   path'teki id ile çekebilmeli (örn. `PlaceDetailRoute`).
+- Tarayıcı geçmişine yazılan `extra`'yı [route_extra_codec.dart](lib/product/navigation/route_extra_codec.dart)
+  serileştirir: codec olmadan go_router model `extra`'yı JSON yazıp `Map` olarak
+  geri okur ve typed rotanın cast'i patlar. Codec yalnızca String/num/bool'u
+  korur, modelleri düşürür.
 - Bilinçli `push` istisnaları:
   - Mobil geri yığını `go` ile korunamayanlar: birden fazla listeden açılan
     detaylar (Favoriler / Kayıtlı haberler / filtre sonucu / arama →
