@@ -9,12 +9,6 @@ import 'package:lifeclient/product/navigation/analytics_route_name.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/navigation/route_extra_codec.dart';
 
-/// GoRouter'ın refreshListenable'ı ChangeNotifier ister; ChangeNotifierProvider
-/// flutter_riverpod v3'te kaldırıldığı için auth değişimini notifyListeners'a
-/// köprüleyen ince bir bridge'dir. Yönlendirme kararları rotaların kendi
-/// redirect'lerinde (bkz. AuthGuard) verilir — burada karar yoktur.
-///
-/// Yalnızca auth status / permission / role değişiminde refresh eder
 final class RouterNotifier extends ChangeNotifier {
   RouterNotifier(Ref ref) {
     ref.listen(authViewModelProvider, (previous, next) {

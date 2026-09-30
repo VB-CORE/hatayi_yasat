@@ -75,8 +75,6 @@ void _openDetail(BuildContext context, StoreModel model) {
   ).go(context);
 }
 
-/// In-memory filtered list for the open-now / favorites axes, which have no
-/// Firestore field. Loads a bounded page and filters via the view model.
 final class _ClientFilteredPlaceArea extends ConsumerWidget {
   const _ClientFilteredPlaceArea({
     required this.query,
@@ -94,7 +92,6 @@ final class _ClientFilteredPlaceArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Favori listesi degisince liste yeniden suzulsun diye izleniyor.
     ref.watch(
       ProjectDependencyItems.productProviderState.select(
         (state) => state.favoritePlaces,

@@ -56,8 +56,6 @@ part 'merchant_guard.dart';
 final class SplashRoute extends GoRouteData with $SplashRoute {
   const SplashRoute({this.from});
 
-  /// Root path, so it is also the fallback screen name analytics falls back to
-  /// when a route pattern normalises to nothing.
   static const String routeName = 'Splash';
 
   final String? from;
@@ -87,7 +85,6 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     FilterResultRoute.route,
     UserQrRoute.route,
 
-    // Forms
     PlaceRequestFormRoute.route,
     _MerchantPanelRoute.route,
     _MerchantPendingRoute.route,
@@ -95,19 +92,16 @@ final class SplashRoute extends GoRouteData with $SplashRoute {
     ProjectRequestFormRoute.route,
     ScholarShipRequestFormRoute.route,
 
-    // Settings
     SettingsRoute.route,
     DevelopersRoute.route,
     EditProfileRoute.route,
 
-    // Community
     CreateGroupRoute.route,
   ],
 )
 final class MainTabRoute extends GoRouteData with $MainTabRoute {
   const MainTabRoute({this.tab});
 
-  /// Acilacak alt sekme; URL'de `?tab=` parametresi olarak tasinir.
   final MainTab? tab;
 
   @override
@@ -115,7 +109,6 @@ final class MainTabRoute extends GoRouteData with $MainTabRoute {
       MainTabView(tab: tab);
 }
 
-/// You can use this route for home and favorite place cards
 final class PlaceDetailRoute extends GoRouteData with $PlaceDetailRoute {
   PlaceDetailRoute({required this.id, this.$extra});
 
