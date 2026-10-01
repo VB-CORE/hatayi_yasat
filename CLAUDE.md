@@ -329,7 +329,7 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 | App Check | No-op, reCAPTCHA v3 anahtarı bekleniyor | ticket yok |
 | FCM topic aboneliği | Desteklenmiyor | WEB-26 (bekliyor) |
 | InAppWebView | Kısıtlı, iframe tabanlı (`web/index.html`'e eklenen `web_support.js`) | WEB-27 (#499, bekliyor) |
-| Google Maps | Desteklenmiyor | WEB-24 (bekliyor) |
+| Google Maps | Destekleniyor; konum (my-location) kapalı, `liteMode` yok sayılır. Key `MAPS_WEB_API_KEY` ile verilir. **HTTP referrer kısıtlaması yok, domain belli olunca eklenecek (bekliyor)** | WEB-24 |
 | PDF görüntüleme (syncfusion) | Desteklenmiyor | ticket yok |
 | Foto kırpma (image_cropper) | Web ayarları eksik | WEB-40 (bekliyor) |
 
@@ -415,6 +415,11 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 
 ### Geliştirme
 
+- Google Maps web key'i repoya girmez: kök dizindeki `.env` (gitignore'da)
+  dosyasına `MAPS_WEB_API_KEY=...` yazılır, `--dart-define-from-file=.env` ile
+  verilir; script [maps_support_web.dart](lib/product/package/maps/maps_support_web.dart)
+  içinde yüklenir. Key yoksa script yüklenmez, build yine geçer (CI).
+  Key derlenmiş JS'te görünür; asıl koruma GCP'deki referrer kısıtlamasıdır.
 - `flutter run -d chrome`. Sabit bir `--web-port` henüz yok — **bekliyor (WEB-30)**;
   port seçilince Google OAuth JS origin ve Storage CORS allowlist'lerine de
   eklenmesi gerekir.

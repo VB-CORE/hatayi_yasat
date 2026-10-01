@@ -51,6 +51,7 @@ final class PlaceAddressCard extends StatelessWidget {
                   ),
                 ),
               ),
+              const MapOverlay(child: SizedBox.expand()),
               Positioned(
                 right: AppSpacing.sm,
                 top: AppSpacing.sm,

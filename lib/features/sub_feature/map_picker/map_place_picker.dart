@@ -5,6 +5,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/sub_feature/map_picker/map_place_picker_mixin.dart';
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/maps/map_overlay_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/maps/map_overlay_web.dart';
 import 'package:lifeclient/product/widget/general/index.dart';
 
 class MapPlacePicker extends StatefulWidget {
@@ -47,11 +49,13 @@ class _MapPlacePickerState extends State<MapPlacePicker>
                 bottom: WidgetSizes.spacingMx,
                 right: WidgetSizes.spacingMx,
                 left: WidgetSizes.spacingMx,
-                child: GeneralButtonV2.active(
-                  label:
-                      LocaleKeys.component_mapPicker_selectedLocationSave.tr(),
-                  action: completeSelection,
-                  isEnabled: state.selectedLocation != null,
+                child: MapOverlay(
+                  child: GeneralButtonV2.active(
+                    label: LocaleKeys.component_mapPicker_selectedLocationSave
+                        .tr(),
+                    action: completeSelection,
+                    isEnabled: state.selectedLocation != null,
+                  ),
                 ),
               ),
               if (!state.isMapCreated)
