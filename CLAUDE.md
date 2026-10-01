@@ -339,7 +339,25 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 - Guard'lı rotalara §5'teki kural gereği daima `go`; web'de önemi daha büyük çünkü
   tarayıcının adres çubuğu, geri/ileri tuşu ve yenilemesi yalnızca declarative
   location'ı görür.
-- `push` ile açılan sayfalar URL'e yansımaz — bilinçli, henüz çözülmedi.
+- `push` ile açılan sayfalar URL'e yansımaz (`GoRouter.optionURLReflectsImperativeAPIs`
+  bilerek kapalı; go_router açılmasını önermiyor). Bu yüzden çağıran sayfanın
+  konumu hedefin parent'ıysa `go` kullanılır; mobildeki geri yığını değişmez.
+- `go` ile açılan rota tarayıcı geçmişine girer; ileri/yenilemede `$extra` gelmez.
+  Bu yüzden `go` ile açılan rotanın `$extra`'sı opsiyonel olmalı ve sayfa veriyi
+  path'teki id ile çekebilmeli (örn. `PlaceDetailRoute`).
+- Tarayıcı geçmişine yazılan `extra`'yı [route_extra_codec.dart](lib/product/navigation/route_extra_codec.dart)
+  serileştirir: codec olmadan go_router model `extra`'yı JSON yazıp `Map` olarak
+  geri okur ve typed rotanın cast'i patlar. Codec yalnızca String/num/bool'u
+  korur, modelleri düşürür.
+- Bilinçli `push` istisnaları:
+  - Mobil geri yığını `go` ile korunamayanlar: birden fazla listeden açılan
+    detaylar (Favoriler / Kayıtlı haberler / filtre sonucu / arama →
+    `PlaceDetailRoute`, `NewsDetailRoute`) ve bildirim tıklaması
+    ([messaging_navigate.dart](lib/product/package/firebase/messaging_navigate.dart)).
+  - Zorunlu `$extra`'lı, id ile veri çekemeyen rotalar: `NewsDetailRoute`,
+    `EventDetailsRoute`, `FilterResultRoute`, `GroupDetailRoute`,
+    `DiscussionDetailRoute`.
+  - `Navigator.push` ile açılan geçici overlay'ler (foto görüntüleyici, KVKK metni).
 - Yenilemede (cold load) `product` init'i bitmemişse üst düzey `redirect`
   ([router_notifier.dart](lib/product/navigation/router_notifier.dart)) her rotayı
   `SplashRoute(from: <orijinal URL>)`'a yönlendirir; splash `_resume` önce auth

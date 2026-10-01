@@ -18,11 +18,9 @@ final class _MarketCard extends StatelessWidget {
         button: true,
         label: market.name,
         child: InkWell(
-          onTap: () => unawaited(
-            ChainStoreDetailRoute(
-              marketId: market.documentId,
-            ).push<void>(context),
-          ),
+          onTap: () => ChainStoreDetailRoute(
+            marketId: market.documentId,
+          ).go(context),
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: Container(
             decoration: BoxDecoration(

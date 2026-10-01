@@ -64,7 +64,7 @@ final class ProfileAuthenticatedHeader extends ConsumerWidget {
                       ProfileStatics(
                         count: favoriteCount,
                         label: LocaleKeys.profile_stats_favorites.tr(),
-                        onTap: () => const FavoriteRoute().push<void>(context),
+                        onTap: () => const FavoriteRoute().go(context),
                       ),
                       // TODO(profile): Yorumlarım listesi eklenecek.
                       ProfileStatics(

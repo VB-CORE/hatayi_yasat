@@ -34,9 +34,7 @@ final class _DevelopersViewState extends ConsumerState<DevelopersView>
         pageTitle: LocaleKeys.developers_title,
         actions: [
           TextButton(
-            onPressed: () => const DevelopersContributorsRoute().push<void>(
-              context,
-            ),
+            onPressed: () => const DevelopersContributorsRoute().go(context),
             child: Text(LocaleKeys.developers_contributorsButtonTitle.tr()),
           ),
         ],
