@@ -57,39 +57,41 @@ class _NewsDetailViewState extends ConsumerState<NewsDetailView>
         child: SingleChildScrollView(
           child: Padding(
             padding: AppSpacing.screenH,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: AppSpacing.lg),
-                Text(
-                  news.title ?? '',
-                  maxLines: TextFieldMaxLengths.maxLine,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: context.general.textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w100,
-                    height: 1.50,
+            child: SelectionArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: AppSpacing.lg),
+                  Text(
+                    news.title ?? '',
+                    maxLines: TextFieldMaxLengths.maxLine,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    style: context.general.textTheme.headlineLarge?.copyWith(
+                      fontWeight: FontWeight.w100,
+                      height: 1.50,
+                    ),
                   ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                if (news.createdAt case final date?) _NewsMetaRow(date: date),
-                const SizedBox(height: AppSpacing.xl),
-                Hero(
-                  tag: ValueKey(news.documentId),
-                  child: ClipRRect(
-                    borderRadius: AppRadius.card,
-                    child: CustomImageWithViewDialog(image: news.image),
+                  const SizedBox(height: AppSpacing.xs),
+                  if (news.createdAt case final date?) _NewsMetaRow(date: date),
+                  const SizedBox(height: AppSpacing.xl),
+                  Hero(
+                    tag: ValueKey(news.documentId),
+                    child: ClipRRect(
+                      borderRadius: AppRadius.card,
+                      child: CustomImageWithViewDialog(image: news.image),
+                    ),
                   ),
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                if (hasBody)
-                  _SelectableContentText(content: news.content!)
-                else
-                  GeneralContentSubTitle(
-                    value: LocaleKeys.notFound_newsContent.tr(),
-                  ),
-                const SizedBox(height: AppSpacing.xl),
-              ],
+                  const SizedBox(height: AppSpacing.xl),
+                  if (hasBody)
+                    _NewsContentText(content: news.content!)
+                  else
+                    GeneralContentSubTitle(
+                      value: LocaleKeys.notFound_newsContent.tr(),
+                    ),
+                  const SizedBox(height: AppSpacing.xl),
+                ],
+              ),
             ),
           ),
         ),

@@ -31,11 +31,13 @@ final class PlaceDetailAboutTab extends StatelessWidget {
                 color: AppColors.navy900,
                 textAlign: TextAlign.start,
               ),
-              Text(
-                store.hasDescription
-                    ? store.description!
-                    : LocaleKeys.placeDetailView_noDescription.tr(),
-                style: AppText.body.copyWith(color: AppColors.navy400),
+              SelectionArea(
+                child: Text(
+                  store.hasDescription
+                      ? store.description!
+                      : LocaleKeys.placeDetailView_noDescription.tr(),
+                  style: AppText.body.copyWith(color: AppColors.navy400),
+                ),
               ),
             ],
           ),

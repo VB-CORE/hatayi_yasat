@@ -360,6 +360,35 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 - §6'daki `context.sized.dynamicHeight/Width(...)` önerisi için yeni bir yasak
   henüz kesinleşmedi — **bekliyor (WEB-12)**.
 
+### Metin seçimi, sağ tık ve ölçek (WEB-28, #503)
+
+- Okunan uzun içerik (mekan açıklaması, haber başlığı + gövdesi) `SelectionArea`
+  ile sarılır. Bölge içinde `SelectableText` kullanılmaz (iç içe seçim bölgesi
+  sürükle-seçimi böler); buton/tile gibi tıklanan alanlar bölgenin dışında kalır.
+- Sağ tık için kod yazılmaz: `BrowserContextMenu` varsayılan açık, seçili metinde
+  tarayıcının kendi menüsü (Kopyala) çıkar. Mobilde uzun basma menüsü aynı kalır.
+- Mac tarayıcısında platform `macOS` sayılır ve varsayılan Cupertino geçişi sol
+  kenardan (20 px) sürükleyince sayfayı kapatır; metin 16 px'ten başladığı için
+  seçim geri harekete dönüşür. [app_theme.dart](lib/core/theme/app_theme.dart)
+  `pageTransitionsTheme`'de `macOS` → `ZoomPageTransitionsBuilder` (Windows/Linux
+  ile aynı). macOS uygulaması hedef olmadığından yalnızca web etkilenir; iOS ve
+  Android geçişleri değişmez.
+- Genişlik `AppBreakpoints.webShell` eşiğini geçtiğinde
+  [web_shell.dart](lib/product/widget/builder/web_shell.dart) ağacın yapısını
+  değiştirmez, yalnızca parametreleri değişir. Yapı değişirse Router yeniden
+  bağlanır, route bilgisini tekrar parse eder ve zorunlu `$extra`'lı sayfalar
+  (`NewsDetailRoute` vb.) `null` ile çöker.
+- `TextScaler.noScaling` ([app_builder.dart](lib/product/app_builder.dart)) web'de
+  de korunur:
+  - Tarayıcı zoom'u `textScaler`'dan değil `devicePixelRatio` + pencere
+    boyutundan geçer; `noScaling` zoom'u engellemez, metni %200'e büyütme ihtiyacı
+    (WCAG 1.4.4) zoom ile karşılanır. Zoom ile genişlik `AppBreakpoints.webShell`
+    altına düşünce kabuk tam genişliğe geçer.
+  - Yok sayılan tek şey tarayıcının "yazı boyutu" ayarıdır. Tipografi sabit
+    ölçekle (`AppText`) tasarlandı ve `noScaling` overflow'u önlemek için
+    eklendi; web'e özel ölçek açmak web'i mobilden ayırır ve tüm ekranlarda
+    overflow testi gerektirir.
+
 ### Auth (web)
 
 - Giriş `signInWithPopup` ile yapılır (Google'da `prompt=select_account`, Apple'da

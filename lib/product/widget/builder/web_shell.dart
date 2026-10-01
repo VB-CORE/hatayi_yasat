@@ -16,40 +16,47 @@ final class WebShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
-    if (media.size.width <= AppBreakpoints.webShell) return child;
+    final isFramed = media.size.width > AppBreakpoints.webShell;
 
     return Stack(
       children: [
         Positioned.fill(
-          child: MosaicBackground(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [context.appColors.navy, context.appColors.navy900],
-            ),
-          ),
+          child: isFramed
+              ? MosaicBackground(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [context.appColors.navy, context.appColors.navy900],
+                  ),
+                )
+              : const SizedBox.shrink(),
         ),
         Center(
           child: Padding(
-            padding: const PagePadding.verticalNormalSymmetric(),
+            padding: isFramed
+                ? const PagePadding.verticalNormalSymmetric()
+                : EdgeInsets.zero,
             child: SizedBox(
-              width: AppBreakpoints.webShell,
+              width: isFramed ? AppBreakpoints.webShell : double.infinity,
               child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: context.general.appTheme.scaffoldBackgroundColor,
-                  borderRadius: CustomRadius.extraLarge,
-                  boxShadow: [
-                    BoxShadow(
-                      color: context.general.colorScheme.shadow.withValues(
-                        alpha: .35,
-                      ),
-                      blurRadius: WidgetSizes.spacingXxl2,
-                      offset: const Offset(kZero, WidgetSizes.spacingS),
-                    ),
-                  ],
-                ),
+                decoration: isFramed
+                    ? BoxDecoration(
+                        color: context.general.appTheme.scaffoldBackgroundColor,
+                        borderRadius: CustomRadius.extraLarge,
+                        boxShadow: [
+                          BoxShadow(
+                            color: context.general.colorScheme.shadow
+                                .withValues(alpha: .35),
+                            blurRadius: WidgetSizes.spacingXxl2,
+                            offset: const Offset(kZero, WidgetSizes.spacingS),
+                          ),
+                        ],
+                      )
+                    : const BoxDecoration(),
                 child: ClipRRect(
-                  borderRadius: CustomRadius.extraLarge,
+                  borderRadius: isFramed
+                      ? CustomRadius.extraLarge
+                      : BorderRadius.zero,
                   child: LayoutBuilder(
                     builder: (context, constraints) => MediaQuery(
                       data: media.copyWith(size: constraints.biggest),
