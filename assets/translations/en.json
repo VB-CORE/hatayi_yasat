@@ -5,6 +5,13 @@
   "splash": {
     "tagline": "COMMUNITY · PLACE · MEMORY"
   },
+  "webSidebar": {
+    "menu": "Menu",
+    "applications": "Applications",
+    "more": "More",
+    "team": "Our team",
+    "visitWebsite": "Visit our website"
+  },
   "validation": {
     "fullName": "Name and surname cannot be empty.",
     "phoneNumber": "Please enter a valid phone number.",

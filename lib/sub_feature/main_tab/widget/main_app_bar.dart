@@ -1,7 +1,9 @@
 part of '../main_tab_view.dart';
 
 final class _MainAppBar extends AppBar {
-  _MainAppBar()
+  /// With [hasSidebar] the logo and the notification bell are already in the
+  /// web sidebar, so only the city pill stays.
+  _MainAppBar({bool hasSidebar = false})
     : super(
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(WidgetSizes.spacingS),
@@ -15,18 +17,22 @@ final class _MainAppBar extends AppBar {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Assets.icons.icAppTransparent.image(
-              height: WidgetSizes.spacingXxl,
-              width: WidgetSizes.spacingXxl,
-            ),
-            const SizedBox(width: AppSpacing.sm),
+            if (!hasSidebar) ...[
+              Assets.icons.icAppTransparent.image(
+                height: WidgetSizes.spacingXxl,
+                width: WidgetSizes.spacingXxl,
+              ),
+              const SizedBox(width: AppSpacing.sm),
+            ],
             const _CityPill(),
           ],
         ),
-        actions: const [
-          _NotificationButton(),
-          SizedBox(width: AppSpacing.xxs),
-        ],
+        actions: hasSidebar
+            ? null
+            : const [
+                _NotificationButton(),
+                SizedBox(width: AppSpacing.xxs),
+              ],
       );
 }
 

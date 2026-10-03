@@ -32,8 +32,11 @@ mixin MainTabViewMixin
       length: tabItems.length,
       initialIndex: widget.tab?.index ?? MainTab.places.index,
       vsync: this,
-    )..addListener(_reportCurrentTab);
+    )
+      ..addListener(_reportCurrentTab)
+      ..addListener(_syncCurrentTab);
     _reportCurrentTab();
+    _syncCurrentTab();
     _clearTabQuery();
 
     WidgetsBinding.instance.addObserver(this);
@@ -61,6 +64,7 @@ mixin MainTabViewMixin
     WidgetsBinding.instance.removeObserver(this);
     tabController
       ..removeListener(_reportCurrentTab)
+      ..removeListener(_syncCurrentTab)
       ..dispose();
     super.dispose();
   }
@@ -81,6 +85,19 @@ mixin MainTabViewMixin
     if (index == _reportedTabIndex) return;
     _reportedTabIndex = index;
     analyticsService.logScreenView(tabItems[index].analyticsName);
+  }
+
+  /// The web sidebar lives above the router and cannot see the controller.
+  /// The controller also changes during build (initState, `animateTo` in
+  /// didUpdateWidget), where Riverpod refuses writes, so the write waits for
+  /// the frame to end.
+  void _syncCurrentTab() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(mainTabViewModelProvider.notifier)
+          .updateCurrentTab(MainTab.values[tabController.index]);
+    });
   }
 
   void listenScrollUpdateNotification(ScrollUpdateNotification notification) {
