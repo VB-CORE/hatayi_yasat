@@ -1,3 +1,4 @@
+import 'package:lifeclient/sub_feature/main_tab/model/main_tab.dart';
 import 'package:lifeclient/sub_feature/main_tab/view_model/main_tab_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,5 +14,10 @@ final class MainTabViewModel extends _$MainTabViewModel {
   void updateBottomBarValue({required bool isScrolledBottom}) {
     if (state.isScrolledBottom == isScrolledBottom) return;
     state = state.copyWith(isScrolledBottom: isScrolledBottom);
+  }
+
+  void updateCurrentTab(MainTab tab) {
+    if (state.currentTab == tab) return;
+    state = state.copyWith(currentTab: tab);
   }
 }
