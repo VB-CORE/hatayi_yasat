@@ -4,20 +4,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/features/main/profile/view/profile_view.dart';
-import 'package:lifeclient/features/sub_feature/web_view/app_about_web_view.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/web_page/web_page_opener_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/web_page/web_page_opener_web.dart';
+import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/dialog/general_text_dialog.dart';
 import 'package:lifeclient/product/widget/dialog/sub_widget/general_dialog_button.dart';
 
 mixin ProfileViewMixin
     on ConsumerState<ProfileView>, AppProviderMixin<ProfileView> {
-  Future<void> onAboutPressed() async {
-    await showModalBottomSheet<void>(
-      context: context,
-      enableDrag: false,
-      isScrollControlled: true,
-      builder: (context) => const AppAboutView(),
+  Future<void> onAboutPressed() {
+    return const PlatformWebPageOpener().open(
+      context,
+      AppConstants.homeWebsiteUrl,
     );
   }
 
