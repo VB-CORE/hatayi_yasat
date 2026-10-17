@@ -21,6 +21,22 @@
             {
               "key": "Cache-Control",
               "value": "no-cache"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "Content-Security-Policy-Report-Only",
+              "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.gstatic.com https://accounts.google.com https://www.googletagmanager.com https://apis.google.com https://www.google.com https://maps.googleapis.com https://appleid.apple.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.firebaseio.com wss://*.firebaseio.com https://*.cloudfunctions.net https://*.firebaseapp.com https://www.google.com https://accounts.google.com https://appleid.apple.com https://*.google-analytics.com; worker-src 'self' blob:; frame-src 'self' blob: https://accounts.google.com https://apis.google.com https://www.google.com https://appleid.apple.com https://www.recaptcha.net https://recaptcha.google.com https://*.firebaseapp.com https://maps.googleapis.com; manifest-src 'self'; media-src 'self' blob: data:"
             }
           ]
         },
