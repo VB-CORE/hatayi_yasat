@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "savehatay"
+  },
+  "targets": {
+    "savehatay": {
+      "hosting": {
+        "app": [
+          "savehatay"
+        ]
+      }
+    }
   }
 }
