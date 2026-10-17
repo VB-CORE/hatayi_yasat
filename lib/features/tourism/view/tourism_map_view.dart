@@ -17,6 +17,10 @@ import 'package:lifeclient/features/tourism/widgets/toursim_place_detail_sheet.d
 import 'package:lifeclient/product/generated/assets.gen.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/package/maps/map_overlay_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/maps/map_overlay_web.dart';
+import 'package:lifeclient/product/package/maps/maps_support_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/maps/maps_support_web.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/link_actions.dart';
 import 'package:lifeclient/product/widget/background/mosaic_background.dart';
@@ -48,18 +52,20 @@ class _TourismMapViewState extends ConsumerState<TourismMapView>
             myLocationButtonEnabled: false,
             onMapCreated: onMapCreated,
             markers: markers,
-            myLocationEnabled: true,
+            myLocationEnabled: const PlatformMapsSupport().supportsMyLocation,
             initialCameraPosition: AppConstants.initialLocation,
           ),
-          const _TouristTopBar(),
+          const MapOverlay(child: _TouristTopBar()),
           Positioned(
             bottom: WidgetSizes.spacingXsMid,
             left: kZero,
             right: kZero,
             child: SafeArea(
-              child: _TourismPlacesSlider(
-                carouselController: carouselController,
-                onItemTap: changeSelectedPlace,
+              child: MapOverlay(
+                child: _TourismPlacesSlider(
+                  carouselController: carouselController,
+                  onItemTap: changeSelectedPlace,
+                ),
               ),
             ),
           ),

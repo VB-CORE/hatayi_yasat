@@ -15,6 +15,8 @@ import 'package:lifeclient/product/init/app_check/app_check_initialize_io.dart'
     if (dart.library.js_interop) 'package:lifeclient/product/init/app_check/app_check_initialize_web.dart';
 import 'package:lifeclient/product/init/error_handler/error_handler_binder_io.dart'
     if (dart.library.js_interop) 'package:lifeclient/product/init/error_handler/error_handler_binder_web.dart';
+import 'package:lifeclient/product/package/maps/maps_support_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/maps/maps_support_web.dart';
 
 @immutable
 final class ApplicationInit {
@@ -31,6 +33,7 @@ final class ApplicationInit {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await const PlatformAppCheckInitialize().activate();
+    await const PlatformMapsSupport().load();
 
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.fetchAndActivate();

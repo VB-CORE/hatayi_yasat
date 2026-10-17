@@ -17,6 +17,8 @@ import 'package:lifeclient/features/place_detail/mixin/place_detail_view_mixin.d
 import 'package:lifeclient/features/place_detail/view_model/place_detail_view_model.dart';
 import 'package:lifeclient/features/place_detail/view_model/place_showcase_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/maps/map_overlay_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/maps/map_overlay_web.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/extension/store_etension.dart';
