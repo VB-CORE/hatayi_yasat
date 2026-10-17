@@ -18,6 +18,7 @@ import 'package:lifeclient/product/navigation/app_router.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/index.dart';
+import 'package:lifeclient/product/widget/builder/web_layout_scope.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic.dart';
 import 'package:lifeclient/product/widget/general/semantics/general_semantic_keys.dart';
 import 'package:lifeclient/product/widget/speed_dial/custom_speed_dial.dart';
@@ -53,6 +54,7 @@ class _MainTabViewState extends ConsumerState<MainTabView>
 
   @override
   Widget build(BuildContext context) {
+    final hasSidebar = WebLayoutScope.hasSidebar(context);
     return GeneralSemantic(
       semanticKey: GeneralSemanticKeys.mainTabView,
       child: NotificationListener<ScrollUpdateNotification>(
@@ -66,7 +68,9 @@ class _MainTabViewState extends ConsumerState<MainTabView>
             final currentTab = tabItems[tabController.index];
             return Scaffold(
               extendBody: true,
-              appBar: currentTab.showAppBar ? _MainAppBar() : null,
+              appBar: currentTab.showAppBar
+                  ? _MainAppBar(hasSidebar: hasSidebar)
+                  : null,
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               body: Stack(
@@ -75,18 +79,23 @@ class _MainTabViewState extends ConsumerState<MainTabView>
                     tabItems: tabItems,
                     controller: tabController,
                   ),
-                  if (currentTab.showQr) QrFabButton(bottom: bottomSafePadding),
+                  if (currentTab.showQr && !hasSidebar)
+                    QrFabButton(bottom: bottomSafePadding),
                 ],
               ),
               resizeToAvoidBottomInset: false,
-              bottomNavigationBar: GeneralSemantic(
-                semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
-                child: _BottomAppBarWidget(
-                  tabItems: tabItems,
-                  controller: tabController,
-                ),
-              ),
-              floatingActionButton: const _SpeedDialFabWidget(),
+              bottomNavigationBar: hasSidebar
+                  ? null
+                  : GeneralSemantic(
+                      semanticKey: GeneralSemanticKeys.mainTabBottomNavigation,
+                      child: _BottomAppBarWidget(
+                        tabItems: tabItems,
+                        controller: tabController,
+                      ),
+                    ),
+              floatingActionButton: hasSidebar
+                  ? null
+                  : const _SpeedDialFabWidget(),
             );
           },
         ),

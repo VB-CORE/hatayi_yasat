@@ -5,6 +5,13 @@
   "splash": {
     "tagline": "TOPLULUK · MEKAN · HATIRA"
   },
+  "webSidebar": {
+    "menu": "Menü",
+    "applications": "Başvurular",
+    "more": "Daha fazla",
+    "team": "Ekibimiz",
+    "visitWebsite": "Web sitemizi ziyaret edin"
+  },
   "validation": {
     "fullName": "Ad ve soyad boş bırakılamaz.",
     "phoneNumber": "Lütfen geçerli bir telefon numarası giriniz.",

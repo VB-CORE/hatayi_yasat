@@ -3,4 +3,5 @@ final class AppBreakpoints {
 
   static const double tablet = 600;
   static const double webShell = 768;
+  static const double webSidebar = 1120;
 }
