@@ -1,6 +1,6 @@
 # 🚀 Open Source Yayınlama Kontrol Listesi
 
-> **Proje:** life_client (Hatayı Yaşat)
+> **Proje:** hatayi_yasat (Hatayı Yaşat)
 > **Tarih:** 2025-11-29
 > **Versiyon:** 8.1.0
 
@@ -194,8 +194,8 @@ grep -r "TODO.*yapılacak\|TODO.*Bu" lib/
 
 #### 1. Depoyu Klonlayın
 ```bash
-git clone https://github.com/VB-CORE/life_client.git
-cd life_client
+git clone https://github.com/VB-CORE/hatayi_yasat.git
+cd hatayi_yasat
 ```
 
 #### 2. Bağımlılıkları Yükleyin
@@ -481,8 +481,8 @@ Katkılarınız için teşekkür ederiz! 🎉
 
 #### Adım 1: Fork & Clone
 ```bash
-git clone https://github.com/YOUR_USERNAME/life_client.git
-cd life_client
+git clone https://github.com/YOUR_USERNAME/hatayi_yasat.git
+cd hatayi_yasat
 ```
 
 #### Adım 2: Branch Oluşturun

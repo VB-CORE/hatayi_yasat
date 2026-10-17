@@ -1,16 +1,16 @@
 ---
 name: hata-issue
-description: Take a GitHub issue from VB-CORE/life_client, fetch it with gh, split it into atomic tasks, locate the right code under lib/features, build a per-task plan, and drive the fix using project conventions (delegates real scaffolding to hata-feature, deep checks to hata-architecture-review). Use when the user gives an issue number or github.com/VB-CORE/life_client/issues/<n> URL and asks to work it, e.g. "şu issue'yu al ve çöz", "bu issue'daki bug'ları düzelt", "issue 42'yi gh ile çek planını çıkar", "fix the bugs in this issue", "issue'yu projeye göre çöz".
+description: Take a GitHub issue from VB-CORE/hatayi_yasat, fetch it with gh, split it into atomic tasks, locate the right code under lib/features, build a per-task plan, and drive the fix using project conventions (delegates real scaffolding to hata-feature, deep checks to hata-architecture-review). Use when the user gives an issue number or github.com/VB-CORE/hatayi_yasat/issues/<n> URL and asks to work it, e.g. "şu issue'yu al ve çöz", "bu issue'daki bug'ları düzelt", "issue 42'yi gh ile çek planını çıkar", "fix the bugs in this issue", "issue'yu projeye göre çöz".
 ---
 
-# life_client Issue → Plan → Fix
+# hatayi_yasat Issue → Plan → Fix
 
-Turns a GitHub issue into a worked solution **the life_client way**: fetch with
+Turns a GitHub issue into a worked solution **the hatayi_yasat way**: fetch with
 `gh`, break the body into atomic tasks, point each at the real code, then drive each
 fix under [CLAUDE.md](../../../CLAUDE.md) conventions. This skill **plans and
 routes**; it does not invent conventions.
 
-Repo: `VB-CORE/life_client`. Default branch: `main`. Uses plain `gh`/`git` (no
+Repo: `VB-CORE/hatayi_yasat`. Default branch: `main`. Uses plain `gh`/`git` (no
 helper scripts). Prereq: `gh auth status`.
 
 ## When to invoke
@@ -24,9 +24,9 @@ helper scripts). Prereq: `gh auth status`.
 
 ## Step 1 — Fetch + decompose the issue
 ```bash
-gh issue view <n> --repo VB-CORE/life_client --json title,body,labels,comments
+gh issue view <n> --repo VB-CORE/hatayi_yasat --json title,body,labels,comments
 # a pasted URL also works:
-gh issue view https://github.com/VB-CORE/life_client/issues/<n> --json title,body,labels
+gh issue view https://github.com/VB-CORE/hatayi_yasat/issues/<n> --json title,body,labels
 ```
 Split the body into **atomic tasks**:
 - If the body has `- [ ]` / `- [x]` checkboxes, each is a task (note done state).
@@ -62,8 +62,8 @@ Optionally self-review the diff with `hata-pr-review` before handing back.
 
 ## Step 6 — Report back (ask before pushing to GitHub)
 ```bash
-gh issue view <n> --repo VB-CORE/life_client          # re-read current state
-gh issue comment <n> --repo VB-CORE/life_client --body "Task N fixed in <branch>"
+gh issue view <n> --repo VB-CORE/hatayi_yasat          # re-read current state
+gh issue comment <n> --repo VB-CORE/hatayi_yasat --body "Task N fixed in <branch>"
 ```
 
 ## Output contract
@@ -81,5 +81,5 @@ gh issue comment <n> --repo VB-CORE/life_client --body "Task N fixed in <branch>
 ## Troubleshooting
 | Symptom | Fix |
 |---|---|
-| `gh ... HTTP 404` | Wrong repo or not authed. `gh auth status`; pass `--repo VB-CORE/life_client`. |
+| `gh ... HTTP 404` | Wrong repo or not authed. `gh auth status`; pass `--repo VB-CORE/hatayi_yasat`. |
 | Can't find the code for a task | Grep the summary nouns under `lib/features/`; for UI text, go via `assets/translations` keys. |

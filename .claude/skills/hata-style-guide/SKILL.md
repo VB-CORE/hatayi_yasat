@@ -1,11 +1,11 @@
 ---
 name: hata-style-guide
-description: Design-system reference for life_client UI — the project's colors (ColorsCustom + context.general.colorScheme), typography (Roboto + semantic title widgets), spacing/radius tokens (PagePadding, EmptyBox, VerticalSpace, CustomRadius, WidgetSizes), reusable widget catalog (GeneralButtonV2, cards, inputs, dialogs), light/dark/system theming and easy_localization. Use when building or adjusting any UI and you need the project's tokens/components, e.g. "renkleri/fontları projeye göre kullan", "bu butonu projeye göre yaz", "style guide", "tema token'ları", "make this UI match the design system".
+description: Design-system reference for hatayi_yasat UI — the project's colors (ColorsCustom + context.general.colorScheme), typography (Roboto + semantic title widgets), spacing/radius tokens (PagePadding, EmptyBox, VerticalSpace, CustomRadius, WidgetSizes), reusable widget catalog (GeneralButtonV2, cards, inputs, dialogs), light/dark/system theming and easy_localization. Use when building or adjusting any UI and you need the project's tokens/components, e.g. "renkleri/fontları projeye göre kullan", "bu butonu projeye göre yaz", "style guide", "tema token'ları", "make this UI match the design system".
 ---
 
-# life_client Style Guide
+# hatayi_yasat Style Guide
 
-Convention reference for building UI the life_client way. The authoritative rules
+Convention reference for building UI the hatayi_yasat way. The authoritative rules
 live in [CLAUDE.md §6–§7](../../../CLAUDE.md); this skill is the quick lookup +
 checklist when writing widgets. **Enforce, don't invent** — if a token is missing,
 add it to the theme/token file, not the call site.
