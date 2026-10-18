@@ -328,7 +328,7 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 | Crashlytics | Geçici no-op, hata raporlanmıyor | WEB-35 (bekliyor) |
 | App Check | No-op, reCAPTCHA v3 anahtarı bekleniyor | ticket yok |
 | FCM topic aboneliği | Desteklenmiyor | WEB-26 (bekliyor) |
-| InAppWebView | Kısıtlı, iframe tabanlı (`web/index.html`'e eklenen `web_support.js`) | WEB-27 (#499, bekliyor) |
+| InAppWebView | Kullanılmaz; [web_page_opener_web.dart](lib/product/package/web_page/web_page_opener_web.dart) sayfayı yeni sekmede açar. `hatayiyasat.com` `X-Frame-Options: DENY` + CSP `frame-ancestors` gönderdiği için iframe'de gösterilemez | WEB-27 (#499) |
 | Google Maps | Desteklenmiyor | WEB-24 (bekliyor) |
 | PDF görüntüleme (syncfusion) | Desteklenmiyor | ticket yok |
 | Foto kırpma (image_cropper) | Web ayarları eksik | WEB-40 (bekliyor) |

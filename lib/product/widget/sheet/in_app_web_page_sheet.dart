@@ -3,13 +3,16 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 
-final class AppAboutView extends StatefulWidget {
-  const AppAboutView({super.key});
+final class InAppWebPageSheet extends StatefulWidget {
+  const InAppWebPageSheet({required this.url, super.key});
+
+  final String url;
+
   @override
-  State<AppAboutView> createState() => _AppAboutViewState();
+  State<InAppWebPageSheet> createState() => _InAppWebPageSheetState();
 }
 
-class _AppAboutViewState extends State<AppAboutView> {
+class _InAppWebPageSheetState extends State<InAppWebPageSheet> {
   final ValueNotifier<bool> _isLoadingNotifier = ValueNotifier<bool>(true);
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,7 @@ class _AppAboutViewState extends State<AppAboutView> {
             InAppWebView(
               onWebViewCreated: (controller) async {
                 await controller.loadUrl(
-                  urlRequest:
-                      URLRequest(url: WebUri(AppConstants.homeWebsiteUrl)),
+                  urlRequest: URLRequest(url: WebUri(widget.url)),
                 );
                 _isLoadingNotifier.value = false;
               },
