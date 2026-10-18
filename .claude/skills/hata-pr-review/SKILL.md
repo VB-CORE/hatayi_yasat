@@ -1,15 +1,15 @@
 ---
 name: hata-pr-review
-description: Review a life_client change set (working diff, a branch vs main, or a GitHub PR) against the project's CLAUDE.md conventions, then produce one severity-ranked review with file:line findings and concrete fixes. Combines a static-analysis pass, a styling/token pass, and an architecture-conformance pass delegated to the hata-architecture-reviewer agent. Use when the user asks to review changes/a diff/a PR before merge, e.g. "bu PR'ı incele", "şu diff'i projeye göre review et", "pr review yap", "merge'e hazır mı", "review my changes against conventions".
+description: Review a hatayi_yasat change set (working diff, a branch vs main, or a GitHub PR) against the project's CLAUDE.md conventions, then produce one severity-ranked review with file:line findings and concrete fixes. Combines a static-analysis pass, a styling/token pass, and an architecture-conformance pass delegated to the hata-architecture-reviewer agent. Use when the user asks to review changes/a diff/a PR before merge, e.g. "bu PR'ı incele", "şu diff'i projeye göre review et", "pr review yap", "merge'e hazır mı", "review my changes against conventions".
 ---
 
-# life_client PR Review
+# hatayi_yasat PR Review
 
 Single entry point for reviewing a change set in this repo against
 [CLAUDE.md](../../../CLAUDE.md). It **reviews, it does not fix** — only apply fixes
 if the user explicitly asks afterward (then route through `hata-feature`).
 
-Repo: `VB-CORE/life_client`. Default branch: `main`.
+Repo: `VB-CORE/hatayi_yasat`. Default branch: `main`.
 
 ## When to invoke
 - "Review this PR / diff / branch", "merge'e hazır mı".
@@ -21,7 +21,7 @@ Repo: `VB-CORE/life_client`. Default branch: `main`.
 - Auditing whole-codebase structure (not a diff) → `hata-architecture-review`.
 
 ## Inputs (resolve the review target first, in order)
-1. **Explicit PR** — number or `github.com/VB-CORE/life_client/pull/<n>` → `gh pr diff <n>` (+ `gh pr view <n>` for context/description).
+1. **Explicit PR** — number or `github.com/VB-CORE/hatayi_yasat/pull/<n>` → `gh pr diff <n>` (+ `gh pr view <n>` for context/description).
 2. **Branch** — user names a branch → `git diff main...<branch>`.
 3. **Default** — no target → working set: `git diff` + `git diff --staged`, falling back to `git diff main...HEAD` if the tree is clean.
 

@@ -1,9 +1,9 @@
 ---
 name: hata-feature
-description: End-to-end scaffold for a new life_client Flutter feature following project conventions from CLAUDE.md — Riverpod @riverpod ViewModel + Equatable state (no Freezed), ConsumerStatefulWidget view + mixin, ProjectDependencyMixin/AppProviderMixin DI, go_router typed routes, and the styling token rules (PagePadding, EmptyBox, CustomRadius, ColorsCustom, context.general.colorScheme, GeneralButtonV2, LocaleKeys.tr). Use when the user asks to add or refactor a feature, e.g. "yeni feature ekleyelim", "şu sayfayı projeye göre yaz", "viewmodel + state + view kur", "scaffold a new feature under lib/features".
+description: End-to-end scaffold for a new hatayi_yasat Flutter feature following project conventions from CLAUDE.md — Riverpod @riverpod ViewModel + Equatable state (no Freezed), ConsumerStatefulWidget view + mixin, ProjectDependencyMixin/AppProviderMixin DI, go_router typed routes, and the styling token rules (PagePadding, EmptyBox, CustomRadius, ColorsCustom, context.general.colorScheme, GeneralButtonV2, LocaleKeys.tr). Use when the user asks to add or refactor a feature, e.g. "yeni feature ekleyelim", "şu sayfayı projeye göre yaz", "viewmodel + state + view kur", "scaffold a new feature under lib/features".
 ---
 
-# life_client Feature Scaffold
+# hatayi_yasat Feature Scaffold
 
 Single workflow for building a feature in this repo, enforcing the conventions in
 [CLAUDE.md](../../../CLAUDE.md). This skill is **convention-enforcing**, not

@@ -1,10 +1,10 @@
-# CLAUDE.md — life_client Konvansiyonları
+# CLAUDE.md — hatayi_yasat Konvansiyonları
 
 > Bu dosya, projede iş yapan herkes (ve Claude) için **tek doğru kaynaktır**.
 > `.claude/skills/*` ve `.claude/agents/*` bu kurallara referans verir; kuralları
 > tekrar etmez. Bir konvansiyon değişecekse önce burada değişir.
 
-Proje: Hatay **life_client** — Flutter + Firebase mobil uygulaması.
+Proje: Hatay **hatayi_yasat** — Flutter + Firebase mobil uygulaması.
 Stack: Flutter, `flutter_riverpod` (v3, `@riverpod` codegen), `get_it`, `go_router` +
 `go_router_builder`, Firebase (Firestore/Functions/Messaging), `hive_ce`,
 `easy_localization`, `very_good_analysis`.

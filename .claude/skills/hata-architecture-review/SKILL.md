@@ -1,9 +1,9 @@
 ---
 name: hata-architecture-review
-description: Audit the overall architecture & convention health of the life_client codebase (the whole repo or a given feature/folder) against CLAUDE.md — Riverpod @riverpod ViewModel pattern, Equatable+copyWith state, DI via mixins, view conventions, go_router typed routes, styling tokens, structure/naming. Runs static analysis, delegates a deep pass to the hata-architecture-reviewer agent, and produces one severity-ranked report. Use when the user asks to check the architecture, e.g. "mimariyi kontrol et", "proje konvansiyonlarına uyuyor mu", "şu feature mimariye uygun mu", "architecture review".
+description: Audit the overall architecture & convention health of the hatayi_yasat codebase (the whole repo or a given feature/folder) against CLAUDE.md — Riverpod @riverpod ViewModel pattern, Equatable+copyWith state, DI via mixins, view conventions, go_router typed routes, styling tokens, structure/naming. Runs static analysis, delegates a deep pass to the hata-architecture-reviewer agent, and produces one severity-ranked report. Use when the user asks to check the architecture, e.g. "mimariyi kontrol et", "proje konvansiyonlarına uyuyor mu", "şu feature mimariye uygun mu", "architecture review".
 ---
 
-# life_client Architecture Review
+# hatayi_yasat Architecture Review
 
 Audits a **part of the codebase for conformance to project conventions**
 ([CLAUDE.md](../../../CLAUDE.md)). Unlike `hata-pr-review` (which reviews a *diff*),
