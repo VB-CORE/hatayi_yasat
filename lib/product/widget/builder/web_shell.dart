@@ -7,6 +7,7 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_context_colors.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/modal_route_tracker.dart';
 import 'package:lifeclient/product/navigation/router_notifier.dart';
 import 'package:lifeclient/product/utility/constants/app_breakpoints.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
@@ -99,20 +100,27 @@ final class _WebShellState extends ConsumerState<WebShell>
         media.size.width > AppBreakpoints.webSidebar &&
         _location.startsWith(const MainTabRoute().location);
     _syncSidebar(isVisible: hasSidebar);
+    final modalRouteTracker = ref.read(modalRouteTrackerProvider);
 
     return Stack(
       children: [
         Positioned.fill(
-          child: isFramed
-              ? MosaicBackground(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [context.appColors.navy, context.appColors.navy900],
-                  ),
-                  tileOpacity: _backdropTileOpacity,
-                )
-              : const SizedBox.shrink(),
+          child: _ModalDismissArea(
+            tracker: modalRouteTracker,
+            child: isFramed
+                ? MosaicBackground(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        context.appColors.navy,
+                        context.appColors.navy900,
+                      ],
+                    ),
+                    tileOpacity: _backdropTileOpacity,
+                  )
+                : const SizedBox.shrink(),
+          ),
         ),
         Center(
           child: Padding(
@@ -124,7 +132,10 @@ final class _WebShellState extends ConsumerState<WebShell>
               cardWidth: isFramed ? AppBreakpoints.webShell : null,
               surfaceColor: context.general.appTheme.scaffoldBackgroundColor,
               isSidebarRequested: hasSidebar,
-              sidebar: WebSidebar(location: _location),
+              sidebar: _ModalAwareSidebar(
+                tracker: modalRouteTracker,
+                child: WebSidebar(location: _location),
+              ),
               card: DecoratedBox(
                 decoration: isFramed
                     ? BoxDecoration(
@@ -172,6 +183,74 @@ final class _WebShellState extends ConsumerState<WebShell>
           ),
         ),
       ],
+    );
+  }
+}
+
+final class _ModalDismissArea extends StatelessWidget {
+  const _ModalDismissArea({required this.tracker, required this.child});
+
+  final ModalRouteTracker tracker;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: tracker.isModalOpen,
+      builder: (context, isOpen, child) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: isOpen ? tracker.dismissTopRoute : null,
+        child: child,
+      ),
+      child: child,
+    );
+  }
+}
+
+final class _ModalAwareSidebar extends StatelessWidget {
+  const _ModalAwareSidebar({required this.tracker, required this.child});
+
+  static const double _scrimOpacity = .54;
+
+  final ModalRouteTracker tracker;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: tracker.isModalOpen,
+      builder: (context, isOpen, sidebar) => ExcludeFocus(
+        excluding: isOpen,
+        child: Stack(
+          children: [
+            Positioned.fill(child: sidebar!),
+            if (isOpen)
+              Positioned.fill(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: tracker.dismissTopRoute,
+                ),
+              ),
+            Positioned.fill(
+              child: IgnorePointer(
+                child: AnimatedOpacity(
+                  opacity: isOpen ? 1 : 0,
+                  duration: Durations.short4,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: context.general.colorScheme.scrim.withValues(
+                        alpha: _scrimOpacity,
+                      ),
+                      borderRadius: CustomRadius.extraLarge,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      child: child,
     );
   }
 }
