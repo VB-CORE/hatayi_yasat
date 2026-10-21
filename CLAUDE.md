@@ -429,8 +429,8 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 
 ### Auth (web)
 
-- Giriş `signInWithPopup` ile yapılır (Google'da `prompt=select_account`, Apple'da
-  `email`+`name` scope'ları); buton tıklaması ile `signInWithPopup` çağrısı arasında
+- Web'de yalnızca Google ile giriş vardır. Giriş `signInWithPopup` ile yapılır
+  (`prompt=select_account`); buton tıklaması ile `signInWithPopup` çağrısı arasında
   `await` yoktur (Safari popup engelleyicisi).
 - Yalnızca `popup-blocked` hata kodunda `signInWithRedirect`'e düşülür; 5 sn
   beklenip buton serbest bırakılır.
@@ -441,11 +441,12 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   içinde eşlenir (`unauthorized-domain` → `providerDisabled`, depolama/ortam
   hataları → `unsupported`); paylaşılan `SignInErrorMapper`'a dokunulmaz.
 - `AuthService.supports(provider)` Apple butonunun görünürlüğünü servis üzerinden
-  belirler; iOS'ta kural aynı kalır, web'de Apple butonu görünür.
+  belirler. Apple yalnızca iOS uygulamasında vardır: io stratejisi iOS dışında,
+  web stratejisi her zaman `false` döner. Web'de iOS kontrolü yapılmaz, çünkü
+  iPhone Safari'de `defaultTargetPlatform` iOS döner ve buton görünürdü.
 - iOS/Android davranışı birebir aynı kalır: giriş sırası, hata eşlemeleri,
   analytics, çıkış.
-- **Bekliyor (WEB-30, #502)**: Apple butonu web'de görünür ama Apple Web (Services ID,
-  return URL) henüz doğrulanmadı. `authDomain` (`savehatay.firebaseapp.com`,
+- **Bekliyor (WEB-30, #502)**: `authDomain` (`savehatay.firebaseapp.com`,
   [firebase_options.dart](lib/firebase_options.dart)) uygulamanın çalıştığı
   origin'den farklı olduğu için üçüncü taraf depolamayı bölen tarayıcılarda
   (Safari ITP, Firefox TCP) `signInWithRedirect` sonrası `getRedirectResult()`
