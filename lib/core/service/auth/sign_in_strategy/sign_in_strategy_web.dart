@@ -51,7 +51,10 @@ final class PlatformSignInStrategy implements SignInStrategy {
   Future<void> signOut() async {}
 
   @override
-  bool supports(AuthProvider provider) => true;
+  bool supports(AuthProvider provider) => switch (provider) {
+    AuthProvider.google => true,
+    AuthProvider.apple => false,
+  };
 
   @override
   Future<SignInAttempt?> completeRedirect() async {
