@@ -1442,8 +1442,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v7.0.0"
-      resolved-ref: ef03cbeaeac68170fa53f6d3388503946c25594f
+      ref: "v7.1.0"
+      resolved-ref: "212fb4470b3bb008b04bbed1b502bca1c7c4906b"
       url: "https://github.com/VB-CORE/life_shared.git"
     source: git
     version: "0.0.1"

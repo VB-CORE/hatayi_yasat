@@ -7,6 +7,7 @@ import 'package:lifeclient/features/auth/view_model/auth_state.dart';
 import 'package:lifeclient/features/auth/view_model/auth_view_model.dart';
 import 'package:lifeclient/product/navigation/analytics_route_name.dart';
 import 'package:lifeclient/product/navigation/app_router.dart';
+import 'package:lifeclient/product/navigation/modal_route_tracker.dart';
 import 'package:lifeclient/product/navigation/route_extra_codec.dart';
 
 final class RouterNotifier extends ChangeNotifier {
@@ -38,6 +39,7 @@ final Provider<RouterNotifier> routerNotifierProvider =
 
 final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
   final notifier = ref.watch(routerNotifierProvider);
+  final modalRouteTracker = ref.watch(modalRouteTrackerProvider);
   final bannedLocation = const BannedRoute().location;
   return GoRouter(
     routes: $appRoutes,
@@ -59,6 +61,7 @@ final Provider<GoRouter> goRouterProvider = Provider<GoRouter>((ref) {
         analytics: FirebaseAnalytics.instance,
         nameExtractor: AnalyticsRouteName.extract,
       ),
+      modalRouteTracker,
     ],
   );
 });

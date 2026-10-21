@@ -379,9 +379,21 @@ Ayrıntı ve elle yapılacaklar: [docs/web_app_check.md](docs/web_app_check.md).
 
 ### Layout
 
-- Web'de uygulama şu an pencerenin tam genişliğinde çizilir. Masaüstü için sabit
-  genişlikli kabuk **bekliyor (WEB-10, #497)**; sheet/dialog/overlay'lerin kabuk
-  içinde kalması buna bağlıdır, **bekliyor (WEB-13, #491)**.
+- Genişlik `AppBreakpoints.webShell` (768 px) üstündeyse uygulama
+  [web_shell.dart](lib/product/widget/builder/web_shell.dart) içinde ortalanmış
+  bir kartta çizilir; `AppBreakpoints.webSidebar` (1120 px) üstünde ana
+  sekmelerde kartın solunda sidebar açılır (WEB-10, #497).
+- Navigator kartın içinde olduğu için sheet, dialog ve overlay'ler kendiliğinden
+  kart içinde açılır; çağrı yerinde web'e özel ayar yapılmaz. Sheet'ler Material 3
+  varsayılanıyla en fazla 640 px genişliktedir.
+- Sidebar Navigator'ın dışındadır. Dialog veya sheet açıkken
+  ([modal_route_tracker.dart](lib/product/navigation/modal_route_tracker.dart)
+  `PopupRoute`'ları izler) sidebar karartılır ve `ExcludeFocus` ile odak dışı
+  kalır; sidebar'a veya kartın dışındaki arka plana tıklamak, kartın içindeki
+  bariyer gibi en üstteki dialog/sheet'i kapatır (`barrierDismissible: false`
+  olanlar açık kalır). Odak dışı kalması şart: pencereye dönüldüğünde Flutter odağı
+  traversal'daki ilk widget'a verir; sidebar odaklanabilir kalırsa Esc açık
+  sheet'e ulaşmaz (WEB-13, #491).
 - §6'daki `context.sized.dynamicHeight/Width(...)` önerisi için yeni bir yasak
   henüz kesinleşmedi — **bekliyor (WEB-12)**.
 
@@ -414,10 +426,18 @@ Ayrıntı ve elle yapılacaklar: [docs/web_app_check.md](docs/web_app_check.md).
     eklendi; web'e özel ölçek açmak web'i mobilden ayırır ve tüm ekranlarda
     overflow testi gerektirir.
 
+### Mesaj kutularında Enter
+
+- Web'de topluluk mesaj kutuları (tartışma cevabı, grup duvarı) Enter ile
+  gönderir, Shift+Enter alt satıra geçer; mobilde Enter alt satırdır.
+- Fark [submit_on_enter.dart](lib/product/package/text_input/submit_on_enter.dart)
+  sözleşmesi ve `_io`/`_web` çiftindedir. Yeni çok satırlı gönderim alanı aynı
+  sarmalayıcıyı kullanır; boş içerik kontrolü gönderim fonksiyonundadır.
+
 ### Auth (web)
 
-- Giriş `signInWithPopup` ile yapılır (Google'da `prompt=select_account`, Apple'da
-  `email`+`name` scope'ları); buton tıklaması ile `signInWithPopup` çağrısı arasında
+- Web'de yalnızca Google ile giriş vardır. Giriş `signInWithPopup` ile yapılır
+  (`prompt=select_account`); buton tıklaması ile `signInWithPopup` çağrısı arasında
   `await` yoktur (Safari popup engelleyicisi).
 - Yalnızca `popup-blocked` hata kodunda `signInWithRedirect`'e düşülür; 5 sn
   beklenip buton serbest bırakılır.
@@ -428,11 +448,12 @@ Ayrıntı ve elle yapılacaklar: [docs/web_app_check.md](docs/web_app_check.md).
   içinde eşlenir (`unauthorized-domain` → `providerDisabled`, depolama/ortam
   hataları → `unsupported`); paylaşılan `SignInErrorMapper`'a dokunulmaz.
 - `AuthService.supports(provider)` Apple butonunun görünürlüğünü servis üzerinden
-  belirler; iOS'ta kural aynı kalır, web'de Apple butonu görünür.
+  belirler. Apple yalnızca iOS uygulamasında vardır: io stratejisi iOS dışında,
+  web stratejisi her zaman `false` döner. Web'de iOS kontrolü yapılmaz, çünkü
+  iPhone Safari'de `defaultTargetPlatform` iOS döner ve buton görünürdü.
 - iOS/Android davranışı birebir aynı kalır: giriş sırası, hata eşlemeleri,
   analytics, çıkış.
-- **Bekliyor (WEB-30, #502)**: Apple butonu web'de görünür ama Apple Web (Services ID,
-  return URL) henüz doğrulanmadı. `authDomain` (`savehatay.firebaseapp.com`,
+- **Bekliyor (WEB-30, #502)**: `authDomain` (`savehatay.firebaseapp.com`,
   [firebase_options.dart](lib/firebase_options.dart)) uygulamanın çalıştığı
   origin'den farklı olduğu için üçüncü taraf depolamayı bölen tarayıcılarda
   (Safari ITP, Firefox TCP) `signInWithRedirect` sonrası `getRedirectResult()`

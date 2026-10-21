@@ -107,7 +107,7 @@ dependencies:
   life_shared:
     git:
       url: https://github.com/VB-CORE/life_shared.git
-      ref: v7.0.0
+      ref: v7.1.0
 
   file_picker: ^11.0.3
   sliver_tools: ^0.2.12
