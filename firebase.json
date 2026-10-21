@@ -6,7 +6,8 @@
       "ignore": [
         "firebase.json",
         "**/.*",
-        "**/node_modules/**"
+        "**/node_modules/**",
+        "**/*.symbols"
       ],
       "rewrites": [
         {
@@ -21,6 +22,30 @@
             {
               "key": "Cache-Control",
               "value": "no-cache"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin-allow-popups"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "geolocation=(self), camera=(self), microphone=(), payment=(), usb=(), browsing-topics=()"
+            },
+            {
+              "key": "Content-Security-Policy-Report-Only",
+              "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://www.gstatic.com https://apis.google.com https://accounts.google.com https://www.google.com https://www.recaptcha.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://accounts.google.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https://firebasestorage.googleapis.com; connect-src 'self' https://*.googleapis.com https://*.cloudfunctions.net https://www.gstatic.com https://fonts.gstatic.com https://*.google-analytics.com https://www.googletagmanager.com https://accounts.google.com https://www.google.com https://www.recaptcha.net; frame-src https://savehatay.firebaseapp.com https://accounts.google.com https://appleid.apple.com https://www.google.com https://www.recaptcha.net https://www.hatayiyasat.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
             }
           ]
         },

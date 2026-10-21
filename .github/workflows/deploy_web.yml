@@ -35,6 +35,10 @@ jobs:
 
       - name: Build web
         run: bash ./scripts/web_build.sh
+        env:
+          # Public by design (ships in the bundle), so a repository variable and
+          # not a secret. Must match Firebase Console → App Check → Apps → Web.
+          RECAPTCHA_ENTERPRISE_SITE_KEY: ${{ vars.RECAPTCHA_ENTERPRISE_SITE_KEY }}
 
       - name: Upload build
         uses: actions/upload-artifact@v4

@@ -314,9 +314,8 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   [sign_in_strategy.dart](lib/core/service/auth/sign_in_strategy/sign_in_strategy.dart).
 - Yeni sözleşmeler varsayılan olarak en az 2 üyeyle yazılır. `app_check_initialize.dart`,
   `error_handler_binder.dart`, `hive_home_path.dart` ve `device_id_reader.dart` önceden
-  var olan tek üyeli sözleşmelerdir; bunlardan yalnızca `app_check_initialize.dart`'ta
-  `// ignore: one_member_abstracts` yorumu yoktur, diğer üçü bu yorumu zaten taşır.
-  Tek üyeli bir sözleşme kaçınılmazsa bu örüntü izlenip
+  var olan tek üyeli sözleşmelerdir; dördü de `// ignore: one_member_abstracts`
+  yorumunu taşır. Tek üyeli bir sözleşme kaçınılmazsa bu örüntü izlenip
   `// ignore: one_member_abstracts` eklenir.
 - Facade ifadesinin (io'ya özgü olmayıp yalnızca runtime'da web'de patlayan
   plugin'ler için tek noktadan kontrol) kesin şekli **bekliyor (WEB-42, #512)**.
@@ -326,12 +325,22 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 | Akış | Web davranışı | Ticket |
 |---|---|---|
 | Crashlytics | Geçici no-op, hata raporlanmıyor | WEB-35 (bekliyor) |
-| App Check | No-op, reCAPTCHA v3 anahtarı bekleniyor | ticket yok |
+| App Check | Aktif: build'e `RECAPTCHA_ENTERPRISE_SITE_KEY` verilirse reCAPTCHA Enterprise, verilmezse kapalı | ticket yok |
 | FCM topic aboneliği | Desteklenmiyor | WEB-26 (bekliyor) |
 | InAppWebView | Kullanılmaz; [web_page_opener_web.dart](lib/product/package/web_page/web_page_opener_web.dart) sayfayı yeni sekmede açar. `hatayiyasat.com` `X-Frame-Options: DENY` + CSP `frame-ancestors` gönderdiği için iframe'de gösterilemez | WEB-27 (#499) |
 | Google Maps | Desteklenmiyor | WEB-24 (bekliyor) |
 | PDF görüntüleme (syncfusion) | Desteklenmiyor | ticket yok |
 | Foto kırpma (image_cropper) | Web ayarları eksik | WEB-40 (bekliyor) |
+
+### App Check (web)
+
+`RECAPTCHA_ENTERPRISE_SITE_KEY` build argümanı [scripts/web_build.sh](scripts/web_build.sh)
+üzerinden geçer (`--dart-define`); CI'da aynı isimli repository variable'dan okunur.
+Anahtar tarayıcıya inen pakette göründüğü için gizli değildir. Anahtar yoksa App
+Check web'de hiç açılmaz — konsolda enforcement'ı bu durumdayken açmak web'i kırar.
+Debug build'de web debug provider kullanılır; token konsolda yazdırılır ya da
+`APP_CHECK_DEBUG_TOKEN` ile sabitlenir. Yayın akışı, domain ve enforcement sırası:
+[docs/web.md](docs/web.md).
 
 ### Routing
 
