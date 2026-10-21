@@ -419,6 +419,14 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
     eklendi; web'e özel ölçek açmak web'i mobilden ayırır ve tüm ekranlarda
     overflow testi gerektirir.
 
+### Mesaj kutularında Enter
+
+- Web'de topluluk mesaj kutuları (tartışma cevabı, grup duvarı) Enter ile
+  gönderir, Shift+Enter alt satıra geçer; mobilde Enter alt satırdır.
+- Fark [submit_on_enter.dart](lib/product/package/text_input/submit_on_enter.dart)
+  sözleşmesi ve `_io`/`_web` çiftindedir. Yeni çok satırlı gönderim alanı aynı
+  sarmalayıcıyı kullanır; boş içerik kontrolü gönderim fonksiyonundadır.
+
 ### Auth (web)
 
 - Giriş `signInWithPopup` ile yapılır (Google'da `prompt=select_account`, Apple'da

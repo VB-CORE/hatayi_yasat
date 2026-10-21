@@ -4,6 +4,8 @@ import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/community/widget/community_send_button.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
+import 'package:lifeclient/product/package/text_input/submit_on_enter_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/text_input/submit_on_enter_web.dart';
 import 'package:lifeclient/product/utility/decorations/custom_radius.dart';
 
 @immutable
@@ -29,20 +31,23 @@ final class DiscussionReplyComposer extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: TextField(
-                controller: controller,
-                minLines: 1,
-                maxLines: 4,
-                textInputAction: TextInputAction.newline,
-                decoration: InputDecoration(
-                  hintText: LocaleKeys
-                      .community_groupDetail_discussions_replyComposerHint
-                      .tr(),
-                  isCollapsed: true,
-                  filled: false,
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
+              child: const PlatformSubmitOnEnter().wrap(
+                onSubmit: onSubmit,
+                child: TextField(
+                  controller: controller,
+                  minLines: 1,
+                  maxLines: 4,
+                  textInputAction: TextInputAction.newline,
+                  decoration: InputDecoration(
+                    hintText: LocaleKeys
+                        .community_groupDetail_discussions_replyComposerHint
+                        .tr(),
+                    isCollapsed: true,
+                    filled: false,
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                  ),
                 ),
               ),
             ),
