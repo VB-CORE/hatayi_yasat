@@ -338,7 +338,8 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 üzerinden geçer (`--dart-define`); CI'da aynı isimli repository variable'dan okunur.
 Anahtar tarayıcıya inen pakette göründüğü için gizli değildir. Anahtar yoksa App
 Check web'de hiç açılmaz — konsolda enforcement'ı bu durumdayken açmak web'i kırar.
-Ayrıntı ve elle yapılacaklar: [docs/web_app_check.md](docs/web_app_check.md).
+Debug build'de web debug provider kullanılır; token konsolda yazdırılır ya da
+`APP_CHECK_DEBUG_TOKEN` ile sabitlenir.
 
 ### Routing
 
