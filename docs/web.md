@@ -159,12 +159,24 @@ Chrome DevTools → Network (Disable cache açık) → "transferred" değerleri.
 
 ## 7. Kalan işler
 
-- App Check web uygulamasını konsolda kaydet, `X-Firebase-AppCheck` başlığını doğrula.
-- DNS kayıtlarını gir, sertifikanın çıkmasını bekle.
-- CI için `FIREBASE_SERVICE_ACCOUNT_SAVEHATAY` secret'ını ekle.
-- Yayından 24–48 saat sonra enforcement'ı sırayla aç (Storage → Firestore → Functions).
-- Rules sertleştirmesi ayrı repo (`life_admin`) ve ayrı PR: F-01 Storage yazma,
-  F-02 grup rolü yükseltme, F-03 `email_verified`.
+### Sahibinin yapacağı adımlar — planlanan: 23.10.2026
+
+- [ ] **App Check kaydı:** Firebase Console → App Check → Apps → Web →
+      reCAPTCHA Enterprise → site anahtarını kaydet. Kayıt sonrası
+      `App not registered` hatası kaybolur, istekler `X-Firebase-AppCheck`
+      başlığı taşımaya başlar.
+- [ ] **DNS:** `app` CNAME → `savehatay.web.app`; `_acme-challenge.app` TXT
+      (değeri Firebase Console verir). Wildcard'a dokunulmaz.
+- [ ] **Sertifika sonrası:** Auth authorized domains ve OAuth JavaScript origin
+      listesine `app.hatayiyasat.com` eklenir.
+- [ ] **CI secret:** `FIREBASE_SERVICE_ACCOUNT_SAVEHATAY` eklenir; eklenmezse
+      canlı deploy yerelden `scripts/deploy_web.sh live` ile yapılır.
+
+### Sonraki aşama
+
+- [ ] Yayından 24–48 saat sonra enforcement'ı sırayla aç (Storage → Firestore → Functions).
+- [ ] Rules sertleştirmesi ayrı repo (`life_admin`) ve ayrı PR: F-01 Storage yazma,
+      F-02 grup rolü yükseltme, F-03 `email_verified`.
 
 ## 8. Açık kaynak sınırı
 
