@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/theme/app_colors.dart';
 import 'package:lifeclient/core/theme/app_radius.dart';
 import 'package:lifeclient/core/theme/app_spacing.dart';
@@ -24,7 +25,9 @@ final class AppBarAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasTitle = title != null && title!.isNotEmpty;
-    final minimumSize = hasTitle ? Size.zero : const Size(36, 36);
+    final minimumSize = hasTitle
+        ? Size.zero
+        : const Size.square(WidgetSizes.spacingXxl3);
 
     return ElevatedButton(
       onPressed: onPressed,

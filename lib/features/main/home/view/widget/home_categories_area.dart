@@ -21,7 +21,9 @@ final class _HomeCategoryCards extends ConsumerWidget {
     final selected = vm.categoryValues;
     final categories =
         vm.categories.where((e) => e.value != _otherCategoryValue).toList()
-          ..sort((a, b) => a.displayName.length.compareTo(b.displayName.length));
+          ..sort(
+            (a, b) => a.displayName.length.compareTo(b.displayName.length),
+          );
     final visible = categories.take(_maxCategoryItemLength).toList();
 
     return SingleChildScrollView(
@@ -135,8 +137,8 @@ final class _CategoryIconBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 22,
-      height: 22,
+      width: AppSpacing.iconBadge,
+      height: AppSpacing.iconBadge,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: isActive

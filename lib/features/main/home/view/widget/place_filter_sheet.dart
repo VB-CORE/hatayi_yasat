@@ -14,6 +14,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/mixin/app_provider_mixin.dart';
 import 'package:lifeclient/product/widget/button/close_icon_button.dart';
+import 'package:lifeclient/product/widget/sheet/widget/sheet_handle.dart';
 
 /// Full-height "Filtre" sheet with a draft state that is only committed to the
 /// home list when the CTA is pressed. Category + district filter server-side;
@@ -165,7 +166,7 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
         bottom: false,
         child: Column(
           children: [
-            const _SheetHandle(),
+            const SheetHandle(),
             _Header(onClear: _clearAll),
             const Divider(height: 1, color: AppColors.ink50),
             Expanded(
@@ -267,23 +268,6 @@ class _PlaceFilterSheetState extends ConsumerState<PlaceFilterSheet>
 
   String _countLabel(int selected, int total) =>
       LocaleKeys.filter_selectedCount.tr(args: ['$selected', '$total']);
-}
-
-final class _SheetHandle extends StatelessWidget {
-  const _SheetHandle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 36,
-      height: 4,
-      margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: AppColors.ink200,
-        borderRadius: BorderRadius.circular(AppRadius.pill),
-      ),
-    );
-  }
 }
 
 final class _Header extends StatelessWidget {
@@ -607,8 +591,8 @@ final class _TownCheckRow extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 22,
-              height: 22,
+              width: AppSpacing.checkbox,
+              height: AppSpacing.checkbox,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.navy : AppColors.surface,
@@ -687,8 +671,8 @@ final class _CtaFooter extends StatelessWidget {
                   children: [
                     if (loading)
                       const SizedBox(
-                        width: 18,
-                        height: 18,
+                        width: WidgetSizes.spacingMx,
+                        height: WidgetSizes.spacingMx,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
                           color: AppColors.white,

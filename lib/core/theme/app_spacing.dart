@@ -16,4 +16,8 @@ abstract final class AppSpacing {
   static const cardPad = EdgeInsets.all(14);
   static const listGap = 11.0;
   static const contentMaxWidth = 480.0;
+
+  static const iconBadge = 22.0;
+  static const checkbox = 22.0;
+  static const controlButton = 38.0;
 }

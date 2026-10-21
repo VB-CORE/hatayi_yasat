@@ -8,6 +8,7 @@ import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/sorting_types.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/button/close_icon_button.dart';
+import 'package:lifeclient/product/widget/sheet/widget/sheet_handle.dart';
 
 /// Single-select "Sırala" bottom sheet. Returns the chosen [SortingTypes] or
 /// null when dismissed.
@@ -34,7 +35,7 @@ final class PlaceSortSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const _SheetHandle(),
+          const SheetHandle(),
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.xl,
@@ -61,23 +62,6 @@ final class PlaceSortSheet extends StatelessWidget {
             ),
           const SizedBox(height: AppSpacing.xs),
         ],
-      ),
-    );
-  }
-}
-
-final class _SheetHandle extends StatelessWidget {
-  const _SheetHandle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 36,
-      height: 4,
-      margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: AppColors.ink200,
-        borderRadius: BorderRadius.circular(AppRadius.pill),
       ),
     );
   }

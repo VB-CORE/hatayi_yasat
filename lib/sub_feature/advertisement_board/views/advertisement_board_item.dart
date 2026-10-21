@@ -137,8 +137,8 @@ final class _HouseAdLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 40,
+      width: WidgetSizes.spacingXxl4,
+      height: WidgetSizes.spacingXxl4,
       padding: const EdgeInsets.all(AppSpacing.xxs),
       decoration: BoxDecoration(
         color: AppColors.gold300,

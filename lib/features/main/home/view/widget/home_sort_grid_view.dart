@@ -22,8 +22,8 @@ final class _BoxedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 38,
-      height: 38,
+      width: AppSpacing.controlButton,
+      height: AppSpacing.controlButton,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: AppColors.surface,
