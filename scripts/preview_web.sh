@@ -9,7 +9,8 @@ set -euo pipefail
 #
 # The site key is public by design (it ships in the bundle), so it lives here as
 # a default; override it with RECAPTCHA_ENTERPRISE_SITE_KEY when it rotates.
-# Env: FIREBASE_ACCOUNT (default vbacik.10@gmail.com), PREVIEW_EXPIRES (default 7d).
+# Env: FIREBASE_ACCOUNT (pick your own with `firebase login:use`), PREVIEW_EXPIRES
+# (default 7d).
 
 cd "$(dirname "$0")/.."
 
@@ -25,6 +26,5 @@ done
 site_key=${RECAPTCHA_ENTERPRISE_SITE_KEY:-6Le5fvotAAAAAA65sErpFR_xqulLnCb-U2fD0cFE}
 
 RECAPTCHA_ENTERPRISE_SITE_KEY=$site_key \
-  FIREBASE_ACCOUNT=${FIREBASE_ACCOUNT:-vbacik.10@gmail.com} \
   PREVIEW_EXPIRES=${PREVIEW_EXPIRES:-7d} \
   bash scripts/deploy_web.sh preview "$@"

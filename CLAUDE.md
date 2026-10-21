@@ -339,7 +339,8 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 Anahtar tarayıcıya inen pakette göründüğü için gizli değildir. Anahtar yoksa App
 Check web'de hiç açılmaz — konsolda enforcement'ı bu durumdayken açmak web'i kırar.
 Debug build'de web debug provider kullanılır; token konsolda yazdırılır ya da
-`APP_CHECK_DEBUG_TOKEN` ile sabitlenir.
+`APP_CHECK_DEBUG_TOKEN` ile sabitlenir. Yayın akışı, domain ve enforcement sırası:
+[docs/web.md](docs/web.md).
 
 ### Routing
 
