@@ -372,9 +372,21 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 
 ### Layout
 
-- Web'de uygulama şu an pencerenin tam genişliğinde çizilir. Masaüstü için sabit
-  genişlikli kabuk **bekliyor (WEB-10, #497)**; sheet/dialog/overlay'lerin kabuk
-  içinde kalması buna bağlıdır, **bekliyor (WEB-13, #491)**.
+- Genişlik `AppBreakpoints.webShell` (768 px) üstündeyse uygulama
+  [web_shell.dart](lib/product/widget/builder/web_shell.dart) içinde ortalanmış
+  bir kartta çizilir; `AppBreakpoints.webSidebar` (1120 px) üstünde ana
+  sekmelerde kartın solunda sidebar açılır (WEB-10, #497).
+- Navigator kartın içinde olduğu için sheet, dialog ve overlay'ler kendiliğinden
+  kart içinde açılır; çağrı yerinde web'e özel ayar yapılmaz. Sheet'ler Material 3
+  varsayılanıyla en fazla 640 px genişliktedir.
+- Sidebar Navigator'ın dışındadır. Dialog veya sheet açıkken
+  ([modal_route_tracker.dart](lib/product/navigation/modal_route_tracker.dart)
+  `PopupRoute`'ları izler) sidebar karartılır ve `ExcludeFocus` ile odak dışı
+  kalır; sidebar'a veya kartın dışındaki arka plana tıklamak, kartın içindeki
+  bariyer gibi en üstteki dialog/sheet'i kapatır (`barrierDismissible: false`
+  olanlar açık kalır). Odak dışı kalması şart: pencereye dönüldüğünde Flutter odağı
+  traversal'daki ilk widget'a verir; sidebar odaklanabilir kalırsa Esc açık
+  sheet'e ulaşmaz (WEB-13, #491).
 - §6'daki `context.sized.dynamicHeight/Width(...)` önerisi için yeni bir yasak
   henüz kesinleşmedi — **bekliyor (WEB-12)**.
 
