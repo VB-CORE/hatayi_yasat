@@ -7,6 +7,8 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/core/service/analytics/analytics_service.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_event.dart';
 import 'package:lifeclient/core/service/analytics/model/analytics_user_property.dart';
+import 'package:lifeclient/product/package/firebase/crashlytics/crashlytics_provider_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/firebase/crashlytics/crashlytics_provider_web.dart';
 
 final class FirebaseAnalyticsService implements AnalyticsService {
   FirebaseAnalyticsService({
@@ -14,11 +16,10 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     FirebaseCrashlytics? crashlytics,
   }) : _analytics = analytics ?? FirebaseAnalytics.instance,
        _crashlytics =
-           crashlytics ?? (kIsWeb ? null : FirebaseCrashlytics.instance);
+           crashlytics ?? const PlatformCrashlyticsProvider().instance;
 
   final FirebaseAnalytics _analytics;
 
-  /// firebase_crashlytics web'i desteklemez; web kanalı WEB-35 (#516) ile.
   final FirebaseCrashlytics? _crashlytics;
 
   /// Debug builds share the single production Firebase project, so collection
@@ -27,6 +28,8 @@ final class FirebaseAnalyticsService implements AnalyticsService {
   static const bool _debugOverride = bool.fromEnvironment('ANALYTICS_DEBUG');
 
   static bool get isEnabled => !kDebugMode || _debugOverride;
+
+  static const int _maxParameterLength = 100;
 
   bool _isReportingFailure = false;
 
@@ -92,8 +95,12 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     String? reason,
   }) {
     if (!isEnabled) return;
+    if (_crashlytics == null) {
+      _logErrorEvent(error, stackTrace, fatal: fatal, reason: reason);
+      return;
+    }
     _fireAndForget('record_error', () async {
-      await _crashlytics?.recordError(
+      await _crashlytics.recordError(
         error,
         stackTrace,
         fatal: fatal,
@@ -146,6 +153,35 @@ final class FirebaseAnalyticsService implements AnalyticsService {
       _isReportingFailure = false;
     }
   }
+
+  void _logErrorEvent(
+    Object error,
+    StackTrace? stackTrace, {
+    required bool fatal,
+    String? reason,
+  }) {
+    final stackTop = stackTrace
+        ?.toString()
+        .split('\n')
+        .map((line) => line.trim())
+        .firstWhere((line) => line.isNotEmpty, orElse: () => '');
+    logEvent(
+      AnalyticsEvent.appError,
+      parameters: {
+        AnalyticsParameter.errorType: _truncate('${error.runtimeType}'),
+        AnalyticsParameter.errorMessage: _truncate('$error'),
+        AnalyticsParameter.isFatal: fatal,
+        AnalyticsParameter.reason: reason == null ? null : _truncate(reason),
+        AnalyticsParameter.stackTop: stackTop == null || stackTop.isEmpty
+            ? null
+            : _truncate(stackTop),
+      },
+    );
+  }
+
+  static String _truncate(String value) => value.length <= _maxParameterLength
+      ? value
+      : value.substring(0, _maxParameterLength);
 
   /// Coerces to the `String`/`num` pair `logEvent` accepts, so call sites can
   /// pass bools and enums directly.

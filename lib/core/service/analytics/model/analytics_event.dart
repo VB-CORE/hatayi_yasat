@@ -37,7 +37,9 @@ enum AnalyticsEvent {
   formError('form_error'),
 
   notificationOpen('notification_open'),
-  merchantApplicationSubmit('merchant_application_submit');
+  merchantApplicationSubmit('merchant_application_submit'),
+
+  appError('app_error');
 
   const AnalyticsEvent(this.key);
 
@@ -66,7 +68,11 @@ enum AnalyticsParameter {
   postId('post_id'),
   formType('form_type'),
   notificationType('notification_type'),
-  reason('reason');
+  reason('reason'),
+  errorType('error_type'),
+  errorMessage('error_message'),
+  isFatal('is_fatal'),
+  stackTop('stack_top');
 
   const AnalyticsParameter(this.key);
 
