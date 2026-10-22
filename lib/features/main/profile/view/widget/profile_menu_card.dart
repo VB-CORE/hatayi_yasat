@@ -52,11 +52,12 @@ final class ProfileMenuCard extends ConsumerWidget {
           label: LocaleKeys.profile_menu_settings.tr(),
           onTap: () => const SettingsRoute().go(context),
         ),
-        ContentMenuItem(
-          icon: AppIcons.rate,
-          label: LocaleKeys.profile_menu_rateUs.tr(),
-          onTap: AppReview.instance.openStore,
-        ),
+        if (AppReview.instance.isSupported)
+          ContentMenuItem(
+            icon: AppIcons.rate,
+            label: LocaleKeys.profile_menu_rateUs.tr(),
+            onTap: AppReview.instance.openStore,
+          ),
         ContentMenuItem(
           icon: AppIcons.privacyFilled,
           label: LocaleKeys.profile_menu_privacy.tr(),

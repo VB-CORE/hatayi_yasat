@@ -9,6 +9,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/main/news_jobs/provider/news_bookmark_view_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -158,7 +159,7 @@ final class _NewsActionRow extends ConsumerWidget {
     final bodyBuilder = StringBuffer(item.title ?? AppConstants.appName)
       ..write('\n\n')
       ..write(item.content);
-    await bodyBuilder.toString().ext.share();
+    await CustomShare.shareText(bodyBuilder.toString());
   }
 }
 

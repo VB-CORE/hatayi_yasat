@@ -1,15 +1,13 @@
-import 'package:app_settings/app_settings.dart';
+import 'package:lifeclient/product/package/settings/app_settings_opener_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/settings/app_settings_opener_web.dart';
 
 enum CustomAppSettingsType { libraryPermission, notification }
 
 final class CustomAppSettings {
   const CustomAppSettings._();
-  static Future<void> open({required CustomAppSettingsType type}) async {
-    switch (type) {
-      case CustomAppSettingsType.libraryPermission:
-        await AppSettings.openAppSettings();
-      case CustomAppSettingsType.notification:
-        await AppSettings.openAppSettings(type: AppSettingsType.notification);
-    }
-  }
+
+  static bool get isSupported => const PlatformAppSettingsOpener().isSupported;
+
+  static Future<void> open({required CustomAppSettingsType type}) =>
+      const PlatformAppSettingsOpener().open(type);
 }

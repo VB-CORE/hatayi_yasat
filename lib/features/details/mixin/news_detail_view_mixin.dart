@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/view/news_detail_view.dart';
+import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 
 mixin NewsDetailViewMixin on ConsumerState<NewsDetailView> {
@@ -23,6 +24,6 @@ mixin NewsDetailViewMixin on ConsumerState<NewsDetailView> {
     final bodyBuilder = StringBuffer(news.title ?? AppConstants.appName)
       ..write('\n\n')
       ..write(news.content);
-    await bodyBuilder.toString().ext.share();
+    await CustomShare.shareText(bodyBuilder.toString());
   }
 }

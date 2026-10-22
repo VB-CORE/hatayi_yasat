@@ -113,7 +113,7 @@ Bu kodlar **hiçbir yerde bulunamadı**: ne repo çalışma ağacında, ne 417 b
 | WEB-11 | #494 | kapalı | Responsive paket + breakpoint |
 | WEB-12 | #489 | açık | `dynamicWidth/Height` denetimi |
 | WEB-13 | #491 | açık | Sheet / dialog / overlay |
-| WEB-14 | #493 | açık | Sabit piksel denetimi |
+| WEB-14 | #493 | açık | Sabit piksel denetimi — [rapor](web_fixed_sizes.md) |
 | WEB-15 | #492 | açık | Merchant masaüstü layout kararı |
 | **WEB-16** | — | **EKSİK** | ? |
 | **WEB-17** | — | **EKSİK** | ? |
@@ -134,7 +134,7 @@ Bu kodlar **hiçbir yerde bulunamadı**: ne repo çalışma ağacında, ne 417 b
 | WEB-32 | #519 | açık | Firestore rules (admin) |
 | WEB-33 | #520 | açık | Storage rules + CORS (admin) |
 | WEB-34 | #509 | açık | İstemci sır taraması |
-| WEB-35 | #516 | açık | Web hata izleme |
+| WEB-35 | #516 | açık | Web hata izleme — [karar](web_error_tracking.md) |
 | WEB-36 | #511 | açık | Hosting güvenlik header'ları |
 | **WEB-37** | — | **EKSİK** | ? |
 | **WEB-38** | — | **EKSİK** | ? |

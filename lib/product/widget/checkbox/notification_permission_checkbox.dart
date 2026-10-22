@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/approve_dialog_type.dart';
+import 'package:lifeclient/product/package/permission/notification_permission_utility.dart';
 import 'package:lifeclient/product/package/settings/custom_app_settings.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/widget/dialog/approve_dialog.dart';
 import 'package:lifeclient/product/widget/menu/content_menu.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 @immutable
 final class NotificationPermissionView extends StatefulWidget {
@@ -21,12 +21,12 @@ final class NotificationPermissionView extends StatefulWidget {
 final class _NotificationPermissionViewState
     extends State<NotificationPermissionView>
     with WidgetsBindingObserver, _NotificationPermission {
-  late Future<PermissionStatus> _statusFuture;
+  late Future<bool> _isGrantedFuture;
 
   @override
   void initState() {
     super.initState();
-    _statusFuture = Permission.notification.status;
+    _isGrantedFuture = NotificationPermissionUtility.isGranted();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -40,18 +40,16 @@ final class _NotificationPermissionViewState
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
     setState(() {
-      _statusFuture = Permission.notification.status;
+      _isGrantedFuture = NotificationPermissionUtility.isGranted();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<PermissionStatus>(
-      future: _statusFuture,
+    return FutureBuilder<bool>(
+      future: _isGrantedFuture,
       builder: (context, snapshot) {
-        final isGranted =
-            snapshot.data == PermissionStatus.granted ||
-            snapshot.data == PermissionStatus.limited;
+        final isGranted = snapshot.data ?? false;
 
         return ContentMenu(
           items: [
