@@ -301,8 +301,8 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   mevcut dosya (view, viewmodel, model, widget ve yardımcılar; form, community, merchant, foto/dosya seçici
   akışları — örn. `merchant_application_view.dart`,
   `group_wall_view_model.dart`) bu kuraldan öncedir, **bekliyor (WEB-40, #513)**.
-  Aynı kapsamda `photo_picker_manager.dart`'taki `Platform.isAndroid` ve
-  `firebase_analytics_service.dart`'taki `kIsWeb` de mevcut istisnalardır.
+  Aynı kapsamda `photo_picker_manager.dart`'taki `Platform.isAndroid` de
+  mevcut istisnadır.
   `google_sign_in_service.dart` ve `apple_sign_in_service.dart` `dart:io`
   import eder ama ihlal değildir: yalnızca `sign_in_strategy_io.dart` üzerinden
   erişilirler, io tarafının bir parçasıdırlar. `firebase_options.dart` üretilmiş
@@ -318,14 +318,35 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   `// ignore: one_member_abstracts` yorumu yoktur, diğer üçü bu yorumu zaten taşır.
   Tek üyeli bir sözleşme kaçınılmazsa bu örüntü izlenip
   `// ignore: one_member_abstracts` eklenir.
-- Facade ifadesinin (io'ya özgü olmayıp yalnızca runtime'da web'de patlayan
-  plugin'ler için tek noktadan kontrol) kesin şekli **bekliyor (WEB-42, #512)**.
+- **Plugin facade'ı (WEB-42, #512):** derlenip yalnızca runtime'da web'de patlayan
+  plugin'ler aynı `_io`/`_web` kalıbıyla, plugin başına tek facade üzerinden
+  çağrılır. Plugin'in import'u yalnızca `_io` dosyasındadır; web'de desteklenmeyen
+  aksiyon için sözleşmede `isSupported` bulunur ve UI onu gizler. Facade'ı zaten
+  var olan wrapper (`CustomShare`, `CalendarUtility`, `CustomAppSettings`, servis)
+  kullanır; çağrı yerleri wrapper'ı çağırmaya devam eder.
+
+  | Plugin | Facade | Web davranışı |
+  |---|---|---|
+  | app_badge_plus | [app_badge.dart](lib/product/package/badge/app_badge.dart) | No-op |
+  | firebase_crashlytics | [crashlytics_provider.dart](lib/product/package/firebase/crashlytics/crashlytics_provider.dart) | `null`; hatalar Analytics'e gider (WEB-35) |
+  | app_settings | [app_settings_opener.dart](lib/product/package/settings/app_settings_opener.dart) | No-op |
+  | permission_handler (bildirim) | [notification_permission.dart](lib/product/package/permission/notification_permission.dart), wrapper `NotificationPermissionUtility` | Ayarlar'daki bildirim bölümü gizli (WEB-26) |
+  | add_2_calendar | [calendar_saver.dart](lib/product/package/calendar/calendar_saver.dart) | `.ics` indirir ([calendar_ics.dart](lib/product/package/calendar/calendar_ics.dart)) |
+  | share / path_provider | [platform_share.dart](lib/product/package/share/platform_share.dart) | Web Share API; dosya bellekte (`XFile.fromData`) |
+  | in_app_review | [store_review.dart](lib/product/package/app_review/store_review.dart) | Profil'deki "Bizi değerlendir" gizli |
+
+  Metin paylaşımı `kartal`'ın `.ext.share()`'i yerine `CustomShare.shareText` ile
+  yapılır (kartal'ın web `share()`'i `UnimplementedError` atar).
+  Crashlytics facade'ı bilinçli istisnadır: sözleşme `FirebaseCrashlytics?` döner,
+  çünkü tek tüketicisi `firebase_analytics_service.dart` plugin'i zaten doğrudan
+  kullanır (log, custom key, collection). Web'de `null` olması Analytics
+  `app_error` kanalını açar (WEB-35).
 
 ### Web'de no-op / desteklenmeyen akışlar
 
 | Akış | Web davranışı | Ticket |
 |---|---|---|
-| Crashlytics | Geçici no-op, hata raporlanmıyor | WEB-35 (bekliyor) |
+| Crashlytics | Hatalar Analytics `app_error` event'i olarak raporlanır, bkz. [web_error_tracking.md](docs/web_error_tracking.md) | WEB-35 |
 | App Check | No-op, reCAPTCHA v3 anahtarı bekleniyor | ticket yok |
 | FCM topic aboneliği | Desteklenmiyor | WEB-26 (bekliyor) |
 | InAppWebView | Kullanılmaz; [web_page_opener_web.dart](lib/product/package/web_page/web_page_opener_web.dart) sayfayı yeni sekmede açar. `hatayiyasat.com` `X-Frame-Options: DENY` + CSP `frame-ancestors` gönderdiği için iframe'de gösterilemez | WEB-27 (#499) |
