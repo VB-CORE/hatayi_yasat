@@ -92,7 +92,9 @@ final class PhotoPickerManager {
   Future<void> _handlePickerError(String message) async {
     final type = PlatformExceptionEnum.fromValue(message);
 
-    if (type == null || !context.mounted) return;
+    if (type == null || !context.mounted || !CustomAppSettings.isSupported) {
+      return;
+    }
 
     /// now only support access denied
     final response = await ApproveDialog.showWithKey(

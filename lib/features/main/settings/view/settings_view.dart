@@ -9,6 +9,7 @@ import 'package:lifeclient/core/theme/app_text.dart';
 import 'package:lifeclient/features/main/settings/model/contact_model.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/package/image/custom_network_image.dart';
+import 'package:lifeclient/product/package/permission/notification_permission_utility.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icon_sizes.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
@@ -35,16 +36,18 @@ final class SettingsView extends StatelessWidget {
             const PagePadding.allLow() +
             .only(bottom: context.general.mediaQuery.padding.bottom),
         children: [
-          Text(
-            LocaleKeys.settings_notificationTitle.tr().toUpperCase(),
-            style: AppText.body.copyWith(
-              fontWeight: FontWeight.bold,
-              color: context.appColors.navy500,
+          if (NotificationPermissionUtility.isSupported) ...[
+            Text(
+              LocaleKeys.settings_notificationTitle.tr().toUpperCase(),
+              style: AppText.body.copyWith(
+                fontWeight: FontWeight.bold,
+                color: context.appColors.navy500,
+              ),
             ),
-          ),
-          const EmptyBox.smallHeight(),
-          const NotificationPermissionView(),
-          const EmptyBox.middleHeight(),
+            const EmptyBox.smallHeight(),
+            const NotificationPermissionView(),
+            const EmptyBox.middleHeight(),
+          ],
           Text(
             LocaleKeys.settings_languageTitle.tr().toUpperCase(),
             style: AppText.body.copyWith(

@@ -8,6 +8,7 @@ import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/features/details/mixin/event_detail_mixin.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
 import 'package:lifeclient/product/model/enum/text_field/text_field_max_lengths.dart';
+import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/app_constants.dart';
 import 'package:lifeclient/product/utility/constants/app_icons.dart';
 import 'package:lifeclient/product/utility/extension/index.dart';
@@ -136,8 +137,9 @@ final class _ShareAddressButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () =>
-          '${model.name} ${model.description} ${model.expireDate}'.ext.share(),
+      onPressed: () => CustomShare.shareText(
+        '${model.name} ${model.description} ${model.expireDate}',
+      ),
       icon: Icon(
         AppIcons.share,
         color: context.general.colorScheme.primary,

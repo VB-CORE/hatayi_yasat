@@ -83,7 +83,7 @@ final class _ShareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () async => item.toString().ext.share(),
+      onPressed: () async => CustomShare.shareText(item.toString()),
       child: Row(
         children: [
           const Icon(AppIcons.share),

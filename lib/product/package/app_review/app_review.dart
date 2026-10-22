@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:in_app_review/in_app_review.dart';
-import 'package:lifeclient/product/utility/constants/app_constants.dart';
+import 'package:lifeclient/product/package/app_review/store_review_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/app_review/store_review_web.dart';
 
 @immutable
 final class AppReview {
@@ -8,10 +8,7 @@ final class AppReview {
   static const AppReview _instance = AppReview._init();
   static AppReview get instance => _instance;
 
-  Future<void> openStore() async {
-    final inAppReview = InAppReview.instance;
-    await inAppReview.openStoreListing(
-      appStoreId: AppConstants.appStoreId,
-    );
-  }
+  bool get isSupported => const PlatformStoreReview().isSupported;
+
+  Future<void> openStore() => const PlatformStoreReview().openStoreListing();
 }

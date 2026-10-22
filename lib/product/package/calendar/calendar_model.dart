@@ -18,6 +18,8 @@ final class CalendarModel {
     );
   }
 
+  static const reminder = Duration(minutes: 30);
+
   final String title;
   final String description;
   final DateTime expireDate;

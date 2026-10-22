@@ -71,6 +71,7 @@ dependencies:
   path_provider: ^2.1.1
   package_info_plus: ^8.3.1
   add_2_calendar: ^3.1.1
+  web: ^1.1.1
   in_app_review:
     git:
       url: https://github.com/robport/in_app_review

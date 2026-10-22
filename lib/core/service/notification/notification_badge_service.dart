@@ -1,7 +1,8 @@
-import 'package:app_badge_plus/app_badge_plus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
+import 'package:lifeclient/product/package/badge/app_badge_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/badge/app_badge_web.dart';
 
 /// Owns the number on the app icon.
 ///
@@ -59,8 +60,9 @@ final class FirestoreNotificationBadgeService
   @override
   Future<void> setBadge(int count) async {
     try {
-      if (!await AppBadgePlus.isSupported()) return;
-      await AppBadgePlus.updateBadge(count);
+      const badge = PlatformAppBadge();
+      if (!await badge.isSupported()) return;
+      await badge.update(count);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
     }

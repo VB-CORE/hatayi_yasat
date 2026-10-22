@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/common/color_common.dart';
+import 'package:lifeclient/product/package/share/custom_share.dart';
 import 'package:lifeclient/product/utility/constants/index.dart';
 import 'package:lifeclient/product/utility/uri/uri_utility.dart';
 import 'package:lifeclient/product/widget/scrollbar/product_scroll_bar.dart';
@@ -138,7 +139,7 @@ final class _Share extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => model.id.ext.share(),
+      onPressed: () => CustomShare.shareText(model.id),
       child: Icon(
         AppIcons.share,
         color: context.general.colorScheme.primary,
