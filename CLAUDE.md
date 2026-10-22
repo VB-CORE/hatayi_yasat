@@ -317,7 +317,9 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   var olan tek üyeli sözleşmelerdir; bunlardan yalnızca `app_check_initialize.dart`'ta
   `// ignore: one_member_abstracts` yorumu yoktur, diğer üçü bu yorumu zaten taşır.
   Tek üyeli bir sözleşme kaçınılmazsa bu örüntü izlenip
-  `// ignore: one_member_abstracts` eklenir.
+  `// ignore: one_member_abstracts` eklenir; `calendar_saver.dart` bu
+  şekildedir (yalnızca getter içeren `crashlytics_provider.dart` lint'i tetiklemez). Okunmayan bir üye (örn. hep `true`
+  dönen `isSupported`) sadece 2 üye kuralını doldurmak için eklenmez.
 - **Plugin facade'ı (WEB-42, #512):** derlenip yalnızca runtime'da web'de patlayan
   plugin'ler aynı `_io`/`_web` kalıbıyla, plugin başına tek facade üzerinden
   çağrılır. Plugin'in import'u yalnızca `_io` dosyasındadır; web'de desteklenmeyen
@@ -332,7 +334,7 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   | app_settings | [app_settings_opener.dart](lib/product/package/settings/app_settings_opener.dart) | No-op |
   | permission_handler (bildirim) | [notification_permission.dart](lib/product/package/permission/notification_permission.dart), wrapper `NotificationPermissionUtility` | Ayarlar'daki bildirim bölümü gizli (WEB-26) |
   | add_2_calendar | [calendar_saver.dart](lib/product/package/calendar/calendar_saver.dart) | `.ics` indirir ([calendar_ics.dart](lib/product/package/calendar/calendar_ics.dart)) |
-  | share / path_provider | [platform_share.dart](lib/product/package/share/platform_share.dart) | Web Share API; dosya bellekte (`XFile.fromData`) |
+  | share / path_provider | [app_share.dart](lib/product/package/share/app_share.dart) | Web Share API; dosya bellekte (`XFile.fromData`) |
   | in_app_review | [store_review.dart](lib/product/package/app_review/store_review.dart) | Profil'deki "Bizi değerlendir" gizli |
 
   Metin paylaşımı `kartal`'ın `.ext.share()`'i yerine `CustomShare.shareText` ile

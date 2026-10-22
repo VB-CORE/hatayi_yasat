@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
-import 'package:lifeclient/product/package/share/platform_share.dart';
+import 'package:lifeclient/product/package/share/app_share.dart';
 import 'package:share_plus/share_plus.dart';
 
-final class PlatformShare implements FileShare {
-  const PlatformShare();
+final class PlatformAppShare implements AppShare {
+  const PlatformAppShare();
 
   @override
   Future<void> shareText(String text) =>

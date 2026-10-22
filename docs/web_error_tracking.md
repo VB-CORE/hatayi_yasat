@@ -48,6 +48,10 @@ kalırsa yeniden değerlendirilir.
 
 ## Sınırlar
 
+- Aynı hata (tip + mesaj + ilk stack satırı) oturum başına **bir kez** gönderilir; oturum başına
+  en fazla **20** farklı `app_error` gider. Her karede tekrarlanan bir hata GA4'ü doldurmaz.
+- `error_message` ve `reason` gönderilmeden önce e-posta adresleri `<email>`, 7+ haneli sayılar
+  (telefon vb.) `<number>` ile maskelenir.
 - GA4 parametre değerleri **100 karakterle** sınırlı. Değerler kırpılır, tam stack trace yok.
 - Release web build'inde (dart2js) stack satırları minify edilmiş olur.
 - Debug build'de Analytics kapalı. Test için `--dart-define=ANALYTICS_DEBUG=true` ile çalıştır.

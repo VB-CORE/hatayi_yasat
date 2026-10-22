@@ -6,9 +6,6 @@ final class PlatformCalendarSaver implements CalendarSaver {
   const PlatformCalendarSaver();
 
   @override
-  bool get isSupported => true;
-
-  @override
   Future<void> save(CalendarModel model) async {
     final event = Event(
       title: model.title,

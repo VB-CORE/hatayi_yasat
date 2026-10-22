@@ -5,8 +5,5 @@ final class PlatformCrashlyticsProvider implements CrashlyticsProvider {
   const PlatformCrashlyticsProvider();
 
   @override
-  bool get isSupported => false;
-
-  @override
   FirebaseCrashlytics? get instance => null;
 }

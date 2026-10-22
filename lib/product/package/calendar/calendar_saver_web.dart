@@ -12,9 +12,6 @@ final class PlatformCalendarSaver implements CalendarSaver {
   static const _revokeDelay = Duration(seconds: 1);
 
   @override
-  bool get isSupported => true;
-
-  @override
   Future<void> save(CalendarModel model) async {
     final ics = CalendarIcs(model);
     final blob = web.Blob(

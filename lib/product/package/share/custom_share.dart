@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
 import 'package:life_shared/life_shared.dart';
 import 'package:lifeclient/product/init/language/locale_keys.g.dart';
-import 'package:lifeclient/product/package/share/platform_share_io.dart'
-    if (dart.library.js_interop) 'package:lifeclient/product/package/share/platform_share_web.dart';
+import 'package:lifeclient/product/package/share/app_share_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/package/share/app_share_web.dart';
 import 'package:share_plus/share_plus.dart';
 
 final class CustomShare {
@@ -13,7 +13,7 @@ final class CustomShare {
 
   static Future<void> shareText(String text) async {
     try {
-      await const PlatformShare().shareText(text);
+      await const PlatformAppShare().shareText(text);
     } on Object catch (error) {
       CustomLogger.showError<void>(error);
     }
@@ -42,7 +42,7 @@ final class CustomShare {
     if (box == null) return;
 
     final sharePositionOrigin = box.localToGlobal(Offset.zero) & box.size;
-    final file = await const PlatformShare().toShareFile(bytes, fileName);
+    final file = await const PlatformAppShare().toShareFile(bytes, fileName);
     if (file == null) return;
 
     await SharePlus.instance.share(

@@ -30,8 +30,12 @@ final class FirebaseAnalyticsService implements AnalyticsService {
   static bool get isEnabled => !kDebugMode || _debugOverride;
 
   static const int _maxParameterLength = 100;
+  static const int _maxErrorEvents = 20;
+  static final RegExp _emailPattern = RegExp(r'[\w.+-]+@[\w-]+(\.[\w-]+)+');
+  static final RegExp _numberPattern = RegExp(r'\d{7,}');
 
   bool _isReportingFailure = false;
+  final Set<String> _reportedErrors = {};
 
   @override
   void logEvent(
@@ -160,24 +164,37 @@ final class FirebaseAnalyticsService implements AnalyticsService {
     required bool fatal,
     String? reason,
   }) {
+    final errorType = _truncate('${error.runtimeType}');
+    final message = _truncate(_mask('$error'));
     final stackTop = stackTrace
         ?.toString()
         .split('\n')
         .map((line) => line.trim())
         .firstWhere((line) => line.isNotEmpty, orElse: () => '');
+    final location = stackTop == null || stackTop.isEmpty
+        ? null
+        : _truncate(stackTop);
+
+    if (_reportedErrors.length >= _maxErrorEvents) return;
+    if (!_reportedErrors.add('$errorType|$message|$location')) return;
+
     logEvent(
       AnalyticsEvent.appError,
       parameters: {
-        AnalyticsParameter.errorType: _truncate('${error.runtimeType}'),
-        AnalyticsParameter.errorMessage: _truncate('$error'),
+        AnalyticsParameter.errorType: errorType,
+        AnalyticsParameter.errorMessage: message,
         AnalyticsParameter.isFatal: fatal,
-        AnalyticsParameter.reason: reason == null ? null : _truncate(reason),
-        AnalyticsParameter.stackTop: stackTop == null || stackTop.isEmpty
+        AnalyticsParameter.reason: reason == null
             ? null
-            : _truncate(stackTop),
+            : _truncate(_mask(reason)),
+        AnalyticsParameter.stackTop: location,
       },
     );
   }
+
+  static String _mask(String value) => value
+      .replaceAll(_emailPattern, '<email>')
+      .replaceAll(_numberPattern, '<number>');
 
   static String _truncate(String value) => value.length <= _maxParameterLength
       ? value
