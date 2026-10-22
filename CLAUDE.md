@@ -332,6 +332,7 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
 | Google Maps | Desteklenmiyor | WEB-24 (bekliyor) |
 | PDF görüntüleme (syncfusion) | Desteklenmiyor | ticket yok |
 | Foto kırpma (image_cropper) | Web ayarları eksik | WEB-40 (bekliyor) |
+| Onboarding | Gösterilmez; splash doğrudan login/ana sayfaya geçer, `/onboard` login'e yönlenir ([onboarding_availability.dart](lib/product/feature/onboarding/onboarding_availability.dart)) | ticket yok |
 
 ### Routing
 
@@ -364,9 +365,10 @@ değişmez; fark yalnızca aşağıdaki katmanlarda ele alınır.
   `AuthInitial`'dan çıkmayı (en fazla 20 sn), sonra redirect tamamlanmasını
   (`completeRedirectSignIn()`, en fazla 20 sn) bekler — en kötü ihtimalle toplam
   ~40 sn ([splash_view_mixin.dart](lib/features/splash/splash_view_mixin.dart)),
-  ardından `from` konumuna `Router.neglect` ile geri döner. Onboarding
-  gerekiyorsa veya force-update tetiklenirse bu akış hiç çalışmaz, `from`
-  düşer. Mobilde `from` hep null kalır, davranış değişmez.
+  ardından `from` konumuna `Router.neglect` ile geri döner. Force-update
+  tetiklenirse bu akış hiç çalışmaz, `from` düşer (web'de onboarding
+  gösterilmediği için ilk ziyarette de çalışır). Mobilde `from` hep null kalır,
+  davranış değişmez.
 - `$extra` ile taşınan zorunlu parametreli rotalar tarayıcı yenilemesinde açılamaz
   (`$extra` URL'de yok). Yeni rotalarda zorunlu id'ler path parametresine konur.
 

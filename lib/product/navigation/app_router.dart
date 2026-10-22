@@ -37,6 +37,8 @@ import 'package:lifeclient/features/sub_feature/special_agency/view/special_agen
 import 'package:lifeclient/features/sub_feature/useful_links/view/useful_links_view.dart';
 import 'package:lifeclient/features/sub_feature/user_qr/view/user_qr_view.dart';
 import 'package:lifeclient/features/tourism/view/tourism_map_view.dart';
+import 'package:lifeclient/product/feature/onboarding/onboarding_availability_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/feature/onboarding/onboarding_availability_web.dart';
 import 'package:lifeclient/product/navigation/auth_guard.dart';
 import 'package:lifeclient/sub_feature/advertisement_board/views/advertisement_board_view.dart';
 import 'package:lifeclient/sub_feature/banned/banned_view.dart';
@@ -630,6 +632,12 @@ final class DiscussionDetailRoute extends GoRouteData
 @TypedGoRoute<OnboardRoute>(path: '/onboard', name: 'Onboard')
 final class OnboardRoute extends GoRouteData with $OnboardRoute {
   const OnboardRoute();
+
+  @override
+  String? redirect(BuildContext context, GoRouterState state) =>
+      const PlatformOnboardingAvailability().isAvailable
+      ? null
+      : const LoginRoute().location;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {

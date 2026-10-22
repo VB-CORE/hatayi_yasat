@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:lifeclient/features/splash/view_model/splash_state.dart';
 import 'package:lifeclient/product/feature/cache/shared_operation/shared_cache.dart';
+import 'package:lifeclient/product/feature/onboarding/onboarding_availability_io.dart'
+    if (dart.library.js_interop) 'package:lifeclient/product/feature/onboarding/onboarding_availability_web.dart';
 import 'package:lifeclient/product/package/checker/network_checker.dart';
 import 'package:lifeclient/product/utility/state/product_provider.dart';
 import 'package:lifeclient/product/utility/validator/version_validator.dart';
@@ -36,6 +38,7 @@ class SplashViewModel extends Notifier<SplashState> {
   }
 
   bool _isCompletedOnboardingCheck() =>
+      !const PlatformOnboardingAvailability().isAvailable ||
       SharedCache.instance.isCompletedOnboarding;
 
   Future<bool> _isNeedToForceUpdate() => VersionValidator.check();
